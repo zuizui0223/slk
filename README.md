@@ -74,6 +74,8 @@ SLK owns only the cross-repository theory needed for the integrated hierarchy:
 4. the distinction between global architecture value and local evolutionary accessibility;
 5. the minimal transport from architecture payoff to invasion, fixation, and occupancy.
 
+The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
+
 ## What SLK deliberately does not absorb
 
 The sister repositories remain active and now develop their residual independent contributions:
@@ -89,9 +91,10 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 
 1. `manuscript/SLK_MANUSCRIPT_V0.md` — first integrated manuscript draft.
 2. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-3. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-4. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
-5. `PROVENANCE.md` — source repositories and migration provenance.
+3. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
+4. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+5. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
+6. `PROVENANCE.md` — source repositories and migration provenance.
 
 ## Current status
 
@@ -99,7 +102,8 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 INTEGRATED_SPINE_DEFINED
 FLAGSHIP_MANUSCRIPT_STARTED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
-SOURCE_REPOSITORIES_RETAIN_RESIDUAL_PROGRAMMES
+THEOREM_CLAIM_LEDGER_REGISTERED
+SOURCE_REPOSITORIES_HAVE_RESIDUAL_MANUSCRIPT_V0S
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```
 
