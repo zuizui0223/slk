@@ -2,17 +2,17 @@
 
 ## Abstract
 
-Traits commonly contribute to multiple biological functions, but multifunctionality alone does not establish a trade-off, and a trade-off alone does not imply that differentiated architecture should evolve. We develop a unified framework that separates six questions that are often collapsed: whether a shared-coordinate functional conflict exists, how much fitness is lost to compromise, how much of that loss can be recovered by differentiation, whether the recovered loss exceeds architectural cost, whether the globally favorable architecture is locally reachable, and whether it can invade, fix, or dominate long-run occupancy. A shared-coordinate conflict is summarized by a compromise load `L`. If a differentiated architecture recovers fraction `s` of that load at added cost `K`, its intrinsic architecture margin is `Phi=sL-K`. The region `L>0, Phi<0` defines persistent compromise despite real conflict; `Phi>0` identifies global advantage of differentiation. We then show why that crossing is not an evolutionary verdict. Convex recovery can generate an accessibility gap in which complete differentiation is beneficial while all sufficiently small release steps are selected against. Frequency-dependent ecological feedback splits the static crossing into distinct rare-invasion boundaries, while finite-population fixation and weak-mutation occupancy obey still different criteria. The resulting hierarchy—`L -> Phi -> accessibility -> invasion -> fixation -> occupancy`—provides a common language for connecting experimentally identified functional conflict to the evolution of trait architecture without treating global optimality, local evolvability, and population establishment as equivalent.
+Traits commonly contribute to multiple biological functions, but multifunctionality alone does not establish a trade-off, and a trade-off alone does not imply that differentiated architecture should evolve. We develop a unified framework that separates whether a shared-coordinate functional conflict exists, how much fitness is lost to compromise, how much of that loss can be recovered by differentiation, whether recovery exceeds architectural cost, whether the globally favorable architecture is locally reachable, and whether it can invade, fix, or dominate long-run occupancy. A shared-coordinate conflict is summarized by a compromise load `L`. If a differentiated architecture recovers fraction `s` of that load at added cost `K`, its intrinsic architecture margin is `Phi=sL-K`. The region `L>0, Phi<0` defines persistent compromise despite real conflict; `Phi>0` identifies global advantage of differentiation. We then derive explicit witness regimes showing that conflict need not imply profitable differentiation, profitable differentiation need not imply local accessibility, local accessibility plus positive intrinsic value need not imply rare invasion, and rare invasion need not imply reciprocal fixation superiority. Under weak selection, absolute mutant advantage over neutrality can also disagree with long-run monomorphic occupancy. However, under the registered symmetric rare-mutation exponential Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering coincide exactly through the same self-play score difference. The resulting framework is therefore not a chain of universal non-equivalences but a hierarchy of evolutionary criteria containing both sharp separations and a process-level invariant.
 
-**Claim map:** C1–C9. The abstract intentionally mixes empirical handoffs, definitions, model-specific corollaries and process-specific theorems; their classes are separated below and in `docs/THEOREM_CLAIM_LEDGER_V1.md`.
+**Claim map:** C1–C9 plus invariant INV1. Formal witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
 
 ## 1. Introduction
 
 A trait can perform several functions without those functions opposing one another. Even when opposing selection is real, the existence of compromise does not tell us whether adding phenotypic dimensions is worth the cost of maintaining a more complex architecture. And even when differentiation has higher optimized fitness, evolution may fail to reach it through available mutations or may reject it at the population level.
 
-These distinctions are usually studied in separate literatures: multifunctional trait conflict, modularity and division of labour, adaptive landscapes, evolutionary games, fixation, and mutation-selection dynamics. The separation is useful methodologically but obscures a simple causal sequence. A biological system must first contain recoverable conflict before differentiation can have a benefit. That benefit must exceed architecture cost before differentiation is globally worthwhile. A globally worthwhile architecture must still be accessible from the current state, and an accessible mutant must still invade, establish, and persist.
+These distinctions are usually studied in separate literatures: multifunctional trait conflict, modularity and division of labour, adaptive landscapes, evolutionary games, fixation, and mutation-selection dynamics. The separation is useful methodologically but obscures a simple causal sequence. A biological system must first contain recoverable conflict before differentiation can have a benefit. That benefit must exceed architecture cost before differentiation is globally worthwhile. A globally worthwhile architecture must still be accessible from the current state, and an accessible mutant must still invade and establish. Some later criteria remain distinct, while others can re-align under specific process assumptions.
 
-Here we integrate these steps in one hierarchy. The framework does not claim that every multifunctional trait should differentiate. Its purpose is the opposite: to state precisely which additional conditions are required at each transition and to show where apparently similar statements diverge.
+Here we integrate these steps in one hierarchy. The framework does not claim that every multifunctional trait should differentiate. Its purpose is the opposite: to state precisely which additional conditions are required at each transition, construct parameter regions where apparently similar statements diverge, and identify where a process-level invariant forces two criteria to agree.
 
 Our central hierarchy is
 
@@ -27,9 +27,7 @@ shared-coordinate conflict
 -> weak-mutation occupancy.
 ```
 
-The main result is a non-equivalence theorem in conceptual form: each arrow introduces a new estimand, so success at one level does not guarantee success at the next.
-
-**Claim map:** overview of C1–C9; no new theorem is introduced in this section.
+The main theorem is therefore a structured non-equivalence result rather than a slogan that every adjacent step differs.
 
 ## 2. Identifying the conflict budget
 
@@ -130,9 +128,7 @@ W_k=s0(1-s0)Delta^2,
 
 maximized at intermediate residual integration, `s0=1/2`.
 
-The result separates two questions that are often conflated: whether a differentiated architecture would be better if present, and whether evolution can reach it by locally available changes.
-
-**Ceiling:** the accessibility conclusion is conditional on the declared local mutation/release neighborhood and path geometry.
+**Ceiling:** accessibility is conditional on the declared mutation/release neighborhood and path geometry.
 
 ## 6. Population feedback splits the architecture boundary
 
@@ -153,7 +149,7 @@ Phi=-eta.
 
 The population phase is therefore not determined by architecture value alone. Depending on `eta`, the system can show dominance, stable coexistence, or coordination bistability.
 
-**Ceiling:** the split requires the registered symmetric pair mapping and an identified or declared population-feedback term; it is not an organism-level consequence of `Phi` alone.
+**Ceiling:** the split requires the registered symmetric pair mapping and an identified or declared population-feedback term.
 
 ## 7. Fixation is another estimand
 
@@ -165,13 +161,19 @@ In finite populations, invasion when rare and fixation ordering need not coincid
 rho_D/rho_S=exp[beta(N-2)Phi].
 ```
 
-Thus reciprocal fixation ordering has a particularly simple dependence on intrinsic architecture value, while absolute mutant advantage relative to neutrality can obey a different criterion. Population size and stochasticity therefore add a distinct layer rather than merely adding noise around deterministic invasion.
+Thus reciprocal fixation ordering depends on intrinsic architecture value, whereas rare invasion depends on both `Phi` and `eta`. Under weak selection, absolute mutant advantage relative to neutrality follows another criterion,
 
-**Ceiling:** this result is process-specific to the declared Moran mapping and should not be presented as a universal fixation law.
+```text
+rho_D>1/N iff 3Phi>eta.
+```
 
-## 8. Long-run occupancy need not equal accessibility
+The distinction between reciprocal fixation ordering and absolute fixation advantage matters for the final transport step.
 
-**Claim C9 — THEOREM / PROCESS-SPECIFIC MODEL RESULT.**
+**Ceiling:** these fixation results are specific to the declared Moran mapping.
+
+## 8. Weak-mutation occupancy and a fixation–occupancy invariant
+
+**Claim C9 — PROCESS-SPECIFIC STATIONARY RESULT; invariant INV1.**
 
 Under connected symmetric rare mutation among architectures, the monomorphic stationary law can be written in terms of self-play scores `u_i=A_ii/2`:
 
@@ -179,32 +181,54 @@ Under connected symmetric rare mutation among architectures, the monomorphic sta
 Pi_i proportional to exp[beta(N-2)u_i].
 ```
 
-For zero-diagonal interaction feedback this reduces to intrinsic architecture value. Off-diagonal ecological interactions can still alter invasion, coexistence, substitution rates, and metastability while cancelling from these long-run monomorphic weights.
-
-A globally favored architecture can therefore have high stationary weight yet remain difficult to reach from a particular starting topology. Long-run abundance and evolutionary accessibility answer different questions.
-
-**Ceiling:** stationary occupancy requires a declared mutation graph and fixation kernel; it is not identified by endpoint payoff comparisons alone.
-
-## 9. A hierarchy of non-equivalent evolutionary statements
-
-**Synthesis of C1–C9 — no additional primitive theorem.**
-
-The integrated framework can be summarized as
+For any allowed pair `i,j`, the same self-play difference determines the reciprocal fixation ratio:
 
 ```text
-conflict exists
-!= differentiation pays
-!= differentiation is reachable
-!= differentiation invades
-!= differentiation fixes more often
-!= differentiation dominates long-run occupancy.
+rho(j|i)/rho(i|j)
+=exp[beta(N-2)(u_j-u_i)],
 ```
 
-Each inequality is constructive within the declared model stack: the component models contain explicit parameter regions in which the statement on the left is true and the statement on the right is false.
+so
 
-This hierarchy clarifies why apparently contradictory empirical patterns can coexist. Persistent multifunctional compromise can occur under real conflict; globally superior differentiated architectures can remain evolutionarily trapped; invasion and fixation can disagree; and long-run occupancy can favor architectures that are difficult to access from a specific ancestral state.
+```text
+rho(j|i)>rho(i|j)
+iff
+Pi_j>Pi_i.
+```
 
-The novelty claimed here is the **integrated non-equivalence hierarchy and its handoff logic**, not re-invention of the component theories of trade-offs, modularity, evolutionary games, fixation, or mutation-selection dynamics.
+Thus reciprocal fixation ordering and symmetric weak-mutation monomorphic occupancy ordering are not independent under this registered process; they coincide exactly. By contrast, absolute fixation advantage over neutrality can disagree with occupancy ordering because it depends on `eta` as well as `Phi` under weak selection.
+
+**Ceiling:** the invariant requires a finite symmetric game, connected symmetric rare mutation, and the registered exponential Moran fixation process.
+
+## 9. Non-equivalence theorem with explicit witnesses
+
+### Theorem NE — evolutionary criteria separate at specific transitions
+
+There exist admissible parameter regimes in which each of the following implications fails:
+
+```text
+L>0                   !=> Phi>0
+Phi>0                 !=> local accessibility
+accessible + Phi>0    !=> rare invasion
+rare invasion         !=> reciprocal fixation superiority
+absolute fixation advantage !=> greater weak-mutation occupancy.
+```
+
+Explicit witnesses are:
+
+| Separation | Witness | Result |
+|---|---|---|
+| conflict -> payoff | `L=1, s=1/2, K=1` | `L>0` but `Phi=-1/2` |
+| payoff -> accessibility | `s0=1/2, Delta=2, k=3/2` | `k_local=1<k<2=k_global` |
+| accessible payoff -> invasion | `Phi=0.2, eta=0.5` | `Delta(0)=-0.3<0` |
+| invasion -> reciprocal fixation | `Phi=-0.2, eta=-1` | `Delta(0)=0.8>0` but `rho_D/rho_S<1` |
+| absolute fixation advantage -> occupancy | `Phi=-0.1, eta=-0.5` | `3Phi>eta`, yet `Pi_D<Pi_S` |
+
+The final pair contains an important qualification: reciprocal fixation ordering itself does **not** diverge from stationary monomorphic occupancy ordering under connected symmetric rare mutation and the registered exponential Moran process. Both are controlled by the same self-play score difference.
+
+So the flagship conclusion is not that every adjacent evolutionary statement is different. It is that the hierarchy contains **four sharp separations plus one fixation-criterion split, followed by a process-level invariant that re-aligns reciprocal fixation and occupancy**.
+
+Full derivation and witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
 
 ## 10. Empirical programme
 
@@ -212,9 +236,7 @@ The novelty claimed here is the **integrated non-equivalence hierarchy and its h
 
 The framework suggests a sequential rather than all-at-once empirical strategy.
 
-First, identify a shared-coordinate conflict and estimate a fitness-scale compromise budget `L` (`G1–G2`). Second, quantify how much of that budget an experimentally accessible differentiated architecture recovers and estimate its added cost `K` (`G3–G5`). Third, test local release steps rather than inferring accessibility from endpoint comparisons (`G6`). Fourth, estimate frequency-dependent performance where population feedback is plausible (`G7`). Finally, distinguish invasion assays, fixation models, and long-run occupancy by explicitly specifying the relevant process and mutation connectivity (`G8–G9`).
-
-The framework is therefore designed to turn a broad question—why multifunctional traits remain integrated or become differentiated—into a sequence of falsifiable measurements.
+First, identify a shared-coordinate conflict and estimate a fitness-scale compromise budget `L` (`G1–G2`). Second, quantify how much of that budget an experimentally accessible differentiated architecture recovers and estimate its added cost `K` (`G3–G5`). Third, test local release steps rather than inferring accessibility from endpoint comparisons (`G6`). Fourth, estimate frequency-dependent performance where population feedback is plausible (`G7`). Finally, distinguish rare invasion, reciprocal fixation ordering, absolute fixation advantage, and long-run occupancy by explicitly specifying the relevant process and mutation connectivity (`G8–G9`).
 
 **Current empirical ceiling:** no single biological system is claimed here to have passed G1–G9 end to end.
 
@@ -222,9 +244,9 @@ The framework is therefore designed to turn a broad question—why multifunction
 
 The central contribution is not a new synonym for trade-off or modularity. It is a bridge between causal functional conflict and evolutionary architecture that preserves the distinctions introduced by each biological scale.
 
-At the organismal scale, `L` asks whether integration is costly. At the architecture scale, `Phi=sL-K` asks whether differentiation is worth that cost. At the mutational scale, accessibility asks whether the better architecture can be reached. At the population scale, invasion and fixation ask whether it can establish. At the long-run evolutionary scale, occupancy asks how often it is expected to be observed under recurrent mutation and selection.
+At the organismal scale, `L` asks whether integration is costly. At the architecture scale, `Phi=sL-K` asks whether differentiation is worth that cost. At the mutational scale, accessibility asks whether the better architecture can be reached. At the population scale, invasion and fixation ask whether it can establish. At the long-run evolutionary scale, occupancy asks how often monomorphic states are expected under the registered mutation-selection process.
 
-Treating these as one question creates false paradoxes. Separating them yields a phase-structured theory of trait architecture.
+Treating all of these as one question creates false paradoxes. Treating all of them as automatically different is also too crude. The exact structure is more informative: some criteria genuinely separate because a new mechanism enters, whereas reciprocal fixation and symmetric rare-mutation occupancy re-align under an exact invariant.
 
 ### Claim-status summary
 
@@ -238,6 +260,7 @@ C6      accessibility theorem / model result
 C7      invasion theorem / model result
 C8      process-specific fixation result
 C9      process-specific occupancy result
+INV1    reciprocal fixation <=> occupancy ordering under registered assumptions
 G1-G9   empirical application gates
 ```
 
