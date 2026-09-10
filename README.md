@@ -69,6 +69,10 @@ reciprocal fixation ordering <=> stationary monomorphic occupancy ordering.
 
 ![Figure 1. SLK hierarchy showing genuine splits and the fixation–occupancy invariant.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
+![Figure 2. Architecture-value phase map with accessibility and invasion insets.](figures/FIG2_PHASE_MAP.svg)
+
+Figure 1 shows the inferential hierarchy and its split/invariant structure. Figure 2 shows why the full hierarchy is not reducible to one two-dimensional phase diagram: `L` and `Phi` classify architecture value, whereas accessibility and invasion introduce additional coordinates.
+
 ## What SLK owns
 
 SLK owns only the cross-repository theory needed for the integrated hierarchy:
@@ -95,17 +99,19 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 
 ## Canonical reader path
 
-1. `manuscript/SLK_MANUSCRIPT_V0.md` — integrated manuscript draft with C1-C9/INV1 labels and Figure 1.
+1. `manuscript/SLK_MANUSCRIPT_V0.md` — integrated manuscript draft with C1-C9/INV1 labels and Figures 1-2.
 2. `figures/FIG1_LOGIC_DIAGRAM.svg` — flagship logic figure: split points plus fixation-occupancy invariant.
-3. `figures/FIG1_CAPTION_AND_SPEC.md` — full caption, witness conditions, and design specification.
-4. `theory/NON_EQUIVALENCE_THEOREM_V1.md` — explicit counterexample regimes and invariant.
-5. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-6. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
-7. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
-8. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
-9. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-10. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
-11. `PROVENANCE.md` — migration provenance and citation policy.
+3. `figures/FIG1_CAPTION_AND_SPEC.md` — Figure 1 caption, witness conditions, and design specification.
+4. `figures/FIG2_PHASE_MAP.svg` — architecture-value phase map plus conditional accessibility/invasion insets.
+5. `figures/FIG2_CAPTION_AND_SPEC.md` — Figure 2 caption and anti-overprojection rule.
+6. `theory/NON_EQUIVALENCE_THEOREM_V1.md` — explicit counterexample regimes and invariant.
+7. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
+8. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
+9. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
+10. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
+11. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+12. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
+13. `PROVENANCE.md` — migration provenance and citation policy.
 
 ## Current status
 
@@ -115,6 +121,8 @@ FLAGSHIP_MANUSCRIPT_CLAIM_ANNOTATED
 NON_EQUIVALENCE_THEOREM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
 FIGURE_1_REGISTERED
+FIGURE_2_REGISTERED
+PHASE_COORDINATE_BOUNDARY_REGISTERED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
 SECTION_CLAIM_MAP_REGISTERED
