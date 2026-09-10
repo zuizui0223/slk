@@ -103,6 +103,12 @@ Under the registered nested architecture comparison, **Claim C5** states that `P
 
 The architecture therefore gains only from the portion of compromise that is actually released. Structural elaboration with weak functional decoupling can remain below the crossing even when full theoretical decoupling would be beneficial.
 
+Figure 2 separates this architecture-value classification from the later realization criteria. Panel A lives entirely on the `L–Phi` plane. Panels B and C deliberately introduce additional coordinates, because local accessibility depends on release-path geometry and rare invasion depends on population feedback. Those later boundaries therefore cannot be drawn as universal extra lines in the same `L–Phi` plane.
+
+![Figure 2. Architecture-value phase map with accessibility and invasion insets.](../figures/FIG2_PHASE_MAP.svg)
+
+**Figure 2. Architecture-value classification and evolutionary realization require different coordinates.** The `L–Phi` plane classifies persistent compromise versus globally favorable differentiation. Accessibility and invasion require additional coordinates and are therefore shown as separate conditional insets rather than universal boundaries in the same phase plane. Full caption and specification are in `figures/FIG2_CAPTION_AND_SPEC.md`.
+
 **Ceiling:** `Phi>0` is a global-value statement only. It is not shorthand for local reachability, invasion, fixation, occupancy, or historical evolution.
 
 ## 5. Global value can exceed local accessibility
