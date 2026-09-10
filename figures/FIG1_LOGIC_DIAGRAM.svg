@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+    <style>
+      .title { font: 700 32px Arial, Helvetica, sans-serif; fill: #111; }
+      .subtitle { font: 400 18px Arial, Helvetica, sans-serif; fill: #333; }
+      .box { fill: #fff; stroke: #222; stroke-width: 2.2; rx: 16; }
+      .boxlabel { font: 700 22px Arial, Helvetica, sans-serif; fill: #111; }
+      .small { font: 400 16px Arial, Helvetica, sans-serif; fill: #222; }
+      .tiny { font: 400 14px Arial, Helvetica, sans-serif; fill: #333; }
+      .arrow { stroke: #333; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #666; stroke-width: 2; stroke-dasharray: 8 6; fill: none; marker-end: url(#arrow); }
+      .witness { fill: #fafafa; stroke: #777; stroke-width: 1.5; rx: 12; }
+      .note { font: 600 15px Arial, Helvetica, sans-serif; fill: #222; }
+    </style>
+  </defs>
+
+  <text x="700" y="48" text-anchor="middle" class="title">From functional conflict to evolutionary outcome</text>
+  <text x="700" y="78" text-anchor="middle" class="subtitle">SLK separates global architecture value, local reachability, population establishment, and long-run occupancy</text>
+
+  <!-- main chain -->
+  <rect x="500" y="120" width="400" height="82" class="box"/>
+  <text x="700" y="153" text-anchor="middle" class="boxlabel">Conflict budget L</text>
+  <text x="700" y="179" text-anchor="middle" class="small">identified shared-coordinate compromise</text>
+
+  <path d="M700 202 L700 248" class="arrow"/>
+
+  <rect x="500" y="250" width="400" height="92" class="box"/>
+  <text x="700" y="283" text-anchor="middle" class="boxlabel">Architecture margin Φ = sL − K</text>
+  <text x="700" y="309" text-anchor="middle" class="small">global optimized value of differentiation</text>
+  <text x="700" y="331" text-anchor="middle" class="tiny">Φ &lt; 0: persistent compromise; Φ &gt; 0: globally favored differentiation</text>
+
+  <path d="M700 342 L700 392" class="arrow"/>
+
+  <rect x="500" y="394" width="400" height="82" class="box"/>
+  <text x="700" y="427" text-anchor="middle" class="boxlabel">Local accessibility</text>
+  <text x="700" y="453" text-anchor="middle" class="small">can available changes reach the better architecture?</text>
+
+  <path d="M700 476 L700 526" class="arrow"/>
+
+  <rect x="500" y="528" width="400" height="82" class="box"/>
+  <text x="700" y="561" text-anchor="middle" class="boxlabel">Rare invasion</text>
+  <text x="700" y="587" text-anchor="middle" class="small">frequency-dependent entry into the resident population</text>
+
+  <path d="M700 610 L700 660" class="arrow"/>
+
+  <rect x="500" y="662" width="400" height="82" class="box"/>
+  <text x="700" y="695" text-anchor="middle" class="boxlabel">Finite-population fixation</text>
+  <text x="700" y="721" text-anchor="middle" class="small">process-specific establishment probability</text>
+
+  <path d="M700 744 L700 794" class="arrow"/>
+
+  <rect x="500" y="796" width="400" height="82" class="box"/>
+  <text x="700" y="829" text-anchor="middle" class="boxlabel">Weak-mutation occupancy</text>
+  <text x="700" y="855" text-anchor="middle" class="small">long-run monomorphic state weight</text>
+
+  <!-- left witnesses -->
+  <rect x="70" y="245" width="340" height="102" class="witness"/>
+  <text x="240" y="274" text-anchor="middle" class="note">Split 1: conflict ≠ profitable differentiation</text>
+  <text x="240" y="301" text-anchor="middle" class="tiny">Witness: L &gt; 0 but K &gt; sL</text>
+  <text x="240" y="324" text-anchor="middle" class="tiny">real conflict, yet Φ &lt; 0</text>
+  <path d="M410 296 L500 296" class="dash"/>
+
+  <rect x="70" y="389" width="340" height="102" class="witness"/>
+  <text x="240" y="418" text-anchor="middle" class="note">Split 2: global value ≠ reachability</text>
+  <text x="240" y="445" text-anchor="middle" class="tiny">Witness: k_local &lt; k &lt; k_global</text>
+  <text x="240" y="468" text-anchor="middle" class="tiny">full release pays; small steps fail</text>
+  <path d="M410 440 L500 440" class="dash"/>
+
+  <rect x="70" y="523" width="340" height="102" class="witness"/>
+  <text x="240" y="552" text-anchor="middle" class="note">Split 3: value/access ≠ invasion</text>
+  <text x="240" y="579" text-anchor="middle" class="tiny">Witness: Φ &gt; 0 but Φ − η &lt; 0</text>
+  <text x="240" y="602" text-anchor="middle" class="tiny">frequency feedback blocks rare entry</text>
+  <path d="M410 574 L500 574" class="dash"/>
+
+  <rect x="70" y="657" width="340" height="102" class="witness"/>
+  <text x="240" y="686" text-anchor="middle" class="note">Split 4: invasion ≠ reciprocal fixation</text>
+  <text x="240" y="713" text-anchor="middle" class="tiny">Witness: invasion sign set by Φ ± η</text>
+  <text x="240" y="736" text-anchor="middle" class="tiny">fixation ordering set by Φ in the Moran mapping</text>
+  <path d="M410 708 L500 708" class="dash"/>
+
+  <!-- right convergence/invariant -->
+  <rect x="990" y="668" width="340" height="190" class="witness"/>
+  <text x="1160" y="700" text-anchor="middle" class="note">Invariant under the registered weak-mutation model</text>
+  <text x="1160" y="735" text-anchor="middle" class="tiny">ρ(j|i) / ρ(i|j)</text>
+  <text x="1160" y="758" text-anchor="middle" class="tiny">= exp[β(N−2)(u_j−u_i)]</text>
+  <text x="1160" y="792" text-anchor="middle" class="tiny">Π_j / Π_i</text>
+  <text x="1160" y="815" text-anchor="middle" class="tiny">= exp[β(N−2)(u_j−u_i)]</text>
+  <text x="1160" y="845" text-anchor="middle" class="note">reciprocal fixation ordering ⇔ occupancy ordering</text>
+  <path d="M900 703 C945 703 955 703 990 727" class="dash"/>
+  <path d="M900 837 C945 837 955 837 990 817" class="dash"/>
+
+  <!-- footer -->
+  <text x="700" y="930" text-anchor="middle" class="subtitle">Key lesson: later evolutionary statements require new estimands; some thresholds split, while fixation and occupancy re-align under a specific reversible weak-mutation process.</text>
+</svg>
