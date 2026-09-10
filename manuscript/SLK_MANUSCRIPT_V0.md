@@ -244,9 +244,26 @@ Full derivation and witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_
 
 **Empirical gates G1–G9; not a claim of completed end-to-end validation.**
 
-The framework suggests a sequential rather than all-at-once empirical strategy.
+SLK is deliberately cumulative. Each gate adds a new estimand and raises the ceiling of the biological claim; failure at a later gate does not erase what earlier gates established (Fig. 3).
 
-First, identify a shared-coordinate conflict and estimate a fitness-scale compromise budget `L` (`G1–G2`). Second, quantify how much of that budget an experimentally accessible differentiated architecture recovers and estimate its added cost `K` (`G3–G5`). Third, test local release steps rather than inferring accessibility from endpoint comparisons (`G6`). Fourth, estimate frequency-dependent performance where population feedback is plausible (`G7`). Finally, distinguish rare invasion, reciprocal fixation ordering, absolute fixation advantage, and long-run occupancy by explicitly specifying the relevant process and mutation connectivity (`G8–G9`).
+![Figure 3. Empirical measurement ladder for SLK.](../figures/FIG3_EMPIRICAL_LADDER.svg)
+
+**Figure 3. Sequential empirical validation of the SLK hierarchy.** G1 identifies a real shared-coordinate conflict; G2 estimates or bounds `L`; G3 quantifies recoverable release `s` or `R`; G4 defines architecture cost `K` on the same fitness scale; and G5 evaluates `Phi=R-K`. These first five gates are sufficient only for architecture-value classification. G6 introduces the local mutation/release neighborhood needed for accessibility claims. G7 measures rare-frequency performance and population feedback needed for invasion claims. G8 specifies the stochastic finite-population process needed for fixation claims, and G9 specifies the mutation graph/kernel needed for stationary occupancy. Full caption and gate table are in `figures/FIG3_CAPTION_AND_SPEC.md`.
+
+The gate-specific claim ceilings are:
+
+```text
+G1 passed       -> a real shared-axis conflict is identified
+G2 passed       -> conflict magnitude L is estimated or bounded
+G3-G4 passed    -> recoverable benefit R and architecture cost K are separately quantified
+G5 passed       -> persistent compromise or global differentiated advantage is classified
+G6 passed       -> local reachability/trapping is identified under a declared path geometry
+G7 passed       -> rare-invasion phase is identified under a declared population mapping
+G8 passed       -> fixation statements are justified under an explicit finite-population process
+G9 passed       -> weak-mutation monomorphic occupancy is justified under an explicit mutation graph/kernel.
+```
+
+This ordering prevents a common empirical shortcut: endpoint superiority at G5 cannot substitute for G6–G9. Likewise, a rare-invasion assay at G7 cannot by itself determine fixation or occupancy. Under the registered symmetric rare-mutation exponential-Moran model, reciprocal fixation ordering and occupancy ordering coincide, but that agreement is a theorem conditional on the process assumptions rather than permission to skip process specification.
 
 **Current empirical ceiling:** no single biological system is claimed here to have passed G1–G9 end to end.
 
@@ -257,6 +274,8 @@ The central contribution is not a new synonym for trade-off or modularity. It is
 At the organismal scale, `L` asks whether integration is costly. At the architecture scale, `Phi=sL-K` asks whether differentiation is worth that cost. At the mutational scale, accessibility asks whether the better architecture can be reached. At the population scale, invasion and fixation ask whether it can establish. At the long-run evolutionary scale, occupancy asks how often monomorphic states are expected under the registered mutation-selection process.
 
 Treating all of these as one question creates false paradoxes. Treating all of them as automatically different is also too crude. The exact structure is more informative: some criteria genuinely separate because a new mechanism enters, whereas reciprocal fixation and symmetric rare-mutation occupancy re-align under an exact invariant.
+
+The three figures mirror the three levels of the contribution. Figure 1 gives the logic of split and invariant; Figure 2 gives the coordinate geometry of architecture value versus realization; Figure 3 gives the empirical ladder required to move from one claim level to the next. Together they make the framework both mathematically explicit and experimentally falsifiable.
 
 ### Claim-status summary
 
