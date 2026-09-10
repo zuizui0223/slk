@@ -53,16 +53,21 @@ population transport
         +-- weak-mutation occupancy
 ```
 
-The key conceptual claim is that these levels are distinct estimands:
+The flagship is not a claim that every adjacent criterion differs. It contains both sharp splits and a process-level invariant:
 
 ```text
-conflict exists
-!= differentiation pays
-!= differentiation is locally reachable
-!= differentiation can invade
-!= differentiation fixes more often
-!= differentiation dominates long-run occupancy.
+L>0                         !=> Phi>0
+Phi>0                       !=> local accessibility
+accessible + Phi>0          !=> rare invasion
+rare invasion               !=> reciprocal fixation superiority
+absolute fixation advantage !=> greater weak-mutation occupancy
+
+but, under the registered symmetric rare-mutation exponential-Moran process,
+
+reciprocal fixation ordering <=> stationary monomorphic occupancy ordering.
 ```
+
+![Figure 1. SLK hierarchy showing genuine splits and the fixation–occupancy invariant.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
 ## What SLK owns
 
@@ -72,7 +77,8 @@ SLK owns only the cross-repository theory needed for the integrated hierarchy:
 2. the persistent-compromise classification `L > 0, Phi < 0`;
 3. the architecture payoff bridge `R=sL`, `Phi=sL-K`;
 4. the distinction between global architecture value and local evolutionary accessibility;
-5. the minimal transport from architecture payoff to invasion, fixation, and occupancy.
+5. the minimal transport from architecture payoff to invasion, fixation, and occupancy;
+6. the integrated split/invariant theorem showing where successive criteria diverge and where reciprocal fixation and weak-mutation occupancy re-align.
 
 The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
@@ -89,20 +95,26 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 
 ## Canonical reader path
 
-1. `manuscript/SLK_MANUSCRIPT_V0.md` — first integrated manuscript draft with C1-C9 labels embedded section by section.
-2. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-3. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
-4. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
-5. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
-6. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-7. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
-8. `PROVENANCE.md` — migration provenance and citation policy.
+1. `manuscript/SLK_MANUSCRIPT_V0.md` — integrated manuscript draft with C1-C9/INV1 labels and Figure 1.
+2. `figures/FIG1_LOGIC_DIAGRAM.svg` — flagship logic figure: split points plus fixation-occupancy invariant.
+3. `figures/FIG1_CAPTION_AND_SPEC.md` — full caption, witness conditions, and design specification.
+4. `theory/NON_EQUIVALENCE_THEOREM_V1.md` — explicit counterexample regimes and invariant.
+5. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
+6. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
+7. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
+8. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
+9. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+10. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
+11. `PROVENANCE.md` — migration provenance and citation policy.
 
 ## Current status
 
 ```text
 INTEGRATED_SPINE_DEFINED
 FLAGSHIP_MANUSCRIPT_CLAIM_ANNOTATED
+NON_EQUIVALENCE_THEOREM_REGISTERED
+FIXATION_OCCUPANCY_INVARIANT_REGISTERED
+FIGURE_1_REGISTERED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
 SECTION_CLAIM_MAP_REGISTERED
