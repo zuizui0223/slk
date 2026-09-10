@@ -89,21 +89,23 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 
 ## Canonical reader path
 
-1. `manuscript/SLK_MANUSCRIPT_V0.md` — first integrated manuscript draft.
+1. `manuscript/SLK_MANUSCRIPT_V0.md` — first integrated manuscript draft with C1-C9 labels embedded section by section.
 2. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
 3. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
-4. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
-5. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-6. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
-7. `PROVENANCE.md` — migration provenance and citation policy.
+4. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
+5. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
+6. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+7. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
+8. `PROVENANCE.md` — migration provenance and citation policy.
 
 ## Current status
 
 ```text
 INTEGRATED_SPINE_DEFINED
-FLAGSHIP_MANUSCRIPT_STARTED
+FLAGSHIP_MANUSCRIPT_CLAIM_ANNOTATED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
+SECTION_CLAIM_MAP_REGISTERED
 CLAIM_PROVENANCE_PINNED
 SOURCE_REPOSITORIES_HAVE_RESIDUAL_MANUSCRIPT_V0S
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
