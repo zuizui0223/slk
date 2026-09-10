@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <style>
+      .t{font-family:Arial,Helvetica,sans-serif;fill:#111}.h{font-size:34px;font-weight:700}.m{font-size:24px}.s{font-size:20px}.xs{font-size:17px}.axis{stroke:#111;stroke-width:3}.grid{stroke:#999;stroke-width:1.5;stroke-dasharray:8 8}.box{fill:#fff;stroke:#111;stroke-width:2}.arrow{stroke:#111;stroke-width:3;fill:none;marker-end:url(#a)}
+    </style>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#111"/></marker>
+  </defs>
+  <text x="60" y="55" class="t h">Figure 2. Architecture value and realization barriers occupy different coordinates</text>
+
+  <!-- Main L-Phi panel -->
+  <rect x="60" y="110" width="760" height="650" class="box"/>
+  <text x="85" y="150" class="t m">A. Architecture-value world map</text>
+  <line x1="160" y1="680" x2="760" y2="680" class="axis"/>
+  <line x1="160" y1="680" x2="160" y2="210" class="axis"/>
+  <text x="430" y="730" class="t m">conflict load L</text>
+  <text x="90" y="470" class="t m" transform="rotate(-90 90 470)">architecture margin Φ</text>
+  <line x1="160" y1="450" x2="760" y2="450" class="grid"/>
+  <text x="170" y="440" class="t xs">Φ = 0 critical surface</text>
+  <line x1="160" y1="210" x2="160" y2="680" class="grid"/>
+  <text x="170" y="705" class="t xs">L = 0</text>
+
+  <text x="260" y="330" class="t m">BITA world</text>
+  <text x="250" y="360" class="t s">Φ &gt; 0: differentiation globally favored</text>
+  <text x="250" y="545" class="t m">BALANCE world</text>
+  <text x="235" y="575" class="t s">L &gt; 0, Φ &lt; 0: persistent compromise</text>
+  <text x="180" y="235" class="t s">SCH supplies identified L</text>
+
+  <rect x="565" y="270" width="210" height="110" class="box"/>
+  <text x="585" y="305" class="t s">Global-value result</text>
+  <text x="585" y="338" class="t xs">Φ &gt; 0 does not imply</text>
+  <text x="585" y="365" class="t xs">evolutionary realization</text>
+
+  <!-- Insets -->
+  <rect x="860" y="110" width="470" height="290" class="box"/>
+  <text x="885" y="150" class="t m">B. Accessibility inset</text>
+  <line x1="930" y1="330" x2="1260" y2="330" class="axis"/>
+  <line x1="930" y1="330" x2="930" y2="190" class="axis"/>
+  <text x="1040" y="370" class="t s">release coordinate d</text>
+  <text x="885" y="265" class="t s" transform="rotate(-90 885 265)">net payoff</text>
+  <path d="M930 315 C1000 310, 1080 300, 1140 260 S1240 205,1260 195" stroke="#111" stroke-width="3" fill="none"/>
+  <line x1="930" y1="300" x2="1260" y2="215" class="grid"/>
+  <text x="970" y="205" class="t xs">k_local &lt; k &lt; k_global</text>
+  <text x="970" y="235" class="t xs">small steps lose, full release wins</text>
+
+  <rect x="860" y="435" width="470" height="325" class="box"/>
+  <text x="885" y="475" class="t m">C. Invasion inset</text>
+  <line x1="930" y1="690" x2="1260" y2="690" class="axis"/>
+  <line x1="930" y1="690" x2="930" y2="515" class="axis"/>
+  <text x="1040" y="735" class="t s">architecture margin Φ</text>
+  <text x="885" y="620" class="t s" transform="rotate(-90 885 620)">rare invasion</text>
+  <line x1="1080" y1="525" x2="1080" y2="690" class="grid"/>
+  <line x1="1195" y1="525" x2="1195" y2="690" class="grid"/>
+  <text x="1045" y="715" class="t xs">−η</text><text x="1175" y="715" class="t xs">+η</text>
+  <text x="955" y="555" class="t xs">frequency feedback splits</text>
+  <text x="955" y="585" class="t xs">the static Φ = 0 crossing</text>
+  <path d="M980 650 L1230 540" class="arrow"/>
+
+  <!-- connecting message -->
+  <path d="M785 325 C835 325, 825 245, 855 245" class="arrow"/>
+  <path d="M785 335 C835 335, 825 585, 855 585" class="arrow"/>
+  <text x="825" y="420" class="t xs" transform="rotate(90 825 420)">new coordinates enter after Φ</text>
+
+  <text x="60" y="815" class="t s">Main message: SCH/BALANCE/BITA classify architecture value on L and Φ; PAYOFF adds independent accessibility and population-process coordinates.</text>
+  <text x="60" y="850" class="t xs">Therefore no single two-dimensional phase plane can faithfully encode the full evolutionary hierarchy.</text>
+</svg>
