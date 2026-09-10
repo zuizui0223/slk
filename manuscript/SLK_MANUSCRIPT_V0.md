@@ -27,7 +27,11 @@ shared-coordinate conflict
 -> weak-mutation occupancy.
 ```
 
-The main theorem is therefore a structured non-equivalence result rather than a slogan that every adjacent step differs.
+The main theorem is therefore a structured non-equivalence result rather than a slogan that every adjacent step differs (Fig. 1). The downward arrows in Fig. 1 are handoffs between estimands, not logical implications.
+
+![Figure 1. SLK hierarchy showing genuine splits and the fixation–occupancy invariant.](../figures/FIG1_LOGIC_DIAGRAM.svg)
+
+**Figure 1. From functional conflict to evolutionary outcome.** SLK separates six inferential levels that are often collapsed. Positive `Phi` is not an evolutionary verdict: local mutational accessibility can fail even when complete differentiation has positive payoff; frequency-dependent feedback can shift rare-invasion boundaries away from the intrinsic architecture crossing; and finite-population fixation is governed by a process-specific rule. Dashed side boxes show explicit witness conditions for genuine non-implications. Under the registered reversible weak-mutation exponential-Moran model, reciprocal fixation ordering and long-run monomorphic occupancy ordering re-align because both depend on the same self-play score difference. Full caption and design specification are in `figures/FIG1_CAPTION_AND_SPEC.md`.
 
 ## 2. Identifying the conflict budget
 
