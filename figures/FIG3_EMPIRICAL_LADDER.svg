@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+  <style>
+    .title{font:700 42px sans-serif}.sub{font:600 26px sans-serif}.txt{font:22px sans-serif}.small{font:18px sans-serif}.box{fill:white;stroke:#222;stroke-width:2}.gate{fill:#f6f6f6;stroke:#222;stroke-width:2}.arrow{stroke:#222;stroke-width:2.5;marker-end:url(#a)}.ceiling{font:18px sans-serif;font-style:italic}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#222"/></marker></defs>
+  <text x="60" y="70" class="title">Figure 3. Empirical measurement ladder for SLK</text>
+  <text x="60" y="112" class="txt">Each gate adds a new estimand; failure later does not erase earlier claims.</text>
+
+  <g transform="translate(90,160)">
+    <rect x="0" y="0" width="1020" height="110" rx="16" class="gate"/>
+    <text x="25" y="38" class="sub">G1 — Identify shared-axis conflict</text>
+    <text x="25" y="72" class="txt">Measure: opposing functional geometry on one phenotypic coordinate.</text>
+    <text x="25" y="100" class="ceiling">Ceiling if stop: multifunctionality may be shown, but conflict remains unproven.</text>
+  </g>
+  <line x1="600" y1="275" x2="600" y2="315" class="arrow"/>
+
+  <g transform="translate(90,320)">
+    <rect x="0" y="0" width="1020" height="110" rx="16" class="box"/>
+    <text x="25" y="38" class="sub">G2 — Estimate or bound L</text>
+    <text x="25" y="72" class="txt">Measure: fitness-scale compromise load from a valid SCH-style receipt.</text>
+    <text x="25" y="100" class="ceiling">Ceiling if stop: real conflict quantified, architecture value still unknown.</text>
+  </g>
+  <line x1="600" y1="435" x2="600" y2="475" class="arrow"/>
+
+  <g transform="translate(90,480)">
+    <rect x="0" y="0" width="1020" height="110" rx="16" class="gate"/>
+    <text x="25" y="38" class="sub">G3 — Estimate recoverable release s or R</text>
+    <text x="25" y="72" class="txt">Measure: how much of L is actually recovered by the differentiated comparison.</text>
+    <text x="25" y="100" class="ceiling">Ceiling if stop: potential benefit known, but cost not yet paid.</text>
+  </g>
+  <line x1="600" y1="595" x2="600" y2="635" class="arrow"/>
+
+  <g transform="translate(90,640)">
+    <rect x="0" y="0" width="1020" height="110" rx="16" class="box"/>
+    <text x="25" y="38" class="sub">G4 — Define and estimate K</text>
+    <text x="25" y="72" class="txt">Measure: developmental, maintenance, regulatory or other architecture cost on the same scale.</text>
+    <text x="25" y="100" class="ceiling">Ceiling if stop: R and K available, but the architecture crossing not yet evaluated.</text>
+  </g>
+  <line x1="600" y1="755" x2="600" y2="795" class="arrow"/>
+
+  <g transform="translate(90,800)">
+    <rect x="0" y="0" width="1020" height="110" rx="16" class="gate"/>
+    <text x="25" y="38" class="sub">G5 — Evaluate Φ = R − K</text>
+    <text x="25" y="72" class="txt">Classify: Φ&lt;0 persistent compromise; Φ&gt;0 global differentiated advantage.</text>
+    <text x="25" y="100" class="ceiling">Ceiling if stop: global value only; no claim of evolutionary realization.</text>
+  </g>
+  <line x1="600" y1="915" x2="600" y2="955" class="arrow"/>
+
+  <g transform="translate(90,960)">
+    <rect x="0" y="0" width="1020" height="110" rx="16" class="box"/>
+    <text x="25" y="38" class="sub">G6 — Define local accessibility</text>
+    <text x="25" y="72" class="txt">Measure/test: mutational neighborhood, release path, or stepwise perturbations.</text>
+    <text x="25" y="100" class="ceiling">Ceiling if stop: reachable or trapped, but invasion still untested.</text>
+  </g>
+  <line x1="600" y1="1075" x2="600" y2="1115" class="arrow"/>
+
+  <g transform="translate(90,1120)">
+    <rect x="0" y="0" width="1020" height="110" rx="16" class="gate"/>
+    <text x="25" y="38" class="sub">G7 — Estimate population feedback / invasion</text>
+    <text x="25" y="72" class="txt">Measure: rare-frequency performance and, where relevant, η-like frequency dependence.</text>
+    <text x="25" y="100" class="ceiling">Ceiling if stop: invasion phase known, fixation and occupancy unresolved.</text>
+  </g>
+  <line x1="600" y1="1235" x2="600" y2="1275" class="arrow"/>
+
+  <g transform="translate(90,1280)">
+    <rect x="0" y="0" width="490" height="150" rx="16" class="box"/>
+    <text x="25" y="38" class="sub">G8 — Fixation model</text>
+    <text x="25" y="72" class="small">Specify N, selection map, stochastic process.</text>
+    <text x="25" y="102" class="small">Outputs: reciprocal ordering and/or</text>
+    <text x="25" y="128" class="small">absolute advantage over neutrality.</text>
+  </g>
+  <g transform="translate(620,1280)">
+    <rect x="0" y="0" width="490" height="150" rx="16" class="gate"/>
+    <text x="25" y="38" class="sub">G9 — Mutation connectivity</text>
+    <text x="25" y="72" class="small">Specify graph and mutation symmetry/bias.</text>
+    <text x="25" y="102" class="small">Output: weak-mutation monomorphic</text>
+    <text x="25" y="128" class="small">stationary occupancy.</text>
+  </g>
+  <text x="90" y="1470" class="txt">End-to-end biological validation requires all gates relevant to the intended claim; SLK currently claims no single system has passed G1–G9.</text>
+</svg>
