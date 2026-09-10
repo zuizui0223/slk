@@ -71,7 +71,9 @@ reciprocal fixation ordering <=> stationary monomorphic occupancy ordering.
 
 ![Figure 2. Architecture-value phase map with accessibility and invasion insets.](figures/FIG2_PHASE_MAP.svg)
 
-Figure 1 shows the inferential hierarchy and its split/invariant structure. Figure 2 shows why the full hierarchy is not reducible to one two-dimensional phase diagram: `L` and `Phi` classify architecture value, whereas accessibility and invasion introduce additional coordinates.
+![Figure 3. Empirical measurement ladder for SLK.](figures/FIG3_EMPIRICAL_LADDER.svg)
+
+The three figures have distinct jobs. Figure 1 shows the inferential hierarchy and its split/invariant structure. Figure 2 shows the coordinate geometry and why accessibility and invasion cannot be collapsed into the `L–Phi` plane. Figure 3 shows the empirical gate sequence required to justify progressively stronger biological claims.
 
 ## What SLK owns
 
@@ -82,7 +84,8 @@ SLK owns only the cross-repository theory needed for the integrated hierarchy:
 3. the architecture payoff bridge `R=sL`, `Phi=sL-K`;
 4. the distinction between global architecture value and local evolutionary accessibility;
 5. the minimal transport from architecture payoff to invasion, fixation, and occupancy;
-6. the integrated split/invariant theorem showing where successive criteria diverge and where reciprocal fixation and weak-mutation occupancy re-align.
+6. the integrated split/invariant theorem showing where successive criteria diverge and where reciprocal fixation and weak-mutation occupancy re-align;
+7. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
@@ -99,19 +102,21 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 
 ## Canonical reader path
 
-1. `manuscript/SLK_MANUSCRIPT_V0.md` — integrated manuscript draft with C1-C9/INV1 labels and Figures 1-2.
+1. `manuscript/SLK_MANUSCRIPT_V0.md` — integrated manuscript draft with C1-C9/INV1 labels and Figures 1-3.
 2. `figures/FIG1_LOGIC_DIAGRAM.svg` — flagship logic figure: split points plus fixation-occupancy invariant.
 3. `figures/FIG1_CAPTION_AND_SPEC.md` — Figure 1 caption, witness conditions, and design specification.
 4. `figures/FIG2_PHASE_MAP.svg` — architecture-value phase map plus conditional accessibility/invasion insets.
 5. `figures/FIG2_CAPTION_AND_SPEC.md` — Figure 2 caption and anti-overprojection rule.
-6. `theory/NON_EQUIVALENCE_THEOREM_V1.md` — explicit counterexample regimes and invariant.
-7. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-8. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
-9. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
-10. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
-11. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-12. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
-13. `PROVENANCE.md` — migration provenance and citation policy.
+6. `figures/FIG3_EMPIRICAL_LADDER.svg` — cumulative empirical measurement ladder G1-G9.
+7. `figures/FIG3_CAPTION_AND_SPEC.md` — Figure 3 caption, gate table, and anti-shortcut rule.
+8. `theory/NON_EQUIVALENCE_THEOREM_V1.md` — explicit counterexample regimes and invariant.
+9. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
+10. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
+11. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
+12. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
+13. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+14. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
+15. `PROVENANCE.md` — migration provenance and citation policy.
 
 ## Current status
 
@@ -122,7 +127,9 @@ NON_EQUIVALENCE_THEOREM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
 FIGURE_1_REGISTERED
 FIGURE_2_REGISTERED
+FIGURE_3_REGISTERED
 PHASE_COORDINATE_BOUNDARY_REGISTERED
+EMPIRICAL_GATE_LADDER_REGISTERED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
 SECTION_CLAIM_MAP_REGISTERED
