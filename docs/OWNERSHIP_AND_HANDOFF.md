@@ -11,7 +11,8 @@ SLK owns the following integrated statements:
 ```text
 SCH      -> valid conflict budget L
 BALANCE -> L>0, Phi<0 identifies persistent compromise
-BITA    -> R=sL and Phi=sL-K define architecture value
+BITA    -> recoverable architecture value R and general margin Phi=R-K
+           with R=sL retained as the registered quadratic partial-release corollary
 PAYOFF  -> architecture value is distinct from accessibility, invasion, fixation, occupancy
 ```
 
@@ -53,9 +54,10 @@ BITA retains:
 3. identified-set and partial-identification workflow;
 4. selective multi-factor intervention ladder;
 5. empirical route-record synthesis and high-information frontier;
-6. robustness and model extensions not required for `R=sL`.
+6. nonquadratic robustness and architecture extensions beyond the minimum SLK bridge;
+7. the full derivation and assumptions behind the quadratic identity `R=sL` and the biological interpretation of partial release `s`.
 
-SLK imports the minimal architecture bridge `R=sL`, `Phi=sL-K` and the interpretation of partial recovery `s`.
+SLK imports the general architecture-value handoff `Phi=R-K`. It may use `R=sL` only as the registered quadratic partial-release corollary, not as a universal identity.
 
 ## PAYOFF residual ownership
 
@@ -74,8 +76,8 @@ SLK imports only:
 
 - the global-value versus local-accessibility split;
 - minimal canonical pair transport into invasion;
-- finite-population fixation ordering;
-- weak-mutation occupancy distinction.
+- finite-population fixation criteria;
+- weak-mutation occupancy result and the fixation-occupancy invariant under the registered assumptions.
 
 ## Anti-duplication rule
 
@@ -92,7 +94,7 @@ It should not present the identical claim as a second primary novelty.
 
 ```text
 SLK flagship:
-L -> Phi -> accessibility -> invasion -> fixation -> occupancy
+L -> R -> Phi=R-K -> accessibility -> invasion -> fixation -> occupancy
 
 SCH spin-off:
 causal identification of functional conflict and optima
@@ -101,7 +103,8 @@ BALANCE spin-off:
 identification and geometry of persistent compromise
 
 BITA spin-off:
-identification of ecological mechanism after differentiation
+mechanism identification after differentiation
++ full quadratic/nonquadratic architecture derivations beyond the minimum SLK bridge
 
 PAYOFF spin-offs:
 continuous/topological architecture theory
