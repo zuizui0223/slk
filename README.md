@@ -124,11 +124,12 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 9. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
 10. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
 11. `docs/EMPIRICAL_G1_G9_SOURCE_LEDGER_V1.md` — source-adjudicated map of existing biological systems onto G1-G9, with explicit direct/partial/analogue/reality ceilings.
-12. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-13. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
-14. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-15. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
-16. `PROVENANCE.md` — migration provenance and citation policy.
+12. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for the first biological `L` receipt, including V2 provenance and downstream handoff rules.
+13. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
+14. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
+15. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+16. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
+17. `PROVENANCE.md` — migration provenance and citation policy.
 
 ## Current status
 
@@ -143,6 +144,8 @@ FIGURE_3_REGISTERED
 PHASE_COORDINATE_BOUNDARY_REGISTERED
 EMPIRICAL_GATE_LADDER_REGISTERED
 EMPIRICAL_SOURCE_SYSTEM_LEDGER_REGISTERED
+PEDICULARIS_G2_CLOSURE_PROTOCOL_REGISTERED
+FIRST_BIOLOGICAL_G2_TARGET_LOCKED
 K_OPERATIONAL_DEFINITION_REGISTERED
 PRIOR_ART_BOUNDARY_EXPANDED
 FIRST_AMNAT_REVIEWER_REPAIR_ROUND_COMPLETE
