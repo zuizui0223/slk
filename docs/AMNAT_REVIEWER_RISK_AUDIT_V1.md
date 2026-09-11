@@ -1,49 +1,46 @@
 # SLK Am Nat reviewer-risk audit V1
 
-This audit asks how a skeptical theory/evolution reviewer could reject the SLK flagship and what must be changed before submission.
+This audit asks how a skeptical theory/evolution reviewer could reject the SLK flagship and what must still change before submission.
 
 ## Bottom line
 
-The manuscript is viable only if novelty is framed as an **integration theorem and measurement hierarchy**, not as a first theory of trade-offs, modularity, specialization, evolvability, evolutionary games, fixation, or weak-mutation stationary dynamics.
+The manuscript is viable only if novelty is framed as an **architecture-specific integration theorem and measurement hierarchy**, not as a first theory of trade-offs, modularity, specialization, evolvability, evolutionary games, fixation, or weak-mutation stationary dynamics.
 
-The strongest publishable object is:
+The strongest publishable object is now
 
 ```text
 identified conflict budget L
--> architecture value Phi=sL-K
+-> recoverable architecture benefit R
+-> general architecture margin Phi=R-K
 -> local accessibility
 -> rare invasion
 -> fixation criteria
 -> weak-mutation occupancy
 ```
 
-with explicit constructive separations at selected transitions and an exact fixation-occupancy invariant under declared process assumptions.
+with `R=sL` retained only as the registered quadratic partial-release corollary, explicit constructive separations at selected transitions, and an exact fixation-occupancy invariant under declared process assumptions.
 
 ## Risk 1 — prior art already explains why modularity/specialization can be favored
 
 ### Reviewer attack
 
-"Conflict among functions favoring modularity or specialization is old. Why is Phi=sL-K not just a re-parameterized cost-benefit model?"
+"Conflict among functions favoring modularity or specialization is old. Why is this not a re-parameterized cost-benefit model?"
 
-### Relevant prior-art boundary
+### Current response
 
-- Wagner & Altenberg (1996) explicitly connect modular organization to improved evolvability by reducing interference among functions.
-- Rueffler, Hermisson & Wagner (2012) develop a general theory of functional specialization and division of labor.
+The Introduction now explicitly acknowledges Wagner & Altenberg (1996) and Rueffler, Hermisson & Wagner (2012) as antecedents. It also acknowledges Taylor et al. (2004) and Fudenberg et al. (2006) for invasion/fixation and weak-mutation population theory. SLK no longer claims novelty for the generic statement that specialization resolves functional conflict or that population criteria differ.
 
-### Required SLK response
+The claimed novelty is restricted to:
 
-Do **not** claim novelty for the generic statement that specialization/modularity can resolve functional conflict.
-
-SLK novelty must instead be stated as:
-
-1. a common estimand chain connecting an empirically identified shared-coordinate conflict budget to architecture payoff and then to evolutionary realization criteria;
-2. explicit witness regions showing where successive criteria separate;
-3. an exact statement of where separation fails because reciprocal fixation and symmetric weak-mutation occupancy re-align;
-4. a gate-by-gate empirical claim ceiling.
+1. one estimand transport beginning from an identified shared-coordinate conflict receipt;
+2. the general handoff `Phi=R-K`;
+3. architecture-specific constructive split witnesses;
+4. the exact placement of a fixation-occupancy invariant inside the hierarchy;
+5. the G1-G9 empirical claim ceiling.
 
 ### Status
 
-HIGH RISK but addressable by framing.
+**REDUCED TO MEDIUM.** The obvious framing blocker is closed; exhaustive neighboring-literature audit remains.
 
 ## Risk 2 — the central theorem could look like a collection of standard observations
 
@@ -51,31 +48,13 @@ HIGH RISK but addressable by framing.
 
 "Of course optimality, accessibility, invasion, fixation, and stationary abundance are different concepts."
 
-### Required SLK response
+### Current response
 
-The theorem must not be sold as the verbal observation that concepts differ. It must be sold as a **constructive architecture-specific mapping** with a single upstream quantity and explicit witnesses:
-
-```text
-L>0 !=> Phi>0
-Phi>0 !=> local accessibility
-accessible + Phi>0 !=> invasion
-invasion !=> reciprocal fixation superiority
-absolute fixation advantage !=> occupancy ordering
-```
-
-plus
-
-```text
-reciprocal fixation ordering <=> occupancy ordering
-```
-
-under the registered symmetric rare-mutation exponential-Moran assumptions.
-
-The paper becomes stronger when it states both the failures and the invariant.
+The theorem is no longer sold as a verbal observation. `theory/NON_EQUIVALENCE_THEOREM_V1.md` gives explicit architecture-specific witness regimes, while Figure 1 shows both split points and the exact re-alignment under INV1. Figure 2 prevents false projection of accessibility/invasion onto the same `L-Phi` plane, and Figure 3 maps the theory to empirical claim ceilings.
 
 ### Status
 
-MEDIUM-HIGH RISK. Figure 1 and `NON_EQUIVALENCE_THEOREM_V1.md` substantially reduce it.
+**MEDIUM.** Substantially improved; remaining risk is whether reviewers regard the integrated mapping itself as sufficiently conceptually important.
 
 ## Risk 3 — `R=sL` is model specific
 
@@ -83,33 +62,31 @@ MEDIUM-HIGH RISK. Figure 1 and `NON_EQUIVALENCE_THEOREM_V1.md` substantially red
 
 "The flagship appears to depend on a quadratic identity that need not hold generally."
 
-### Required SLK response
+### Current response
 
-Keep the general architecture identity as
+Closed. The manuscript now uses
 
 ```text
 Phi=R-K
 ```
 
-and present
+as the general architecture identity and presents
 
 ```text
 R=sL
 ```
 
-strictly as the quadratic partial-release corollary.
-
-The general flagship hierarchy should therefore be written as
+strictly as the quadratic partial-release corollary. The general hierarchy is
 
 ```text
-L -> R -> Phi=R-K -> accessibility -> invasion -> fixation -> occupancy
+L -> R -> Phi=R-K -> accessibility -> invasion -> fixation -> occupancy.
 ```
 
-with `R=sL` as one operational bridge, not the universal definition of `R`.
+Section map, ownership, provenance, and README use the same boundary.
 
 ### Status
 
-HIGH RISK in the current title/abstract emphasis. Must be fixed before submission.
+**RESOLVED for framing/generalization.** Any future occurrence of `R=sL` must explicitly carry the quadratic qualification.
 
 ## Risk 4 — `K` is biologically underdefined
 
@@ -117,26 +94,15 @@ HIGH RISK in the current title/abstract emphasis. Must be fixed before submissio
 
 "Developmental, maintenance, regulatory, and mutational costs are not interchangeable. What exactly is K?"
 
-### Required SLK response
+### Current response
 
-Define `K` narrowly as the **net optimized fitness debit attributable to the differentiated architecture relative to the matched pre-cost comparison, on the same scale used for R**.
+Closed at the theoretical-definition level. `docs/K_OPERATIONAL_DEFINITION_V1.md` defines `K` as the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. The manuscript now requires comparison states, time horizon, included/excluded channels, overlap checks with `R`, uncertainty, and bounds.
 
-Do not present `K` as a directly measurable universal developmental cost. It can be measured, bounded, or experimentally constructed, but its operationalization is system-specific.
-
-A valid empirical application must document:
-
-```text
-comparison state
-fitness scale
-time horizon
-included cost channels
-excluded cost channels
-uncertainty or bound
-```
+Endpoint architecture difference is explicitly treated as `R-K`, not as a direct estimate of `K`.
 
 ### Status
 
-HIGH RISK and currently an empirical bottleneck.
+**RESOLVED as a definition; OPEN EMPIRICALLY.** No biological system yet provides the full registered `K` receipt.
 
 ## Risk 5 — accessibility is not identifiable from endpoint architecture comparison
 
@@ -144,15 +110,13 @@ HIGH RISK and currently an empirical bottleneck.
 
 "Your accessibility result depends entirely on the chosen mutation/release coordinate."
 
-### Required SLK response
+### Current response
 
-Agree explicitly. This is the point of the hierarchy.
-
-`Phi>0` is endpoint value. Accessibility requires a registered local neighborhood/path geometry. Figure 2 must remain explicit that accessibility is not another universal line in the L-Phi plane.
+Agree explicitly. `Phi>0` is endpoint value. Accessibility requires a registered local neighborhood/path geometry. Figure 2 keeps accessibility outside the universal `L-Phi` classification plane.
 
 ### Status
 
-LOW-MEDIUM RISK because the manuscript already states this correctly.
+**LOW-MEDIUM.** Correctly bounded in the manuscript.
 
 ## Risk 6 — population transport is process specific
 
@@ -160,15 +124,13 @@ LOW-MEDIUM RISK because the manuscript already states this correctly.
 
 "The fixation and occupancy results are artifacts of an exponential Moran process and symmetric rare mutation."
 
-### Required SLK response
+### Current response
 
-Do not universalize C8/C9/INV1. Their role is to demonstrate that adding a population process can both create new separations and impose new invariants.
-
-The flagship contribution is the transport logic; the exact formulas are registered examples under declared process assumptions.
+C8/C9/INV1 remain explicitly process-specific. Their role is demonstrative: adding a population process can create new separations and can also impose exact invariants. SLK does not claim the formulas are universal.
 
 ### Status
 
-MEDIUM RISK. The claim ceiling already handles most of it.
+**MEDIUM.** A stronger submission could add one alternative process as a robustness/generalization test, but this is not logically required for the present theorem.
 
 ## Risk 7 — no end-to-end empirical system
 
@@ -176,62 +138,56 @@ MEDIUM RISK. The claim ceiling already handles most of it.
 
 "This is a theory assembled from abstractions without a biological system that estimates L, R, K, accessibility, invasion, fixation, and occupancy."
 
-### Required SLK response
+### Current response
 
-Do not pretend otherwise. Figure 3 should make the missing end-to-end validation a visible research program rather than a hidden weakness.
-
-A complete G1-G9 system would be decisive but is not required for a pure-theory paper if the theorem and prior-art positioning are sufficiently sharp.
-
-The manuscript should distinguish:
-
-```text
-formal contribution
-empirical measurability
-completed empirical validation
-```
+The manuscript makes this absence explicit. Figure 3 turns it into the G1-G9 empirical programme rather than hiding it. Formal contribution, empirical measurability, and completed empirical validation are separated.
 
 ### Status
 
-HIGH RISK for broad empirical claims; acceptable for a clearly theoretical Am Nat paper.
+**HIGH for any broad empirical claim; ACCEPTABLE for a clearly theoretical paper.** A complete focal system would materially strengthen the paper but is not silently assumed.
 
 ## Risk 8 — terminology may overstate novelty
 
 Avoid unqualified phrases such as:
 
-- "first theory of trait architecture"
-- "general theory of specialization"
-- "new theory of modularity"
-- "universal evolutionary hierarchy"
+- "first theory of trait architecture";
+- "general theory of specialization";
+- "new theory of modularity";
+- "universal evolutionary hierarchy".
 
 Preferred wording:
 
-- "integrated estimand hierarchy"
-- "architecture-specific transport framework"
-- "constructive split-and-invariant theorem"
-- "measurement ladder connecting functional conflict to evolutionary realization"
+- "integrated estimand hierarchy";
+- "architecture-specific transport framework";
+- "constructive split-and-invariant theorem";
+- "measurement ladder connecting functional conflict to evolutionary realization".
+
+### Status
+
+**CONTROLLED** in current manuscript language.
 
 ## Submission-level novelty sentence
 
-A defensible novelty sentence is:
+> Existing theories explain why functional interference can favor specialization or modular organization and population-genetic theory distinguishes invasion, fixation, and weak-mutation dynamics. SLK contributes one architecture-specific estimand hierarchy linking an identified shared-coordinate conflict budget to recoverable architecture value and then to evolutionary realization, with explicit parameter witnesses for where criteria separate, an exact process-level invariant where reciprocal fixation and weak-mutation occupancy re-align, and a gate-by-gate empirical claim ceiling.
 
-> Existing theories explain why functional interference can favor specialization or modular organization and population-genetic theory distinguishes invasion, fixation, and stationary dynamics. SLK contributes a single architecture-specific estimand hierarchy linking an identified shared-coordinate conflict budget to recoverable architecture value and then to evolutionary realization, with explicit parameter witnesses for where adjacent criteria separate, an exact process-level invariant where two criteria re-align, and a gate-by-gate empirical claim ceiling.
+## Remaining work before submission
 
-## Required changes before submission
+1. Conduct a broader prior-art audit around adaptive dynamics, fitness-landscape accessibility, modularity, and stochastic evolutionary games; current four-paper boundary covers the obvious antecedents but is not exhaustive.
+2. Decide whether to add an alternative population process as robustness for C8/C9/INV1 or keep those results explicitly exemplar/process-specific.
+3. Convert the current repository-style manuscript to journal prose: remove internal claim-map labels from reader-facing text or move them to Supplement while preserving the audit ledger internally.
+4. Build a journal-formatted Literature Cited section beyond the four novelty-boundary anchors.
+5. Decide whether the paper remains pure theory or includes one partial empirical worked example; do not imply G1-G9 completion either way.
+6. Run a final theorem/formula consistency audit across manuscript, figures, ledger, and source repositories.
 
-1. Promote `Phi=R-K` to the general identity everywhere; demote `R=sL` to a quadratic bridge.
-2. Add a prior-art positioning paragraph in the Introduction naming modularity/evolvability and specialization/division-of-labor theory as antecedents rather than competitors to be displaced.
-3. Add an operational definition of `K` and required metadata for empirical use.
-4. Keep C8/C9/INV1 explicitly process-specific.
-5. Do not imply end-to-end empirical validation.
-6. Add a short Literature Cited section before submission.
-
-## Audit verdict
+## Audit verdict after first repair round
 
 ```text
-THEORY_SPINE:          STRONG
-NOVELTY_IF_OVERCLAIMED: WEAK
-NOVELTY_IF_FRAMED_AS_INTEGRATION+WITNESSES+INVARIANT: DEFENSIBLE
-GENERALITY:            MODERATE; strongest through Phi=R-K, narrower for R=sL and Moran/Gibbs formulas
-EMPIRICAL_CEILING:     CLEAR BUT LOW
-AM_NAT_READINESS:      NOT YET; framing and K operationalization are the two main blockers
+THEORY_SPINE:             STRONG
+PRIOR_ART_FRAMING:        FIRST BLOCKER CLOSED; BROADER AUDIT OPEN
+R=sL GENERALITY RISK:     RESOLVED
+K DEFINITION RISK:        RESOLVED THEORETICALLY / OPEN EMPIRICALLY
+SPLIT-INVARIANT NOVELTY:  DEFENSIBLE, STILL NEEDS BROADER PRIOR-ART STRESS TEST
+GENERALITY:               MODERATE; strongest through Phi=R-K
+EMPIRICAL_CEILING:        CLEAR BUT LOW
+AM_NAT_READINESS:         PRE-SUBMISSION DEVELOPMENT, NO LONGER BLOCKED BY R=sL OR K DEFINITION
 ```
