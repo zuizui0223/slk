@@ -6,6 +6,26 @@ This document operationalizes the first biological SLK bottleneck identified by 
 
 It does not replace the SCH evaluators. SCH remains the source of truth for the three qualification receipts and the full causal surface. SLK only freezes the execution logic, promotion order, and stop rules needed for the flagship.
 
+## 0. Mandatory threshold freeze before qualification
+
+The Qz/Qp/Qg source evaluators are implemented, but their production config templates still contain `REQUIRED_BEFORE_USE` placeholders.
+
+Therefore no qualification analysis may begin until the prospective threshold manifest passes:
+
+```text
+scripts/validate_pedicularis_threshold_freeze.py
+```
+
+using:
+
+```text
+data/PEDICULARIS_THRESHOLD_FREEZE_TEMPLATE_V1.json
+```
+
+under `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md`.
+
+Calibration units used to set tolerances, timing windows, variance assumptions, or sample floors must be disjoint from the confirmatory qualification units used to decide Qz/Qp/Qg.
+
 ## 1. Required qualification receipts
 
 The corrected Pedicularis V2 path requires three independent source receipts from the same population and season:
@@ -78,15 +98,19 @@ Passing Qg establishes a method-qualified independent antagonist intervention, n
 For inference, the gates are conjunctive:
 
 ```text
-Qz AND Qp AND Qg
+THRESHOLDS_FROZEN
+AND Qz
+AND Qp
+AND Qg
 -> FULL_SURFACE_READY.
 ```
 
-No gate is logically upstream of another.
+No biological gate is logically upstream of another.
 
 For field-resource allocation, however, SLK freezes the following priority:
 
 ```text
+0. independent calibration + threshold freeze
 1. Qg predator-method qualification
 2. Qz multi-level exsertion manipulation
 3. Qp pollination-weight supplementation
@@ -105,8 +129,9 @@ If flower supply permits, Qg, Qz and Qp may be run in parallel on disjoint flowe
 ```text
 - assignments are independent;
 - no flower contributes to more than one pilot;
+- calibration units do not enter qualification tests;
 - each pilot retains its own raw-data contract;
-- all thresholds/configs are frozen before opening pilot outcomes;
+- all thresholds/configs are frozen before opening qualification outcomes;
 - the full V2 surface is not started until all three receipts pass.
 ```
 
@@ -131,6 +156,16 @@ This screen is a logistical qualification, not a G1 or G2 result.
 A near-zero predator-pressure context should not be used to declare Qg negative. It is an uninformative context for the predator-method gate and should trigger relocation to a higher-predation population/season if feasible.
 
 ## 6. Stop and reroute rules
+
+### Threshold manifest cannot be defensibly frozen
+
+```text
+no confirmatory Qz/Qp/Qg analysis
+-> collect additional independent calibration information
+-> or change method/context before qualification.
+```
+
+Do not fill production configs with convenient values borrowed from unit tests.
 
 ### Qg fails because the barrier changes pollination or water state
 
@@ -241,24 +276,26 @@ This is not cosmetic bookkeeping. It is what makes later dimensional release non
 
 ## 10. Current execution state
 
-Against SCH main at `4f9691ed8f601c2b92dbdb4fcd3d81a8c5bfe5a2`:
+Against SCH main at `63f05fed6bb46c5929bdd1f40d21b4b2f7c2ea8b` after the V2 documentation repair:
 
 ```text
 Qz evaluator / template     IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
 Qp evaluator / template     IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
 Qg V3 evaluator / template  IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
+threshold values            NOT YET PROSPECTIVELY FROZEN
 readiness assembler         IMPLEMENTED
 V2 full-surface wrapper     IMPLEMENTED
 G2 SLK adjudicator          IMPLEMENTED
 ```
 
-Thus the remaining bottleneck is field qualification, not software or theory.
+Thus the remaining bottleneck is empirical calibration / threshold freeze followed by field qualification, not software or theory.
 
 ## 11. Decision summary
 
 ```text
+first executable task:         independent calibration + threshold freeze
 highest-risk biological gate:  Qg independent predator method
-highest-value execution tactic: parallel Qg/Qz/Qp pilots on disjoint flowers
+highest-value execution tactic: parallel Qg/Qz/Qp qualification on disjoint units
 hard stop:                      no full surface until all three pass
 fallback if Pedicularis fails:  Dalechampia / next qualified SCH system
 forbidden rescue:               water retained/drained reused as SCH antagonist G
