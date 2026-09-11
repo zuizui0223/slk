@@ -1,0 +1,60 @@
+{
+  "receipt_schema_version": "SLK_PEDICULARIS_G2_RECEIPT_V1",
+  "status": "PROSPECTIVE_NOT_EXECUTED",
+  "context": {
+    "context_id": "REQUIRED_BEFORE_USE",
+    "system": "Pedicularis rex",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
+  },
+  "canonical_sch_path": {
+    "readiness_schema": "SCH_PEDICULARIS_FULL_SURFACE_READINESS_V3",
+    "surface_wrapper_schema": "SCH_PEDICULARIS_FULL_SURFACE_WRAPPER_V2",
+    "core_surface_schema": "SCH_CAUSAL_COMPROMISE_STATE_OPTIMA_V1",
+    "predator_method_schema": "SCH_PEDICULARIS_PREDATOR_METHOD_V3",
+    "water_y": "HELD_FIXED_ACROSS_ALL_SCH_CELLS",
+    "predator_method_requirement": "TIMED_POST_POLLINATION_OR_LOCAL_BARRIER_QUALIFIED_WITH_POLLINATOR_ACCESS_PRESERVED"
+  },
+  "g1_surface": {
+    "status": "NOT_YET_EXECUTED",
+    "opposing_geometry_identified": false,
+    "interior_combined_optimum_supported": false
+  },
+  "component_upgrade": {
+    "status": "NOT_YET_EXECUTED",
+    "required_positive_status": "CONTEXT_STABLE_COMPONENT_OPTIMA_IDENTIFIED"
+  },
+  "conflict_budget": {
+    "receipt_schema_version": "SCH_COMPONENT_CONFLICT_BUDGET_V1",
+    "status": "NOT_YET_EXECUTED",
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    "L_S_component": null,
+    "L_S_component_95_ci": [null, null]
+  },
+  "three_world_handoff": {
+    "receipt_schema_version": "THREE_WORLD_CONFLICT_HANDOFF_V1",
+    "status": "NOT_YET_EXECUTED",
+    "context_id": "REQUIRED_BEFORE_USE",
+    "system": "Pedicularis rex",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    "conflict_load": {
+      "point": null,
+      "lower_95": null,
+      "upper_95": null
+    }
+  },
+  "anti_circularity": {
+    "water_used_as_sch_antagonist_G": false,
+    "independent_predator_exposure_used": true,
+    "water_y_held_fixed_during_sch_surface": true
+  },
+  "slk_adjudication": {
+    "g1": "PARTIAL_SUPPORT",
+    "g2": "NOT_IDENTIFIED",
+    "downstream_balance_eligible": false,
+    "downstream_bita_non_circular_eligible": false
+  }
+}
