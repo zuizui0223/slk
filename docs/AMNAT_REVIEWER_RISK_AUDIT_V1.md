@@ -4,7 +4,7 @@ This audit asks how a skeptical theory/evolution reviewer could reject the SLK f
 
 ## Bottom line
 
-The manuscript is viable only if novelty is framed as an **architecture-specific integration theorem and measurement hierarchy**, not as a first theory of trade-offs, modularity, specialization, evolvability, evolutionary games, fixation, or weak-mutation stationary dynamics.
+The manuscript is viable only if novelty is framed as an **architecture-specific integration theorem and measurement hierarchy**, not as a first theory of trade-offs, modularity, specialization, evolvability, adaptive accessibility, evolutionary games, fixation, or weak-mutation stationary dynamics.
 
 The strongest publishable object is now
 
@@ -20,29 +20,40 @@ identified conflict budget L
 
 with `R=sL` retained only as the registered quadratic partial-release corollary, explicit constructive separations at selected transitions, and an exact fixation-occupancy invariant under declared process assumptions.
 
-## Risk 1 — prior art already explains why modularity/specialization can be favored
+## Risk 1 — prior art already owns nearly every individual arrow
 
 ### Reviewer attack
 
-"Conflict among functions favoring modularity or specialization is old. Why is this not a re-parameterized cost-benefit model?"
+"Conflict favoring modularity, specialization after trade-offs, inaccessible fitter endpoints, invasion/fixation distinctions, and weak-mutation long-run dynamics are all old. Why is this a paper rather than a review diagram?"
+
+### Broad stress test
+
+The closest neighboring literatures are now explicitly compared in `docs/PRIOR_ART_COMPARISON_MATRIX_V1.md`:
+
+- Wagner & Altenberg (1996): modularity/evolvability via reduced interference;
+- Kashtan & Alon (2005): modularity under modularly varying goals;
+- Espinosa-Soto & Wagner (2010): specialization driving modularity;
+- Rueffler, Hermisson & Wagner (2012): general theory of specialization/division of labor;
+- Dieckmann & Law (1996) / adaptive-dynamics tradition: rare local mutational steps and invasion fitness;
+- Weinreich et al. (2006): restricted adaptive paths to fitter endpoints;
+- Taylor et al. (2004): invasion/fixation distinctions in finite populations;
+- Fudenberg et al. (2006): weak-mutation finite-population game dynamics.
 
 ### Current response
 
-The Introduction now explicitly acknowledges Wagner & Altenberg (1996) and Rueffler, Hermisson & Wagner (2012) as antecedents. It also acknowledges Taylor et al. (2004) and Fudenberg et al. (2006) for invasion/fixation and weak-mutation population theory. SLK no longer claims novelty for the generic statement that specialization resolves functional conflict or that population criteria differ.
+SLK does not claim novelty for any isolated arrow. The claimed contribution is restricted to:
 
-The claimed novelty is restricted to:
-
-1. one estimand transport beginning from an identified shared-coordinate conflict receipt;
-2. the general handoff `Phi=R-K`;
-3. architecture-specific constructive split witnesses;
-4. the exact placement of a fixation-occupancy invariant inside the hierarchy;
-5. the G1-G9 empirical claim ceiling.
+1. one estimand transport beginning from an **identified** shared-coordinate conflict receipt;
+2. the handoff bookkeeping `L -> R -> Phi=R-K`, which prevents conflict, recoverable benefit, and net architecture value from being conflated;
+3. architecture-specific constructive witness regimes showing exactly where the transported criteria fail to imply one another;
+4. the exact placement of a fixation-occupancy invariant where separation fails under the registered process;
+5. the G1-G9 empirical claim ceiling specifying what new measurement is required before each stronger biological statement is licensed.
 
 ### Status
 
-**REDUCED TO MEDIUM.** The obvious framing blocker is closed; exhaustive neighboring-literature audit remains.
+**MEDIUM. Broad obvious prior-art stress test completed.** The remaining risk is conceptual importance, not discovery of an obvious missing antecedent.
 
-## Risk 2 — the central theorem could look like a collection of standard observations
+## Risk 2 — the central theorem could still look like a collection of standard observations
 
 ### Reviewer attack
 
@@ -50,11 +61,13 @@ The claimed novelty is restricted to:
 
 ### Current response
 
-The theorem is no longer sold as a verbal observation. `theory/NON_EQUIVALENCE_THEOREM_V1.md` gives explicit architecture-specific witness regimes, while Figure 1 shows both split points and the exact re-alignment under INV1. Figure 2 prevents false projection of accessibility/invasion onto the same `L-Phi` plane, and Figure 3 maps the theory to empirical claim ceilings.
+The theorem is not sold as the verbal observation that concepts differ. `theory/NON_EQUIVALENCE_THEOREM_V1.md` gives explicit architecture-specific witness regimes. Figure 1 shows both split points and the exact re-alignment under INV1. Figure 2 prevents false projection of accessibility/invasion onto the same `L-Phi` plane. Figure 3 maps each stronger claim to a new empirical gate.
+
+The strongest way to defend importance is to emphasize that the same upstream architecture comparison can change verdict when transported through later estimands, and that the framework predicts both **where a verdict must be re-tested** and **where two later verdicts are forced to coincide**.
 
 ### Status
 
-**MEDIUM.** Substantially improved; remaining risk is whether reviewers regard the integrated mapping itself as sufficiently conceptually important.
+**MEDIUM.** This is now the main conceptual-review risk.
 
 ## Risk 3 — `R=sL` is model specific
 
@@ -86,7 +99,7 @@ Section map, ownership, provenance, and README use the same boundary.
 
 ### Status
 
-**RESOLVED for framing/generalization.** Any future occurrence of `R=sL` must explicitly carry the quadratic qualification.
+**RESOLVED for framing/generalization.**
 
 ## Risk 4 — `K` is biologically underdefined
 
@@ -96,13 +109,11 @@ Section map, ownership, provenance, and README use the same boundary.
 
 ### Current response
 
-Closed at the theoretical-definition level. `docs/K_OPERATIONAL_DEFINITION_V1.md` defines `K` as the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. The manuscript now requires comparison states, time horizon, included/excluded channels, overlap checks with `R`, uncertainty, and bounds.
-
-Endpoint architecture difference is explicitly treated as `R-K`, not as a direct estimate of `K`.
+Closed at the theoretical-definition level. `docs/K_OPERATIONAL_DEFINITION_V1.md` defines `K` as the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. Endpoint architecture difference is explicitly treated as `R-K`, not as a direct estimate of `K`.
 
 ### Status
 
-**RESOLVED as a definition; OPEN EMPIRICALLY.** No biological system yet provides the full registered `K` receipt.
+**RESOLVED as a definition; OPEN EMPIRICALLY.**
 
 ## Risk 5 — accessibility is not identifiable from endpoint architecture comparison
 
@@ -112,11 +123,11 @@ Endpoint architecture difference is explicitly treated as `R-K`, not as a direct
 
 ### Current response
 
-Agree explicitly. `Phi>0` is endpoint value. Accessibility requires a registered local neighborhood/path geometry. Figure 2 keeps accessibility outside the universal `L-Phi` classification plane.
+Agree explicitly. `Phi>0` is endpoint value. Accessibility requires a registered local neighborhood/path geometry. Figure 2 keeps accessibility outside the universal `L-Phi` classification plane. The paper does not claim path accessibility itself as new; the contribution is its registered architecture-specific handoff after endpoint value.
 
 ### Status
 
-**LOW-MEDIUM.** Correctly bounded in the manuscript.
+**LOW-MEDIUM.** Correctly bounded.
 
 ## Risk 6 — population transport is process specific
 
@@ -126,11 +137,11 @@ Agree explicitly. `Phi>0` is endpoint value. Accessibility requires a registered
 
 ### Current response
 
-C8/C9/INV1 remain explicitly process-specific. Their role is demonstrative: adding a population process can create new separations and can also impose exact invariants. SLK does not claim the formulas are universal.
+C8/C9/INV1 remain explicitly process-specific. Their role is demonstrative: adding a population process can create new separations and can also impose exact invariants. SLK does not claim these formulas are universal.
 
 ### Status
 
-**MEDIUM.** A stronger submission could add one alternative process as a robustness/generalization test, but this is not logically required for the present theorem.
+**MEDIUM.** An alternative process would strengthen generality but is not logically required if the manuscript clearly presents the registered process as an exemplar transport.
 
 ## Risk 7 — no end-to-end empirical system
 
@@ -144,7 +155,7 @@ The manuscript makes this absence explicit. Figure 3 turns it into the G1-G9 emp
 
 ### Status
 
-**HIGH for any broad empirical claim; ACCEPTABLE for a clearly theoretical paper.** A complete focal system would materially strengthen the paper but is not silently assumed.
+**HIGH for broad empirical claims; ACCEPTABLE for a clearly theoretical paper.** A focal partial worked example could improve accessibility to readers, but it must not be presented as G1-G9 completion.
 
 ## Risk 8 — terminology may overstate novelty
 
@@ -168,26 +179,29 @@ Preferred wording:
 
 ## Submission-level novelty sentence
 
-> Existing theories explain why functional interference can favor specialization or modular organization and population-genetic theory distinguishes invasion, fixation, and weak-mutation dynamics. SLK contributes one architecture-specific estimand hierarchy linking an identified shared-coordinate conflict budget to recoverable architecture value and then to evolutionary realization, with explicit parameter witnesses for where criteria separate, an exact process-level invariant where reciprocal fixation and weak-mutation occupancy re-align, and a gate-by-gate empirical claim ceiling.
+> Existing theories explain why functional interference can favor specialization or modular organization, why fitter endpoints can be inaccessible through local mutational paths, and why invasion, fixation, and weak-mutation dynamics are distinct population-genetic objects. SLK contributes one architecture-specific estimand transport beginning from an identified shared-coordinate conflict receipt and carrying it through recoverable benefit, net architecture value, accessibility, invasion, fixation, and occupancy, with explicit witness regimes for where verdicts separate, an exact process-level invariant where two verdicts re-align, and a gate-by-gate empirical claim ceiling.
 
 ## Remaining work before submission
 
-1. Conduct a broader prior-art audit around adaptive dynamics, fitness-landscape accessibility, modularity, and stochastic evolutionary games; current four-paper boundary covers the obvious antecedents but is not exhaustive.
-2. Decide whether to add an alternative population process as robustness for C8/C9/INV1 or keep those results explicitly exemplar/process-specific.
-3. Convert the current repository-style manuscript to journal prose: remove internal claim-map labels from reader-facing text or move them to Supplement while preserving the audit ledger internally.
-4. Build a journal-formatted Literature Cited section beyond the four novelty-boundary anchors.
-5. Decide whether the paper remains pure theory or includes one partial empirical worked example; do not imply G1-G9 completion either way.
-6. Run a final theorem/formula consistency audit across manuscript, figures, ledger, and source repositories.
+1. Decide whether C8/C9/INV1 remain a clearly declared exemplar process or add one alternative population process as robustness/generalization.
+2. Convert repository-style manuscript annotations into journal prose: move C/G/INV labels to a supplement or audit appendix while preserving the internal ledger.
+3. Build a full journal-formatted Literature Cited section from the prior-art comparison matrix.
+4. Decide whether to include one partial biological worked example; do not imply end-to-end G1-G9 completion.
+5. Run a final theorem/formula consistency audit across manuscript, Figures 1-3, ledger, provenance, and source repositories.
+6. Decide journal positioning after prose conversion: Am Nat remains plausible only if the architecture-specific transport is argued as a biological theory contribution, not a bookkeeping framework.
 
-## Audit verdict after first repair round
+## Audit verdict after broad prior-art stress test
 
 ```text
 THEORY_SPINE:             STRONG
-PRIOR_ART_FRAMING:        FIRST BLOCKER CLOSED; BROADER AUDIT OPEN
+INDIVIDUAL-ARROW NOVELTY: LOW; MOST COMPONENTS HAVE CLEAR ANTECEDENTS
+INTEGRATED-TRANSPORT NOVELTY: DEFENSIBLE
 R=sL GENERALITY RISK:     RESOLVED
 K DEFINITION RISK:        RESOLVED THEORETICALLY / OPEN EMPIRICALLY
-SPLIT-INVARIANT NOVELTY:  DEFENSIBLE, STILL NEEDS BROADER PRIOR-ART STRESS TEST
+SPLIT-INVARIANT NOVELTY:  DEFENSIBLE
+PRIOR-ART OBVIOUS GAP:    NO OBVIOUS FATAL GAP FOUND IN BROAD STRESS TEST
+MAIN REVIEW RISK:         "USEFUL SYNTHESIS OR JUST REPACKAGING?"
 GENERALITY:               MODERATE; strongest through Phi=R-K
 EMPIRICAL_CEILING:        CLEAR BUT LOW
-AM_NAT_READINESS:         PRE-SUBMISSION DEVELOPMENT, NO LONGER BLOCKED BY R=sL OR K DEFINITION
+AM_NAT_READINESS:         PRE-SUBMISSION; CONCEPTUAL IMPORTANCE NOW THE MAIN BLOCKER
 ```
