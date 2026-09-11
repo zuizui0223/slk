@@ -100,16 +100,17 @@ The narrower novelty claim is the **architecture-specific estimand transport** f
 
 `K` is the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. It is comparison-specific rather than a universal physiological quantity. Empirical use must declare comparison states, scale, time horizon, included/excluded cost channels, uncertainty, and how double counting with `R` was prevented. See `docs/K_OPERATIONAL_DEFINITION_V1.md`.
 
-## What SLK deliberately does not absorb
+## Publication architecture outside the flagship
 
-The sister repositories remain active and now develop their residual independent contributions:
+The source repositories are no longer treated as one-paper-per-repository. Their current roles are:
 
-- **SCH:** causal identification of contextual versus pure-function optima; multifunctionality-versus-conflict inference; empirical crossed-design programme.
-- **BALANCE:** middle-world geometry, direct worldline identification, reserve/depth/topology, and persistence/hysteresis methods.
-- **BITA:** ecological mechanism identification after differentiation; interaction-versus-mechanism inference; partial-identification workflow; full quadratic/nonquadratic architecture derivations beyond the minimum SLK bridge.
-- **PAYOFF:** continuous architecture, evolutionary branching, edgewise modularization/topology, and spatial/temporal spectral dynamics.
+- **SCH — active full paper:** causal identification of functional conflict; `multifunctionality != conflict`; contextual-versus-pure-function optimum promotion gate; empirical crossed-design programme.
+- **BITA — active full paper:** ecological mechanism identification after trait interaction; `interaction != mechanism`; partial-identification workflow and route synthesis.
+- **PAYOFF-B — active short Note:** exact anti-phase two-patch/two-season temporal solution and unique finite migration optimum.
+- **BALANCE — DOI technical module / dormant paper branch:** middle-world certification, direct worldline identification, reserve/depth/topology and persistence/hysteresis methods.
+- **PAYOFF-A / spatial / topology — DOI technical modules / dormant paper branches:** continuous architecture and branching, general spatial spectral transport, and edgewise/topological extensions.
 
-Those topics may be cited by SLK but are not required for the flagship proof spine.
+These modules may be cited by SLK without being promoted to independent manuscripts. Dormant branches can be reactivated only when they acquire a genuinely independent theorem family or decisive empirical anchor. See `docs/PAPER_ROADMAP.md`.
 
 ## Canonical reader path
 
@@ -128,7 +129,7 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 13. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
 14. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
 15. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-16. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
+16. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
 17. `PROVENANCE.md` — migration provenance and citation policy.
 
 ## Current status
@@ -153,7 +154,11 @@ CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
 SECTION_CLAIM_MAP_REGISTERED
 CLAIM_PROVENANCE_PINNED
-SOURCE_REPOSITORIES_HAVE_RESIDUAL_MANUSCRIPT_V0S
+PUBLICATION_ARCHITECTURE_REFOCUSED
+ACTIVE_FLAGSHIP_SLK
+ACTIVE_FULL_PAPERS_SCH_BITA
+ACTIVE_SHORT_NOTE_PAYOFF_B
+DOI_MODULES_BALANCE_PAYOFF_A_SPATIAL_TOPOLOGY
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```
 
