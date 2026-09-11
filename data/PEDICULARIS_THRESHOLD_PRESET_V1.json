@@ -1,0 +1,24 @@
+{
+  "preset_schema_version": "SLK_PEDICULARIS_THRESHOLD_PRESET_V1",
+  "status": "PARTIAL_PRESET_ONLY_NOT_A_COMPLETE_FREEZE_MANIFEST",
+  "system": "Pedicularis rex",
+  "registered_thresholds": [
+    {
+      "gate": "Qz",
+      "parameter": "min_z_levels",
+      "value": 5,
+      "units": "count",
+      "threshold_class": "design_floor",
+      "source_type": "combined_predeclared",
+      "source_reference": [
+        "SCH:docs/SCH_PEDICULARIS_FULL_SURFACE_CONTRACT_V2.md",
+        "SLK:docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md"
+      ],
+      "biological_rationale": "The corrected V2 causal surface requires at least five informative realized exsertion levels; Stage P0 must therefore qualify at least five usable levels for downstream compatibility.",
+      "requires_independent_calibration": false,
+      "frozen_before_confirmatory_outcomes": true
+    }
+  ],
+  "unresolved_numeric_thresholds": 35,
+  "claim_ceiling": "one registered design floor only; does not validate the full threshold manifest or any biological Qz/Qp/Qg/G1/G2 gate"
+}
