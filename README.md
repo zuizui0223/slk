@@ -4,7 +4,7 @@ SLK is the integrated flagship theory programme connecting four previously separ
 
 - [`sch`](https://github.com/zuizui0223/sch): identifies whether a shared-coordinate functional conflict exists and estimates its compromise load `L`.
 - [`balance`](https://github.com/zuizui0223/balance): classifies the persistent-compromise region `L > 0, Phi < 0`.
-- [`bita`](https://github.com/zuizui0223/bita): defines recoverable conflict loss `R` and the architecture margin `Phi = R - K`; under the quadratic partial-release bridge, `R=sL`.
+- [`bita`](https://github.com/zuizui0223/bita): defines recoverable architecture benefit `R` and the architecture margin `Phi = R - K`; under the quadratic partial-release bridge, `R=sL`.
 - [`payoff`](https://github.com/zuizui0223/payoff): transports architecture payoff into accessibility, invasion, fixation, and long-run occupancy.
 
 The integrated spine is:
@@ -19,7 +19,7 @@ PAYOFF  maps Phi into evolutionary outcomes
 
 ## Central question
 
-> When multiple biological functions are forced to share one phenotypic coordinate, when is differentiation worth its architectural cost, and when does that global advantage actually become an evolutionary outcome?
+> When multiple biological functions are forced to share one phenotypic coordinate, when is differentiation worth its architecture-specific cost, and when does that global advantage actually become an evolutionary outcome?
 
 ## Core hierarchy
 
@@ -68,13 +68,13 @@ but, under the registered symmetric rare-mutation exponential-Moran process,
 reciprocal fixation ordering <=> stationary monomorphic occupancy ordering.
 ```
 
-![Figure 1. SLK hierarchy showing genuine splits and the fixation–occupancy invariant.](figures/FIG1_LOGIC_DIAGRAM.svg)
+![Figure 1. SLK hierarchy showing genuine splits and the fixation-occupancy invariant.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
 ![Figure 2. Architecture-value phase map with accessibility and invasion insets.](figures/FIG2_PHASE_MAP.svg)
 
 ![Figure 3. Empirical measurement ladder for SLK.](figures/FIG3_EMPIRICAL_LADDER.svg)
 
-The three figures have distinct jobs. Figure 1 shows the inferential hierarchy and its split/invariant structure. Figure 2 shows the coordinate geometry and why accessibility and invasion cannot be collapsed into the `L–Phi` plane. Figure 3 shows the empirical gate sequence required to justify progressively stronger biological claims.
+The three figures have distinct jobs. Figure 1 shows the inferential hierarchy and its split/invariant structure. Figure 2 shows the coordinate geometry and why accessibility and invasion cannot be collapsed into the `L-Phi` plane. Figure 3 shows the empirical gate sequence required to justify progressively stronger biological claims.
 
 ## What SLK owns
 
@@ -92,7 +92,7 @@ The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Ever
 
 ## Prior-art boundary
 
-SLK does **not** claim to originate the ideas that functional interference can favor modularity/specialization or that invasion, fixation, and stationary dynamics are distinct population-genetic concepts. Foundational antecedents include Wagner & Altenberg (1996) on modularity/evolvability and Rueffler, Hermisson & Wagner (2012) on functional specialization and division of labor.
+SLK does **not** claim to originate modularity/evolvability theory, functional specialization/division-of-labor theory, invasion-versus-fixation distinctions, or weak-mutation long-run population theory. The first registered boundary explicitly acknowledges Wagner & Altenberg (1996), Rueffler, Hermisson & Wagner (2012), Taylor et al. (2004), and Fudenberg et al. (2006).
 
 The narrower novelty claim is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization, together with explicit witness regimes for genuine separations, an exact process-level invariant where criteria re-align, and a gate-by-gate empirical claim ceiling.
 
@@ -106,7 +106,7 @@ The sister repositories remain active and now develop their residual independent
 
 - **SCH:** causal identification of contextual versus pure-function optima; multifunctionality-versus-conflict inference; empirical crossed-design programme.
 - **BALANCE:** middle-world geometry, direct worldline identification, reserve/depth/topology, and persistence/hysteresis methods.
-- **BITA:** ecological mechanism identification after differentiation; interaction-versus-mechanism inference; partial-identification workflow.
+- **BITA:** ecological mechanism identification after differentiation; interaction-versus-mechanism inference; partial-identification workflow; full quadratic/nonquadratic architecture derivations beyond the minimum SLK bridge.
 - **PAYOFF:** continuous architecture, evolutionary branching, edgewise modularization/topology, and spatial/temporal spectral dynamics.
 
 Those topics may be cited by SLK but are not required for the flagship proof spine.
@@ -123,8 +123,8 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 8. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
 9. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
 10. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
-11. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary against modularity/specialization prior art.
-12. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and submission blockers.
+11. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
+12. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
 13. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
 14. `docs/PAPER_ROADMAP.md` — flagship and residual-paper programme.
 15. `PROVENANCE.md` — migration provenance and citation policy.
@@ -133,7 +133,7 @@ Those topics may be cited by SLK but are not required for the flagship proof spi
 
 ```text
 INTEGRATED_SPINE_DEFINED
-FLAGSHIP_MANUSCRIPT_CLAIM_ANNOTATED
+FLAGSHIP_MANUSCRIPT_GENERALIZED_TO_PHI_EQUALS_R_MINUS_K
 NON_EQUIVALENCE_THEOREM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
 FIGURE_1_REGISTERED
@@ -141,10 +141,9 @@ FIGURE_2_REGISTERED
 FIGURE_3_REGISTERED
 PHASE_COORDINATE_BOUNDARY_REGISTERED
 EMPIRICAL_GATE_LADDER_REGISTERED
-GENERAL_IDENTITY_PHI_EQUALS_R_MINUS_K_REGISTERED
 K_OPERATIONAL_DEFINITION_REGISTERED
-PRIOR_ART_BOUNDARY_REGISTERED
-AMNAT_REVIEWER_RISK_AUDIT_REGISTERED
+PRIOR_ART_BOUNDARY_EXPANDED
+FIRST_AMNAT_REVIEWER_REPAIR_ROUND_COMPLETE
 CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
 SECTION_CLAIM_MAP_REGISTERED
