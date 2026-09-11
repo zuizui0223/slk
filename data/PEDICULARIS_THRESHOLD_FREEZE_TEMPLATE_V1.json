@@ -1,0 +1,75 @@
+{
+  "manifest_schema_version": "SLK_PEDICULARIS_THRESHOLD_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "calibration_dataset_id": "REQUIRED_BEFORE_USE",
+    "qualification_dataset_id": "REQUIRED_BEFORE_USE"
+  },
+  "provenance": {
+    "sch_source_commit": "REQUIRED_BEFORE_USE",
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE",
+    "confirmatory_outcomes_opened_before_freeze": false
+  },
+  "qz": {
+    "source_config": "PEDICULARIS_STAGE_P0_CONFIG_TEMPLATE_V1.json",
+    "parameters": {
+      "min_z_levels": {"value": "REQUIRED_BEFORE_USE", "units": "count", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_flowers_per_level": {"value": "REQUIRED_BEFORE_USE", "units": "flowers", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_plants": {"value": "REQUIRED_BEFORE_USE", "units": "plants", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_adjacent_exsertion_gap": {"value": "REQUIRED_BEFORE_USE", "units": "realized_exsertion", "threshold_class": "target_effect", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_opening_width_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_tube_diameter_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_bract_height_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_lower_lip_angle_change_deg": {"value": "REQUIRED_BEFORE_USE", "units": "degrees", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_water_depth_change": {"value": "REQUIRED_BEFORE_USE", "units": "registered_water_depth_unit", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_flower_orientation_change_deg": {"value": "REQUIRED_BEFORE_USE", "units": "degrees", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_mechanical_damage_rate": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true}
+    }
+  },
+  "qp": {
+    "source_config": "PEDICULARIS_POLLINATION_WEIGHT_CONFIG_TEMPLATE_V1.json",
+    "parameters": {
+      "min_paired_plants": {"value": "REQUIRED_BEFORE_USE", "units": "plants", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_flowers_per_treatment": {"value": "REQUIRED_BEFORE_USE", "units": "flowers", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_pollen_grain_delta": {"value": "REQUIRED_BEFORE_USE", "units": "pollen_grains", "threshold_class": "target_effect", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_initial_seed_set_delta": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "target_effect", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_early_predator_attack_difference": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_z_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_bract_height_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_opening_width_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_water_depth_change": {"value": "REQUIRED_BEFORE_USE", "units": "registered_water_depth_unit", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_mechanical_damage_rate": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true}
+    }
+  },
+  "qg": {
+    "source_config": "PEDICULARIS_PREDATOR_METHOD_CONFIG_V3.json",
+    "fixed_boolean_requirements": {
+      "require_pollination_window_complete": true,
+      "require_ovary_not_swollen": true,
+      "require_barrier_not_cover_pollinator_entry": true,
+      "require_sham_on_exposed": true
+    },
+    "parameters": {
+      "method_min_paired_plants": {"value": "REQUIRED_BEFORE_USE", "units": "plants", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "method_min_flowers_per_treatment": {"value": "REQUIRED_BEFORE_USE", "units": "flowers", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_hours_after_anthesis_before_barrier": {"value": "REQUIRED_BEFORE_USE", "units": "hours", "threshold_class": "natural_history_timing", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_hours_after_anthesis_before_barrier": {"value": "REQUIRED_BEFORE_USE", "units": "hours", "threshold_class": "natural_history_timing", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "predator_min_paired_plants": {"value": "REQUIRED_BEFORE_USE", "units": "plants", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "predator_min_flowers_per_treatment": {"value": "REQUIRED_BEFORE_USE", "units": "flowers", "threshold_class": "design_floor", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_early_attack_reduction": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "target_effect", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_predation_fraction_reduction": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "target_effect", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "min_final_seed_set_gain": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "target_effect", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_initial_seed_set_difference": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_pollen_grain_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_pollinator_visit_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_z_relative_change": {"value": "REQUIRED_BEFORE_USE", "units": "relative_change", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_water_depth_change": {"value": "REQUIRED_BEFORE_USE", "units": "registered_water_depth_unit", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true},
+      "max_damage_rate_difference": {"value": "REQUIRED_BEFORE_USE", "units": "proportion", "threshold_class": "equivalence_tolerance", "source_type": "REQUIRED_BEFORE_USE", "source_reference": "REQUIRED_BEFORE_USE", "biological_rationale": "REQUIRED_BEFORE_USE", "frozen_before_confirmatory_outcomes": true}
+    }
+  }
+}
