@@ -4,8 +4,10 @@
   "context": {
     "system": "Pedicularis rex",
     "dataset_id": "PED_D0_QUAL_CONFIRM_V1",
+    "context_id": "REQUIRED_BEFORE_USE",
     "population_id": "REQUIRED_BEFORE_USE",
     "season_id": "REQUIRED_BEFORE_USE",
+    "primary_y_metric": "REQUIRED_BEFORE_USE",
     "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
     "time_horizon_id": "REQUIRED_BEFORE_USE",
     "q5_route": "REQUIRED_BEFORE_USE",
