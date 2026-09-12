@@ -50,7 +50,7 @@ def n_two_group_equivalence(sd: float, margin: float, alpha: float = DEFAULT_ALP
     sd = _finite_pos(sd, "sd")
     margin = _finite_pos(margin, "margin")
     zsum = _z(1 - alpha) + _z(power)
-    # equal allocation; returned value is independent plants per group
+    # Equal allocation. Returned n is independent plants PER GROUP.
     return max(2, math.ceil(2 * (zsum * sd / margin) ** 2))
 
 
@@ -87,25 +87,25 @@ def plan_endpoint(spec: dict, defaults: dict | None = None) -> dict:
 
     if kind == "paired_equivalence":
         raw = n_paired_equivalence(spec["sd_diff"], spec["margin"], alpha, power)
-        n_label = "plants"
+        n_unit = "paired_plants_total"
     elif kind == "two_group_equivalence":
         raw = n_two_group_equivalence(spec["sd"], spec["margin"], alpha, power)
-        n_label = "plants_per_group"
+        n_unit = "plants_per_group"
     elif kind == "paired_superiority":
         raw = n_paired_superiority(
             spec["sd_diff"], spec["min_effect"], alpha, power,
             bool(spec.get("directional", False)),
         )
-        n_label = "plants"
+        n_unit = "paired_plants_total"
     elif kind == "two_group_superiority":
         raw = n_two_group_superiority(
             spec["sd"], spec["min_effect"], alpha, power,
             bool(spec.get("directional", False)),
         )
-        n_label = "plants_per_group"
+        n_unit = "plants_per_group"
     elif kind == "mean_precision":
         raw = n_mean_precision(spec["sd"], spec["half_width"], alpha)
-        n_label = "plants"
+        n_unit = "plants_total"
     else:
         raise ValueError(f"unsupported kind: {kind}")
 
@@ -118,7 +118,7 @@ def plan_endpoint(spec: dict, defaults: dict | None = None) -> dict:
         "attrition": attrition,
         "raw_required_n": raw,
         "inflated_required_n": inflated,
-        "n_unit": n_label,
+        "n_unit": n_unit,
     }
     for key in ("sd", "sd_diff", "margin", "min_effect", "half_width", "directional"):
         if key in spec:
@@ -133,22 +133,34 @@ def plan_manifest(manifest: dict) -> dict:
         raise ValueError("no endpoints supplied")
 
     results = [plan_endpoint(x, defaults) for x in endpoints]
-    max_inflated = max(x["inflated_required_n"] for x in results)
-    drivers = [x["endpoint_id"] for x in results if x["inflated_required_n"] == max_inflated]
+    maxima_by_unit: dict[str, dict] = {}
+    for row in results:
+        unit = row["n_unit"]
+        n = row["inflated_required_n"]
+        if unit not in maxima_by_unit or n > maxima_by_unit[unit]["inflated_required_n"]:
+            maxima_by_unit[unit] = {
+                "inflated_required_n": n,
+                "driving_endpoints": [row["endpoint_id"]],
+            }
+        elif n == maxima_by_unit[unit]["inflated_required_n"]:
+            maxima_by_unit[unit]["driving_endpoints"].append(row["endpoint_id"])
 
     return {
         "planner_schema_version": "SLK_PEDICULARIS_Y_D0_PRECISION_PLAN_V1",
         "status": "PLANNING_ONLY_NOT_A_BIOLOGICAL_RECEIPT",
         "results": results,
-        "max_inflated_required_n": max_inflated,
-        "max_n_unit_warning": (
-            "Take maxima only across endpoints with compatible allocation units. "
-            "two_group results are per group; paired results are total independent paired plants."
+        "maxima_by_allocation_unit": maxima_by_unit,
+        "allocation_rule": (
+            "Do not take one numeric maximum across incompatible units. "
+            "paired_plants_total, plants_total, and plants_per_group must be translated into the frozen field allocation separately."
         ),
-        "driving_endpoints": drivers,
         "anti_peeking": (
             "Inputs must come from independent calibration, literature, or prospectively justified margins/effects; "
             "never from unblinded confirmatory outcomes."
+        ),
+        "approximation_boundary": (
+            "Normal-approximation planning assumes the equivalence target difference is near zero and uses independent-plant scale SD inputs. "
+            "Final analysis may use the registered cluster/bootstrap model, but sample-size inputs must remain prospective."
         ),
     }
 
