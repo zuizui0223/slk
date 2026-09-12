@@ -67,17 +67,35 @@ def _receipt():
             "direct": {"status": "IDENTIFIED", "comparison": "S_TO_D", "point": -1.0, "lower_95": -2.0, "upper_95": -0.2},
             "decomposed": {"status": "IDENTIFIED", "point": -1.0, "lower_95": -2.2, "upper_95": -0.1},
             "bridge_residual": {"point": 0.0, "lower_95": -0.2, "upper_95": 0.2},
-            "bridge_concordance": {"frozen_before_confirmatory_outcomes": True, "max_abs_point": 0.25},
+            "bridge_concordance": {
+                "frozen_before_confirmatory_outcomes": True,
+                "independent_estimation_blocks": False,
+                "max_abs_point": 0.25,
+            },
         },
     }
 
 
-def test_closes_same_system_g1_g5_and_recovers_diagnostic_pattern():
+def test_same_block_closure_is_internal_identity_not_concordance():
     result = adjudicate(_receipt())
-    assert result["status"] == "STRUCTURAL_G1_G5_CLOSED_CONCORDANT"
-    assert result["claim_ceiling"] == "SAME_SYSTEM_G1_G5"
+    assert result["status"] == "STRUCTURAL_G1_G5_CLOSED_INTERNAL_IDENTITY"
+    assert result["claim_ceiling"] == "SAME_SYSTEM_G1_G5_INTERNAL_COHERENCE"
+    assert result["bridge_concordant"] is None
     assert result["Phi_class"] == "PERSISTENT_COMPROMISE"
     assert result["diagnostic_pattern"] == "CONFLICT_REAL_RECOVERABLE_BUT_ARCHITECTURE_NOT_WORTH_COST"
+
+
+def test_independent_blocks_can_close_empirical_concordance():
+    r = _receipt()
+    r["g5_Phi"]["bridge_concordance"]["independent_estimation_blocks"] = True
+    r["g3_R"].update(point=3.1, lower_95=1.0, upper_95=5.2)
+    r["g4_K"].update(point=4.0, lower_95=2.0, upper_95=6.1)
+    r["g5_Phi"]["decomposed"].update(point=-0.9, lower_95=-2.1, upper_95=-0.1)
+    r["g5_Phi"]["bridge_residual"].update(point=-0.1, lower_95=-0.3, upper_95=0.1)
+    result = adjudicate(r)
+    assert result["status"] == "STRUCTURAL_G1_G5_CLOSED_CONCORDANT"
+    assert result["claim_ceiling"] == "SAME_SYSTEM_G1_G5_INDEPENDENT_CONCORDANCE"
+    assert result["bridge_concordant"] is True
 
 
 def test_invalid_d0_falls_back_to_direct_phi_without_fake_k():
@@ -102,7 +120,7 @@ def test_water_as_g_is_rejected():
         adjudicate(r)
 
 
-def test_broken_R_identity_is_rejected():
+def test_broken_R_identity_is_rejected_for_same_block_decomposition():
     r = _receipt()
     r["g3_R"]["point"] = 2.5
     with pytest.raises(ValueError, match="R identity"):
