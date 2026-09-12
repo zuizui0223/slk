@@ -15,6 +15,7 @@ Y_DATASET_ID = "PED_Y_CAL_V1"
 FITNESS_SCALE_ID = "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
 MIN_PLANTS = 36
 FLOWERS_PER_PLANT = 3
+PRIMARY_FLOWER_SLOTS = {"1", "2", "3"}
 TREATMENT = "Y_CAL_REPEATED_MEASUREMENT"
 DIRECTION = "HIGHER_IS_MORE_RETENTIVE_OR_PROTECTIVE"
 METRICS = {
@@ -138,7 +139,6 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
     for row in rows:
         _need(row.get("dataset_id") == Y_DATASET_ID, "wrong dataset_id in Y-CAL")
         _need(str(row.get("confirmatory_eligible", "")).strip().lower() == "false", "Y-CAL row marked confirmatory eligible")
-        _need(row.get("treatment") == TREATMENT, "unexpected Y-CAL treatment")
 
     context_values = {
         (
@@ -157,8 +157,16 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
     _need(season_id == freeze["context"]["season_id"], "Y-CAL/freeze season mismatch")
     _need(fitness_scale_id == FITNESS_SCALE_ID, "wrong Y-CAL fitness scale")
 
+    primary_rows = [
+        row
+        for row in rows
+        if row.get("treatment") == TREATMENT
+        and str(row.get("flower_slot", "")).strip() in PRIMARY_FLOWER_SLOTS
+    ]
+    _need(bool(primary_rows), "no frozen primary Y-CAL rows found")
+
     by_plant: dict[str, list[dict[str, str]]] = defaultdict(list)
-    for row in rows:
+    for row in primary_rows:
         plant_id = str(row.get("plant_id", "")).strip()
         _need(plant_id, "Y-CAL missing plant_id")
         by_plant[plant_id].append(row)
@@ -171,7 +179,8 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
 
     for plant_id in sorted(by_plant):
         plant_rows = by_plant[plant_id]
-        if len(plant_rows) != FLOWERS_PER_PLANT:
+        slots = {str(row.get("flower_slot", "")).strip() for row in plant_rows}
+        if len(plant_rows) != FLOWERS_PER_PLANT or slots != PRIMARY_FLOWER_SLOTS:
             continue
         flower_means: list[float] = []
         z_values: list[float] = []
@@ -205,6 +214,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "complete_independent_plants": complete_plants,
             "registered_floor_plants": MIN_PLANTS,
             "complete_plant_floor_pass": False,
+            "ignored_nonprimary_rows": len(rows) - len(primary_rows),
             "claim_ceiling": "Y_CAL_INCOMPLETE_NO_STRUCTURAL_Y_PROMOTION",
         }
 
@@ -269,6 +279,8 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "y_cal_dataset_id": Y_DATASET_ID,
         },
         "primary_y_metric": metric_id,
+        "primary_rows_used": len(primary_rows),
+        "ignored_nonprimary_rows": len(rows) - len(primary_rows),
         "complete_independent_plants": complete_plants,
         "registered_floor_plants": MIN_PLANTS,
         "complete_plant_floor_pass": floor_pass,
