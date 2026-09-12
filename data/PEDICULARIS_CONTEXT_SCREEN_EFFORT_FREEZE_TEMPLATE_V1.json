@@ -1,0 +1,71 @@
+{
+  "schema_version": "SLK_PEDICULARIS_CONTEXT_SCREEN_EFFORT_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "candidate_site_id": "REQUIRED_BEFORE_USE",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "screen_window_id": "REQUIRED_BEFORE_USE",
+    "frozen_before_screen_outcomes": false
+  },
+  "pollinator_detection": {
+    "minimum_relevant_visit_rate_per_min": null,
+    "desired_detection_probability": null,
+    "minimum_temporal_bouts": null,
+    "minimum_minutes_per_bout": null,
+    "rate_source_type": "REQUIRED_BEFORE_USE",
+    "rate_source_reference": "REQUIRED_BEFORE_USE",
+    "rate_rationale": "REQUIRED_BEFORE_USE",
+    "coverage_source_reference": "REQUIRED_BEFORE_USE",
+    "coverage_rationale": "REQUIRED_BEFORE_USE"
+  },
+  "predator_detection": {
+    "minimum_relevant_attack_fraction": null,
+    "desired_detection_probability": null,
+    "source_type": "REQUIRED_BEFORE_USE",
+    "source_reference": "REQUIRED_BEFORE_USE",
+    "biological_rationale": "REQUIRED_BEFORE_USE"
+  },
+  "water_state_detection": {
+    "minimum_relevant_positive_fraction": null,
+    "desired_detection_probability": null,
+    "source_type": "REQUIRED_BEFORE_USE",
+    "source_reference": "REQUIRED_BEFORE_USE",
+    "biological_rationale": "REQUIRED_BEFORE_USE"
+  },
+  "capacity": {
+    "reserve_fraction": null,
+    "source_type": "REQUIRED_BEFORE_USE",
+    "source_reference": "REQUIRED_BEFORE_USE",
+    "rationale": "REQUIRED_BEFORE_USE",
+    "census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION"
+  },
+  "source_policy": {
+    "allowed_relevance_sources": [
+      "DOWNSTREAM_DESIGN_REQUIREMENT",
+      "INDEPENDENT_NATURAL_HISTORY_CALIBRATION",
+      "EXTERNAL_MATCHED_PRIMARY_SOURCE",
+      "COMBINED_PREDECLARED"
+    ],
+    "forbidden_relevance_sources": [
+      "SCREEN_OUTCOME_POSTHOC",
+      "HISTORICAL_SAMPLE_SIZE_ONLY",
+      "NONSIGNIFICANT_P_VALUE",
+      "CONVENIENCE_ONLY"
+    ]
+  },
+  "firewall": {
+    "minimum_relevant_rates_frozen_before_screen_outcomes": true,
+    "desired_detection_probabilities_frozen_before_screen_outcomes": true,
+    "zero_detection_remains_context_uninformative_not_absence": true,
+    "historical_event_rates_not_copied_without_transport_justification": true,
+    "planner_sets_effort_not_biological_effect_thresholds": true
+  },
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "production_status": "PEDICULARIS_CONTEXT_SCREEN_EFFORT_PROSPECTIVELY_FROZEN"
+}
