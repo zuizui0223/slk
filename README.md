@@ -105,7 +105,8 @@ The narrower novelty claim is the **architecture-specific estimand transport** f
 The first prospectively registered same-system empirical target is `Pedicularis rex`:
 
 ```text
-G1 causal shared-axis conflict
+P0 fresh population-season context screen
+-> G1 causal shared-axis conflict
 -> G2 conflict load L
 -> structural-y Y0-Y3
 -> qualified pre-cost D0 comparator
@@ -114,7 +115,9 @@ G1 causal shared-axis conflict
 -> G5 Phi.
 ```
 
-The entire execution path is now registered, including field calibration, threshold freeze, structural-y promotion, D0 qualification, final G3-G5 precision planning, final sample-size compilation, registered-z-grid field layout, and bootstrap adjudication.
+The entire execution path is now registered, including the fresh P0 population-season screen, field calibration, threshold freeze, structural-y promotion, D0 qualification, final G3-G5 precision planning, final sample-size compilation, registered-z-grid field layout, and bootstrap adjudication.
+
+P0 is deliberately logistical. It requires fresh pollinator activity, fresh predator exposure/attack, a functional water state and adequate flowering-plant capacity. It does **not** use pollen limitation as a pass gate; pollen limitation stays unresolved until Qp calibration. A fully observed low-signal P0 context is `CONTEXT_UNINFORMATIVE_*`, not a biological negative.
 
 This is **design readiness, not empirical closure**. No Pedicularis G1-G5 biological receipt has yet been produced.
 
@@ -181,21 +184,22 @@ These modules may be cited by SLK without being promoted to independent manuscri
 10. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
 11. `docs/EMPIRICAL_G1_G9_SOURCE_LEDGER_V1.md` — source-adjudicated map of existing biological systems onto G1-G9, with explicit direct/partial/analogue/reality ceilings.
 12. `docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md` — canonical same-system execution order and design-versus-biological status boundary.
-13. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
-14. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — Qz/Qp/Qg field execution, hard stops and fallback policy.
-15. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective threshold-freeze rules.
-16. `docs/PEDICULARIS_STRUCTURAL_Y_RECEIPT_V1.md` — Y0-Y1 repeatability/range and z-y coupling receipt.
-17. `docs/PEDICULARIS_STRUCTURAL_Y_FUNCTION_RECEIPT_V1.md` — Y2 preferential loading and Y3 performance-intervention receipt.
-18. `docs/PEDICULARIS_D0_FEASIBILITY_PROTOCOL_V1.md` — pre-cost comparator definition and incremental-K boundary.
-19. `docs/PEDICULARIS_D0_EQUIVALENCE_MARGIN_LEDGER_V1.md` — biological margin-source contract.
-20. `docs/PEDICULARIS_D0_CONFIRMATORY_QUALIFICATION_V1.md` — independent D0 Q1-Q6 qualification.
-21. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
-22. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
-23. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-24. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
-25. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-26. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
-27. `PROVENANCE.md` — migration provenance and citation policy.
+13. `docs/PEDICULARIS_CONTEXT_SCREEN_V1.md` — fresh population-season P0 screen, field packet and relocation rule.
+14. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
+15. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — Qz/Qp/Qg field execution, hard stops and fallback policy.
+16. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective threshold-freeze rules.
+17. `docs/PEDICULARIS_STRUCTURAL_Y_RECEIPT_V1.md` — Y0-Y1 repeatability/range and z-y coupling receipt.
+18. `docs/PEDICULARIS_STRUCTURAL_Y_FUNCTION_RECEIPT_V1.md` — Y2 preferential loading and Y3 performance-intervention receipt.
+19. `docs/PEDICULARIS_D0_FEASIBILITY_PROTOCOL_V1.md` — pre-cost comparator definition and incremental-K boundary.
+20. `docs/PEDICULARIS_D0_EQUIVALENCE_MARGIN_LEDGER_V1.md` — biological margin-source contract.
+21. `docs/PEDICULARIS_D0_CONFIRMATORY_QUALIFICATION_V1.md` — independent D0 Q1-Q6 qualification.
+22. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
+23. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
+24. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
+25. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
+26. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+27. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
+28. `PROVENANCE.md` — migration provenance and citation policy.
 
 ## Current status
 
@@ -210,6 +214,8 @@ FIGURE_3_REGISTERED
 PHASE_COORDINATE_BOUNDARY_REGISTERED
 EMPIRICAL_GATE_LADDER_REGISTERED
 EMPIRICAL_SOURCE_SYSTEM_LEDGER_REGISTERED
+PEDICULARIS_CONTEXT_SCREEN_FIELD_PACKET_REGISTERED
+PEDICULARIS_CONTEXT_LOW_SIGNAL_IS_UNINFORMATIVE_NOT_NEGATIVE
 PEDICULARIS_G2_CLOSURE_PROTOCOL_REGISTERED
 FIRST_BIOLOGICAL_G2_TARGET_LOCKED
 PEDICULARIS_FIELD_QUALIFICATION_POLICY_REGISTERED
@@ -224,7 +230,7 @@ PEDICULARIS_G3_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED
 PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED
 PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN
 PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
-FIRST_EXECUTABLE_PEDICULARIS_TASK_IS_THRESHOLD_FREEZE_AFTER_CONTEXT_SCREEN
+FIRST_EXECUTABLE_PEDICULARIS_TASK_IS_RECOVER_CANDIDATE_CONTEXT_AND_FREEZE_P0_SCREEN
 K_OPERATIONAL_DEFINITION_REGISTERED
 PRIOR_ART_BOUNDARY_EXPANDED
 FIRST_AMNAT_REVIEWER_REPAIR_ROUND_COMPLETE
