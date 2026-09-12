@@ -17,6 +17,7 @@
     "rate_source_type": "REQUIRED_BEFORE_USE",
     "rate_source_reference": "REQUIRED_BEFORE_USE",
     "rate_rationale": "REQUIRED_BEFORE_USE",
+    "coverage_source_type": "REQUIRED_BEFORE_USE",
     "coverage_source_reference": "REQUIRED_BEFORE_USE",
     "coverage_rationale": "REQUIRED_BEFORE_USE"
   },
