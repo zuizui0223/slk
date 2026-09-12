@@ -1,0 +1,77 @@
+{
+  "schema_version": "SLK_PEDICULARIS_D0_QUALIFICATION_V1",
+  "status": "PROSPECTIVE_TEMPLATE_NOT_DATA",
+  "system": "Pedicularis rex",
+  "target_K": {
+    "estimand": "K_incremental_y",
+    "comparison_scope": "incremental high-retention structural-y cost conditional on existing cupulate-bract background",
+    "whole_architecture_origin_cost_claimed": false
+  },
+  "calibration_partition": {
+    "partition_id": "REQUIRED_BEFORE_USE",
+    "excluded_from_confirmatory_g3_g5": true
+  },
+  "groups": {
+    "S_cal": "REQUIRED_BEFORE_USE",
+    "SHAM_cal": "REQUIRED_BEFORE_USE",
+    "D0_cal": "REQUIRED_BEFORE_USE",
+    "D_cal": "REQUIRED_BEFORE_USE"
+  },
+  "D0_Q1_z_preserved": {
+    "status": "NOT_YET_EXECUTED",
+    "equivalence_margins_frozen": false,
+    "exsertion": null,
+    "corolla_opening": null,
+    "stigma_position": null,
+    "flower_orientation": null,
+    "mechanical_damage": null
+  },
+  "D0_Q2_functional_benefit_matched": {
+    "status": "NOT_YET_EXECUTED",
+    "equivalence_margins_frozen": false,
+    "retained_volume": null,
+    "water_depth": null,
+    "retention_duration": null,
+    "protection_window_overlap": null
+  },
+  "D0_Q3_pollination_facing_equivalent": {
+    "status": "NOT_YET_EXECUTED",
+    "equivalence_margins_frozen": false,
+    "visit_rate_or_probability": null,
+    "handling_time": null,
+    "pollen_receipt": null,
+    "stigma_contact_or_proxy": null
+  },
+  "D0_Q4_antagonist_channel_fidelity": {
+    "status": "NOT_YET_EXECUTED",
+    "criteria_frozen": false,
+    "physical_access_preserved": null,
+    "water_route_supported": null,
+    "oviposition_or_initial_attack": null,
+    "seed_predation": null
+  },
+  "D0_Q5_apparatus_burden_accounted": {
+    "status": "NOT_YET_EXECUTED",
+    "burden_rule_frozen": false,
+    "sham_comparison": null,
+    "point_or_bound": null,
+    "can_reverse_K_sign": null
+  },
+  "D0_Q6_common_horizon": {
+    "status": "NOT_YET_EXECUTED",
+    "horizon_id": "REQUIRED_BEFORE_USE",
+    "same_for_S_D0_D": null
+  },
+  "estimation_route": {
+    "route": "REQUIRED_BEFORE_USE",
+    "allowed": ["SAME_BLOCK_INTERNAL_IDENTITY", "INDEPENDENT_OR_PARTIALLY_INDEPENDENT_CONCORDANCE"],
+    "bridge_tolerance_frozen": false
+  },
+  "final_adjudication": "NOT_YET_EXECUTED",
+  "allowed_final_statuses": [
+    "D0_FULLY_QUALIFIED",
+    "D0_QUALIFIED_WITH_BOUNDED_BURDEN",
+    "D0_FUNCTION_MATCH_ONLY",
+    "D0_NOT_QUALIFIED"
+  ]
+}
