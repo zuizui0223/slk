@@ -8,6 +8,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_pedicularis_context_screen_packet.py"
 SUMMARIZER = ROOT / "scripts" / "summarize_pedicularis_context_screen_packet.py"
+ADJUDICATOR = ROOT / "scripts" / "adjudicate_pedicularis_context_screen.py"
 
 spec = importlib.util.spec_from_file_location("ped_context_packet_gen", GENERATOR)
 gen = importlib.util.module_from_spec(spec)
@@ -18,6 +19,11 @@ spec2 = importlib.util.spec_from_file_location("ped_context_packet_summary", SUM
 sum_mod = importlib.util.module_from_spec(spec2)
 assert spec2.loader is not None
 spec2.loader.exec_module(sum_mod)
+
+spec3 = importlib.util.spec_from_file_location("ped_context_packet_adj", ADJUDICATOR)
+adj = importlib.util.module_from_spec(spec3)
+assert spec3.loader is not None
+spec3.loader.exec_module(adj)
 
 
 def _freeze() -> dict:
@@ -139,6 +145,14 @@ def test_completed_packet_summarizes_registered_effort_and_signals() -> None:
     assert receipt["observations"]["legitimate_pollinator_visits"] == 1
     assert receipt["observations"]["predator_attacked_flowers"] == 1
     assert receipt["observations"]["water_positive_plants"] == 20
+
+
+def test_packet_summary_and_adjudicator_unlock_calibration_end_to_end() -> None:
+    receipt = sum_mod.summarize(_completed_rows())
+    result = adj.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
+    assert result["next_action"]["calibration_unlocked"] is True
+    assert result["firewall"]["screen_is_logistical_not_g1_g2"] is True
 
 
 def test_incomplete_packet_remains_incomplete_in_summary() -> None:
