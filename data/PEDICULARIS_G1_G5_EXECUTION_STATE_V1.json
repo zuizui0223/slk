@@ -6,7 +6,7 @@
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
   "source_main_commit_at_state_snapshot": "ba4dffaa394e21c75f1fb6b38537b2117552ee33",
   "stages": [
-    {"stage_id": "P0_CONTEXT_SCREEN", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED"},
+    {"stage_id": "P0_CONTEXT_SCREEN", "design_status": "REGISTERED_FIELD_PACKET_READY", "biological_status": "NOT_EXECUTED", "required_positive_status": "CONTEXT_SCREEN_PASS_CALIBRATION_READY"},
     {"stage_id": "P1_THRESHOLD_FREEZE", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "THRESHOLD_FREEZE_VALIDATED"},
     {"stage_id": "P2_QZ_QP_QG", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "QZ_QP_QG_ALL_VALIDATED"},
     {"stage_id": "G1_CAUSAL_CONFLICT", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "DIRECT_PASS"},
