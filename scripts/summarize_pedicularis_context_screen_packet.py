@@ -21,6 +21,13 @@ def _bool(value: object, label: str) -> bool:
     return text in {"true", "1", "yes"}
 
 
+def _optional_bool(value: object, label: str) -> bool | None:
+    text = str(value).strip()
+    if text == "":
+        return None
+    return _bool(text, label)
+
+
 def _num(value: object, label: str, *, minimum: float = 0) -> float:
     try:
         out = float(value)
@@ -56,8 +63,13 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     _need(len(census_rows) == 1, "context screen packet must contain exactly one CENSUS row")
     _need(bool(poll_rows) and bool(pred_rows) and bool(water_rows), "context screen packet is missing a registered screen block")
 
-    census_raw = str(census_rows[0].get("flowering_plants_censused", "")).strip()
+    census_row = census_rows[0]
+    census_raw = str(census_row.get("flowering_plants_censused", "")).strip()
     census = _num(census_raw, "flowering_plants_censused") if census_raw else 0.0
+    census_exhausted = _optional_bool(
+        census_row.get("population_census_exhausted", ""),
+        "population_census_exhausted",
+    )
 
     completed_poll = []
     total_minutes = 0.0
@@ -113,6 +125,7 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         },
         "effort": {
             "independent_flowering_plants_censused": census,
+            "population_census_exhausted": census_exhausted,
             "pollinator_observation_minutes_total": total_minutes,
             "pollinator_observation_bouts": len(completed_poll),
             "predator_screen_flowers": len(completed_pred),
@@ -145,6 +158,7 @@ def summarize(rows: list[dict[str, str]]) -> dict:
             "completed_predator_rows": len(completed_pred),
             "registered_water_rows": len(water_rows),
             "completed_water_rows": len(completed_water),
+            "capacity_census_exhaustion_recorded": census_exhausted is not None,
         },
         "final_adjudication": "NOT_YET_EXECUTED",
     }
