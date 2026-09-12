@@ -70,7 +70,12 @@
     "direct": {"status": "NOT_IDENTIFIED", "comparison": "S_TO_D", "point": null, "lower_95": null, "upper_95": null},
     "decomposed": {"status": "NOT_IDENTIFIED", "point": null, "lower_95": null, "upper_95": null},
     "bridge_residual": {"point": null, "lower_95": null, "upper_95": null},
-    "bridge_concordance": {"frozen_before_confirmatory_outcomes": false, "max_abs_point": null}
+    "bridge_concordance": {
+      "frozen_before_confirmatory_outcomes": false,
+      "independent_estimation_blocks": false,
+      "max_abs_point": null,
+      "note": "If false, direct/decomposed equality is only an internal algebraic identity and must not be called empirical concordance."
+    }
   },
   "notes": "Populate only after prospective freezes. Nulls and REQUIRED_BEFORE_USE values are intentional hard stops."
 }
