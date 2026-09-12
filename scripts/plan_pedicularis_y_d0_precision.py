@@ -50,7 +50,6 @@ def n_two_group_equivalence(sd: float, margin: float, alpha: float = DEFAULT_ALP
     sd = _finite_pos(sd, "sd")
     margin = _finite_pos(margin, "margin")
     zsum = _z(1 - alpha) + _z(power)
-    # Equal allocation. Returned n is independent plants PER GROUP.
     return max(2, math.ceil(2 * (zsum * sd / margin) ** 2))
 
 
@@ -132,6 +131,13 @@ def plan_manifest(manifest: dict) -> dict:
     if not endpoints:
         raise ValueError("no endpoints supplied")
 
+    provenance = manifest.get("input_provenance")
+    if provenance is not None:
+        if not isinstance(provenance, dict):
+            raise ValueError("input_provenance must be an object")
+        if provenance.get("confirmatory_outcomes_opened") is not False:
+            raise ValueError("precision input provenance shows opened confirmatory outcomes")
+
     results = [plan_endpoint(x, defaults) for x in endpoints]
     maxima_by_unit: dict[str, dict] = {}
     for row in results:
@@ -148,6 +154,7 @@ def plan_manifest(manifest: dict) -> dict:
     return {
         "planner_schema_version": "SLK_PEDICULARIS_Y_D0_PRECISION_PLAN_V1",
         "status": "PLANNING_ONLY_NOT_A_BIOLOGICAL_RECEIPT",
+        "input_provenance": provenance,
         "results": results,
         "maxima_by_allocation_unit": maxima_by_unit,
         "allocation_rule": (
