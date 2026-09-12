@@ -3,7 +3,6 @@ from __future__ import annotations
 import argparse
 import csv
 import importlib.util
-import math
 from pathlib import Path
 
 
@@ -19,6 +18,7 @@ FIELDS = [
     "planned_observation_minutes",
     "observed_observation_minutes",
     "flowering_plants_censused",
+    "population_census_exhausted",
     "legitimate_pollinator_visits",
     "predator_attack_present",
     "predator_evidence_note",
@@ -64,7 +64,14 @@ def generate(freeze: dict) -> list[dict[str, str]]:
 
     census = _blank()
     census.update(common)
-    census.update({"record_type": "CENSUS", "record_id": "CENSUS-001"})
+    census.update({
+        "record_type": "CENSUS",
+        "record_id": "CENSUS-001",
+        "notes": (
+            "Count independent flowering plants until the frozen capacity requirement is reached; "
+            "if it is not reached, exhaust the focal population and set population_census_exhausted=true."
+        ),
+    })
     rows.append(census)
 
     bouts = effort["minimum_pollinator_observation_bouts"]
