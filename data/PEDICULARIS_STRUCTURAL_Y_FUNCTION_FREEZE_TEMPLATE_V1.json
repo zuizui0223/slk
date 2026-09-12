@@ -1,0 +1,66 @@
+{
+  "schema_version": "SLK_PEDICULARIS_STRUCTURAL_Y_FUNCTION_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "y_cal_dataset_id": "PED_Y_CAL_V1",
+    "d0_cal_dataset_id": "PED_D0_CAL_V1",
+    "structural_y_receipt_id": "REQUIRED_BEFORE_USE",
+    "primary_y_metric": "REQUIRED_BEFORE_USE",
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    "time_horizon_id": "REQUIRED_BEFORE_USE",
+    "frozen_before_d0_cal_outcomes": false
+  },
+  "y2": {
+    "natural_antagonist_endpoint": "REQUIRED_BEFORE_USE",
+    "allowed_antagonist_endpoints": [
+      "EARLY_ATTACK_PROP",
+      "SEED_PREDATION_PROP",
+      "MATURE_VIABLE_UNDAMAGED_SEEDS"
+    ],
+    "natural_pollination_endpoint": "REQUIRED_BEFORE_USE",
+    "allowed_pollination_endpoints": [
+      "VISIT_RATE_PER_MIN",
+      "POLLEN_RECEIPT_GRAINS",
+      "INITIAL_SEED_SET_PROP"
+    ],
+    "pollination_beta_y_equivalence_margin": null,
+    "minimum_complete_n": 48,
+    "antagonist_ci_level": 0.95,
+    "pollination_equivalence_ci_level": 0.90,
+    "control_coordinate": "EXSERTION_Z",
+    "natural_comparison_rows": "LOW_Y_S_CAL_PLUS_HIGH_Y_D_CAL"
+  },
+  "y3": {
+    "intervention_comparison": "LOW_Y_D0_CAL_MINUS_SHAM_CAL",
+    "minimum_primary_y_gain": null,
+    "max_abs_exsertion_shift": null,
+    "y_gain_ci_level": 0.95,
+    "z_equivalence_ci_level": 0.90,
+    "minimum_complete_paired_plants": 24,
+    "interpretation": "FUNCTIONAL_PERFORMANCE_INTERVENTION_NOT_HISTORICAL_ORIGIN"
+  },
+  "bootstrap": {
+    "seed": null,
+    "reps": null,
+    "minimum_reps": 2000,
+    "minimum_valid_fraction": 0.90,
+    "resampling_unit": "INDEPENDENT_PLANT"
+  },
+  "firewall": {
+    "endpoint_selection_after_outcomes_forbidden": true,
+    "pollination_margin_from_nonsignificance_forbidden": true,
+    "y_gain_threshold_from_observed_d0_effect_forbidden": true,
+    "z_margin_from_observed_d0_effect_forbidden": true,
+    "d0_cal_units_confirmatory_g3_g5_ineligible": true,
+    "natural_y2_and_intervention_y3_kept_distinct": true
+  },
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "production_status": "FUNCTION_THRESHOLDS_PROSPECTIVELY_FROZEN"
+}
