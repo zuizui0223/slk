@@ -80,6 +80,13 @@ def test_positive_non_circular_receipt_closes_g2() -> None:
     assert result["g1"] == "DIRECT_PASS"
     assert result["g2"] == "DIRECT_PASS"
     assert result["g2_detail"] == "G2_DIRECT_PASS_POSITIVE"
+    assert result["context"] == {
+        "context_id": "ped-rex-pop1-2027",
+        "system": "Pedicularis rex",
+        "population_id": "pop1",
+        "season_id": "2027",
+        "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    }
     assert result["downstream_balance_eligible"] is True
     assert result["downstream_bita_non_circular_eligible"] is True
 
@@ -92,6 +99,7 @@ def test_zero_compatible_interval_is_measured_but_not_balance_eligible() -> None
     assert result["g1"] == "DIRECT_PASS"
     assert result["g2"] == "PARTIAL_SUPPORT"
     assert result["g2_detail"] == "G2_MEASURED_BUT_ZERO_COMPATIBLE"
+    assert result["context"]["context_id"] == "ped-rex-pop1-2027"
     assert result["downstream_balance_eligible"] is False
 
 
