@@ -26,20 +26,13 @@ def _plant_index(plant_id: str) -> int:
 
 
 def _completed_rows() -> list[dict[str, str]]:
-    _, rows, _ = gen.generate_layout("ctx1", "pop1", "2027", 1729)
+    _, rows, _ = gen.generate_layout("ctx1", "pop1", "2027", "FLOWER_TO_MATURE_VIABLE_SEED", 1729)
     out = copy.deepcopy(rows)
-    treatment_offset = {
-        "S_CAL": 0.0,
-        "SHAM_CAL": 0.2,
-        "D0_CAL": 0.5,
-        "D_CAL": 0.55,
-        "D_DRAIN_CAL": 0.1,
-    }
+    treatment_offset = {"S_CAL": 0.0, "SHAM_CAL": 0.2, "D0_CAL": 0.5, "D_CAL": 0.55, "D_DRAIN_CAL": 0.1}
     for row in out:
         i = _plant_index(row["plant_id"])
         t = row["treatment"]
         o = treatment_offset[t]
-
         row["exsertion_z"] = str(0.30 + 0.0005 * i + o * 0.002 * i)
         row["opening_width_mm"] = str(4.0 + 0.01 * i + o * 0.02 * i)
         row["stigma_position_mm"] = str(2.0 + 0.005 * i + o * 0.01 * i)
@@ -63,12 +56,7 @@ def _completed_rows() -> list[dict[str, str]]:
 
         row["pollinator_observation_minutes"] = "10"
         visit_base = 4 + (i % 5)
-        if t == "D0_CAL":
-            visits = visit_base + (i % 3)
-        elif t == "SHAM_CAL":
-            visits = visit_base + (i % 2)
-        else:
-            visits = visit_base
+        visits = visit_base + ((i % 3) if t == "D0_CAL" else (i % 2) if t == "SHAM_CAL" else 0)
         row["legitimate_visits"] = str(visits)
         row["pollen_receipt_grains"] = str(10.0 + 0.3 * i + o * 0.12 * i)
         row["initial_seed_set_prop"] = str(0.30 + 0.002 * i + o * 0.001 * i)
@@ -108,6 +96,8 @@ def test_complete_registered_calibration_produces_ready_variance_receipt() -> No
     receipt = summary.summarize(_completed_rows(), "PED_D0_CONFIRM_V1")
     assert receipt["status"] == "INDEPENDENT_CALIBRATION_VARIANCE_READY"
     assert receipt["source_counts"] == {"low_y_plants": 24, "high_y_plants": 24}
+    assert receipt["context"]["fitness_scale_id"] == "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
+    assert receipt["context"]["time_horizon_id"] == "FLOWER_TO_MATURE_VIABLE_SEED"
     assert len(receipt["endpoints"]) == 16
     assert all(x["meets_registered_floor"] for x in receipt["endpoints"])
     assert all(x["value"] > 0 for x in receipt["endpoints"])
@@ -138,10 +128,7 @@ def test_q2_variance_is_pooled_across_d0_and_natural_d_plants() -> None:
 
 def test_missing_one_required_measurement_marks_receipt_incomplete() -> None:
     rows = _completed_rows()
-    target = next(
-        r for r in rows
-        if r["plant_id"] == "D0L-001" and r["treatment"] == "D0_CAL"
-    )
+    target = next(r for r in rows if r["plant_id"] == "D0L-001" and r["treatment"] == "D0_CAL")
     target["pollen_receipt_grains"] = ""
     receipt = summary.summarize(rows, "PED_D0_CONFIRM_V1")
     pollen = _endpoint(receipt, "D0_Q3_POLLEN")
@@ -167,3 +154,10 @@ def test_proportion_outside_unit_interval_is_rejected() -> None:
 def test_confirmatory_dataset_must_not_be_calibration_dataset() -> None:
     with pytest.raises(ValueError, match="invalid confirmatory_dataset_id"):
         summary.summarize(_completed_rows(), "PED_D0_CAL_V1")
+
+
+def test_multiple_time_horizons_are_rejected() -> None:
+    rows = _completed_rows()
+    rows[0]["time_horizon_id"] = "OTHER_HORIZON"
+    with pytest.raises(ValueError, match="multiple contexts"):
+        summary.summarize(rows, "PED_D0_CONFIRM_V1")
