@@ -9,6 +9,7 @@ from pathlib import Path
 
 Y_DATASET_ID = "PED_Y_CAL_V1"
 D0_DATASET_ID = "PED_D0_CAL_V1"
+FITNESS_SCALE_ID = "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
 Y_MIN_PLANTS = 36
 Y_MIN_FLOWERS_PER_PLANT = 3
 D0_MIN_LOW_PLANTS = 24
@@ -49,6 +50,11 @@ def validate_rows(y_rows: list[dict[str, str]], d0_rows: list[dict[str, str]]) -
         (d0_rows, D0_DATASET_ID, "D0-CAL"),
     ):
         _need(_one_value(rows, "dataset_id", label) == dataset_id, f"wrong dataset_id for {label}")
+        _need(
+            _one_value(rows, "fitness_scale_id", label) == FITNESS_SCALE_ID,
+            f"wrong fitness_scale_id for {label}",
+        )
+        _one_value(rows, "time_horizon_id", label)
         for row in rows:
             _need(_bool_false(row.get("confirmatory_eligible", "")), f"{label} row marked confirmatory eligible")
             _need(_bool_true(row.get("assignment_frozen", "")), f"{label} assignment not frozen")
@@ -59,11 +65,15 @@ def validate_rows(y_rows: list[dict[str, str]], d0_rows: list[dict[str, str]]) -
         _one_value(y_rows, "context_id", "Y-CAL"),
         _one_value(y_rows, "population_id", "Y-CAL"),
         _one_value(y_rows, "season_id", "Y-CAL"),
+        _one_value(y_rows, "fitness_scale_id", "Y-CAL"),
+        _one_value(y_rows, "time_horizon_id", "Y-CAL"),
     )
     context_d0 = (
         _one_value(d0_rows, "context_id", "D0-CAL"),
         _one_value(d0_rows, "population_id", "D0-CAL"),
         _one_value(d0_rows, "season_id", "D0-CAL"),
+        _one_value(d0_rows, "fitness_scale_id", "D0-CAL"),
+        _one_value(d0_rows, "time_horizon_id", "D0-CAL"),
     )
     _need(context_y == context_d0, "Y-CAL and D0-CAL context mismatch")
 
@@ -123,6 +133,8 @@ def validate_rows(y_rows: list[dict[str, str]], d0_rows: list[dict[str, str]]) -
         "context_id": context_y[0],
         "population_id": context_y[1],
         "season_id": context_y[2],
+        "fitness_scale_id": context_y[3],
+        "time_horizon_id": context_y[4],
         "y_cal": {
             "independent_plants": len(y_by_plant),
             "rows": len(y_rows),

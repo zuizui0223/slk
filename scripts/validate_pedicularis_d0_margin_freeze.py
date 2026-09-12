@@ -36,6 +36,25 @@ REQUIRED_ENDPOINT_IDS = {
     "D0_Q5_BURDEN_PRECISION",
     "D0_Q6_HORIZON",
 }
+EXPECTED_COMPARISONS = {
+    "D0_Q1_Z": "D0_MINUS_SHAM",
+    "D0_Q1_OPENING": "D0_MINUS_SHAM",
+    "D0_Q1_STIGMA": "D0_MINUS_SHAM",
+    "D0_Q1_ORIENTATION": "D0_MINUS_SHAM",
+    "D0_Q1_DAMAGE": "D0_MINUS_SHAM",
+    "D0_Q2_VOLUME": "D0_MINUS_D",
+    "D0_Q2_DURATION": "D0_MINUS_D",
+    "D0_Q2_COVERAGE": "D0_MINUS_D",
+    "D0_Q2_PROTECTION": "D0_MINUS_D",
+    "D0_Q3_VISIT": "D0_MINUS_SHAM",
+    "D0_Q3_POLLEN": "D0_MINUS_SHAM",
+    "D0_Q3_INITIAL_SEED": "D0_MINUS_SHAM",
+    "D0_Q4_WET_EFFECT": "WET_D0_MINUS_DRY_OR_SHAM",
+    "D0_Q4_DRY_RESIDUAL": "SHAM_MINUS_S",
+    "D0_Q5_BURDEN_EQ": "S_MINUS_SHAM",
+    "D0_Q5_BURDEN_PRECISION": "S_MINUS_SHAM",
+    "D0_Q6_HORIZON": "S_EQ_D0_EQ_D",
+}
 
 
 def _need(ok: bool, message: str) -> None:
@@ -123,6 +142,10 @@ def validate(manifest: dict) -> dict:
 
     for endpoint in endpoints:
         endpoint_id = endpoint["endpoint_id"]
+        _need(
+            endpoint.get("comparison") == EXPECTED_COMPARISONS[endpoint_id],
+            f"comparison identity mismatch: {endpoint_id}",
+        )
         required = _required_for_route(endpoint, q5_route)
         if not required:
             skipped.append(endpoint_id)

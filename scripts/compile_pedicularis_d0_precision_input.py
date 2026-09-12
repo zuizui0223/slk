@@ -8,6 +8,7 @@ from pathlib import Path
 
 
 VARIANCE_SCHEMA = "SLK_PEDICULARIS_D0_VARIANCE_INPUT_V1"
+VARIANCE_READY_STATUS = "INDEPENDENT_CALIBRATION_VARIANCE_READY"
 OUTPUT_SCHEMA = "SLK_PEDICULARIS_Y_D0_PRECISION_INPUT_V2"
 
 PAIR_EQ_IDS = {
@@ -78,14 +79,17 @@ def _margin_map(payload: dict) -> dict[str, dict]:
 
 def compile_precision_input(margin: dict, variance: dict) -> dict:
     margin_result = validate_margin(margin)
-
     _need(variance.get("schema_version") == VARIANCE_SCHEMA, "wrong variance schema")
+    _need(variance.get("status") == VARIANCE_READY_STATUS, "variance receipt is not ready at the registered calibration floor")
+
     vctx = variance.get("context", {})
     mctx = margin["context"]
     for key in (
         "system",
         "population_id",
         "season_id",
+        "fitness_scale_id",
+        "time_horizon_id",
         "y_cal_dataset_id",
         "d0_cal_dataset_id",
         "confirmatory_dataset_id",
@@ -103,26 +107,18 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
     vmap = _endpoint_map(variance)
     mmap = _margin_map(margin)
     confirmatory_id = mctx["confirmatory_dataset_id"]
-    registered_calibration_ids = {
-        mctx["y_cal_dataset_id"],
-        mctx["d0_cal_dataset_id"],
-    }
-
-    active_margin_ids = [
-        x for x in margin_result["validated_endpoints"] if x != HORIZON_ID
-    ]
+    registered_calibration_ids = {mctx["y_cal_dataset_id"], mctx["d0_cal_dataset_id"]}
+    active_margin_ids = [x for x in margin_result["validated_endpoints"] if x != HORIZON_ID]
     planner_endpoints: list[dict] = []
 
     for endpoint_id in active_margin_ids:
         _need(endpoint_id in vmap, f"variance missing for active endpoint: {endpoint_id}")
         v = vmap[endpoint_id]
         m = mmap[endpoint_id]
+        _need(v.get("meets_registered_floor") is True, f"variance endpoint below registered calibration floor: {endpoint_id}")
         _need(v.get("analysis_unit") == "independent_plant", f"wrong analysis unit: {endpoint_id}")
         calibration_id = v.get("calibration_dataset_id")
-        _need(
-            calibration_id in registered_calibration_ids,
-            f"variance source is not a registered calibration dataset: {endpoint_id}",
-        )
+        _need(calibration_id in registered_calibration_ids, f"variance source is not a registered calibration dataset: {endpoint_id}")
         _need(calibration_id != confirmatory_id, f"variance dataset reuses confirmatory units: {endpoint_id}")
         sd_value = v.get("value")
         _need(_positive_number(sd_value), f"missing/invalid variance input: {endpoint_id}")
@@ -135,47 +131,20 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
             "variance_source": calibration_id,
             "margin_source_type": m.get("source_type"),
         }
-
         if endpoint_id in PAIR_EQ_IDS:
             _need(v.get("variance_kind") == "sd_diff", f"expected sd_diff: {endpoint_id}")
-            base.update(
-                {
-                    "kind": "paired_equivalence",
-                    "sd_diff": sd_value,
-                    "margin": margin_value,
-                }
-            )
+            base.update({"kind": "paired_equivalence", "sd_diff": sd_value, "margin": margin_value})
         elif endpoint_id in TWO_GROUP_EQ_IDS:
             _need(v.get("variance_kind") == "sd", f"expected sd: {endpoint_id}")
-            base.update(
-                {
-                    "kind": "two_group_equivalence",
-                    "sd": sd_value,
-                    "margin": margin_value,
-                }
-            )
+            base.update({"kind": "two_group_equivalence", "sd": sd_value, "margin": margin_value})
         elif endpoint_id == WET_EFFECT_ID:
             _need(v.get("variance_kind") == "sd_diff", f"expected sd_diff: {endpoint_id}")
-            base.update(
-                {
-                    "kind": "paired_superiority",
-                    "sd_diff": sd_value,
-                    "min_effect": margin_value,
-                    "directional": True,
-                }
-            )
+            base.update({"kind": "paired_superiority", "sd_diff": sd_value, "min_effect": margin_value, "directional": True})
         elif endpoint_id == BURDEN_PRECISION_ID:
             _need(v.get("variance_kind") == "sd_diff", f"expected sd_diff: {endpoint_id}")
-            base.update(
-                {
-                    "kind": "mean_precision",
-                    "sd": sd_value,
-                    "half_width": margin_value,
-                }
-            )
+            base.update({"kind": "mean_precision", "sd": sd_value, "half_width": margin_value})
         else:
             raise ValueError(f"no precision mapping for active endpoint: {endpoint_id}")
-
         planner_endpoints.append(base)
 
     return {
@@ -189,6 +158,8 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
         "input_provenance": {
             "population_id": mctx["population_id"],
             "season_id": mctx["season_id"],
+            "fitness_scale_id": mctx["fitness_scale_id"],
+            "time_horizon_id": mctx["time_horizon_id"],
             "y_cal_dataset_id": mctx["y_cal_dataset_id"],
             "d0_cal_dataset_id": mctx["d0_cal_dataset_id"],
             "confirmatory_dataset_id": confirmatory_id,
@@ -197,22 +168,16 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
             "q5_route": margin_result["q5_route"],
         },
         "endpoints": planner_endpoints,
-        "notes": (
-            "Compatible with plan_pedicularis_y_d0_precision.py. Frozen biological margins and "
-            "independent calibration variance remain separate inputs; this compiler only joins them."
-        ),
+        "notes": "Compatible with plan_pedicularis_y_d0_precision.py. Frozen biological margins and independent calibration variance remain separate inputs; this compiler only joins them.",
     }
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Compile frozen Pedicularis D0 margins and calibration variance into precision-planner input"
-    )
+    parser = argparse.ArgumentParser(description="Compile frozen Pedicularis D0 margins and calibration variance into precision-planner input")
     parser.add_argument("margin_manifest", type=Path)
     parser.add_argument("variance_manifest", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-
     margin = json.loads(args.margin_manifest.read_text())
     variance = json.loads(args.variance_manifest.read_text())
     result = compile_precision_input(margin, variance)

@@ -62,15 +62,19 @@ def _margin(q5_route: str = "NEGLIGIBLE_BURDEN_EQUIVALENCE") -> dict:
 
 def _variance() -> dict:
     v = json.loads(VARIANCE_TEMPLATE.read_text())
+    v["status"] = "INDEPENDENT_CALIBRATION_VARIANCE_READY"
     v["context"].update(
         {
             "population_id": "pop1",
             "season_id": "2027",
+            "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+            "time_horizon_id": "FLOWER_TO_MATURE_VIABLE_SEED",
             "confirmatory_dataset_id": "PED_D0_CONFIRM_V1",
         }
     )
     for endpoint in v["endpoints"]:
         endpoint["value"] = 1.0
+        endpoint["meets_registered_floor"] = True
     return v
 
 
@@ -81,6 +85,7 @@ def _ids(payload: dict) -> set[str]:
 def test_compiled_equivalence_route_is_accepted_by_precision_planner() -> None:
     compiled = compiler.compile_precision_input(_margin(), _variance())
     assert compiled["schema_version"] == "SLK_PEDICULARIS_Y_D0_PRECISION_INPUT_V2"
+    assert compiled["input_provenance"]["time_horizon_id"] == "FLOWER_TO_MATURE_VIABLE_SEED"
     assert "D0_Q5_BURDEN_EQ" in _ids(compiled)
     assert "D0_Q5_BURDEN_PRECISION" not in _ids(compiled)
     planned = planner.plan_manifest(compiled)
@@ -89,14 +94,10 @@ def test_compiled_equivalence_route_is_accepted_by_precision_planner() -> None:
 
 
 def test_compiled_adjustment_route_uses_burden_precision_not_equivalence() -> None:
-    compiled = compiler.compile_precision_input(
-        _margin("MEASURED_BURDEN_ADJUSTMENT"), _variance()
-    )
+    compiled = compiler.compile_precision_input(_margin("MEASURED_BURDEN_ADJUSTMENT"), _variance())
     assert "D0_Q5_BURDEN_PRECISION" in _ids(compiled)
     assert "D0_Q5_BURDEN_EQ" not in _ids(compiled)
-    burden = next(
-        x for x in compiled["endpoints"] if x["endpoint_id"] == "D0_Q5_BURDEN_PRECISION"
-    )
+    burden = next(x for x in compiled["endpoints"] if x["endpoint_id"] == "D0_Q5_BURDEN_PRECISION")
     assert burden["kind"] == "mean_precision"
     assert burden["half_width"] == 0.5
 
@@ -105,6 +106,13 @@ def test_margin_and_variance_contexts_must_match() -> None:
     variance = _variance()
     variance["context"]["population_id"] = "pop2"
     with pytest.raises(ValueError, match="context mismatch"):
+        compiler.compile_precision_input(_margin(), variance)
+
+
+def test_margin_and_variance_horizons_must_match() -> None:
+    variance = _variance()
+    variance["context"]["time_horizon_id"] = "OTHER_HORIZON"
+    with pytest.raises(ValueError, match="time_horizon_id"):
         compiler.compile_precision_input(_margin(), variance)
 
 
@@ -136,4 +144,19 @@ def test_opened_confirmatory_outcomes_block_compilation() -> None:
     variance = _variance()
     variance["context"]["confirmatory_outcomes_opened"] = True
     with pytest.raises(ValueError, match="opened confirmatory outcomes"):
+        compiler.compile_precision_input(_margin(), variance)
+
+
+def test_incomplete_variance_receipt_is_rejected() -> None:
+    variance = _variance()
+    variance["status"] = "INDEPENDENT_CALIBRATION_VARIANCE_INCOMPLETE"
+    with pytest.raises(ValueError, match="variance receipt is not ready"):
+        compiler.compile_precision_input(_margin(), variance)
+
+
+def test_endpoint_below_registered_pilot_floor_is_rejected() -> None:
+    variance = _variance()
+    endpoint = next(x for x in variance["endpoints"] if x["endpoint_id"] == "D0_Q3_POLLEN")
+    endpoint["meets_registered_floor"] = False
+    with pytest.raises(ValueError, match="below registered calibration floor"):
         compiler.compile_precision_input(_margin(), variance)
