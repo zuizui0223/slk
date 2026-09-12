@@ -103,6 +103,10 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
     vmap = _endpoint_map(variance)
     mmap = _margin_map(margin)
     confirmatory_id = mctx["confirmatory_dataset_id"]
+    registered_calibration_ids = {
+        mctx["y_cal_dataset_id"],
+        mctx["d0_cal_dataset_id"],
+    }
 
     active_margin_ids = [
         x for x in margin_result["validated_endpoints"] if x != HORIZON_ID
@@ -114,7 +118,12 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
         v = vmap[endpoint_id]
         m = mmap[endpoint_id]
         _need(v.get("analysis_unit") == "independent_plant", f"wrong analysis unit: {endpoint_id}")
-        _need(v.get("calibration_dataset_id") != confirmatory_id, f"variance dataset reuses confirmatory units: {endpoint_id}")
+        calibration_id = v.get("calibration_dataset_id")
+        _need(
+            calibration_id in registered_calibration_ids,
+            f"variance source is not a registered calibration dataset: {endpoint_id}",
+        )
+        _need(calibration_id != confirmatory_id, f"variance dataset reuses confirmatory units: {endpoint_id}")
         sd_value = v.get("value")
         _need(_positive_number(sd_value), f"missing/invalid variance input: {endpoint_id}")
         margin_value = m.get("value")
@@ -123,7 +132,7 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
         base = {
             "endpoint_id": endpoint_id,
             "margin_endpoint_id": endpoint_id,
-            "variance_source": v.get("calibration_dataset_id"),
+            "variance_source": calibration_id,
             "margin_source_type": m.get("source_type"),
         }
 
