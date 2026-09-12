@@ -49,6 +49,7 @@
     "CONTEXT_UNINFORMATIVE_POLLINATOR_LOW": "pollinator effort completed but legitimate activity below frozen threshold",
     "CONTEXT_UNINFORMATIVE_PREDATOR_LOW": "predator effort completed but attack below frozen threshold",
     "CONTEXT_UNINFORMATIVE_WATER_STATE": "water-state effort completed but water functionality below frozen threshold",
+    "CONTEXT_UNINFORMATIVE_MULTIPLE_SIGNALS": "registered effort completed but more than one signal is below its frozen screen threshold",
     "CONTEXT_SCREEN_INCOMPLETE": "one or more registered effort floors not completed"
   },
   "firewall": {
