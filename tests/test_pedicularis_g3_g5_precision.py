@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import importlib.util
 from pathlib import Path
 
@@ -60,6 +59,7 @@ def _d0_receipt() -> dict:
 def _row(plant_id: str, treatment: str, seeds: float) -> dict[str, str]:
     return {
         "dataset_id": "PED_D0_QUAL_CONFIRM_V1",
+        "d0_qualification_eligible": "true",
         "g3_g5_eligible": "false",
         **{k: str(v) for k, v in CTX.items()},
         "plant_id": plant_id,
@@ -134,6 +134,7 @@ def test_completed_d0_qualification_yields_planning_variance_receipt() -> None:
     assert result["world_variance"]["S"]["independent_plants"] == 3
     assert result["world_variance"]["D0"]["independent_plants"] == 3
     assert result["world_variance"]["D"]["independent_plants"] == 3
+    assert result["firewall"]["all_source_rows_d0_qualification_eligible"] is True
     assert result["firewall"]["source_units_g3_g5_effect_estimation_ineligible"] is True
 
 
@@ -150,6 +151,20 @@ def test_d0_qualification_row_cannot_be_reused_as_effect_unit() -> None:
     rows[0]["g3_g5_eligible"] = "true"
     with pytest.raises(ValueError, match="cannot be G3-G5 eligible"):
         varmod.summarize(rows, _d0_receipt())
+
+
+def test_nonqualification_row_cannot_supply_planning_variance() -> None:
+    rows = _rows()
+    rows[0]["d0_qualification_eligible"] = "false"
+    with pytest.raises(ValueError, match="not a D0 qualification unit"):
+        varmod.summarize(rows, _d0_receipt())
+
+
+def test_receipt_with_failed_d0_gate_cannot_supply_planning_variance() -> None:
+    receipt = _d0_receipt()
+    receipt["gates"]["D0_Q3_pollination_facing_equivalent"] = False
+    with pytest.raises(ValueError, match="all D0 Q1-Q6 gates"):
+        varmod.summarize(_rows(), receipt)
 
 
 def test_precision_plan_uses_max_world_sd_times_frozen_multiplier() -> None:
