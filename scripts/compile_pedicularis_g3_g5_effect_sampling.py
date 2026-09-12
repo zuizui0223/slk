@@ -30,6 +30,8 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
     _need(precision_freeze.get("status") == "FROZEN_CANDIDATE", "precision freeze must be FROZEN_CANDIDATE")
     _need(plan.get("schema_version") == PRECISION_PLAN_SCHEMA, "wrong precision-plan schema")
     _need(plan.get("status") == PRECISION_PLAN_STATUS, "precision plan is not ready")
+    _need(plan.get("firewall", {}).get("g3_g5_outcomes_opened") is False, "precision plan was not generated with G3-G5 outcomes closed")
+    _need(plan.get("firewall", {}).get("source_d0_qualification_units_effect_estimation_ineligible") is True, "precision-plan source firewall missing")
 
     ectx = effect.get("context", {})
     fctx = precision_freeze.get("context", {})
@@ -39,6 +41,7 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
         _filled(ectx.get(key), f"effect.context.{key}")
         _need(ectx.get(key) == fctx.get(key), f"effect/precision-freeze context mismatch: {key}")
         _need(ectx.get(key) == pctx.get(key), f"effect/precision-plan context mismatch: {key}")
+    _need(pctx.get("source_dataset_id") == fctx.get("d0_qualification_dataset_id"), "precision plan source dataset mismatch")
 
     route = ectx.get("estimation_route")
     _need(route in ROUTES, "invalid or unfrozen effect estimation route")
@@ -59,23 +62,48 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
     _need(plan.get("targets", {}).get("world_cell_mean_half_width") == targets.get("world_cell_mean_half_width"), "half-width target mismatch")
     _need(plan.get("targets", {}).get("minimum_recoverable_benefit_R") == targets.get("minimum_recoverable_benefit_R"), "R target mismatch")
     _need(plan.get("targets", {}).get("minimum_abs_architecture_value_Phi") == targets.get("minimum_abs_architecture_value_Phi"), "Phi target mismatch")
+    _need(
+        plan.get("variance_input", {}).get("sd_safety_multiplier")
+        == precision_freeze.get("variance_transport", {}).get("sd_safety_multiplier"),
+        "SD safety multiplier mismatch",
+    )
+
+    components = plan.get("components", {})
+    required_component_keys = (
+        "decomposition_cell_precision_n_per_world",
+        "R_effect_n_per_world",
+        "Phi_effect_n_per_world",
+        "direct_block_cell_precision_n_per_world",
+    )
+    for key in required_component_keys:
+        _need(isinstance(components.get(key), int) and components[key] > 0, f"bad precision component: {key}")
 
     decomp = plan.get("decomposition", {})
     direct = plan.get("independent_direct_phi", {})
     min_world = decomp.get("minimum_analyzable_plants_per_world")
     rec_world = decomp.get("recruitment_plants_per_world")
-    _need(isinstance(min_world, int) and min_world > 0, "bad decomposition analyzable n")
+    expected_min_world = max(
+        components["decomposition_cell_precision_n_per_world"],
+        components["R_effect_n_per_world"],
+        components["Phi_effect_n_per_world"],
+    )
+    _need(min_world == expected_min_world, "decomposition minimum n is inconsistent with precision components")
     _need(isinstance(rec_world, int) and rec_world >= min_world, "bad decomposition recruitment n")
+
+    min_direct = direct.get("minimum_analyzable_plants_per_world")
+    rec_direct = direct.get("recruitment_plants_per_world")
+    expected_min_direct = max(
+        components["direct_block_cell_precision_n_per_world"],
+        components["Phi_effect_n_per_world"],
+    )
+    _need(min_direct == expected_min_direct, "direct minimum n is inconsistent with precision components")
+    _need(isinstance(rec_direct, int) and rec_direct >= min_direct, "bad direct-block recruitment n")
 
     out = copy.deepcopy(effect)
     sampling = out.setdefault("sampling", {})
     sampling["minimum_analyzable_plants_per_world"] = min_world
     sampling["recruitment_plants_per_world"] = rec_world
     if route == "INDEPENDENT_DIRECT_PHI_BLOCK":
-        min_direct = direct.get("minimum_analyzable_plants_per_world")
-        rec_direct = direct.get("recruitment_plants_per_world")
-        _need(isinstance(min_direct, int) and min_direct > 0, "bad direct-block analyzable n")
-        _need(isinstance(rec_direct, int) and rec_direct >= min_direct, "bad direct-block recruitment n")
         sampling["minimum_analyzable_plants_per_direct_world"] = min_direct
         sampling["recruitment_plants_per_direct_world"] = rec_direct
     else:
