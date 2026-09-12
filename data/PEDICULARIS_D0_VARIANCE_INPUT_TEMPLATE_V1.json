@@ -1,0 +1,37 @@
+{
+  "schema_version": "SLK_PEDICULARIS_D0_VARIANCE_INPUT_V1",
+  "status": "TEMPLATE_ONLY_REQUIRES_INDEPENDENT_CALIBRATION",
+  "context": {
+    "system": "Pedicularis rex",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "y_cal_dataset_id": "PED_Y_CAL_V1",
+    "d0_cal_dataset_id": "PED_D0_CAL_V1",
+    "confirmatory_dataset_id": "REQUIRED_BEFORE_USE",
+    "confirmatory_outcomes_opened": false
+  },
+  "planner_defaults": {
+    "alpha": 0.05,
+    "power": 0.80,
+    "attrition": 0.15
+  },
+  "endpoints": [
+    {"endpoint_id": "D0_Q1_Z", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q1_OPENING", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q1_STIGMA", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q1_ORIENTATION", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q1_DAMAGE", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q2_VOLUME", "variance_kind": "sd", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q2_DURATION", "variance_kind": "sd", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q2_COVERAGE", "variance_kind": "sd", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q2_PROTECTION", "variance_kind": "sd", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q3_VISIT", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q3_POLLEN", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q3_INITIAL_SEED", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q4_WET_EFFECT", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q4_DRY_RESIDUAL", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q5_BURDEN_EQ", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"},
+    {"endpoint_id": "D0_Q5_BURDEN_PRECISION", "variance_kind": "sd_diff", "value": null, "analysis_unit": "independent_plant", "calibration_dataset_id": "PED_D0_CAL_V1"}
+  ],
+  "notes": "Values are plant-level SDs or paired-difference SDs from independent Y-CAL/D0-CAL units. They determine precision/sample size only and never define biological equivalence margins."
+}
