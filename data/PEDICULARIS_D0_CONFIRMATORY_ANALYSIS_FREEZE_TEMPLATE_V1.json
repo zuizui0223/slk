@@ -1,0 +1,46 @@
+{
+  "schema_version": "SLK_PEDICULARIS_D0_CONFIRMATORY_ANALYSIS_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "dataset_id": "PED_D0_QUAL_CONFIRM_V1",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    "time_horizon_id": "REQUIRED_BEFORE_USE",
+    "q5_route": "REQUIRED_BEFORE_USE",
+    "frozen_before_confirmatory_outcomes": false
+  },
+  "analysis": {
+    "equivalence_ci_level": 0.90,
+    "directional_superiority_alpha": 0.05,
+    "burden_precision_ci_level": 0.95,
+    "bootstrap_seed": null,
+    "bootstrap_reps": null,
+    "minimum_bootstrap_reps": 5000,
+    "minimum_valid_fraction": 0.90,
+    "resampling_unit": "INDEPENDENT_PLANT"
+  },
+  "layout": {
+    "low_y_treatments": ["S_QUAL", "SHAM_QUAL", "D0_QUAL"],
+    "high_y_treatments": ["D_QUAL"],
+    "low_y_within_plant_randomized": true,
+    "high_y_single_natural_state": true
+  },
+  "firewall": {
+    "d0_qualification_units_g3_g5_ineligible": true,
+    "margins_cannot_be_revised_from_confirmatory_outcomes": true,
+    "sample_size_cannot_be_reduced_after_outcomes": true,
+    "failed_gate_cannot_be_rescued_by_endpoint_switch": true,
+    "q5_route_cannot_change_after_outcomes": true
+  },
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "margin_freeze_commit": "REQUIRED_BEFORE_USE",
+    "precision_plan_reference": "REQUIRED_BEFORE_USE",
+    "structural_y_receipt_reference": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "production_status": "D0_CONFIRMATORY_ANALYSIS_PROSPECTIVELY_FROZEN"
+}
