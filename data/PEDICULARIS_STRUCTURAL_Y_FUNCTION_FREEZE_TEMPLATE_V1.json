@@ -46,6 +46,7 @@
     "seed": null,
     "reps": null,
     "minimum_reps": 2000,
+    "minimum_valid_fraction": 0.90,
     "resampling_unit": "INDEPENDENT_PLANT"
   },
   "firewall": {
@@ -60,5 +61,6 @@
     "slk_source_commit": "REQUIRED_BEFORE_USE",
     "freeze_commit": "REQUIRED_BEFORE_USE",
     "freeze_timestamp": "REQUIRED_BEFORE_USE"
-  }
+  },
+  "production_status": "FUNCTION_THRESHOLDS_PROSPECTIVELY_FROZEN"
 }
