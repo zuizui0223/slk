@@ -22,7 +22,7 @@ spec2.loader.exec_module(val)
 
 
 def _layout(seed: int = 1729):
-    return gen.generate_layout("ctx1", "pop1", "season1", seed)
+    return gen.generate_layout("ctx1", "pop1", "season1", "FLOWER_TO_MATURE_VIABLE_SEED", seed)
 
 
 def test_default_layout_has_registered_sampling_floors() -> None:
@@ -33,6 +33,8 @@ def test_default_layout_has_registered_sampling_floors() -> None:
     assert len({r["plant_id"] for r in d0_rows}) == 48
     assert meta["d0_cal"]["low_y_plants"] == 24
     assert meta["d0_cal"]["high_y_plants"] == 24
+    assert meta["fitness_scale_id"] == "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
+    assert meta["time_horizon_id"] == "FLOWER_TO_MATURE_VIABLE_SEED"
 
 
 def test_each_d0_plant_gets_complete_registered_treatment_set() -> None:
@@ -71,6 +73,7 @@ def test_generated_layout_passes_validator() -> None:
     assert result["y_cal"]["independent_plants"] == 36
     assert result["d0_cal"]["low_y_plants"] == 24
     assert result["d0_cal"]["high_y_plants"] == 24
+    assert result["time_horizon_id"] == "FLOWER_TO_MATURE_VIABLE_SEED"
 
 
 def test_missing_low_y_treatment_fails_closed() -> None:
@@ -108,5 +111,14 @@ def test_context_mismatch_fails_closed() -> None:
     broken = copy.deepcopy(d0_rows)
     for row in broken:
         row["season_id"] = "season2"
+    with pytest.raises(ValueError, match="context mismatch"):
+        val.validate_rows(y_rows, broken)
+
+
+def test_time_horizon_mismatch_fails_closed() -> None:
+    y_rows, d0_rows, _ = _layout()
+    broken = copy.deepcopy(d0_rows)
+    for row in broken:
+        row["time_horizon_id"] = "OTHER_HORIZON"
     with pytest.raises(ValueError, match="context mismatch"):
         val.validate_rows(y_rows, broken)
