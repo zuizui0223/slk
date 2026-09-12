@@ -4,9 +4,22 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "ba4dffaa394e21c75f1fb6b38537b2117552ee33",
+  "source_main_commit_at_state_snapshot": "2b47550e709d4bd6cd3079eeb9ba02d278b3bb8f",
+  "current_execution_bottleneck": {
+    "stage_id": "P0_CONTEXT_SCREEN",
+    "design_status": "REGISTERED_FIELD_PACKET_AND_DETECTION_EFFORT_PLANNER_READY",
+    "production_input_status": "MINIMUM_RELEVANCE_INPUTS_OPEN",
+    "open_inputs": [
+      "minimum_relevant_legitimate_visit_rate_per_min",
+      "minimum_relevant_predator_attack_fraction",
+      "minimum_relevant_water_positive_fraction",
+      "desired_detection_probabilities_and_temporal_coverage",
+      "capacity_reserve_fraction"
+    ],
+    "source_ledger": "data/PEDICULARIS_CONTEXT_SCREEN_EFFORT_SOURCE_LEDGER_V1.csv"
+  },
   "stages": [
-    {"stage_id": "P0_CONTEXT_SCREEN", "design_status": "REGISTERED_FIELD_PACKET_READY", "biological_status": "NOT_EXECUTED", "required_positive_status": "CONTEXT_SCREEN_PASS_CALIBRATION_READY"},
+    {"stage_id": "P0_CONTEXT_SCREEN", "design_status": "REGISTERED_FIELD_PACKET_AND_EFFORT_PLANNER_READY", "biological_status": "NOT_EXECUTED", "required_positive_status": "CONTEXT_SCREEN_PASS_CALIBRATION_READY"},
     {"stage_id": "P1_THRESHOLD_FREEZE", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "THRESHOLD_FREEZE_VALIDATED"},
     {"stage_id": "P2_QZ_QP_QG", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "QZ_QP_QG_ALL_VALIDATED"},
     {"stage_id": "G1_CAUSAL_CONFLICT", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "DIRECT_PASS"},
