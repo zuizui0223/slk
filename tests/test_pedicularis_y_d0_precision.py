@@ -26,7 +26,7 @@ def test_attrition_inflation_is_prospective_and_conservative():
     assert module.inflate_for_attrition(25, 0.15) == 30
 
 
-def test_manifest_reports_driver_and_keeps_allocation_warning():
+def test_manifest_keeps_incompatible_allocation_units_separate():
     manifest = {
         "defaults": {"alpha": 0.05, "power": 0.80, "attrition": 0.15},
         "endpoints": [
@@ -46,9 +46,12 @@ def test_manifest_reports_driver_and_keeps_allocation_warning():
     }
     result = module.plan_manifest(manifest)
     assert result["status"] == "PLANNING_ONLY_NOT_A_BIOLOGICAL_RECEIPT"
-    assert result["driving_endpoints"] == ["two_group_eq"]
-    assert result["max_inflated_required_n"] == 59
-    assert "per group" in result["max_n_unit_warning"]
+    maxima = result["maxima_by_allocation_unit"]
+    assert maxima["paired_plants_total"]["inflated_required_n"] == 30
+    assert maxima["paired_plants_total"]["driving_endpoints"] == ["paired_eq"]
+    assert maxima["plants_per_group"]["inflated_required_n"] == 59
+    assert maxima["plants_per_group"]["driving_endpoints"] == ["two_group_eq"]
+    assert "Do not take one numeric maximum" in result["allocation_rule"]
 
 
 def test_directional_gate_uses_one_sided_alpha_only_when_declared():
