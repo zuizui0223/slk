@@ -191,3 +191,17 @@ def test_tampered_precision_target_is_rejected() -> None:
     plan["targets"]["minimum_abs_architecture_value_Phi"] = 0.9
     with pytest.raises(ValueError, match="Phi target mismatch"):
         compiler.compile_sampling(_effect(), _precision_freeze(), plan)
+
+
+def test_tampered_sd_multiplier_is_rejected() -> None:
+    plan = copy.deepcopy(_plan())
+    plan["variance_input"]["sd_safety_multiplier"] = 1.0
+    with pytest.raises(ValueError, match="SD safety multiplier mismatch"):
+        compiler.compile_sampling(_effect(), _precision_freeze(), plan)
+
+
+def test_tampered_decomposition_minimum_n_is_rejected() -> None:
+    plan = copy.deepcopy(_plan())
+    plan["decomposition"]["minimum_analyzable_plants_per_world"] -= 1
+    with pytest.raises(ValueError, match="inconsistent with precision components"):
+        compiler.compile_sampling(_effect(), _precision_freeze(), plan)
