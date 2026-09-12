@@ -242,13 +242,21 @@ Phi_decomp = R - K.
 Phi_direct = W_D* - W_S*.
 ```
 
-On exactly matched estimands these are algebraically equal. Empirically, they may be obtained from separately fitted surfaces / blocks with shared covariance. Therefore record
+These are the same target estimand. If `R`, `K`, and `Phi_direct` are all calculated from the same fitted `W_S*`, `W_D0*`, and `W_D*`, then
+
+```text
+Phi_direct = Phi_decomp
+```
+
+is an algebraic identity. That same-block equality is an **internal coherence check**, not independent empirical validation.
+
+A nontrivial empirical concordance test is permitted only when the direct route and the R/K decomposition are estimated from prospectively declared independent or partially independent experimental/fitted blocks that target the same context, fitness scale, horizon, and comparison states. In that case record
 
 ```text
 bridge_residual = Phi_direct - Phi_decomp
 ```
 
-with its joint uncertainty rather than treating numerical disagreement as noise.
+with joint uncertainty and a frozen concordance tolerance.
 
 G5 structural direct pass requires:
 
@@ -272,7 +280,7 @@ otherwise         -> CRITICAL_OR_UNRESOLVED
 
 ## 11. Strongest empirical SLK result
 
-The strongest G1-G5 receipt contains all of the following in one population-season:
+A complete same-system G1-G5 receipt contains:
 
 ```text
 L > 0 on the registered reproductive fitness scale;
@@ -280,9 +288,23 @@ R identified from S -> D0;
 K identified from D0 -> D;
 Phi_decomp = R-K identified;
 Phi_direct = W_D* - W_S* identified;
-bridge residual compatible with the frozen concordance rule;
-all uncertainty propagated jointly.
+all uncertainty propagated on the common scale/horizon.
 ```
+
+There are then two evidence grades.
+
+```text
+INTERNAL_COHERENCE
+    direct and decomposed quantities come from the same world estimates;
+    equality checks algebra and bookkeeping only.
+
+INDEPENDENT_CONCORDANCE
+    direct and decomposed routes come from prospectively declared independent or
+    partially independent blocks targeting the same estimand;
+    the frozen bridge-residual rule is satisfied.
+```
+
+The second grade is stronger, but it is not required to say that G1-G5 were measured in the same biological system. It is required before claiming that the decomposition received an independent empirical cross-check.
 
 A particularly informative biological outcome is not necessarily `Phi > 0`. The theoretically diagnostic result may be
 
@@ -326,17 +348,20 @@ A failed decomposition does not erase a valid direct `Phi` worldline comparison.
 
 ## 14. Receipt hierarchy
 
-The machine-adjudicated statuses should distinguish:
+The machine-adjudicated statuses distinguish:
 
 ```text
 G1_G2_READY_ONLY
 FUNCTIONAL_STATE_RELEASE_ONLY
 STRUCTURAL_DIRECT_PHI_IDENTIFIED
+STRUCTURAL_G1_G5_CLOSED_INTERNAL_IDENTITY
 STRUCTURAL_G1_G5_DECOMPOSED
 STRUCTURAL_G1_G5_CLOSED_CONCORDANT
 ```
 
-The final status is allowed only when direct and decomposed G5 routes are both identified and satisfy the prospectively frozen bridge-concordance rule.
+`STRUCTURAL_G1_G5_CLOSED_INTERNAL_IDENTITY` means the same-system chain is closed, but direct/decomposed equality is only algebraic because the same fitted world estimates were reused.
+
+`STRUCTURAL_G1_G5_CLOSED_CONCORDANT` is reserved for prospectively declared independent/partially independent estimation blocks whose bridge residual satisfies the frozen concordance rule.
 
 ## 15. Current status
 
@@ -366,5 +391,6 @@ Do not add another theorem. Execute in this order:
 4. pilot D0 with sham burden + benefit-equivalence measurements, without opening confirmatory Phi;
 5. freeze S/D0/D comparison states and G3-G5 thresholds;
 6. execute the matched architecture-value experiment;
-7. adjudicate direct Phi and decomposed R-K jointly.
+7. adjudicate direct Phi and decomposed R-K jointly;
+8. only call the bridge an empirical concordance test if separate preregistered estimation blocks exist.
 ```
