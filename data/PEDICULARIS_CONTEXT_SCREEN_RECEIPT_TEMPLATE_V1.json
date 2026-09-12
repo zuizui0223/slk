@@ -1,0 +1,35 @@
+{
+  "schema_version": "SLK_PEDICULARIS_CONTEXT_SCREEN_RECEIPT_V1",
+  "status": "TEMPLATE_ONLY_NOT_DATA",
+  "context": {
+    "system": "Pedicularis rex",
+    "candidate_site_id": "REQUIRED_BEFORE_USE",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "screen_window_id": "REQUIRED_BEFORE_USE"
+  },
+  "effort": {
+    "independent_flowering_plants_censused": null,
+    "pollinator_observation_minutes_total": null,
+    "pollinator_observation_bouts": null,
+    "predator_screen_flowers": null,
+    "water_state_plants": null
+  },
+  "observations": {
+    "legitimate_pollinator_visits": null,
+    "predator_attacked_flowers": null,
+    "water_positive_plants": null,
+    "notes_on_predator_evidence": "REQUIRED_BEFORE_USE",
+    "notes_on_water_state": "REQUIRED_BEFORE_USE"
+  },
+  "pollen_limitation": {
+    "status": "UNRESOLVED_UNTIL_QP_CALIBRATION",
+    "used_as_context_screen_pass_gate": false
+  },
+  "firewall": {
+    "screen_units_confirmatory_eligible": false,
+    "screen_used_for_treatment_effect_estimation": false,
+    "zero_detection_interpreted_as_biological_absence": false
+  },
+  "final_adjudication": "NOT_YET_EXECUTED"
+}
