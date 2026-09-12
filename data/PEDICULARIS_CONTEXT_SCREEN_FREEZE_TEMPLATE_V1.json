@@ -1,0 +1,68 @@
+{
+  "schema_version": "SLK_PEDICULARIS_CONTEXT_SCREEN_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "candidate_site_id": "REQUIRED_BEFORE_USE",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "screen_window_id": "REQUIRED_BEFORE_USE",
+    "frozen_before_screen_outcomes": false
+  },
+  "screen_effort": {
+    "minimum_independent_flowering_plants_censused": null,
+    "minimum_pollinator_observation_minutes_total": null,
+    "minimum_pollinator_observation_bouts": null,
+    "minimum_predator_screen_flowers": null,
+    "minimum_water_state_plants": null,
+    "minimum_capacity_margin_fraction": null
+  },
+  "decision_thresholds": {
+    "minimum_legitimate_pollinator_visits": null,
+    "minimum_predator_attacked_flowers": null,
+    "minimum_predator_attack_fraction": null,
+    "minimum_water_positive_plants": null,
+    "minimum_water_positive_fraction": null,
+    "minimum_flowering_plants_for_immediate_calibration": 84,
+    "calibration_capacity_basis": "Y_CAL_36_PLUS_D0_CAL_48_DISJOINT_PLANTS",
+    "pollen_limitation_screen_rule": "CALIBRATION_REQUIRED_NOT_ZERO_INFERENCE",
+    "pollen_limitation_screen_threshold": null
+  },
+  "source_policy": {
+    "allowed_threshold_sources": [
+      "DOWNSTREAM_DESIGN_REQUIREMENT",
+      "INDEPENDENT_NATURAL_HISTORY_CALIBRATION",
+      "EXTERNAL_MATCHED_PRIMARY_SOURCE",
+      "COMBINED_PREDECLARED"
+    ],
+    "forbidden_threshold_sources": [
+      "SCREEN_OUTCOME_POSTHOC",
+      "NONSIGNIFICANT_P_VALUE",
+      "HISTORICAL_SAMPLE_SIZE_ONLY",
+      "CONVENIENCE_ONLY"
+    ],
+    "threshold_source_records": []
+  },
+  "classification_rules": {
+    "CONTEXT_SCREEN_PASS_CALIBRATION_READY": "all signal gates pass and immediate calibration capacity passes",
+    "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED": "all signal gates pass but immediate calibration capacity fails",
+    "CONTEXT_UNINFORMATIVE_POLLINATOR_LOW": "pollinator effort completed but legitimate activity below frozen threshold",
+    "CONTEXT_UNINFORMATIVE_PREDATOR_LOW": "predator effort completed but attack below frozen threshold",
+    "CONTEXT_UNINFORMATIVE_WATER_STATE": "water-state effort completed but water functionality below frozen threshold",
+    "CONTEXT_SCREEN_INCOMPLETE": "one or more registered effort floors not completed"
+  },
+  "firewall": {
+    "context_screen_is_not_g1_or_g2_evidence": true,
+    "low_signal_context_is_not_biological_absence": true,
+    "screen_units_confirmatory_ineligible": true,
+    "no_treatment_effect_estimation_from_screen": true,
+    "thresholds_frozen_before_screen_outcomes": true,
+    "failed_signal_context_may_trigger_relocation_without_negative_claim": true
+  },
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "production_status": "PEDICULARIS_CONTEXT_SCREEN_PROSPECTIVELY_FROZEN"
+}
