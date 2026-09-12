@@ -9,6 +9,7 @@ from pathlib import Path
 
 Y_DATASET_ID = "PED_Y_CAL_V1"
 D0_DATASET_ID = "PED_D0_CAL_V1"
+FITNESS_SCALE_ID = "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
 Y_PLANTS = 36
 Y_FLOWERS_PER_PLANT = 3
 D0_LOW_PLANTS = 24
@@ -19,6 +20,8 @@ FIELDS = [
     "context_id",
     "population_id",
     "season_id",
+    "fitness_scale_id",
+    "time_horizon_id",
     "plant_id",
     "phenotype_stratum",
     "flower_id",
@@ -75,10 +78,11 @@ def generate_layout(
     context_id: str,
     population_id: str,
     season_id: str,
+    time_horizon_id: str,
     randomization_seed: int,
 ) -> tuple[list[dict[str, str]], list[dict[str, str]], dict]:
-    if not context_id or not population_id or not season_id:
-        raise ValueError("context_id, population_id, and season_id are required")
+    if not context_id or not population_id or not season_id or not time_horizon_id:
+        raise ValueError("context_id, population_id, season_id, and time_horizon_id are required")
     if not isinstance(randomization_seed, int):
         raise ValueError("randomization_seed must be an integer")
 
@@ -86,25 +90,31 @@ def generate_layout(
     y_rows: list[dict[str, str]] = []
     d0_rows: list[dict[str, str]] = []
 
+    common = {
+        "context_id": context_id,
+        "population_id": population_id,
+        "season_id": season_id,
+        "fitness_scale_id": FITNESS_SCALE_ID,
+        "time_horizon_id": time_horizon_id,
+        "assignment_frozen": "true",
+        "randomization_seed": str(randomization_seed),
+        "confirmatory_eligible": "false",
+    }
+
     for p in range(1, Y_PLANTS + 1):
         plant_id = f"YCAL-{p:03d}"
         for slot in range(1, Y_FLOWERS_PER_PLANT + 1):
             row = _blank_row()
+            row.update(common)
             row.update(
                 {
                     "dataset_id": Y_DATASET_ID,
-                    "context_id": context_id,
-                    "population_id": population_id,
-                    "season_id": season_id,
                     "plant_id": plant_id,
                     "phenotype_stratum": "UNCLASSIFIED_Y_CAL",
                     "flower_id": f"{plant_id}-F{slot}",
                     "flower_slot": str(slot),
                     "calibration_roles": "UC1_GEOMETRY;UC2_RETENTION",
                     "treatment": "Y_CAL_REPEATED_MEASUREMENT",
-                    "assignment_frozen": "true",
-                    "randomization_seed": str(randomization_seed),
-                    "confirmatory_eligible": "false",
                 }
             )
             y_rows.append(row)
@@ -115,21 +125,16 @@ def generate_layout(
         rng.shuffle(treatments)
         for slot, treatment in enumerate(treatments, start=1):
             row = _blank_row()
+            row.update(common)
             row.update(
                 {
                     "dataset_id": D0_DATASET_ID,
-                    "context_id": context_id,
-                    "population_id": population_id,
-                    "season_id": season_id,
                     "plant_id": plant_id,
                     "phenotype_stratum": "LOW_Y",
                     "flower_id": f"{plant_id}-F{slot}",
                     "flower_slot": str(slot),
                     "calibration_roles": "UC3_POLLINATION;UC5_D0_APPARATUS;UC6_REPRODUCTIVE",
                     "treatment": treatment,
-                    "assignment_frozen": "true",
-                    "randomization_seed": str(randomization_seed),
-                    "confirmatory_eligible": "false",
                 }
             )
             d0_rows.append(row)
@@ -140,21 +145,16 @@ def generate_layout(
         rng.shuffle(treatments)
         for slot, treatment in enumerate(treatments, start=1):
             row = _blank_row()
+            row.update(common)
             row.update(
                 {
                     "dataset_id": D0_DATASET_ID,
-                    "context_id": context_id,
-                    "population_id": population_id,
-                    "season_id": season_id,
                     "plant_id": plant_id,
                     "phenotype_stratum": "HIGH_Y",
                     "flower_id": f"{plant_id}-F{slot}",
                     "flower_slot": str(slot),
                     "calibration_roles": "UC4_ATTACK_TIMING;UC5_D0_APPARATUS;UC6_REPRODUCTIVE",
                     "treatment": treatment,
-                    "assignment_frozen": "true",
-                    "randomization_seed": str(randomization_seed),
-                    "confirmatory_eligible": "false",
                 }
             )
             d0_rows.append(row)
@@ -165,6 +165,8 @@ def generate_layout(
         "context_id": context_id,
         "population_id": population_id,
         "season_id": season_id,
+        "fitness_scale_id": FITNESS_SCALE_ID,
+        "time_horizon_id": time_horizon_id,
         "randomization_seed": randomization_seed,
         "y_cal": {
             "dataset_id": Y_DATASET_ID,
@@ -199,6 +201,7 @@ def main() -> None:
     parser.add_argument("--context-id", required=True)
     parser.add_argument("--population-id", required=True)
     parser.add_argument("--season-id", required=True)
+    parser.add_argument("--time-horizon-id", required=True)
     parser.add_argument("--randomization-seed", required=True, type=int)
     parser.add_argument("--output-dir", required=True, type=Path)
     args = parser.parse_args()
@@ -208,6 +211,7 @@ def main() -> None:
         args.context_id,
         args.population_id,
         args.season_id,
+        args.time_horizon_id,
         args.randomization_seed,
     )
     _write_csv(args.output_dir / "PEDICULARIS_Y_CAL_FIELD_V1.csv", y_rows)
