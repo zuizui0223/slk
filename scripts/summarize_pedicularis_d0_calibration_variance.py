@@ -12,6 +12,7 @@ from statistics import stdev
 SCHEMA = "SLK_PEDICULARIS_D0_VARIANCE_INPUT_V1"
 D0_DATASET_ID = "PED_D0_CAL_V1"
 Y_DATASET_ID = "PED_Y_CAL_V1"
+FITNESS_SCALE_ID = "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
 LOW_FLOOR = 24
 HIGH_FLOOR = 24
 
@@ -132,10 +133,7 @@ def _pooled_sd(group1: list[float], group2: list[float]) -> float | None:
     return math.sqrt(((len(group1) - 1) * s1 * s1 + (len(group2) - 1) * s2 * s2) / df)
 
 
-def _paired_receipt(
-    low_by_plant: dict[str, dict[str, dict[str, str]]],
-    endpoint_id: str,
-) -> dict:
+def _paired_receipt(low_by_plant: dict[str, dict[str, dict[str, str]]], endpoint_id: str) -> dict:
     treatment_a, treatment_b, field, operation = PAIR_SPECS[endpoint_id]
     diffs: list[float] = []
     for plant_id in sorted(low_by_plant):
@@ -146,10 +144,7 @@ def _paired_receipt(
         b = _derived_value(treatment_rows[treatment_b], field)
         if a is None or b is None:
             continue
-        if operation == "circular_difference_deg":
-            diff = _circular_difference_deg(a, b)
-        else:
-            diff = a - b
+        diff = _circular_difference_deg(a, b) if operation == "circular_difference_deg" else a - b
         diffs.append(diff)
     sd = _sample_sd(diffs)
     meets = len(diffs) >= LOW_FLOOR and sd is not None and sd > 0
@@ -168,28 +163,22 @@ def _paired_receipt(
     }
 
 
-def _two_group_receipt(
-    low_by_plant: dict[str, dict[str, dict[str, str]]],
-    high_by_plant: dict[str, dict[str, dict[str, str]]],
-    endpoint_id: str,
-) -> dict:
+def _two_group_receipt(low_by_plant: dict[str, dict[str, dict[str, str]]], high_by_plant: dict[str, dict[str, dict[str, str]]], endpoint_id: str) -> dict:
     treatment_low, treatment_high, field = TWO_GROUP_SPECS[endpoint_id]
     g1: list[float] = []
     g2: list[float] = []
     for plant_id in sorted(low_by_plant):
         row = low_by_plant[plant_id].get(treatment_low)
-        if row is None:
-            continue
-        value = _derived_value(row, field)
-        if value is not None:
-            g1.append(value)
+        if row is not None:
+            value = _derived_value(row, field)
+            if value is not None:
+                g1.append(value)
     for plant_id in sorted(high_by_plant):
         row = high_by_plant[plant_id].get(treatment_high)
-        if row is None:
-            continue
-        value = _derived_value(row, field)
-        if value is not None:
-            g2.append(value)
+        if row is not None:
+            value = _derived_value(row, field)
+            if value is not None:
+                g2.append(value)
     sd = _pooled_sd(g1, g2)
     meets = len(g1) >= LOW_FLOOR and len(g2) >= HIGH_FLOOR and sd is not None and sd > 0
     return {
@@ -210,13 +199,7 @@ def _two_group_receipt(
     }
 
 
-def summarize(
-    rows: list[dict[str, str]],
-    confirmatory_dataset_id: str,
-    alpha: float = 0.05,
-    power: float = 0.80,
-    attrition: float = 0.15,
-) -> dict:
+def summarize(rows: list[dict[str, str]], confirmatory_dataset_id: str, alpha: float = 0.05, power: float = 0.80, attrition: float = 0.15) -> dict:
     _need(bool(rows), "D0-CAL rows are empty")
     _need(confirmatory_dataset_id and confirmatory_dataset_id != D0_DATASET_ID, "invalid confirmatory_dataset_id")
     _need(0 < alpha < 1, "alpha must be in (0,1)")
@@ -228,12 +211,19 @@ def summarize(
         _need(str(row.get("confirmatory_eligible", "")).strip().lower() == "false", "calibration row marked confirmatory eligible")
 
     contexts = {
-        (row.get("context_id"), row.get("population_id"), row.get("season_id"))
+        (
+            row.get("context_id"),
+            row.get("population_id"),
+            row.get("season_id"),
+            row.get("fitness_scale_id"),
+            row.get("time_horizon_id"),
+        )
         for row in rows
     }
     _need(len(contexts) == 1, "D0-CAL contains multiple contexts")
-    context_id, population_id, season_id = next(iter(contexts))
-    _need(bool(context_id and population_id and season_id), "D0-CAL context fields must be non-empty")
+    context_id, population_id, season_id, fitness_scale_id, time_horizon_id = next(iter(contexts))
+    _need(bool(context_id and population_id and season_id and fitness_scale_id and time_horizon_id), "D0-CAL context fields must be non-empty")
+    _need(fitness_scale_id == FITNESS_SCALE_ID, "wrong D0-CAL fitness scale")
 
     raw_by_plant: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in rows:
@@ -259,42 +249,31 @@ def summarize(
     _need(len(high_by_plant) >= HIGH_FLOOR, "fewer than 24 HIGH-Y calibration plants")
 
     endpoint_rows = [
-        _paired_receipt(low_by_plant, endpoint_id)
-        for endpoint_id in PAIR_SPECS
+        _paired_receipt(low_by_plant, endpoint_id) for endpoint_id in PAIR_SPECS
     ] + [
-        _two_group_receipt(low_by_plant, high_by_plant, endpoint_id)
-        for endpoint_id in TWO_GROUP_SPECS
+        _two_group_receipt(low_by_plant, high_by_plant, endpoint_id) for endpoint_id in TWO_GROUP_SPECS
     ]
     endpoint_rows.sort(key=lambda x: x["endpoint_id"])
-
     all_ready = all(row["meets_registered_floor"] for row in endpoint_rows)
+
     return {
         "schema_version": SCHEMA,
-        "status": (
-            "INDEPENDENT_CALIBRATION_VARIANCE_READY"
-            if all_ready
-            else "INDEPENDENT_CALIBRATION_VARIANCE_INCOMPLETE"
-        ),
+        "status": "INDEPENDENT_CALIBRATION_VARIANCE_READY" if all_ready else "INDEPENDENT_CALIBRATION_VARIANCE_INCOMPLETE",
         "context": {
             "system": "Pedicularis rex",
             "context_id": context_id,
             "population_id": population_id,
             "season_id": season_id,
+            "fitness_scale_id": fitness_scale_id,
+            "time_horizon_id": time_horizon_id,
             "y_cal_dataset_id": Y_DATASET_ID,
             "d0_cal_dataset_id": D0_DATASET_ID,
             "confirmatory_dataset_id": confirmatory_dataset_id,
             "confirmatory_outcomes_opened": False,
         },
-        "planner_defaults": {
-            "alpha": alpha,
-            "power": power,
-            "attrition": attrition,
-        },
+        "planner_defaults": {"alpha": alpha, "power": power, "attrition": attrition},
         "endpoints": endpoint_rows,
-        "source_counts": {
-            "low_y_plants": len(low_by_plant),
-            "high_y_plants": len(high_by_plant),
-        },
+        "source_counts": {"low_y_plants": len(low_by_plant), "high_y_plants": len(high_by_plant)},
         "claim_ceiling": "CALIBRATION_VARIANCE_ONLY_NO_D0_OR_G3_G5_EFFECT",
     }
 
@@ -314,13 +293,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
 
-    result = summarize(
-        _read_csv(args.d0_cal_csv),
-        args.confirmatory_dataset_id,
-        alpha=args.alpha,
-        power=args.power,
-        attrition=args.attrition,
-    )
+    result = summarize(_read_csv(args.d0_cal_csv), args.confirmatory_dataset_id, alpha=args.alpha, power=args.power, attrition=args.attrition)
     text = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.write_text(text, encoding="utf-8")
