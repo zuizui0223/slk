@@ -54,6 +54,16 @@ def _context_tuple(obj: dict[str, Any]) -> tuple[str, str, str, str, str]:
     )
 
 
+def _context_receipt(ctx: tuple[str, str, str, str, str]) -> dict[str, str]:
+    return {
+        "context_id": ctx[0],
+        "system": ctx[1],
+        "population_id": ctx[2],
+        "season_id": ctx[3],
+        "fitness_scale_id": ctx[4],
+    }
+
+
 def adjudicate(receipt: dict[str, Any]) -> dict[str, Any]:
     if receipt.get("receipt_schema_version") != SCHEMA:
         raise ValueError(f"receipt must use {SCHEMA}")
@@ -66,7 +76,6 @@ def adjudicate(receipt: dict[str, Any]) -> dict[str, Any]:
     budget = receipt.get("conflict_budget") or {}
     handoff = receipt.get("three_world_handoff") or {}
 
-    # Canonical path is structural provenance, not optional prose.
     if canonical.get("readiness_schema") != READINESS_V3:
         raise ValueError("Pedicularis G2 requires SCH readiness V3")
     if canonical.get("surface_wrapper_schema") != V2_WRAPPER:
@@ -87,7 +96,6 @@ def adjudicate(receipt: dict[str, Any]) -> dict[str, Any]:
     if anti.get("water_y_held_fixed_during_sch_surface") is not True:
         raise ValueError("water-y must be fixed across the SCH surface")
 
-    # An incomplete prospective receipt is allowed to remain explicitly open.
     g1_positive = (
         g1_surface.get("status") == POSITIVE_G1
         and g1_surface.get("opposing_geometry_identified") is True
@@ -161,12 +169,16 @@ def adjudicate(receipt: dict[str, Any]) -> dict[str, Any]:
     if (point, blo, bhi) != (hpoint, hlo, hhi):
         raise ValueError("handoff L values must exactly match the SCH conflict-budget export")
 
+    common = {
+        "context": _context_receipt(ctx),
+        "conflict_load": {"point": hpoint, "lower_95": hlo, "upper_95": hhi},
+    }
     if hlo > 0:
         return {
             "g1": "DIRECT_PASS",
             "g2": "DIRECT_PASS",
             "g2_detail": "G2_DIRECT_PASS_POSITIVE",
-            "conflict_load": {"point": hpoint, "lower_95": hlo, "upper_95": hhi},
+            **common,
             "downstream_balance_eligible": True,
             "downstream_bita_non_circular_eligible": True,
         }
@@ -175,7 +187,7 @@ def adjudicate(receipt: dict[str, Any]) -> dict[str, Any]:
         "g1": "DIRECT_PASS",
         "g2": "PARTIAL_SUPPORT",
         "g2_detail": "G2_MEASURED_BUT_ZERO_COMPATIBLE",
-        "conflict_load": {"point": hpoint, "lower_95": hlo, "upper_95": hhi},
+        **common,
         "downstream_balance_eligible": False,
         "downstream_bita_non_circular_eligible": True,
     }
