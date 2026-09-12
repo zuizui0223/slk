@@ -1,0 +1,50 @@
+{
+  "schema_version": "SLK_PEDICULARIS_G3_G5_PRECISION_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "context_id": "REQUIRED_BEFORE_USE",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    "time_horizon_id": "REQUIRED_BEFORE_USE",
+    "d0_qualification_dataset_id": "PED_D0_QUAL_CONFIRM_V1",
+    "frozen_before_g3_g5_outcomes": false
+  },
+  "targets": {
+    "registered_z_levels": null,
+    "world_cell_mean_half_width": null,
+    "minimum_recoverable_benefit_R": null,
+    "minimum_abs_architecture_value_Phi": null,
+    "target_source_type": "REQUIRED_BEFORE_USE",
+    "target_source_reference": "REQUIRED_BEFORE_USE",
+    "biological_rationale": "REQUIRED_BEFORE_USE"
+  },
+  "variance_transport": {
+    "use_max_independent_world_sd": true,
+    "sd_safety_multiplier": null,
+    "multiplier_source": "REQUIRED_BEFORE_USE",
+    "multiplier_rationale": "REQUIRED_BEFORE_USE"
+  },
+  "planning": {
+    "familywise_alpha": 0.05,
+    "power": 0.80,
+    "attrition": 0.15,
+    "bonferroni_across_world_x_z_cell_means": true,
+    "two_sided_R_and_Phi_planning": true
+  },
+  "firewall": {
+    "d0_qualification_units_planning_only": true,
+    "d0_qualification_units_effect_estimation_forbidden": true,
+    "targets_cannot_be_derived_from_g3_g5_outcomes": true,
+    "sd_multiplier_cannot_be_reduced_after_g3_g5_outcomes": true,
+    "sample_size_cannot_be_reduced_after_g3_g5_outcomes": true
+  },
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "d0_qualification_receipt_reference": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "production_status": "PEDICULARIS_G3_G5_PRECISION_PROSPECTIVELY_FROZEN"
+}
