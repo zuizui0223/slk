@@ -12,7 +12,7 @@ D0-CAL  24 LOW-Y plants x 3 flowers
         24 HIGH-Y plants x 2 flowers.
 ```
 
-The generator freezes plant/flower identifiers and D0 treatment-slot assignment using a declared randomization seed. The validator checks cohort size, treatment completeness, context identity, and the calibration/confirmatory firewall.
+The generator freezes plant/flower identifiers and D0 treatment-slot assignment using a declared randomization seed. It also carries the registered reproductive fitness scale and time horizon through every row so the later variance receipt cannot silently drift away from the G1-G5 comparison.
 
 No generated row is a biological observation until field measurements are entered.
 
@@ -25,8 +25,15 @@ python scripts/generate_pedicularis_calibration_layout.py \
   --context-id <population-season-protocol-id> \
   --population-id <population-id> \
   --season-id <season-id> \
+  --time-horizon-id <registered-horizon-id> \
   --randomization-seed <integer> \
   --output-dir <field-packet-directory>
+```
+
+The common fitness scale is fixed as:
+
+```text
+UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER.
 ```
 
 Outputs:
@@ -82,6 +89,8 @@ SHAM_CAL
 D0_CAL
 ```
 
+`SHAM_CAL` is the non-retaining physical-device control. It therefore serves two roles: apparatus-burden estimation relative to `S_CAL`, and the dry-device control for testing whether the physical apparatus itself changes antagonist access.
+
 HIGH-Y plants receive one flower each assigned to:
 
 ```text
@@ -98,16 +107,20 @@ The seed randomizes slots; it does not justify choosing phenotype strata after o
 The generated CSVs include identifiers, allocation metadata, and blank measurement fields covering:
 
 ```text
+context / population / season / fitness scale / time horizon
 plant / flower / whorl / block
 flower length / bract height / exsertion
 opening width / stigma position / orientation
-mechanical condition
+pre-condition + post-treatment mechanical-damage proportion
 retention magnitude / depth / half-life / leakage / protected fraction
-pollinator visits / handling / pollen receipt / initial seed set
+pollinator observation minutes + legitimate visits
+handling / pollen receipt / initial seed set
 anthesis / pollination-window / first-attack / ovary-swelling timing
 early attack / seed predation
 mature viable undamaged seeds.
 ```
+
+Pollinator visitation is later summarized as a rate using `legitimate_visits / pollinator_observation_minutes`; raw visit counts are not treated as directly comparable when observation effort differs.
 
 The wide format is deliberate for field use. Later analysis may reshape to long format, but raw IDs and treatment labels must remain unchanged.
 
@@ -119,7 +132,7 @@ Every generated row has:
 confirmatory_eligible = false.
 ```
 
-Changing this flag to true does not promote the observation. The layout validator treats it as an error.
+Changing this flag to true does not promote the observation. The layout and variance validators treat it as an error.
 
 Calibration plants may inform:
 
@@ -166,6 +179,8 @@ complete HIGH-Y D/D-drain treatment set per plant
 unique flower IDs
 Y-CAL and D0-CAL plant IDs disjoint
 one matching context/population/season
+one common registered fitness scale
+one common time horizon
 one recorded D0 randomization seed
 all assignments frozen
 all rows confirmatory-ineligible.
@@ -206,35 +221,111 @@ A flower lost before any treatment/outcome is observed may be replaced under a p
 
 After treatment outcome information is available, do not selectively replace failed flowers to restore balance. Record the failure and handle it under the predeclared missingness rule.
 
-If plant-level attrition reduces the independent-plant floor below the registered requirement, the calibration cohort is incomplete until additional plants are recruited under the same prospective rule.
+For the D0 variance receipt, each paired endpoint requires at least 24 complete LOW-Y plant pairs and each D0-versus-D endpoint requires at least 24 complete plants per group. If missing measurements reduce an endpoint below that registered pilot floor, the variance receipt is marked incomplete and cannot be compiled into the confirmatory precision plan.
 
-## 10. Relationship to precision planning
+## 10. Produce the independent calibration-variance receipt
 
-The field packet is upstream of the margin/variance compiler:
+After D0-CAL measurements are complete, run:
+
+```bash
+python scripts/summarize_pedicularis_d0_calibration_variance.py \
+  PEDICULARIS_D0_CAL_FIELD_V1.csv \
+  --confirmatory-dataset-id <future-confirmatory-dataset-id> \
+  --output PEDICULARIS_D0_VARIANCE_RECEIPT_V1.json
+```
+
+The summarizer uses independent plants as the analysis unit.
+
+Paired-difference SDs are estimated for:
+
+```text
+D0-Q1 geometry/damage:      D0_CAL - SHAM_CAL
+D0-Q3 pollination:          D0_CAL - SHAM_CAL
+D0-Q4 wet protection:       SHAM_CAL - D0_CAL
+D0-Q4 dry-device residual:  SHAM_CAL - S_CAL
+D0-Q5 apparatus burden:     S_CAL - SHAM_CAL.
+```
+
+For D0-Q2, the receipt uses pooled plant-level SDs across:
+
+```text
+D0_CAL on LOW-Y plants
+versus
+D_CAL on HIGH-Y plants
+```
+
+for retained volume, retention duration, protected fraction, and the registered protection endpoint.
+
+The crucial Q4 dry-device comparison is therefore `SHAM_CAL - S_CAL`: the sham is already the non-retaining physical apparatus. A comparison labelled `DRY_DEVICE - SHAM` would incorrectly subtract two physical-device controls and is not the operational field contrast.
+
+## 11. Variance-receipt readiness
+
+The summarizer returns:
+
+```text
+INDEPENDENT_CALIBRATION_VARIANCE_READY
+```
+
+only when every required endpoint has:
+
+```text
+registered independent-plant floor satisfied
+positive finite plant-level SD / paired-difference SD
+one common context / fitness scale / time horizon
+confirmatory_eligible = false for every source row.
+```
+
+Otherwise it returns:
+
+```text
+INDEPENDENT_CALIBRATION_VARIANCE_INCOMPLETE.
+```
+
+An incomplete variance receipt cannot be passed to the margin/precision compiler.
+
+## 12. Relationship to precision planning
+
+The field packet is now connected end to end:
 
 ```text
 field packet
 -> Y-CAL / D0-CAL measurements
--> biological-margin freeze + independent variance receipt
+-> biological-margin freeze
+-> summarize_pedicularis_d0_calibration_variance.py
+-> independent calibration-variance receipt
 -> compile_pedicularis_d0_precision_input.py
 -> plan_pedicularis_y_d0_precision.py
 -> confirmatory allocation freeze.
 ```
 
-The randomization seed and raw calibration IDs should be carried into every later variance/provenance receipt.
+The compiler requires the variance receipt and margin manifest to match on:
 
-## 11. Immediate executable action
+```text
+system
+population
+season
+fitness scale
+time horizon
+Y-CAL dataset ID
+D0-CAL dataset ID
+future confirmatory dataset ID.
+```
+
+## 13. Immediate executable action
 
 Before a real field season:
 
 ```text
 1. choose focal Pedicularis population-season
-2. assign context_id
+2. assign context_id and time_horizon_id
 3. freeze randomization seed
 4. generate field packet
 5. validate layout
 6. commit packet / metadata
-7. collect calibration measurements without opening confirmatory outcomes.
+7. collect calibration measurements without opening confirmatory outcomes
+8. summarize plant-level calibration variance
+9. freeze biological D0 margins independently
+10. compile and freeze confirmatory n.
 ```
 
-At that point the Pedicularis programme has crossed from a conceptual experimental design into a reproducible field-ready calibration workflow, while the biological G1-G5 claim ceiling remains unchanged until real data are collected.
+At that point the Pedicularis programme has crossed from a conceptual experimental design into a reproducible field-ready calibration workflow, while the biological G1-G5 claim ceiling remains unchanged until real confirmatory data are collected.
