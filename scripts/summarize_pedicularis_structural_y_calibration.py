@@ -52,7 +52,7 @@ def _number(row: dict[str, str], field: str, proportion: bool = False) -> float:
 
 
 def _quantile_type7(values: list[float], p: float) -> float:
-    _need(values, "quantile requires values")
+    _need(bool(values), "quantile requires values")
     _need(0 <= p <= 1, "quantile p must be in [0,1]")
     xs = sorted(values)
     if len(xs) == 1:
@@ -175,6 +175,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             continue
         flower_means: list[float] = []
         z_values: list[float] = []
+        plant_trial_differences: list[float] = []
         complete = True
         for row in plant_rows:
             try:
@@ -185,7 +186,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
                 complete = False
                 break
             flower_means.append((t1 + t2) / 2)
-            trial_differences.append(t1 - t2)
+            plant_trial_differences.append(t1 - t2)
             z_values.append(z)
         if not complete:
             continue
@@ -193,6 +194,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         flower_means_by_plant[plant_id] = flower_means
         plant_means.append(sum(flower_means) / FLOWERS_PER_PLANT)
         plant_z.append(sum(z_values) / FLOWERS_PER_PLANT)
+        trial_differences.extend(plant_trial_differences)
 
     floor_pass = complete_plants >= MIN_PLANTS
     if complete_plants < 2:
@@ -299,9 +301,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "cutpoints_derived_only_from_y_cal_primary_metric": True,
             "y_cal_units_confirmatory_ineligible": True,
         },
-        "claim_ceiling": (
-            "Y0_RANGE_AND_Y1_COUPLING_ONLY; Y2_PREFERENTIAL_LOADING, Y3_INTERVENTION, D0, R, K, AND_PHI_REMAIN_OPEN"
-        ),
+        "claim_ceiling": "Y0_RANGE_AND_Y1_COUPLING_ONLY; Y2_PREFERENTIAL_LOADING, Y3_INTERVENTION, D0, R, K, AND_PHI_REMAIN_OPEN",
     }
 
 
