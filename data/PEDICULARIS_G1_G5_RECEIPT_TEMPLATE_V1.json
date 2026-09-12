@@ -1,0 +1,76 @@
+{
+  "receipt_schema_version": "SLK_PEDICULARIS_G1_G5_RECEIPT_V1",
+  "status": "PROSPECTIVE_TEMPLATE_NOT_DATA",
+  "context": {
+    "context_id": "REQUIRED_BEFORE_USE",
+    "system": "Pedicularis rex",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    "time_horizon_id": "REQUIRED_BEFORE_USE",
+    "z_trait_id": "REALIZED_COROLLA_EXSERTION_ABOVE_CUPULATE_BRACT",
+    "y_trait_id": "STRUCTURAL_WATER_RETENTION_PERFORMANCE_REQUIRED_BEFORE_USE"
+  },
+  "upstream_g1_g2": {
+    "g1": "NOT_YET_EXECUTED",
+    "g2": "NOT_YET_EXECUTED",
+    "g2_detail": "NOT_YET_EXECUTED",
+    "conflict_load": {"point": null, "lower_95": null, "upper_95": null},
+    "anti_circularity": {
+      "water_used_as_sch_antagonist_G": false,
+      "independent_predator_exposure_used": null,
+      "water_y_held_fixed_during_sch_surface": null
+    }
+  },
+  "functional_state_lane": {
+    "status": "REGISTERED_NOT_YET_EXECUTED",
+    "R_state": null,
+    "claim_ceiling": "FUNCTIONAL_STATE_ONLY_NOT_STRUCTURAL_G3_G5"
+  },
+  "structural_y": {
+    "status": "NOT_YET_QUALIFIED",
+    "Y0_repeatable_variation": null,
+    "Y1_x_y_independence_audited": null,
+    "Y2_preferential_loading": null,
+    "Y2_pollination_cross_effect_bounded": null,
+    "Y3_intervention_or_natural_experiment": null
+  },
+  "d0_qualification": {
+    "status": "NOT_YET_QUALIFIED",
+    "D0_Q1_z_preserved": null,
+    "D0_Q2_functional_benefit_matched": null,
+    "D0_Q3_pollination_facing_equivalent": null,
+    "D0_Q4_antagonist_channel_fidelity": null,
+    "D0_Q5_apparatus_burden_accounted": null,
+    "D0_Q6_common_horizon": null
+  },
+  "worlds": {
+    "S": {"registered_prospectively": null, "optimized_fitness": {"point": null, "lower_95": null, "upper_95": null}},
+    "D0": {"registered_prospectively": null, "optimized_fitness": {"point": null, "lower_95": null, "upper_95": null}},
+    "D": {"registered_prospectively": null, "optimized_fitness": {"point": null, "lower_95": null, "upper_95": null}}
+  },
+  "g3_R": {
+    "status": "NOT_IDENTIFIED",
+    "comparison": "S_TO_D0",
+    "point": null,
+    "lower_95": null,
+    "upper_95": null
+  },
+  "g4_K": {
+    "status": "NOT_IDENTIFIED",
+    "comparison": "D0_TO_D",
+    "point": null,
+    "lower_95": null,
+    "upper_95": null,
+    "included_cost_channels": [],
+    "excluded_cost_channels": [],
+    "double_counting_audit_pass": null
+  },
+  "g5_Phi": {
+    "direct": {"status": "NOT_IDENTIFIED", "comparison": "S_TO_D", "point": null, "lower_95": null, "upper_95": null},
+    "decomposed": {"status": "NOT_IDENTIFIED", "point": null, "lower_95": null, "upper_95": null},
+    "bridge_residual": {"point": null, "lower_95": null, "upper_95": null},
+    "bridge_concordance": {"frozen_before_confirmatory_outcomes": false, "max_abs_point": null}
+  },
+  "notes": "Populate only after prospective freezes. Nulls and REQUIRED_BEFORE_USE values are intentional hard stops."
+}
