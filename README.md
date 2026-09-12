@@ -100,6 +100,61 @@ The narrower novelty claim is the **architecture-specific estimand transport** f
 
 `K` is the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. It is comparison-specific rather than a universal physiological quantity. Empirical use must declare comparison states, scale, time horizon, included/excluded cost channels, uncertainty, and how double counting with `R` was prevented. See `docs/K_OPERATIONAL_DEFINITION_V1.md`.
 
+## Pedicularis same-system programme
+
+The first prospectively registered same-system empirical target is `Pedicularis rex`:
+
+```text
+G1 causal shared-axis conflict
+-> G2 conflict load L
+-> structural-y Y0-Y3
+-> qualified pre-cost D0 comparator
+-> G3 recoverable benefit R
+-> G4 K_incremental_y
+-> G5 Phi.
+```
+
+The entire execution path is now registered, including field calibration, threshold freeze, structural-y promotion, D0 qualification, final G3-G5 precision planning, final sample-size compilation, registered-z-grid field layout, and bootstrap adjudication.
+
+This is **design readiness, not empirical closure**. No Pedicularis G1-G5 biological receipt has yet been produced.
+
+The first feasible Pedicularis architecture cost is deliberately narrow:
+
+```text
+K_incremental_y
+= incremental reproductive-fitness debit of the high-retention structural-y state
+  conditional on the existing cupulate-bract background.
+```
+
+It is not the historical total cost of originating the cupulate bract.
+
+The final registered worlds are:
+
+```text
+S  = LOW-Y without external qualified retention
+D0 = LOW-Y with the independently qualified externalized retention comparator
+D  = HIGH-Y natural structural retention.
+```
+
+On the registered accessible z grid:
+
+```text
+R   = W_D0,pre* - W_S*
+K   = W_D0,pre* - W_D*
+Phi = W_D* - W_S*.
+```
+
+Same-block `R-K=Phi` is an algebraic identity only. A nontrivial empirical concordance claim requires the optional, independent S:D direct-Phi block.
+
+The canonical execution truth is kept in:
+
+```text
+docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md
+data/PEDICULARIS_G1_G5_EXECUTION_STATE_V1.json
+```
+
+where design status and biological status are separate fields.
+
 ## Publication architecture outside the flagship
 
 The source repositories are no longer treated as one-paper-per-repository. Their current roles are:
@@ -125,14 +180,22 @@ These modules may be cited by SLK without being promoted to independent manuscri
 9. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
 10. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
 11. `docs/EMPIRICAL_G1_G9_SOURCE_LEDGER_V1.md` — source-adjudicated map of existing biological systems onto G1-G9, with explicit direct/partial/analogue/reality ceilings.
-12. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for the first biological `L` receipt, including V2 provenance and downstream handoff rules.
-13. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — field execution order, parallel-pilot rule, hard stops and fallback policy for Qz/Qp/Qg.
-14. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective rule for replacing every production `REQUIRED_BEFORE_USE` threshold without outcome peeking.
-15. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-16. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
-17. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-18. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
-19. `PROVENANCE.md` — migration provenance and citation policy.
+12. `docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md` — canonical same-system execution order and design-versus-biological status boundary.
+13. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
+14. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — Qz/Qp/Qg field execution, hard stops and fallback policy.
+15. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective threshold-freeze rules.
+16. `docs/PEDICULARIS_STRUCTURAL_Y_RECEIPT_V1.md` — Y0-Y1 repeatability/range and z-y coupling receipt.
+17. `docs/PEDICULARIS_STRUCTURAL_Y_FUNCTION_RECEIPT_V1.md` — Y2 preferential loading and Y3 performance-intervention receipt.
+18. `docs/PEDICULARIS_D0_FEASIBILITY_PROTOCOL_V1.md` — pre-cost comparator definition and incremental-K boundary.
+19. `docs/PEDICULARIS_D0_EQUIVALENCE_MARGIN_LEDGER_V1.md` — biological margin-source contract.
+20. `docs/PEDICULARIS_D0_CONFIRMATORY_QUALIFICATION_V1.md` — independent D0 Q1-Q6 qualification.
+21. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
+22. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
+23. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
+24. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
+25. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+26. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
+27. `PROVENANCE.md` — migration provenance and citation policy.
 
 ## Current status
 
@@ -152,7 +215,16 @@ FIRST_BIOLOGICAL_G2_TARGET_LOCKED
 PEDICULARIS_FIELD_QUALIFICATION_POLICY_REGISTERED
 PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_REGISTERED
 PEDICULARIS_THRESHOLD_VALIDATOR_REGISTERED
-FIRST_EXECUTABLE_PEDICULARIS_TASK_IS_THRESHOLD_FREEZE
+PEDICULARIS_UNIFIED_CALIBRATION_PROGRAM_REGISTERED
+PEDICULARIS_STRUCTURAL_Y_Y0_Y3_PIPELINE_REGISTERED
+PEDICULARIS_D0_CALIBRATION_AND_MARGIN_PIPELINE_REGISTERED
+PEDICULARIS_D0_INDEPENDENT_CONFIRMATORY_PIPELINE_REGISTERED
+PEDICULARIS_G3_G5_EFFECT_PIPELINE_REGISTERED
+PEDICULARIS_G3_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED
+PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED
+PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN
+PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
+FIRST_EXECUTABLE_PEDICULARIS_TASK_IS_THRESHOLD_FREEZE_AFTER_CONTEXT_SCREEN
 K_OPERATIONAL_DEFINITION_REGISTERED
 PRIOR_ART_BOUNDARY_EXPANDED
 FIRST_AMNAT_REVIEWER_REPAIR_ROUND_COMPLETE
@@ -168,4 +240,18 @@ DOI_MODULES_BALANCE_PAYOFF_A_SPATIAL_TOPOLOGY
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```
 
-SLK does not turn theoretical quantities into empirical measurements by declaration. Any empirical use of `L`, `R`, `s`, `K`, `Phi`, accessibility, invasion, fixation, or occupancy must retain the identification requirements and uncertainty of the source analysis.
+## Journal decision rule
+
+The present flagship target remains **The American Naturalist**. The end-to-end Pedicularis machinery improves credibility and executability but does not itself raise the empirical claim ceiling.
+
+Reassess an **Ecology Letters** submission only after a real same-system G1-G5 receipt exists. The strongest trigger is a sharp biological separation such as:
+
+```text
+L > 0
+R > 0
+Phi < 0
+```
+
+or, after one focal G1-G5 context has already closed, a prospectively registered environmental crossing of `Phi = 0`.
+
+SLK does not turn theoretical quantities or prospective protocols into empirical measurements by declaration. Any empirical use of `L`, `R`, `s`, `K`, `Phi`, accessibility, invasion, fixation, or occupancy must retain the identification requirements and uncertainty of the source analysis.

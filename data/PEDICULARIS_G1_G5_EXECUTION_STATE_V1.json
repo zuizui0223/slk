@@ -2,8 +2,9 @@
   "schema_version": "SLK_PEDICULARIS_G1_G5_EXECUTION_STATE_V1",
   "system": "Pedicularis rex",
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
+  "design_detail": "PEDICULARIS_G1_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_after_effect_merge": "71c3a9b8fb6f93326d1519544a44364eeb2cfba0",
+  "source_main_commit_at_state_snapshot": "ba4dffaa394e21c75f1fb6b38537b2117552ee33",
   "stages": [
     {"stage_id": "P0_CONTEXT_SCREEN", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED"},
     {"stage_id": "P1_THRESHOLD_FREEZE", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "THRESHOLD_FREEZE_VALIDATED"},
@@ -14,6 +15,7 @@
     {"stage_id": "Y2_Y3_FUNCTION", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "STRUCTURAL_Y_Y2_PREFERENTIAL_LOADING_Y3_PERFORMANCE_INTERVENTION"},
     {"stage_id": "D0_CALIBRATION_PRECISION", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED"},
     {"stage_id": "D0_CONFIRMATORY_Q1_Q6", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "D0_FULLY_QUALIFIED"},
+    {"stage_id": "G3_G5_FINAL_PRECISION", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "G3_G5_EFFECT_SAMPLE_SIZE_PROSPECTIVELY_PLANNED"},
     {"stage_id": "G3_R", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "RECOVERABLE_ARCHITECTURE_BENEFIT_IDENTIFIED"},
     {"stage_id": "G4_K_INCREMENTAL_Y", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "ARCHITECTURE_COST_IDENTIFIED"},
     {"stage_id": "G5_PHI_INTERNAL", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "IDENTIFIED_INTERNAL_WORLDLINE"},
