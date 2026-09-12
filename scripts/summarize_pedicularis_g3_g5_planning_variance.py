@@ -33,9 +33,14 @@ def _false(value: object) -> bool:
     return str(value).strip().lower() == "false"
 
 
+def _true(value: object) -> bool:
+    return str(value).strip().lower() == "true"
+
+
 def summarize(rows: list[dict[str, str]], d0_receipt: dict) -> dict:
     _need(d0_receipt.get("schema_version") == D0_RECEIPT_SCHEMA, "wrong D0 receipt schema")
     _need(d0_receipt.get("status") == D0_READY, "D0 must be fully qualified before G3-G5 variance planning")
+    _need(bool(d0_receipt.get("gates")) and all(d0_receipt["gates"].values()), "all D0 Q1-Q6 gates must pass before variance planning")
     dctx = d0_receipt.get("context", {})
     _need(dctx.get("dataset_id") == DATASET_ID, "wrong D0 qualification dataset id")
     _need(dctx.get("fitness_scale_id") == FITNESS_SCALE_ID, "wrong D0 qualification fitness scale")
@@ -46,6 +51,7 @@ def summarize(rows: list[dict[str, str]], d0_receipt: dict) -> dict:
     contexts = set()
     for row in rows:
         _need(row.get("dataset_id") == DATASET_ID, "wrong row dataset id")
+        _need(_true(row.get("d0_qualification_eligible")), "row is not a D0 qualification unit")
         _need(_false(row.get("g3_g5_eligible")), "D0 qualification row cannot be G3-G5 eligible")
         for key in ("context_id", "population_id", "season_id", "fitness_scale_id", "time_horizon_id"):
             _need(row.get(key) == dctx.get(key), f"row/D0 receipt context mismatch: {key}")
@@ -58,7 +64,6 @@ def summarize(rows: list[dict[str, str]], d0_receipt: dict) -> dict:
     _need(len(contexts) == 1, "multiple D0 qualification contexts")
 
     values = {"S": [], "D0": [], "D": []}
-    plant_ids = {"S": set(), "D0": set(), "D": set()}
     for plant_id, treatments in by_plant.items():
         for world, treatment in (("S", "S_QUAL"), ("D0", "D0_QUAL"), ("D", "D_QUAL")):
             row = treatments.get(treatment)
@@ -68,7 +73,6 @@ def summarize(rows: list[dict[str, str]], d0_receipt: dict) -> dict:
             if raw == "":
                 continue
             values[world].append(_num(raw, f"mature seeds {plant_id}/{treatment}"))
-            plant_ids[world].add(plant_id)
 
     precision = d0_receipt.get("precision_plan", {})
     expected_low = int(precision.get("observed_low_y_plants", 0))
@@ -112,6 +116,7 @@ def summarize(rows: list[dict[str, str]], d0_receipt: dict) -> dict:
         },
         "max_world_sd": max(sds.values()) if nonzero else None,
         "firewall": {
+            "all_source_rows_d0_qualification_eligible": True,
             "source_units_planning_only": True,
             "source_units_g3_g5_effect_estimation_ineligible": True,
         },
