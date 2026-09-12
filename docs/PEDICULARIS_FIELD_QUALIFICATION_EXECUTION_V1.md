@@ -6,7 +6,35 @@ This document operationalizes the first biological SLK bottleneck identified by 
 
 It does not replace the SCH evaluators. SCH remains the source of truth for the three qualification receipts and the full causal surface. SLK only freezes the execution logic, promotion order, and stop rules needed for the flagship.
 
-## 0. Mandatory threshold freeze before qualification
+## 0. Fresh P0 context screen before expensive calibration
+
+Before threshold calibration or Qz/Qp/Qg method qualification, the focal population-season must pass the registered P0 context screen:
+
+```text
+docs/PEDICULARIS_CONTEXT_SCREEN_V1.md
+data/PEDICULARIS_CONTEXT_SCREEN_FREEZE_TEMPLATE_V1.json
+scripts/generate_pedicularis_context_screen_packet.py
+scripts/summarize_pedicularis_context_screen_packet.py
+scripts/adjudicate_pedicularis_context_screen.py
+```
+
+The required operational status for the default route is:
+
+```text
+CONTEXT_SCREEN_PASS_CALIBRATION_READY.
+```
+
+P0 checks only fresh legitimate-pollinator activity, measurable predator exposure/early attack, functional cupulate-bract water state and enough flowering-plant capacity for the disjoint calibration programme.
+
+Pollen limitation is **not** a P0 pass criterion. It remains:
+
+```text
+UNRESOLVED_UNTIL_QP_CALIBRATION.
+```
+
+A completed low-signal P0 screen is an uninformative context for the current causal programme, not a biological negative.
+
+## 1. Mandatory threshold freeze before qualification
 
 The Qz/Qp/Qg source evaluators are implemented, but their production config templates still contain `REQUIRED_BEFORE_USE` placeholders.
 
@@ -26,7 +54,7 @@ under `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md`.
 
 Calibration units used to set tolerances, timing windows, variance assumptions, or sample floors must be disjoint from the confirmatory qualification units used to decide Qz/Qp/Qg.
 
-## 1. Required qualification receipts
+## 2. Required qualification receipts
 
 The corrected Pedicularis V2 path requires three independent source receipts from the same population and season:
 
@@ -49,7 +77,7 @@ SCH_PEDICULARIS_FULL_SURFACE_READINESS_V3
 
 and run the V2 `z x P x G` causal surface.
 
-## 2. Biological meanings of the three gates
+## 3. Biological meanings of the three gates
 
 ### Qz — manipulate the shared coordinate without changing another coordinate
 
@@ -93,40 +121,43 @@ The exclusion device must be applied only in the registered post-pollination / p
 
 Passing Qg establishes a method-qualified independent antagonist intervention, not conflict.
 
-## 3. Logical execution order
+## 4. Logical execution order
 
 For inference, the gates are conjunctive:
 
 ```text
-THRESHOLDS_FROZEN
+P0_CONTEXT_SCREEN_PASS
+AND THRESHOLDS_FROZEN
 AND Qz
 AND Qp
 AND Qg
 -> FULL_SURFACE_READY.
 ```
 
-No biological gate is logically upstream of another.
+No biological Q gate is logically upstream of another.
 
 For field-resource allocation, however, SLK freezes the following priority:
 
 ```text
-0. independent calibration + threshold freeze
-1. Qg predator-method qualification
-2. Qz multi-level exsertion manipulation
-3. Qp pollination-weight supplementation
-4. assemble readiness
-5. run the full V2 surface
+0. fresh P0 context screen
+1. independent calibration + threshold freeze
+2. Qg predator-method qualification
+3. Qz multi-level exsertion manipulation
+4. Qp pollination-weight supplementation
+5. assemble readiness
+6. run the full V2 surface
 ```
 
-Reason: Qg is the least established and most likely to kill the same-species SCH -> BITA route. Qz has a congeneric manipulation precedent, and Qp has a straightforward open-flower supplementation design. Spending the main surface before Qg is qualified would risk an unusable Chapter-1 reference.
+Reason: P0 prevents spending calibration effort in a context with no detectable interaction signal or insufficient plant supply. Qg remains the least established causal method and the most likely to kill the same-species SCH -> BITA route once a context is admitted.
 
-## 4. Operational field rule: parallel pilots are allowed
+## 5. Operational field rule: parallel pilots are allowed
 
 The logical priority above does **not** require waiting for laboratory analysis between every pilot during a short flowering season.
 
 If flower supply permits, Qg, Qz and Qp may be run in parallel on disjoint flowers / plants within the same population and season, provided that:
 
 ```text
+- P0 has already admitted the context;
 - assignments are independent;
 - no flower contributes to more than one pilot;
 - calibration units do not enter qualification tests;
@@ -137,25 +168,36 @@ If flower supply permits, Qg, Qz and Qp may be run in parallel on disjoint flowe
 
 This preserves inference while reducing the risk of losing an entire flowering season to sequential waiting.
 
-## 5. Population qualification before expensive manipulation
+## 6. Context-screen stop and reroute rules
 
-Before committing the full pilot package, verify that the focal population/season contains enough biological signal for the qualification gates to be informative.
-
-Minimal screen:
+### P0 effort incomplete
 
 ```text
-legitimate pollinator activity present
-pollen limitation not obviously absent
-seed-predator exposure / attack present at a measurable rate
-cupulate-bract water state functional and measurable
-enough flowering plants to support paired/block designs.
+CONTEXT_SCREEN_INCOMPLETE
+-> complete the registered effort
+-> no low-signal interpretation yet.
 ```
 
-This screen is a logistical qualification, not a G1 or G2 result.
+### P0 pollinator / predator / water signal below threshold after full effort
 
-A near-zero predator-pressure context should not be used to declare Qg negative. It is an uninformative context for the predator-method gate and should trigger relocation to a higher-predation population/season if feasible.
+```text
+CONTEXT_UNINFORMATIVE_*
+-> no biological negative claim
+-> increase future prospecting effort under a new freeze, or
+-> move to another candidate population-season.
+```
 
-## 6. Stop and reroute rules
+A near-zero predator-pressure context must never be used to declare Qg negative.
+
+### P0 signal present but flowering capacity limited
+
+```text
+CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED
+-> retain as a possible low-capacity replication / observational context
+-> do not start the default disjoint Y-CAL + D0-CAL programme there unless a new capacity plan is prospectively registered.
+```
+
+## 7. Q-gate stop and reroute rules
 
 ### Threshold manifest cannot be defensibly frozen
 
@@ -177,7 +219,9 @@ reject that exclusion method
 
 Do **not** rescue Pedicularis by returning to water retained/drained as SCH `G`.
 
-### Qg is uninformative because predator pressure is too low
+### Qg is uninformative because predator pressure is too low despite P0
+
+Interaction intensity may still drift within a season.
 
 ```text
 no biological negative claim
@@ -213,9 +257,18 @@ P manipulation not selective
 -> no statistical adjustment may substitute for the selectivity gate.
 ```
 
-## 7. Full-surface unlock
+## 8. Full-surface unlock
 
-The main experiment is unlocked only when one population/season supplies all three positive receipts with matching identifiers:
+The main experiment is unlocked only when one population/season supplies:
+
+```text
+P0 = CONTEXT_SCREEN_PASS_CALIBRATION_READY
+Qz = positive qualification receipt
+Qp = positive qualification receipt
+Qg = positive qualification receipt
+```
+
+with matching identifiers:
 
 ```text
 population_id
@@ -240,7 +293,7 @@ undamaged mature viable seeds per focal flower / capsule.
 
 The full-surface receipt remains a G1-stage causal-compromise result until the component-optimum and conflict-budget gates are subsequently passed.
 
-## 8. Route from full surface to SLK G2
+## 9. Route from full surface to SLK G2
 
 ```text
 V2 causal surface positive
@@ -259,7 +312,7 @@ L.lower_95 > 0.
 
 A measured `L` interval that includes zero is retained as a valid measurement attempt but does not unlock BALANCE classification.
 
-## 9. Downstream preservation rule
+## 10. Downstream preservation rule
 
 The field pilots must be designed from the start to preserve the later BITA comparison.
 
@@ -274,29 +327,29 @@ must remain distinct.
 
 This is not cosmetic bookkeeping. It is what makes later dimensional release non-circular.
 
-## 10. Current execution state
-
-Against SCH main at `63f05fed6bb46c5929bdd1f40d21b4b2f7c2ea8b` after the V2 documentation repair:
+## 11. Current execution state
 
 ```text
-Qz evaluator / template     IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
-Qp evaluator / template     IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
-Qg V3 evaluator / template  IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
-threshold values            NOT YET PROSPECTIVELY FROZEN
-readiness assembler         IMPLEMENTED
-V2 full-surface wrapper     IMPLEMENTED
-G2 SLK adjudicator          IMPLEMENTED
+P0 freeze / field packet / adjudicator  IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
+Qz evaluator / template                 IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
+Qp evaluator / template                 IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
+Qg V3 evaluator / template              IMPLEMENTED, NOT YET EXECUTED BIOLOGICALLY
+threshold values                        NOT YET PROSPECTIVELY FROZEN
+readiness assembler                     IMPLEMENTED
+V2 full-surface wrapper                 IMPLEMENTED
+G2 SLK adjudicator                      IMPLEMENTED
 ```
 
-Thus the remaining bottleneck is empirical calibration / threshold freeze followed by field qualification, not software or theory.
+Thus the remaining bottleneck is no longer software or theory. It is fresh candidate-context recovery, P0 screening, then empirical calibration / threshold freeze and field qualification.
 
-## 11. Decision summary
+## 12. Decision summary
 
 ```text
-first executable task:         independent calibration + threshold freeze
-highest-risk biological gate:  Qg independent predator method
-highest-value execution tactic: parallel Qg/Qz/Qp qualification on disjoint units
-hard stop:                      no full surface until all three pass
-fallback if Pedicularis fails:  Dalechampia / next qualified SCH system
-forbidden rescue:               water retained/drained reused as SCH antagonist G
+first executable task:          recover candidate population-season + freeze/run P0 context screen
+next unlocked task:             independent calibration + threshold freeze
+highest-risk biological gate:   Qg independent predator method
+highest-value execution tactic: parallel Qg/Qz/Qp qualification on disjoint units after P0
+hard stop:                       no full surface until P0 and all three Q gates pass
+fallback if Pedicularis fails:   Dalechampia / next qualified SCH system
+forbidden rescue:                water retained/drained reused as SCH antagonist G
 ```

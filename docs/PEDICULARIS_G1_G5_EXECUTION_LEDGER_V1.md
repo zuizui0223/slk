@@ -50,16 +50,37 @@ Goal:
 
 ```text
 find one focal population-season with
-pollinator activity
-pollen limitation signal
-measurable seed-predator exposure
-functional cupulate-bract water state
-and adequate flowering-plant supply.
+fresh legitimate-pollinator activity
+fresh measurable seed-predator exposure / early attack
+functional and measurable cupulate-bract water state
+and adequate flowering-plant supply for the disjoint calibration programme.
 ```
 
-This is logistical only.
+Pollen limitation is deliberately **not** a P0 pass gate. It remains:
 
-Biological claim unlocked: none.
+```text
+UNRESOLVED_UNTIL_QP_CALIBRATION.
+```
+
+Canonical files:
+
+```text
+data/PEDICULARIS_CONTEXT_SCREEN_FREEZE_TEMPLATE_V1.json
+data/PEDICULARIS_CONTEXT_SCREEN_RECEIPT_TEMPLATE_V1.json
+data/PEDICULARIS_HISTORICAL_CONTEXT_SOURCE_LEDGER_V1.csv
+docs/PEDICULARIS_CONTEXT_SCREEN_V1.md
+scripts/generate_pedicularis_context_screen_packet.py
+scripts/summarize_pedicularis_context_screen_packet.py
+scripts/adjudicate_pedicularis_context_screen.py
+```
+
+Required operational status for the default calibration route:
+
+```text
+CONTEXT_SCREEN_PASS_CALIBRATION_READY.
+```
+
+A completed low-signal screen is `CONTEXT_UNINFORMATIVE_*`, not a biological negative. P0 is logistical only and unlocks no G1/G2 claim.
 
 ### Stage P1 — upstream threshold calibration and freeze
 
@@ -194,6 +215,28 @@ all Q1-Q6 pass.
 
 The qualification plants remain ineligible for G3-G5 effect estimation.
 
+### Stage G3-G5-P — final effect precision and sample-size handoff
+
+Canonical files:
+
+```text
+data/PEDICULARIS_G3_G5_PRECISION_FREEZE_TEMPLATE_V1.json
+docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md
+scripts/summarize_pedicularis_g3_g5_planning_variance.py
+scripts/plan_pedicularis_g3_g5_effect_precision.py
+scripts/compile_pedicularis_g3_g5_effect_sampling.py
+```
+
+Independent D0-qualification observations may contribute variance to planning only. They remain forbidden from effect estimation.
+
+Required planning output:
+
+```text
+G3_G5_EFFECT_SAMPLE_SIZE_PROSPECTIVELY_PLANNED
+```
+
+followed by a reviewed final effect freeze.
+
 ### Stage G3-G5 — independent architecture-value experiment
 
 Canonical files:
@@ -229,7 +272,7 @@ As of this ledger version:
 
 | Layer | Design status | Biological status |
 |---|---|---|
-| P0 context screen | REGISTERED | NOT EXECUTED |
+| P0 context screen | REGISTERED / FIELD PACKET READY | NOT EXECUTED |
 | P1 calibration / threshold freeze | REGISTERED | NOT EXECUTED |
 | P2 Qz/Qp/Qg | REGISTERED | NOT EXECUTED |
 | G1 conflict | REGISTERED | NOT EXECUTED |
@@ -238,6 +281,7 @@ As of this ledger version:
 | Y2-Y3 | REGISTERED | NOT EXECUTED |
 | D0 calibration / precision | REGISTERED | NOT EXECUTED |
 | D0 Q1-Q6 confirmatory | REGISTERED | NOT EXECUTED |
+| G3-G5 final precision | REGISTERED | NOT EXECUTED |
 | G3 R | REGISTERED | NOT EXECUTED |
 | G4 K_incremental_y | REGISTERED | NOT EXECUTED |
 | G5 Phi internal | REGISTERED | NOT EXECUTED |
@@ -273,6 +317,9 @@ Every stage is fail-closed.
 Examples:
 
 ```text
+P0 predator/pollinator/water signal not detected after frozen effort
+-> context uninformative, relocation allowed, no biological negative.
+
 Qg method contamination
 -> no G1 surface in that method/context.
 
