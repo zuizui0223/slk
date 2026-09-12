@@ -62,6 +62,7 @@ def _margin(q5_route: str = "NEGLIGIBLE_BURDEN_EQUIVALENCE") -> dict:
 
 def _variance() -> dict:
     v = json.loads(VARIANCE_TEMPLATE.read_text())
+    v["status"] = "INDEPENDENT_CALIBRATION_VARIANCE_READY"
     v["context"].update(
         {
             "population_id": "pop1",
@@ -71,6 +72,7 @@ def _variance() -> dict:
     )
     for endpoint in v["endpoints"]:
         endpoint["value"] = 1.0
+        endpoint["meets_registered_floor"] = True
     return v
 
 
@@ -136,4 +138,19 @@ def test_opened_confirmatory_outcomes_block_compilation() -> None:
     variance = _variance()
     variance["context"]["confirmatory_outcomes_opened"] = True
     with pytest.raises(ValueError, match="opened confirmatory outcomes"):
+        compiler.compile_precision_input(_margin(), variance)
+
+
+def test_incomplete_variance_receipt_is_rejected() -> None:
+    variance = _variance()
+    variance["status"] = "INDEPENDENT_CALIBRATION_VARIANCE_INCOMPLETE"
+    with pytest.raises(ValueError, match="variance receipt is not ready"):
+        compiler.compile_precision_input(_margin(), variance)
+
+
+def test_endpoint_below_registered_pilot_floor_is_rejected() -> None:
+    variance = _variance()
+    endpoint = next(x for x in variance["endpoints"] if x["endpoint_id"] == "D0_Q3_POLLEN")
+    endpoint["meets_registered_floor"] = False
+    with pytest.raises(ValueError, match="below registered calibration floor"):
         compiler.compile_precision_input(_margin(), variance)
