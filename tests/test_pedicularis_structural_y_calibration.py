@@ -123,3 +123,19 @@ def test_freeze_and_y_cal_context_must_match() -> None:
     f["context"]["population_id"] = "pop2"
     with pytest.raises(ValueError, match="population mismatch"):
         summary.summarize(_rows(True), f)
+
+
+def test_extra_calibration_flower_does_not_change_frozen_primary_three_flower_receipt() -> None:
+    rows = _rows(True)
+    baseline = summary.summarize(rows, _freeze())
+    extra = copy.deepcopy(rows[0])
+    extra["flower_id"] = "YCAL-001-F4"
+    extra["flower_slot"] = "4"
+    extra["treatment"] = "UC3_POLLINATION_EXTRA"
+    extra["retention_trial1_max_ml"] = "999"
+    extra["retention_trial2_max_ml"] = "999"
+    rows.append(extra)
+    receipt = summary.summarize(rows, _freeze())
+    assert receipt["status"] == baseline["status"]
+    assert receipt["band_freeze"] == baseline["band_freeze"]
+    assert receipt["ignored_nonprimary_rows"] == 1
