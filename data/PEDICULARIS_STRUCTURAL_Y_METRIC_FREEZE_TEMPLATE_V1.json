@@ -1,0 +1,40 @@
+{
+  "schema_version": "SLK_PEDICULARIS_STRUCTURAL_Y_METRIC_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "y_cal_dataset_id": "PED_Y_CAL_V1",
+    "primary_y_metric": "REQUIRED_BEFORE_USE",
+    "metric_direction": "HIGHER_IS_MORE_RETENTIVE_OR_PROTECTIVE",
+    "frozen_before_y_cal_outcomes": false
+  },
+  "allowed_primary_y_metrics": [
+    "RETENTION_MEAN_MAX_ML",
+    "RETENTION_MEAN_DEPTH_MM",
+    "RETENTION_MEAN_HALF_LIFE_MIN",
+    "RETENTION_MEAN_PROTECTED_FRACTION"
+  ],
+  "band_rule": {
+    "low_y": "PLANT_MEAN_AT_OR_BELOW_Y_CAL_ONE_THIRD_QUANTILE",
+    "high_y": "PLANT_MEAN_AT_OR_ABOVE_Y_CAL_TWO_THIRDS_QUANTILE",
+    "dynamic_range_rule": "MEDIAN_HIGH_MINUS_MEDIAN_LOW_GTE_MAX_BETWEEN_PLANT_SD_AND_TWO_X_MEASUREMENT_ERROR_SD",
+    "posthoc_cutpoint_search_forbidden": true
+  },
+  "firewall": {
+    "choose_metric_by_smallest_variance_forbidden": true,
+    "choose_metric_by_largest_observed_high_low_gap_forbidden": true,
+    "choose_metric_by_best_downstream_fitness_association_forbidden": true,
+    "y_cal_units_confirmatory_ineligible": true
+  },
+  "source_reference": [
+    "docs/PEDICULARIS_STRUCTURAL_Y_D0_PILOT_PRECISION_V1.md",
+    "docs/PEDICULARIS_G1_G5_CLOSURE_PROTOCOL_V1.md"
+  ],
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  }
+}
