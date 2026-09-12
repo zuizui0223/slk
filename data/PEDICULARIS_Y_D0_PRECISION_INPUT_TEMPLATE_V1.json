@@ -1,0 +1,63 @@
+{
+  "schema_version": "SLK_PEDICULARIS_Y_D0_PRECISION_INPUT_V1",
+  "status": "TEMPLATE_ONLY_REQUIRES_INDEPENDENT_CALIBRATION_INPUTS",
+  "defaults": {
+    "alpha": 0.05,
+    "power": 0.80,
+    "attrition": 0.15
+  },
+  "input_provenance": {
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "y_cal_dataset_id": "PED_Y_CAL_V1",
+    "d0_cal_dataset_id": "PED_D0_CAL_V1",
+    "confirmatory_outcomes_opened": false,
+    "margin_freeze_commit": "REQUIRED_BEFORE_USE"
+  },
+  "endpoints": [
+    {
+      "endpoint_id": "D0_Q1_EXSERTION_EQUIVALENCE",
+      "kind": "paired_equivalence",
+      "sd_diff": null,
+      "margin": null,
+      "input_source": "PED_D0_CAL_V1 D0-SHAM paired plant differences"
+    },
+    {
+      "endpoint_id": "D0_Q2_RETENTION_MAGNITUDE_EQUIVALENCE",
+      "kind": "two_group_equivalence",
+      "sd": null,
+      "margin": null,
+      "input_source": "PED_D0_CAL_V1 D0 versus natural-D plant-level retention"
+    },
+    {
+      "endpoint_id": "D0_Q2_RETENTION_DURATION_EQUIVALENCE",
+      "kind": "two_group_equivalence",
+      "sd": null,
+      "margin": null,
+      "input_source": "PED_D0_CAL_V1 D0 versus natural-D plant-level duration"
+    },
+    {
+      "endpoint_id": "D0_Q3_POLLEN_RECEIPT_EQUIVALENCE",
+      "kind": "paired_equivalence",
+      "sd_diff": null,
+      "margin": null,
+      "input_source": "PED_D0_CAL_V1 D0-SHAM pollen receipt differences"
+    },
+    {
+      "endpoint_id": "D0_Q4_WATER_CHANNEL_EFFECT",
+      "kind": "paired_superiority",
+      "sd_diff": null,
+      "min_effect": null,
+      "directional": true,
+      "input_source": "PED_D0_CAL_V1 D0-SHAM early attack or predation difference"
+    },
+    {
+      "endpoint_id": "D0_Q5_SHAM_BURDEN_PRECISION",
+      "kind": "mean_precision",
+      "sd": null,
+      "half_width": null,
+      "input_source": "PED_D0_CAL_V1 S-SHAM plant-level burden contrast"
+    }
+  ],
+  "notes": "Replace nulls only with independently calibrated SDs and prospectively justified biological margins/effects. Do not use unblinded confirmatory outcomes."
+}
