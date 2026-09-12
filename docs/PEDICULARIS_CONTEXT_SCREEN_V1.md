@@ -34,7 +34,7 @@ no conflict
 Qg negative.
 ```
 
-A low-signal context may be revisited with more effort or replaced by a higher-signal population-season without creating a biological negative receipt.
+A low-signal context may be revisited under a newly frozen effort contract or replaced by a higher-signal population-season without creating a biological negative receipt.
 
 ## 3. Pollen limitation stays open at P0
 
@@ -46,7 +46,53 @@ pollen limitation = UNRESOLVED_UNTIL_QP_CALIBRATION
 
 Natural pollen receipt can be recorded descriptively, but no P0 threshold on pollen limitation is allowed. The selective supplementation gate Qp remains the first place where pollination dependence is tested.
 
-## 4. Immediate calibration capacity
+## 4. Detection effort is calculated, not guessed
+
+The production P0 effort is derived prospectively under:
+
+```text
+docs/PEDICULARIS_CONTEXT_SCREEN_EFFORT_PLAN_V1.md
+data/PEDICULARIS_CONTEXT_SCREEN_EFFORT_FREEZE_TEMPLATE_V1.json
+data/PEDICULARIS_CONTEXT_SCREEN_EFFORT_SOURCE_LEDGER_V1.csv
+scripts/plan_pedicularis_context_screen_effort.py
+scripts/compile_pedicularis_context_screen_effort.py
+```
+
+The planner requires biologically / decision-justified minimum signals:
+
+```text
+minimum legitimate visit rate per minute
+minimum predator-attack prevalence
+minimum water-positive prevalence
+```
+
+plus desired detection probabilities and temporal-coverage rules.
+
+It then converts those frozen inputs into:
+
+```text
+pollinator observation minutes and bouts
+predator-screen flower count
+water-state plant count.
+```
+
+The planner never chooses the minimum-relevance rates from P0 outcomes.
+
+For pollinators the registered planning approximation is:
+
+```text
+P(no detection in T min) = exp(-lambda_min T).
+```
+
+For predator / water-state presence:
+
+```text
+P(no positive among n units) = (1-p_min)^n.
+```
+
+A completed zero remains context-uninformative at the declared detection resolution, not evidence of true absence.
+
+## 5. Immediate calibration capacity and census stopping
 
 Two already registered calibration cohorts are disjoint:
 
@@ -70,11 +116,34 @@ required flowering capacity
 
 The reserve may not be chosen after observing the site census.
 
-This is a capacity screen, not a claim that 84 plants are sufficient for the later Qz/Qp/Qg, D0-confirmatory or G3-G5 effect partitions. Those retain their own independent sample-size contracts.
+The capacity census obeys the frozen stopping rule:
 
-## 5. Historical source anchors
+```text
+STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION.
+```
 
-Two published Pedicularis rex studies establish that multiple field populations with the required biological ingredients have existed in the Hengduan Mountains system:
+Therefore:
+
+```text
+observed count >= required capacity
+-> capacity resolved PASS; exhaustive census not required
+
+observed count < required capacity
+AND population_census_exhausted = true
+-> CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED, if signal gates pass
+
+observed count < required capacity
+AND census not exhausted
+-> CONTEXT_SCREEN_INCOMPLETE; continue census.
+```
+
+A partial census may never be used to declare a capacity-limited context.
+
+This is a capacity screen, not a claim that the P0 plant count is sufficient for later Qz/Qp/Qg, D0-confirmatory or G3-G5 effect partitions. Those retain their own independent sample-size contracts.
+
+## 6. Historical source anchors
+
+Published Pedicularis rex studies establish that field populations with the required biological ingredients have existed in the Hengduan Mountains system.
 
 ### Sun & Huang 2015, AoB PLANTS, doi:10.1093/aobpla/plv019
 
@@ -95,29 +164,44 @@ seed predation/final seed production measured in 12 populations
 seed-predator pressure varied geographically.
 ```
 
-These papers justify **where to recover candidate historical populations and what signals to screen**. They do not make any historical site automatically qualified today. Historical sample sizes are explicitly forbidden as the sole source of a production P0 effort threshold.
+### Xia, Sun & Liu 2013, Biology Letters, doi:10.1098/rsbl.2013.0387
 
-Exact historical site names / coordinates belong to the supplementary Table S1 source recovery. Until fresh access, flowering phenology and signal are verified, they remain `HISTORICAL_CANDIDATE_ONLY`.
+```text
+Mt. Wufeng and Shangri-La Alpine Botanical Garden used as direct interaction field systems
+pollination and predispersal seed predation measured
+historical patch size ranged from 1 to 500 flowering plants in the 2011 system.
+```
 
-## 6. Freeze before screening
+These papers justify **where to recover candidate populations and what signals to screen**. They do not make any historical site automatically qualified today. Historical sample sizes are explicitly forbidden as the sole source of a production P0 effort threshold.
 
-Fill and commit:
+Candidate contexts are tracked in:
+
+```text
+data/PEDICULARIS_CONTEXT_CANDIDATE_LEDGER_V1.csv
+```
+
+and remain historical candidates until fresh P0 admission.
+
+## 7. Freeze sequence before screening
+
+The execution order is:
+
+```text
+1. recover candidate population-season
+2. qualify / freeze minimum-relevance signal inputs
+3. run P0 effort planner
+4. compile planned effort into the ordinary P0 screen template
+5. review final P0 contract
+6. fill final freeze metadata and commit it
+7. set status = FROZEN_CANDIDATE
+8. set frozen_before_screen_outcomes = true
+9. only then generate the field packet.
+```
+
+The ordinary production freeze is:
 
 ```text
 data/PEDICULARIS_CONTEXT_SCREEN_FREEZE_TEMPLATE_V1.json
-```
-
-The production freeze must specify:
-
-```text
-candidate_site_id
-population_id
-season_id
-screen_window_id
-registered observation-effort floors
-presence / relevance thresholds
-capacity reserve fraction
-source and rationale for every threshold / effort floor.
 ```
 
 Allowed source classes are:
@@ -131,9 +215,9 @@ COMBINED_PREDECLARED.
 
 Forbidden shortcuts include historical n alone, post-hoc screen outcomes, non-significant P values and convenience alone.
 
-## 7. Field packet
+## 8. Field packet
 
-After the freeze is valid, generate the screen packet:
+After the final freeze validates, generate:
 
 ```bash
 python scripts/generate_pedicularis_context_screen_packet.py \
@@ -150,6 +234,8 @@ registered predator-screen flower rows
 registered water-state plant rows.
 ```
 
+The census row records whether the focal population has been exhausted when required capacity has not been reached.
+
 Every row is permanently:
 
 ```text
@@ -157,7 +243,7 @@ screen_only = true
 confirmatory_eligible = false.
 ```
 
-## 8. Summarize and adjudicate
+## 9. Summarize and adjudicate
 
 After collection:
 
@@ -185,7 +271,9 @@ CONTEXT_SCREEN_INCOMPLETE.
 
 Only the first status unlocks the default Y-CAL/D0-CAL programme in that population-season.
 
-## 9. Relocation rule
+Signal-effort completion and capacity-census resolution are reported separately. Thus a site can retain completed signal information while requiring further census effort.
+
+## 10. Relocation rule
 
 For a fully observed low-signal context:
 
@@ -198,12 +286,18 @@ screen the next candidate population-season.
 
 This implements the existing rule that near-zero predator pressure is not a negative Qg result.
 
-## 10. Current state
+## 11. Current state
 
 ```text
-P0 DESIGN: REGISTERED
-P0 BIOLOGICAL RECEIPT: NOT EXECUTED
-CURRENT ACTION: recover candidate population access + freeze P0 effort/threshold sources + run fresh context screen
+P0 field packet / adjudicator:          REGISTERED
+P0 detection-effort planner:            REGISTERED
+P0 capacity-census stopping rule:       REGISTERED
+historical candidate-source ledgers:    REGISTERED
+production minimum-relevance rates:     OPEN
+final production P0 freeze:             NOT YET FROZEN
+P0 biological receipt:                  NOT EXECUTED
 ```
+
+The immediate task is no longer to invent a screen sample size. It is to qualify the minimum-relevance inputs in `PEDICULARIS_CONTEXT_SCREEN_EFFORT_SOURCE_LEDGER_V1.csv`, freeze them prospectively, and then let the planner determine the effort.
 
 No real Pedicularis G1-G5 receipt is created by this protocol.
