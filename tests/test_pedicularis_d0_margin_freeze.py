@@ -141,3 +141,10 @@ def test_firewall_cannot_be_disabled() -> None:
     m["firewall"]["variance_only_margin_basis_forbidden"] = False
     with pytest.raises(ValueError, match="firewall not active"):
         validate(m)
+
+
+def test_q4_dry_residual_comparison_is_frozen_to_sham_minus_s() -> None:
+    m = _manifest()
+    _endpoint(m, "D0_Q4_DRY_RESIDUAL")["comparison"] = "DRY_DEVICE_MINUS_SHAM"
+    with pytest.raises(ValueError, match="comparison identity mismatch"):
+        validate(m)
