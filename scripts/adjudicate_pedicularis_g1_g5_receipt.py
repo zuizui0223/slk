@@ -66,6 +66,7 @@ def adjudicate(r):
     WD, _, _ = _est(w["D"]["optimized_fitness"], "WD")
     direct = r.get("g5_Phi", {}).get("direct", {})
     _need(direct.get("status") == "IDENTIFIED", "direct Phi open")
+    _need(direct.get("comparison") == "S_TO_D", "direct Phi comparison must be S_TO_D")
     P, Plo, Phi = _est(direct, "Phi_direct")
     _need(_close(P, WD - WS), "direct Phi identity failed")
 
@@ -79,24 +80,39 @@ def adjudicate(r):
     g3 = r.get("g3_R", {})
     g4 = r.get("g4_K", {})
     _need(g3.get("status") == "RECOVERABLE_ARCHITECTURE_BENEFIT_IDENTIFIED", "R open")
+    _need(g3.get("comparison") == "S_TO_D0", "R comparison must be S_TO_D0")
     _need(g4.get("status") == "ARCHITECTURE_COST_IDENTIFIED" and g4.get("double_counting_audit_pass") is True, "K open")
-    R, Rlo, Rhi = _est(g3, "R")
+    _need(g4.get("comparison") == "D0_TO_D", "K comparison must be D0_TO_D")
+    R, Rlo, _ = _est(g3, "R")
     K, _, _ = _est(g4, "K")
-    _need(_close(R, WD0 - WS), "R identity failed")
-    _need(_close(K, WD0 - WD), "K identity failed")
 
     dec = r["g5_Phi"]["decomposed"]
     _need(dec.get("status") == "IDENTIFIED", "decomposed Phi open")
     Pd, _, _ = _est(dec, "Phi_decomp")
     _need(_close(Pd, R - K), "decomposed Phi identity failed")
-    b, blo, bhi = _est(r["g5_Phi"]["bridge_residual"], "bridge")
-    _need(_close(b, P - Pd), "bridge identity failed")
+
     rule = r["g5_Phi"]["bridge_concordance"]
     _need(rule.get("frozen_before_confirmatory_outcomes") is True, "bridge rule not frozen")
-    tol = rule.get("max_abs_point")
-    _need(isinstance(tol, (int, float)) and tol >= 0, "bad bridge tolerance")
-    concordant = abs(b) <= tol and blo <= 0 <= bhi
-    out = {"status": "STRUCTURAL_G1_G5_CLOSED_CONCORDANT" if concordant else "STRUCTURAL_G1_G5_DECOMPOSED", "L": L, "R": R, "K": K, "Phi_direct": P, "Phi_decomp": Pd, "Phi_class": _phi_class(Plo, Phi), "bridge_residual": b, "bridge_concordant": concordant, "claim_ceiling": "SAME_SYSTEM_G1_G5" if concordant else "G1_G5_MEASURED_BRIDGE_NOT_CONCORDANT"}
+    independent = rule.get("independent_estimation_blocks") is True
+
+    if independent:
+        b, blo, bhi = _est(r["g5_Phi"]["bridge_residual"], "bridge")
+        _need(_close(b, P - Pd), "bridge identity failed")
+        tol = rule.get("max_abs_point")
+        _need(isinstance(tol, (int, float)) and tol >= 0, "bad bridge tolerance")
+        concordant = abs(b) <= tol and blo <= 0 <= bhi
+        status = "STRUCTURAL_G1_G5_CLOSED_CONCORDANT" if concordant else "STRUCTURAL_G1_G5_DECOMPOSED"
+        ceiling = "SAME_SYSTEM_G1_G5_INDEPENDENT_CONCORDANCE" if concordant else "G1_G5_MEASURED_BRIDGE_NOT_CONCORDANT"
+    else:
+        _need(_close(R, WD0 - WS), "R identity failed")
+        _need(_close(K, WD0 - WD), "K identity failed")
+        _need(_close(P, Pd), "same-block direct/decomposed Phi must be identical")
+        b = 0.0
+        concordant = None
+        status = "STRUCTURAL_G1_G5_CLOSED_INTERNAL_IDENTITY"
+        ceiling = "SAME_SYSTEM_G1_G5_INTERNAL_COHERENCE"
+
+    out = {"status": status, "L": L, "R": R, "K": K, "Phi_direct": P, "Phi_decomp": Pd, "Phi_class": _phi_class(Plo, Phi), "bridge_residual": b, "bridge_concordant": concordant, "claim_ceiling": ceiling}
     if Llo > 0 and Rlo > 0 and Phi < 0:
         out["diagnostic_pattern"] = "CONFLICT_REAL_RECOVERABLE_BUT_ARCHITECTURE_NOT_WORTH_COST"
     return out
