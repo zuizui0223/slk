@@ -8,6 +8,7 @@ from pathlib import Path
 
 
 VARIANCE_SCHEMA = "SLK_PEDICULARIS_D0_VARIANCE_INPUT_V1"
+VARIANCE_READY_STATUS = "INDEPENDENT_CALIBRATION_VARIANCE_READY"
 OUTPUT_SCHEMA = "SLK_PEDICULARIS_Y_D0_PRECISION_INPUT_V2"
 
 PAIR_EQ_IDS = {
@@ -80,6 +81,10 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
     margin_result = validate_margin(margin)
 
     _need(variance.get("schema_version") == VARIANCE_SCHEMA, "wrong variance schema")
+    _need(
+        variance.get("status") == VARIANCE_READY_STATUS,
+        "variance receipt is not ready at the registered calibration floor",
+    )
     vctx = variance.get("context", {})
     mctx = margin["context"]
     for key in (
@@ -117,6 +122,10 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
         _need(endpoint_id in vmap, f"variance missing for active endpoint: {endpoint_id}")
         v = vmap[endpoint_id]
         m = mmap[endpoint_id]
+        _need(
+            v.get("meets_registered_floor") is True,
+            f"variance endpoint below registered calibration floor: {endpoint_id}",
+        )
         _need(v.get("analysis_unit") == "independent_plant", f"wrong analysis unit: {endpoint_id}")
         calibration_id = v.get("calibration_dataset_id")
         _need(
