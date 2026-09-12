@@ -33,13 +33,15 @@ CTX = {
 }
 
 
-def _freeze(route: str = "SAME_BLOCK_INTERNAL_IDENTITY") -> dict:
+def _freeze(route: str = "SAME_BLOCK_INTERNAL_IDENTITY", q5_route: str = "NEGLIGIBLE_BURDEN_EQUIVALENCE") -> dict:
     direct = route == "INDEPENDENT_DIRECT_PHI_BLOCK"
+    context = dict(CTX)
+    context["q5_route"] = q5_route
     return {
         "schema_version": "SLK_PEDICULARIS_G3_G5_EFFECT_FREEZE_V1",
         "status": "FROZEN_CANDIDATE",
         "context": {
-            **CTX,
+            **context,
             "estimation_route": route,
             "decomposition_dataset_id": "PED_G3_G5_RK_CONFIRM_V1",
             "direct_phi_dataset_id": "PED_G5_DIRECT_CONFIRM_V1",
@@ -209,12 +211,13 @@ def _d0(route: str = "NEGLIGIBLE_BURDEN_EQUIVALENCE") -> dict:
     }
 
 
-def _make(route: str = "SAME_BLOCK_INTERNAL_IDENTITY"):
-    freeze = _freeze(route)
+def _make(route: str = "SAME_BLOCK_INTERNAL_IDENTITY", q5_route: str = "NEGLIGIBLE_BURDEN_EQUIVALENCE"):
+    freeze = _freeze(route, q5_route=q5_route)
+    d0 = _d0(q5_route)
     decomp, direct, meta = gen.generate_layout(
-        freeze, _g2(), _y_receipt(), _y_function(), _d0(), randomization_seed=77
+        freeze, _g2(), _y_receipt(), _y_function(), d0, randomization_seed=77
     )
-    return freeze, decomp, direct, meta
+    return freeze, decomp, direct, meta, d0
 
 
 def _fill(rows: list[dict[str, str]], direct_shift: float = 0.0) -> list[dict[str, str]]:
@@ -236,18 +239,17 @@ def _fill(rows: list[dict[str, str]], direct_shift: float = 0.0) -> list[dict[st
 
 
 def test_generator_creates_registered_complete_grid_worlds() -> None:
-    freeze, decomp, direct, meta = _make()
+    freeze, decomp, direct, meta, _ = _make()
     assert direct == []
     assert len(decomp) == 3 * 8 * 5
     assert meta["decomposition"]["recruitment_plants_per_world"] == 8
     assert meta["z_grid"] == freeze["z_grid"]["levels"]
-    worlds = {row["world"] for row in decomp}
-    assert worlds == {"S", "D0", "D"}
+    assert {row["world"] for row in decomp} == {"S", "D0", "D"}
 
 
 def test_same_block_closes_g3_g5_and_recovers_persistent_compromise_pattern() -> None:
-    freeze, decomp, direct, _ = _make()
-    result = adj.adjudicate(_fill(decomp), None, freeze, _g2(), _y_receipt(), _y_function(), _d0())
+    freeze, decomp, _, _, d0 = _make()
+    result = adj.adjudicate(_fill(decomp), None, freeze, _g2(), _y_receipt(), _y_function(), d0)
     assert result["status"] == "PEDICULARIS_G3_G5_MEASURED_INTERNAL_IDENTITY"
     assert result["g3_R"]["positive_robustly"] is True
     assert result["g5_Phi_internal"]["classification"] == "PERSISTENT_COMPROMISE"
@@ -259,9 +261,8 @@ def test_same_block_closes_g3_g5_and_recovers_persistent_compromise_pattern() ->
 
 
 def test_burden_correction_enters_R_and_K_but_cancels_from_phi() -> None:
-    freeze, decomp, _, _ = _make()
-    d0a = _d0()
-    d0b = _d0()
+    freeze, decomp, _, _, d0a = _make()
+    d0b = copy.deepcopy(d0a)
     d0b["apparatus_burden_receipt"]["point_difference"] = 0.40
     d0b["apparatus_burden_receipt"]["ci"] = [0.30, 0.50]
     a = adj.adjudicate(_fill(decomp), None, freeze, _g2(), _y_receipt(), _y_function(), d0a)
@@ -271,52 +272,60 @@ def test_burden_correction_enters_R_and_K_but_cancels_from_phi() -> None:
     assert b["g5_Phi_internal"]["point"] == pytest.approx(a["g5_Phi_internal"]["point"])
 
 
+def test_measured_burden_route_uses_independent_burden_ci() -> None:
+    freeze, decomp, _, _, d0 = _make(q5_route="MEASURED_BURDEN_ADJUSTMENT")
+    result = adj.adjudicate(_fill(decomp), None, freeze, _g2(), _y_receipt(), _y_function(), d0)
+    assert result["burden_correction"]["uncertainty_source"] == "INDEPENDENT_Q5_MEASURED_BURDEN_CI"
+    assert result["burden_correction"]["uncertainty_lower"] == pytest.approx(0.10)
+    assert result["burden_correction"]["uncertainty_upper"] == pytest.approx(0.30)
+
+
 def test_independent_direct_phi_can_close_nontrivial_concordance() -> None:
-    freeze, decomp, direct, _ = _make("INDEPENDENT_DIRECT_PHI_BLOCK")
-    result = adj.adjudicate(_fill(decomp), _fill(direct), freeze, _g2(), _y_receipt(), _y_function(), _d0())
+    freeze, decomp, direct, _, d0 = _make("INDEPENDENT_DIRECT_PHI_BLOCK")
+    result = adj.adjudicate(_fill(decomp), _fill(direct), freeze, _g2(), _y_receipt(), _y_function(), d0)
     assert result["status"] == "PEDICULARIS_G3_G5_MEASURED_CONCORDANT"
     assert result["bridge_concordance"]["concordant"] is True
     assert result["bridge_concordance"]["ci_includes_zero"] is True
 
 
 def test_independent_direct_phi_disagreement_is_not_silently_promoted() -> None:
-    freeze, decomp, direct, _ = _make("INDEPENDENT_DIRECT_PHI_BLOCK")
+    freeze, decomp, direct, _, d0 = _make("INDEPENDENT_DIRECT_PHI_BLOCK")
     result = adj.adjudicate(
-        _fill(decomp), _fill(direct, direct_shift=2.0), freeze, _g2(), _y_receipt(), _y_function(), _d0()
+        _fill(decomp), _fill(direct, direct_shift=2.0), freeze, _g2(), _y_receipt(), _y_function(), d0
     )
     assert result["status"] == "PEDICULARIS_G3_G5_MEASURED_BRIDGE_NOT_CONCORDANT"
     assert result["bridge_concordance"]["concordant"] is False
 
 
 def test_z_tolerance_failures_can_drop_world_below_registered_floor() -> None:
-    freeze, decomp, _, _ = _make()
+    freeze, decomp, _, _, d0 = _make()
     rows = _fill(decomp)
-    bad_plants = {"G35-L-001", "G35-L-002", "G35-L-003"}
+    s_plant_ids = sorted({row["plant_id"] for row in rows if row["world"] == "S"})
+    bad_plants = set(s_plant_ids[:3])
     for row in rows:
-        if row["plant_id"] in bad_plants and row["world"] == "S":
+        if row["plant_id"] in bad_plants:
             row["realized_exsertion_z"] = str(float(row["target_exsertion_z"]) + 0.10)
-    result = adj.adjudicate(rows, None, freeze, _g2(), _y_receipt(), _y_function(), _d0())
+    result = adj.adjudicate(rows, None, freeze, _g2(), _y_receipt(), _y_function(), d0)
     assert result["status"] == "PEDICULARIS_G3_G5_EFFECT_INCOMPLETE"
 
 
 def test_effect_chain_requires_fully_qualified_d0() -> None:
-    freeze, decomp, _, _ = _make()
-    d0 = _d0()
+    freeze, decomp, _, _, d0 = _make()
     d0["status"] = "D0_FUNCTION_MATCH_ONLY"
     with pytest.raises(ValueError, match="fully qualified"):
         adj.adjudicate(_fill(decomp), None, freeze, _g2(), _y_receipt(), _y_function(), d0)
 
 
 def test_effect_chain_requires_same_g2_context() -> None:
-    freeze, decomp, _, _ = _make()
+    freeze, decomp, _, _, d0 = _make()
     g2 = _g2()
     g2["context"]["population_id"] = "pop2"
     with pytest.raises(ValueError, match="G2/effect context mismatch"):
-        adj.adjudicate(_fill(decomp), None, freeze, g2, _y_receipt(), _y_function(), _d0())
+        adj.adjudicate(_fill(decomp), None, freeze, g2, _y_receipt(), _y_function(), d0)
 
 
 def test_same_block_route_refuses_direct_dataset_peeking() -> None:
-    freeze, decomp, _, _ = _make()
+    freeze, decomp, _, _, d0 = _make()
     fake_direct = copy.deepcopy(_fill(decomp[:10]))
     with pytest.raises(ValueError, match="must not inspect"):
-        adj.adjudicate(_fill(decomp), fake_direct, freeze, _g2(), _y_receipt(), _y_function(), _d0())
+        adj.adjudicate(_fill(decomp), fake_direct, freeze, _g2(), _y_receipt(), _y_function(), d0)
