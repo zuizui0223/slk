@@ -112,6 +112,14 @@ def _ci(values: list[float], level: float) -> tuple[float, float]:
 
 
 def _ols_y_z(records: list[tuple[float, float, float]]) -> dict | None:
+    """Fit outcome ~ y + z with a dimensionless singularity diagnostic.
+
+    Predictor columns are centered and normalized by their Euclidean norms
+    before solving the two-predictor normal equations.  This makes fit
+    availability invariant to independent positive unit changes of y and z.
+    Coefficients are transformed back to the original predictor units.
+    """
+
     if len(records) < 3:
         return None
     ys = [r[0] for r in records]
@@ -120,22 +128,40 @@ def _ols_y_z(records: list[tuple[float, float, float]]) -> dict | None:
     my = sum(ys) / len(ys)
     mz = sum(zs) / len(zs)
     mo = sum(outs) / len(outs)
-    syy = sum((y - my) ** 2 for y in ys)
-    szz = sum((z - mz) ** 2 for z in zs)
-    syz = sum((y - my) * (z - mz) for y, z in zip(ys, zs))
-    syo = sum((y - my) * (o - mo) for y, o in zip(ys, outs))
-    szo = sum((z - mz) * (o - mo) for z, o in zip(zs, outs))
-    determinant = syy * szz - syz * syz
-    if determinant <= 1e-12:
+
+    y_centered = [y - my for y in ys]
+    z_centered = [z - mz for z in zs]
+    out_centered = [o - mo for o in outs]
+    syy = sum(value * value for value in y_centered)
+    szz = sum(value * value for value in z_centered)
+    if syy == 0.0 or szz == 0.0:
         return None
-    beta_y = (syo * szz - szo * syz) / determinant
-    beta_z = (szo * syy - syo * syz) / determinant
+
+    y_scale = math.sqrt(syy)
+    z_scale = math.sqrt(szz)
+    y_unit = [value / y_scale for value in y_centered]
+    z_unit = [value / z_scale for value in z_centered]
+    correlation = sum(y * z for y, z in zip(y_unit, z_unit))
+    correlation = max(-1.0, min(1.0, correlation))
+    normalized_determinant = 1.0 - correlation * correlation
+    singularity_tolerance = 64.0 * math.ulp(1.0)
+    if normalized_determinant <= singularity_tolerance:
+        return None
+
+    y_out = sum(y * out for y, out in zip(y_unit, out_centered))
+    z_out = sum(z * out for z, out in zip(z_unit, out_centered))
+    gamma_y = (y_out - correlation * z_out) / normalized_determinant
+    gamma_z = (z_out - correlation * y_out) / normalized_determinant
+    beta_y = gamma_y / y_scale
+    beta_z = gamma_z / z_scale
     intercept = mo - beta_y * my - beta_z * mz
+    determinant = syy * szz * normalized_determinant
     return {
         "intercept": intercept,
         "beta_y": beta_y,
         "beta_z": beta_z,
         "determinant": determinant,
+        "normalized_determinant": normalized_determinant,
     }
 
 
