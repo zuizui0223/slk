@@ -17,6 +17,7 @@ FIELDS = [
     "record_id",
     "plant_id",
     "flower_id",
+    "planned_minutes",
     "observed_minutes",
     "simultaneously_open_focal_flowers",
     "legitimate_pollinator_visits",
@@ -71,8 +72,8 @@ def generate(freeze: dict) -> list[dict[str, str]]:
             {
                 "record_type": "POLLINATOR_BOUT",
                 "record_id": f"CAL-POLL-{i:03d}",
-                "observed_minutes": f"{minutes_each:.6f}",
-                "notes": "Record simultaneously open focal flowers and legitimate visits for the full registered bout.",
+                "planned_minutes": f"{minutes_each:.6f}",
+                "notes": "Enter observed_minutes only after completing the bout; also record simultaneously open focal flowers and legitimate visits.",
             }
         )
         rows.append(row)
