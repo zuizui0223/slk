@@ -1,16 +1,23 @@
 # SLK claim provenance — pinned V1
 
-This file freezes the source provenance for the flagship chain
+This file freezes historical source provenance and the current SLK handoff for the flagship chain
 
 ```text
-L -> Phi=sL-K -> accessibility -> invasion -> fixation -> occupancy.
+L -> R -> Phi=R-K -> accessibility -> invasion -> fixation -> occupancy.
 ```
 
-A later edit in a sister repository does not silently alter an SLK claim. Material changes require an explicit update here.
+Under the registered quadratic partial-release bridge only,
+
+```text
+R=sL,
+Phi=sL-K.
+```
+
+A later edit in a sister repository does not silently alter an SLK claim. Material changes require an explicit update here. Historical derivation provenance does not determine current scientific ownership; current ownership is frozen in `docs/THEORY_PROGRAMME_CLOSURE_V1.md` and `docs/OWNERSHIP_AND_HANDOFF.md`.
 
 ## C1 — shared-coordinate conflict budget L
 
-Source: `zuizui0223/sch`
+Historical source: `zuizui0223/sch`
 
 Canonical source surfaces:
 - `README.md`
@@ -31,7 +38,7 @@ Not imported: contextual/pure-function optimum identification, crossed-design de
 
 ## C2 — persistent compromise
 
-Source: `zuizui0223/balance`
+Historical source: `zuizui0223/balance`
 
 Canonical source surfaces:
 - `README.md`
@@ -54,9 +61,11 @@ Not imported: depth, reserve, width, topology, direct-worldline methodology, dee
 
 ## C3-C5 — recoverable loss and architecture margin
 
-Source: `zuizui0223/bita`
+Current canonical owner: `zuizui0223/slk`
 
-Canonical source surfaces:
+Historical derivation provenance includes `zuizui0223/bita`, where early differentiation models and the quadratic partial-release construction were developed before the programme ownership split.
+
+Historical source surfaces:
 - `theory/TRAIT_DIFFERENTIATION_EXTENSION.md`
 - `trait_architecture/differentiation.py`
 - `trait_architecture/differentiation_robustness.py`
@@ -68,20 +77,19 @@ Pinned provenance commits:
 - `fbcbcebaa7c3c4723990fb1887c16b421c98f646` — add nonquadratic robustness model
 - `f2e24d03bf03ed5f9cb5c66e8d835dbc8c7d14ba` — promote theory and freeze empirical ceiling
 
-Imported claims:
+Current SLK claims:
 ```text
 nested architecture before fixed cost -> R>=0
-Delta_arch=R-K
-quadratic bridge -> R=sL
-Phi=sL-K
+Phi=R-K
+quadratic bridge only -> R=sL and Phi=sL-K
 Phi>0 -> differentiated architecture has higher optimized payoff under the declared comparison
 ```
 
-Not imported: BITA's ecological mechanism-identification programme.
+BITA's current canonical residual programme is ecological mechanism identification after a measured trait interaction. Historical provenance of the quadratic derivation does not make BITA the current owner of `R`, `K`, `Phi`, or the `Phi=0` boundary.
 
 ## C6 — global value versus local accessibility
 
-Source: `zuizui0223/payoff`
+Historical source: `zuizui0223/payoff`
 
 Canonical source surfaces:
 - `theory/DISCONTINUOUS_MODULARIZATION_BARRIER.md`
@@ -99,7 +107,7 @@ positive global architecture payoff != local evolutionary accessibility
 
 ## C7 — architecture payoff versus rare invasion
 
-Source: `zuizui0223/payoff`
+Historical source: `zuizui0223/payoff`
 
 Canonical source surfaces:
 - `theory/SYMMETRIC_GAME_CANONICALIZATION.md`
@@ -117,7 +125,7 @@ intrinsic architecture crossing != rare-invasion boundary under frequency depend
 
 ## C8 — invasion versus fixation
 
-Source: `zuizui0223/payoff`
+Historical source: `zuizui0223/payoff`
 
 Pinned provenance commits:
 - `a7b7287734c94349405e01eef0d011edfa67d507` — implement finite-population Moran fixation model
@@ -131,7 +139,7 @@ deterministic rare invasion != finite-population fixation criterion
 
 ## C9 — long-run occupancy is a separate estimand
 
-Source: `zuizui0223/payoff`
+Historical source: `zuizui0223/payoff`
 
 Canonical source surfaces:
 - `theory/TOPOLOGY_RARE_MUTATION.md`

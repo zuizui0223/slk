@@ -8,16 +8,22 @@ Let multiple functions be constrained to a shared phenotypic coordinate. Let `L 
 
 ## 2. Recoverable conflict loss and architecture payoff
 
-Let `s in [0,1]` denote the fraction of the shared compromise load recoverable by an accessible differentiated architecture, and let `K >= 0` denote the additional architecture cost on the same fitness scale.
+Let `R >= 0` denote the optimized amount of shared-coordinate compromise loss recovered by the declared differentiated architecture before charging its additional architecture-specific debit `K >= 0`, with both quantities expressed on the same fitness scale and comparison horizon.
 
-Define
+Define the general architecture margin
+
+```text
+Phi = R-K.
+```
+
+Under the registered quadratic partial-release bridge only, let `s in [0,1]` denote the recoverable fraction of the shared compromise load. Then
 
 ```text
 R = sL
-Phi = R-K = sL-K.
+Phi = sL-K.
 ```
 
-Then
+The classification is
 
 ```text
 L > 0, Phi < 0  persistent compromise world
@@ -25,7 +31,7 @@ Phi = 0         architecture critical surface
 Phi > 0         differentiated architecture globally favored.
 ```
 
-This classification concerns optimized architecture value. It does not yet imply evolutionary accessibility or population establishment.
+This classification concerns optimized architecture value. It does not yet imply evolutionary accessibility or population establishment. `R=sL` is not a universal identity for arbitrary landscapes.
 
 ## 3. Global value does not imply local accessibility
 
@@ -128,12 +134,15 @@ The flagship theorem architecture is therefore not one threshold but a sequence:
 
 ```text
 L
--> Phi=sL-K
+-> R
+-> Phi=R-K
 -> local accessibility
 -> invasion
 -> fixation
 -> occupancy.
 ```
+
+Under the registered quadratic bridge, the middle two steps reduce to `R=sL` and `Phi=sL-K`.
 
 The central non-equivalence statement is
 
