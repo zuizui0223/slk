@@ -12,7 +12,7 @@ assert spec.loader is not None
 spec.loader.exec_module(module)
 
 
-def _cfg(scale: float = 1.0) -> dict:
+def _cfg(z_scale: float = 1.0, y_scale: float = 1.0) -> dict:
     return {
         "context": {
             "context_id": "ctx",
@@ -24,16 +24,16 @@ def _cfg(scale: float = 1.0) -> dict:
         "z_levels": [
             {
                 "level_id": "Z1",
-                "target_exsertion_z": 1.0 * scale,
-                "tolerance": 0.1 * scale,
+                "target_exsertion_z": 1.0 * z_scale,
+                "tolerance": 0.1 * z_scale,
             },
             {
                 "level_id": "Z2",
-                "target_exsertion_z": 2.0 * scale,
-                "tolerance": 0.1 * scale,
+                "target_exsertion_z": 2.0 * z_scale,
+                "tolerance": 0.1 * z_scale,
             },
         ],
-        "bands": {"low_y_max": 10.0, "high_y_min": 20.0},
+        "bands": {"low_y_max": 10.0 * y_scale, "high_y_min": 20.0 * y_scale},
     }
 
 
@@ -111,13 +111,15 @@ def test_identical_frozen_values_are_admitted_after_common_z_rescaling():
 
 def test_baseline_constancy_gate_is_invariant_to_y_units():
     for scale in (1e-13, 1.0, 1e13):
+        cfg = _cfg(1.0, y_scale=scale)
+
         rows = _rows(1.0, baseline_values=(1.0 * scale, 2.0 * scale))
-        complete, _, exclusions = _prepare(rows, _cfg(1.0))
+        complete, _, exclusions = _prepare(rows, cfg)
         assert complete["S"] == {}
         assert "BASELINE_Y_NOT_PLANT_CONSTANT" in _reasons(exclusions)
 
         same = _rows(1.0, baseline_values=(1.5 * scale, 1.5 * scale))
-        complete_same, _, exclusions_same = _prepare(same, _cfg(1.0))
+        complete_same, _, exclusions_same = _prepare(same, cfg)
         assert exclusions_same == []
         assert set(complete_same["S"]) == {"P1"}
 
