@@ -29,6 +29,7 @@ spec3.loader.exec_module(adj)
 def _freeze() -> dict:
     required_fields = [
         "screen_effort.minimum_pollinator_observation_minutes_total",
+        "screen_effort.minimum_pollinator_flower_minutes_total",
         "screen_effort.minimum_pollinator_observation_bouts",
         "screen_effort.minimum_predator_screen_flowers",
         "screen_effort.minimum_water_state_plants",
@@ -51,6 +52,7 @@ def _freeze() -> dict:
         "screen_effort": {
             "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
             "minimum_pollinator_observation_minutes_total": 60,
+            "minimum_pollinator_flower_minutes_total": 120,
             "minimum_pollinator_observation_bouts": 6,
             "minimum_predator_screen_flowers": 30,
             "minimum_water_state_plants": 20,
@@ -99,6 +101,7 @@ def _freeze() -> dict:
             "thresholds_frozen_before_screen_outcomes": True,
             "failed_signal_context_may_trigger_relocation_without_negative_claim": True,
             "capacity_shortfall_requires_exhaustive_census": True,
+            "pollinator_detection_requires_flower_minute_exposure": True,
         },
         "freeze_metadata": {
             "slk_source_commit": "abc123",
@@ -117,6 +120,7 @@ def _completed_rows() -> list[dict[str, str]]:
             row["population_census_exhausted"] = "false"
         elif row["record_type"] == "POLLINATOR_BOUT":
             row["observed_observation_minutes"] = row["planned_observation_minutes"]
+            row["simultaneously_open_focal_flowers"] = "2"
             row["legitimate_pollinator_visits"] = "1" if row["record_id"] == "POLL-001" else "0"
         elif row["record_type"] == "PREDATOR_FLOWER":
             row["plant_id"] = f"P-{row['record_id']}"
@@ -138,12 +142,17 @@ def test_generator_expands_registered_screen_effort() -> None:
     assert all(r["confirmatory_eligible"] == "false" for r in rows)
     census = next(r for r in rows if r["record_type"] == "CENSUS")
     assert "exhaust the focal population" in census["notes"]
+    poll = next(r for r in rows if r["record_type"] == "POLLINATOR_BOUT")
+    assert "open focal" in poll["notes"]
 
 
 def test_completed_packet_summarizes_registered_effort_and_signals() -> None:
     receipt = sum_mod.summarize(_completed_rows())
     assert receipt["effort"]["population_census_exhausted"] is False
     assert receipt["effort"]["pollinator_observation_bouts"] == 6
+    assert receipt["effort"]["pollinator_observation_minutes_total"] == pytest.approx(60.0)
+    assert receipt["effort"]["pollinator_flower_minutes_total"] == pytest.approx(120.0)
+    assert receipt["observations"]["legitimate_visit_rate_per_flower_min"] == pytest.approx(1 / 120)
     assert receipt["effort"]["predator_screen_flowers"] == 30
     assert receipt["effort"]["water_state_plants"] == 20
     assert receipt["observations"]["legitimate_pollinator_visits"] == 1
@@ -157,6 +166,15 @@ def test_packet_summary_and_adjudicator_unlock_calibration_end_to_end() -> None:
     assert result["status"] == "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
     assert result["next_action"]["calibration_unlocked"] is True
     assert result["firewall"]["screen_is_logistical_not_g1_g2"] is True
+    assert result["firewall"]["pollinator_signal_uses_flower_minute_exposure"] is True
+
+
+def test_missing_open_flower_count_makes_pollinator_bout_incomplete() -> None:
+    rows = _completed_rows()
+    target = next(r for r in rows if r["record_id"] == "POLL-006")
+    target["simultaneously_open_focal_flowers"] = ""
+    receipt = sum_mod.summarize(rows)
+    assert receipt["packet_completion"]["completed_pollinator_rows"] == 5
 
 
 def test_below_capacity_packet_without_exhaustion_stays_incomplete() -> None:
@@ -178,15 +196,6 @@ def test_below_capacity_packet_with_exhaustion_is_capacity_limited() -> None:
     receipt = sum_mod.summarize(rows)
     result = adj.adjudicate(receipt, _freeze())
     assert result["status"] == "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED"
-
-
-def test_incomplete_packet_remains_incomplete_in_summary() -> None:
-    rows = _completed_rows()
-    target = next(r for r in rows if r["record_id"] == "POLL-006")
-    target["observed_observation_minutes"] = ""
-    target["legitimate_pollinator_visits"] = ""
-    receipt = sum_mod.summarize(rows)
-    assert receipt["packet_completion"]["completed_pollinator_rows"] == 5
 
 
 def test_packet_row_cannot_be_promoted_to_confirmatory() -> None:
