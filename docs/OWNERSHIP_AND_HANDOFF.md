@@ -6,17 +6,18 @@ SLK is the canonical owner of the integrated cross-repository flagship argument.
 
 ## Canonical flagship ownership
 
-SLK owns the following integrated statements:
+The frozen ownership contract is:
 
 ```text
-SCH      -> valid conflict budget L
-BALANCE -> L>0, Phi<0 identifies persistent compromise
-BITA    -> recoverable architecture value R and general margin Phi=R-K
-           with R=sL retained as the registered quadratic partial-release corollary
-PAYOFF  -> architecture value is distinct from accessibility, invasion, fixation, occupancy
+SCH      -> identifies a valid shared-coordinate conflict budget L
+BALANCE -> owns the middle world L>0, Phi<0 and its direct worldline geometry
+SLK      -> owns architecture value Phi=R-K, the registered quadratic bridge R=sL,
+            and the transport hierarchy accessibility -> invasion -> fixation -> occupancy
+BITA     -> owns trait-interaction -> mechanism identification and partial identification
+PAYOFF   -> supplies source mathematical results used by later SLK transport steps
 ```
 
-SLK may cite source derivations and implementations, but the integrated manuscript is canonical here.
+`Phi=R-K` is the general architecture-value definition within the declared comparison. `R=sL` is a model-specific quadratic bridge, not a universal identity. SLK may cite source derivations and implementations, but the integrated manuscript and cross-level handoff are canonical here.
 
 ## SCH residual ownership
 
@@ -43,21 +44,32 @@ BALANCE retains:
 6. switching-cost hysteresis and historical persistence;
 7. finite-environment certification machinery including Lipschitz/covering or obstruction results where applicable.
 
-SLK imports only the classification `L>0, Phi<0` and the interpretation that real conflict can persist without profitable differentiation.
+SLK imports the classification `L>0, Phi<0` and the interpretation that real conflict can persist without profitable differentiation. BALANCE does not own the positive `Phi` architecture-value side.
+
+## SLK architecture-value ownership
+
+SLK owns the flagship architecture-value objects:
+
+1. recoverable benefit `R` for the declared differentiated comparison;
+2. architecture-specific debit `K` on the matched fitness scale and horizon;
+3. the general margin `Phi=R-K`;
+4. the registered quadratic partial-release bridge `R=sL` and its explicit model assumptions;
+5. the distinction between global architecture value and later realization criteria;
+6. the integrated handoff from `Phi` to accessibility, invasion, fixation, and occupancy.
+
+A direct worldline contrast and decomposed `Phi` are equated only under a declared common-world bridge. A bridge residual is a diagnostic mismatch; it is not automatically a BITA mechanism or an SLK cost.
 
 ## BITA residual ownership
 
-BITA retains:
+BITA retains an orthogonal identification programme:
 
-1. causal ecological mechanism identification after multiple axes exist;
-2. interaction-versus-mechanism distinction;
+1. causal ecological mechanism identification for measured trait interactions;
+2. the principle `trait interaction != ecological mechanism`;
 3. identified-set and partial-identification workflow;
-4. selective multi-factor intervention ladder;
-5. empirical route-record synthesis and high-information frontier;
-6. nonquadratic robustness and architecture extensions beyond the minimum SLK bridge;
-7. the full derivation and assumptions behind the quadratic identity `R=sL` and the biological interpretation of partial release `s`.
+4. selective multi-factor intervention and separability diagnostics;
+5. empirical route-record synthesis and mechanism-allocation frontier.
 
-SLK imports the general architecture-value handoff `Phi=R-K`. It may use `R=sL` only as the registered quadratic partial-release corollary, not as a universal identity.
+BITA outputs may help interpret biological channels contributing to a measured architecture comparison only when an explicit bridge is justified. BITA does not canonically define `R`, `K`, `Phi`, or the `Phi=0` architecture-value boundary.
 
 ## PAYOFF residual ownership
 
@@ -70,9 +82,9 @@ PAYOFF retains:
 5. topology accessibility and graph-state results beyond the flagship barrier example;
 6. spatial spectral invasion;
 7. temporal Floquet dynamics, source switching, exact `asinh` forms, and the finite migration optimum;
-8. any mathematical extensions that do not materially alter the SLK flagship hierarchy.
+8. mathematical extensions that do not materially alter the SLK flagship hierarchy.
 
-SLK imports only:
+SLK imports only the source results required for its integrated transport:
 
 - the global-value versus local-accessibility split;
 - minimal canonical pair transport into invasion;
@@ -96,17 +108,15 @@ It should not present the identical claim as a second primary novelty.
 SLK flagship:
 L -> R -> Phi=R-K -> accessibility -> invasion -> fixation -> occupancy
 
-SCH spin-off:
+SCH full paper:
 causal identification of functional conflict and optima
 
-BALANCE spin-off:
+BALANCE DOI module / dormant paper branch:
 identification and geometry of persistent compromise
 
-BITA spin-off:
-mechanism identification after differentiation
-+ full quadratic/nonquadratic architecture derivations beyond the minimum SLK bridge
+BITA full paper:
+interaction -> identified set -> mechanism allocation
 
-PAYOFF spin-offs:
-continuous/topological architecture theory
-space-time transport theory
+PAYOFF short/technical modules:
+source mathematical extensions beyond the minimum flagship transport
 ```
