@@ -4,25 +4,21 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "59d08a2c3bb02f5a0b3c9606c5f399b26c12485a",
+  "source_main_commit_at_state_snapshot": "da7c034da643fc5562f0bb3b14c839cc491fed5a",
   "current_execution_bottleneck": {
-    "stage_id": "P0_CONTEXT_SCREEN",
-    "design_status": "REGISTERED_FIELD_PACKET_FLOWER_MINUTE_EFFORT_PLANNER_AND_SOURCE_QUALIFICATION_GATE_READY",
-    "production_input_status": "BIOLOGICAL_MINIMUM_RELEVANCE_NUMERIC_INPUTS_NOT_YET_QUALIFIED",
-    "open_inputs": [
-      "minimum_relevant_legitimate_visit_rate_per_flower_minute",
-      "minimum_relevant_early_attack_or_oviposition_fraction",
-      "minimum_relevant_water_positive_fraction",
-      "desired_detection_probabilities_and_pollinator_temporal_coverage",
-      "capacity_reserve_fraction"
-    ],
-    "source_adjudication": "docs/PEDICULARIS_P0_RELEVANCE_SOURCE_ADJUDICATION_V1.md",
-    "source_adjudication_ledger": "data/PEDICULARIS_P0_RELEVANCE_SOURCE_ADJUDICATION_V1.csv",
-    "qualification_template": "data/PEDICULARIS_P0_RELEVANCE_QUALIFICATION_TEMPLATE_V1.json",
-    "production_freeze_blocked": true,
-    "recommended_next_action": "FRESH_DISJOINT_NATURAL_HISTORY_CALIBRATION_FOR_PREDATOR_AND_WATER; RECOVER_EXACT_POLLINATOR_RATE_OR_CALIBRATE_FRESH"
+    "stage_id": "P0_RELEVANCE_NATURAL_HISTORY_CALIBRATION",
+    "design_status": "REGISTERED_INDEPENDENT_CALIBRATION_PACKET_BOOTSTRAP_LOWER_BOUND_AND_QUALIFICATION_HANDOFF_READY",
+    "biological_status": "NOT_EXECUTED",
+    "purpose": "QUALIFY_POLLINATOR_PREDATOR_AND_WATER_MINIMUM_RELEVANCE_INPUTS_FOR_P0_EFFORT_ONLY",
+    "required_positive_status": "P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED",
+    "protocol": "docs/PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_V1.md",
+    "freeze_template": "data/PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_TEMPLATE_V1.json",
+    "next_if_positive": "P0_MINIMUM_RELEVANCE_INPUTS_QUALIFIED_THEN_P0_EFFORT_FREEZE",
+    "next_if_zero_compatible": "NEW_PROSPECTIVE_CALIBRATION_WAVE_OR_NEXT_CONTEXT",
+    "p0_production_freeze_blocked_until_positive_qualification": true
   },
   "stages": [
+    {"stage_id": "P0_RELEVANCE_NATURAL_HISTORY_CALIBRATION", "design_status": "REGISTERED_PACKET_BOOTSTRAP_AND_HANDOFF_READY", "biological_status": "NOT_EXECUTED", "required_positive_status": "P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED"},
     {"stage_id": "P0_CONTEXT_SCREEN", "design_status": "REGISTERED_FIELD_PACKET_FLOWER_MINUTE_EFFORT_PLANNER_SOURCE_GATE_READY", "biological_status": "NOT_EXECUTED", "required_positive_status": "CONTEXT_SCREEN_PASS_CALIBRATION_READY"},
     {"stage_id": "P1_THRESHOLD_FREEZE", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "THRESHOLD_FREEZE_VALIDATED"},
     {"stage_id": "P2_QZ_QP_QG", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "QZ_QP_QG_ALL_VALIDATED"},
