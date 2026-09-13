@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import importlib.util
 from pathlib import Path
 
@@ -27,6 +26,12 @@ CTX = {
     "season_id": "2027",
     "screen_window_id": "screen1",
 }
+QUAL = {
+    "DOWNSTREAM_DESIGN_REQUIREMENT": "DESIGN_REQUIREMENT_QUALIFIED",
+    "INDEPENDENT_NATURAL_HISTORY_CALIBRATION": "FRESH_CALIBRATION_QUALIFIED",
+    "EXTERNAL_MATCHED_PRIMARY_SOURCE": "NUMERIC_TRANSPORT_QUALIFIED",
+    "COMBINED_PREDECLARED": "COMBINED_PREDECLARED_QUALIFIED",
+}
 
 
 def _effort_freeze() -> dict:
@@ -39,14 +44,17 @@ def _effort_freeze() -> dict:
             "frozen_before_screen_outcomes": True,
         },
         "pollinator_detection": {
-            "minimum_relevant_visit_rate_per_min": 0.02,
+            "minimum_relevant_visit_rate_per_flower_min": 0.02,
+            "visit_rate_unit": "LEGITIMATE_VISITS_PER_FLOWER_MINUTE",
             "desired_detection_probability": 0.95,
             "minimum_temporal_bouts": 6,
             "minimum_minutes_per_bout": 20,
             "rate_source_type": "EXTERNAL_MATCHED_PRIMARY_SOURCE",
+            "rate_source_qualification_status": "NUMERIC_TRANSPORT_QUALIFIED",
             "rate_source_reference": "TEST_POLLINATOR_RATE_SOURCE",
-            "rate_rationale": "test-only minimum relevant visit rate",
+            "rate_rationale": "test-only qualified minimum relevant visit rate per flower-minute",
             "coverage_source_type": "DOWNSTREAM_DESIGN_REQUIREMENT",
+            "coverage_source_qualification_status": "DESIGN_REQUIREMENT_QUALIFIED",
             "coverage_source_reference": "TEST_TEMPORAL_COVERAGE_SOURCE",
             "coverage_rationale": "spread observation across multiple bouts",
         },
@@ -54,30 +62,29 @@ def _effort_freeze() -> dict:
             "minimum_relevant_attack_fraction": 0.05,
             "desired_detection_probability": 0.95,
             "source_type": "EXTERNAL_MATCHED_PRIMARY_SOURCE",
+            "source_qualification_status": "NUMERIC_TRANSPORT_QUALIFIED",
             "source_reference": "TEST_PREDATOR_RATE_SOURCE",
-            "biological_rationale": "test-only minimum relevant attack prevalence",
+            "biological_rationale": "test-only qualified minimum relevant attack prevalence",
         },
         "water_state_detection": {
             "minimum_relevant_positive_fraction": 0.50,
             "desired_detection_probability": 0.95,
             "source_type": "INDEPENDENT_NATURAL_HISTORY_CALIBRATION",
+            "source_qualification_status": "FRESH_CALIBRATION_QUALIFIED",
             "source_reference": "TEST_WATER_SOURCE",
-            "biological_rationale": "test-only minimum relevant water-state prevalence",
+            "biological_rationale": "test-only qualified water-state prevalence",
         },
         "capacity": {
             "reserve_fraction": 0.10,
             "source_type": "DOWNSTREAM_DESIGN_REQUIREMENT",
+            "source_qualification_status": "DESIGN_REQUIREMENT_QUALIFIED",
             "source_reference": "Y_CAL_36_PLUS_D0_CAL_48",
             "rationale": "protect the 84-plant disjoint calibration base against modest attrition",
             "census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
         },
         "source_policy": {
-            "allowed_relevance_sources": [
-                "DOWNSTREAM_DESIGN_REQUIREMENT",
-                "INDEPENDENT_NATURAL_HISTORY_CALIBRATION",
-                "EXTERNAL_MATCHED_PRIMARY_SOURCE",
-                "COMBINED_PREDECLARED",
-            ],
+            "allowed_relevance_sources": list(QUAL),
+            "required_qualification_status_by_source_type": QUAL,
             "forbidden_relevance_sources": [
                 "SCREEN_OUTCOME_POSTHOC",
                 "HISTORICAL_SAMPLE_SIZE_ONLY",
@@ -90,6 +97,8 @@ def _effort_freeze() -> dict:
             "desired_detection_probabilities_frozen_before_screen_outcomes": True,
             "zero_detection_remains_context_uninformative_not_absence": True,
             "historical_event_rates_not_copied_without_transport_justification": True,
+            "external_numeric_source_requires_transport_qualification": True,
+            "pollinator_detection_uses_flower_minutes_not_raw_minutes": True,
             "planner_sets_effort_not_biological_effect_thresholds": True,
         },
         "freeze_metadata": {
@@ -113,6 +122,7 @@ def _screen_template() -> dict:
         "screen_effort": {
             "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
             "minimum_pollinator_observation_minutes_total": None,
+            "minimum_pollinator_flower_minutes_total": None,
             "minimum_pollinator_observation_bouts": None,
             "minimum_predator_screen_flowers": None,
             "minimum_water_state_plants": None,
@@ -153,6 +163,7 @@ def _screen_template() -> dict:
             "thresholds_frozen_before_screen_outcomes": True,
             "failed_signal_context_may_trigger_relocation_without_negative_claim": True,
             "capacity_shortfall_requires_exhaustive_census": True,
+            "pollinator_detection_requires_flower_minute_exposure": True,
         },
         "freeze_metadata": {
             "slk_source_commit": "REQUIRED_BEFORE_USE",
@@ -165,9 +176,11 @@ def _screen_template() -> dict:
 
 def test_reference_detection_effort_values() -> None:
     result = planner.plan(_effort_freeze())
-    assert result["pollinator"]["poisson_detection_minutes"] == 150
+    assert result["pollinator"]["poisson_detection_flower_minutes"] == 150
     assert result["pollinator"]["temporal_coverage_minutes"] == 120
     assert result["pollinator"]["planned_total_minutes"] == 150
+    assert result["pollinator"]["planned_total_flower_minutes"] == 150
+    assert result["pollinator"]["worst_case_exposure_rule"] == "ASSUME_AT_LEAST_ONE_OPEN_FOCAL_FLOWER_PER_VALID_OBSERVATION_MINUTE"
     assert result["predator"]["planned_screen_flowers"] == 59
     assert result["water_state"]["planned_screen_plants"] == 5
     assert result["capacity"]["required_flowering_plants"] == 93
@@ -181,6 +194,7 @@ def test_more_demanding_detection_guarantee_never_reduces_effort() -> None:
     tougher["water_state_detection"]["desired_detection_probability"] = 0.99
     result = planner.plan(tougher)
     assert result["pollinator"]["planned_total_minutes"] >= base["pollinator"]["planned_total_minutes"]
+    assert result["pollinator"]["planned_total_flower_minutes"] >= base["pollinator"]["planned_total_flower_minutes"]
     assert result["predator"]["planned_screen_flowers"] >= base["predator"]["planned_screen_flowers"]
     assert result["water_state"]["planned_screen_plants"] >= base["water_state"]["planned_screen_plants"]
 
@@ -188,11 +202,12 @@ def test_more_demanding_detection_guarantee_never_reduces_effort() -> None:
 def test_weaker_minimum_signal_requires_more_effort() -> None:
     base = planner.plan(_effort_freeze())
     weaker = _effort_freeze()
-    weaker["pollinator_detection"]["minimum_relevant_visit_rate_per_min"] = 0.01
+    weaker["pollinator_detection"]["minimum_relevant_visit_rate_per_flower_min"] = 0.01
     weaker["predator_detection"]["minimum_relevant_attack_fraction"] = 0.02
     weaker["water_state_detection"]["minimum_relevant_positive_fraction"] = 0.25
     result = planner.plan(weaker)
     assert result["pollinator"]["planned_total_minutes"] > base["pollinator"]["planned_total_minutes"]
+    assert result["pollinator"]["planned_total_flower_minutes"] > base["pollinator"]["planned_total_flower_minutes"]
     assert result["predator"]["planned_screen_flowers"] > base["predator"]["planned_screen_flowers"]
     assert result["water_state"]["planned_screen_plants"] > base["water_state"]["planned_screen_plants"]
 
@@ -204,16 +219,31 @@ def test_posthoc_relevance_source_is_rejected() -> None:
         planner.plan(freeze)
 
 
+def test_external_source_requires_numeric_transport_qualification() -> None:
+    freeze = _effort_freeze()
+    freeze["pollinator_detection"]["rate_source_qualification_status"] = "PARTIAL_EXTERNAL_ANCHOR"
+    with pytest.raises(ValueError, match="not qualified for numeric use"):
+        planner.plan(freeze)
+
+
+def test_pollinator_rate_unit_cannot_fall_back_to_raw_minutes() -> None:
+    freeze = _effort_freeze()
+    freeze["pollinator_detection"]["visit_rate_unit"] = "LEGITIMATE_VISITS_PER_MINUTE"
+    with pytest.raises(ValueError, match="flower-minute"):
+        planner.plan(freeze)
+
+
 def test_compiler_populates_p0_effort_without_finalizing_freeze() -> None:
     plan = planner.plan(_effort_freeze())
     result = compiler.compile_effort(_screen_template(), plan)
     assert result["status"] == "EFFORT_COMPILED_AWAITING_FINAL_P0_FREEZE"
     assert result["screen_effort"]["minimum_pollinator_observation_minutes_total"] == 150
+    assert result["screen_effort"]["minimum_pollinator_flower_minutes_total"] == 150
     assert result["screen_effort"]["minimum_predator_screen_flowers"] == 59
     assert result["screen_effort"]["minimum_water_state_plants"] == 5
     assert result["screen_effort"]["minimum_capacity_margin_fraction"] == pytest.approx(0.10)
     assert result["decision_thresholds"]["minimum_legitimate_pollinator_visits"] == 1
-    assert len(result["source_policy"]["threshold_source_records"]) == 8
+    assert len(result["source_policy"]["threshold_source_records"]) == 9
     assert result["context"]["frozen_before_screen_outcomes"] is False
 
 

@@ -1,0 +1,85 @@
+{
+  "schema_version": "SLK_PEDICULARIS_P0_RELEVANCE_QUALIFICATION_V1",
+  "status": "TEMPLATE_ONLY_NOT_QUALIFIED",
+  "context": {
+    "system": "Pedicularis rex",
+    "candidate_site_id": "REQUIRED_BEFORE_USE",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "screen_window_id": "REQUIRED_BEFORE_USE",
+    "p0_outcomes_opened": false
+  },
+  "inputs": [
+    {
+      "input_id": "P0_POLLINATOR_MIN_RATE",
+      "target_metric": "LEGITIMATE_VISITS_PER_FLOWER_MINUTE",
+      "qualification_route": "REQUIRED_BEFORE_USE",
+      "source_type": "REQUIRED_BEFORE_USE",
+      "source_reference": "REQUIRED_BEFORE_USE",
+      "source_metric": "REQUIRED_BEFORE_USE",
+      "numeric_value": null,
+      "numeric_units": "LEGITIMATE_VISITS_PER_FLOWER_MINUTE",
+      "endpoint_match": false,
+      "unit_or_denominator_match": false,
+      "context_transport_justified": false,
+      "fresh_calibration_units_independent_of_p0": false,
+      "fresh_calibration_units_downstream_confirmatory_ineligible": false,
+      "biological_rationale": "REQUIRED_BEFORE_USE",
+      "qualification_status": "NOT_QUALIFIED",
+      "frozen_before_p0_outcomes": false
+    },
+    {
+      "input_id": "P0_PREDATOR_MIN_PREVALENCE",
+      "target_metric": "EARLY_ATTACK_OR_OVIPOSITION_POSITIVE_FLOWERS_PER_SCREENED_FLOWERS",
+      "qualification_route": "REQUIRED_BEFORE_USE",
+      "source_type": "REQUIRED_BEFORE_USE",
+      "source_reference": "REQUIRED_BEFORE_USE",
+      "source_metric": "REQUIRED_BEFORE_USE",
+      "numeric_value": null,
+      "numeric_units": "PROPORTION_0_1",
+      "endpoint_match": false,
+      "unit_or_denominator_match": false,
+      "context_transport_justified": false,
+      "fresh_calibration_units_independent_of_p0": false,
+      "fresh_calibration_units_downstream_confirmatory_ineligible": false,
+      "biological_rationale": "REQUIRED_BEFORE_USE",
+      "qualification_status": "NOT_QUALIFIED",
+      "frozen_before_p0_outcomes": false
+    },
+    {
+      "input_id": "P0_WATER_POSITIVE_PREVALENCE",
+      "target_metric": "WATER_POSITIVE_FLOWERING_PLANTS_PER_SCREENED_FLOWERING_PLANTS",
+      "qualification_route": "REQUIRED_BEFORE_USE",
+      "source_type": "REQUIRED_BEFORE_USE",
+      "source_reference": "REQUIRED_BEFORE_USE",
+      "source_metric": "REQUIRED_BEFORE_USE",
+      "numeric_value": null,
+      "numeric_units": "PROPORTION_0_1",
+      "endpoint_match": false,
+      "unit_or_denominator_match": false,
+      "context_transport_justified": false,
+      "fresh_calibration_units_independent_of_p0": false,
+      "fresh_calibration_units_downstream_confirmatory_ineligible": false,
+      "biological_rationale": "REQUIRED_BEFORE_USE",
+      "qualification_status": "NOT_QUALIFIED",
+      "frozen_before_p0_outcomes": false
+    }
+  ],
+  "allowed_routes": [
+    "EXTERNAL_NUMERIC_TRANSPORT",
+    "FRESH_INDEPENDENT_CALIBRATION"
+  ],
+  "firewall": {
+    "figure_read_off_without_exact_source_forbidden": true,
+    "endpoint_substitution_forbidden": true,
+    "historical_sample_size_as_numeric_source_forbidden": true,
+    "fresh_calibration_units_p0_decision_reuse_forbidden": true,
+    "fresh_calibration_units_downstream_confirmatory_reuse_forbidden": true,
+    "qualification_must_precede_p0_outcomes": true
+  },
+  "qualification_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "qualification_commit": "REQUIRED_BEFORE_USE",
+    "qualification_timestamp": "REQUIRED_BEFORE_USE"
+  }
+}

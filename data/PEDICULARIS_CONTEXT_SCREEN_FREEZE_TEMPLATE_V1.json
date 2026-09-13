@@ -12,6 +12,7 @@
   "screen_effort": {
     "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
     "minimum_pollinator_observation_minutes_total": null,
+    "minimum_pollinator_flower_minutes_total": null,
     "minimum_pollinator_observation_bouts": null,
     "minimum_predator_screen_flowers": null,
     "minimum_water_state_plants": null,
@@ -46,7 +47,7 @@
   "classification_rules": {
     "CONTEXT_SCREEN_PASS_CALIBRATION_READY": "all signal gates pass and immediate calibration capacity is reached",
     "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED": "all signal gates pass, the focal population census is exhausted, and capacity remains below the frozen requirement",
-    "CONTEXT_UNINFORMATIVE_POLLINATOR_LOW": "pollinator effort completed but legitimate activity below frozen threshold",
+    "CONTEXT_UNINFORMATIVE_POLLINATOR_LOW": "pollinator minute and flower-minute effort completed but legitimate activity below frozen threshold",
     "CONTEXT_UNINFORMATIVE_PREDATOR_LOW": "predator effort completed but attack below frozen threshold",
     "CONTEXT_UNINFORMATIVE_WATER_STATE": "water-state effort completed but water functionality below frozen threshold",
     "CONTEXT_UNINFORMATIVE_MULTIPLE_SIGNALS": "registered signal effort completed but more than one signal is below its frozen screen threshold",
@@ -59,7 +60,8 @@
     "no_treatment_effect_estimation_from_screen": true,
     "thresholds_frozen_before_screen_outcomes": true,
     "failed_signal_context_may_trigger_relocation_without_negative_claim": true,
-    "capacity_shortfall_requires_exhaustive_census": true
+    "capacity_shortfall_requires_exhaustive_census": true,
+    "pollinator_detection_requires_flower_minute_exposure": true
   },
   "freeze_metadata": {
     "slk_source_commit": "REQUIRED_BEFORE_USE",

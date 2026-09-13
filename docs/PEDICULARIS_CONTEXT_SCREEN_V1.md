@@ -1,25 +1,25 @@
 # Pedicularis P0 context-screen protocol v1
 
-Status: **PROSPECTIVE / LOGISTICAL QUALIFICATION ONLY / NO G1-G5 CLAIM**.
+Status: **PROSPECTIVE / SOURCE-GATED / LOGISTICAL QUALIFICATION ONLY / NO G1-G5 CLAIM**.
 
 ## 1. Purpose
 
-The same-system Pedicularis programme now has an end-to-end prospective path from Qz/Qp/Qg through G5. The first real-data decision is not a treatment effect. It is whether a focal population-season contains enough observable biological signal and enough flowering material to justify spending the independent calibration and qualification partitions.
+The first real-data decision in the same-system `Pedicularis rex` programme is whether one focal population-season contains enough observable interaction signal and enough flowering material to justify spending the independent calibration and qualification partitions.
 
-P0 therefore asks only:
+P0 asks only:
 
 ```text
-is legitimate pollinator activity detectable?
-is seed-predator attack/oviposition detectable?
-is the cupulate-bract water state functional and measurable?
+is legitimate pollinator activity detectable at registered exposure?
+is early seed-predator attack / oviposition detectable?
+is a functional cupulate-bract water state detectable?
 is there enough flowering-plant capacity to begin the disjoint calibration programme?
 ```
 
 P0 does **not** ask whether conflict exists, whether pollen limitation is significant, or whether water defence has a causal effect.
 
-## 2. Why zero detection is not a biological negative
+## 2. Zero detection is not a biological negative
 
-The screen is a context-selection device. If a registered observation effort yields no legitimate pollinator visit or no predator attack, the result is:
+P0 is a context-selection device. A completed low-signal screen yields:
 
 ```text
 CONTEXT_UNINFORMATIVE_...
@@ -34,145 +34,197 @@ no conflict
 Qg negative.
 ```
 
-A low-signal context may be revisited under a newly frozen effort contract or replaced by a higher-signal population-season without creating a biological negative receipt.
+A low-signal context may be retained as a low-interaction context and the causal programme relocated without creating a negative G1/G2 receipt.
 
-## 3. Pollen limitation stays open at P0
+## 3. Pollen limitation remains open
 
-The field-execution policy previously required pollen limitation to be “not obviously absent”. That wording is too easy to overinterpret. P0 v1 therefore freezes:
+P0 freezes:
 
 ```text
-pollen limitation = UNRESOLVED_UNTIL_QP_CALIBRATION
+pollen limitation = UNRESOLVED_UNTIL_QP_CALIBRATION.
 ```
 
-Natural pollen receipt can be recorded descriptively, but no P0 threshold on pollen limitation is allowed. The selective supplementation gate Qp remains the first place where pollination dependence is tested.
+Natural pollen receipt may be recorded descriptively, but selective supplementation Qp remains the first gate that can establish manipulable pollination dependence.
 
-## 4. Detection effort is calculated, not guessed
+## 4. Biological minimum-relevance values require qualification
 
-The production P0 effort is derived prospectively under:
+The P0 effort planner needs three biological numeric inputs:
+
+```text
+pollinator
+    minimum legitimate visit rate per flower-minute
+
+predator
+    minimum early attacked-flower / oviposition-positive prevalence
+
+water state
+    minimum water-positive flowering-plant prevalence.
+```
+
+They cannot be inferred from convenience, historical sample size, a non-significant P value, or the P0 outcomes themselves.
+
+Canonical audit:
+
+```text
+docs/PEDICULARIS_P0_RELEVANCE_SOURCE_ADJUDICATION_V1.md
+data/PEDICULARIS_P0_RELEVANCE_SOURCE_ADJUDICATION_V1.csv
+```
+
+Current audit result:
+
+```text
+pollinator method / denominator: matched after flower-minute correction
+pollinator external exact numeric minimum: OPEN
+predator external numeric prevalence: NOT QUALIFIED; endpoint mismatch
+water external numeric prevalence: NOT QUALIFIED; prevalence denominator absent.
+```
+
+A production numeric value must pass:
+
+```text
+data/PEDICULARIS_P0_RELEVANCE_QUALIFICATION_TEMPLATE_V1.json
+scripts/validate_pedicularis_p0_relevance_qualification.py
+```
+
+Allowed qualification routes are:
+
+```text
+EXTERNAL_NUMERIC_TRANSPORT
+FRESH_INDEPENDENT_CALIBRATION.
+```
+
+External values require endpoint, unit/denominator and focal-context transport to be explicitly qualified. Fresh calibration units must be disjoint from P0 decision units and downstream confirmatory units.
+
+## 5. Pollinator exposure uses flower-minutes
+
+Sun & Huang (2015) estimated `P. rex` visitation using 30-min plot censuses and normalized flower visits by the number of simultaneously open flowers. Therefore the P0 exposure unit is:
+
+```text
+flower-minutes
+= observed minutes x simultaneously open focal P. rex flowers.
+```
+
+The field packet records, for every pollinator bout:
+
+```text
+observed_observation_minutes
+simultaneously_open_focal_flowers
+legitimate_pollinator_visits.
+```
+
+The summary calculates:
+
+```text
+cumulative flower-minutes
+legitimate visits / flower-minute.
+```
+
+Raw visits per minute are not the registered P0 rate.
+
+## 6. Detection effort is calculated, not guessed
+
+After the biological minimum-relevance inputs qualify, freeze the remaining design decisions:
+
+```text
+desired detection probabilities
+pollinator temporal-bout coverage
+capacity reserve fraction.
+```
+
+Then use:
 
 ```text
 docs/PEDICULARIS_CONTEXT_SCREEN_EFFORT_PLAN_V1.md
 data/PEDICULARIS_CONTEXT_SCREEN_EFFORT_FREEZE_TEMPLATE_V1.json
-data/PEDICULARIS_CONTEXT_SCREEN_EFFORT_SOURCE_LEDGER_V1.csv
 scripts/plan_pedicularis_context_screen_effort.py
 scripts/compile_pedicularis_context_screen_effort.py
 ```
 
-The planner requires biologically / decision-justified minimum signals:
+### Pollinator
+
+For minimum rate `lambda_min` per flower-minute and required detection probability `q`:
 
 ```text
-minimum legitimate visit rate per minute
-minimum predator-attack prevalence
-minimum water-positive prevalence
+P(no visit after E flower-minutes) = exp(-lambda_min E)
+E_required = ceil[-log(1-q) / lambda_min].
 ```
 
-plus desired detection probabilities and temporal-coverage rules.
-
-It then converts those frozen inputs into:
+P0 must satisfy both:
 
 ```text
-pollinator observation minutes and bouts
-predator-screen flower count
-water-state plant count.
+minimum clock-time / bout coverage
+AND
+minimum cumulative flower-minute exposure.
 ```
 
-The planner never chooses the minimum-relevance rates from P0 outcomes.
+### Predator / water
 
-For pollinators the registered planning approximation is:
+For minimum prevalence `p_min`:
 
 ```text
-P(no detection in T min) = exp(-lambda_min T).
+P(no positive among n units) = (1-p_min)^n
+n = ceil[log(1-q) / log(1-p_min)].
 ```
 
-For predator / water-state presence:
+The planner chooses effort, not biological relevance thresholds.
 
-```text
-P(no positive among n units) = (1-p_min)^n.
-```
+## 7. Immediate calibration capacity and census stopping
 
-A completed zero remains context-uninformative at the declared detection resolution, not evidence of true absence.
-
-## 5. Immediate calibration capacity and census stopping
-
-Two already registered calibration cohorts are disjoint:
+The disjoint base calibration cohorts require:
 
 ```text
 Y-CAL   36 independent plants
 D0-CAL  48 independent plants
+base    84 independent flowering plants.
 ```
 
-Therefore the non-negotiable base capacity for completing both calibration cohorts in one population-season is:
+With prospectively frozen reserve fraction `r`:
 
 ```text
-84 independent flowering plants.
+required capacity = ceil[84(1+r)].
 ```
 
-P0 may freeze an additional prospective reserve fraction for losses / unavailable phenotype strata:
-
-```text
-required flowering capacity
-= ceil(84 x [1 + reserve_fraction]).
-```
-
-The reserve may not be chosen after observing the site census.
-
-The capacity census obeys the frozen stopping rule:
+Census rule:
 
 ```text
 STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION.
 ```
 
-Therefore:
+Thus:
 
 ```text
-observed count >= required capacity
--> capacity resolved PASS; exhaustive census not required
+count >= required capacity
+-> capacity PASS; exhaustive census unnecessary
 
-observed count < required capacity
-AND population_census_exhausted = true
--> CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED, if signal gates pass
+count < required capacity AND focal population exhausted
+-> capacity-limited context
 
-observed count < required capacity
-AND census not exhausted
--> CONTEXT_SCREEN_INCOMPLETE; continue census.
+count < required capacity AND census not exhausted
+-> P0 incomplete; continue census.
 ```
 
-A partial census may never be used to declare a capacity-limited context.
+A partial low count may never be promoted to `CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED`.
 
-This is a capacity screen, not a claim that the P0 plant count is sufficient for later Qz/Qp/Qg, D0-confirmatory or G3-G5 effect partitions. Those retain their own independent sample-size contracts.
+## 8. Historical anchors are candidate sources, not current passes
 
-## 6. Historical source anchors
-
-Published Pedicularis rex studies establish that field populations with the required biological ingredients have existed in the Hengduan Mountains system.
-
-### Sun & Huang 2015, AoB PLANTS, doi:10.1093/aobpla/plv019
+Published `P. rex` work provides useful scouting anchors:
 
 ```text
-six field populations sampled in the Hengduan Mountains
-40-60 individuals tagged per population in the water-drainage experiment
-bumblebee visitation observed
-seed predation measured
-water-filled cupulate bracts experimentally established as biologically relevant.
+Sun & Huang 2015
+    direct bumblebee visitation method
+    experimental water-defence reality
+    geographically variable seed predation
+
+Sun, Armbruster & Huang 2016
+    14 populations
+    geographic mosaic in seed-predator pressure
+
+Xia et al. 2013
+    direct Shangri-La interaction systems
+    density / patch-size dependence of predation.
 ```
 
-### Sun, Armbruster & Huang 2016, Annals of Botany, doi:10.1093/aob/mcw097
-
-```text
-14 populations surveyed
-pollination-related traits measured across the geographic sample
-seed predation/final seed production measured in 12 populations
-seed-predator pressure varied geographically.
-```
-
-### Xia, Sun & Liu 2013, Biology Letters, doi:10.1098/rsbl.2013.0387
-
-```text
-Mt. Wufeng and Shangri-La Alpine Botanical Garden used as direct interaction field systems
-pollination and predispersal seed predation measured
-historical patch size ranged from 1 to 500 flowering plants in the 2011 system.
-```
-
-These papers justify **where to recover candidate populations and what signals to screen**. They do not make any historical site automatically qualified today. Historical sample sizes are explicitly forbidden as the sole source of a production P0 effort threshold.
+These sources guide candidate recovery and source adjudication. They do not automatically qualify a current population-season or provide a production P0 number.
 
 Candidate contexts are tracked in:
 
@@ -180,44 +232,35 @@ Candidate contexts are tracked in:
 data/PEDICULARIS_CONTEXT_CANDIDATE_LEDGER_V1.csv
 ```
 
-and remain historical candidates until fresh P0 admission.
+## 9. Prospective freeze sequence
 
-## 7. Freeze sequence before screening
-
-The execution order is:
+The correct order is:
 
 ```text
 1. recover candidate population-season
-2. qualify / freeze minimum-relevance signal inputs
-3. run P0 effort planner
-4. compile planned effort into the ordinary P0 screen template
-5. review final P0 contract
-6. fill final freeze metadata and commit it
-7. set status = FROZEN_CANDIDATE
-8. set frozen_before_screen_outcomes = true
-9. only then generate the field packet.
+2. qualify the three biological minimum-relevance inputs
+3. compile qualified values into the P0 effort-freeze template
+4. freeze detection probabilities / temporal coverage / capacity reserve
+5. run P0 effort planner
+6. compile effort into ordinary P0 screen freeze
+7. review, commit and mark final P0 freeze prospective
+8. only then generate the field packet.
 ```
 
-The ordinary production freeze is:
+Qualified biology can be compiled with:
 
-```text
-data/PEDICULARIS_CONTEXT_SCREEN_FREEZE_TEMPLATE_V1.json
+```bash
+python scripts/compile_pedicularis_p0_relevance_into_effort_freeze.py \
+  data/PEDICULARIS_CONTEXT_SCREEN_EFFORT_FREEZE_TEMPLATE_V1.json \
+  PEDICULARIS_P0_RELEVANCE_QUALIFICATION_FILLED.json \
+  --output PEDICULARIS_CONTEXT_SCREEN_EFFORT_RELEVANCE_COMPILED.json
 ```
 
-Allowed source classes are:
+No P0 observations may be opened before the final contracts are frozen.
 
-```text
-DOWNSTREAM_DESIGN_REQUIREMENT
-INDEPENDENT_NATURAL_HISTORY_CALIBRATION
-EXTERNAL_MATCHED_PRIMARY_SOURCE
-COMBINED_PREDECLARED.
-```
+## 10. Field packet
 
-Forbidden shortcuts include historical n alone, post-hoc screen outcomes, non-significant P values and convenience alone.
-
-## 8. Field packet
-
-After the final freeze validates, generate:
+After the final P0 freeze validates:
 
 ```bash
 python scripts/generate_pedicularis_context_screen_packet.py \
@@ -228,13 +271,11 @@ python scripts/generate_pedicularis_context_screen_packet.py \
 It contains:
 
 ```text
-1 census row
+1 capacity-census row
 registered pollinator-observation bout rows
 registered predator-screen flower rows
 registered water-state plant rows.
 ```
-
-The census row records whether the focal population has been exhausted when required capacity has not been reached.
 
 Every row is permanently:
 
@@ -243,9 +284,9 @@ screen_only = true
 confirmatory_eligible = false.
 ```
 
-## 9. Summarize and adjudicate
+## 11. Summarize and adjudicate
 
-After collection:
+After field collection:
 
 ```bash
 python scripts/summarize_pedicularis_context_screen_packet.py \
@@ -257,7 +298,7 @@ python scripts/adjudicate_pedicularis_context_screen.py \
   PEDICULARIS_CONTEXT_SCREEN_FREEZE_V1.json
 ```
 
-The possible operational outputs are:
+Possible operational outcomes:
 
 ```text
 CONTEXT_SCREEN_PASS_CALIBRATION_READY
@@ -269,35 +310,29 @@ CONTEXT_UNINFORMATIVE_MULTIPLE_SIGNALS
 CONTEXT_SCREEN_INCOMPLETE.
 ```
 
-Only the first status unlocks the default Y-CAL/D0-CAL programme in that population-season.
+Only the first unlocks the default calibration programme in that population-season.
 
-Signal-effort completion and capacity-census resolution are reported separately. Thus a site can retain completed signal information while requiring further census effort.
-
-## 10. Relocation rule
-
-For a fully observed low-signal context:
+## 12. Current state
 
 ```text
-retain P0 receipt
-label context uninformative for the current causal programme
-no biological negative claim
-screen the next candidate population-season.
+P0 field packet / adjudicator:             REGISTERED
+pollinator flower-minute exposure:         REGISTERED
+P0 detection-effort planner:               REGISTERED
+P0 source qualification validator:         REGISTERED
+external numeric transport gate:           REGISTERED
+pollinator production minimum rate:        OPEN
+predator production minimum prevalence:    FRESH CALIBRATION REQUIRED
+water production minimum prevalence:       FRESH CALIBRATION REQUIRED
+final production P0 freeze:                BLOCKED
+P0 biological receipt:                     NOT EXECUTED.
 ```
 
-This implements the existing rule that near-zero predator pressure is not a negative Qg result.
+The cleanest next empirical action is a **small disjoint natural-history calibration at the candidate population** unless an exact pollinator source value can be recovered and transport-qualified.
 
-## 11. Current state
+## 13. Claim ceiling
 
 ```text
-P0 field packet / adjudicator:          REGISTERED
-P0 detection-effort planner:            REGISTERED
-P0 capacity-census stopping rule:       REGISTERED
-historical candidate-source ledgers:    REGISTERED
-production minimum-relevance rates:     OPEN
-final production P0 freeze:             NOT YET FROZEN
-P0 biological receipt:                  NOT EXECUTED
+P0_CONTEXT_AND_SOURCE_QUALIFICATION_ONLY
+NO_G1_G2
+NO_R_K_PHI.
 ```
-
-The immediate task is no longer to invent a screen sample size. It is to qualify the minimum-relevance inputs in `PEDICULARIS_CONTEXT_SCREEN_EFFORT_SOURCE_LEDGER_V1.csv`, freeze them prospectively, and then let the planner determine the effort.
-
-No real Pedicularis G1-G5 receipt is created by this protocol.

@@ -14,8 +14,15 @@ ALLOWED_SOURCE_TYPES = {
     "EXTERNAL_MATCHED_PRIMARY_SOURCE",
     "COMBINED_PREDECLARED",
 }
+EXPECTED_QUALIFICATION = {
+    "DOWNSTREAM_DESIGN_REQUIREMENT": "DESIGN_REQUIREMENT_QUALIFIED",
+    "INDEPENDENT_NATURAL_HISTORY_CALIBRATION": "FRESH_CALIBRATION_QUALIFIED",
+    "EXTERNAL_MATCHED_PRIMARY_SOURCE": "NUMERIC_TRANSPORT_QUALIFIED",
+    "COMBINED_PREDECLARED": "COMBINED_PREDECLARED_QUALIFIED",
+}
 CAPACITY_RULE = "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION"
 BASE_CALIBRATION_PLANTS = 84
+POLLINATOR_RATE_UNIT = "LEGITIMATE_VISITS_PER_FLOWER_MINUTE"
 
 
 def _need(ok: bool, message: str) -> None:
@@ -49,8 +56,8 @@ def _positive_int(value: object, label: str) -> int:
     return int(out)
 
 
-def poisson_minutes_for_detection(rate_per_min: float, desired_probability: float) -> int:
-    rate = _positive(rate_per_min, "visit rate")
+def poisson_exposure_for_detection(rate_per_exposure: float, desired_probability: float) -> int:
+    rate = _positive(rate_per_exposure, "event rate per exposure")
     q = _probability(desired_probability, "desired detection probability")
     return max(1, math.ceil(-math.log(1 - q) / rate))
 
@@ -63,13 +70,27 @@ def binomial_units_for_detection(positive_fraction: float, desired_probability: 
     return max(1, math.ceil(math.log(1 - q) / math.log(1 - p)))
 
 
-def _source(block: dict, prefix: str) -> dict:
-    source_type = _filled(block.get(f"{prefix}_source_type"), f"{prefix}_source_type")
-    _need(source_type in ALLOWED_SOURCE_TYPES, f"unapproved {prefix} source type")
+def _qualified_source(
+    block: dict,
+    *,
+    type_key: str,
+    status_key: str,
+    reference_key: str,
+    rationale_key: str,
+    label: str,
+) -> dict:
+    source_type = _filled(block.get(type_key), f"{label} source_type")
+    _need(source_type in ALLOWED_SOURCE_TYPES, f"unapproved {label} source type")
+    status = _filled(block.get(status_key), f"{label} source qualification status")
+    _need(
+        status == EXPECTED_QUALIFICATION[source_type],
+        f"{label} source is not qualified for numeric use: {source_type}/{status}",
+    )
     return {
         "source_type": source_type,
-        "source_reference": _filled(block.get(f"{prefix}_source_reference"), f"{prefix}_source_reference"),
-        "rationale": _filled(block.get(f"{prefix}_rationale"), f"{prefix}_rationale"),
+        "qualification_status": status,
+        "source_reference": _filled(block.get(reference_key), f"{label} source_reference"),
+        "rationale": _filled(block.get(rationale_key), f"{label} rationale"),
     }
 
 
@@ -89,47 +110,77 @@ def plan(freeze: dict) -> dict:
     forbidden = set(policy.get("forbidden_relevance_sources", []))
     _need(ALLOWED_SOURCE_TYPES <= allowed, "registered relevance source classes missing")
     _need(not (allowed & forbidden), "relevance source allow/forbid overlap")
+    _need(policy.get("required_qualification_status_by_source_type") == EXPECTED_QUALIFICATION, "source qualification map changed")
 
     poll = freeze.get("pollinator_detection", {})
-    rate = _positive(poll.get("minimum_relevant_visit_rate_per_min"), "minimum relevant visit rate")
+    _need(poll.get("visit_rate_unit") == POLLINATOR_RATE_UNIT, "pollinator rate must be visits per flower-minute")
+    rate = _positive(
+        poll.get("minimum_relevant_visit_rate_per_flower_min"),
+        "minimum relevant visit rate per flower-minute",
+    )
     poll_q = _probability(poll.get("desired_detection_probability"), "pollinator desired detection probability")
     bouts = _positive_int(poll.get("minimum_temporal_bouts"), "minimum temporal bouts")
     min_minutes_per_bout = _positive(poll.get("minimum_minutes_per_bout"), "minimum minutes per bout")
-    rate_source = _source(poll, "rate")
-    coverage_source = _source(poll, "coverage")
+    rate_source = _qualified_source(
+        poll,
+        type_key="rate_source_type",
+        status_key="rate_source_qualification_status",
+        reference_key="rate_source_reference",
+        rationale_key="rate_rationale",
+        label="pollinator rate",
+    )
+    coverage_source = _qualified_source(
+        poll,
+        type_key="coverage_source_type",
+        status_key="coverage_source_qualification_status",
+        reference_key="coverage_source_reference",
+        rationale_key="coverage_rationale",
+        label="pollinator coverage",
+    )
 
     pred = freeze.get("predator_detection", {})
-    pred_fraction = _probability(pred.get("minimum_relevant_attack_fraction"), "minimum relevant predator attack fraction", allow_one=True)
+    pred_fraction = _probability(
+        pred.get("minimum_relevant_attack_fraction"),
+        "minimum relevant predator attack fraction",
+        allow_one=True,
+    )
     pred_q = _probability(pred.get("desired_detection_probability"), "predator desired detection probability")
-    pred_source_type = _filled(pred.get("source_type"), "predator source_type")
-    _need(pred_source_type in ALLOWED_SOURCE_TYPES, "unapproved predator source type")
-    pred_source = {
-        "source_type": pred_source_type,
-        "source_reference": _filled(pred.get("source_reference"), "predator source_reference"),
-        "rationale": _filled(pred.get("biological_rationale"), "predator biological_rationale"),
-    }
+    pred_source = _qualified_source(
+        pred,
+        type_key="source_type",
+        status_key="source_qualification_status",
+        reference_key="source_reference",
+        rationale_key="biological_rationale",
+        label="predator",
+    )
 
     water = freeze.get("water_state_detection", {})
-    water_fraction = _probability(water.get("minimum_relevant_positive_fraction"), "minimum relevant water-positive fraction", allow_one=True)
+    water_fraction = _probability(
+        water.get("minimum_relevant_positive_fraction"),
+        "minimum relevant water-positive fraction",
+        allow_one=True,
+    )
     water_q = _probability(water.get("desired_detection_probability"), "water-state desired detection probability")
-    water_source_type = _filled(water.get("source_type"), "water source_type")
-    _need(water_source_type in ALLOWED_SOURCE_TYPES, "unapproved water-state source type")
-    water_source = {
-        "source_type": water_source_type,
-        "source_reference": _filled(water.get("source_reference"), "water source_reference"),
-        "rationale": _filled(water.get("biological_rationale"), "water biological_rationale"),
-    }
+    water_source = _qualified_source(
+        water,
+        type_key="source_type",
+        status_key="source_qualification_status",
+        reference_key="source_reference",
+        rationale_key="biological_rationale",
+        label="water-state",
+    )
 
     capacity = freeze.get("capacity", {})
     reserve = _positive(capacity.get("reserve_fraction"), "capacity reserve fraction")
     _need(reserve <= 1, "capacity reserve fraction must be <= 1")
-    capacity_source_type = _filled(capacity.get("source_type"), "capacity source_type")
-    _need(capacity_source_type in ALLOWED_SOURCE_TYPES, "unapproved capacity source type")
-    capacity_source = {
-        "source_type": capacity_source_type,
-        "source_reference": _filled(capacity.get("source_reference"), "capacity source_reference"),
-        "rationale": _filled(capacity.get("rationale"), "capacity rationale"),
-    }
+    capacity_source = _qualified_source(
+        capacity,
+        type_key="source_type",
+        status_key="source_qualification_status",
+        reference_key="source_reference",
+        rationale_key="rationale",
+        label="capacity",
+    )
     _need(capacity.get("census_rule") == CAPACITY_RULE, "capacity census rule changed")
 
     firewall = freeze.get("firewall", {})
@@ -138,6 +189,8 @@ def plan(freeze: dict) -> dict:
         "desired_detection_probabilities_frozen_before_screen_outcomes",
         "zero_detection_remains_context_uninformative_not_absence",
         "historical_event_rates_not_copied_without_transport_justification",
+        "external_numeric_source_requires_transport_qualification",
+        "pollinator_detection_uses_flower_minutes_not_raw_minutes",
         "planner_sets_effort_not_biological_effect_thresholds",
     ):
         _need(firewall.get(key) is True, f"P0 effort firewall disabled: {key}")
@@ -146,9 +199,12 @@ def plan(freeze: dict) -> dict:
     for key in ("slk_source_commit", "freeze_commit", "freeze_timestamp"):
         _filled(metadata.get(key), f"freeze_metadata.{key}")
 
-    poisson_minutes = poisson_minutes_for_detection(rate, poll_q)
+    poisson_flower_minutes = poisson_exposure_for_detection(rate, poll_q)
     temporal_minutes = math.ceil(bouts * min_minutes_per_bout)
-    total_poll_minutes = max(poisson_minutes, temporal_minutes)
+    # Conservative v1 rule: if only one focal flower is open during every valid minute,
+    # clock minutes still suffice to reach the flower-minute exposure requirement.
+    total_poll_minutes = max(poisson_flower_minutes, temporal_minutes)
+    total_poll_flower_minutes = poisson_flower_minutes
     pred_flowers = binomial_units_for_detection(pred_fraction, pred_q)
     water_plants = binomial_units_for_detection(water_fraction, water_q)
     capacity_required = math.ceil(BASE_CALIBRATION_PLANTS * (1 + reserve))
@@ -164,16 +220,19 @@ def plan(freeze: dict) -> dict:
             "screen_window_id": ctx["screen_window_id"],
         },
         "pollinator": {
-            "minimum_relevant_visit_rate_per_min": rate,
+            "minimum_relevant_visit_rate_per_flower_min": rate,
+            "visit_rate_unit": POLLINATOR_RATE_UNIT,
             "desired_detection_probability": poll_q,
-            "poisson_detection_minutes": poisson_minutes,
+            "poisson_detection_flower_minutes": poisson_flower_minutes,
             "minimum_temporal_bouts": bouts,
             "minimum_minutes_per_bout": min_minutes_per_bout,
             "temporal_coverage_minutes": temporal_minutes,
             "planned_total_minutes": total_poll_minutes,
+            "planned_total_flower_minutes": total_poll_flower_minutes,
             "minimum_detected_visits_for_signal": 1,
             "rate_source": rate_source,
             "coverage_source": coverage_source,
+            "worst_case_exposure_rule": "ASSUME_AT_LEAST_ONE_OPEN_FOCAL_FLOWER_PER_VALID_OBSERVATION_MINUTE",
         },
         "predator": {
             "minimum_relevant_attack_fraction": pred_fraction,
@@ -201,7 +260,8 @@ def plan(freeze: dict) -> dict:
             "slk_source_commit": metadata["slk_source_commit"],
         },
         "interpretation": (
-            "Effort is chosen so that a signal at or above each frozen minimum-relevance rate has the declared probability of at least one detection. "
+            "Pollinator detection uses flower-minute exposure, matching the published P. rex visitation metric structure. "
+            "The v1 clock-time floor is conservatively at least the flower-minute requirement, so one open focal flower throughout valid observation minutes is sufficient to reach registered exposure. "
             "Failure to detect remains context-uninformative rather than evidence of biological absence."
         ),
         "claim_ceiling": "P0_EFFORT_PLAN_ONLY_NO_CONTEXT_OR_G1_G5_BIOLOGICAL_RESULT",
