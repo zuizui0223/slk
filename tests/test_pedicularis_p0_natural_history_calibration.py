@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import importlib.util
 import json
 from pathlib import Path
@@ -107,6 +106,7 @@ def _filled_rows(*, rare_predator: bool = False) -> list[dict[str, str]]:
     water_index = 0
     for row in rows:
         if row["record_type"] == "POLLINATOR_BOUT":
+            row["observed_minutes"] = row["planned_minutes"]
             row["simultaneously_open_focal_flowers"] = "5"
             row["legitimate_pollinator_visits"] = "2"
         elif row["record_type"] == "PREDATOR_FLOWER":
@@ -146,6 +146,8 @@ def test_generator_creates_disjoint_calibration_packet() -> None:
     assert all(r["calibration_only"] == "true" for r in rows)
     assert all(r["p0_decision_eligible"] == "false" for r in rows)
     assert all(r["downstream_confirmatory_eligible"] == "false" for r in rows)
+    assert all(r["observed_minutes"] == "" for r in rows if r["record_type"] == "POLLINATOR_BOUT")
+    assert all(float(r["planned_minutes"]) > 0 for r in rows if r["record_type"] == "POLLINATOR_BOUT")
 
 
 def test_positive_calibration_qualifies_all_three_lower_bounds() -> None:
