@@ -17,6 +17,7 @@ FIELDS = [
     "flower_id",
     "planned_observation_minutes",
     "observed_observation_minutes",
+    "simultaneously_open_focal_flowers",
     "flowering_plants_censused",
     "population_census_exhausted",
     "legitimate_pollinator_visits",
@@ -85,6 +86,10 @@ def generate(freeze: dict) -> list[dict[str, str]]:
                 "record_type": "POLLINATOR_BOUT",
                 "record_id": f"POLL-{i:03d}",
                 "planned_observation_minutes": f"{minutes_each:.6f}",
+                "notes": (
+                    "Record observed minutes, legitimate visits, and the number of simultaneously open focal P. rex flowers exposed during the bout. "
+                    "Pollinator detection is adjudicated on cumulative flower-minutes as well as temporal coverage."
+                ),
             }
         )
         rows.append(row)
