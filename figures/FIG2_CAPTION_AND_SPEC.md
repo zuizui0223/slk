@@ -3,7 +3,7 @@
 ## Reader-facing caption
 
 **Figure 2. Architecture-value classification and evolutionary realization require different coordinates.**
-(A) The `L–Phi` plane classifies architecture value. `L>0, Phi<0` is the persistent-compromise (BALANCE) world; `Phi>0` is the globally favorable differentiated (BITA) world; SCH supplies an identified conflict budget `L`. The `Phi=0` crossing is therefore a global architecture-value boundary, not an evolutionary transition boundary. (B) Local accessibility introduces a release-path coordinate `d`; for convex recovery, `k_local<k<k_global` creates a region in which small release steps are selected against even though complete release has positive payoff. (C) Population feedback introduces `eta`, splitting the static architecture crossing into rare-invasion thresholds at `Phi=±eta`. These insets are intentionally not projected onto the `L–Phi` plane because accessibility and invasion depend on additional coordinates. The full SLK hierarchy is therefore phase-structured but not reducible to a single two-dimensional phase diagram.
+(A) The `L–Phi` plane classifies architecture value. `L>0, Phi<0` is the persistent-compromise (BALANCE) world; `Phi>0` is the globally favorable differentiated **architecture-value** world owned by the SLK comparison; SCH supplies an identified conflict budget `L`. The `Phi=0` crossing is therefore a global architecture-value boundary, not an evolutionary transition boundary and not a BITA mechanism boundary. (B) Local accessibility introduces a release-path coordinate `d`; for convex recovery, `k_local<k<k_global` creates a region in which small release steps are selected against even though complete release has positive payoff. (C) Population feedback introduces `eta`, splitting the static architecture crossing into rare-invasion thresholds at `Phi=±eta`. These insets are intentionally not projected onto the `L–Phi` plane because accessibility and invasion depend on additional coordinates. The full SLK hierarchy is therefore phase-structured but not reducible to a single two-dimensional phase diagram.
 
 ## Scientific role
 
@@ -15,6 +15,8 @@ realization coordinates: path geometry / mutation neighborhood
 population coordinates: eta, N, beta, mutation graph
 ```
 
+BITA is orthogonal to this phase map. It asks what ecological mechanism is identified by a measured trait interaction; it does not label the `Phi>0` region.
+
 ## Claim mapping
 
 - Panel A: C1-C5.
@@ -24,4 +26,4 @@ population coordinates: eta, N, beta, mutation graph
 
 ## Anti-overclaim rule
 
-Do not redraw accessibility or invasion as universal lines inside the `L–Phi` plane. Any such projection is conditional on fixed release geometry or fixed `eta` and must be labelled as a slice, not a general phase boundary.
+Do not redraw accessibility or invasion as universal lines inside the `L–Phi` plane. Any such projection is conditional on fixed release geometry or fixed `eta` and must be labelled as a slice, not a general phase boundary. Likewise, do not rename the positive `Phi` region as a BITA world: `Phi` is the SLK architecture-value coordinate.

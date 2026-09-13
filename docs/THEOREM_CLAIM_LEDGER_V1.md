@@ -3,7 +3,14 @@
 This ledger separates proved theory, model-specific corollaries, empirical handoffs, unresolved identification requirements, and registered invariants for the flagship chain
 
 ```text
-L -> Phi=sL-K -> accessibility -> invasion -> fixation -> occupancy.
+L -> R -> Phi=R-K -> accessibility -> invasion -> fixation -> occupancy.
+```
+
+Under the registered quadratic partial-release bridge only,
+
+```text
+R=sL,
+Phi=sL-K.
 ```
 
 ## Claim classes
@@ -20,14 +27,16 @@ L -> Phi=sL-K -> accessibility -> invasion -> fixation -> occupancy.
 |---|---|---|---|---|---|
 | C1 | A shared-coordinate conflict budget `L` can be defined once opposing functional geometry is identified on a common fitness scale. | EMPIRICAL HANDOFF | SCH | Entry quantity | `L` must not be inferred from multifunctionality alone. |
 | C2 | `L>0` and `Phi<0` define persistent compromise: conflict exists but differentiated architecture is not yet favored. | DEFINITION / CLASSIFICATION | BALANCE + SLK | World classification | Does not by itself establish historical persistence or structural architecture. |
-| C3 | For the quadratic partial-release bridge, recoverable conflict loss is `R=sL`. | COROLLARY | BITA | Converts conflict into recoverable architecture value | Model-specific; do not claim arbitrary-landscape universality. |
-| C4 | Architecture margin is `Phi=R-K`; under the quadratic bridge `Phi=sL-K`. | DEFINITION + COROLLARY | BITA + SLK | Main crossing coordinate | `K` requires an operational fitness-scale definition. |
-| C5 | `Phi>0` means differentiated architecture has higher global optimized payoff than the declared shared comparison, under the registered bridge. | THEOREM / MODEL RESULT | BITA | Global-value criterion | Not yet local accessibility, invasion, fixation, or occupancy. |
-| C6 | Global architecture advantage need not imply local mutational accessibility; a finite-jump barrier exists when local marginal release is unfavorable but full release is favorable. | THEOREM / MODEL RESULT | PAYOFF | First realization split after `Phi>0` | Requires declared mutation neighborhood / path geometry. |
-| C7 | In frequency-dependent architecture competition, rare-invasion thresholds need not coincide with the intrinsic architecture crossing. | THEOREM / MODEL RESULT | PAYOFF | Separates payoff from invasion | Requires population feedback parameterization. |
-| C8 | Rare invasion and fixation need not agree; reciprocal fixation ordering and absolute fixation advantage are themselves distinct criteria. | THEOREM / MODEL RESULT | PAYOFF | Separates invasion from finite-population establishment | Process-specific under the declared Moran mapping. |
-| C9 | Weak-mutation monomorphic occupancy is distinct from accessibility, invasion, and absolute fixation advantage. | THEOREM / MODEL RESULT | PAYOFF | Final flagship transport step | Requires declared mutation graph and fixation kernel. |
-| INV1 | Under connected symmetric rare mutation and the registered exponential Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering coincide exactly through the self-play score difference. | INVARIANT | PAYOFF / SYMMETRIC_RARE_MUTATION_GIBBS | Re-aligns two later criteria | Not valid generically outside the registered symmetry/rare-mutation assumptions. |
+| C3 | For the quadratic partial-release bridge, recoverable conflict loss is `R=sL`. | COROLLARY | SLK | Converts conflict into recoverable architecture value under the registered bridge | Model-specific; do not claim arbitrary-landscape universality. |
+| C4 | Architecture margin is `Phi=R-K`; under the quadratic bridge `Phi=sL-K`. | DEFINITION + COROLLARY | SLK | Main crossing coordinate | `R` and `K` require matched operational definitions on the same fitness scale and horizon. |
+| C5 | `Phi>0` means differentiated architecture has higher global optimized payoff than the declared shared comparison. | THEOREM / MODEL RESULT | SLK | Global-value criterion | Not yet local accessibility, invasion, fixation, or occupancy. |
+| C6 | Global architecture advantage need not imply local mutational accessibility; a finite-jump barrier exists when local marginal release is unfavorable but full release is favorable. | THEOREM / MODEL RESULT | PAYOFF -> SLK | First realization split after `Phi>0` | Requires declared mutation neighborhood / path geometry. |
+| C7 | In frequency-dependent architecture competition, rare-invasion thresholds need not coincide with the intrinsic architecture crossing. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Separates payoff from invasion | Requires population feedback parameterization. |
+| C8 | Rare invasion and fixation need not agree; reciprocal fixation ordering and absolute fixation advantage are themselves distinct criteria. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Separates invasion from finite-population establishment | Process-specific under the declared Moran mapping. |
+| C9 | Weak-mutation monomorphic occupancy is distinct from accessibility, invasion, and absolute fixation advantage. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Final flagship transport step | Requires declared mutation graph and fixation kernel. |
+| INV1 | Under connected symmetric rare mutation and the registered exponential Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering coincide exactly through the self-play score difference. | INVARIANT | PAYOFF / SYMMETRIC_RARE_MUTATION_GIBBS -> SLK | Re-aligns two later criteria | Not valid generically outside the registered symmetry/rare-mutation assumptions. |
+
+BITA is not a canonical source for C3-C5. Its orthogonal role is trait-interaction mechanism identification and partial identification; a BITA mechanism result can inform interpretation only when an explicit bridge to the architecture comparison is separately justified.
 
 ## Formal non-equivalence witnesses
 
