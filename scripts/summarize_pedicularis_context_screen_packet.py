@@ -73,15 +73,20 @@ def summarize(rows: list[dict[str, str]]) -> dict:
 
     completed_poll = []
     total_minutes = 0.0
+    total_flower_minutes = 0.0
     visits = 0.0
     for row in poll_rows:
         minutes_raw = str(row.get("observed_observation_minutes", "")).strip()
+        flowers_raw = str(row.get("simultaneously_open_focal_flowers", "")).strip()
         visits_raw = str(row.get("legitimate_pollinator_visits", "")).strip()
-        if not minutes_raw or not visits_raw:
+        if not minutes_raw or not flowers_raw or not visits_raw:
             continue
-        minutes = _num(minutes_raw, f"observed minutes/{row['record_id']}")
+        minutes = _num(minutes_raw, f"observed minutes/{row['record_id']}", minimum=0.000001)
+        flowers = _num(flowers_raw, f"simultaneously open focal flowers/{row['record_id']}", minimum=1)
+        _need(flowers.is_integer(), f"simultaneously open focal flowers must be an integer: {row['record_id']}")
         visit = _num(visits_raw, f"legitimate visits/{row['record_id']}")
         total_minutes += minutes
+        total_flower_minutes += minutes * flowers
         visits += visit
         completed_poll.append(row)
 
@@ -116,6 +121,7 @@ def summarize(rows: list[dict[str, str]]) -> dict:
             water_notes.append(note)
         completed_water.append(row)
 
+    poll_rate = visits / total_flower_minutes if total_flower_minutes > 0 else None
     return {
         "schema_version": RECEIPT_SCHEMA,
         "status": "FILLED_SCREEN_DATA",
@@ -127,12 +133,14 @@ def summarize(rows: list[dict[str, str]]) -> dict:
             "independent_flowering_plants_censused": census,
             "population_census_exhausted": census_exhausted,
             "pollinator_observation_minutes_total": total_minutes,
+            "pollinator_flower_minutes_total": total_flower_minutes,
             "pollinator_observation_bouts": len(completed_poll),
             "predator_screen_flowers": len(completed_pred),
             "water_state_plants": len(completed_water),
         },
         "observations": {
             "legitimate_pollinator_visits": visits,
+            "legitimate_visit_rate_per_flower_min": poll_rate,
             "predator_attacked_flowers": attacked,
             "water_positive_plants": water_positive,
             "notes_on_predator_evidence": (
@@ -150,6 +158,7 @@ def summarize(rows: list[dict[str, str]]) -> dict:
             "screen_units_confirmatory_eligible": False,
             "screen_used_for_treatment_effect_estimation": False,
             "zero_detection_interpreted_as_biological_absence": False,
+            "pollinator_exposure_unit": "FLOWER_MINUTES",
         },
         "packet_completion": {
             "registered_pollinator_rows": len(poll_rows),
