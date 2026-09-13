@@ -137,7 +137,7 @@ Agree explicitly. `Phi>0` is endpoint value. Accessibility requires a registered
 
 ### Current response
 
-C8/C9/INV1 remain explicitly process-specific. Their role is demonstrative: adding a population process can create new separations and can also impose exact invariants. SLK does not claim these formulas are universal.
+C8/C9/INV1 remain explicitly process-specific in the internal audit surface. Their journal-facing role is demonstrative: adding a population process can create new separations and can also impose exact invariants. SLK does not claim these formulas are universal.
 
 ### Status
 
@@ -151,7 +151,7 @@ C8/C9/INV1 remain explicitly process-specific. Their role is demonstrative: addi
 
 ### Current response
 
-The manuscript makes this absence explicit. Figure 3 turns it into the G1-G9 empirical programme rather than hiding it. Formal contribution, empirical measurability, and completed empirical validation are separated.
+The manuscript makes this absence explicit. Figure 3 turns it into the G1-G9 internal empirical programme and a label-free measurement ladder in the journal-facing manuscript rather than hiding it. Formal contribution, empirical measurability, and completed empirical validation are separated.
 
 ### Status
 
@@ -181,14 +181,18 @@ Preferred wording:
 
 > Existing theories explain why functional interference can favor specialization or modular organization, why fitter endpoints can be inaccessible through local mutational paths, and why invasion, fixation, and weak-mutation dynamics are distinct population-genetic objects. SLK contributes one architecture-specific estimand transport beginning from an identified shared-coordinate conflict receipt and carrying it through recoverable benefit, net architecture value, accessibility, invasion, fixation, and occupancy, with explicit witness regimes for where verdicts separate, an exact process-level invariant where two verdicts re-align, and a gate-by-gate empirical claim ceiling.
 
+## Journal-prose conversion
+
+**RESOLVED.** `manuscript/SLK_MANUSCRIPT_AMNAT_V1.md` is now the journal-facing manuscript. Repository audit labels (`C1-C9`, `G1-G9`, `INV1` headings and the claim-status summary) remain in `manuscript/SLK_MANUSCRIPT_V0.md` and the internal ledgers, while the submission prose expresses the same equations, witnesses, process assumptions, and empirical ceilings without repository-style annotations. `manuscript/README.md` defines the synchronization rule between the two surfaces.
+
 ## Remaining work before submission
 
 1. Decide whether C8/C9/INV1 remain a clearly declared exemplar process or add one alternative population process as robustness/generalization.
-2. Convert repository-style manuscript annotations into journal prose: move C/G/INV labels to a supplement or audit appendix while preserving the internal ledger.
+2. **RESOLVED — journal prose conversion:** retain `SLK_MANUSCRIPT_V0.md` as the auditable claim-ID surface and use `SLK_MANUSCRIPT_AMNAT_V1.md` as the submission-facing surface.
 3. Build a full journal-formatted Literature Cited section from the prior-art comparison matrix.
 4. Decide whether to include one partial biological worked example; do not imply end-to-end G1-G9 completion.
-5. Run a final theorem/formula consistency audit across manuscript, Figures 1-3, ledger, provenance, and source repositories.
-6. Decide journal positioning after prose conversion: Am Nat remains plausible only if the architecture-specific transport is argued as a biological theory contribution, not a bookkeeping framework.
+5. Run a final theorem/formula consistency audit across the journal-facing manuscript, audit manuscript, Figures 1-3, ledger, provenance, and source repositories.
+6. Decide journal positioning after the remaining literature/consistency pass: Am Nat remains plausible only if the architecture-specific transport is argued as a biological theory contribution, not a bookkeeping framework.
 
 ## Audit verdict after broad prior-art stress test
 
@@ -198,6 +202,7 @@ INDIVIDUAL-ARROW NOVELTY: LOW; MOST COMPONENTS HAVE CLEAR ANTECEDENTS
 INTEGRATED-TRANSPORT NOVELTY: DEFENSIBLE
 R=sL GENERALITY RISK:     RESOLVED
 K DEFINITION RISK:        RESOLVED THEORETICALLY / OPEN EMPIRICALLY
+JOURNAL_PROSE_CONVERSION: RESOLVED
 SPLIT-INVARIANT NOVELTY:  DEFENSIBLE
 PRIOR-ART OBVIOUS GAP:    NO OBVIOUS FATAL GAP FOUND IN BROAD STRESS TEST
 MAIN REVIEW RISK:         "USEFUL SYNTHESIS OR JUST REPACKAGING?"
