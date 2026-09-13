@@ -8,10 +8,12 @@ import math
 import random
 from collections import defaultdict
 from pathlib import Path
+from sys import float_info
 
 
 DECOMP_DATASET = "PED_G3_G5_RK_CONFIRM_V1"
 DIRECT_DATASET = "PED_G5_DIRECT_CONFIRM_V1"
+_ROUNDOFF_REL_TOL = 64.0 * float_info.epsilon
 
 
 def _load_contract_validator():
@@ -40,6 +42,12 @@ def _number(value: object, label: str, nonnegative: bool = False) -> float:
     if nonnegative:
         _need(out >= 0, f"{label} must be >= 0")
     return out
+
+
+def _relative_close(left: float, right: float, rel_tol: float = _ROUNDOFF_REL_TOL) -> bool:
+    """Compare commensurate numerical identities without an absolute unit band."""
+
+    return math.isclose(float(left), float(right), rel_tol=rel_tol, abs_tol=0.0)
 
 
 def _true(value: object) -> bool:
@@ -117,7 +125,7 @@ def _prepare_plants(
         except ValueError:
             exclusions.append({"plant_id": plant_id, "world": world, "reason": "MISSING_BASELINE_Y"})
             continue
-        if max(baseline_values) - min(baseline_values) > 1e-10:
+        if not _relative_close(max(baseline_values), min(baseline_values)):
             exclusions.append({"plant_id": plant_id, "world": world, "reason": "BASELINE_Y_NOT_PLANT_CONSTANT"})
             continue
         baseline_y = baseline_values[0]
@@ -141,10 +149,10 @@ def _prepare_plants(
             except ValueError:
                 bad_reason = "MISSING_OR_INVALID_OUTCOME"
                 break
-            if not math.isclose(target, frozen["target_exsertion_z"], rel_tol=0, abs_tol=1e-12):
+            if not _relative_close(target, frozen["target_exsertion_z"]):
                 bad_reason = "TARGET_Z_CHANGED"
                 break
-            if not math.isclose(tolerance, frozen["tolerance"], rel_tol=0, abs_tol=1e-12):
+            if not _relative_close(tolerance, frozen["tolerance"]):
                 bad_reason = "Z_TOLERANCE_CHANGED"
                 break
             if abs(realized - target) > tolerance:
@@ -169,7 +177,11 @@ def _world_point(plants: dict[str, dict[str, float]], levels: list[dict]) -> dic
         vals = [cells[level_id] for cells in plants.values()]
         cell_means[level_id] = sum(vals) / len(vals)
     optimum = max(cell_means.values())
-    opt_ids = [level_id for level_id, value in cell_means.items() if math.isclose(value, optimum, rel_tol=1e-12, abs_tol=1e-12)]
+    opt_ids = [
+        level_id
+        for level_id, value in cell_means.items()
+        if _relative_close(value, optimum)
+    ]
     return {
         "optimized_fitness": optimum,
         "cell_means": cell_means,
@@ -340,7 +352,9 @@ def adjudicate(
             "comparison": "REALIZED_D_OPTIMUM_MINUS_S_OPTIMUM",
             "identity_check": {
                 "R_minus_K_point": r_point - k_point,
-                "equals_internal_Phi": math.isclose(r_point - k_point, phi_internal_point, rel_tol=1e-10, abs_tol=1e-10),
+                "equals_internal_Phi": _relative_close(
+                    r_point - k_point, phi_internal_point, rel_tol=1e-10
+                ),
                 "interpretation": "Algebraic coherence only; not independent empirical validation.",
             },
         },
