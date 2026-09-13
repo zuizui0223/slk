@@ -6,10 +6,17 @@ The flagship hierarchy contains several distinct evolutionary statements, but no
 
 ## Definitions
 
-Use the SLK architecture margin
+Use the general SLK architecture margin
 
 ```text
-Phi = sL-K.
+Phi = R-K.
+```
+
+Under the registered quadratic partial-release bridge only,
+
+```text
+R=sL,
+Phi=sL-K.
 ```
 
 For a canonical two-architecture population game,
@@ -51,14 +58,16 @@ but
 Phi<0.
 ```
 
-Witness:
+General witness:
 
 ```text
 L=1
-s=1/2
+R=1/2
 K=1
 Phi=-1/2.
 ```
+
+This does not require the quadratic bridge. A bridge-compatible realization is `s=1/2`, so `R=sL=1/2`.
 
 Thus real shared-axis conflict can coexist with persistent compromise.
 
