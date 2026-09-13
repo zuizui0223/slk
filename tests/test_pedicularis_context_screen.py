@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import copy
 import importlib.util
 from pathlib import Path
 
@@ -17,7 +16,6 @@ spec.loader.exec_module(module)
 
 def _source_records() -> list[dict]:
     fields = [
-        "screen_effort.minimum_independent_flowering_plants_censused",
         "screen_effort.minimum_pollinator_observation_minutes_total",
         "screen_effort.minimum_pollinator_observation_bouts",
         "screen_effort.minimum_predator_screen_flowers",
@@ -51,7 +49,7 @@ def _freeze() -> dict:
             "frozen_before_screen_outcomes": True,
         },
         "screen_effort": {
-            "minimum_independent_flowering_plants_censused": 100,
+            "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
             "minimum_pollinator_observation_minutes_total": 60,
             "minimum_pollinator_observation_bouts": 6,
             "minimum_predator_screen_flowers": 30,
@@ -92,6 +90,7 @@ def _freeze() -> dict:
             "no_treatment_effect_estimation_from_screen": True,
             "thresholds_frozen_before_screen_outcomes": True,
             "failed_signal_context_may_trigger_relocation_without_negative_claim": True,
+            "capacity_shortfall_requires_exhaustive_census": True,
         },
         "freeze_metadata": {
             "slk_source_commit": "abc123",
@@ -115,6 +114,7 @@ def _receipt() -> dict:
         },
         "effort": {
             "independent_flowering_plants_censused": 120,
+            "population_census_exhausted": False,
             "pollinator_observation_minutes_total": 75,
             "pollinator_observation_bouts": 8,
             "predator_screen_flowers": 40,
@@ -145,6 +145,7 @@ def test_signal_positive_context_with_capacity_unlocks_calibration() -> None:
     assert result["status"] == "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
     assert result["next_action"]["calibration_unlocked"] is True
     assert result["capacity"]["required_with_reserve"] == 93
+    assert result["capacity"]["resolved"] is True
     assert result["signals"]["pollen_limitation"] == "UNRESOLVED_UNTIL_QP_CALIBRATION"
 
 
@@ -157,18 +158,30 @@ def test_zero_predator_detection_is_uninformative_not_negative() -> None:
     assert result["next_action"]["low_signal_is_biological_negative"] is False
 
 
-def test_signal_present_but_capacity_limited_is_separate_status() -> None:
+def test_capacity_shortfall_requires_exhaustive_census_before_limited_status() -> None:
     receipt = _receipt()
     receipt["effort"]["independent_flowering_plants_censused"] = 90
-    freeze = _freeze()
-    freeze["screen_effort"]["minimum_independent_flowering_plants_censused"] = 80
-    result = module.adjudicate(receipt, freeze)
+    receipt["effort"]["population_census_exhausted"] = True
+    result = module.adjudicate(receipt, _freeze())
     assert result["status"] == "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED"
     assert result["capacity"]["pass"] is False
-    assert result["next_action"]["calibration_unlocked"] is False
+    assert result["capacity"]["resolved"] is True
+    assert result["firewall"]["capacity_shortfall_declared_only_after_exhaustive_census"] is True
 
 
-def test_incomplete_registered_effort_never_calls_low_signal() -> None:
+def test_capacity_below_requirement_without_exhaustive_census_is_incomplete() -> None:
+    receipt = _receipt()
+    receipt["effort"]["independent_flowering_plants_censused"] = 90
+    receipt["effort"]["population_census_exhausted"] = False
+    result = module.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
+    assert result["effort"]["signal_effort_complete"] is True
+    assert result["capacity"]["resolved"] is False
+    assert result["next_action"]["continue_capacity_census"] is True
+    assert result["signals"]["pollinator"]["pass"] is True
+
+
+def test_incomplete_registered_signal_effort_never_calls_low_signal() -> None:
     receipt = _receipt()
     receipt["effort"]["pollinator_observation_minutes_total"] = 20
     receipt["observations"]["legitimate_pollinator_visits"] = 0

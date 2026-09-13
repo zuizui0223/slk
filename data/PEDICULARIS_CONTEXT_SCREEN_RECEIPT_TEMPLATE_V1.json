@@ -10,6 +10,7 @@
   },
   "effort": {
     "independent_flowering_plants_censused": null,
+    "population_census_exhausted": null,
     "pollinator_observation_minutes_total": null,
     "pollinator_observation_bouts": null,
     "predator_screen_flowers": null,

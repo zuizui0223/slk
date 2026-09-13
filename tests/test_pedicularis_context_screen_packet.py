@@ -28,7 +28,6 @@ spec3.loader.exec_module(adj)
 
 def _freeze() -> dict:
     required_fields = [
-        "screen_effort.minimum_independent_flowering_plants_censused",
         "screen_effort.minimum_pollinator_observation_minutes_total",
         "screen_effort.minimum_pollinator_observation_bouts",
         "screen_effort.minimum_predator_screen_flowers",
@@ -50,7 +49,7 @@ def _freeze() -> dict:
             "frozen_before_screen_outcomes": True,
         },
         "screen_effort": {
-            "minimum_independent_flowering_plants_censused": 100,
+            "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
             "minimum_pollinator_observation_minutes_total": 60,
             "minimum_pollinator_observation_bouts": 6,
             "minimum_predator_screen_flowers": 30,
@@ -99,6 +98,7 @@ def _freeze() -> dict:
             "no_treatment_effect_estimation_from_screen": True,
             "thresholds_frozen_before_screen_outcomes": True,
             "failed_signal_context_may_trigger_relocation_without_negative_claim": True,
+            "capacity_shortfall_requires_exhaustive_census": True,
         },
         "freeze_metadata": {
             "slk_source_commit": "abc123",
@@ -114,6 +114,7 @@ def _completed_rows() -> list[dict[str, str]]:
     for row in rows:
         if row["record_type"] == "CENSUS":
             row["flowering_plants_censused"] = "120"
+            row["population_census_exhausted"] = "false"
         elif row["record_type"] == "POLLINATOR_BOUT":
             row["observed_observation_minutes"] = row["planned_observation_minutes"]
             row["legitimate_pollinator_visits"] = "1" if row["record_id"] == "POLL-001" else "0"
@@ -135,10 +136,13 @@ def test_generator_expands_registered_screen_effort() -> None:
     assert sum(r["record_type"] == "WATER_PLANT" for r in rows) == 20
     assert all(r["screen_only"] == "true" for r in rows)
     assert all(r["confirmatory_eligible"] == "false" for r in rows)
+    census = next(r for r in rows if r["record_type"] == "CENSUS")
+    assert "exhaust the focal population" in census["notes"]
 
 
 def test_completed_packet_summarizes_registered_effort_and_signals() -> None:
     receipt = sum_mod.summarize(_completed_rows())
+    assert receipt["effort"]["population_census_exhausted"] is False
     assert receipt["effort"]["pollinator_observation_bouts"] == 6
     assert receipt["effort"]["predator_screen_flowers"] == 30
     assert receipt["effort"]["water_state_plants"] == 20
@@ -153,6 +157,27 @@ def test_packet_summary_and_adjudicator_unlock_calibration_end_to_end() -> None:
     assert result["status"] == "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
     assert result["next_action"]["calibration_unlocked"] is True
     assert result["firewall"]["screen_is_logistical_not_g1_g2"] is True
+
+
+def test_below_capacity_packet_without_exhaustion_stays_incomplete() -> None:
+    rows = _completed_rows()
+    census = next(r for r in rows if r["record_type"] == "CENSUS")
+    census["flowering_plants_censused"] = "90"
+    census["population_census_exhausted"] = "false"
+    receipt = sum_mod.summarize(rows)
+    result = adj.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
+    assert result["next_action"]["continue_capacity_census"] is True
+
+
+def test_below_capacity_packet_with_exhaustion_is_capacity_limited() -> None:
+    rows = _completed_rows()
+    census = next(r for r in rows if r["record_type"] == "CENSUS")
+    census["flowering_plants_censused"] = "90"
+    census["population_census_exhausted"] = "true"
+    receipt = sum_mod.summarize(rows)
+    result = adj.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED"
 
 
 def test_incomplete_packet_remains_incomplete_in_summary() -> None:

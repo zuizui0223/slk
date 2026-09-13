@@ -10,7 +10,7 @@
     "frozen_before_screen_outcomes": false
   },
   "screen_effort": {
-    "minimum_independent_flowering_plants_censused": null,
+    "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
     "minimum_pollinator_observation_minutes_total": null,
     "minimum_pollinator_observation_bouts": null,
     "minimum_predator_screen_flowers": null,
@@ -44,13 +44,13 @@
     "threshold_source_records": []
   },
   "classification_rules": {
-    "CONTEXT_SCREEN_PASS_CALIBRATION_READY": "all signal gates pass and immediate calibration capacity passes",
-    "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED": "all signal gates pass but immediate calibration capacity fails",
+    "CONTEXT_SCREEN_PASS_CALIBRATION_READY": "all signal gates pass and immediate calibration capacity is reached",
+    "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED": "all signal gates pass, the focal population census is exhausted, and capacity remains below the frozen requirement",
     "CONTEXT_UNINFORMATIVE_POLLINATOR_LOW": "pollinator effort completed but legitimate activity below frozen threshold",
     "CONTEXT_UNINFORMATIVE_PREDATOR_LOW": "predator effort completed but attack below frozen threshold",
     "CONTEXT_UNINFORMATIVE_WATER_STATE": "water-state effort completed but water functionality below frozen threshold",
-    "CONTEXT_UNINFORMATIVE_MULTIPLE_SIGNALS": "registered effort completed but more than one signal is below its frozen screen threshold",
-    "CONTEXT_SCREEN_INCOMPLETE": "one or more registered effort floors not completed"
+    "CONTEXT_UNINFORMATIVE_MULTIPLE_SIGNALS": "registered signal effort completed but more than one signal is below its frozen screen threshold",
+    "CONTEXT_SCREEN_INCOMPLETE": "one or more registered signal efforts are incomplete, or capacity is below requirement without an exhausted focal-population census"
   },
   "firewall": {
     "context_screen_is_not_g1_or_g2_evidence": true,
@@ -58,7 +58,8 @@
     "screen_units_confirmatory_ineligible": true,
     "no_treatment_effect_estimation_from_screen": true,
     "thresholds_frozen_before_screen_outcomes": true,
-    "failed_signal_context_may_trigger_relocation_without_negative_claim": true
+    "failed_signal_context_may_trigger_relocation_without_negative_claim": true,
+    "capacity_shortfall_requires_exhaustive_census": true
   },
   "freeze_metadata": {
     "slk_source_commit": "REQUIRED_BEFORE_USE",

@@ -10,6 +10,7 @@ FREEZE_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_FREEZE_V1"
 RECEIPT_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_RECEIPT_V1"
 PRODUCTION_STATUS = "PEDICULARIS_CONTEXT_SCREEN_PROSPECTIVELY_FROZEN"
 BASE_CALIBRATION_PLANTS = 84
+CAPACITY_CENSUS_RULE = "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION"
 ALLOWED_SOURCE_TYPES = {
     "DOWNSTREAM_DESIGN_REQUIREMENT",
     "INDEPENDENT_NATURAL_HISTORY_CALIBRATION",
@@ -17,7 +18,6 @@ ALLOWED_SOURCE_TYPES = {
     "COMBINED_PREDECLARED",
 }
 REQUIRED_SOURCE_FIELDS = {
-    "screen_effort.minimum_independent_flowering_plants_censused",
     "screen_effort.minimum_pollinator_observation_minutes_total",
     "screen_effort.minimum_pollinator_observation_bouts",
     "screen_effort.minimum_predator_screen_flowers",
@@ -63,6 +63,18 @@ def _optional_fraction(value: object, label: str) -> float | None:
     return out
 
 
+def _optional_bool(value: object, label: str) -> bool | None:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return value
+    text = str(value).strip().lower()
+    if text == "":
+        return None
+    _need(text in {"true", "false", "1", "0", "yes", "no"}, f"{label} must be boolean-like")
+    return text in {"true", "1", "yes"}
+
+
 def validate_freeze(freeze: dict) -> dict:
     _need(freeze.get("schema_version") == FREEZE_SCHEMA, "wrong context-screen freeze schema")
     _need(freeze.get("status") == "FROZEN_CANDIDATE", "context-screen freeze must be FROZEN_CANDIDATE")
@@ -75,7 +87,7 @@ def validate_freeze(freeze: dict) -> dict:
     _need(ctx.get("frozen_before_screen_outcomes") is True, "context screen was not frozen before outcomes")
 
     effort = freeze.get("screen_effort", {})
-    min_census = _positive_int(effort.get("minimum_independent_flowering_plants_censused"), "minimum flowering plants censused")
+    _need(effort.get("capacity_census_rule") == CAPACITY_CENSUS_RULE, "capacity census rule changed")
     min_poll_minutes = _finite(effort.get("minimum_pollinator_observation_minutes_total"), "minimum pollinator minutes", minimum=0.000001)
     min_poll_bouts = _positive_int(effort.get("minimum_pollinator_observation_bouts"), "minimum pollinator bouts")
     min_pred_flowers = _positive_int(effort.get("minimum_predator_screen_flowers"), "minimum predator screen flowers")
@@ -128,6 +140,7 @@ def validate_freeze(freeze: dict) -> dict:
         "no_treatment_effect_estimation_from_screen",
         "thresholds_frozen_before_screen_outcomes",
         "failed_signal_context_may_trigger_relocation_without_negative_claim",
+        "capacity_shortfall_requires_exhaustive_census",
     ):
         _need(firewall.get(key) is True, f"context-screen firewall disabled: {key}")
 
@@ -139,7 +152,7 @@ def validate_freeze(freeze: dict) -> dict:
     return {
         "context": ctx,
         "effort": {
-            "minimum_independent_flowering_plants_censused": min_census,
+            "capacity_census_rule": CAPACITY_CENSUS_RULE,
             "minimum_pollinator_observation_minutes_total": min_poll_minutes,
             "minimum_pollinator_observation_bouts": min_poll_bouts,
             "minimum_predator_screen_flowers": min_pred_flowers,
@@ -178,6 +191,7 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
     effort_raw = receipt.get("effort", {})
     obs = receipt.get("observations", {})
     census = _finite(effort_raw.get("independent_flowering_plants_censused"), "observed flowering plants", minimum=0)
+    census_exhausted = _optional_bool(effort_raw.get("population_census_exhausted"), "population_census_exhausted")
     poll_minutes = _finite(effort_raw.get("pollinator_observation_minutes_total"), "observed pollinator minutes", minimum=0)
     poll_bouts = _finite(effort_raw.get("pollinator_observation_bouts"), "observed pollinator bouts", minimum=0)
     pred_flowers = _finite(effort_raw.get("predator_screen_flowers"), "observed predator flowers", minimum=0)
@@ -192,14 +206,13 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
     _filled(obs.get("notes_on_water_state"), "notes_on_water_state")
 
     ef = cfg["effort"]
-    effort_checks = {
-        "flowering_census": census >= ef["minimum_independent_flowering_plants_censused"],
+    signal_effort_checks = {
         "pollinator_minutes": poll_minutes >= ef["minimum_pollinator_observation_minutes_total"],
         "pollinator_bouts": poll_bouts >= ef["minimum_pollinator_observation_bouts"],
         "predator_flowers": pred_flowers >= ef["minimum_predator_screen_flowers"],
         "water_plants": water_plants >= ef["minimum_water_state_plants"],
     }
-    effort_complete = all(effort_checks.values())
+    signal_effort_complete = all(signal_effort_checks.values())
 
     pred_fraction = attacked / pred_flowers if pred_flowers > 0 else None
     water_fraction = water_positive / water_plants if water_plants > 0 else None
@@ -215,10 +228,16 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
 
     capacity_required = th["minimum_flowering_plants_for_calibration_with_reserve"]
     capacity_pass = census >= capacity_required
+    capacity_resolved = capacity_pass or census_exhausted is True
 
-    if not effort_complete:
-        status = "CONTEXT_SCREEN_INCOMPLETE"
-    else:
+    effort_checks = {
+        **signal_effort_checks,
+        "capacity_census_resolved": capacity_resolved,
+    }
+    effort_complete = signal_effort_complete and capacity_resolved
+
+    failed = []
+    if signal_effort_complete:
         failed = [
             name
             for name, passed in (
@@ -228,18 +247,23 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             )
             if not passed
         ]
-        if len(failed) > 1:
-            status = "CONTEXT_UNINFORMATIVE_MULTIPLE_SIGNALS"
-        elif failed == ["POLLINATOR"]:
-            status = "CONTEXT_UNINFORMATIVE_POLLINATOR_LOW"
-        elif failed == ["PREDATOR"]:
-            status = "CONTEXT_UNINFORMATIVE_PREDATOR_LOW"
-        elif failed == ["WATER_STATE"]:
-            status = "CONTEXT_UNINFORMATIVE_WATER_STATE"
-        elif not capacity_pass:
-            status = "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED"
-        else:
-            status = "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
+
+    if not signal_effort_complete:
+        status = "CONTEXT_SCREEN_INCOMPLETE"
+    elif len(failed) > 1:
+        status = "CONTEXT_UNINFORMATIVE_MULTIPLE_SIGNALS"
+    elif failed == ["POLLINATOR"]:
+        status = "CONTEXT_UNINFORMATIVE_POLLINATOR_LOW"
+    elif failed == ["PREDATOR"]:
+        status = "CONTEXT_UNINFORMATIVE_PREDATOR_LOW"
+    elif failed == ["WATER_STATE"]:
+        status = "CONTEXT_UNINFORMATIVE_WATER_STATE"
+    elif not capacity_resolved:
+        status = "CONTEXT_SCREEN_INCOMPLETE"
+    elif not capacity_pass:
+        status = "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED"
+    else:
+        status = "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
 
     calibration_unlocked = status == "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
     relocation_recommended = status.startswith("CONTEXT_UNINFORMATIVE_")
@@ -256,21 +280,22 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
         },
         "effort": {
             "complete": effort_complete,
+            "signal_effort_complete": signal_effort_complete,
             "checks": effort_checks,
         },
         "signals": {
             "pollinator": {
-                "pass": pollinator_pass if effort_complete else None,
+                "pass": pollinator_pass if signal_effort_complete else None,
                 "legitimate_visits": visits,
             },
             "predator": {
-                "pass": predator_pass if effort_complete else None,
+                "pass": predator_pass if signal_effort_complete else None,
                 "attacked_flowers": attacked,
                 "screened_flowers": pred_flowers,
                 "attack_fraction": pred_fraction,
             },
             "water_state": {
-                "pass": water_pass if effort_complete else None,
+                "pass": water_pass if signal_effort_complete else None,
                 "positive_plants": water_positive,
                 "screened_plants": water_plants,
                 "positive_fraction": water_fraction,
@@ -278,21 +303,28 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             "pollen_limitation": "UNRESOLVED_UNTIL_QP_CALIBRATION",
         },
         "capacity": {
+            "census_rule": CAPACITY_CENSUS_RULE,
             "observed_flowering_plants": census,
+            "population_census_exhausted": census_exhausted,
             "base_calibration_floor": BASE_CALIBRATION_PLANTS,
             "reserve_fraction": cfg["capacity_margin_fraction"],
             "required_with_reserve": capacity_required,
-            "pass": capacity_pass if effort_complete else None,
+            "resolved": capacity_resolved,
+            "pass": capacity_pass if capacity_resolved else None,
         },
         "next_action": {
             "calibration_unlocked": calibration_unlocked,
             "relocation_recommended": relocation_recommended,
             "low_signal_is_biological_negative": False,
+            "continue_capacity_census": signal_effort_complete and not failed and not capacity_resolved,
         },
         "firewall": {
             "screen_is_logistical_not_g1_g2": True,
             "screen_units_confirmatory_ineligible": True,
             "zero_detection_not_absence": True,
+            "capacity_shortfall_declared_only_after_exhaustive_census": (
+                status != "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED" or census_exhausted is True
+            ),
         },
         "claim_ceiling": "P0_CONTEXT_LOGISTICS_ONLY_NO_G1_G2_OR_DOWNSTREAM_BIOLOGICAL_RESULT",
     }
