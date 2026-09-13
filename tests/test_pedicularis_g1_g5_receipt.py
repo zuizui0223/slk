@@ -12,6 +12,7 @@ module = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
 spec.loader.exec_module(module)
 adjudicate = module.adjudicate
+_close = module._close
 
 
 def _receipt():
@@ -74,6 +75,17 @@ def _receipt():
             },
         },
     }
+
+
+def test_identity_comparison_is_scale_invariant():
+    for scale in (1e-12, 1.0, 1e12):
+        assert _close(scale, scale * (1.0 + 5e-9))
+        assert not _close(scale, scale * 2.0)
+
+
+def test_identity_comparison_has_no_absolute_zero_band():
+    assert _close(0.0, 0.0)
+    assert not _close(1e-12, 0.0)
 
 
 def test_same_block_closure_is_internal_identity_not_concordance():
