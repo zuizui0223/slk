@@ -201,7 +201,10 @@ def plan(freeze: dict) -> dict:
 
     poisson_flower_minutes = poisson_exposure_for_detection(rate, poll_q)
     temporal_minutes = math.ceil(bouts * min_minutes_per_bout)
-    total_poll_flower_minutes = max(poisson_flower_minutes, temporal_minutes)
+    # Conservative v1 rule: if only one focal flower is open during every valid minute,
+    # clock minutes still suffice to reach the flower-minute exposure requirement.
+    total_poll_minutes = max(poisson_flower_minutes, temporal_minutes)
+    total_poll_flower_minutes = poisson_flower_minutes
     pred_flowers = binomial_units_for_detection(pred_fraction, pred_q)
     water_plants = binomial_units_for_detection(water_fraction, water_q)
     capacity_required = math.ceil(BASE_CALIBRATION_PLANTS * (1 + reserve))
@@ -224,11 +227,12 @@ def plan(freeze: dict) -> dict:
             "minimum_temporal_bouts": bouts,
             "minimum_minutes_per_bout": min_minutes_per_bout,
             "temporal_coverage_minutes": temporal_minutes,
-            "planned_total_minutes": temporal_minutes,
+            "planned_total_minutes": total_poll_minutes,
             "planned_total_flower_minutes": total_poll_flower_minutes,
             "minimum_detected_visits_for_signal": 1,
             "rate_source": rate_source,
             "coverage_source": coverage_source,
+            "worst_case_exposure_rule": "ASSUME_AT_LEAST_ONE_OPEN_FOCAL_FLOWER_PER_VALID_OBSERVATION_MINUTE",
         },
         "predator": {
             "minimum_relevant_attack_fraction": pred_fraction,
@@ -257,7 +261,7 @@ def plan(freeze: dict) -> dict:
         },
         "interpretation": (
             "Pollinator detection uses flower-minute exposure, matching the published P. rex visitation metric structure. "
-            "Effort is chosen so a signal at or above each frozen minimum-relevance rate has the declared probability of at least one detection. "
+            "The v1 clock-time floor is conservatively at least the flower-minute requirement, so one open focal flower throughout valid observation minutes is sufficient to reach registered exposure. "
             "Failure to detect remains context-uninformative rather than evidence of biological absence."
         ),
         "claim_ceiling": "P0_EFFORT_PLAN_ONLY_NO_CONTEXT_OR_G1_G5_BIOLOGICAL_RESULT",
