@@ -2,6 +2,7 @@ import math
 
 SCHEMA = "SLK_PEDICULARIS_G1_G5_RECEIPT_V1"
 SCALE = "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
+IDENTITY_RTOL = 1e-8
 
 
 def _need(ok, msg):
@@ -18,7 +19,15 @@ def _est(x, label):
 
 
 def _close(a, b):
-    return math.isclose(a, b, rel_tol=1e-8, abs_tol=1e-8)
+    """Return whether an algebraic receipt identity closes relatively.
+
+    Identity checks must not depend on the physical scale used for fitness.
+    An absolute tolerance would allow the same relative mismatch to pass after
+    shrinking all fitness quantities.  Exact zero therefore has no artificial
+    unit-sized acceptance band.
+    """
+
+    return math.isclose(a, b, rel_tol=IDENTITY_RTOL, abs_tol=0.0)
 
 
 def _all_true(x, keys):
