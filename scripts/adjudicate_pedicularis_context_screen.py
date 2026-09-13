@@ -19,6 +19,7 @@ ALLOWED_SOURCE_TYPES = {
 }
 REQUIRED_SOURCE_FIELDS = {
     "screen_effort.minimum_pollinator_observation_minutes_total",
+    "screen_effort.minimum_pollinator_flower_minutes_total",
     "screen_effort.minimum_pollinator_observation_bouts",
     "screen_effort.minimum_predator_screen_flowers",
     "screen_effort.minimum_water_state_plants",
@@ -88,7 +89,16 @@ def validate_freeze(freeze: dict) -> dict:
 
     effort = freeze.get("screen_effort", {})
     _need(effort.get("capacity_census_rule") == CAPACITY_CENSUS_RULE, "capacity census rule changed")
-    min_poll_minutes = _finite(effort.get("minimum_pollinator_observation_minutes_total"), "minimum pollinator minutes", minimum=0.000001)
+    min_poll_minutes = _finite(
+        effort.get("minimum_pollinator_observation_minutes_total"),
+        "minimum pollinator minutes",
+        minimum=0.000001,
+    )
+    min_poll_flower_minutes = _finite(
+        effort.get("minimum_pollinator_flower_minutes_total"),
+        "minimum pollinator flower-minutes",
+        minimum=0.000001,
+    )
     min_poll_bouts = _positive_int(effort.get("minimum_pollinator_observation_bouts"), "minimum pollinator bouts")
     min_pred_flowers = _positive_int(effort.get("minimum_predator_screen_flowers"), "minimum predator screen flowers")
     min_water_plants = _positive_int(effort.get("minimum_water_state_plants"), "minimum water-state plants")
@@ -141,6 +151,7 @@ def validate_freeze(freeze: dict) -> dict:
         "thresholds_frozen_before_screen_outcomes",
         "failed_signal_context_may_trigger_relocation_without_negative_claim",
         "capacity_shortfall_requires_exhaustive_census",
+        "pollinator_detection_requires_flower_minute_exposure",
     ):
         _need(firewall.get(key) is True, f"context-screen firewall disabled: {key}")
 
@@ -154,6 +165,7 @@ def validate_freeze(freeze: dict) -> dict:
         "effort": {
             "capacity_census_rule": CAPACITY_CENSUS_RULE,
             "minimum_pollinator_observation_minutes_total": min_poll_minutes,
+            "minimum_pollinator_flower_minutes_total": min_poll_flower_minutes,
             "minimum_pollinator_observation_bouts": min_poll_bouts,
             "minimum_predator_screen_flowers": min_pred_flowers,
             "minimum_water_state_plants": min_water_plants,
@@ -193,6 +205,7 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
     census = _finite(effort_raw.get("independent_flowering_plants_censused"), "observed flowering plants", minimum=0)
     census_exhausted = _optional_bool(effort_raw.get("population_census_exhausted"), "population_census_exhausted")
     poll_minutes = _finite(effort_raw.get("pollinator_observation_minutes_total"), "observed pollinator minutes", minimum=0)
+    poll_flower_minutes = _finite(effort_raw.get("pollinator_flower_minutes_total"), "observed pollinator flower-minutes", minimum=0)
     poll_bouts = _finite(effort_raw.get("pollinator_observation_bouts"), "observed pollinator bouts", minimum=0)
     pred_flowers = _finite(effort_raw.get("predator_screen_flowers"), "observed predator flowers", minimum=0)
     water_plants = _finite(effort_raw.get("water_state_plants"), "observed water-state plants", minimum=0)
@@ -208,6 +221,7 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
     ef = cfg["effort"]
     signal_effort_checks = {
         "pollinator_minutes": poll_minutes >= ef["minimum_pollinator_observation_minutes_total"],
+        "pollinator_flower_minutes": poll_flower_minutes >= ef["minimum_pollinator_flower_minutes_total"],
         "pollinator_bouts": poll_bouts >= ef["minimum_pollinator_observation_bouts"],
         "predator_flowers": pred_flowers >= ef["minimum_predator_screen_flowers"],
         "water_plants": water_plants >= ef["minimum_water_state_plants"],
@@ -216,6 +230,7 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
 
     pred_fraction = attacked / pred_flowers if pred_flowers > 0 else None
     water_fraction = water_positive / water_plants if water_plants > 0 else None
+    poll_rate = visits / poll_flower_minutes if poll_flower_minutes > 0 else None
     th = cfg["thresholds"]
 
     pollinator_pass = visits >= th["minimum_legitimate_pollinator_visits"]
@@ -287,6 +302,8 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             "pollinator": {
                 "pass": pollinator_pass if signal_effort_complete else None,
                 "legitimate_visits": visits,
+                "flower_minutes": poll_flower_minutes,
+                "observed_visit_rate_per_flower_min": poll_rate,
             },
             "predator": {
                 "pass": predator_pass if signal_effort_complete else None,
@@ -322,6 +339,7 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             "screen_is_logistical_not_g1_g2": True,
             "screen_units_confirmatory_ineligible": True,
             "zero_detection_not_absence": True,
+            "pollinator_signal_uses_flower_minute_exposure": True,
             "capacity_shortfall_declared_only_after_exhaustive_census": (
                 status != "CONTEXT_SIGNAL_PRESENT_CAPACITY_LIMITED" or census_exhausted is True
             ),
