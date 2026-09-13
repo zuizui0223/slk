@@ -10,6 +10,7 @@ SCREEN_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_FREEZE_V1"
 PLAN_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_EFFORT_PLAN_V1"
 PLAN_STATUS = "P0_SIGNAL_DETECTION_EFFORT_PROSPECTIVELY_PLANNED"
 CAPACITY_RULE = "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION"
+POLLINATOR_RATE_UNIT = "LEGITIMATE_VISITS_PER_FLOWER_MINUTE"
 
 
 def _need(ok: bool, message: str) -> None:
@@ -42,6 +43,7 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     water = plan.get("water_state", {})
     capacity = plan.get("capacity", {})
     _need(capacity.get("census_rule") == CAPACITY_RULE, "capacity census rule mismatch")
+    _need(poll.get("visit_rate_unit") == POLLINATOR_RATE_UNIT, "pollinator rate unit mismatch")
     _need(poll.get("minimum_detected_visits_for_signal") == 1, "v1 pollinator presence threshold must be one detection")
     _need(pred.get("minimum_attacked_flowers_for_signal") == 1, "v1 predator presence threshold must be one detection")
     _need(water.get("minimum_positive_plants_for_signal") == 1, "v1 water-state presence threshold must be one detection")
@@ -50,6 +52,7 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     effort = out.setdefault("screen_effort", {})
     effort["capacity_census_rule"] = CAPACITY_RULE
     effort["minimum_pollinator_observation_minutes_total"] = poll["planned_total_minutes"]
+    effort["minimum_pollinator_flower_minutes_total"] = poll["planned_total_flower_minutes"]
     effort["minimum_pollinator_observation_bouts"] = poll["minimum_temporal_bouts"]
     effort["minimum_predator_screen_flowers"] = pred["planned_screen_flowers"]
     effort["minimum_water_state_plants"] = water["planned_screen_plants"]
@@ -69,11 +72,16 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     records = [
         {
             "field_id": "screen_effort.minimum_pollinator_observation_minutes_total",
+            "source_type": poll["coverage_source"]["source_type"],
+            "source_reference": poll["coverage_source"]["source_reference"],
+            "rationale": poll["coverage_source"]["rationale"],
+        },
+        {
+            "field_id": "screen_effort.minimum_pollinator_flower_minutes_total",
             "source_type": "COMBINED_PREDECLARED",
             "source_reference": plan_ref,
             "rationale": (
-                "Poisson zero-detection planning from the prospectively frozen minimum relevant visit rate and desired detection probability, "
-                "not from observed P0 outcomes."
+                "Poisson zero-detection planning on flower-minute exposure from the prospectively frozen minimum relevant legitimate-visit rate per flower-minute and desired detection probability."
             ),
         },
         {
@@ -108,7 +116,7 @@ def compile_effort(screen: dict, plan: dict) -> dict:
             "field_id": "decision_thresholds.minimum_legitimate_pollinator_visits",
             "source_type": "DOWNSTREAM_DESIGN_REQUIREMENT",
             "source_reference": plan_ref,
-            "rationale": "P0 is a presence/detectability screen; one legitimate visit after completed planned effort is sufficient for the pollinator signal gate.",
+            "rationale": "P0 is a presence/detectability screen; one legitimate visit after completed minute and flower-minute effort is sufficient for the pollinator signal gate.",
         },
         {
             "field_id": "decision_thresholds.minimum_predator_attacked_flowers",
@@ -128,7 +136,7 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     out["status"] = "EFFORT_COMPILED_AWAITING_FINAL_P0_FREEZE"
     out["context"]["frozen_before_screen_outcomes"] = False
     out["compiler_claim_ceiling"] = (
-        "P0_EFFORT_FIELDS_COMPILED_ONLY; review, fill final freeze metadata, commit, set FROZEN_CANDIDATE, and set frozen_before_screen_outcomes=true before field-packet generation."
+        "P0_EFFORT_FIELDS_COMPILED_ONLY; review source qualifications, fill final freeze metadata, commit, set FROZEN_CANDIDATE, and set frozen_before_screen_outcomes=true before field-packet generation."
     )
     return out
 
