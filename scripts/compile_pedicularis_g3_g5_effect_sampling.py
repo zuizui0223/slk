@@ -50,8 +50,9 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
     z_levels = effect.get("z_grid", {}).get("levels", [])
     target_z_count = precision_freeze.get("targets", {}).get("registered_z_levels")
     plan_z_count = plan.get("targets", {}).get("registered_z_levels")
-    _need(isinstance(z_levels, list) and len(z_levels) >= 5, "effect z grid must already be specified")
+    _need(isinstance(z_levels, list) and len(z_levels) > 0, "effect z grid must already be specified")
     _need(len(z_levels) == target_z_count == plan_z_count, "z-level count mismatch across effect/precision contracts")
+    _need(len(z_levels) >= 5, "effect z grid must contain at least five levels")
 
     pf_meta = precision_freeze.get("freeze_metadata", {})
     precision_commit = _filled(pf_meta.get("freeze_commit"), "precision freeze commit")

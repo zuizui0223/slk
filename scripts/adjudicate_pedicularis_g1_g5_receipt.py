@@ -89,7 +89,6 @@ def adjudicate(r):
     dec = r["g5_Phi"]["decomposed"]
     _need(dec.get("status") == "IDENTIFIED", "decomposed Phi open")
     Pd, _, _ = _est(dec, "Phi_decomp")
-    _need(_close(Pd, R - K), "decomposed Phi identity failed")
 
     rule = r["g5_Phi"]["bridge_concordance"]
     _need(rule.get("frozen_before_confirmatory_outcomes") is True, "bridge rule not frozen")
@@ -97,16 +96,28 @@ def adjudicate(r):
 
     if independent:
         b, blo, bhi = _est(r["g5_Phi"]["bridge_residual"], "bridge")
-        _need(_close(b, P - Pd), "bridge identity failed")
+        failures = []
+        if not _close(Pd, R - K):
+            failures.append("decomposed Phi identity failed")
+        if not _close(b, P - Pd):
+            failures.append("bridge identity failed")
+        _need(not failures, "; ".join(failures))
         tol = rule.get("max_abs_point")
         _need(isinstance(tol, (int, float)) and tol >= 0, "bad bridge tolerance")
         concordant = abs(b) <= tol and blo <= 0 <= bhi
         status = "STRUCTURAL_G1_G5_CLOSED_CONCORDANT" if concordant else "STRUCTURAL_G1_G5_DECOMPOSED"
         ceiling = "SAME_SYSTEM_G1_G5_INDEPENDENT_CONCORDANCE" if concordant else "G1_G5_MEASURED_BRIDGE_NOT_CONCORDANT"
     else:
-        _need(_close(R, WD0 - WS), "R identity failed")
-        _need(_close(K, WD0 - WD), "K identity failed")
-        _need(_close(P, Pd), "same-block direct/decomposed Phi must be identical")
+        failures = []
+        if not _close(R, WD0 - WS):
+            failures.append("R identity failed")
+        if not _close(K, WD0 - WD):
+            failures.append("K identity failed")
+        if not _close(Pd, R - K):
+            failures.append("decomposed Phi identity failed")
+        if not _close(P, Pd):
+            failures.append("same-block direct/decomposed Phi must be identical")
+        _need(not failures, "; ".join(failures))
         b = 0.0
         concordant = None
         status = "STRUCTURAL_G1_G5_CLOSED_INTERNAL_IDENTITY"

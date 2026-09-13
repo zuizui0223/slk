@@ -125,3 +125,15 @@ def test_broken_R_identity_is_rejected_for_same_block_decomposition():
     r["g3_R"]["point"] = 2.5
     with pytest.raises(ValueError, match="R identity"):
         adjudicate(r)
+
+
+def test_same_block_reports_all_broken_primitive_identities():
+    r = _receipt()
+    r["g3_R"]["point"] = 2.5
+    r["g4_K"]["point"] = 3.5
+    with pytest.raises(ValueError) as excinfo:
+        adjudicate(r)
+    message = str(excinfo.value)
+    assert "R identity failed" in message
+    assert "K identity failed" in message
+    assert "decomposed Phi identity failed" not in message
