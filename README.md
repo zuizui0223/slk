@@ -1,20 +1,22 @@
 # SLK — From Shared Conflict to Evolutionary Architecture
 
-SLK is the integrated flagship theory programme connecting four previously separate repositories:
+SLK is the active integrated flagship theory programme connecting four previously separate repositories:
 
 - [`sch`](https://github.com/zuizui0223/sch): identifies whether a shared-coordinate functional conflict exists and estimates its compromise load `L`.
-- [`balance`](https://github.com/zuizui0223/balance): classifies the persistent-compromise region `L > 0, Phi < 0`.
-- [`bita`](https://github.com/zuizui0223/bita): defines recoverable architecture benefit `R` and the architecture margin `Phi = R - K`; under the quadratic partial-release bridge, `R=sL`.
-- [`payoff`](https://github.com/zuizui0223/payoff): transports architecture payoff into accessibility, invasion, fixation, and long-run occupancy.
+- [`balance`](https://github.com/zuizui0223/balance): classifies and characterizes the persistent-compromise region `L > 0, Phi < 0`.
+- [`slk`](https://github.com/zuizui0223/slk): owns the architecture-value objects `R`, `K`, and `Phi=R-K`, the registered quadratic bridge `R=sL`, and the transport hierarchy from architecture value to accessibility, invasion, fixation, and occupancy.
+- [`bita`](https://github.com/zuizui0223/bita): is orthogonal to the architecture-value boundary and asks what ecological mechanism is identified by a measured trait interaction.
+- [`payoff`](https://github.com/zuizui0223/payoff): supplies source mathematical results used by later SLK realization steps and retains broader continuous, spatial, temporal, and topological extensions.
 
-The integrated spine is:
+The frozen programme spine is:
 
 ```text
 SCH      identifies L
 BALANCE classifies L > 0, Phi < 0
-BITA    defines/tests R and Phi = R - K
-        with R = sL as a quadratic bridge
-PAYOFF  maps Phi into evolutionary outcomes
+SLK      defines/tests R, K, and Phi = R - K
+         with R = sL only as the registered quadratic bridge
+SLK      transports Phi through accessibility -> invasion -> fixation -> occupancy
+BITA     separately maps trait interaction -> identified set -> mechanism allocation
 ```
 
 ## Central question
@@ -32,14 +34,14 @@ conflict load L
         v
 recoverable benefit R
         |
-        +-- quadratic bridge: R = sL
+        +-- quadratic bridge only: R = sL
         |
         v
 architecture margin Phi = R - K
         |
         +-- L > 0, Phi < 0: persistent compromise / BALANCE
-        +-- Phi = 0: architecture critical surface
-        +-- Phi > 0: differentiation globally favored / BITA
+        +-- Phi = 0: SLK architecture-value critical surface
+        +-- Phi > 0: differentiated comparison globally favored
         |
         v
 local accessibility
@@ -78,17 +80,16 @@ The three figures have distinct jobs. Figure 1 shows the inferential hierarchy a
 
 ## What SLK owns
 
-SLK owns only the cross-repository theory needed for the integrated hierarchy:
+SLK owns the cross-repository theory needed for the integrated hierarchy:
 
-1. identification and interpretation of the conflict budget `L`;
-2. the persistent-compromise classification `L > 0, Phi < 0`;
-3. the general architecture payoff identity `Phi=R-K`, with `R=sL` retained only as the quadratic partial-release bridge;
-4. the distinction between global architecture value and local evolutionary accessibility;
-5. the minimal transport from architecture payoff to invasion, fixation, and occupancy;
-6. the integrated split/invariant theorem showing where successive criteria diverge and where reciprocal fixation and weak-mutation occupancy re-align;
-7. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+1. the architecture-value definition `Phi=R-K` for a declared matched comparison;
+2. the registered quadratic partial-release bridge `R=sL` as a model-specific corollary, not a universal identity;
+3. the distinction between global architecture value and local evolutionary accessibility;
+4. the minimal transport from architecture value to invasion, fixation, and occupancy;
+5. the integrated split/invariant theorem showing where successive criteria diverge and where reciprocal fixation and weak-mutation occupancy re-align;
+6. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
-The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
+SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
 ## Prior-art boundary
 
@@ -199,7 +200,8 @@ These modules may be cited by SLK without being promoted to independent manuscri
 25. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
 26. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
 27. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
-28. `PROVENANCE.md` — migration provenance and citation policy.
+28. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
+29. `PROVENANCE.md` — historical provenance separated from current scientific ownership.
 
 ## Current status
 
@@ -238,6 +240,7 @@ CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
 SECTION_CLAIM_MAP_REGISTERED
 CLAIM_PROVENANCE_PINNED
+THEORY_PROGRAMME_OWNERSHIP_FROZEN
 PUBLICATION_ARCHITECTURE_REFOCUSED
 ACTIVE_FLAGSHIP_SLK
 ACTIVE_FULL_PAPERS_SCH_BITA
