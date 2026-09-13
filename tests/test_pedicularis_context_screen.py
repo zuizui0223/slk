@@ -17,6 +17,7 @@ spec.loader.exec_module(module)
 def _source_records() -> list[dict]:
     fields = [
         "screen_effort.minimum_pollinator_observation_minutes_total",
+        "screen_effort.minimum_pollinator_flower_minutes_total",
         "screen_effort.minimum_pollinator_observation_bouts",
         "screen_effort.minimum_predator_screen_flowers",
         "screen_effort.minimum_water_state_plants",
@@ -51,6 +52,7 @@ def _freeze() -> dict:
         "screen_effort": {
             "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
             "minimum_pollinator_observation_minutes_total": 60,
+            "minimum_pollinator_flower_minutes_total": 120,
             "minimum_pollinator_observation_bouts": 6,
             "minimum_predator_screen_flowers": 30,
             "minimum_water_state_plants": 20,
@@ -91,6 +93,7 @@ def _freeze() -> dict:
             "thresholds_frozen_before_screen_outcomes": True,
             "failed_signal_context_may_trigger_relocation_without_negative_claim": True,
             "capacity_shortfall_requires_exhaustive_census": True,
+            "pollinator_detection_requires_flower_minute_exposure": True,
         },
         "freeze_metadata": {
             "slk_source_commit": "abc123",
@@ -116,12 +119,14 @@ def _receipt() -> dict:
             "independent_flowering_plants_censused": 120,
             "population_census_exhausted": False,
             "pollinator_observation_minutes_total": 75,
+            "pollinator_flower_minutes_total": 150,
             "pollinator_observation_bouts": 8,
             "predator_screen_flowers": 40,
             "water_state_plants": 25,
         },
         "observations": {
             "legitimate_pollinator_visits": 3,
+            "legitimate_visit_rate_per_flower_min": 0.02,
             "predator_attacked_flowers": 4,
             "water_positive_plants": 20,
             "notes_on_predator_evidence": "oviposition/early attack signs observed",
@@ -135,6 +140,7 @@ def _receipt() -> dict:
             "screen_units_confirmatory_eligible": False,
             "screen_used_for_treatment_effect_estimation": False,
             "zero_detection_interpreted_as_biological_absence": False,
+            "pollinator_exposure_unit": "FLOWER_MINUTES",
         },
         "final_adjudication": "NOT_YET_EXECUTED",
     }
@@ -146,6 +152,7 @@ def test_signal_positive_context_with_capacity_unlocks_calibration() -> None:
     assert result["next_action"]["calibration_unlocked"] is True
     assert result["capacity"]["required_with_reserve"] == 93
     assert result["capacity"]["resolved"] is True
+    assert result["signals"]["pollinator"]["observed_visit_rate_per_flower_min"] == pytest.approx(0.02)
     assert result["signals"]["pollen_limitation"] == "UNRESOLVED_UNTIL_QP_CALIBRATION"
 
 
@@ -181,13 +188,14 @@ def test_capacity_below_requirement_without_exhaustive_census_is_incomplete() ->
     assert result["signals"]["pollinator"]["pass"] is True
 
 
-def test_incomplete_registered_signal_effort_never_calls_low_signal() -> None:
+def test_incomplete_flower_minute_effort_never_calls_low_signal() -> None:
     receipt = _receipt()
-    receipt["effort"]["pollinator_observation_minutes_total"] = 20
+    receipt["effort"]["pollinator_flower_minutes_total"] = 80
     receipt["observations"]["legitimate_pollinator_visits"] = 0
     result = module.adjudicate(receipt, _freeze())
     assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
     assert result["signals"]["pollinator"]["pass"] is None
+    assert result["effort"]["checks"]["pollinator_flower_minutes"] is False
 
 
 def test_multiple_low_signals_are_not_collapsed_to_one_cause() -> None:
