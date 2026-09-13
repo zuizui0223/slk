@@ -1,0 +1,77 @@
+{
+  "schema_version": "SLK_PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "candidate_site_id": "REQUIRED_BEFORE_USE",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "calibration_window_id": "REQUIRED_BEFORE_USE",
+    "future_p0_screen_window_id": "REQUIRED_BEFORE_USE",
+    "dataset_id": "PED_P0_NAT_HIST_CAL_V1",
+    "frozen_before_calibration_outcomes": false,
+    "p0_outcomes_opened": false
+  },
+  "sampling": {
+    "minimum_pollinator_bouts": null,
+    "minimum_pollinator_minutes_total": null,
+    "minimum_predator_flowers": null,
+    "minimum_water_state_plants": null,
+    "sampling_floor_source_type": "REQUIRED_BEFORE_USE",
+    "sampling_floor_source_reference": "REQUIRED_BEFORE_USE",
+    "sampling_floor_rationale": "REQUIRED_BEFORE_USE"
+  },
+  "qualification_rule": {
+    "rule": "ONE_SIDED_INDEPENDENT_UNIT_BOOTSTRAP_LOWER_QUANTILE",
+    "lower_quantile": null,
+    "bootstrap_seed": null,
+    "bootstrap_reps": null,
+    "minimum_bootstrap_reps": 5000,
+    "minimum_valid_fraction": 0.95,
+    "lower_quantile_source_type": "REQUIRED_BEFORE_USE",
+    "lower_quantile_source_reference": "REQUIRED_BEFORE_USE",
+    "lower_quantile_rationale": "REQUIRED_BEFORE_USE",
+    "require_all_three_lower_bounds_strictly_positive": true
+  },
+  "endpoints": {
+    "pollinator": {
+      "metric": "LEGITIMATE_VISITS_PER_FLOWER_MINUTE",
+      "resampling_unit": "INDEPENDENT_TEMPORAL_BOUT",
+      "required_fields": [
+        "observed_minutes",
+        "simultaneously_open_focal_flowers",
+        "legitimate_pollinator_visits"
+      ]
+    },
+    "predator": {
+      "metric": "EARLY_ATTACK_OR_OVIPOSITION_POSITIVE_FLOWERS_PER_SCREENED_FLOWERS",
+      "resampling_unit": "INDEPENDENT_FOCAL_FLOWER",
+      "required_fields": [
+        "early_attack_or_oviposition_positive"
+      ]
+    },
+    "water_state": {
+      "metric": "WATER_POSITIVE_FLOWERING_PLANTS_PER_SCREENED_FLOWERING_PLANTS",
+      "resampling_unit": "INDEPENDENT_FLOWERING_PLANT",
+      "required_fields": [
+        "water_positive"
+      ]
+    }
+  },
+  "firewall": {
+    "calibration_units_p0_decision_ineligible": true,
+    "calibration_units_qz_qp_qg_ineligible": true,
+    "calibration_units_g1_g2_ineligible": true,
+    "calibration_units_y_d0_ineligible": true,
+    "calibration_units_g3_g5_ineligible": true,
+    "calibration_values_may_define_p0_effort_only": true,
+    "lower_bound_rule_frozen_before_calibration_outcomes": true,
+    "failed_or_zero_compatible_calibration_not_rescued_posthoc": true
+  },
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "production_status": "PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_PROSPECTIVELY_FROZEN"
+}
