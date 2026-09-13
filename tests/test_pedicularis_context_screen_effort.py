@@ -178,8 +178,9 @@ def test_reference_detection_effort_values() -> None:
     result = planner.plan(_effort_freeze())
     assert result["pollinator"]["poisson_detection_flower_minutes"] == 150
     assert result["pollinator"]["temporal_coverage_minutes"] == 120
-    assert result["pollinator"]["planned_total_minutes"] == 120
+    assert result["pollinator"]["planned_total_minutes"] == 150
     assert result["pollinator"]["planned_total_flower_minutes"] == 150
+    assert result["pollinator"]["worst_case_exposure_rule"] == "ASSUME_AT_LEAST_ONE_OPEN_FOCAL_FLOWER_PER_VALID_OBSERVATION_MINUTE"
     assert result["predator"]["planned_screen_flowers"] == 59
     assert result["water_state"]["planned_screen_plants"] == 5
     assert result["capacity"]["required_flowering_plants"] == 93
@@ -192,6 +193,7 @@ def test_more_demanding_detection_guarantee_never_reduces_effort() -> None:
     tougher["predator_detection"]["desired_detection_probability"] = 0.99
     tougher["water_state_detection"]["desired_detection_probability"] = 0.99
     result = planner.plan(tougher)
+    assert result["pollinator"]["planned_total_minutes"] >= base["pollinator"]["planned_total_minutes"]
     assert result["pollinator"]["planned_total_flower_minutes"] >= base["pollinator"]["planned_total_flower_minutes"]
     assert result["predator"]["planned_screen_flowers"] >= base["predator"]["planned_screen_flowers"]
     assert result["water_state"]["planned_screen_plants"] >= base["water_state"]["planned_screen_plants"]
@@ -204,6 +206,7 @@ def test_weaker_minimum_signal_requires_more_effort() -> None:
     weaker["predator_detection"]["minimum_relevant_attack_fraction"] = 0.02
     weaker["water_state_detection"]["minimum_relevant_positive_fraction"] = 0.25
     result = planner.plan(weaker)
+    assert result["pollinator"]["planned_total_minutes"] > base["pollinator"]["planned_total_minutes"]
     assert result["pollinator"]["planned_total_flower_minutes"] > base["pollinator"]["planned_total_flower_minutes"]
     assert result["predator"]["planned_screen_flowers"] > base["predator"]["planned_screen_flowers"]
     assert result["water_state"]["planned_screen_plants"] > base["water_state"]["planned_screen_plants"]
@@ -234,7 +237,7 @@ def test_compiler_populates_p0_effort_without_finalizing_freeze() -> None:
     plan = planner.plan(_effort_freeze())
     result = compiler.compile_effort(_screen_template(), plan)
     assert result["status"] == "EFFORT_COMPILED_AWAITING_FINAL_P0_FREEZE"
-    assert result["screen_effort"]["minimum_pollinator_observation_minutes_total"] == 120
+    assert result["screen_effort"]["minimum_pollinator_observation_minutes_total"] == 150
     assert result["screen_effort"]["minimum_pollinator_flower_minutes_total"] == 150
     assert result["screen_effort"]["minimum_predator_screen_flowers"] == 59
     assert result["screen_effort"]["minimum_water_state_plants"] == 5
