@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import shutil
 from pathlib import Path
+
+from verify_amnat_claims import verify
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "submission" / "amnat_review" / "generated" / "reviewer_bundle"
@@ -34,7 +37,7 @@ This package accompanies the manuscript **From functional conflict to evolutiona
 
 The submitted paper is a theory/concept paper. It does not estimate its headline results from a private or external empirical dataset. Numerical values in the witness table are constructive parameter regimes used to demonstrate logical non-implications. The three figures are theory diagrams/phase summaries.
 
-The package therefore contains the exact manuscript source, the two theory notes underlying the registered split-and-invariant claims, the three submitted figure sources, and a standard-library Python verifier for the five witness regimes plus the fixation-occupancy invariant.
+The package therefore contains the exact manuscript source, the two theory notes underlying the registered split-and-invariant claims, the three submitted figure sources, and a standard-library Python verifier for the five witness regimes plus the fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 
@@ -48,7 +51,7 @@ A successful run writes a JSON receipt with `all_checks_pass: true`.
 
 ## Double-anonymous review
 
-This reviewer bundle is intentionally detached from repository history, remote URLs, author metadata, acknowledgments, and contributor information. `ANONYMITY_AUDIT.txt` records the automated identity-string scan. The bundle should be uploaded directly to the journal review system or another anonymous reviewer-accessible deposit; a repository URL containing author identity should not be inserted into the anonymous manuscript.
+This reviewer bundle is intentionally detached from repository history, remote URLs, author metadata, acknowledgments, and contributor information. `ANONYMITY_AUDIT.txt` records the automated identity-string scan. The bundle should be uploaded directly to the journal review system or another anonymous reviewer-accessible deposit; an identity-bearing repository URL should not be inserted into the anonymous manuscript.
 """
 
 
@@ -74,6 +77,10 @@ def build(out_dir: Path = DEFAULT_OUT) -> Path:
         shutil.copy2(src, dst)
 
     (out_dir / "README.md").write_text(README, encoding="utf-8")
+    (out_dir / "CLAIM_VERIFICATION_RECEIPT.json").write_text(
+        json.dumps(verify(), indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
 
     leaks: list[str] = []
     for path in sorted(p for p in out_dir.rglob("*") if p.is_file()):
