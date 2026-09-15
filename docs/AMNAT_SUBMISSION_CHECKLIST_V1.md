@@ -6,6 +6,7 @@
 MANUSCRIPT = manuscript/SLK_MANUSCRIPT_AMNAT_V3.md
 TITLE_PAGE = manuscript/AMNAT_TITLE_PAGE_V1.md
 ARTICLE_TYPE = Major Article
+PORTAL_HANDOFF = submission/AMNAT_PORTAL_HANDOFF_V1.md
 ```
 
 Automated count from `scripts/check_amnat_manuscript.py`:
@@ -53,7 +54,7 @@ The final formatting QA repaired the two renderer-visible defects found during r
 
 Status: `PASS — reader-facing review files generated and visually verified`.
 
-### 2. Anonymous reviewer code/theory package — PASS INTERNALLY
+### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, DEPOSIT STILL REQUIRED
 
 The review bundle is curated rather than being a repository dump. It contains:
 
@@ -68,23 +69,41 @@ The review bundle is curated rather than being a repository dump. It contains:
 
 The verifier recomputes all five registered witness regimes and the fixation–occupancy invariant. The invariant grid contains 112 comparisons with maximum absolute error 0.0. The bundle identity scan passes and excludes repository history, remote URLs, and author metadata.
 
-The identity-bearing GitHub repository URL must still not be inserted into the anonymous manuscript. At submission, upload this bundle directly through the journal system or place the exact bundle in an anonymous reviewer-accessible deposit.
+Current journal instructions require data/code needed to recreate results to be deposited in a public data repository and made reviewer-accessible at first submission. The deposit can remain non-public during review, but a reviewer-accessible link must be included in the manuscript. Therefore direct portal upload of the bundle alone is not treated as sufficient unless the journal office explicitly confirms otherwise.
 
-Status: `PASS INTERNALLY — external portal/deposit upload remains a submission action`.
+The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Deposit the exact curated anonymous bundle in a repository that supports anonymous/reviewer access and insert that link in the anonymous manuscript.
+
+Status: `PASS INTERNALLY — ANONYMOUS_REVIEW_ARCHIVE_URL is an external submission blocker`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
-Author names, affiliations, emails, ORCIDs, acknowledgments, and author-contribution statements should remain outside the anonymous review manuscript and be entered in the journal submission fields/comments as instructed.
+Author names, affiliations, emails, ORCIDs, acknowledgments, and author-contribution statements should remain outside the anonymous review manuscript. Names/affiliations/emails belong in Editorial Manager; acknowledgments and author contributions belong in the Author Comments field for initial double-anonymous review.
 
 Status: `READY FOR USER-SUPPLIED AUTHOR METADATA`.
 
-### 4. AI-use transparency
+### 4. Cover letter / Author Comments — JOURNAL-SPECIFIC ROUTE LOCKED
 
-Prepare the journal-appropriate disclosure during the submission/acceptance workflow rather than adding identifying material to the anonymous scientific text.
+The current journal instructions state that cover letters are not expected and may be removed. If a message is necessary, it should be entered in the Author Comments field. Do not spend submission effort on a conventional promotional cover letter.
 
-Status: `DISCLOSURE REQUIRED BEFORE SUBMISSION`.
+Author Comments must carry the acknowledgments and author-contribution statement because these are removed from the anonymous manuscript.
 
-### 5. Reference-format final polish
+Status: `PORTAL ROUTE DEFINED — HUMAN TEXT REQUIRED`.
+
+### 5. AI-use transparency
+
+Current instructions permit generative AI for readability, drafting and code troubleshooting under human oversight. Use that generates scientific content, analysis, figures, or other repeatability-relevant material must be described transparently in the manuscript. The exact disclosure must match actual use and be approved by the authors.
+
+A non-authoritative starting template is registered in `submission/AMNAT_PORTAL_HANDOFF_V1.md`.
+
+Status: `AUTHOR-APPROVED DISCLOSURE REQUIRED BEFORE SUBMISSION`.
+
+### 6. Reviewer / editor / additional-information fields
+
+The live submission flow asks for reviewer suggestions and additional information including preprint status, data location/data-sharing compliance, and a potentially suitable associate editor. Reviewer identities must not be inferred from citations or repository history. The journal flags recent collaboration (previous 48 months) and same-institution employment as conflicts.
+
+Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
+
+### 7. Reference-format final polish
 
 Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V3 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized later if requested.
 
@@ -92,16 +111,21 @@ Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No internal scientific-package or mechanical-format blocker remains. The repository now produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated anonymous reviewer code/theory bundle with executable claim verification.
+No internal scientific-package or mechanical-format blocker remains. The repository produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated anonymous reviewer code/theory bundle with executable claim verification.
 
 Remaining actions are external/human controlled:
 
 ```text
-AUTHOR_METADATA        REQUIRED
-AI_USE_DISCLOSURE      REQUIRED
-ALL_AUTHOR_APPROVAL    REQUIRED
-PORTAL_FILE_UPLOAD     REQUIRED
-ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT REQUIRED
+AUTHOR_METADATA                       REQUIRED
+ANONYMOUS_REVIEW_ARCHIVE_URL          REQUIRED
+ACKNOWLEDGMENTS_IN_AUTHOR_COMMENTS     REQUIRED
+AUTHOR_CONTRIBUTIONS_IN_COMMENTS       REQUIRED
+AI_USE_DISCLOSURE                      REQUIRED_IF_APPLICABLE_TO_CONTENT
+SUGGESTED_REVIEWER_FIELDS              AUTHOR_CONTROLLED
+ASSOCIATE_EDITOR_SUGGESTION            AUTHOR_CONTROLLED
+PREPRINT_AND_DATA_SHARING_FIELDS       REQUIRED_PORTAL_RESPONSES
+ALL_AUTHOR_APPROVAL                    REQUIRED
+PORTAL_FILE_UPLOAD                     REQUIRED
 ```
 
 Scientific reviewer risk remains conceptual importance of the integrated estimand transport, not format compliance.
