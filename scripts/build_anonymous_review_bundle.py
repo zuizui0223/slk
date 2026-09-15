@@ -5,7 +5,10 @@ import json
 import shutil
 from pathlib import Path
 
-from verify_amnat_claims import verify
+try:
+    from scripts.verify_amnat_claims import verify
+except ImportError:  # direct execution via `python scripts/...`
+    from verify_amnat_claims import verify
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "submission" / "amnat_review" / "generated" / "reviewer_bundle"
