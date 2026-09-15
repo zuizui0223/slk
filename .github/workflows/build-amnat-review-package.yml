@@ -1,0 +1,167 @@
+name: Build Am Nat anonymous review package
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'manuscript/SLK_MANUSCRIPT_AMNAT_V3.md'
+      - 'manuscript/AMNAT_TITLE_PAGE_V1.md'
+      - 'figures/FIG1_LOGIC_DIAGRAM.svg'
+      - 'figures/FIG2_PHASE_MAP.svg'
+      - 'figures/FIG3_EMPIRICAL_LADDER.svg'
+      - 'theory/SLK_CORE_THEORY_V1.md'
+      - 'theory/NON_EQUIVALENCE_THEOREM_V1.md'
+      - 'scripts/check_amnat_manuscript.py'
+      - 'scripts/format_amnat_review_docx.py'
+      - 'scripts/verify_amnat_claims.py'
+      - 'scripts/build_anonymous_review_bundle.py'
+      - 'tests/test_amnat_submission_tools.py'
+      - '.github/workflows/build-amnat-review-package.yml'
+  pull_request:
+    paths:
+      - 'manuscript/SLK_MANUSCRIPT_AMNAT_V3.md'
+      - 'manuscript/AMNAT_TITLE_PAGE_V1.md'
+      - 'figures/**'
+      - 'theory/**'
+      - 'scripts/**'
+      - 'tests/test_amnat_submission_tools.py'
+      - '.github/workflows/build-amnat-review-package.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install review document toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc libreoffice-writer poppler-utils librsvg2-bin zip
+          python -m pip install --upgrade pip
+          python -m pip install pytest python-docx
+
+      - name: Check frozen manuscript and submission tooling
+        run: |
+          python scripts/check_amnat_manuscript.py
+          python -m pytest -q tests/test_amnat_submission_tools.py
+          python scripts/verify_amnat_claims.py
+
+      - name: Prepare reviewer-facing manuscript source and raster figures
+        run: |
+          GEN=submission/amnat_review/generated
+          rm -rf "$GEN"
+          mkdir -p "$GEN/figures" "$GEN/rendered/main_pages"
+          rsvg-convert figures/FIG1_LOGIC_DIAGRAM.svg -o "$GEN/figures/FIG1_LOGIC_DIAGRAM.png"
+          rsvg-convert figures/FIG2_PHASE_MAP.svg -o "$GEN/figures/FIG2_PHASE_MAP.png"
+          rsvg-convert figures/FIG3_EMPIRICAL_LADDER.svg -o "$GEN/figures/FIG3_EMPIRICAL_LADDER.png"
+          python - <<'PY'
+          from pathlib import Path
+          src = Path('manuscript/SLK_MANUSCRIPT_AMNAT_V3.md').read_text(encoding='utf-8')
+          src = src.replace('../figures/FIG1_LOGIC_DIAGRAM.svg', 'figures/FIG1_LOGIC_DIAGRAM.png')
+          src = src.replace('../figures/FIG2_PHASE_MAP.svg', 'figures/FIG2_PHASE_MAP.png')
+          src = src.replace('../figures/FIG3_EMPIRICAL_LADDER.svg', 'figures/FIG3_EMPIRICAL_LADDER.png')
+          Path('submission/amnat_review/generated/MANUSCRIPT_REVIEW_SOURCE.md').write_text(src, encoding='utf-8')
+          PY
+          cp manuscript/AMNAT_TITLE_PAGE_V1.md "$GEN/ANONYMOUS_TITLE_PAGE_SOURCE.md"
+
+      - name: Build double-spaced line-numbered review DOCX
+        run: |
+          GEN=submission/amnat_review/generated
+          cd "$GEN"
+          pandoc MANUSCRIPT_REVIEW_SOURCE.md --from=markdown --to=docx --output=SLK_AMNAT_REVIEW_RAW.docx
+          pandoc ANONYMOUS_TITLE_PAGE_SOURCE.md --from=markdown --to=docx --output=SLK_AMNAT_ANONYMOUS_TITLE_PAGE_RAW.docx
+          cd "$GITHUB_WORKSPACE"
+          python scripts/format_amnat_review_docx.py \
+            "$GEN/SLK_AMNAT_REVIEW_RAW.docx" \
+            "$GEN/SLK_AMNAT_REVIEW_MANUSCRIPT.docx"
+          python scripts/format_amnat_review_docx.py \
+            "$GEN/SLK_AMNAT_ANONYMOUS_TITLE_PAGE_RAW.docx" \
+            "$GEN/SLK_AMNAT_ANONYMOUS_TITLE_PAGE.docx" \
+            --no-line-numbers
+          rm -f "$GEN/SLK_AMNAT_REVIEW_RAW.docx" "$GEN/SLK_AMNAT_ANONYMOUS_TITLE_PAGE_RAW.docx"
+
+      - name: Validate DOCX structure and embedded figures
+        run: |
+          GEN=submission/amnat_review/generated
+          unzip -p "$GEN/SLK_AMNAT_REVIEW_MANUSCRIPT.docx" word/document.xml | grep -q 'w:lnNumType'
+          unzip -p "$GEN/SLK_AMNAT_REVIEW_MANUSCRIPT.docx" word/footer1.xml | grep -q ' PAGE '
+          MEDIA_COUNT=$(unzip -l "$GEN/SLK_AMNAT_REVIEW_MANUSCRIPT.docx" | grep -c 'word/media/' || true)
+          if [ "$MEDIA_COUNT" -lt 3 ]; then
+            echo "Expected at least three embedded figures; found $MEDIA_COUNT" >&2
+            exit 1
+          fi
+
+      - name: Render review files to PDF
+        run: |
+          GEN=submission/amnat_review/generated
+          mkdir -p "$GEN/rendered"
+          libreoffice --headless --convert-to pdf --outdir "$GEN/rendered" "$GEN/SLK_AMNAT_REVIEW_MANUSCRIPT.docx"
+          libreoffice --headless --convert-to pdf --outdir "$GEN/rendered" "$GEN/SLK_AMNAT_ANONYMOUS_TITLE_PAGE.docx"
+
+      - name: Validate rendered review manuscript and anonymity
+        run: |
+          GEN=submission/amnat_review/generated
+          MAIN_PDF="$GEN/rendered/SLK_AMNAT_REVIEW_MANUSCRIPT.pdf"
+          TITLE_PDF="$GEN/rendered/SLK_AMNAT_ANONYMOUS_TITLE_PAGE.pdf"
+          MAIN_TXT="$RUNNER_TEMP/slk-main.txt"
+          TITLE_TXT="$RUNNER_TEMP/slk-title.txt"
+          test -s "$MAIN_PDF"
+          test -s "$TITLE_PDF"
+          pdftotext -layout "$MAIN_PDF" "$MAIN_TXT"
+          pdftotext -layout "$TITLE_PDF" "$TITLE_TXT"
+          grep -q 'From functional conflict to evolutionary architecture across biological scales' "$MAIN_TXT"
+          grep -q 'fixation' "$MAIN_TXT"
+          grep -q 'occupancy' "$MAIN_TXT"
+          grep -q 'Major Article' "$TITLE_TXT"
+          if grep -Eiq 'zuizui0223|rachelzhang0223|ZHANG RUIQI|張瑞琪|チョウ ズイキ' "$MAIN_TXT" "$TITLE_TXT"; then
+            echo 'Identity-bearing text found in anonymous review files' >&2
+            exit 1
+          fi
+          MAIN_PAGES=$(pdfinfo "$MAIN_PDF" | awk '/^Pages:/ {print $2}')
+          TITLE_PAGES=$(pdfinfo "$TITLE_PDF" | awk '/^Pages:/ {print $2}')
+          {
+            echo "canonical_manuscript=manuscript/SLK_MANUSCRIPT_AMNAT_V3.md"
+            echo "main_pages=$MAIN_PAGES"
+            echo "title_pages=$TITLE_PAGES"
+            echo "double_spaced=true"
+            echo "line_numbers=true"
+            echo "page_numbers=true"
+            echo "embedded_figures=$MEDIA_COUNT"
+            echo "identity_scan_rendered_files=PASS"
+          } > "$GEN/AMNAT_REVIEW_PACKAGE_QA.txt"
+
+      - name: Render manuscript pages for visual QA
+        run: |
+          GEN=submission/amnat_review/generated
+          pdftoppm -png -r 120 \
+            "$GEN/rendered/SLK_AMNAT_REVIEW_MANUSCRIPT.pdf" \
+            "$GEN/rendered/main_pages/page" >/dev/null 2>&1
+          test "$(find "$GEN/rendered/main_pages" -name 'page-*.png' | wc -l)" -gt 0
+
+      - name: Build anonymous reviewer code and theory bundle
+        run: |
+          python scripts/build_anonymous_review_bundle.py
+          test -f submission/amnat_review/generated/reviewer_bundle/ANONYMITY_AUDIT.txt
+          grep -q 'identity_scan=PASS' submission/amnat_review/generated/reviewer_bundle/ANONYMITY_AUDIT.txt
+          grep -q '"all_checks_pass": true' submission/amnat_review/generated/reviewer_bundle/CLAIM_VERIFICATION_RECEIPT.json
+
+      - name: Upload anonymous Am Nat review package
+        uses: actions/upload-artifact@v4
+        with:
+          name: slk-amnat-anonymous-review-package
+          path: |
+            submission/amnat_review/generated/SLK_AMNAT_REVIEW_MANUSCRIPT.docx
+            submission/amnat_review/generated/SLK_AMNAT_ANONYMOUS_TITLE_PAGE.docx
+            submission/amnat_review/generated/rendered/SLK_AMNAT_REVIEW_MANUSCRIPT.pdf
+            submission/amnat_review/generated/rendered/SLK_AMNAT_ANONYMOUS_TITLE_PAGE.pdf
+            submission/amnat_review/generated/rendered/main_pages/*.png
+            submission/amnat_review/generated/reviewer_bundle/**
+            submission/amnat_review/generated/AMNAT_REVIEW_PACKAGE_QA.txt
+          if-no-files-found: error
