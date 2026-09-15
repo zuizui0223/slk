@@ -24,30 +24,53 @@ The current The American Naturalist author instructions specify that Major Artic
 Status:
 
 ```text
-MAJOR_ARTICLE_TEXT_LIMIT       PASS
-ABSTRACT_200_WORD_LIMIT        PASS
-FIGURE_TABLE_LIMIT             PASS   (3 figures + 1 in-text table = 4 items)
-TITLE_LENGTH_PREFERENCE        PASS   (9 words; journal suggests ~8–10)
-KEYWORDS_1_TO_6                PASS   (6)
-ANONYMOUS_TITLE_PAGE           PASS
+MAJOR_ARTICLE_TEXT_LIMIT        PASS
+ABSTRACT_200_WORD_LIMIT         PASS
+FIGURE_TABLE_LIMIT              PASS   (3 figures + 1 in-text table = 4 items)
+TITLE_LENGTH_PREFERENCE         PASS   (9 words; journal suggests ~8–10)
+KEYWORDS_1_TO_6                 PASS   (6)
+ANONYMOUS_TITLE_PAGE            PASS
 AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 ```
 
-## Still required before actual upload
+## Submission package state
 
-### 1. Build the submission PDF
+### 1. Anonymous review manuscript — PASS
 
-The final review PDF must be double spaced and include line numbers and page numbers. The Markdown source itself does not satisfy this presentation requirement.
+The CI-built review manuscript is generated directly from the canonical V3 source and has been rendered and visually inspected page by page.
 
-Status: `OPEN — final PDF/typesetting step`.
+```text
+MAIN_REVIEW_PDF_PAGES     18
+ANONYMOUS_TITLE_PDF_PAGES  1
+DOUBLE_SPACED              true
+LINE_NUMBERS               true
+PAGE_NUMBERS               true
+EMBEDDED_FIGURES           3
+VISUAL_QA                   PASS — all 19 rendered pages inspected
+```
 
-### 2. Anonymous reviewer-accessible data/code link
+The final formatting QA repaired the two renderer-visible defects found during review: inherited blue heading color and footer line-number duplication. Figure 3's closing validation note was also shortened until it rendered fully inside its SVG canvas.
 
-The journal requires data and analysis code used by the manuscript to be available to editors/reviewers at submission. Double-anonymous review also means external URLs, README files, code files, and data should not reveal author identity.
+Status: `PASS — reader-facing review files generated and visually verified`.
 
-The current GitHub repository URL contains the owner's account identity and should therefore **not** be inserted directly into the anonymous review manuscript. Prepare an anonymized reviewer-accessible deposit or upload the review package directly through the submission system.
+### 2. Anonymous reviewer code/theory package — PASS INTERNALLY
 
-Status: `OPEN — anonymous review deposit/link required`.
+The review bundle is curated rather than being a repository dump. It contains:
+
+- the exact anonymous manuscript and title-page sources;
+- `theory/SLK_CORE_THEORY_V1.md`;
+- `theory/NON_EQUIVALENCE_THEOREM_V1.md`;
+- the three submitted SVG figure sources;
+- `code/verify_amnat_claims.py`;
+- a precomputed `CLAIM_VERIFICATION_RECEIPT.json`;
+- `ANONYMITY_AUDIT.txt`;
+- `SHA256SUMS.txt`.
+
+The verifier recomputes all five registered witness regimes and the fixation–occupancy invariant. The invariant grid contains 112 comparisons with maximum absolute error 0.0. The bundle identity scan passes and excludes repository history, remote URLs, and author metadata.
+
+The identity-bearing GitHub repository URL must still not be inserted into the anonymous manuscript. At submission, upload this bundle directly through the journal system or place the exact bundle in an anonymous reviewer-accessible deposit.
+
+Status: `PASS INTERNALLY — external portal/deposit upload remains a submission action`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -57,16 +80,28 @@ Status: `READY FOR USER-SUPPLIED AUTHOR METADATA`.
 
 ### 4. AI-use transparency
 
-The journal's current policy permits generative AI for drafting/readability and code assistance with human oversight, but requires transparent use and places full responsibility for accuracy on the authors. Prepare the journal-appropriate disclosure during submission/acceptance workflow rather than adding identifying material to the anonymous scientific text.
+Prepare the journal-appropriate disclosure during the submission/acceptance workflow rather than adding identifying material to the anonymous scientific text.
 
 Status: `DISCLOSURE REQUIRED BEFORE SUBMISSION`.
 
 ### 5. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V3 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized in the final typeset build.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V3 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized later if requested.
 
 Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No manuscript-length or figure-count problem remains. The remaining mechanical submission tasks are the anonymized data/code review package and generation of the double-spaced, line-numbered, page-numbered PDF. Scientific reviewer risk remains conceptual importance, not format compliance.
+No internal scientific-package or mechanical-format blocker remains. The repository now produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated anonymous reviewer code/theory bundle with executable claim verification.
+
+Remaining actions are external/human controlled:
+
+```text
+AUTHOR_METADATA        REQUIRED
+AI_USE_DISCLOSURE      REQUIRED
+ALL_AUTHOR_APPROVAL    REQUIRED
+PORTAL_FILE_UPLOAD     REQUIRED
+ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT REQUIRED
+```
+
+Scientific reviewer risk remains conceptual importance of the integrated estimand transport, not format compliance.
