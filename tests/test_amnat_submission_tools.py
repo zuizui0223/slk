@@ -2,6 +2,7 @@ from pathlib import Path
 
 from docx import Document
 from docx.oxml.ns import qn
+from docx.shared import RGBColor
 
 from scripts.build_anonymous_review_bundle import build
 from scripts.format_amnat_review_docx import format_document
@@ -35,4 +36,6 @@ def test_formatter_adds_line_and_page_number_fields() -> None:
     assert sect_pr.find(qn("w:lnNumType")) is not None
     footer_xml = doc.sections[0].footer._element.xml
     assert " PAGE " in footer_xml
+    assert "w:suppressLineNumbers" in footer_xml
     assert doc.styles["Normal"].paragraph_format.line_spacing == 2
+    assert doc.styles["Heading 1"].font.color.rgb == RGBColor(0, 0, 0)
