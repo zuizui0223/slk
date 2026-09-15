@@ -7,12 +7,19 @@ from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Inches, Pt
+from docx.shared import Inches, Pt, RGBColor
+
+
+def _suppress_line_numbers(paragraph) -> None:
+    p_pr = paragraph._p.get_or_add_pPr()
+    if p_pr.find(qn("w:suppressLineNumbers")) is None:
+        p_pr.append(OxmlElement("w:suppressLineNumbers"))
 
 
 def _set_font(run, size: Pt = Pt(12)) -> None:
     run.font.name = "Times New Roman"
     run.font.size = size
+    run.font.color.rgb = RGBColor(0, 0, 0)
     rpr = run._element.get_or_add_rPr()
     rfonts = rpr.rFonts
     if rfonts is None:
@@ -27,6 +34,7 @@ def _set_page_field(paragraph) -> None:
     for child in list(paragraph._p):
         if child.tag != qn("w:pPr"):
             paragraph._p.remove(child)
+    _suppress_line_numbers(paragraph)
     run = paragraph.add_run()
     begin = OxmlElement("w:fldChar")
     begin.set(qn("w:fldCharType"), "begin")
@@ -52,20 +60,20 @@ def _set_line_numbers(section) -> None:
     sect_pr.append(ln)
 
 
+def _set_style_font_black(style) -> None:
+    style.font.name = "Times New Roman"
+    style.font.size = Pt(12)
+    style.font.color.rgb = RGBColor(0, 0, 0)
+    style.paragraph_format.line_spacing = 2
+    style.paragraph_format.space_after = Pt(0)
+
+
 def format_document(doc: Document, *, line_numbers: bool = True) -> None:
-    normal = doc.styles["Normal"]
-    normal.font.name = "Times New Roman"
-    normal.font.size = Pt(12)
-    normal.paragraph_format.line_spacing = 2
-    normal.paragraph_format.space_after = Pt(0)
+    _set_style_font_black(doc.styles["Normal"])
 
     for style_name in ("Title", "Subtitle", "Heading 1", "Heading 2", "Heading 3", "Heading 4"):
         if style_name in doc.styles:
-            style = doc.styles[style_name]
-            style.font.name = "Times New Roman"
-            style.font.size = Pt(12)
-            style.paragraph_format.line_spacing = 2
-            style.paragraph_format.space_after = Pt(0)
+            _set_style_font_black(doc.styles[style_name])
 
     for paragraph in doc.paragraphs:
         paragraph.paragraph_format.line_spacing = 2
