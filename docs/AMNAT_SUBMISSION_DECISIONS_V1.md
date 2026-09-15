@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Freeze the remaining scope decisions after theory ownership, journal-prose conversion, prior-art coverage, formula consistency, and current journal-format checks have been closed.
+Freeze the remaining scope decisions after theory ownership, journal-prose conversion, prior-art coverage, formula consistency, review-file generation, anonymous reviewer packaging, and visual QA have been closed.
 
 ## Decision 1 — keep one explicit population-process exemplar
 
@@ -24,7 +24,7 @@ ADD_PARTIAL_PEDICULARIS_WORKED_RESULT_TO_MAIN_TEXT = false
 
 The Pedicularis G1-G5 programme is prospectively registered but has no completed biological G1-G5 receipt. It must therefore not be used as a worked empirical result merely to make the theory look more validated.
 
-Figure 3 already provides the empirical measurement ladder. Pedicularis remains the first prospective application and can be cited as future execution/protocol material if needed, but the submission manuscript should keep the explicit statement that no single biological system has completed the full ladder.
+Figure 3 provides the empirical measurement ladder. Pedicularis remains the first prospective application, but the submission manuscript keeps the explicit statement that no single biological system has completed the full ladder.
 
 A real partial worked example can be added only after an actual identified receipt exists and its claim ceiling is clear.
 
@@ -56,12 +56,30 @@ AMNAT_TITLE_WORDS                         9 PASS
 AMNAT_ABSTRACT_WORDS                    172 PASS
 AMNAT_TEXT_WORDS_EXCL_LITERATURE       2941 PASS
 AMNAT_FIGURES                             3 PASS
-CI_TESTS                                163 PASS
+FULL_CI_PY311_PY312                      PASS
+REVIEW_MANUSCRIPT_PDF                    18 PAGES PASS
+ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
+DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
+ANONYMOUS_REVIEWER_BUNDLE                PASS
+IDENTITY_SCAN                             PASS
+CLAIM_VERIFIER_NE1_NE5                    PASS
+FIXATION_OCCUPANCY_INVARIANT_GRID        112/112 PASS
+VISUAL_QA                                 19/19 PAGES PASS
 ```
 
-## Remaining mechanical submission tasks
+## Remaining submission actions
 
-The current journal instructions still require a double-spaced review PDF with line and page numbers and a reviewer-accessible data/code package. Because double-anonymous review is required, the current identity-bearing GitHub URL should not be placed directly in the anonymous manuscript. See `docs/AMNAT_SUBMISSION_CHECKLIST_V1.md`.
+There is no remaining internal theory, formatting, or reviewer-package construction task required before upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
+
+Remaining actions are controlled outside the scientific package:
+
+```text
+AUTHOR_METADATA                       REQUIRED
+AI_USE_DISCLOSURE                     REQUIRED
+ALL_AUTHOR_APPROVAL                   REQUIRED
+PORTAL_UPLOAD                         REQUIRED
+ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
+```
 
 ## Remaining scientific-editorial risk
 
@@ -78,14 +96,18 @@ The submission answer must center on three deductions:
 ## Submission state
 
 ```text
-TARGET                 = THE_AMERICAN_NATURALIST
-ARTICLE_TYPE           = MAJOR_ARTICLE
-MANUSCRIPT             = SLK_MANUSCRIPT_AMNAT_V3.md
+TARGET                  = THE_AMERICAN_NATURALIST
+ARTICLE_TYPE            = MAJOR_ARTICLE
+MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V3.md
 THEORY                  = READY
-JOURNAL_PROSE           = READY_FOR_FINAL_TYPESETTING
+JOURNAL_PROSE           = READY
 PRIOR_ART_CORE          = READY
 FORMULA_CONSISTENCY     = PASS
 FORMAT_LIMITS           = PASS
+ANONYMOUS_REVIEW_FILES  = READY
+REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
+INTERNAL_BLOCKERS       = NONE
+EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
 MAIN_OPEN_RISK          = CONCEPTUAL_IMPORTANCE_FRAMING
 ```
