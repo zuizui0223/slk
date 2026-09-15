@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import math
 from pathlib import Path
@@ -97,10 +98,17 @@ def verify() -> dict[str, object]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=Path("submission/amnat_review/generated/CLAIM_VERIFICATION_RECEIPT.json"),
+    )
+    args = parser.parse_args()
+
     receipt = verify()
-    out = Path("submission/amnat_review/generated/CLAIM_VERIFICATION_RECEIPT.json")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(receipt, indent=2, sort_keys=True))
 
 
