@@ -126,6 +126,7 @@ jobs:
           fi
           MAIN_PAGES=$(pdfinfo "$MAIN_PDF" | awk '/^Pages:/ {print $2}')
           TITLE_PAGES=$(pdfinfo "$TITLE_PDF" | awk '/^Pages:/ {print $2}')
+          MEDIA_COUNT=$(unzip -l "$GEN/SLK_AMNAT_REVIEW_MANUSCRIPT.docx" | grep -c 'word/media/' || true)
           {
             echo "canonical_manuscript=manuscript/SLK_MANUSCRIPT_AMNAT_V3.md"
             echo "main_pages=$MAIN_PAGES"
