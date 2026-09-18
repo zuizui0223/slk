@@ -2,15 +2,21 @@ from scripts.slk_threshold_atlas import (
     ArchitecturePath,
     environmental_phi,
     identify_phi_eta_from_symmetric_frequencies,
+    identify_quadratic_frequency_components,
     occupancy_ratio,
     rare_invasion_environment,
     rare_invasion_environment_affine_feedback,
+    rare_invasion_environment_quadratic_frequency,
     rare_invasion_margin,
+    rare_invasion_margin_quadratic_frequency,
     reciprocal_fixation_ratio,
     reverse_invasion_environment,
     reverse_invasion_environment_affine_feedback,
+    reverse_invasion_environment_quadratic_frequency,
     reverse_invasion_resistance_margin,
+    reverse_invasion_resistance_margin_quadratic_frequency,
     selection_gap,
+    selection_gap_quadratic_frequency,
     weak_selection_absolute_fixation_margin,
 )
 
@@ -168,3 +174,75 @@ def test_balanced_frequency_selection_gap_equals_phi():
     phi = -0.3
     eta = 2.0
     assert selection_gap(phi, eta, 0.5) == phi
+
+
+def test_three_frequency_treatments_recover_quadratic_frequency_components():
+    phi = 0.6
+    h0 = -0.1
+    eta = 0.4
+    kappa = 0.25
+    q = 0.25
+    p_mid = 0.5
+    p_minus = 0.5 - q
+    p_plus = 0.5 + q
+
+    delta_mid = selection_gap_quadratic_frequency(phi, h0, eta, kappa, p_mid)
+    delta_minus = selection_gap_quadratic_frequency(phi, h0, eta, kappa, p_minus)
+    delta_plus = selection_gap_quadratic_frequency(phi, h0, eta, kappa, p_plus)
+
+    h0_hat, eta_hat, kappa_hat = identify_quadratic_frequency_components(
+        phi, delta_mid, delta_minus, delta_plus, q
+    )
+
+    assert abs(h0_hat - h0) < 1e-12
+    assert abs(eta_hat - eta) < 1e-12
+    assert abs(kappa_hat - kappa) < 1e-12
+
+
+def test_quadratic_frequency_invasion_thresholds_reduce_to_canonical_when_h0_kappa_zero():
+    phi = 0.4
+    eta = 0.3
+    assert rare_invasion_margin_quadratic_frequency(phi, 0.0, eta, 0.0) == (
+        phi - eta
+    )
+    assert reverse_invasion_resistance_margin_quadratic_frequency(
+        phi, 0.0, eta, 0.0
+    ) == (phi + eta)
+
+
+def test_eta_controls_window_width_while_h0_kappa_shift_window_center():
+    e_v = 10.0
+    slope = 2.0
+    h0 = 0.3
+    eta = 0.8
+    kappa = -0.1
+
+    e_i = rare_invasion_environment_quadratic_frequency(
+        e_v, slope, h0, eta, kappa
+    )
+    e_r = reverse_invasion_environment_quadratic_frequency(
+        e_v, slope, h0, eta, kappa
+    )
+
+    expected_signed_width = 2.0 * eta / slope
+    expected_center_shift = -(h0 + kappa) / slope
+
+    assert abs((e_i - e_r) - expected_signed_width) < 1e-12
+    assert abs(((e_i + e_r) / 2.0 - e_v) - expected_center_shift) < 1e-12
+
+
+def test_nonzero_curvature_rejects_minimal_canonical_frequency_map():
+    phi = 0.2
+    h0 = 0.0
+    eta = 0.5
+    kappa = 0.3
+    q = 0.2
+
+    delta_mid = selection_gap_quadratic_frequency(phi, h0, eta, kappa, 0.5)
+    delta_minus = selection_gap_quadratic_frequency(phi, h0, eta, kappa, 0.5 - q)
+    delta_plus = selection_gap_quadratic_frequency(phi, h0, eta, kappa, 0.5 + q)
+
+    _, _, kappa_hat = identify_quadratic_frequency_components(
+        phi, delta_mid, delta_minus, delta_plus, q
+    )
+    assert abs(kappa_hat) > 0
