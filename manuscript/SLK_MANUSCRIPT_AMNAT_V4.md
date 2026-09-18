@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and differentiation that is globally favorable need not become an evolutionary outcome. We develop an architecture-specific transport framework that carries one identified conflict comparison through architecture value, local release, invasion, fixation, and long-run occupancy. Conflict is summarized by compromise load `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`, with `R=sL` only under a registered quadratic bridge. In a single composite model, successive questions are cut by exact critical surfaces: small-step release at `k=k_local`, endpoint value at `Phi=0` (equivalently `k=k_global`), rare invasion at `Phi=eta`, reverse invasion at `Phi=-eta`, and absolute fixation advantage at `3Phi=eta` under weak selection. Reciprocal fixation ordering and symmetric rare-mutation occupancy instead re-align exactly at `Phi=0` under the registered exponential-Moran process. Thus conflict, value, accessibility, invasion, and stochastic realization are neither interchangeable nor generically distinct: new mechanisms split their thresholds, while process structure can force them back together. A cumulative measurement ladder states what evidence is needed for each biological claim.
+Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and differentiation that is globally favorable need not become an evolutionary outcome. We develop an architecture-specific transport framework that carries one identified conflict comparison through architecture value, local release, invasion, fixation, and long-run occupancy. Conflict is summarized by compromise load `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`, with `R=sL` only under a registered quadratic bridge. In a single composite model, successive questions are cut by exact critical surfaces: small-step release at `k=k_local`, endpoint value at `Phi=0` (equivalently `k=k_global`), rare invasion at `Phi=eta`, reverse invasion at `Phi=-eta`, and absolute fixation advantage at `3Phi=eta` under weak selection. Reciprocal fixation ordering and symmetric rare-mutation occupancy instead re-align exactly at `Phi=0` under the registered exponential-Moran process. Thus conflict, value, accessibility, invasion, and stochastic realization are neither interchangeable nor generically distinct: new mechanisms split their thresholds, while process structure can force them back together. Along an ecological gradient with `Phi(E)=a(E-E_V)`, the rare-invasion threshold is displaced from the architecture-value threshold by exactly `eta/a`, predicting when ecological feedback delays or advances the establishment of differentiation. A cumulative measurement ladder states what evidence is needed for each biological claim.
 
 ## 1. Introduction
 
@@ -13,6 +13,8 @@ These questions have deep prior literatures, and most individual arrows in our f
 A separate literature establishes that endpoint value does not determine evolutionary realization. Adaptive-dynamics theory formalizes evolution through rare local mutations and invasion fitness in an ecological background (Dieckmann and Law 1996), while empirical fitness landscapes show that only a restricted subset of mutational paths to a fitter endpoint may be selectively accessible (Weinreich et al. 2006). Finite-population evolutionary-game theory further distinguishes invasion and fixation criteria (Taylor et al. 2004), and strong-selection/weak-mutation theory gives a substitution process with long-run stochastic state occupancy (Fudenberg et al. 2006). We therefore do not claim local mutational accessibility, invasion–fixation distinctions, or weak-mutation stationary dynamics as new concepts.
 
 The contribution here is instead the architecture-specific handoff across these literatures. We start from an empirically identified shared-coordinate conflict budget rather than assuming that multifunctionality implies conflict; separate recoverable architecture value from architecture-specific cost; then transport that value through local accessibility, frequency-dependent invasion, finite-population fixation, and weak-mutation occupancy. The same upstream architecture comparison is therefore forced through a sequence of distinct estimands, making it possible to identify where its verdict must be re-tested, where adjacent criteria genuinely separate, and where two later criteria re-align under an exact process-level invariant. The empirical counterpart is a measurement ladder that states what additional information is required before each stronger biological interpretation is licensed.
+
+This transport yields ecological predictions that are not contained in the endpoint cost-benefit comparison alone. Two populations can have the same intrinsic architecture margin but differ in whether differentiation establishes because their frequency-dependent ecological feedback differs. Conversely, two populations can experience different conflict loads yet show the opposite ranking of differentiation because recoverability and architecture cost differ. Along an environmental gradient, the environment where differentiation first becomes globally profitable need not be the environment where a rare differentiated type can invade. SLK therefore predicts systematic discordance between functional conflict, architecture value, and realized differentiation rather than treating such discordance as noise or failed adaptation.
 
 Our central hierarchy is
 
@@ -277,7 +279,68 @@ The value of the theorem is therefore not that each inequality is mathematically
 
 The final pair remains an important qualification: reciprocal fixation ordering itself does not diverge from stationary monomorphic occupancy ordering under connected symmetric rare mutation and the registered exponential Moran process. Both are controlled by the same self-play score difference.
 
-## 10. Empirical measurement programme
+## 10. Ecological deductions from threshold ordering
+
+The threshold atlas changes the biological interpretation of several common comparative patterns.
+
+### Conflict and differentiation need not covary monotonically
+
+Under the quadratic bridge,
+
+```text
+Phi=sL-K.
+```
+
+Thus a larger conflict load does not necessarily predict stronger differentiation across populations or taxa. A high-conflict system can remain integrated when little of the conflict is recoverable by the candidate architecture or when architecture-specific cost is high. Conversely, a system with more modest conflict can cross the differentiation threshold if recovery is efficient and architecture cost is low. The relevant comparative target is therefore not conflict magnitude alone but the triplet `(L,R,K)`, or `(L,s,K)` where the quadratic bridge is justified.
+
+This gives a specific interpretation to persistent integration: an integrated phenotype in the presence of measured opposing functional selection is not evidence that the conflict is weak. It can instead locate the system below the architecture-value surface.
+
+### Ecological feedback can delay or advance establishment without changing endpoint value
+
+Let an environmental coordinate `E` change the intrinsic architecture margin approximately linearly,
+
+```text
+Phi(E)=a(E-E_V),
+a>0,
+```
+
+while the local frequency-feedback term is `eta`. The endpoint architecture becomes globally favorable at
+
+```text
+E=E_V,
+```
+
+whereas a rare differentiated type can invade at
+
+```text
+E_I=E_V+eta/a.
+```
+
+The displacement is therefore
+
+```text
+E_I-E_V=eta/a.
+```
+
+If `eta>0`, coordination-like ecological feedback creates an interval in which differentiation already pays but cannot establish from rarity. If `eta<0`, negative-frequency feedback allows the differentiated type to invade before its intrinsic endpoint margin becomes positive; in the registered deterministic game this leads toward coexistence rather than proving intrinsic endpoint superiority.
+
+This yields a directly testable comparative prediction: the ecological position of the invasion transition should be displaced from the architecture-value transition by the strength of frequency feedback relative to the environmental slope of architecture value. Environmental or community change can therefore alter realized differentiation even when the underlying functional conflict is unchanged.
+
+### Discordance becomes diagnostic
+
+Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
+
+| Observed pattern | SLK interpretation | Next quantity to test |
+|---|---|---|
+| strong identified conflict but `Phi<0` | persistent compromise is favored | recoverability `R` and architecture debit `K` |
+| `Phi>0` but small release is downhill | endpoint advantage with a small-step construction barrier | local release geometry / `k_local` |
+| `Phi>0` but D fails when rare | ecological coordination blocks establishment | `eta` and rare-frequency performance |
+| `Phi<0` but D invades when rare | negative-frequency feedback can rescue rare entry | coexistence/invasion phase, not endpoint superiority |
+| reciprocal fixation and occupancy orderings disagree under the registered process | the registered process assumptions are violated | mutation symmetry, rarity, game symmetry, or fixation kernel |
+
+The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is a prediction of **where discordance should occur, which ecological mechanism creates it, and which additional measurement resolves it**.
+
+## 11. Empirical measurement programme
 
 The empirical programme is deliberately cumulative. Each measurement level adds a new estimand and raises the ceiling of the biological claim; failure at a later level does not erase what earlier measurements established (Fig. 3).
 
@@ -302,7 +365,7 @@ This ordering prevents a common empirical shortcut: endpoint superiority cannot 
 
 No single biological system is claimed here to have completed the full measurement ladder end to end.
 
-## 11. Discussion
+## 12. Discussion
 
 The central contribution is not a new synonym for trade-off or modularity. Nor is it the generic statement that benefits must exceed costs. Existing work already explains why interference among functions can favor modularity or specialization, and existing population theory already separates invasion, fixation, and long-run stochastic behavior. The contribution is the explicit architecture-specific estimand transport that begins with a causally identified shared-coordinate conflict and preserves the extra assumptions needed at every later stage.
 
@@ -310,7 +373,7 @@ At the organismal scale, `L` asks whether integration is costly. At the architec
 
 The registered composite model is nested rather than a sequence of unrelated payoff substitutions. The architecture path defines the endpoint contrast `Phi`; the canonical game is parameterized so that its self-play score difference is the same `Phi`; and the registered fixation and occupancy ratios inherit that same difference. What changes downstream is therefore the additional mechanism and coordinate required for the next question, not the identity of the endpoint architecture comparison.
 
-The framework therefore contributes three linked objects. First, it supplies a common handoff coordinate system without pretending that all quantities live on the same phase plane. Second, the unified critical-surface theorem identifies exactly where apparently adjacent criteria diverge while preserving the same endpoint contrast across the registered population mapping; the fixation-occupancy invariant then identifies the condition under which reciprocal fixation and occupancy re-align. Third, the empirical measurement ladder translates the theory into a sequential claim structure, so that a study can stop at the strongest level its measurements actually justify.
+The framework therefore contributes four linked objects. First, it supplies a common handoff coordinate system without pretending that all quantities live on the same phase plane. Second, the unified critical-surface theorem identifies exactly where apparently adjacent criteria diverge while preserving the same endpoint contrast across the registered population mapping; the fixation-occupancy invariant then identifies the condition under which reciprocal fixation and occupancy re-align. Third, the ecological threshold-displacement result predicts when community or environmental feedback should make realized differentiation lag behind or precede intrinsic architecture value, and the discordance table turns mismatches into diagnostic evidence. Fourth, the empirical measurement ladder translates the theory into a sequential claim structure, so that a study can stop at the strongest level its measurements actually justify.
 
 This framing also sharpens what would falsify or limit the framework. If a biological system lacks an identified `L`, the architecture argument never starts. If `R` and `K` cannot be placed on a common fitness scale, `Phi` is not empirically evaluable. If mutation neighborhoods, population feedback, or stochastic process assumptions are unspecified, later evolutionary claims remain open even when endpoint architecture value is known. The hierarchy is therefore cumulative rather than all-or-nothing.
 
@@ -318,7 +381,7 @@ The three figures mirror the three levels of the contribution. Figure 1 gives th
 
 ### Novelty boundary
 
-We do not claim a first theory of modularity or evolvability, a first theory of functional specialization or division of labor, a first theory that fitter endpoints can be locally inaccessible, a first distinction between invasion and fixation in finite populations, or a first weak-mutation stationary distribution. We also do not claim universality of `R=sL` outside the declared quadratic bridge. We claim the integrated architecture-specific hierarchy from identified conflict to evolutionary realization, a unified critical-surface theorem that places value, small-step accessibility, invasion, fixation, and occupancy in one compatible registered model, one-family constructive separation witnesses, the exact fixation-occupancy re-alignment within that hierarchy, and a gate-by-gate empirical claim ceiling.
+We do not claim a first theory of modularity or evolvability, a first theory of functional specialization or division of labor, a first theory that fitter endpoints can be locally inaccessible, a first distinction between invasion and fixation in finite populations, or a first weak-mutation stationary distribution. We also do not claim universality of `R=sL` outside the declared quadratic bridge. We claim the integrated architecture-specific hierarchy from identified conflict to evolutionary realization, a unified critical-surface theorem that places value, small-step accessibility, invasion, fixation, and occupancy in one compatible registered model, one-family constructive separation witnesses, an ecological threshold-displacement prediction linking environment and frequency feedback, the exact fixation-occupancy re-alignment within that hierarchy, and a gate-by-gate empirical claim ceiling.
 
 ### Scope boundary
 
