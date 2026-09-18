@@ -744,6 +744,169 @@ UTA1.7 is a local quadratic diagnostic for the population-frequency map. It does
 
 ---
 
+## Corollary UTA1.8 — invasion thresholds depend only on endpoint ecological offsets for an arbitrary frequency response
+
+The linear and quadratic frequency maps are useful for mechanism decomposition, but they are not required to define invasion itself.
+
+Let the population selection difference be written generally as
+
+```text
+Delta(p,E)
+=
+Phi(E)
++
+H(p,E),
+```
+
+where `Phi(E)` is the independently defined architecture margin and `H(p,E)` contains any additional ecological frequency-dependent contribution.
+
+Define the endpoint ecological offsets
+
+```text
+h_R(E)
+=
+lim_{p->0} H(p,E)
+```
+
+and
+
+```text
+h_D(E)
+=
+lim_{p->1} H(p,E).
+```
+
+Then rare D invasion requires
+
+```text
+Phi(E)+h_R(E)>0,
+```
+
+whereas resistance of D to rare S invasion requires
+
+```text
+Phi(E)+h_D(E)>0.
+```
+
+Therefore the exact invasion surfaces are
+
+```text
+Phi=-h_R
+Phi=-h_D.
+```
+
+No assumption about linearity, symmetry, or quadratic curvature of the interior frequency response is needed for these endpoint criteria.
+
+### Environmental displacement
+
+If
+
+```text
+Phi(E)=a(E-E_V),
+a>0,
+```
+
+and the endpoint ecological offsets are locally constant, then
+
+```text
+E_I-E_V
+=
+-h_R/a
+```
+
+and
+
+```text
+E_R-E_V
+=
+-h_D/a.
+```
+
+Hence
+
+```text
+E_I-E_R
+=
+(h_D-h_R)/a
+```
+
+and
+
+```text
+(E_I+E_R)/2-E_V
+=
+-(h_R+h_D)/(2a).
+```
+
+Thus the **difference** between endpoint ecological offsets controls the spacing of reciprocal invasion thresholds, while their **mean** shifts the center of the invasion window relative to intrinsic architecture value.
+
+### Smooth varying-endpoint approximation
+
+If `h_R(E)` and `h_D(E)` vary smoothly with environment, then near `E_V` the first-order threshold displacements are
+
+```text
+E_I-E_V
+approximately
+-h_R(E_V) /
+[Phi'(E_V)+h_R'(E_V)]
+```
+
+and
+
+```text
+E_R-E_V
+approximately
+-h_D(E_V) /
+[Phi'(E_V)+h_D'(E_V)].
+```
+
+This is the endpoint-general form of the ecological threshold-displacement result.
+
+### Nested special cases
+
+For the registered canonical pair,
+
+```text
+H(p)=eta(2p-1),
+```
+
+so
+
+```text
+h_R=-eta,
+h_D=+eta.
+```
+
+UTA1.8 then reduces exactly to UTA1.4.
+
+For the centered quadratic diagnostic,
+
+```text
+H(p)=h0+eta x+kappa x^2,
+x=2p-1,
+```
+
+so
+
+```text
+h_R=h0-eta+kappa,
+h_D=h0+eta+kappa.
+```
+
+UTA1.8 then reduces exactly to UTA1.7.
+
+### Empirical implication
+
+Mechanistic interpretation of the full frequency-response surface may require two, three, or more frequency treatments. But **invasion prediction itself** only requires reliable estimates of the rare-D and resident-D endpoint selection differences, together with independently measured `Phi`.
+
+Thus higher-order frequency dependence does not invalidate the SLK invasion handoff. It only changes how much internal structure can be attributed to specific ecological feedback components.
+
+### Claim boundary
+
+UTA1.8 is exact for deterministic endpoint invasion criteria. It does not by itself identify fixation probabilities, stochastic occupancy, or the historical mutation path. Those remain separate estimands.
+
+---
+
 ## 2. One-family constructive witnesses
 
 To avoid proving different separations with disconnected toy models, use one convex recovery family throughout:
