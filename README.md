@@ -200,7 +200,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 23. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
 24. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
 25. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V4.md` — current skeptical-reviewer audit after adding ecological threshold predictions.
+26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V5.md` — current skeptical-reviewer audit after generalizing ecological feedback across gradients.
 27. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
 28. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
 29. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
@@ -245,6 +245,7 @@ THRESHOLD_ATLAS_FRAMING_COMPLETE
 CROSS_LEVEL_PHI_COMPATIBILITY_REGISTERED
 FIGURE_1_THRESHOLD_ATLAS_REGISTERED
 ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
+ECOLOGICAL_FEEDBACK_GRADIENT_REGISTERED
 CONFLICT_DIFFERENTIATION_DISCORDANCE_REGISTERED
 FIGURE_2_ECOLOGICAL_PANEL_REGISTERED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
