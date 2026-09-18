@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         9
 ABSTRACT_WORDS                    169
-TEXT_WORDS_EXCL_LITERATURE_CITED 4239
+TEXT_WORDS_EXCL_LITERATURE_CITED 4282
 FIGURES                             3
 ```
 
@@ -131,4 +131,4 @@ ALL_AUTHOR_APPROVAL                    REQUIRED
 PORTAL_FILE_UPLOAD                     REQUIRED
 ```
 
-Scientific reviewer risk remains conceptual importance of the integrated estimand transport, not format compliance.
+Scientific reviewer risk is now the empirical generality of the ecological threshold predictions, not format compliance.
