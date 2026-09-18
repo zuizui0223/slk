@@ -2,7 +2,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LEDGER = ROOT / "docs" / "QUANTITATIVE_CLAIM_LEDGER_V1.md"
-MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V3.md"
+MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
 
 CLASSES = (
     "EMPIRICAL",
