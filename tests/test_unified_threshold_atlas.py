@@ -1,8 +1,11 @@
 from scripts.slk_threshold_atlas import (
     ArchitecturePath,
+    environmental_phi,
     occupancy_ratio,
+    rare_invasion_environment,
     rare_invasion_margin,
     reciprocal_fixation_ratio,
+    reverse_invasion_environment,
     reverse_invasion_resistance_margin,
     weak_selection_absolute_fixation_margin,
 )
@@ -69,3 +72,37 @@ def test_fixation_and_occupancy_realign_exactly_on_phi_zero():
         assert fixation == occupancy
         assert (fixation > 1) == (phi > 0)
         assert (fixation < 1) == (phi < 0)
+
+
+def test_positive_eta_delays_invasion_beyond_value_threshold():
+    e_v = 10.0
+    slope = 2.0
+    eta = 1.0
+    e_i = rare_invasion_environment(e_v, slope, eta)
+    e_r = reverse_invasion_environment(e_v, slope, eta)
+    assert e_r < e_v < e_i
+    assert e_i - e_v == eta / slope
+    assert environmental_phi(e_i, slope, e_v) == eta
+
+
+def test_negative_eta_allows_rare_invasion_before_positive_endpoint_value():
+    e_v = 10.0
+    slope = 2.0
+    eta = -1.0
+    e_i = rare_invasion_environment(e_v, slope, eta)
+    e_r = reverse_invasion_environment(e_v, slope, eta)
+    assert e_i < e_v < e_r
+    assert environmental_phi(e_i, slope, e_v) == eta
+    midpoint = (e_i + e_v) / 2
+    phi_mid = environmental_phi(midpoint, slope, e_v)
+    assert phi_mid < 0
+    assert rare_invasion_margin(phi_mid, eta) > 0
+
+
+def test_environmental_invasion_window_width_is_two_abs_eta_over_slope():
+    e_v = 3.0
+    slope = 0.5
+    for eta in (-2.0, 2.0):
+        e_i = rare_invasion_environment(e_v, slope, eta)
+        e_r = reverse_invasion_environment(e_v, slope, eta)
+        assert abs(e_i - e_r) == 2 * abs(eta) / slope
