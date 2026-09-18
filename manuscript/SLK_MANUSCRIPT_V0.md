@@ -339,6 +339,21 @@ If `eta>0`, coordination-like ecological feedback creates an interval in which d
 
 This yields a directly testable comparative prediction: the ecological position of the invasion transition should be displaced from the architecture-value transition by the strength of frequency feedback relative to the environmental slope of architecture value. Environmental or community change can therefore alter realized differentiation even when the underlying functional conflict is unchanged.
 
+The prediction also extends when ecological feedback itself changes along the same gradient. If
+
+```text
+eta(E)=eta_0+b(E-E_V),
+```
+
+then the affine model gives
+
+```text
+E_I-E_V=eta_0/(a-b),
+E_R-E_V=-eta_0/(a+b).
+```
+
+Thus the **slope** of ecological feedback matters as well as its magnitude. Coordination-like feedback that strengthens in the same direction as architecture value (`0<b<a`) pushes establishment farther from the value crossing than the constant-`eta` prediction. As `b` approaches `a`, the rare-invasion threshold is driven far away; if `b>=a` with `eta_0>0`, increasing `E` in the affine model never overcomes the coordination barrier even though intrinsic endpoint value continues to increase. For smooth non-affine systems the local approximation is `E_I-E_V approximately eta(E_V)/[Phi'(E_V)-eta'(E_V)]`. Ecology can therefore alter not only which threshold is crossed first but whether an invasion crossing occurs in the focal environmental direction at all.
+
 ### Discordance becomes diagnostic
 
 Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
