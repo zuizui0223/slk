@@ -343,13 +343,11 @@ This yields a directly testable comparative prediction: the ecological position 
 
 Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
 
-| Observed pattern | SLK interpretation | Next quantity to test |
-|---|---|---|
-| strong identified conflict but `Phi<0` | persistent compromise is favored | recoverability `R` and architecture debit `K` |
-| `Phi>0` but small release is downhill | endpoint advantage with a small-step construction barrier | local release geometry / `k_local` |
-| `Phi>0` but D fails when rare | ecological coordination blocks establishment | `eta` and rare-frequency performance |
-| `Phi<0` but D invades when rare | negative-frequency feedback can rescue rare entry | coexistence/invasion phase, not endpoint superiority |
-| reciprocal fixation and occupancy orderings disagree under the registered process | the registered process assumptions are violated | mutation symmetry, rarity, game symmetry, or fixation kernel |
+- Strong identified conflict with `Phi<0` is consistent with persistent compromise; measure recoverability `R` and architecture debit `K`.
+- `Phi>0` with a downhill small-release gradient indicates endpoint advantage behind a small-step construction barrier; measure local release geometry and `k_local`.
+- `Phi>0` with failure of D when rare is the signature expected from coordination-like ecological feedback; estimate `eta` and rare-frequency performance.
+- `Phi<0` with successful rare invasion is consistent with negative-frequency feedback rescuing rare entry; test the coexistence/invasion phase rather than interpreting invasion as endpoint superiority.
+- If reciprocal fixation and occupancy orderings disagree under the registered exponential-Moran/symmetric rare-mutation process, the process assumptions are violated; audit mutation symmetry and rarity, game symmetry, and the fixation kernel.
 
 The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is a prediction of **where discordance should occur, which ecological mechanism creates it, and which additional measurement resolves it**.
 
