@@ -158,6 +158,31 @@ Status: **PASS** across unified theory, AMNAT V4, Figure 2 specification, execut
 
 The exact spacing is claimed only for the registered affine slice with locally constant `eta`.
 
+## Varying-feedback environmental check
+
+For
+
+```text
+Phi(E)=a(E-E_V)
+eta(E)=eta_0+b(E-E_V),
+```
+
+the registered invasion equations give
+
+```text
+E_I-E_V=eta_0/(a-b)
+E_R-E_V=-eta_0/(a+b).
+```
+
+For `|b|<a`,
+
+```text
+|E_I-E_R|=2a|eta_0|/(a^2-b^2)
+(E_I+E_R)/2-E_V=eta_0 b/(a^2-b^2).
+```
+
+Status: **PASS** across unified theory, AMNAT V4, executable threshold helpers, verifier, and unit tests.
+
 ## Independent witness arithmetic
 
 All registered separations were recalculated inside the common family
@@ -217,6 +242,7 @@ FIXATION_OCCUPANCY_INVARIANT    PASS
 UNIFIED_CRITICAL_SURFACES       PASS
 CROSS_LEVEL_PHI_COMPATIBILITY    PASS
 ECOLOGICAL_THRESHOLD_DISPLACEMENT PASS
+ECOLOGICAL_FEEDBACK_GRADIENT      PASS
 WITNESS_ARITHMETIC              PASS
 MANUSCRIPT_LEDGER_SYNC          PASS_AFTER_REPAIR
 ```
