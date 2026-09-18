@@ -73,4 +73,4 @@ def test_three_frequency_curvature_diagnostic_is_registered() -> None:
     assert "UTA1.7" in ledger
     assert "kappa" in manuscript
     assert "Phi>eta-kappa-h0" in manuscript
-    assert "does not automatically inherit" in theory
+    assert "does not inherit the canonical exponential-Moran fixation" in theory
