@@ -62,3 +62,21 @@ E_I-E_V=eta/a.
 ```
 
 For smooth non-affine systems, use the local slope `dPhi/dE` at the architecture-value crossing and treat the formula as a first-order prediction.
+
+
+## Two-frequency identification design
+
+Within the registered canonical pair,
+
+```text
+Delta(p)=Phi+eta(2p-1).
+```
+
+Choose symmetric frequencies `p_-=1/2-q` and `p_+=1/2+q`. Then
+
+```text
+Phi=[Delta(p_+)+Delta(p_-)]/2
+eta=[Delta(p_+)-Delta(p_-)]/(4q).
+```
+
+Repeating this crossed frequency design across ecological contexts `E` provides direct estimates of `Phi(E)` and `eta(E)`, which can be used to locate `E_V`, `E_I`, and estimate the local slopes required by UTA1.4b. This identification is conditional on the registered linear-in-frequency pair; curvature in the empirical frequency response is a diagnostic failure of that minimal mapping.
