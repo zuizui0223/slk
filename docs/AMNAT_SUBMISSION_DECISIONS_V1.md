@@ -60,10 +60,10 @@ FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
 AMNAT_ABSTRACT_WORDS                    169 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       4282 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE       4298 PASS
 AMNAT_FIGURES                             3 PASS
-AMNAT_TABLES                              3 PASS
-AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
+AMNAT_TABLES                              2 PASS
+AMNAT_FIGURE_TABLE_TOTAL                  5 PASS
 FULL_CI_PY311_PY312                      PASS
 REVIEW_MANUSCRIPT_PDF                    21 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
