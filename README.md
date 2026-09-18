@@ -87,7 +87,9 @@ SLK owns the cross-repository theory needed for the integrated hierarchy:
 3. the distinction between global architecture value and local evolutionary accessibility;
 4. the minimal transport from architecture value to invasion, fixation, and occupancy;
 5. the unified critical-surface theorem showing where small-step release, endpoint value, invasion, fixation, and occupancy diverge or re-align, with one preserved endpoint contrast across the registered levels;
-6. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+6. the ecological threshold-displacement corollary `E_I-E_V=eta/a`, which predicts where realized differentiation should lag behind or precede intrinsic architecture value along environmental gradients;
+7. the comparative prediction that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies;
+8. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
@@ -95,7 +97,7 @@ SCH and BALANCE supply upstream identified objects and classifications; BITA rem
 
 SLK does **not** claim to originate modularity/evolvability theory, functional specialization/division-of-labor theory, invasion-versus-fixation distinctions, or weak-mutation long-run population theory. The first registered boundary explicitly acknowledges Wagner & Altenberg (1996), Rueffler, Hermisson & Wagner (2012), Taylor et al. (2004), and Fudenberg et al. (2006).
 
-The narrower novelty claim is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization, together with a unified critical-surface theorem, constructive one-family separation witnesses, an exact process-level invariant where criteria re-align, and a gate-by-gate empirical claim ceiling.
+The narrower novelty claim is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization, together with a unified critical-surface theorem, ecological threshold-displacement predictions, constructive one-family separation witnesses, an exact process-level invariant where criteria re-align, and a gate-by-gate empirical claim ceiling.
 
 ## Architecture cost K
 
@@ -175,7 +177,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current AMNAT manuscript with the unified critical-surface theorem.
 2. `figures/FIG1_LOGIC_DIAGRAM.svg` — flagship logic figure: split points plus fixation-occupancy invariant.
-3. `figures/FIG2_PHASE_MAP.svg` — architecture-value phase map plus conditional accessibility/invasion insets.
+3. `figures/FIG2_PHASE_MAP.svg` — architecture-value map, realization coordinates, and ecological displacement between value and invasion thresholds.
 4. `figures/FIG3_EMPIRICAL_LADDER.svg` — cumulative empirical measurement ladder G1-G9.
 5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master critical-surface theorem and one-family constructive witnesses.
 6. `theory/NON_EQUIVALENCE_THEOREM_V1.md` — non-implications recast as corollaries of the common atlas.
@@ -198,7 +200,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 23. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
 24. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
 25. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V3.md` — current skeptical-reviewer audit after the threshold-atlas upgrade.
+26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V4.md` — current skeptical-reviewer audit after adding ecological threshold predictions.
 27. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
 28. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
 29. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
@@ -242,6 +244,9 @@ FIRST_AMNAT_REVIEWER_REPAIR_ROUND_COMPLETE
 THRESHOLD_ATLAS_FRAMING_COMPLETE
 CROSS_LEVEL_PHI_COMPATIBILITY_REGISTERED
 FIGURE_1_THRESHOLD_ATLAS_REGISTERED
+ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
+CONFLICT_DIFFERENTIATION_DISCORDANCE_REGISTERED
+FIGURE_2_ECOLOGICAL_PANEL_REGISTERED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
 SECTION_CLAIM_MAP_REGISTERED
