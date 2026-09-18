@@ -48,7 +48,7 @@
 
   <g transform="translate(90,960)">
     <rect x="0" y="0" width="1020" height="110" rx="16" class="box"/>
-    <text x="25" y="38" class="sub">G6 — Define local accessibility</text>
+    <text x="25" y="38" class="sub">G6 — Define small-step accessibility</text>
     <text x="25" y="72" class="txt">Measure/test: mutational neighborhood, release path, or stepwise perturbations.</text>
     <text x="25" y="100" class="ceiling">Ceiling if stop: reachable or trapped, but invasion still untested.</text>
   </g>
