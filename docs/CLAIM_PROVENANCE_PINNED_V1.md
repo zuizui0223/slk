@@ -180,6 +180,32 @@ The theorem synthesizes previously derived source mathematics into one registere
 
 The constructive non-equivalence witnesses are now all embedded in the common family `R(d)=d+d^2`, `K(d)=kd`, rather than being presented as disconnected toy parameterizations.
 
+## UTA1.4-UTA1.5 — ecological and comparative corollaries
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+- `figures/FIG2_PHASE_MAP.svg`
+- `figures/FIG2_CAPTION_AND_SPEC.md`
+- `scripts/slk_threshold_atlas.py`
+
+Imported/derived claims:
+
+```text
+Phi(E)=a(E-E_V)
+-> E_I=E_V+eta/a
+-> E_R=E_V-eta/a
+-> |E_I-E_R|=2|eta|/a
+
+Phi=sL-K
+-> conflict magnitude L alone does not rank architecture margin across systems
+   when s or K varies.
+```
+
+These are SLK corollaries of the registered threshold geometry, not independent claims of universal environmental linearity or universal frequency-dependent ecology.
+
 ## Freeze rule
 
 The SLK manuscript may simplify notation, but it may not strengthen the source claim. In particular:
