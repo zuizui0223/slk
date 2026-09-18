@@ -495,6 +495,81 @@ Across taxa, populations, or environments, conflict magnitude `L` should not be 
 
 ---
 
+## Corollary UTA1.6 — two frequency treatments identify Phi and eta in the canonical pair
+
+At a fixed ecological context, the registered canonical selection difference is
+
+```text
+Delta(p)=Phi+eta(2p-1).
+```
+
+Choose two architecture frequencies symmetric around one half,
+
+```text
+p_- = 1/2-q,
+p_+ = 1/2+q,
+0<q<=1/2.
+```
+
+Then
+
+```text
+Delta_- = Phi-2q eta
+Delta_+ = Phi+2q eta.
+```
+
+Therefore
+
+```text
+Phi
+=
+(Delta_+ + Delta_-)/2
+```
+
+and
+
+```text
+eta
+=
+(Delta_+ - Delta_-)/(4q).
+```
+
+In the endpoint-frequency case `q=1/2`,
+
+```text
+Phi=[Delta(1)+Delta(0)]/2
+eta=[Delta(1)-Delta(0)]/2.
+```
+
+At exactly `p=1/2`,
+
+```text
+Delta(1/2)=Phi,
+```
+
+so a balanced-frequency treatment estimates the endpoint-centered architecture coordinate directly under the registered canonical mapping.
+
+### Empirical use along an ecological gradient
+
+Repeat the frequency manipulation across contexts `E`:
+
+```text
+for each E:
+    estimate Delta(E,p_-)
+    estimate Delta(E,p_+)
+    -> recover Phi(E), eta(E)
+
+then:
+    locate E_V from Phi(E)=0
+    locate E_I from Phi(E)-eta(E)=0
+    estimate Phi'(E_V), eta'(E_V)
+    compare observed threshold displacement with UTA1.4 / UTA1.4b.
+```
+
+This is an identification recipe within the declared linear-in-frequency canonical pair, not a claim that all biological frequency dependence is linear or symmetric. A failed linear-frequency fit is itself evidence that the minimal registered population mapping is inadequate and a richer interaction model is required.
+
+---
+
 ## 2. One-family constructive witnesses
 
 To avoid proving different separations with disconnected toy models, use one convex recovery family throughout:
