@@ -87,3 +87,29 @@ def reverse_invasion_environment(value_threshold: float, slope: float, eta: floa
     if slope == 0:
         raise ValueError("slope must be nonzero")
     return value_threshold - eta / slope
+
+
+def rare_invasion_environment_affine_feedback(
+    value_threshold: float,
+    phi_slope: float,
+    eta_at_value: float,
+    eta_slope: float,
+) -> float:
+    """Solve Phi(E)=eta(E) for affine Phi and affine eta."""
+    denom = phi_slope - eta_slope
+    if denom == 0:
+        raise ValueError("phi_slope must differ from eta_slope")
+    return value_threshold + eta_at_value / denom
+
+
+def reverse_invasion_environment_affine_feedback(
+    value_threshold: float,
+    phi_slope: float,
+    eta_at_value: float,
+    eta_slope: float,
+) -> float:
+    """Solve Phi(E)=-eta(E) for affine Phi and affine eta."""
+    denom = phi_slope + eta_slope
+    if denom == 0:
+        raise ValueError("phi_slope must differ from -eta_slope")
+    return value_threshold - eta_at_value / denom
