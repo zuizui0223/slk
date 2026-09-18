@@ -211,6 +211,58 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.7: three frequency treatments diagnose and repair curvature.
+    phi = 0.6
+    h0 = -0.1
+    eta = 0.4
+    kappa = 0.25
+    q = 0.25
+    p_mid = 0.5
+    p_minus = 0.5 - q
+    p_plus = 0.5 + q
+
+    def curved_gap(p: float) -> float:
+        x = 2 * p - 1
+        return phi + h0 + eta * x + kappa * x * x
+
+    delta_mid = curved_gap(p_mid)
+    delta_minus = curved_gap(p_minus)
+    delta_plus = curved_gap(p_plus)
+
+    h0_hat = delta_mid - phi
+    eta_hat = (delta_plus - delta_minus) / (4 * q)
+    kappa_hat = (delta_plus + delta_minus - 2 * delta_mid) / (8 * q * q)
+
+    assert math.isclose(h0_hat, h0)
+    assert math.isclose(eta_hat, eta)
+    assert math.isclose(kappa_hat, kappa)
+
+    rare_margin = phi + h0 - eta + kappa
+    reverse_margin = phi + h0 + eta + kappa
+    checks["UTA1_7_three_frequency_curvature_diagnostic"] = {
+        "Phi": phi,
+        "h0_hat": h0_hat,
+        "eta_hat": eta_hat,
+        "kappa_hat": kappa_hat,
+        "rare_invasion_margin": rare_margin,
+        "reverse_invasion_resistance_margin": reverse_margin,
+        "pass": True,
+    }
+
+    e_v, slope = 10.0, 2.0
+    e_i = e_v + (eta - kappa - h0) / slope
+    e_r = e_v - (eta + kappa + h0) / slope
+    assert math.isclose(e_i - e_r, 2 * eta / slope)
+    assert math.isclose((e_i + e_r) / 2 - e_v, -(h0 + kappa) / slope)
+    checks["UTA1_7_curvature_window_geometry"] = {
+        "E_V": e_v,
+        "E_I": e_i,
+        "E_R": e_r,
+        "signed_width": e_i - e_r,
+        "center_shift": (e_i + e_r) / 2 - e_v,
+        "pass": True,
+    }
+
     # INV1: reciprocal fixation and symmetric rare-mutation occupancy ordering
     # are driven by the same exponential score ratio under the registered process.
     max_abs_error = 0.0
