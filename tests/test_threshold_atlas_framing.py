@@ -50,3 +50,13 @@ def test_audit_and_submission_both_name_uta1() -> None:
     assert "UTA1" in audit
     assert "one convex recovery family" in manuscript
     assert "R(d)=d+d^2" in audit
+
+
+def test_submission_does_not_emit_duplicate_pandoc_figure_captions() -> None:
+    text = MANUSCRIPT.read_text(encoding="utf-8")
+    assert "![Figure 1" not in text
+    assert "![Figure 2" not in text
+    assert "![Figure 3" not in text
+    assert "![](../figures/FIG1_LOGIC_DIAGRAM.svg)" in text
+    assert "![](../figures/FIG2_PHASE_MAP.svg)" in text
+    assert "![](../figures/FIG3_EMPIRICAL_LADDER.svg)" in text
