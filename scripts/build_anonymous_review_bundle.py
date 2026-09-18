@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "submission" / "amnat_review" / "generated" / "reviewer_bundle"
 
 FILES = {
-    "manuscript/SLK_MANUSCRIPT_AMNAT_V3.md": "MANUSCRIPT_SOURCE.md",
+    "manuscript/SLK_MANUSCRIPT_AMNAT_V4.md": "MANUSCRIPT_SOURCE.md",
     "manuscript/AMNAT_TITLE_PAGE_V1.md": "ANONYMOUS_TITLE_PAGE_SOURCE.md",
     "theory/SLK_CORE_THEORY_V1.md": "theory/SLK_CORE_THEORY_V1.md",
     "theory/NON_EQUIVALENCE_THEOREM_V1.md": "theory/NON_EQUIVALENCE_THEOREM_V1.md",
