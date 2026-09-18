@@ -25,7 +25,7 @@ def main() -> None:
     title = text.splitlines()[0].removeprefix("# ").strip()
     abstract = section(text, "## Abstract", "## 1. Introduction")
     pre_refs = text.split("## Literature Cited", 1)[0]
-    figure_refs = len(re.findall(r"!\[Figure\s+\d+\.", text))
+    figure_refs = len(re.findall(r"!\[[^\]]*\]\(\.\./figures/FIG\d+_[^)]+\.svg\)", text))
 
     title_n = len(words(title))
     abstract_n = len(words(abstract))
