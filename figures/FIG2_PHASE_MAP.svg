@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1120" viewBox="0 0 1400 1120">
   <defs>
     <style>
       .t{font-family:Arial,Helvetica,sans-serif;fill:#111}.h{font-size:34px;font-weight:700}.m{font-size:24px}.s{font-size:20px}.xs{font-size:17px}.axis{stroke:#111;stroke-width:3}.grid{stroke:#999;stroke-width:1.5;stroke-dasharray:8 8}.box{fill:#fff;stroke:#111;stroke-width:2}.arrow{stroke:#111;stroke-width:3;fill:none;marker-end:url(#a)}
@@ -60,6 +60,33 @@
   <path d="M785 335 C835 335, 825 585, 855 585" class="arrow"/>
   <text x="825" y="420" class="t xs" transform="rotate(90 825 420)">new coordinates enter after Φ</text>
 
-  <text x="60" y="815" class="t s">Main message: SCH supplies L; BALANCE classifies L&gt;0, Φ&lt;0; SLK owns Φ and its transport to later evolutionary criteria.</text>
-  <text x="60" y="850" class="t xs">BITA is orthogonal mechanism identification; no single two-dimensional phase plane can encode the full evolutionary hierarchy.</text>
+  <!-- Environmental threshold displacement -->
+  <rect x="60" y="800" width="1270" height="250" class="box"/>
+  <text x="85" y="840" class="t m">D. Ecological threshold displacement along environment E</text>
+  <text x="85" y="872" class="t xs">Assume Φ(E)=a(E−E_V), a&gt;0. Rare invasion occurs at E_I=E_V+η/a.</text>
+
+  <text x="105" y="918" class="t s">η &gt; 0  coordination-like feedback</text>
+  <line x1="390" y1="910" x2="1240" y2="910" class="axis"/>
+  <line x1="650" y1="892" x2="650" y2="930" class="grid"/>
+  <line x1="850" y1="892" x2="850" y2="930" class="grid"/>
+  <line x1="1050" y1="892" x2="1050" y2="930" class="grid"/>
+  <text x="620" y="955" class="t xs">E_R</text>
+  <text x="820" y="955" class="t xs">E_V</text>
+  <text x="1018" y="955" class="t xs">E_I</text>
+  <text x="720" y="890" class="t xs">coordination region</text>
+  <text x="880" y="980" class="t xs">Φ&gt;0 here, but rare D still cannot invade until E_I</text>
+
+  <text x="105" y="1015" class="t s">η &lt; 0  negative-frequency feedback</text>
+  <line x1="390" y1="1007" x2="1240" y2="1007" class="axis"/>
+  <line x1="650" y1="989" x2="650" y2="1027" class="grid"/>
+  <line x1="850" y1="989" x2="850" y2="1027" class="grid"/>
+  <line x1="1050" y1="989" x2="1050" y2="1027" class="grid"/>
+  <text x="618" y="1048" class="t xs">E_I</text>
+  <text x="820" y="1048" class="t xs">E_V</text>
+  <text x="1018" y="1048" class="t xs">E_R</text>
+  <text x="705" y="987" class="t xs">coexistence region</text>
+  <text x="430" y="1080" class="t xs">D can invade before Φ becomes positive</text>
+  <text x="930" y="1080" class="t xs">threshold displacement: E_I−E_V=η/a</text>
+
+  <text x="60" y="1105" class="t xs">Main message: conflict, architecture value, and realized differentiation can shift at different ecological thresholds.</text>
 </svg>
