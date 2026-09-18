@@ -155,6 +155,29 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.4b: environmental gradient in feedback shifts the invasion crossing.
+    e_v, a, eta0, b = 10.0, 2.0, 1.0, 0.5
+    e_i = e_v + eta0 / (a - b)
+    e_r = e_v - eta0 / (a + b)
+    width = e_i - e_r
+    center_shift = (e_i + e_r) / 2 - e_v
+    expected_width = 2 * a * abs(eta0) / (a * a - b * b)
+    expected_center_shift = eta0 * b / (a * a - b * b)
+    assert e_i > e_v
+    assert math.isclose(width, expected_width)
+    assert math.isclose(center_shift, expected_center_shift)
+    checks["UTA1_4b_environmental_feedback_gradient"] = {
+        "E_V": e_v,
+        "Phi_slope": a,
+        "eta_at_value": eta0,
+        "eta_slope": b,
+        "E_I": e_i,
+        "E_R": e_r,
+        "zone_width": width,
+        "zone_center_shift": center_shift,
+        "pass": True,
+    }
+
     # UTA1.5: stronger conflict need not mean larger architecture margin.
     L_A, s_A, K_A = 3.0, 0.2, 0.8
     L_B, s_B, K_B = 2.0, 0.8, 0.5
