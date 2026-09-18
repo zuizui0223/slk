@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-MANUSCRIPT = Path("manuscript/SLK_MANUSCRIPT_AMNAT_V3.md")
+MANUSCRIPT = Path("manuscript/SLK_MANUSCRIPT_AMNAT_V4.md")
 
 
 def words(text: str) -> list[str]:
