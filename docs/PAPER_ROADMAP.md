@@ -25,7 +25,9 @@ Core claims:
 4. UTA1 places small-step release, endpoint value, invasion, fixation, and occupancy on explicit critical surfaces within one registered composite model.
 5. all five flagship non-implications are realized inside one convex recovery family rather than disconnected witnesses.
 6. the endpoint architecture contrast `Phi` is preserved through the registered canonical pair, reciprocal fixation ratio, and symmetric rare-mutation occupancy ratio.
-7. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
+7. along `Phi(E)=a(E-E_V)`, ecology displaces the rare-invasion threshold by `E_I-E_V=eta/a`, so realized differentiation can lag behind or precede intrinsic architecture value;
+8. under the quadratic bridge, conflict magnitude alone cannot rank differentiation across systems when recoverability or architecture cost varies;
+9. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
 
 Flagship exclusions:
 
@@ -37,7 +39,7 @@ Flagship exclusions:
 - general spatial spectral transport;
 - temporal Floquet theory beyond what is required for the flagship spine.
 
-The flagship owns the cross-repository estimand transport, the unified critical-surface theorem, and the claim-ceiling logic, not every technical extension developed in the source repositories.
+The flagship owns the cross-repository estimand transport, the unified critical-surface theorem, its ecological threshold-displacement corollaries, and the claim-ceiling logic, not every technical extension developed in the source repositories.
 
 ---
 
