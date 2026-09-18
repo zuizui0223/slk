@@ -29,3 +29,11 @@ def test_audit_blocks_empirical_overpromotion() -> None:
     assert "FIELD_DISTRIBUTION_OF_PHI = NOT_ESTIMATED" in text
     assert "No single biological system" in text
     assert "not an empirical estimate" in text
+
+
+def test_audit_registers_ecological_threshold_predictions() -> None:
+    ledger = LEDGER.read_text(encoding="utf-8")
+    audit = AUDIT.read_text(encoding="utf-8")
+    for token in ("E_I=E_V+eta/a", "Stronger conflict need not imply more differentiation"):
+        assert token in audit
+    assert "E_I=E_V+eta/a" in ledger

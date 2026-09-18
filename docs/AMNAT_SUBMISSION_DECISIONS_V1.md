@@ -12,7 +12,7 @@ ADD_SECOND_POPULATION_PROCESS_BEFORE_SUBMISSION = false
 
 The fixation/occupancy results remain tied to the registered exponential Moran / connected symmetric rare-mutation process. Their role is not to claim universal population genetics. Their role is to demonstrate that transporting the same architecture-value object into a declared stochastic population process can create new separations and can also force an exact invariant.
 
-Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is conceptual importance of the integrated transport rather than lack of another process example. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
+Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is now the empirical generality of the ecological threshold predictions rather than lack of another process example. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
 
 Revisit only if review specifically demands process robustness.
 
@@ -35,7 +35,7 @@ PRIMARY_TARGET = The American Naturalist
 ECOLOGY_LETTERS_REASSESSMENT = requires_real_same_system_G1_G5_receipt
 ```
 
-The current paper is strongest as a conceptual/theoretical integration paper: an architecture-specific estimand transport, a unified critical-surface theorem, one-family constructive split witnesses, one exact process-level invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
+The current paper is strongest as a conceptual/theoretical ecology paper: an architecture-specific estimand transport, a unified critical-surface theorem, ecological threshold-displacement and conflict–differentiation discordance predictions, one-family constructive split witnesses, one exact process-level invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
 
 The submission framing must emphasize biological theory and falsifiable measurement consequences, not software governance, repository integration, or bookkeeping.
 
@@ -51,14 +51,21 @@ CORE_LITERATURE_CITED                    CLOSED
 THEOREM_FORMULA_CONSISTENCY              PASS_AFTER_REPAIR
 UNIFIED_THRESHOLD_ATLAS                  PASS
 CROSS_LEVEL_PHI_COMPATIBILITY            PASS
+ECOLOGICAL_THRESHOLD_DISPLACEMENT        PASS
+ECOLOGICAL_FEEDBACK_GRADIENT             PASS
+TWO_FREQUENCY_PHI_ETA_IDENTIFICATION      PASS
+CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
+FIGURE_2_ECOLOGICAL_PANEL                PASS
 FIGURE_1_THRESHOLD_ATLAS                 PASS
 WITNESS_ARITHMETIC                       PASS
 FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
-AMNAT_ABSTRACT_WORDS                    177 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       3560 PASS
+AMNAT_ABSTRACT_WORDS                    169 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE       4438 PASS
 AMNAT_FIGURES                             3 PASS
+AMNAT_TABLES                              2 PASS
+AMNAT_FIGURE_TABLE_TOTAL                  5 PASS
 FULL_CI_PY311_PY312                      PASS
 REVIEW_MANUSCRIPT_PDF                    21 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
@@ -89,13 +96,14 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Does the exact critical-surface transport generate enough biological insight to justify a general theory contribution beyond the known component results?
+> Does real frequency dependence remain close enough to the registered canonical linear-in-frequency mapping for `Phi(E)` and `eta(E)` to be meaningful summaries?
 
-The submission answer must center on three deductions:
+The submission answer must center on four deductions:
 
 1. the same upstream architecture comparison can change verdict as it is transported through later estimands;
-2. the unified threshold atlas identifies exactly where a verdict must be re-tested, with all five failures realized inside one convex recovery family;
-3. separation is not universal: the registered process forces reciprocal fixation ordering and weak-mutation occupancy ordering to re-align, showing that the framework predicts both splits and invariants.
+2. along an ecological gradient, value and invasion are displaced by `eta/a`, predicting both transition order and the width `2|eta|/a` of the coordination/coexistence zone in the registered affine slice;
+3. conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies, so conflict–architecture discordance is expected rather than anomalous;
+4. separation is not universal: the registered process forces reciprocal fixation ordering and weak-mutation occupancy ordering to re-align, showing that the framework predicts both splits and invariants.
 
 ## Submission state
 
@@ -113,5 +121,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = BIOLOGICAL_IMPORTANCE_OF_THRESHOLD_TRANSPORT
+MAIN_OPEN_RISK          = ADEQUACY_OF_CANONICAL_FREQUENCY_MAPPING
 ```

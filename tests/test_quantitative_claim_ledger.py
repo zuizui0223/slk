@@ -40,3 +40,11 @@ def test_ledger_blocks_empirical_overpromotion() -> None:
     assert "No single biological system" in text
     assert "not an empirical estimate" in text
     assert "NATURAL_PREVALENCE = NOT_ESTIMATED" in text
+
+
+def test_ledger_registers_ecological_threshold_predictions() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    for token in ("E_I=E_V+eta/a", "conflict–differentiation discordance"):
+        assert token in ledger
+    assert "E_I=E_V+eta/a" in manuscript

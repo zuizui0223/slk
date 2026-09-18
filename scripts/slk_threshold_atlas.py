@@ -66,3 +66,63 @@ def occupancy_ratio(phi: float, beta: float, n: int) -> float:
 def weak_selection_absolute_fixation_margin(phi: float, eta: float) -> float:
     """Positive iff rho_D > 1/N under the registered weak-selection result."""
     return 3.0 * phi - eta
+
+
+def environmental_phi(e: float, slope: float, value_threshold: float) -> float:
+    """Affine environmental architecture margin Phi(E)=slope*(E-E_V)."""
+    if slope == 0:
+        raise ValueError("slope must be nonzero")
+    return slope * (e - value_threshold)
+
+
+def rare_invasion_environment(value_threshold: float, slope: float, eta: float) -> float:
+    """Environmental E where Phi(E)=eta."""
+    if slope == 0:
+        raise ValueError("slope must be nonzero")
+    return value_threshold + eta / slope
+
+
+def reverse_invasion_environment(value_threshold: float, slope: float, eta: float) -> float:
+    """Environmental E where Phi(E)=-eta."""
+    if slope == 0:
+        raise ValueError("slope must be nonzero")
+    return value_threshold - eta / slope
+
+
+def rare_invasion_environment_affine_feedback(
+    value_threshold: float,
+    phi_slope: float,
+    eta_at_value: float,
+    eta_slope: float,
+) -> float:
+    """Solve Phi(E)=eta(E) for affine Phi and affine eta."""
+    denom = phi_slope - eta_slope
+    if denom == 0:
+        raise ValueError("phi_slope must differ from eta_slope")
+    return value_threshold + eta_at_value / denom
+
+
+def reverse_invasion_environment_affine_feedback(
+    value_threshold: float,
+    phi_slope: float,
+    eta_at_value: float,
+    eta_slope: float,
+) -> float:
+    """Solve Phi(E)=-eta(E) for affine Phi and affine eta."""
+    denom = phi_slope + eta_slope
+    if denom == 0:
+        raise ValueError("phi_slope must differ from -eta_slope")
+    return value_threshold - eta_at_value / denom
+
+
+def identify_phi_eta_from_symmetric_frequencies(
+    delta_minus: float,
+    delta_plus: float,
+    q: float,
+) -> tuple[float, float]:
+    """Recover Phi and eta from p=1/2-q and p=1/2+q."""
+    if not (0 < q <= 0.5):
+        raise ValueError("q must satisfy 0 < q <= 0.5")
+    phi = 0.5 * (delta_plus + delta_minus)
+    eta = (delta_plus - delta_minus) / (4.0 * q)
+    return phi, eta

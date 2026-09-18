@@ -25,7 +25,12 @@ def main() -> None:
     title = text.splitlines()[0].removeprefix("# ").strip()
     abstract = section(text, "## Abstract", "## 1. Introduction")
     pre_refs = text.split("## Literature Cited", 1)[0]
-    figure_refs = len(re.findall(r"!\[[^\]]*\]\(\.\./figures/FIG\d+_[^)]+\.svg\)", text))
+    figure_refs = len(
+        re.findall(r"!\[[^\]]*\]\(\.\./figures/FIG\d+_[^)]+\.svg\)", text)
+    )
+    table_refs = len(
+        re.findall(r"^\|(?:\s*:?-{3,}:?\s*\|){2,}\s*$", text, flags=re.MULTILINE)
+    )
 
     title_n = len(words(title))
     abstract_n = len(words(abstract))
@@ -35,10 +40,15 @@ def main() -> None:
     print(f"AMNAT_ABSTRACT_WORDS={abstract_n}")
     print(f"AMNAT_TEXT_WORDS_EXCL_LITERATURE_CITED={text_n}")
     print(f"AMNAT_FIGURE_COUNT={figure_refs}")
+    print(f"AMNAT_TABLE_COUNT={table_refs}")
+    print(f"AMNAT_FIGURE_TABLE_TOTAL={figure_refs + table_refs}")
 
     assert abstract_n <= 200, f"abstract exceeds 200 words: {abstract_n}"
     assert text_n <= 7500, f"text exceeds usual 7500-word Major Article limit: {text_n}"
-    assert figure_refs <= 6, f"figures exceed 6-item Major Article guidance: {figure_refs}"
+    assert figure_refs + table_refs <= 6, (
+        "figures + tables exceed 6-item Major Article guidance: "
+        f"{figure_refs}+{table_refs}={figure_refs + table_refs}"
+    )
     assert 1 <= title_n <= 20, f"unexpected title word count: {title_n}"
 
 

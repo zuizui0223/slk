@@ -2,9 +2,9 @@
 
 ## Abstract
 
-Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and differentiation that is globally favorable need not become an evolutionary outcome. We develop an architecture-specific transport framework that carries one identified conflict comparison through architecture value, local release, invasion, fixation, and long-run occupancy. Conflict is summarized by compromise load `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`, with `R=sL` only under a registered quadratic bridge. In a single composite model, successive questions are cut by exact critical surfaces: small-step release at `k=k_local`, endpoint value at `Phi=0` (equivalently `k=k_global`), rare invasion at `Phi=eta`, reverse invasion at `Phi=-eta`, and absolute fixation advantage at `3Phi=eta` under weak selection. Reciprocal fixation ordering and symmetric rare-mutation occupancy instead re-align exactly at `Phi=0` under the registered exponential-Moran process. Thus conflict, value, accessibility, invasion, and stochastic realization are neither interchangeable nor generically distinct: new mechanisms split their thresholds, while process structure can force them back together. A cumulative measurement ladder states what evidence is needed for each biological claim.
+Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and globally favorable differentiation need not become an evolutionary outcome. We develop an architecture-specific transport framework carrying one identified conflict comparison through architecture value, small-step release, invasion, fixation, and occupancy. Conflict is summarized by `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`. In one composite model, critical surfaces separate small-step accessibility at `k=k_local`, endpoint value at `Phi=0`, rare invasion at `Phi=eta`, reverse invasion at `Phi=-eta`, and weak-selection absolute fixation at `3Phi=eta`; reciprocal fixation and symmetric rare-mutation occupancy re-align at `Phi=0` under the registered Moran process. This geometry yields an ecological prediction: along `Phi(E)=a(E-E_V)`, the rare-invasion threshold shifts from the architecture-value threshold by `eta/a`, so frequency-dependent ecology can delay or advance establishment without changing the endpoint comparison. It also predicts that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies. A cumulative measurement ladder states the evidence needed for each claim.
 
-**Claim map:** C1-C9, unified theorem UTA1, and invariant INV1. The master theorem is registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`; constructive witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
+**Claim map:** C1-C9, UTA1, ecological corollaries UTA1.4-1.5, and invariant INV1. The master theorem is registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`; constructive witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
 
 ## 1. Introduction
 
@@ -106,7 +106,7 @@ Figure 2 separates this architecture-value classification from later realization
 
 ![](../figures/FIG2_PHASE_MAP.svg)
 
-**Figure 2. Architecture-value classification and evolutionary realization require different coordinates.** The `L-Phi` plane classifies persistent compromise versus globally favorable differentiation. Accessibility and invasion require additional coordinates and are therefore shown as separate conditional insets rather than universal boundaries in the same phase plane. Full caption and specification are in `figures/FIG2_CAPTION_AND_SPEC.md`.
+**Figure 2. Architecture value and evolutionary realization occupy different coordinates and can cross at different ecological thresholds.** The `L-Phi` plane classifies persistent compromise versus globally favorable differentiation. Small-step accessibility introduces release-path geometry, and frequency-dependent invasion introduces `eta`. Along an ecological gradient with `Phi(E)=a(E-E_V)`, the rare-invasion crossing occurs at `E_I=E_V+eta/a`: positive `eta` delays establishment beyond the value crossing, whereas negative `eta` permits rare invasion before intrinsic endpoint value becomes positive. Thus the position of realized differentiation can shift even when the underlying architecture comparison is unchanged. Full caption and specification are in `figures/FIG2_CAPTION_AND_SPEC.md`.
 
 **Ceiling:** `Phi>0` is a global-value statement only. It is not shorthand for local reachability, invasion, fixation, occupancy, or historical evolution.
 
@@ -284,7 +284,106 @@ Full derivation is registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`; the con
 
 **Ceiling:** the surfaces are exact only within their declared path-cost, canonical-game, finite-population, weak-selection where indicated, and mutation assumptions.
 
-## 10. Empirical programme
+## 10. Ecological deductions from threshold ordering
+
+The threshold atlas changes the biological interpretation of several common comparative patterns.
+
+### Conflict and differentiation need not covary monotonically
+
+Under the quadratic bridge,
+
+```text
+Phi=sL-K.
+```
+
+Thus a larger conflict load does not necessarily predict stronger differentiation across populations or taxa. A high-conflict system can remain integrated when little of the conflict is recoverable by the candidate architecture or when architecture-specific cost is high. Conversely, a system with more modest conflict can cross the differentiation threshold if recovery is efficient and architecture cost is low. The relevant comparative target is therefore not conflict magnitude alone but the triplet `(L,R,K)`, or `(L,s,K)` where the quadratic bridge is justified.
+
+This gives a specific interpretation to persistent integration: an integrated phenotype in the presence of measured opposing functional selection is not evidence that the conflict is weak. It can instead locate the system below the architecture-value surface.
+
+### Ecological feedback can delay or advance establishment without changing endpoint value
+
+Let an environmental coordinate `E` change the intrinsic architecture margin approximately linearly,
+
+```text
+Phi(E)=a(E-E_V),
+a>0,
+```
+
+while the local frequency-feedback term is `eta`. The endpoint architecture becomes globally favorable at
+
+```text
+E=E_V,
+```
+
+whereas a rare differentiated type can invade at
+
+```text
+E_I=E_V+eta/a.
+```
+
+The displacement is therefore
+
+```text
+E_I-E_V=eta/a,
+```
+
+and the environmental distance between the two reciprocal invasion boundaries is
+
+```text
+|E_I-E_R|=2|eta|/a.
+```
+
+Thus the same parameters predict not only which transition occurs first but also the width of the coordination or coexistence zone along the ecological gradient.
+
+If `eta>0`, coordination-like ecological feedback creates an interval in which differentiation already pays but cannot establish from rarity. If `eta<0`, negative-frequency feedback allows the differentiated type to invade before its intrinsic endpoint margin becomes positive; in the registered deterministic game this leads toward coexistence rather than proving intrinsic endpoint superiority.
+
+This yields a directly testable comparative prediction: the ecological position of the invasion transition should be displaced from the architecture-value transition by the strength of frequency feedback relative to the environmental slope of architecture value. Environmental or community change can therefore alter realized differentiation even when the underlying functional conflict is unchanged.
+
+The prediction also extends when ecological feedback itself changes along the same gradient. If
+
+```text
+eta(E)=eta_0+b(E-E_V),
+```
+
+then the affine model gives
+
+```text
+E_I-E_V=eta_0/(a-b),
+E_R-E_V=-eta_0/(a+b).
+```
+
+Thus the **slope** of ecological feedback matters as well as its magnitude. Coordination-like feedback that strengthens in the same direction as architecture value (`0<b<a`) pushes establishment farther from the value crossing than the constant-`eta` prediction. As `b` approaches `a`, the rare-invasion threshold is driven far away; if `b>=a` with `eta_0>0`, increasing `E` in the affine model never overcomes the coordination barrier even though intrinsic endpoint value continues to increase. For smooth non-affine systems the local approximation is `E_I-E_V approximately eta(E_V)/[Phi'(E_V)-eta'(E_V)]`. Ecology can therefore alter not only which threshold is crossed first but whether an invasion crossing occurs in the focal environmental direction at all.
+
+### A two-frequency experiment separates architecture value from ecological feedback
+
+The registered population mapping is directly estimable without observing fixation. At a fixed ecological context,
+
+```text
+Delta(p)=Phi+eta(2p-1).
+```
+
+Measure the relative performance of D versus S at two frequencies symmetric around one half, `p_-=1/2-q` and `p_+=1/2+q`. Then
+
+```text
+Phi=[Delta(p_+)+Delta(p_-)]/2
+eta=[Delta(p_+)-Delta(p_-)]/(4q).
+```
+
+Thus the same experiment separates the intrinsic endpoint-centered architecture coordinate from frequency-dependent ecological feedback. Repeating this design across environments reconstructs `Phi(E)` and `eta(E)`, allowing independent estimation of the value crossing `E_V`, the invasion crossing `E_I`, and their local slopes. A failure of the linear-in-frequency fit is informative rather than fatal: it rejects the minimal canonical population mapping and indicates that a richer interaction model is required.
+
+### Discordance becomes diagnostic
+
+Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
+
+- Strong identified conflict with `Phi<0`: persistent compromise remains favored; measure `R` and `K`.
+- `Phi>0` with a downhill small-release gradient: a small-step construction barrier separates the current state from the better endpoint; measure `k_local` and path geometry.
+- `Phi>0` but D fails when rare: coordination-like ecological feedback blocks establishment; estimate `eta`.
+- `Phi<0` but D invades when rare: negative-frequency feedback rescues rare entry; test coexistence rather than claiming endpoint superiority.
+- Reciprocal fixation and occupancy orderings disagree under the registered process: process assumptions are violated; audit mutation symmetry/rarity, game symmetry, and the fixation kernel.
+
+The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is a prediction of **where discordance should occur, which ecological mechanism creates it, and which additional measurement resolves it**.
+
+## 11. Empirical programme
 
 **Empirical gates G1-G9; not a claim of completed end-to-end validation.**
 
@@ -311,7 +410,7 @@ This ordering prevents a common empirical shortcut: endpoint superiority at G5 c
 
 **Current empirical ceiling:** no single biological system is claimed here to have passed G1-G9 end to end.
 
-## 11. Discussion
+## 12. Discussion
 
 The central contribution is not a new synonym for trade-off or modularity. Nor is it the generic statement that benefits must exceed costs. Existing work already explains why interference among functions can favor modularity or specialization, and existing population theory already separates invasion, fixation, and long-run stochastic behavior. The contribution is the explicit architecture-specific **estimand transport** that begins with a causally identified shared-coordinate conflict and preserves the extra assumptions needed at every later stage.
 
@@ -319,7 +418,7 @@ At the organismal scale, `L` asks whether integration is costly. At the architec
 
 The registered composite model is nested rather than a sequence of unrelated payoff substitutions. The architecture path defines the endpoint contrast `Phi`; the canonical game is parameterized so that its self-play score difference is the same `Phi`; and the registered fixation and occupancy ratios inherit that same difference. What changes downstream is therefore the additional mechanism and coordinate required for the next question, not the identity of the endpoint architecture comparison.
 
-The framework therefore contributes three linked objects. First, it supplies a common handoff coordinate system without pretending that all quantities live on the same phase plane. Second, UTA1 identifies the exact critical surfaces at which verdicts change, with all five non-implications realized in one recovery family; INV1 then identifies the process condition under which reciprocal fixation and occupancy re-align. Third, G1-G9 translates the theory into a sequential empirical claim ladder, so that a study can stop at the strongest level its measurements actually justify.
+The framework therefore contributes four linked objects. First, it supplies a common handoff coordinate system without pretending that all quantities live on the same phase plane. Second, UTA1 identifies the exact critical surfaces at which verdicts change, with all five non-implications realized in one recovery family; INV1 then identifies the process condition under which reciprocal fixation and occupancy re-align. Third, G1-G9 translates the theory into a sequential empirical claim ladder, so that a study can stop at the strongest level its measurements actually justify.
 
 This framing also sharpens what would falsify or limit the framework. If a biological system lacks an identified `L`, the architecture argument never starts. If `R` and `K` cannot be placed on a common fitness scale, `Phi` is not empirically evaluable. If mutation neighborhoods, population feedback, or stochastic process assumptions are unspecified, later evolutionary claims remain open even when endpoint architecture value is known. The hierarchy is therefore cumulative rather than all-or-nothing.
 

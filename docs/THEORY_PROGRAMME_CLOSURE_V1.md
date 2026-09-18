@@ -74,7 +74,7 @@ Delta_W = W_D* - W_S*.
 BALANCE may be identified directly from `L>0` and `Delta_W<0` without prior decomposition of `R` or `K`.
 
 ### SLK
-Owns the architecture-value and evolutionary-realization hierarchy.
+Owns the architecture-value and evolutionary-realization hierarchy, including ecological threshold displacement derived from that hierarchy.
 
 General architecture margin:
 
@@ -89,7 +89,7 @@ R=sL,
 Phi=sL-K.
 ```
 
-`R=sL` is not promoted to an arbitrary-landscape identity.
+`R=sL` is not promoted to an arbitrary-landscape identity. The ecological formula `E_I-E_V=eta/a` is likewise exact only for the registered affine environmental slice with locally constant `eta`.
 
 ### BITA
 Owns ecological mechanism identification for an observed trait interaction:
