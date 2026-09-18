@@ -354,6 +354,23 @@ E_R-E_V=-eta_0/(a+b).
 
 Thus the **slope** of ecological feedback matters as well as its magnitude. Coordination-like feedback that strengthens in the same direction as architecture value (`0<b<a`) pushes establishment farther from the value crossing than the constant-`eta` prediction. As `b` approaches `a`, the rare-invasion threshold is driven far away; if `b>=a` with `eta_0>0`, increasing `E` in the affine model never overcomes the coordination barrier even though intrinsic endpoint value continues to increase. For smooth non-affine systems the local approximation is `E_I-E_V approximately eta(E_V)/[Phi'(E_V)-eta'(E_V)]`. Ecology can therefore alter not only which threshold is crossed first but whether an invasion crossing occurs in the focal environmental direction at all.
 
+### A two-frequency experiment separates architecture value from ecological feedback
+
+The registered population mapping is directly estimable without observing fixation. At a fixed ecological context,
+
+```text
+Delta(p)=Phi+eta(2p-1).
+```
+
+Measure the relative performance of D versus S at two frequencies symmetric around one half, `p_-=1/2-q` and `p_+=1/2+q`. Then
+
+```text
+Phi=[Delta(p_+)+Delta(p_-)]/2
+eta=[Delta(p_+)-Delta(p_-)]/(4q).
+```
+
+Thus the same experiment separates the intrinsic endpoint-centered architecture coordinate from frequency-dependent ecological feedback. Repeating this design across environments reconstructs `Phi(E)` and `eta(E)`, allowing independent estimation of the value crossing `E_V`, the invasion crossing `E_I`, and their local slopes. A failure of the linear-in-frequency fit is informative rather than fatal: it rejects the minimal canonical population mapping and indicates that a richer interaction model is required.
+
 ### Discordance becomes diagnostic
 
 Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
