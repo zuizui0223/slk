@@ -10,6 +10,7 @@ from scripts.slk_threshold_atlas import (
     reverse_invasion_environment,
     reverse_invasion_environment_affine_feedback,
     reverse_invasion_resistance_margin,
+    selection_gap,
     weak_selection_absolute_fixation_margin,
 )
 
@@ -119,7 +120,7 @@ def test_varying_positive_coordination_feedback_delays_invasion_further():
     e_const = rare_invasion_environment(e_v, a, eta0)
     e_var = rare_invasion_environment_affine_feedback(e_v, a, eta0, b)
     assert e_var > e_const
-    assert e_var - e_v == eta0 / (a - b)
+    assert abs((e_var - e_v) - eta0 / (a - b)) < 1e-12
 
 
 def test_affine_feedback_gradient_sets_transition_zone_width_and_center():
