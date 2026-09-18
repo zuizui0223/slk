@@ -56,6 +56,7 @@ ECOLOGICAL_FEEDBACK_GRADIENT             PASS
 TWO_FREQUENCY_PHI_ETA_IDENTIFICATION      PASS
 THREE_FREQUENCY_CURVATURE_DIAGNOSTIC     PASS
 GENERALIZED_INVASION_SURFACES            PASS
+ARBITRARY_SHAPE_ENDPOINT_INVASION        PASS
 CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
 FIGURE_2_ECOLOGICAL_PANEL                PASS
 FIGURE_1_THRESHOLD_ATLAS                 PASS
@@ -99,7 +100,7 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Is the local quadratic frequency-response extension sufficient when ecological feedback is strongly nonlinear, asymmetric, or state dependent?
+> Can rare-D and resident-D endpoint selection limits be estimated with acceptable extrapolation error on a scale compatible with independently measured `Phi`?
 
 The submission answer must center on four deductions:
 
@@ -124,5 +125,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = HIGHER_ORDER_FREQUENCY_RESPONSE_ADEQUACY
+MAIN_OPEN_RISK          = ENDPOINT_LIMIT_ESTIMATION
 ```
