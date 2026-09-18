@@ -1,51 +1,78 @@
-# Figure 1 — logic of the SLK hierarchy
+# Figure 1 — unified critical-surface transport
 
 ## Caption
 
-**Figure 1. From functional conflict to evolutionary outcome.** SLK separates six inferential levels that are often collapsed. A shared-coordinate conflict is summarized by the compromise load `L`. A declared differentiated comparison recovers benefit `R`, incurs architecture-specific debit `K`, and therefore has global architecture margin `Phi=R-K`. Under the registered quadratic partial-release bridge only, `R=sL` and hence `Phi=sL-K`. Positive `Phi` is not an evolutionary verdict: local mutational accessibility can fail even when complete differentiation has positive payoff; frequency-dependent feedback can then shift rare-invasion boundaries away from the intrinsic architecture crossing; and finite-population fixation is governed by a process-specific rule. Under the registered reversible weak-mutation exponential-Moran model, reciprocal fixation ordering and long-run monomorphic occupancy ordering re-align because both depend on the same self-play score difference. Dashed side boxes provide explicit witness conditions for each genuine non-implication. The figure therefore emphasizes both **splits** between successive estimands and the **fixation–occupancy invariant** that appears under the declared stochastic process.
+**Figure 1. One architecture comparison crosses different evolutionary thresholds.** SLK transports the same declared architecture comparison from identified shared-coordinate conflict through endpoint architecture value, small-step selective accessibility, frequency-dependent invasion, finite-population fixation, and symmetric rare-mutation occupancy. Each added mechanism introduces its own critical surface: sufficiently small release switches at k=k_local; global endpoint value at Phi=0, equivalently k=k_global; rare invasion at Phi=eta; resistance to reverse invasion at Phi=-eta; reciprocal fixation ordering at Phi=0; and absolute fixation advantage over neutrality at 3Phi=eta under weak selection. Under the registered exponential-Moran process with connected symmetric rare mutation, reciprocal fixation ordering and monomorphic occupancy re-align exactly on the same Phi=0 surface. The left panel shows that all five flagship non-implications can be constructed inside one convex recovery family, R(d)=d+d^2 and K(d)=kd, by varying only k and eta. The arrows are estimand handoffs, not logical implications.
 
 ## Reader-facing message
 
-```text
-conflict
-  ↓
-global architecture value
-  ↓
-local reachability
-  ↓
-rare invasion
-  ↓
-finite-population fixation
-  ↓
-weak-mutation occupancy
-```
+~~~text
+identified conflict
+      |
+      v
+global endpoint value            Phi=0
+      |
+      v
+small-step accessibility         k=k_local
+      |
+      v
+rare invasion                    Phi=+/-eta
+      |
+      v
+finite-population fixation       Phi=0; 3Phi=eta under weak selection
+      |
+      v
+rare-mutation occupancy          Phi=0
+~~~
 
-The downward arrows are handoffs, not logical implications.
+The figure is a **critical-surface transport map**, not a claim that every stage has a different threshold.
 
-## Genuine split witnesses
+## Exact re-alignment
 
-1. `L>0` but `K>R` -> real conflict with `Phi<0`; under the quadratic bridge this can be written `K>sL`.
-2. `Phi>0` but `k_local<k<k_global` -> globally favorable but locally inaccessible differentiation.
-3. `Phi>0` but `Phi-eta<0` in the declared orientation -> globally favorable architecture that cannot invade when rare.
-4. Rare-invasion sign can disagree with reciprocal fixation ordering because invasion depends on `Phi ± eta`, whereas reciprocal fixation ordering in the registered Moran mapping depends on `Phi`.
+For the registered canonical pair and exponential-Moran / symmetric rare-mutation process,
 
-## Invariant highlighted on the right
+~~~text
+rho_D/rho_S = exp[beta(N-2)Phi]
+Pi_D/Pi_S   = exp[beta(N-2)Phi]
+~~~
 
-For a symmetric pair with self-play scores `u_i,u_j`, the registered exponential-Moran / symmetric rare-mutation model gives
+so
 
-```text
-rho(j|i)/rho(i|j) = exp[beta(N-2)(u_j-u_i)]
-Pi_j/Pi_i          = exp[beta(N-2)(u_j-u_i)]
-```
+~~~text
+global endpoint D>S
+iff
+reciprocal fixation favors D
+iff
+symmetric rare-mutation occupancy favors D
+iff
+Phi>0.
+~~~
 
-and therefore
+This shared surface is conditional on the declared equal-diagonal-feedback canonical mapping, fixation process, and mutation assumptions.
 
-```text
-rho(j|i)>rho(i|j)  iff  Pi_j>Pi_i.
-```
+## One-family witness system
 
-This is deliberately shown as a convergence rather than another split.
+Use
+
+~~~text
+d in [0,1]
+R(d)=d+d^2
+K(d)=k d
+k_local=1
+k_global=2
+Phi=2-k.
+~~~
+
+Then varying only k and eta yields all five registered separations:
+
+1. conflict without positive endpoint value;
+2. positive endpoint value without sufficiently small selectively uphill release;
+3. positive value plus small-step accessibility without rare invasion;
+4. rare invasion without reciprocal fixation superiority;
+5. absolute fixation advantage over neutrality without greater symmetric rare-mutation occupancy.
+
+The explicit parameter values remain registered in theory/UNIFIED_THRESHOLD_ATLAS_V1.md and theory/NON_EQUIVALENCE_THEOREM_V1.md.
 
 ## Scope
 
-The figure does not depict continuous architecture, branching, edgewise topology, spatial migration, or temporal Floquet dynamics. Those remain PAYOFF extensions outside the SLK flagship.
+The figure does not depict continuous-architecture branching, edgewise topology, spatial migration, or temporal Floquet dynamics. Those remain PAYOFF extensions outside the SLK flagship. The local-accessibility surface refers specifically to sufficiently small selectively uphill steps along the declared release path and does not imply absolute historical unreachability.
