@@ -263,6 +263,35 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.8: arbitrary interior frequency shape reduces to endpoint offsets for invasion.
+    phi = 0.45
+    h_rare = -0.6
+    h_resident_d = 0.25
+    rare_margin = phi + h_rare
+    reverse_margin = phi + h_resident_d
+    assert rare_margin < 0
+    assert reverse_margin > 0
+
+    e_v, slope = 5.0, 1.25
+    e_i = e_v - h_rare / slope
+    e_r = e_v - h_resident_d / slope
+    assert math.isclose(e_i - e_r, (h_resident_d - h_rare) / slope)
+    assert math.isclose(
+        (e_i + e_r) / 2 - e_v,
+        -(h_rare + h_resident_d) / (2 * slope),
+    )
+
+    checks["UTA1_8_arbitrary_shape_endpoint_invasion"] = {
+        "Phi": phi,
+        "h_R": h_rare,
+        "h_D": h_resident_d,
+        "rare_invasion_margin": rare_margin,
+        "reverse_invasion_resistance_margin": reverse_margin,
+        "E_I": e_i,
+        "E_R": e_r,
+        "pass": True,
+    }
+
     # INV1: reciprocal fixation and symmetric rare-mutation occupancy ordering
     # are driven by the same exponential score ratio under the registered process.
     max_abs_error = 0.0

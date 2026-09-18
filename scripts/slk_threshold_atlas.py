@@ -198,3 +198,24 @@ def reverse_invasion_environment_quadratic_frequency(
     if phi_slope == 0:
         raise ValueError("phi_slope must be nonzero")
     return value_threshold - (eta + kappa + h0) / phi_slope
+
+
+def rare_invasion_margin_endpoint(phi: float, h_rare: float) -> float:
+    """General rare-D invasion margin Phi + endpoint ecological offset."""
+    return phi + h_rare
+
+
+def reverse_invasion_resistance_margin_endpoint(phi: float, h_resident_d: float) -> float:
+    """General resistance-to-rare-S margin Phi + D-resident endpoint offset."""
+    return phi + h_resident_d
+
+
+def invasion_environment_from_endpoint_offset(
+    value_threshold: float,
+    phi_slope: float,
+    endpoint_offset: float,
+) -> float:
+    """Solve Phi(E)+h_endpoint=0 for affine Phi(E)."""
+    if phi_slope == 0:
+        raise ValueError("phi_slope must be nonzero")
+    return value_threshold - endpoint_offset / phi_slope

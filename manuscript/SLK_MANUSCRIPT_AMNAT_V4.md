@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and globally favorable differentiation need not become an evolutionary outcome. We develop an architecture-specific transport framework carrying one identified conflict comparison through architecture value, small-step release, invasion, fixation, and occupancy. Conflict is summarized by `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`. In one composite model, critical surfaces separate small-step accessibility at `k=k_local`, endpoint value at `Phi=0`, rare invasion at `Phi=eta`, reverse invasion at `Phi=-eta`, and weak-selection absolute fixation at `3Phi=eta`; reciprocal fixation and symmetric rare-mutation occupancy re-align at `Phi=0` under the registered Moran process. This geometry yields an ecological prediction: along `Phi(E)=a(E-E_V)`, the rare-invasion threshold shifts from the architecture-value threshold by `eta/a`, so frequency-dependent ecology can delay or advance establishment without changing the endpoint comparison. It also predicts that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies. A cumulative measurement ladder states the evidence needed for each claim.
+Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and globally favorable differentiation need not become an evolutionary outcome. We develop an architecture-specific transport framework carrying one identified conflict comparison through architecture value, small-step release, invasion, fixation, and occupancy. Conflict is summarized by `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`. In one composite model, critical surfaces separate small-step accessibility at `k=k_local`, endpoint value at `Phi=0`, rare invasion at `Phi=eta`, reverse invasion at `Phi=-eta`, and weak-selection absolute fixation at `3Phi=eta`; reciprocal fixation and symmetric rare-mutation occupancy re-align at `Phi=0` under the registered Moran process. This geometry yields an ecological prediction: along `Phi(E)=a(E-E_V)`, the rare-invasion threshold shifts from the architecture-value threshold by `eta/a`, so frequency-dependent ecology can delay or advance establishment without changing the endpoint comparison. It also predicts that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies. Even under arbitrary nonlinear frequency dependence, deterministic invasion depends only on the ecological offsets at the rare-D and resident-D endpoints. A cumulative measurement ladder states the evidence needed for each claim.
 
 ## 1. Introduction
 
@@ -412,6 +412,65 @@ E_R-E_V=-(eta+kappa+h0)/a.
 Hence `eta` controls the spacing between reciprocal invasion thresholds, while `h0+kappa` shifts the center of the entire invasion window relative to the independently measured architecture-value crossing. Nonlinearity therefore does not merely invalidate the minimal model; to quadratic order it has a distinct ecological signature.
 
 This diagnostic extension applies to invasion inference only. The canonical Moran fixation and weak-mutation occupancy invariant is not automatically inherited once `h0` or `kappa` is nonzero.
+
+### Invasion prediction itself does not require a linear or quadratic frequency curve
+
+The internal shape of frequency dependence is useful for mechanism diagnosis, but it is not required to define invasion. Write the population selection difference generally as
+
+```text
+Delta(p,E)=Phi(E)+H(p,E),
+```
+
+where `H` contains any additional ecological frequency-dependent contribution. Define the endpoint ecological offsets
+
+```text
+h_R(E)=lim_{p->0} H(p,E),
+h_D(E)=lim_{p->1} H(p,E).
+```
+
+Then rare D invasion and resistance to rare S invasion are exactly
+
+```text
+Phi(E)+h_R(E)>0
+```
+
+and
+
+```text
+Phi(E)+h_D(E)>0.
+```
+
+Thus the generalized invasion surfaces are simply
+
+```text
+Phi=-h_R,
+Phi=-h_D,
+```
+
+regardless of how nonlinear the interior frequency response may be.
+
+Along `Phi(E)=a(E-E_V)` with locally constant endpoint offsets,
+
+```text
+E_I-E_V=-h_R/a,
+E_R-E_V=-h_D/a.
+```
+
+Therefore
+
+```text
+E_I-E_R=(h_D-h_R)/a
+```
+
+and
+
+```text
+(E_I+E_R)/2-E_V=-(h_R+h_D)/(2a).
+```
+
+The canonical and quadratic models are nested descriptions of these endpoint offsets: the former has `h_R=-eta`, `h_D=eta`; the latter has `h_R=h0-eta+kappa`, `h_D=h0+eta+kappa`.
+
+This means higher-order frequency dependence changes how ecological mechanisms are decomposed, but it does not invalidate deterministic endpoint invasion inference if the endpoint selection limits can be estimated. Fixation and occupancy remain separate and are not rescued by this endpoint argument.
 
 ### Discordance becomes diagnostic
 

@@ -58,7 +58,7 @@ author_metadata_included = false
 
 Before upload, replace the token below with the reviewer-accessible repository URL and insert the resulting sentence into the anonymous manuscript in a short Data and code availability section:
 
-> The code and theory materials needed to reproduce the registered witness regimes, ecological threshold-displacement predictions, frequency-response diagnostics, and fixation–occupancy verification are available to reviewers at [ANONYMOUS_REVIEW_ARCHIVE_URL].
+> The code and theory materials needed to reproduce the registered witness regimes, ecological threshold-displacement predictions, arbitrary-shape endpoint invasion, frequency-response diagnostics, and fixation–occupancy verification are available to reviewers at [ANONYMOUS_REVIEW_ARCHIVE_URL].
 
 Do not insert the public identity-bearing repository URL into the double-anonymous manuscript.
 

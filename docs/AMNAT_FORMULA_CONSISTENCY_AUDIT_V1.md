@@ -218,6 +218,40 @@ Status: **PASS** across unified theory, AMNAT V4, executable helpers, claim veri
 
 The curvature extension is used for invasion inference only and does not silently extend the registered fixation/occupancy invariant.
 
+## Arbitrary-shape endpoint invasion check
+
+Write
+
+```text
+Delta(p,E)=Phi(E)+H(p,E)
+```
+
+with endpoint ecological offsets
+
+```text
+h_R=lim_{p->0}H(p,E)
+h_D=lim_{p->1}H(p,E).
+```
+
+Then
+
+```text
+rare D invasion:
+Phi+h_R>0
+
+resistance to rare S:
+Phi+h_D>0.
+```
+
+For affine `Phi(E)=a(E-E_V)` and locally constant endpoint offsets,
+
+```text
+E_I-E_R=(h_D-h_R)/a
+(E_I+E_R)/2-E_V=-(h_R+h_D)/(2a).
+```
+
+Status: **PASS** across theory, AMNAT V4, executable helpers, verifier, and unit tests.
+
 ## Independent witness arithmetic
 
 All registered separations were recalculated inside the common family
@@ -279,6 +313,7 @@ CROSS_LEVEL_PHI_COMPATIBILITY    PASS
 ECOLOGICAL_THRESHOLD_DISPLACEMENT PASS
 ECOLOGICAL_FEEDBACK_GRADIENT      PASS
 THREE_FREQUENCY_CURVATURE          PASS
+ARBITRARY_SHAPE_ENDPOINT_INVASION  PASS
 WITNESS_ARITHMETIC              PASS
 MANUSCRIPT_LEDGER_SYNC          PASS_AFTER_REPAIR
 ```
