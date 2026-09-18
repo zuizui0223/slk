@@ -30,6 +30,10 @@ on:
       - 'tests/test_amnat_submission_tools.py'
       - '.github/workflows/build-amnat-review-package.yml'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
