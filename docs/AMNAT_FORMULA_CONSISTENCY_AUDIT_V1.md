@@ -98,34 +98,65 @@ rho(j|i)>rho(i|j) iff Pi_j>Pi_i.
 
 Status: **PASS**, with symmetric game, connected symmetric rare mutation, and registered exponential-Moran assumptions retained.
 
-## Independent witness arithmetic
+## Unified critical-surface check
 
-The registered constructive witnesses were recalculated independently:
+The current flagship now registers one composite theorem surface:
 
 ```text
-NE1: L=1, R=0.5, K=1
-     Phi=R-K=-0.5                         PASS
+small-step selective release       k=k_local
+global endpoint value              Phi=0 <=> k=k_global
+rare D invasion                    Phi=eta
+reverse invasion                   Phi=-eta
+reciprocal fixation ordering       Phi=0
+absolute fixation vs neutrality    3Phi=eta [weak selection]
+rare-mutation occupancy ordering   Phi=0
+```
 
-NE2: s0=0.5, Delta=2
-     k_local=s0^2 Delta^2=1
-     k_global=s0 Delta^2=2
-     k=1.5 lies strictly between them     PASS
+Status: **PASS** across `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`, core theory, claim ledger, and AMNAT V4.
 
-NE3: Phi=0.2, eta=0.5
+## Independent witness arithmetic
+
+All registered separations were recalculated inside the common family
+
+```text
+R(d)=d+d^2
+K(d)=kd
+d in [0,1]
+k_local=1
+k_global=2
+Phi=2-k
+```
+
+with the following results:
+
+```text
+NE1: L=2, k=2.2
+     R(1)=2, K(1)=2.2
+     Phi=-0.2                              PASS
+
+NE2: k=1.5
+     Phi=0.5>0
+     Phi'(0)=1-1.5=-0.5<0                 PASS
+
+NE3: k=0.8, eta=1.5
+     Phi=1.2
+     Phi'(0)=0.2>0
      Delta(0)=Phi-eta=-0.3                PASS
 
-NE4: Phi=-0.2, eta=-1
-     Delta(0)=Phi-eta=0.8
+NE4: k=2.2, eta=-1
+     Phi=-0.2
+     Delta(0)=0.8
      beta>0,N>2 -> rho_D/rho_S<1          PASS
 
-NE5: Phi=-0.1, eta=-0.5
+NE5: k=2.1, eta=-0.5
+     Phi=-0.1
      3Phi=-0.3 > -0.5=eta
-     Phi<0 -> Pi_D<Pi_S in registered pair PASS
+     Phi<0 -> Pi_D<Pi_S                   PASS
 ```
 
 ## Manuscript-surface check
 
-The internal audit manuscript remains the C/G/INV-labelled traceability surface. The current journal-facing surface is `manuscript/SLK_MANUSCRIPT_AMNAT_V2.md`; `docs/SECTION_CLAIM_MAP_V1.md` now explicitly maps both surfaces and prevents journal prose from exceeding the audit claim ceiling.
+The internal audit manuscript remains the C/G/INV-labelled traceability surface. The current journal-facing surface is `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`; `docs/SECTION_CLAIM_MAP_V1.md` maps the unified theorem and prevents journal prose from exceeding the audit claim ceiling.
 
 Figure 3 already used the general `Phi=R-K` gate and required no formula repair.
 
@@ -139,6 +170,7 @@ RECIPROCAL_FIXATION             PASS
 ABSOLUTE_FIXATION_WEAK_SELECTION PASS
 WEAK_MUTATION_OCCUPANCY         PASS
 FIXATION_OCCUPANCY_INVARIANT    PASS
+UNIFIED_CRITICAL_SURFACES       PASS
 WITNESS_ARITHMETIC              PASS
 MANUSCRIPT_LEDGER_SYNC          PASS_AFTER_REPAIR
 ```
