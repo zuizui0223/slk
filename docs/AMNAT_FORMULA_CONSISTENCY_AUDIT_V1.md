@@ -112,7 +112,22 @@ absolute fixation vs neutrality    3Phi=eta [weak selection]
 rare-mutation occupancy ordering   Phi=0
 ```
 
-Status: **PASS** across `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`, core theory, claim ledger, and AMNAT V4.
+Status: **PASS** across `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`, core theory, claim ledger, AMNAT V4, and the redesigned Figure 1.
+
+## Cross-level compatibility check
+
+The registered composite mapping preserves the endpoint architecture contrast:
+
+```text
+Phi = W_D-W_S
+A_DD/2-A_SS/2 = Phi
+log(rho_D/rho_S) / [beta(N-2)] = Phi
+log(Pi_D/Pi_S) / [beta(N-2)] = Phi
+```
+
+Status: **PASS** under the registered equal-diagonal-feedback canonical mapping, exponential-Moran process, and connected symmetric rare mutation.
+
+This check is essential: the threshold atlas transports one endpoint contrast rather than replacing it with unrelated downstream payoff coordinates.
 
 ## Independent witness arithmetic
 
@@ -171,6 +186,7 @@ ABSOLUTE_FIXATION_WEAK_SELECTION PASS
 WEAK_MUTATION_OCCUPANCY         PASS
 FIXATION_OCCUPANCY_INVARIANT    PASS
 UNIFIED_CRITICAL_SURFACES       PASS
+CROSS_LEVEL_PHI_COMPATIBILITY    PASS
 WITNESS_ARITHMETIC              PASS
 MANUSCRIPT_LEDGER_SYNC          PASS_AFTER_REPAIR
 ```
