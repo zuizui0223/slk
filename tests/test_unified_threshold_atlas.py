@@ -1,6 +1,7 @@
 from scripts.slk_threshold_atlas import (
     ArchitecturePath,
     environmental_phi,
+    identify_phi_eta_from_symmetric_frequencies,
     occupancy_ratio,
     rare_invasion_environment,
     rare_invasion_environment_affine_feedback,
@@ -145,3 +146,24 @@ def test_coordination_feedback_matching_value_slope_removes_forward_crossing():
         pass
     else:
         raise AssertionError("equal slopes should not yield a finite affine invasion crossing")
+
+
+def test_two_symmetric_frequency_treatments_recover_phi_and_eta():
+    phi_true = 0.7
+    eta_true = -0.4
+    q = 0.25
+    p_minus = 0.5 - q
+    p_plus = 0.5 + q
+    delta_minus = selection_gap(phi_true, eta_true, p_minus)
+    delta_plus = selection_gap(phi_true, eta_true, p_plus)
+    phi_hat, eta_hat = identify_phi_eta_from_symmetric_frequencies(
+        delta_minus, delta_plus, q
+    )
+    assert abs(phi_hat - phi_true) < 1e-12
+    assert abs(eta_hat - eta_true) < 1e-12
+
+
+def test_balanced_frequency_selection_gap_equals_phi():
+    phi = -0.3
+    eta = 2.0
+    assert selection_gap(phi, eta, 0.5) == phi
