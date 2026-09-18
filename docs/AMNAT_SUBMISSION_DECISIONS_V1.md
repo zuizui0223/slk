@@ -57,7 +57,7 @@ FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
 AMNAT_ABSTRACT_WORDS                    169 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       4239 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE       4282 PASS
 AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              3 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
@@ -91,7 +91,7 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Does the exact critical-surface transport generate enough biological insight to justify a general theory contribution beyond the known component results?
+> Do the ecological threshold-displacement and discordance predictions generalize beyond the deliberately minimal registered slice strongly enough to motivate empirical tests?
 
 The submission answer must center on three deductions:
 
@@ -115,5 +115,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = BIOLOGICAL_IMPORTANCE_OF_THRESHOLD_TRANSPORT
+MAIN_OPEN_RISK          = EMPIRICAL_GENERALITY_OF_ECOLOGICAL_PREDICTIONS
 ```
