@@ -34,11 +34,11 @@ def main() -> None:
     print(f"AMNAT_TITLE_WORDS={title_n}")
     print(f"AMNAT_ABSTRACT_WORDS={abstract_n}")
     print(f"AMNAT_TEXT_WORDS_EXCL_LITERATURE_CITED={text_n}")
-    print(f"AMNAT_FIGURE_COUNT={figure_refs}")
+    print(f"AMNAT_FIGURE_COUNT={figure_refs}")\n    print(f"AMNAT_TABLE_COUNT={table_refs}")\n    print(f"AMNAT_FIGURE_TABLE_TOTAL={figure_refs + table_refs}")
 
     assert abstract_n <= 200, f"abstract exceeds 200 words: {abstract_n}"
     assert text_n <= 7500, f"text exceeds usual 7500-word Major Article limit: {text_n}"
-    assert figure_refs <= 6, f"figures exceed 6-item Major Article guidance: {figure_refs}"
+    assert figure_refs + table_refs <= 6, (\n        f"figures + tables exceed 6-item Major Article guidance: "\n        f"{figure_refs}+{table_refs}={figure_refs + table_refs}"\n    )
     assert 1 <= title_n <= 20, f"unexpected title word count: {title_n}"
 
 
