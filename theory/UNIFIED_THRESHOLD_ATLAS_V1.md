@@ -570,6 +570,180 @@ This is an identification recipe within the declared linear-in-frequency canonic
 
 ---
 
+## Corollary UTA1.7 — three frequency treatments diagnose and repair canonical frequency-map failure
+
+The two-frequency identification in UTA1.6 is exact only under the registered linear canonical pair. To diagnose departures from that mapping, retain the independently measured architecture margin `Phi` from the architecture-value experiment and write the population selection difference near balanced frequency as
+
+```text
+Delta(p)
+=
+Phi
++
+h0
++
+eta x
++
+kappa x^2,
+x=2p-1.
+```
+
+Here:
+
+```text
+h0
+= frequency-symmetric ecological shift at p=1/2,
+
+eta
+= antisymmetric linear frequency feedback,
+
+kappa
+= centered quadratic frequency curvature.
+```
+
+Choose
+
+```text
+p_0=1/2,
+p_-=1/2-q,
+p_+=1/2+q,
+0<q<=1/2.
+```
+
+Then
+
+```text
+Delta_0 = Phi+h0
+
+Delta_- = Phi+h0-2q eta+4q^2 kappa
+
+Delta_+ = Phi+h0+2q eta+4q^2 kappa.
+```
+
+Because `Phi` is supplied independently from the architecture comparison,
+
+```text
+h0
+=
+Delta_0-Phi,
+```
+
+```text
+eta
+=
+(Delta_+-Delta_-)/(4q),
+```
+
+and
+
+```text
+kappa
+=
+(Delta_++Delta_--2Delta_0)/(8q^2).
+```
+
+Thus the registered linear canonical pair is the nested special case
+
+```text
+h0=0,
+kappa=0.
+```
+
+A third, balanced-frequency treatment therefore turns canonical-map adequacy into a falsifiable empirical hypothesis rather than an untested assumption.
+
+### Generalized invasion thresholds
+
+At rarity of D,
+
+```text
+Delta(0)
+=
+Phi+h0-eta+kappa.
+```
+
+Hence rare D invasion requires
+
+```text
+Phi
+>
+eta-kappa-h0.
+```
+
+At `p=1`,
+
+```text
+Delta(1)
+=
+Phi+h0+eta+kappa,
+```
+
+so resistance to rare S invasion requires
+
+```text
+Phi
+>
+-eta-kappa-h0.
+```
+
+The two invasion surfaces therefore become
+
+```text
+Phi= eta-kappa-h0
+Phi=-eta-kappa-h0.
+```
+
+The linear canonical result `Phi=+/-eta` is recovered when `h0=kappa=0`.
+
+### Ecological interpretation along a value gradient
+
+Let
+
+```text
+Phi(E)=a(E-E_V),
+a>0,
+```
+
+and locally hold `h0`, `eta`, and `kappa` constant. Then
+
+```text
+E_I-E_V
+=
+(eta-kappa-h0)/a
+```
+
+and
+
+```text
+E_R-E_V
+=
+-(eta+kappa+h0)/a.
+```
+
+Two features are now separated exactly:
+
+```text
+E_I-E_R
+=
+2 eta/a
+```
+
+while
+
+```text
+(E_I+E_R)/2-E_V
+=
+-(h0+kappa)/a.
+```
+
+Therefore the antisymmetric feedback term `eta` controls the **spacing** of the reciprocal invasion thresholds, whereas frequency-symmetric ecological displacement `h0` and curvature `kappa` shift the **center** of the entire invasion window relative to the architecture-value crossing.
+
+This gives a direct diagnostic interpretation to nonlinear frequency dependence. Curvature does not merely invalidate the minimal canonical pair; under the centered quadratic approximation it predicts how the invasion window moves relative to independently measured architecture value.
+
+### Claim boundary
+
+UTA1.7 is a local quadratic diagnostic for the population-frequency map. It does not inherit the canonical exponential-Moran fixation or symmetric rare-mutation occupancy invariant unless a corresponding stochastic process is separately derived for the richer frequency-dependent model. The generalized result is therefore used to repair invasion inference, not to silently extend INV1.
+
+---
+
 ## 2. One-family constructive witnesses
 
 To avoid proving different separations with disconnected toy models, use one convex recovery family throughout:
