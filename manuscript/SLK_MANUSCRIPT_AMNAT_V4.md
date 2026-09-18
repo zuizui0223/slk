@@ -338,11 +338,11 @@ This yields a directly testable comparative prediction: the ecological position 
 
 Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
 
-- Strong identified conflict with `Phi<0` is consistent with persistent compromise; measure recoverability `R` and architecture debit `K`.
-- `Phi>0` with a downhill small-release gradient indicates endpoint advantage behind a small-step construction barrier; measure local release geometry and `k_local`.
-- `Phi>0` with failure of D when rare is the signature expected from coordination-like ecological feedback; estimate `eta` and rare-frequency performance.
-- `Phi<0` with successful rare invasion is consistent with negative-frequency feedback rescuing rare entry; test the coexistence/invasion phase rather than interpreting invasion as endpoint superiority.
-- If reciprocal fixation and occupancy orderings disagree under the registered exponential-Moran/symmetric rare-mutation process, the process assumptions are violated; audit mutation symmetry and rarity, game symmetry, and the fixation kernel.
+- Strong identified conflict with `Phi<0`: persistent compromise remains favored; measure `R` and `K`.
+- `Phi>0` with a downhill small-release gradient: a small-step construction barrier separates the current state from the better endpoint; measure `k_local` and path geometry.
+- `Phi>0` but D fails when rare: coordination-like ecological feedback blocks establishment; estimate `eta`.
+- `Phi<0` but D invades when rare: negative-frequency feedback rescues rare entry; test coexistence rather than claiming endpoint superiority.
+- Reciprocal fixation and occupancy orderings disagree under the registered process: process assumptions are violated; audit mutation symmetry/rarity, game symmetry, and the fixation kernel.
 
 The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is a prediction of **where discordance should occur, which ecological mechanism creates it, and which additional measurement resolves it**.
 
