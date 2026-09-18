@@ -106,7 +106,7 @@ Figure 2 separates this architecture-value classification from later realization
 
 ![](../figures/FIG2_PHASE_MAP.svg)
 
-**Figure 2. Architecture-value classification and evolutionary realization require different coordinates.** The `L-Phi` plane classifies persistent compromise versus globally favorable differentiation. Accessibility and invasion require additional coordinates and are therefore shown as separate conditional insets rather than universal boundaries in the same phase plane. Full caption and specification are in `figures/FIG2_CAPTION_AND_SPEC.md`.
+**Figure 2. Architecture value and evolutionary realization occupy different coordinates and can cross at different ecological thresholds.** The `L-Phi` plane classifies persistent compromise versus globally favorable differentiation. Small-step accessibility introduces release-path geometry, and frequency-dependent invasion introduces `eta`. Along an ecological gradient with `Phi(E)=a(E-E_V)`, the rare-invasion crossing occurs at `E_I=E_V+eta/a`: positive `eta` delays establishment beyond the value crossing, whereas negative `eta` permits rare invasion before intrinsic endpoint value becomes positive. Thus the position of realized differentiation can shift even when the underlying architecture comparison is unchanged. Full caption and specification are in `figures/FIG2_CAPTION_AND_SPEC.md`.
 
 **Ceiling:** `Phi>0` is a global-value statement only. It is not shorthand for local reachability, invasion, fixation, occupancy, or historical evolution.
 
