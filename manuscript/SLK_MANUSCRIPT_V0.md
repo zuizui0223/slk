@@ -418,6 +418,65 @@ Hence `eta` controls the spacing between reciprocal invasion thresholds, while `
 
 This diagnostic extension applies to invasion inference only. The canonical Moran fixation and weak-mutation occupancy invariant is not automatically inherited once `h0` or `kappa` is nonzero.
 
+### Invasion prediction itself does not require a linear or quadratic frequency curve
+
+The internal shape of frequency dependence is useful for mechanism diagnosis, but it is not required to define invasion. Write the population selection difference generally as
+
+```text
+Delta(p,E)=Phi(E)+H(p,E),
+```
+
+where `H` contains any additional ecological frequency-dependent contribution. Define the endpoint ecological offsets
+
+```text
+h_R(E)=lim_{p->0} H(p,E),
+h_D(E)=lim_{p->1} H(p,E).
+```
+
+Then rare D invasion and resistance to rare S invasion are exactly
+
+```text
+Phi(E)+h_R(E)>0
+```
+
+and
+
+```text
+Phi(E)+h_D(E)>0.
+```
+
+Thus the generalized invasion surfaces are simply
+
+```text
+Phi=-h_R,
+Phi=-h_D,
+```
+
+regardless of how nonlinear the interior frequency response may be.
+
+Along `Phi(E)=a(E-E_V)` with locally constant endpoint offsets,
+
+```text
+E_I-E_V=-h_R/a,
+E_R-E_V=-h_D/a.
+```
+
+Therefore
+
+```text
+E_I-E_R=(h_D-h_R)/a
+```
+
+and
+
+```text
+(E_I+E_R)/2-E_V=-(h_R+h_D)/(2a).
+```
+
+The canonical and quadratic models are nested descriptions of these endpoint offsets: the former has `h_R=-eta`, `h_D=eta`; the latter has `h_R=h0-eta+kappa`, `h_D=h0+eta+kappa`.
+
+This means higher-order frequency dependence changes how ecological mechanisms are decomposed, but it does not invalidate deterministic endpoint invasion inference if the endpoint selection limits can be estimated. Fixation and occupancy remain separate and are not rescued by this endpoint argument.
+
 ### Discordance becomes diagnostic
 
 Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
