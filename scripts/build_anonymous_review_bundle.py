@@ -41,7 +41,7 @@ This package accompanies the manuscript **From functional conflict to evolutiona
 
 The submitted paper is a theory/concept paper. It does not estimate its headline results from a private or external empirical dataset. Numerical values in the witness table are constructive parameter regimes used to demonstrate logical non-implications. The three figures are theory diagrams/phase summaries.
 
-The package therefore contains the exact manuscript source, the unified threshold-atlas theorem, the supporting core/non-equivalence theory notes, the three submitted figure sources, and a standard-library Python verifier for the common witness family, five separation regimes, ecological threshold displacement, comparative conflict-differentiation discordance, critical surfaces, and fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package therefore contains the exact manuscript source, the unified threshold-atlas theorem, the supporting core/non-equivalence theory notes, the three submitted figure sources, and a standard-library Python verifier for the common witness family, five separation regimes, ecological threshold displacement, two- and three-frequency feedback identification, curvature diagnostics, comparative conflict-differentiation discordance, critical surfaces, and fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 
