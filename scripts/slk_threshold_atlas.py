@@ -126,3 +126,75 @@ def identify_phi_eta_from_symmetric_frequencies(
     phi = 0.5 * (delta_plus + delta_minus)
     eta = (delta_plus - delta_minus) / (4.0 * q)
     return phi, eta
+
+
+def selection_gap_quadratic_frequency(
+    phi: float,
+    h0: float,
+    eta: float,
+    kappa: float,
+    p: float,
+) -> float:
+    """Centered quadratic frequency map Delta=Phi+h0+eta*x+kappa*x^2."""
+    x = 2.0 * p - 1.0
+    return phi + h0 + eta * x + kappa * x * x
+
+
+def identify_quadratic_frequency_components(
+    phi: float,
+    delta_mid: float,
+    delta_minus: float,
+    delta_plus: float,
+    q: float,
+) -> tuple[float, float, float]:
+    """Recover h0, eta, kappa from p=1/2 and symmetric p=1/2±q."""
+    if not (0 < q <= 0.5):
+        raise ValueError("q must satisfy 0 < q <= 0.5")
+    h0 = delta_mid - phi
+    eta = (delta_plus - delta_minus) / (4.0 * q)
+    kappa = (delta_plus + delta_minus - 2.0 * delta_mid) / (8.0 * q * q)
+    return h0, eta, kappa
+
+
+def rare_invasion_margin_quadratic_frequency(
+    phi: float,
+    h0: float,
+    eta: float,
+    kappa: float,
+) -> float:
+    return phi + h0 - eta + kappa
+
+
+def reverse_invasion_resistance_margin_quadratic_frequency(
+    phi: float,
+    h0: float,
+    eta: float,
+    kappa: float,
+) -> float:
+    return phi + h0 + eta + kappa
+
+
+def rare_invasion_environment_quadratic_frequency(
+    value_threshold: float,
+    phi_slope: float,
+    h0: float,
+    eta: float,
+    kappa: float,
+) -> float:
+    """Solve Phi(E)+h0-eta+kappa=0 for affine Phi(E)."""
+    if phi_slope == 0:
+        raise ValueError("phi_slope must be nonzero")
+    return value_threshold + (eta - kappa - h0) / phi_slope
+
+
+def reverse_invasion_environment_quadratic_frequency(
+    value_threshold: float,
+    phi_slope: float,
+    h0: float,
+    eta: float,
+    kappa: float,
+) -> float:
+    """Solve Phi(E)+h0+eta+kappa=0 for affine Phi(E)."""
+    if phi_slope == 0:
+        raise ValueError("phi_slope must be nonzero")
+    return value_threshold - (eta + kappa + h0) / phi_slope
