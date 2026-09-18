@@ -38,21 +38,23 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ### 1. Anonymous review manuscript — PASS
 
-The CI-built review manuscript is generated directly from the canonical V4 source and has been rendered and visually inspected page by page.
+The CI-built review manuscript is generated directly from the canonical V4 source. The current build renders successfully, passes DOCX/PDF structure and anonymity checks, and embeds all three figures.
 
 ```text
-MAIN_REVIEW_PDF_PAGES     18
-ANONYMOUS_TITLE_PDF_PAGES  1
-DOUBLE_SPACED              true
-LINE_NUMBERS               true
-PAGE_NUMBERS               true
-EMBEDDED_FIGURES           3
-VISUAL_QA                   PASS — all 19 rendered pages inspected
+MAIN_REVIEW_PDF_PAGES      21
+ANONYMOUS_TITLE_PDF_PAGES   1
+DOUBLE_SPACED               true
+LINE_NUMBERS                true
+PAGE_NUMBERS                true
+EMBEDDED_FIGURES            3
+RENDERED_IDENTITY_SCAN      PASS
+FIGURE_1_MANUAL_QA          PASS — threshold atlas readable, no clipping, no duplicate caption
+FULL_PAGE_BY_PAGE_PROOFREAD OPEN
 ```
 
-The final formatting QA repaired the two renderer-visible defects found during review: inherited blue heading color and footer line-number duplication. Figure 3's closing validation note was also shortened until it rendered fully inside its SVG canvas.
+The threshold-atlas Figure 1 was manually inspected in the generated review PDF after the V4 redesign. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
 
-Status: `PASS — reader-facing review files generated and visually verified`.
+Status: `PASS FOR GENERATED FILES — FINAL HUMAN PROOFREAD REMAINS`.
 
 ### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, DEPOSIT STILL REQUIRED
 
