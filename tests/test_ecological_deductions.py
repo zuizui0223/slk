@@ -74,3 +74,13 @@ def test_three_frequency_curvature_diagnostic_is_registered() -> None:
     assert "kappa" in manuscript
     assert "Phi>eta-kappa-h0" in manuscript
     assert "does not inherit the canonical exponential-Moran fixation" in theory
+
+
+def test_arbitrary_shape_endpoint_invasion_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    assert "UTA1.8" in theory
+    assert "UTA1.8" in ledger
+    assert "Phi=-h_R" in manuscript
+    assert "regardless of how nonlinear the interior frequency response may be" in manuscript
