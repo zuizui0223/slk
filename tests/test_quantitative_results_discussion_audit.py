@@ -14,9 +14,10 @@ def test_audit_preserves_slk_split_and_invariant_numbers() -> None:
     ledger = LEDGER.read_text(encoding="utf-8")
     audit = AUDIT.read_text(encoding="utf-8")
     for token in (
-        "L=1, R=1/2, K=1",
-        "Phi=0.2, eta=0.5",
-        "Phi=-0.2, eta=-1",
+        "R(d)=d+d^2",
+        "L=2, k=2.2",
+        "k=0.8, eta=1.5",
+        "k=2.2, eta=-1",
         "rho(j|i)>rho(i|j)",
     ):
         assert token in ledger
