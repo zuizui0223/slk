@@ -129,6 +129,35 @@ Status: **PASS** under the registered equal-diagonal-feedback canonical mapping,
 
 This check is essential: the threshold atlas transports one endpoint contrast rather than replacing it with unrelated downstream payoff coordinates.
 
+## Ecological threshold-displacement check
+
+For the registered affine environmental slice,
+
+```text
+Phi(E)=a(E-E_V), a>0
+```
+
+the value crossing is `E_V`. Substituting the invasion surfaces gives
+
+```text
+Phi(E_I)=eta
+-> E_I=E_V+eta/a
+
+Phi(E_R)=-eta
+-> E_R=E_V-eta/a.
+```
+
+Therefore
+
+```text
+E_I-E_V=eta/a
+|E_I-E_R|=2|eta|/a.
+```
+
+Status: **PASS** across unified theory, AMNAT V4, Figure 2 specification, executable verifier, and ecological-deduction tests.
+
+The exact spacing is claimed only for the registered affine slice with locally constant `eta`.
+
 ## Independent witness arithmetic
 
 All registered separations were recalculated inside the common family
@@ -187,6 +216,7 @@ WEAK_MUTATION_OCCUPANCY         PASS
 FIXATION_OCCUPANCY_INVARIANT    PASS
 UNIFIED_CRITICAL_SURFACES       PASS
 CROSS_LEVEL_PHI_COMPATIBILITY    PASS
+ECOLOGICAL_THRESHOLD_DISPLACEMENT PASS
 WITNESS_ARITHMETIC              PASS
 MANUSCRIPT_LEDGER_SYNC          PASS_AFTER_REPAIR
 ```
