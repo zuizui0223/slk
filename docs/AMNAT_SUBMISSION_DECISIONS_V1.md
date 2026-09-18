@@ -98,7 +98,7 @@ The submission answer must center on three deductions:
 ```text
 TARGET                  = THE_AMERICAN_NATURALIST
 ARTICLE_TYPE            = MAJOR_ARTICLE
-MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V3.md
+MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V4.md
 THEORY                  = READY
 JOURNAL_PROSE           = READY
 PRIOR_ART_CORE          = READY
