@@ -229,6 +229,30 @@ independent Phi + three centered frequency treatments
 
 Not imported into the richer model: canonical exponential-Moran fixation or symmetric rare-mutation occupancy formulas. Those require a separate derivation if the population map is promoted beyond the canonical pair.
 
+## UTA1.8 — arbitrary-shape endpoint invasion
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+- `scripts/slk_threshold_atlas.py`
+- `tests/test_unified_threshold_atlas.py`
+
+Registered claim:
+
+```text
+Delta(p,E)=Phi(E)+H(p,E)
+
+h_R=lim_{p->0}H
+h_D=lim_{p->1}H
+
+rare D invasion <=> Phi+h_R>0
+D resists rare S <=> Phi+h_D>0.
+```
+
+The result is exact for deterministic endpoint invasion and does not import arbitrary-frequency fixation or occupancy claims.
+
 ## Freeze rule
 
 The SLK manuscript may simplify notation, but it may not strengthen the source claim. In particular:
