@@ -89,7 +89,8 @@ SLK owns the cross-repository theory needed for the integrated hierarchy:
 5. the unified critical-surface theorem showing where small-step release, endpoint value, invasion, fixation, and occupancy diverge or re-align, with one preserved endpoint contrast across the registered levels;
 6. the ecological threshold-displacement corollary `E_I-E_V=eta/a`, which predicts where realized differentiation should lag behind or precede intrinsic architecture value along environmental gradients;
 7. the comparative prediction that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies;
-8. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+8. the three-frequency diagnostic that tests canonical frequency-map adequacy and repairs invasion thresholds when curvature is present;
+9. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
@@ -200,7 +201,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 23. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
 24. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
 25. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V6.md` — current skeptical-reviewer audit after adding direct Phi/eta identification.
+26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V7.md` — current skeptical-reviewer audit after adding a three-frequency curvature diagnostic.
 27. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
 28. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
 29. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
@@ -247,6 +248,8 @@ FIGURE_1_THRESHOLD_ATLAS_REGISTERED
 ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
 ECOLOGICAL_FEEDBACK_GRADIENT_REGISTERED
 TWO_FREQUENCY_PHI_ETA_IDENTIFICATION_REGISTERED
+THREE_FREQUENCY_CURVATURE_DIAGNOSTIC_REGISTERED
+GENERALIZED_INVASION_SURFACES_REGISTERED
 CONFLICT_DIFFERENTIATION_DISCORDANCE_REGISTERED
 FIGURE_2_ECOLOGICAL_PANEL_REGISTERED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
