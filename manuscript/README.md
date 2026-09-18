@@ -6,7 +6,7 @@ Two manuscript surfaces are retained deliberately.
 
 `SLK_MANUSCRIPT_AMNAT_V4.md`
 
-This is the current submission-oriented manuscript. Relative to V3 it promotes the split logic into a unified critical-surface theorem, places all five separation witnesses inside one convex recovery family, and tightens the accessibility claim to sufficiently small selectively uphill release steps. The process assumptions and empirical claim ceiling are unchanged. The title is 9 words and the abstract is 187 words by the registered checker.
+This is the current submission-oriented manuscript. Relative to V3 it promotes the split logic into a unified critical-surface theorem, places all five separation witnesses inside one convex recovery family, makes cross-level preservation of the endpoint contrast explicit, and tightens the accessibility claim to sufficiently small selectively uphill release steps. The process assumptions and empirical claim ceiling are unchanged. The title is 9 words and the abstract is 177 words by the registered checker.
 
 `AMNAT_TITLE_PAGE_V1.md` contains the anonymous title-page metadata and CI-derived counts.
 
