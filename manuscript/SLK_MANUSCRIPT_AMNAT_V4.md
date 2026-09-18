@@ -36,7 +36,7 @@ Phi=sL-K.
 
 The main result is therefore a critical-surface transport theorem rather than a claim that every adjacent stage differs. The same endpoint architecture comparison is carried through local release geometry, frequency-dependent competition, finite-population fixation, and rare-mutation occupancy. New mechanisms split the critical surfaces, whereas the registered fixation-occupancy process forces an exact re-alignment at `Phi=0`. Figure 1 summarizes those surfaces directly; its arrows are handoffs between estimands, not logical implications.
 
-![Figure 1. SLK hierarchy showing genuine splits and the fixation-occupancy invariant.](../figures/FIG1_LOGIC_DIAGRAM.svg)
+![](../figures/FIG1_LOGIC_DIAGRAM.svg)
 
 **Figure 1. One architecture comparison crosses different evolutionary thresholds.** The same comparison is transported from identified conflict through endpoint value, small-step selective accessibility, invasion, fixation, and occupancy. Exact critical surfaces are shown beside each stage: `Phi=0` for endpoint value, `k=k_local` for sufficiently small release, `Phi=±eta` for reciprocal invasion boundaries, `Phi=0` for reciprocal fixation ordering, `3Phi=eta` for absolute fixation advantage under weak selection, and `Phi=0` for symmetric rare-mutation occupancy. The repeated `Phi=0` surface marks the exact re-alignment of endpoint value, reciprocal fixation ordering, and occupancy under the registered process. The left panel shows that all five non-implications can be realized in one convex recovery family.
 
@@ -94,7 +94,7 @@ Under the registered nested architecture comparison, `Phi>0` means the different
 
 Figure 2 separates this architecture-value classification from later realization criteria. Panel A lives on the `L-Phi` plane. Panels B and C deliberately introduce additional coordinates, because local accessibility depends on release-path geometry and rare invasion depends on population feedback. Those later boundaries therefore cannot be drawn as universal extra lines in the same `L-Phi` plane.
 
-![Figure 2. Architecture-value phase map with accessibility and invasion insets.](../figures/FIG2_PHASE_MAP.svg)
+![](../figures/FIG2_PHASE_MAP.svg)
 
 **Figure 2. Architecture-value classification and evolutionary realization require different coordinates.** The `L-Phi` plane classifies persistent compromise versus globally favorable differentiation. Small-step accessibility and invasion require additional coordinates and are therefore shown as separate conditional insets rather than universal boundaries in the same phase plane.
 
@@ -281,7 +281,7 @@ The final pair remains an important qualification: reciprocal fixation ordering 
 
 The empirical programme is deliberately cumulative. Each measurement level adds a new estimand and raises the ceiling of the biological claim; failure at a later level does not erase what earlier measurements established (Fig. 3).
 
-![Figure 3. Empirical measurement ladder for SLK.](../figures/FIG3_EMPIRICAL_LADDER.svg)
+![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
 **Figure 3. Sequential empirical validation of the SLK hierarchy.** A first stage identifies a real shared-coordinate conflict and estimates or bounds `L`. The next stages quantify recoverable architecture benefit `R` and architecture cost `K` on a common fitness scale, allowing evaluation of `Phi=R-K`. These measurements are sufficient only for architecture-value classification. Stronger claims require additional information: a local mutation or release neighborhood for accessibility, rare-frequency performance and population feedback for invasion, an explicit stochastic finite-population process for fixation, and a mutation graph or kernel for stationary occupancy.
 
