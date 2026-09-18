@@ -44,3 +44,13 @@ def test_discordance_table_contains_process_falsification_case() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8").lower()
     assert "reciprocal fixation and occupancy orderings disagree" in manuscript
     assert "process assumptions are violated" in manuscript
+
+
+def test_feedback_gradient_generalization_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    assert "eta_0/(a-b)" in manuscript
+    assert "UTA1.4b" in theory
+    assert "UTA1.4b" in ledger
+    assert "Phi'(E_V)-eta'(E_V)" in manuscript
