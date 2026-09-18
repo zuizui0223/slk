@@ -54,3 +54,12 @@ def test_feedback_gradient_generalization_is_registered() -> None:
     assert "UTA1.4b" in theory
     assert "UTA1.4b" in ledger
     assert "Phi'(E_V)-eta'(E_V)" in manuscript
+
+
+def test_two_frequency_identification_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    assert "Delta(p_+)+Delta(p_-)" in manuscript
+    assert "UTA1.6" in theory
+    assert "UTA1.6" in ledger
