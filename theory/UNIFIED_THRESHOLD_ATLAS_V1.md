@@ -372,6 +372,92 @@ when variation in `eta` over the displacement is small.
 
 ---
 
+## Corollary UTA1.4b — an environmental gradient in ecological feedback shifts and widens the transition zone
+
+Allow both architecture value and frequency feedback to vary affinely near the architecture-value crossing:
+
+```text
+Phi(E)=a(E-E_V),
+eta(E)=eta_0+b(E-E_V),
+a>0.
+```
+
+Rare D invasion satisfies
+
+```text
+Phi(E_I)=eta(E_I),
+```
+
+so, when `a!=b`,
+
+```text
+E_I-E_V
+=eta_0/(a-b).
+```
+
+Resistance to reverse invasion satisfies
+
+```text
+Phi(E_R)=-eta(E_R),
+```
+
+so, when `a!=-b`,
+
+```text
+E_R-E_V
+=-eta_0/(a+b).
+```
+
+When `|b|<a`, the distance between reciprocal invasion boundaries is
+
+```text
+|E_I-E_R|
+=
+2a|eta_0|/(a^2-b^2).
+```
+
+and their midpoint is displaced from the architecture-value crossing by
+
+```text
+(E_I+E_R)/2-E_V
+=
+eta_0 b/(a^2-b^2).
+```
+
+### Ecological interpretation
+
+The parameter `b=d eta/dE` measures how ecological frequency feedback itself changes along the environmental gradient.
+
+For `eta_0>0`, if coordination-like feedback strengthens in the same direction as architecture value (`0<b<a`), the rare-invasion crossing is delayed beyond the constant-feedback prediction because
+
+```text
+eta_0/(a-b) > eta_0/a.
+```
+
+If `b` approaches `a`, ecological coordination increases almost as rapidly as intrinsic architecture value, and the establishment threshold is pushed far from the architecture-value crossing. In the affine model, if `b>=a` and `eta_0>0`, increasing `E` from `E_V` never produces rare D invasion: endpoint value can keep increasing while coordination feedback keeps pace with or outgrows it.
+
+For smooth non-affine `Phi(E)` and `eta(E)`, the same result gives the local first-order approximation
+
+```text
+E_I-E_V
+approximately
+eta(E_V) /
+[Phi'(E_V)-eta'(E_V)],
+```
+
+with the reverse-invasion analogue
+
+```text
+E_R-E_V
+approximately
+-eta(E_V) /
+[Phi'(E_V)+eta'(E_V)].
+```
+
+Thus ecological feedback has two separable effects on realized differentiation: its **level** displaces invasion from value, while its **environmental slope** can amplify, compress, shift, or even remove the invasion crossing in the focal direction.
+
+---
+
 ## Corollary UTA1.5 — conflict strength alone cannot rank the tendency toward differentiation across systems
 
 Under the registered quadratic bridge,
