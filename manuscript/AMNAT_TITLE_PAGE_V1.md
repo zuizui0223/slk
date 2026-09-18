@@ -1,14 +1,14 @@
-# From functional conflict to evolutionary architecture across biological scales
+# From functional conflict to evolutionary architecture: thresholds for differentiation
 
 **Article type:** Major Article
 
-**Short title:** Conflict to evolutionary architecture
+**Short title:** Thresholds from conflict to architecture
 
 **Keywords:** functional conflict; trait architecture; modularity; evolutionary accessibility; fixation; weak mutation
 
-**Text word count:** 3,401 words excluding Literature Cited, using `scripts/check_amnat_manuscript.py`
+**Text word count:** 3,491 words excluding Literature Cited, using `scripts/check_amnat_manuscript.py`
 
-**Abstract word count:** 187
+**Abstract word count:** 177
 
 **Manuscript elements:** main text; two in-text theory tables; three figures; Literature Cited
 
