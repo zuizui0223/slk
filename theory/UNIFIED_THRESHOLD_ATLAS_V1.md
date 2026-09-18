@@ -273,6 +273,142 @@ This does not equate either criterion with rare invasion or with absolute fixati
 
 ---
 
+## Corollary UTA1.4 — ecology can displace the value and invasion thresholds along an environmental gradient
+
+Let an ecological coordinate `E` alter the endpoint architecture margin while the registered frequency-feedback coordinate is locally constant:
+
+```text
+Phi(E)=a(E-E_V),
+a>0,
+eta(E)=eta.
+```
+
+By definition, the global architecture-value crossing occurs at
+
+```text
+E=E_V
+```
+
+because `Phi(E_V)=0`.
+
+Rare invasion of D occurs when
+
+```text
+Phi(E)>eta.
+```
+
+Therefore its critical environmental position is
+
+```text
+E_I=E_V+eta/a.
+```
+
+Resistance of D to reverse invasion switches at
+
+```text
+Phi(E)=-eta,
+```
+
+so
+
+```text
+E_R=E_V-eta/a.
+```
+
+Hence
+
+```text
+E_I-E_V = eta/a,
+E_V-E_R = eta/a,
+|E_I-E_R| = 2|eta|/a.
+```
+
+### Ecological interpretation
+
+If
+
+```text
+eta>0,
+```
+
+coordination-like feedback shifts the rare-invasion threshold beyond the environment where differentiation already has positive endpoint value:
+
+```text
+E_I>E_V.
+```
+
+There is then an environmental interval in which differentiation pays as an endpoint comparison but cannot establish from rarity.
+
+If
+
+```text
+eta<0,
+```
+
+negative-frequency feedback shifts rare invasion to the other side of the architecture-value crossing:
+
+```text
+E_I<E_V.
+```
+
+A differentiated architecture can therefore invade while its intrinsic endpoint margin is still negative. In the deterministic pair game this is the route into the coexistence region, not evidence that the differentiated endpoint is intrinsically superior.
+
+The displacement
+
+```text
+eta/a
+```
+
+is a directly testable ecological quantity: it is the separation, on the environmental axis, between "differentiation pays" and "differentiation invades when rare."
+
+If `Phi(E)` and `eta(E)` are smooth rather than exactly affine/constant, then near an architecture-value crossing `E_V` with `Phi'(E_V) != 0`, the same logic gives the first-order approximation
+
+```text
+E_I-E_V
+approximately eta(E_V)/Phi'(E_V)
+```
+
+when variation in `eta` over the displacement is small.
+
+---
+
+## Corollary UTA1.5 — conflict strength alone cannot rank the tendency toward differentiation across systems
+
+Under the registered quadratic bridge,
+
+```text
+Phi=sL-K.
+```
+
+For two systems A and B,
+
+```text
+Phi_A-Phi_B
+=
+s_A L_A - s_B L_B
+- (K_A-K_B).
+```
+
+Therefore
+
+```text
+L_A>L_B
+```
+
+does not imply
+
+```text
+Phi_A>Phi_B.
+```
+
+A system can experience stronger shared-coordinate conflict yet remain more integrated if less of that conflict is recoverable by the declared architecture or if its architecture-specific debit is larger.
+
+### Comparative prediction
+
+Across taxa, populations, or environments, conflict magnitude `L` should not be treated as a monotone predictor of observed differentiation unless recoverability `R` (or `s` under the quadratic bridge) and architecture cost `K` are also controlled or measured. Thus persistent integration in a high-conflict system is not anomalous under SLK; it is a diagnostic invitation to measure `R`, `K`, and then the realization gates.
+
+---
+
 ## 2. One-family constructive witnesses
 
 To avoid proving different separations with disconnected toy models, use one convex recovery family throughout:
