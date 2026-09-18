@@ -206,6 +206,29 @@ Phi=sL-K
 
 These are SLK corollaries of the registered threshold geometry, not independent claims of universal environmental linearity or universal frequency-dependent ecology.
 
+## UTA1.7 — frequency-curvature diagnostic
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+- `scripts/slk_threshold_atlas.py`
+- `tests/test_unified_threshold_atlas.py`
+
+Registered claim:
+
+```text
+independent Phi + three centered frequency treatments
+-> identify h0, eta, kappa
+-> test h0=kappa=0 canonical pair
+-> if rejected, repair invasion surfaces:
+   Phi= eta-kappa-h0
+   Phi=-eta-kappa-h0.
+```
+
+Not imported into the richer model: canonical exponential-Moran fixation or symmetric rare-mutation occupancy formulas. Those require a separate derivation if the population map is promoted beyond the canonical pair.
+
 ## Freeze rule
 
 The SLK manuscript may simplify notation, but it may not strengthen the source claim. In particular:
