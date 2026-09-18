@@ -3,7 +3,7 @@
 ## Current submission surface
 
 ```text
-MANUSCRIPT = manuscript/SLK_MANUSCRIPT_AMNAT_V3.md
+MANUSCRIPT = manuscript/SLK_MANUSCRIPT_AMNAT_V4.md
 TITLE_PAGE = manuscript/AMNAT_TITLE_PAGE_V1.md
 ARTICLE_TYPE = Major Article
 PORTAL_HANDOFF = submission/AMNAT_PORTAL_HANDOFF_V1.md
@@ -38,7 +38,7 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ### 1. Anonymous review manuscript — PASS
 
-The CI-built review manuscript is generated directly from the canonical V3 source and has been rendered and visually inspected page by page.
+The CI-built review manuscript is generated directly from the canonical V4 source and has been rendered and visually inspected page by page.
 
 ```text
 MAIN_REVIEW_PDF_PAGES     18
@@ -105,7 +105,7 @@ Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
 
 ### 7. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V3 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized later if requested.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized later if requested.
 
 Status: `PASS FOR INITIAL REVIEW`.
 
