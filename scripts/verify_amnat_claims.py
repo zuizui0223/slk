@@ -119,6 +119,57 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.4: ecological threshold displacement.
+    e_v, slope, eta = 10.0, 2.0, 1.0
+    e_i = e_v + eta / slope
+    e_r = e_v - eta / slope
+    assert e_r < e_v < e_i
+    assert math.isclose(e_i - e_v, eta / slope)
+    assert math.isclose(e_i - e_r, 2 * abs(eta) / slope)
+    checks["UTA1_4_environmental_threshold_displacement_positive_eta"] = {
+        "E_V": e_v,
+        "slope": slope,
+        "eta": eta,
+        "E_I": e_i,
+        "E_R": e_r,
+        "E_I_minus_E_V": e_i - e_v,
+        "pass": True,
+    }
+
+    eta = -1.0
+    e_i = e_v + eta / slope
+    e_r = e_v - eta / slope
+    phi_mid = slope * (((e_i + e_v) / 2) - e_v)
+    delta_rare_mid = phi_mid - eta
+    assert e_i < e_v < e_r
+    assert phi_mid < 0
+    assert delta_rare_mid > 0
+    checks["UTA1_4_environmental_threshold_displacement_negative_eta"] = {
+        "E_V": e_v,
+        "slope": slope,
+        "eta": eta,
+        "E_I": e_i,
+        "E_R": e_r,
+        "midpoint_Phi": phi_mid,
+        "midpoint_rare_invasion_margin": delta_rare_mid,
+        "pass": True,
+    }
+
+    # UTA1.5: stronger conflict need not mean larger architecture margin.
+    L_A, s_A, K_A = 3.0, 0.2, 0.8
+    L_B, s_B, K_B = 2.0, 0.8, 0.5
+    phi_A = s_A * L_A - K_A
+    phi_B = s_B * L_B - K_B
+    assert L_A > L_B
+    assert phi_A < phi_B
+    checks["UTA1_5_conflict_does_not_rank_differentiation"] = {
+        "L_A": L_A,
+        "Phi_A": phi_A,
+        "L_B": L_B,
+        "Phi_B": phi_B,
+        "pass": True,
+    }
+
     # INV1: reciprocal fixation and symmetric rare-mutation occupancy ordering
     # are driven by the same exponential score ratio under the registered process.
     max_abs_error = 0.0
