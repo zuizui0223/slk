@@ -63,3 +63,14 @@ def test_two_frequency_identification_is_registered() -> None:
     assert "Delta(p_+)+Delta(p_-)" in manuscript
     assert "UTA1.6" in theory
     assert "UTA1.6" in ledger
+
+
+def test_three_frequency_curvature_diagnostic_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    assert "UTA1.7" in theory
+    assert "UTA1.7" in ledger
+    assert "kappa" in manuscript
+    assert "Phi>eta-kappa-h0" in manuscript
+    assert "does not automatically inherit" in theory
