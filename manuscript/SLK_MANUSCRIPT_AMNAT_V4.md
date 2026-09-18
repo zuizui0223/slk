@@ -205,6 +205,8 @@ Delta(p)=Phi+eta(2p-1),
 
 the self-excluding exponential Moran process, and connected symmetric rare mutation.
 
+The cross-level mapping is exact for the declared comparison. The architecture path generates the endpoint gap `Phi=W_D-W_S`; the canonical pair has self-play difference `A_DD/2-A_SS/2=Phi`; and the registered reciprocal-fixation and symmetric rare-mutation occupancy ratios both use that same self-play difference. Frequency dependence enters through `eta` and moves invasion boundaries without redefining the endpoint contrast. Thus the later stages transport one `Phi`, rather than substituting unrelated payoff quantities.
+
 Under these assumptions the critical surfaces are
 
 | Evolutionary question | Criterion for D | Critical surface |
