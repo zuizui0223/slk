@@ -1,10 +1,10 @@
-# From functional conflict to evolutionary architecture: when does differentiation pay, and when does payoff become evolution?
+# From functional conflict to evolutionary architecture: thresholds for differentiation
 
 ## Abstract
 
-Traits commonly contribute to multiple biological functions, but multifunctionality alone does not establish a trade-off, and a trade-off alone does not imply that differentiated architecture should evolve. We develop a unified framework that separates whether a shared-coordinate functional conflict exists, how much fitness is lost to compromise, how much of that loss can be recovered by an alternative architecture, whether recovery exceeds architecture-specific cost, whether the globally favorable architecture is locally reachable, and whether it can invade, fix, or dominate long-run occupancy. A shared-coordinate conflict is summarized by a compromise load `L`. Let `R` denote the optimized fitness loss recovered by a differentiated architecture before its additional architecture-specific debit `K`; the general architecture margin is `Phi=R-K`. In a registered quadratic partial-release bridge, `R=sL`, so `Phi=sL-K` follows as a model-specific corollary rather than a universal identity. The region `L>0, Phi<0` defines persistent compromise despite real conflict; `Phi>0` identifies global advantage of the declared differentiated comparison. We then derive explicit witness regimes showing that conflict need not imply profitable differentiation, profitable differentiation need not imply local accessibility, accessible positive intrinsic value need not imply rare invasion, and rare invasion need not imply reciprocal fixation superiority. Under weak selection, absolute mutant advantage over neutrality can also disagree with long-run monomorphic occupancy. However, under the registered symmetric rare-mutation exponential Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering coincide exactly through the same self-play score difference. The resulting framework is therefore a hierarchy of evolutionary criteria containing both sharp separations and a process-level invariant, together with an empirical gate structure that prevents stronger claims from being inferred from weaker measurements.
+Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and differentiation that is globally favorable need not become an evolutionary outcome. We develop an architecture-specific transport framework that carries one identified conflict comparison through architecture value, local release, invasion, fixation, and long-run occupancy. Conflict is summarized by compromise load `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`, with `R=sL` only under a registered quadratic bridge. In a single composite model, successive questions are cut by exact critical surfaces: small-step release at `k=k_local`, endpoint value at `Phi=0` (equivalently `k=k_global`), rare invasion at `Phi=eta`, reverse invasion at `Phi=-eta`, and absolute fixation advantage at `3Phi=eta` under weak selection. Reciprocal fixation ordering and symmetric rare-mutation occupancy instead re-align exactly at `Phi=0` under the registered exponential-Moran process. Thus conflict, value, accessibility, invasion, and stochastic realization are neither interchangeable nor generically distinct: new mechanisms split their thresholds, while process structure can force them back together. A cumulative measurement ladder states what evidence is needed for each biological claim.
 
-**Claim map:** C1-C9 plus invariant INV1. Formal witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
+**Claim map:** C1-C9, unified theorem UTA1, and invariant INV1. The master theorem is registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`; constructive witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
 
 ## 1. Introduction
 
@@ -34,11 +34,11 @@ R=sL,
 Phi=sL-K.
 ```
 
-The main theorem is therefore a structured split-and-invariant result rather than a slogan that every adjacent step differs (Fig. 1). The downward arrows in Fig. 1 are handoffs between estimands, not logical implications.
+The main theorem is UTA1, a critical-surface transport result rather than a slogan that every adjacent step differs (Fig. 1). The same architecture comparison encounters distinct surfaces when local release geometry and frequency dependence enter, while the registered population process re-aligns endpoint value, reciprocal fixation ordering, and symmetric rare-mutation occupancy at `Phi=0`. The downward arrows in Fig. 1 are handoffs between estimands, not logical implications.
 
 ![Figure 1. SLK hierarchy showing genuine splits and the fixation-occupancy invariant.](../figures/FIG1_LOGIC_DIAGRAM.svg)
 
-**Figure 1. From functional conflict to evolutionary outcome.** SLK separates inferential levels that are often collapsed. Positive `Phi` is not an evolutionary verdict: local mutational accessibility can fail even when complete differentiation has positive payoff; frequency-dependent feedback can shift rare-invasion boundaries away from the intrinsic architecture crossing; and finite-population fixation is governed by a process-specific rule. Dashed side boxes show explicit witness conditions for genuine non-implications. Under the registered reversible weak-mutation exponential-Moran model, reciprocal fixation ordering and long-run monomorphic occupancy ordering re-align because both depend on the same self-play score difference. Full caption and design specification are in `figures/FIG1_CAPTION_AND_SPEC.md`.
+**Figure 1. One architecture comparison crosses different evolutionary thresholds.** Exact critical surfaces are shown beside each handoff: `Phi=0` for endpoint value, `k=k_local` for sufficiently small selective release, `Phi=±eta` for reciprocal invasion boundaries, `Phi=0` for reciprocal fixation ordering, `3Phi=eta` for absolute fixation advantage under weak selection, and `Phi=0` for symmetric rare-mutation occupancy. The repeated `Phi=0` surface marks the exact re-alignment of endpoint value, reciprocal fixation ordering, and occupancy under the registered process. The left panel shows that all five non-implications can be realized within one convex recovery family. Full caption and design specification are in `figures/FIG1_CAPTION_AND_SPEC.md`.
 
 ## 2. Identifying the conflict budget
 
@@ -129,7 +129,7 @@ k_local<k<k_global
 
 can be nonempty. Inside it, all sufficiently small releases are selected against even though complete release has positive net payoff.
 
-This produces a globally favorable but locally inaccessible architecture. In the registered two-function quadratic case, the barrier width is
+This produces an endpoint architecture that is globally favorable but cannot be approached by sufficiently small selectively uphill release steps along the declared path. It does not rule out crossing by drift, large mutations, recombination, or another developmental route. In the registered two-function quadratic case, the barrier width is
 
 ```text
 W_k=s0(1-s0)Delta^2,
@@ -137,7 +137,7 @@ W_k=s0(1-s0)Delta^2,
 
 maximized at intermediate residual integration, `s0=1/2`.
 
-**Ceiling:** accessibility is conditional on the declared mutation/release neighborhood and path geometry.
+**Ceiling:** accessibility is conditional on the declared mutation/release neighborhood and path geometry; the theorem does not establish absolute historical unreachability.
 
 ## 6. Population feedback splits the architecture boundary
 
@@ -211,35 +211,76 @@ This result sits inside a well-developed literature on finite-population evoluti
 
 **Ceiling:** the invariant requires a finite symmetric game, connected symmetric rare mutation, and the registered exponential Moran fixation process.
 
-## 9. Split-and-invariant theorem with explicit witnesses
+## 9. Unified critical-surface theorem and one-family witnesses
 
-### Theorem NE - evolutionary criteria separate at specific transitions
+**UTA1 - THEOREM / SYNTHESIS; NE1-NE5 as constructive corollaries; INV1 as process invariant.**
 
-There exist admissible parameter regimes in which each of the following implications fails:
+Embed the preceding stages in one declared composite model. Let release from the shared architecture be `d in [0,dmax]`, let `R(d)` be differentiable and convex with `R(0)=0`, and let path cost be `K(d)=kd`. Define
 
 ```text
-L>0                         !=> Phi>0
-Phi>0                       !=> local accessibility
-accessible + Phi>0          !=> rare invasion
-rare invasion               !=> reciprocal fixation superiority
-absolute fixation advantage !=> greater weak-mutation occupancy.
+k_local  = R'(0)
+k_global = R(dmax)/dmax
+Phi      = R(dmax)-k dmax.
 ```
 
-Explicit witnesses are:
+For the same endpoint pair use
 
-| Separation | Witness | Result |
+```text
+Delta(p)=Phi+eta(2p-1),
+```
+
+the registered self-excluding exponential Moran process, and connected symmetric rare mutation.
+
+Then the exact critical surfaces are:
+
+| Evolutionary question | Criterion for D | Critical surface |
 |---|---|---|
-| conflict -> payoff | `L=1, R=1/2, K=1` | `L>0` but `Phi=-1/2` |
-| payoff -> accessibility | `s0=1/2, Delta=2, k=3/2` | `k_local=1<k<2=k_global` |
-| accessible payoff -> invasion | `Phi=0.2, eta=0.5` | `Delta(0)=-0.3<0` |
-| invasion -> reciprocal fixation | `Phi=-0.2, eta=-1` | `Delta(0)=0.8>0` but `rho_D/rho_S<1` |
-| absolute fixation advantage -> occupancy | `Phi=-0.1, eta=-0.5` | `3Phi>eta`, yet `Pi_D<Pi_S` |
+| sufficiently small release selectively uphill | `k<k_local` | `k=k_local` |
+| differentiated endpoint has positive global value | `Phi>0`, equivalently `k<k_global` | `Phi=0` |
+| D invades S from rarity | `Phi>eta` | `Phi=eta` |
+| D resists rare S invasion | `Phi>-eta` | `Phi=-eta` |
+| reciprocal fixation ordering favors D | `Phi>0` | `Phi=0` |
+| absolute fixation exceeds neutrality, weak selection | `3Phi>eta` | `3Phi=eta` |
+| symmetric rare-mutation occupancy favors D | `Phi>0` | `Phi=0` |
 
-The final pair contains an important qualification: reciprocal fixation ordering itself does **not** diverge from stationary monomorphic occupancy ordering under connected symmetric rare mutation and the registered exponential Moran process. Both are controlled by the same self-play score difference.
+Convexity gives `k_local<=k_global`; strict inequality creates a nonempty interval in which the endpoint is globally favorable while sufficiently small release steps are selectively downhill.
 
-So the flagship conclusion is not that every adjacent evolutionary statement is different. It is that the hierarchy contains four sharp separations plus one fixation-criterion split, followed by a process-level invariant that re-aligns reciprocal fixation and occupancy.
+All flagship non-implications can be constructed in one family,
 
-Full derivation and witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
+```text
+d in [0,1]
+R(d)=d+d^2
+K(d)=kd
+k_local=1
+k_global=2
+Phi=2-k.
+```
+
+With `L=2` when an upstream conflict budget is needed:
+
+| Separation | Parameters | Result |
+|---|---|---|
+| conflict -> payoff | `L=2, k=2.2` | `L>0` but `Phi=-0.2` |
+| payoff -> small-step accessibility | `k=1.5` | `Phi=0.5>0`, but `Phi'(0)=-0.5` |
+| accessible payoff -> invasion | `k=0.8, eta=1.5` | `Phi=1.2>0`, `Phi'(0)=0.2>0`, but `Delta(0)=-0.3` |
+| invasion -> reciprocal fixation | `k=2.2, eta=-1` | `Delta(0)=0.8>0`, but `rho_D/rho_S<1` |
+| absolute fixation advantage -> occupancy | `k=2.1, eta=-0.5` | `3Phi=-0.3>eta`, but `Pi_D<Pi_S` |
+
+The central synthesis is therefore not universal separation. New mechanisms introduce new critical surfaces, while under the registered exponential-Moran / symmetric rare-mutation process,
+
+```text
+global endpoint D>S
+iff
+reciprocal fixation favors D
+iff
+stationary monomorphic occupancy favors D
+iff
+Phi>0.
+```
+
+Full derivation is registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`; the constructive non-implications and INV1 are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
+
+**Ceiling:** the surfaces are exact only within their declared path-cost, canonical-game, finite-population, weak-selection where indicated, and mutation assumptions.
 
 ## 10. Empirical programme
 
@@ -274,11 +315,11 @@ The central contribution is not a new synonym for trade-off or modularity. Nor i
 
 At the organismal scale, `L` asks whether integration is costly. At the architecture scale, `R` asks how much of that compromise an alternative architecture can recover, while `Phi=R-K` asks whether that recovery pays for the architecture-specific debit. At the mutational scale, accessibility asks whether the better architecture can be reached. At the population scale, invasion and fixation ask distinct establishment questions. At the long-run evolutionary scale, occupancy asks how often monomorphic states are expected under the registered mutation-selection process.
 
-The framework therefore contributes three linked objects. First, it supplies a common handoff coordinate system without pretending that all quantities live on the same phase plane. Second, the constructive witnesses identify where apparently adjacent criteria genuinely diverge, while INV1 identifies a nontrivial condition under which reciprocal fixation and occupancy re-align. Third, G1-G9 translates the theory into a sequential empirical claim ladder, so that a study can stop at the strongest level its measurements actually justify.
+The framework therefore contributes three linked objects. First, it supplies a common handoff coordinate system without pretending that all quantities live on the same phase plane. Second, UTA1 identifies the exact critical surfaces at which verdicts change, with all five non-implications realized in one recovery family; INV1 then identifies the process condition under which reciprocal fixation and occupancy re-align. Third, G1-G9 translates the theory into a sequential empirical claim ladder, so that a study can stop at the strongest level its measurements actually justify.
 
 This framing also sharpens what would falsify or limit the framework. If a biological system lacks an identified `L`, the architecture argument never starts. If `R` and `K` cannot be placed on a common fitness scale, `Phi` is not empirically evaluable. If mutation neighborhoods, population feedback, or stochastic process assumptions are unspecified, later evolutionary claims remain open even when endpoint architecture value is known. The hierarchy is therefore cumulative rather than all-or-nothing.
 
-The three figures mirror the three levels of the contribution. Figure 1 gives the logic of split and invariant; Figure 2 gives the coordinate geometry of architecture value versus realization; Figure 3 gives the empirical ladder required to move from one claim level to the next. Together they make the framework mathematically explicit and experimentally falsifiable without claiming an end-to-end empirical demonstration that has not yet been performed.
+The three figures mirror the three levels of the contribution. Figure 1 gives the critical-surface transport and exact re-alignment; Figure 2 gives the coordinate geometry of architecture value versus realization; Figure 3 gives the empirical ladder required to move from one claim level to the next. Together they make the framework mathematically explicit and experimentally falsifiable without claiming an end-to-end empirical demonstration that has not yet been performed.
 
 ### Claim-status summary
 
@@ -306,7 +347,7 @@ SLK does not claim:
 - the first weak-mutation stationary distribution;
 - universality of `R=sL` outside the declared quadratic bridge.
 
-SLK does claim the integrated architecture-specific hierarchy from identified conflict to evolutionary realization, constructive split witnesses within the declared models, the placement of INV1 inside that hierarchy, and a gate-by-gate empirical claim ceiling.
+SLK does claim the integrated architecture-specific hierarchy from identified conflict to evolutionary realization, the unified critical-surface theorem UTA1, one-family constructive separation witnesses, the placement of INV1 inside that hierarchy, and a gate-by-gate empirical claim ceiling.
 
 ### Scope boundary
 
