@@ -183,6 +183,41 @@ For `|b|<a`,
 
 Status: **PASS** across unified theory, AMNAT V4, executable threshold helpers, verifier, and unit tests.
 
+## Three-frequency curvature diagnostic check
+
+With independently measured architecture value `Phi`, define
+
+```text
+Delta(p)=Phi+h0+eta x+kappa x^2,
+x=2p-1.
+```
+
+For `p_0=1/2` and `p_±=1/2±q`,
+
+```text
+h0=Delta_0-Phi
+eta=(Delta_+-Delta_-)/(4q)
+kappa=(Delta_++Delta_--2Delta_0)/(8q^2).
+```
+
+The generalized invasion margins are
+
+```text
+Delta(0)=Phi+h0-eta+kappa
+Delta(1)=Phi+h0+eta+kappa.
+```
+
+Along `Phi(E)=a(E-E_V)`,
+
+```text
+E_I-E_R=2eta/a
+(E_I+E_R)/2-E_V=-(h0+kappa)/a.
+```
+
+Status: **PASS** across unified theory, AMNAT V4, executable helpers, claim verifier, and unit tests.
+
+The curvature extension is used for invasion inference only and does not silently extend the registered fixation/occupancy invariant.
+
 ## Independent witness arithmetic
 
 All registered separations were recalculated inside the common family
@@ -243,6 +278,7 @@ UNIFIED_CRITICAL_SURFACES       PASS
 CROSS_LEVEL_PHI_COMPATIBILITY    PASS
 ECOLOGICAL_THRESHOLD_DISPLACEMENT PASS
 ECOLOGICAL_FEEDBACK_GRADIENT      PASS
+THREE_FREQUENCY_CURVATURE          PASS
 WITNESS_ARITHMETIC              PASS
 MANUSCRIPT_LEDGER_SYNC          PASS_AFTER_REPAIR
 ```
