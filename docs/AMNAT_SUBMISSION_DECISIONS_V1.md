@@ -69,7 +69,7 @@ AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              2 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  5 PASS
 FULL_CI_PY311_PY312                      PASS
-REVIEW_MANUSCRIPT_PDF                    21 PAGES PASS
+REVIEW_MANUSCRIPT_PDF                    28 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
 DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
 ANONYMOUS_REVIEWER_BUNDLE                PASS
@@ -77,6 +77,7 @@ IDENTITY_SCAN                             PASS
 CLAIM_VERIFIER_NE1_NE5                    PASS
 FIXATION_OCCUPANCY_INVARIANT_GRID        112/112 PASS
 FIGURE_1_MANUAL_QA                       PASS
+FIGURE_3_MANUAL_QA                       PASS
 FINAL_FULL_PAGE_PROOFREAD                 OPEN
 ```
 
