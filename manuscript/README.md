@@ -4,7 +4,7 @@ Two manuscript surfaces are retained deliberately.
 
 ## Journal-facing manuscript
 
-`SLK_MANUSCRIPT_AMNAT_V3.md`
+`SLK_MANUSCRIPT_AMNAT_V4.md`
 
 This is the current submission-oriented manuscript. Relative to V2 it keeps the same theory, prior-art coverage, witnesses, process assumptions, and empirical claim ceiling while making the submission surface conform to current The American Naturalist front-end limits: the title is 9 words and the abstract is 172 words by the registered checker. The novelty-boundary bullet list is also converted to prose.
 
