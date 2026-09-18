@@ -64,7 +64,7 @@ WITNESS_ARITHMETIC                       PASS
 FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
-AMNAT_ABSTRACT_WORDS                    169 PASS
+AMNAT_ABSTRACT_WORDS                    189 PASS
 AMNAT_TEXT_WORDS_EXCL_LITERATURE       4438 PASS
 AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              2 PASS
