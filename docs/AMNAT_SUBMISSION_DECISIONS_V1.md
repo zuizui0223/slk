@@ -49,6 +49,9 @@ JOURNAL_PROSE_CONVERSION                 CLOSED
 REGISTERED_PRIOR_ART_COVERAGE            8/8 PASS
 CORE_LITERATURE_CITED                    CLOSED
 THEOREM_FORMULA_CONSISTENCY              PASS_AFTER_REPAIR
+UNIFIED_THRESHOLD_ATLAS                  PASS
+CROSS_LEVEL_PHI_COMPATIBILITY            PASS
+FIGURE_1_THRESHOLD_ATLAS                 PASS
 WITNESS_ARITHMETIC                       PASS
 FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
@@ -85,7 +88,7 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Does the integrated transport generate enough biological insight to be more than a careful synthesis of known criteria?
+> Does the exact critical-surface transport generate enough biological insight to justify a general theory contribution beyond the known component results?
 
 The submission answer must center on three deductions:
 
@@ -109,5 +112,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = CONCEPTUAL_IMPORTANCE_FRAMING
+MAIN_OPEN_RISK          = BIOLOGICAL_IMPORTANCE_OF_THRESHOLD_TRANSPORT
 ```
