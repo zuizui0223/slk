@@ -66,3 +66,24 @@ def occupancy_ratio(phi: float, beta: float, n: int) -> float:
 def weak_selection_absolute_fixation_margin(phi: float, eta: float) -> float:
     """Positive iff rho_D > 1/N under the registered weak-selection result."""
     return 3.0 * phi - eta
+
+
+def environmental_phi(e: float, slope: float, value_threshold: float) -> float:
+    """Affine environmental architecture margin Phi(E)=slope*(E-E_V)."""
+    if slope == 0:
+        raise ValueError("slope must be nonzero")
+    return slope * (e - value_threshold)
+
+
+def rare_invasion_environment(value_threshold: float, slope: float, eta: float) -> float:
+    """Environmental E where Phi(E)=eta."""
+    if slope == 0:
+        raise ValueError("slope must be nonzero")
+    return value_threshold + eta / slope
+
+
+def reverse_invasion_environment(value_threshold: float, slope: float, eta: float) -> float:
+    """Environmental E where Phi(E)=-eta."""
+    if slope == 0:
+        raise ValueError("slope must be nonzero")
+    return value_threshold - eta / slope
