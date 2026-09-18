@@ -3,9 +3,11 @@ from scripts.slk_threshold_atlas import (
     environmental_phi,
     occupancy_ratio,
     rare_invasion_environment,
+    rare_invasion_environment_affine_feedback,
     rare_invasion_margin,
     reciprocal_fixation_ratio,
     reverse_invasion_environment,
+    reverse_invasion_environment_affine_feedback,
     reverse_invasion_resistance_margin,
     weak_selection_absolute_fixation_margin,
 )
@@ -106,3 +108,40 @@ def test_environmental_invasion_window_width_is_two_abs_eta_over_slope():
         e_i = rare_invasion_environment(e_v, slope, eta)
         e_r = reverse_invasion_environment(e_v, slope, eta)
         assert abs(e_i - e_r) == 2 * abs(eta) / slope
+
+
+def test_varying_positive_coordination_feedback_delays_invasion_further():
+    e_v = 10.0
+    a = 2.0
+    eta0 = 1.0
+    b = 0.5
+    e_const = rare_invasion_environment(e_v, a, eta0)
+    e_var = rare_invasion_environment_affine_feedback(e_v, a, eta0, b)
+    assert e_var > e_const
+    assert e_var - e_v == eta0 / (a - b)
+
+
+def test_affine_feedback_gradient_sets_transition_zone_width_and_center():
+    e_v = 10.0
+    a = 2.0
+    eta0 = 1.0
+    b = 0.5
+    e_i = rare_invasion_environment_affine_feedback(e_v, a, eta0, b)
+    e_r = reverse_invasion_environment_affine_feedback(e_v, a, eta0, b)
+    expected_width = 2 * a * abs(eta0) / (a * a - b * b)
+    expected_center_shift = eta0 * b / (a * a - b * b)
+    assert abs((e_i - e_r) - expected_width) < 1e-12
+    assert abs(((e_i + e_r) / 2 - e_v) - expected_center_shift) < 1e-12
+
+
+def test_coordination_feedback_matching_value_slope_removes_forward_crossing():
+    e_v = 10.0
+    a = 2.0
+    eta0 = 1.0
+    b = 2.0
+    try:
+        rare_invasion_environment_affine_feedback(e_v, a, eta0, b)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("equal slopes should not yield a finite affine invasion crossing")
