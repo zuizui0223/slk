@@ -193,6 +193,24 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.6: two symmetric frequency treatments identify Phi and eta.
+    phi_true, eta_true, q = 0.7, -0.4, 0.25
+    p_minus, p_plus = 0.5 - q, 0.5 + q
+    delta_minus = phi_true + eta_true * (2 * p_minus - 1)
+    delta_plus = phi_true + eta_true * (2 * p_plus - 1)
+    phi_hat = 0.5 * (delta_plus + delta_minus)
+    eta_hat = (delta_plus - delta_minus) / (4 * q)
+    assert math.isclose(phi_hat, phi_true)
+    assert math.isclose(eta_hat, eta_true)
+    checks["UTA1_6_two_frequency_identification"] = {
+        "q": q,
+        "Delta_minus": delta_minus,
+        "Delta_plus": delta_plus,
+        "Phi_hat": phi_hat,
+        "eta_hat": eta_hat,
+        "pass": True,
+    }
+
     # INV1: reciprocal fixation and symmetric rare-mutation occupancy ordering
     # are driven by the same exponential score ratio under the registered process.
     max_abs_error = 0.0
