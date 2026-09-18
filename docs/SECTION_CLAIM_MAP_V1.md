@@ -20,7 +20,7 @@ This document maps both manuscript surfaces onto the canonical theorem-claim led
 | 8. Weak-mutation occupancy and fixation-occupancy invariant | C9, INV1 | process-specific theorem + invariant | separate occupancy from accessibility/absolute fixation while proving reciprocal-fixation alignment | requires symmetric rare mutation + registered fixation kernel |
 | 9. Unified critical-surface theorem and constructive witnesses | UTA1, NE1-NE5, INV1 | theorem synthesis | place all realization criteria on explicit surfaces and derive all split witnesses in one recovery family | do not claim surfaces are universal outside registered assumptions |
 | 10. Empirical measurement programme | G1-G9 internally | empirical gates / journal measurement ladder | give sequential validation design | no completed biological chain claimed |
-| 11. Discussion | C1-C9, INV1 | synthesis + novelty boundary | state what SLK integrates and what prior theory already owns | preserve all claim ceilings |
+| 11. Discussion | C1-C9, UTA1, INV1 | synthesis + novelty boundary | state what the critical-surface transport adds and what prior theory already owns | preserve all claim ceilings |
 
 ## Reader-facing theorem order
 
@@ -43,7 +43,7 @@ C8  fixation criteria split
  ↓
 C9  weak-mutation occupancy
  ↘
-UTA1 exact critical-surface atlas
+UTA1 exact critical-surface atlas + preserved endpoint contrast
  ↘
 INV1 reciprocal fixation ordering <=> occupancy ordering
 ```
