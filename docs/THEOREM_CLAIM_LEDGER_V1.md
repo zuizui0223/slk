@@ -30,17 +30,18 @@ Phi=sL-K.
 | C3 | For the quadratic partial-release bridge, recoverable conflict loss is `R=sL`. | COROLLARY | SLK | Converts conflict into recoverable architecture value under the registered bridge | Model-specific; do not claim arbitrary-landscape universality. |
 | C4 | Architecture margin is `Phi=R-K`; under the quadratic bridge `Phi=sL-K`. | DEFINITION + COROLLARY | SLK | Main crossing coordinate | `R` and `K` require matched operational definitions on the same fitness scale and horizon. |
 | C5 | `Phi>0` means differentiated architecture has higher global optimized payoff than the declared shared comparison. | THEOREM / MODEL RESULT | SLK | Global-value criterion | Not yet local accessibility, invasion, fixation, or occupancy. |
-| C6 | Global architecture advantage need not imply local mutational accessibility; a finite-jump barrier exists when local marginal release is unfavorable but full release is favorable. | THEOREM / MODEL RESULT | PAYOFF -> SLK | First realization split after `Phi>0` | Requires declared mutation neighborhood / path geometry. |
-| C7 | In frequency-dependent architecture competition, rare-invasion thresholds need not coincide with the intrinsic architecture crossing. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Separates payoff from invasion | Requires population feedback parameterization. |
-| C8 | Rare invasion and fixation need not agree; reciprocal fixation ordering and absolute fixation advantage are themselves distinct criteria. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Separates invasion from finite-population establishment | Process-specific under the declared Moran mapping. |
-| C9 | Weak-mutation monomorphic occupancy is distinct from accessibility, invasion, and absolute fixation advantage. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Final flagship transport step | Requires declared mutation graph and fixation kernel. |
+| C6 | Global architecture advantage need not imply small-step selective accessibility; convex recovery can create `k_local<k<k_global`, where the endpoint is favored but sufficiently small release is downhill. | THEOREM / MODEL RESULT | PAYOFF -> SLK | First realization split after `Phi>0` | Requires a declared release path and mutation neighborhood; does not establish absolute historical unreachability. |
+| C7 | In the registered canonical pair, rare-invasion surfaces are exactly `Phi=eta` and `Phi=-eta`, generally distinct from the intrinsic architecture crossing `Phi=0`. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Separates endpoint value from population invasion | Requires the symmetric canonical pair mapping and population feedback parameter `eta`. |
+| C8 | Rare invasion and fixation need not agree. Under the registered exponential Moran process reciprocal fixation ordering switches at `Phi=0`, while absolute fixation advantage uses `3Phi=eta` under weak selection. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Separates invasion, reciprocal fixation, and absolute fixation advantage | Moran-process specific; `3Phi=eta` is a weak-selection boundary. |
+| C9 | Under connected symmetric rare mutation, monomorphic occupancy ordering switches at the same self-play surface as reciprocal fixation ordering, while remaining distinct from accessibility, invasion, and absolute fixation advantage. | THEOREM / MODEL RESULT | PAYOFF -> SLK | Final flagship transport step | Requires declared mutation graph and fixation kernel. |
+| UTA1 | In one registered composite model, small-step release, endpoint value, rare invasion, reciprocal fixation, absolute fixation, and occupancy are separated by explicit critical surfaces; the `Phi=0` fixation/occupancy surface re-aligns exactly. | THEOREM / SYNTHESIS | SLK unified threshold atlas | Replaces a disconnected counterexample narrative with one critical-surface theorem | Conditional on the declared path cost, canonical pair, Moran process, and mutation assumptions. |
 | INV1 | Under connected symmetric rare mutation and the registered exponential Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering coincide exactly through the self-play score difference. | INVARIANT | PAYOFF / SYMMETRIC_RARE_MUTATION_GIBBS -> SLK | Re-aligns two later criteria | Not valid generically outside the registered symmetry/rare-mutation assumptions. |
 
 BITA is not a canonical source for C3-C5. Its orthogonal role is trait-interaction mechanism identification and partial identification; a BITA mechanism result can inform interpretation only when an explicit bridge to the architecture comparison is separately justified.
 
 ## Formal non-equivalence witnesses
 
-`theory/NON_EQUIVALENCE_THEOREM_V1.md` gives explicit parameter regimes for:
+`theory/UNIFIED_THRESHOLD_ATLAS_V1.md` gives the master critical-surface theorem. `theory/NON_EQUIVALENCE_THEOREM_V1.md` then instantiates all five non-implications inside one convex recovery family:
 
 ```text
 L>0                    !=> Phi>0
@@ -81,6 +82,5 @@ Phi>0 -> differentiation evolves.
 Nor should it claim universal pairwise non-equivalence of every adjacent stage. The strongest accurate summary is:
 
 ```text
-SLK contains explicit separations where new mechanisms enter,
-and an exact fixation-occupancy invariant under the registered symmetric rare-mutation process.
+SLK transports one architecture comparison across exact critical surfaces: new mechanisms introduce new boundaries, while the registered fixation-occupancy process forces an exact re-alignment at the same self-play surface.
 ```
