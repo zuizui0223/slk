@@ -371,6 +371,53 @@ eta=[Delta(p_+)-Delta(p_-)]/(4q).
 
 Thus the same experiment separates the intrinsic endpoint-centered architecture coordinate from frequency-dependent ecological feedback. Repeating this design across environments reconstructs `Phi(E)` and `eta(E)`, allowing independent estimation of the value crossing `E_V`, the invasion crossing `E_I`, and their local slopes. A failure of the linear-in-frequency fit is informative rather than fatal: it rejects the minimal canonical population mapping and indicates that a richer interaction model is required.
 
+### A third frequency treatment tests and repairs the canonical mapping
+
+The two-frequency decomposition above assumes that population feedback is linear in frequency. That assumption is testable. Retain the independently measured architecture margin `Phi` from G5 and add a balanced-frequency treatment `p_0=1/2`. Approximate the population selection difference by
+
+```text
+Delta(p)
+=
+Phi+h0+eta x+kappa x^2,
+x=2p-1.
+```
+
+With `p_-=1/2-q`, `p_0=1/2`, and `p_+=1/2+q`,
+
+```text
+h0=Delta(p_0)-Phi,
+
+eta=[Delta(p_+)-Delta(p_-)]/(4q),
+
+kappa=
+[Delta(p_+)+Delta(p_-)-2Delta(p_0)]/(8q^2).
+```
+
+The minimal canonical pair is the nested case `h0=kappa=0`. Thus a third frequency treatment diagnoses whether the canonical mapping is adequate rather than assuming it.
+
+When curvature is retained, rare invasion and resistance to reverse invasion become
+
+```text
+Phi>eta-kappa-h0
+```
+
+and
+
+```text
+Phi>-eta-kappa-h0.
+```
+
+Along `Phi(E)=a(E-E_V)` with locally constant `h0`, `eta`, and `kappa`,
+
+```text
+E_I-E_V=(eta-kappa-h0)/a,
+E_R-E_V=-(eta+kappa+h0)/a.
+```
+
+Hence `eta` controls the spacing between reciprocal invasion thresholds, while `h0+kappa` shifts the center of the entire invasion window relative to the independently measured architecture-value crossing. Nonlinearity therefore does not merely invalidate the minimal model; to quadratic order it has a distinct ecological signature.
+
+This diagnostic extension applies to invasion inference only. The canonical Moran fixation and weak-mutation occupancy invariant is not automatically inherited once `h0` or `kappa` is nonzero.
+
 ### Discordance becomes diagnostic
 
 Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
