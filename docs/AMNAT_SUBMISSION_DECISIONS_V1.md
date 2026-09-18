@@ -54,6 +54,8 @@ CROSS_LEVEL_PHI_COMPATIBILITY            PASS
 ECOLOGICAL_THRESHOLD_DISPLACEMENT        PASS
 ECOLOGICAL_FEEDBACK_GRADIENT             PASS
 TWO_FREQUENCY_PHI_ETA_IDENTIFICATION      PASS
+THREE_FREQUENCY_CURVATURE_DIAGNOSTIC     PASS
+GENERALIZED_INVASION_SURFACES            PASS
 CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
 FIGURE_2_ECOLOGICAL_PANEL                PASS
 FIGURE_1_THRESHOLD_ATLAS                 PASS
@@ -67,7 +69,7 @@ AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              2 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  5 PASS
 FULL_CI_PY311_PY312                      PASS
-REVIEW_MANUSCRIPT_PDF                    21 PAGES PASS
+REVIEW_MANUSCRIPT_PDF                    28 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
 DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
 ANONYMOUS_REVIEWER_BUNDLE                PASS
@@ -75,6 +77,7 @@ IDENTITY_SCAN                             PASS
 CLAIM_VERIFIER_NE1_NE5                    PASS
 FIXATION_OCCUPANCY_INVARIANT_GRID        112/112 PASS
 FIGURE_1_MANUAL_QA                       PASS
+FIGURE_3_MANUAL_QA                       PASS
 FINAL_FULL_PAGE_PROOFREAD                 OPEN
 ```
 
@@ -96,7 +99,7 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Does real frequency dependence remain close enough to the registered canonical linear-in-frequency mapping for `Phi(E)` and `eta(E)` to be meaningful summaries?
+> Is the local quadratic frequency-response extension sufficient when ecological feedback is strongly nonlinear, asymmetric, or state dependent?
 
 The submission answer must center on four deductions:
 
@@ -121,5 +124,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = ADEQUACY_OF_CANONICAL_FREQUENCY_MAPPING
+MAIN_OPEN_RISK          = HIGHER_ORDER_FREQUENCY_RESPONSE_ADEQUACY
 ```

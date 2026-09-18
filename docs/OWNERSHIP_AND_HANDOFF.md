@@ -57,7 +57,8 @@ SLK owns the flagship architecture-value objects:
 5. the distinction between global architecture value and later realization criteria;
 6. the integrated handoff from `Phi` to accessibility, invasion, fixation, and occupancy;
 7. the ecological threshold-displacement corollary linking `Phi(E)` and `eta` to distinct environmental value/invasion crossings;
-8. the comparative claim that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies.
+8. the comparative claim that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies;
+9. the three-frequency model-adequacy diagnostic and generalized invasion surfaces for local quadratic frequency dependence.
 
 A direct worldline contrast and decomposed `Phi` are equated only under a declared common-world bridge. A bridge residual is a diagnostic mismatch; it is not automatically a BITA mechanism or an SLK cost.
 
