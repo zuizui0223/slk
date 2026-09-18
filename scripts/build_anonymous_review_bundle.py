@@ -35,7 +35,7 @@ FORBIDDEN_IDENTITY_STRINGS = (
 
 README = """# Anonymous reviewer code/theory package
 
-This package accompanies the manuscript **From functional conflict to evolutionary architecture across biological scales**.
+This package accompanies the manuscript **From functional conflict to evolutionary architecture: thresholds for differentiation**.
 
 ## Scope
 
