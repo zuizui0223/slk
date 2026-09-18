@@ -7,7 +7,7 @@ This file is the submission-layer contract for the journal-facing manuscript. It
 ```text
 JOURNAL = The American Naturalist
 ARTICLE_TYPE = Major Article
-MANUSCRIPT = manuscript/SLK_MANUSCRIPT_AMNAT_V3.md
+MANUSCRIPT = manuscript/SLK_MANUSCRIPT_AMNAT_V4.md
 ANONYMOUS_TITLE_PAGE = manuscript/AMNAT_TITLE_PAGE_V1.md
 COVER_LETTER = NOT_EXPECTED
 ```
