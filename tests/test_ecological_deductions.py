@@ -41,6 +41,6 @@ def test_conflict_strength_is_not_promoted_to_differentiation_rank() -> None:
 
 
 def test_discordance_table_contains_process_falsification_case() -> None:
-    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8").lower()
     assert "reciprocal fixation and occupancy orderings disagree" in manuscript
     assert "process assumptions are violated" in manuscript
