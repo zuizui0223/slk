@@ -113,3 +113,16 @@ def reverse_invasion_environment_affine_feedback(
     if denom == 0:
         raise ValueError("phi_slope must differ from -eta_slope")
     return value_threshold - eta_at_value / denom
+
+
+def identify_phi_eta_from_symmetric_frequencies(
+    delta_minus: float,
+    delta_plus: float,
+    q: float,
+) -> tuple[float, float]:
+    """Recover Phi and eta from p=1/2-q and p=1/2+q."""
+    if not (0 < q <= 0.5):
+        raise ValueError("q must satisfy 0 < q <= 0.5")
+    phi = 0.5 * (delta_plus + delta_minus)
+    eta = (delta_plus - delta_minus) / (4.0 * q)
+    return phi, eta
