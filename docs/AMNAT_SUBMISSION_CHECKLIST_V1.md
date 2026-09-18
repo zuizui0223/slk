@@ -3,7 +3,7 @@
 ## Current submission surface
 
 ```text
-MANUSCRIPT = manuscript/SLK_MANUSCRIPT_AMNAT_V3.md
+MANUSCRIPT = manuscript/SLK_MANUSCRIPT_AMNAT_V4.md
 TITLE_PAGE = manuscript/AMNAT_TITLE_PAGE_V1.md
 ARTICLE_TYPE = Major Article
 PORTAL_HANDOFF = submission/AMNAT_PORTAL_HANDOFF_V1.md
@@ -13,8 +13,8 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
 TITLE_WORDS                         9
-ABSTRACT_WORDS                    172
-TEXT_WORDS_EXCL_LITERATURE_CITED 2941
+ABSTRACT_WORDS                    187
+TEXT_WORDS_EXCL_LITERATURE_CITED 3401
 FIGURES                             3
 ```
 
@@ -27,7 +27,7 @@ Status:
 ```text
 MAJOR_ARTICLE_TEXT_LIMIT        PASS
 ABSTRACT_200_WORD_LIMIT         PASS
-FIGURE_TABLE_LIMIT              PASS   (3 figures + 1 in-text table = 4 items)
+FIGURE_TABLE_LIMIT              PASS   (3 figures + 2 in-text tables = 5 items)
 TITLE_LENGTH_PREFERENCE         PASS   (9 words; journal suggests ~8–10)
 KEYWORDS_1_TO_6                 PASS   (6)
 ANONYMOUS_TITLE_PAGE            PASS
@@ -38,7 +38,7 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ### 1. Anonymous review manuscript — PASS
 
-The CI-built review manuscript is generated directly from the canonical V3 source and has been rendered and visually inspected page by page.
+The CI-built review manuscript is generated directly from the canonical V4 source and has been rendered and visually inspected page by page.
 
 ```text
 MAIN_REVIEW_PDF_PAGES     18
@@ -60,6 +60,7 @@ The review bundle is curated rather than being a repository dump. It contains:
 
 - the exact anonymous manuscript and title-page sources;
 - `theory/SLK_CORE_THEORY_V1.md`;
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`;
 - `theory/NON_EQUIVALENCE_THEOREM_V1.md`;
 - the three submitted SVG figure sources;
 - `code/verify_amnat_claims.py`;
@@ -67,7 +68,7 @@ The review bundle is curated rather than being a repository dump. It contains:
 - `ANONYMITY_AUDIT.txt`;
 - `SHA256SUMS.txt`.
 
-The verifier recomputes all five registered witness regimes and the fixation–occupancy invariant. The invariant grid contains 112 comparisons with maximum absolute error 0.0. The bundle identity scan passes and excludes repository history, remote URLs, and author metadata.
+The verifier recomputes the common convex recovery family, all five registered witness regimes, the critical surfaces, and the fixation–occupancy invariant. The invariant grid contains 112 comparisons with maximum absolute error 0.0. The bundle identity scan passes and excludes repository history, remote URLs, and author metadata.
 
 Current journal instructions require data/code needed to recreate results to be deposited in a public data repository and made reviewer-accessible at first submission. The deposit can remain non-public during review, but a reviewer-accessible link must be included in the manuscript. Therefore direct portal upload of the bundle alone is not treated as sufficient unless the journal office explicitly confirms otherwise.
 
@@ -105,7 +106,7 @@ Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
 
 ### 7. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V3 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized later if requested.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized later if requested.
 
 Status: `PASS FOR INITIAL REVIEW`.
 

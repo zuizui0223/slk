@@ -102,7 +102,7 @@ Pinned provenance commits:
 
 Imported claim:
 ```text
-positive global architecture payoff != local evolutionary accessibility
+positive global architecture payoff != sufficiently small selectively uphill accessibility along the declared release path
 ```
 
 ## C7 — architecture payoff versus rare invasion
@@ -153,6 +153,32 @@ Imported claim:
 ```text
 weak-mutation stationary occupancy != accessibility and != pairwise invasion
 ```
+
+## UTA1 — integrated critical-surface synthesis
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `theory/NON_EQUIVALENCE_THEOREM_V1.md`
+- `theory/SLK_CORE_THEORY_V1.md`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+
+Integrated claim:
+
+```text
+small-step selective release       k=k_local
+global endpoint value              Phi=0  <=> k=k_global
+rare D invasion                    Phi=eta
+reverse invasion                   Phi=-eta
+reciprocal fixation ordering       Phi=0
+absolute fixation vs neutrality    3Phi=eta [weak selection]
+rare-mutation occupancy ordering   Phi=0
+```
+
+The theorem synthesizes previously derived source mathematics into one registered architecture comparison. It does not erase source provenance or claim that the individual mathematical ingredients are new in isolation.
+
+The constructive non-equivalence witnesses are now all embedded in the common family `R(d)=d+d^2`, `K(d)=kd`, rather than being presented as disconnected toy parameterizations.
 
 ## Freeze rule
 

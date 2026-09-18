@@ -16,11 +16,13 @@ This ledger separates quantities that come from biological data or literature au
 
 | Object | Class | Frozen quantitative statement | Interpretation ceiling |
 |---|---|---|---|
-| conflict -> payoff separation | `THEORETICAL-WITNESS` | `L=1, R=1/2, K=1` gives `Phi=-1/2` | proves `L>0 !=> Phi>0` in the declared architecture comparison; not an empirical estimate |
-| payoff -> accessibility separation | `THEORETICAL-WITNESS` | `s0=1/2, Delta=2, k=3/2`, with `k_local=1<k<2=k_global` | proves global value need not imply local reachability |
-| accessible payoff -> invasion separation | `THEORETICAL-WITNESS` | `Phi=0.2, eta=0.5`, giving `Delta(0)=-0.3<0` | proves accessible positive architecture value need not imply rare invasion |
-| invasion -> reciprocal fixation separation | `THEORETICAL-WITNESS` | `Phi=-0.2, eta=-1`, giving `Delta(0)=0.8>0` but `rho_D/rho_S<1` | proves rare invasion need not imply reciprocal fixation superiority |
-| absolute fixation advantage -> occupancy separation | `THEORETICAL-WITNESS` | `Phi=-0.1, eta=-0.5`, with `3Phi>eta` yet `Pi_D<Pi_S` | proves absolute fixation advantage over neutrality need not imply greater weak-mutation occupancy |
+| unified witness family | `MODEL-PREDICTION` | `R(d)=d+d^2`, `K(d)=kd`, `d in [0,1]` gives `k_local=1`, `k_global=2`, `Phi=2-k` | one declared convex recovery family generates all registered separation witnesses; not an empirical fit |
+| conflict -> payoff separation | `THEORETICAL-WITNESS` | `L=2, k=2.2` gives `R(1)=2`, `K(1)=2.2`, `Phi=-0.2` | proves `L>0 !=> Phi>0` inside the common family; not an empirical estimate |
+| payoff -> small-step accessibility separation | `THEORETICAL-WITNESS` | `k=1.5` gives `Phi=0.5>0` but `Phi'(0)=-0.5<0` | proves global endpoint value need not imply sufficiently small selectively uphill release |
+| accessible payoff -> invasion separation | `THEORETICAL-WITNESS` | `k=0.8, eta=1.5` gives `Phi=1.2`, `Phi'(0)=0.2`, `Delta(0)=-0.3` | proves small-step accessible positive endpoint value need not imply rare invasion |
+| invasion -> reciprocal fixation separation | `THEORETICAL-WITNESS` | `k=2.2, eta=-1` gives `Phi=-0.2`, `Delta(0)=0.8>0` but `rho_D/rho_S<1` | proves rare invasion need not imply reciprocal fixation superiority |
+| absolute fixation advantage -> occupancy separation | `THEORETICAL-WITNESS` | `k=2.1, eta=-0.5` gives `Phi=-0.1`, `3Phi=-0.3>eta` yet `Pi_D<Pi_S` | proves absolute fixation advantage over neutrality need not imply greater weak-mutation occupancy |
+| critical-surface atlas | `MODEL-PREDICTION` | small-step release: `k=k_local`; endpoint value/fixation/occupancy: `Phi=0`; rare invasion: `Phi=eta`; reverse invasion: `Phi=-eta`; absolute fixation under weak selection: `3Phi=eta` | exact thresholds are conditional on the registered path, game, Moran, and mutation assumptions |
 | fixation-occupancy invariant | `MODEL-PREDICTION` | under connected symmetric rare mutation and the registered exponential Moran process, `rho(j|i)>rho(i|j)` iff `Pi_j>Pi_i` | reciprocal fixation ordering and stationary monomorphic occupancy ordering coincide only under the registered process assumptions |
 | empirical end-to-end hierarchy | `EMPIRICAL` | No single biological system is claimed to have completed the full measurement ladder end to end. | the paper supplies an empirical measurement programme, not a completed cross-level calibration |
 | prior-art/evidence placement | `LITERATURE-AUDIT` | the manuscript uses a compact prior-art set to place modularity, specialization, accessibility, finite-population fixation, and weak-mutation theory | citation coverage is not natural prevalence or an empirical architecture-effect estimate |

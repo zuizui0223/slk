@@ -35,7 +35,7 @@ PRIMARY_TARGET = The American Naturalist
 ECOLOGY_LETTERS_REASSESSMENT = requires_real_same_system_G1_G5_receipt
 ```
 
-The current paper is strongest as a conceptual/theoretical integration paper: an architecture-specific estimand transport, constructive split witnesses, one exact process-level invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
+The current paper is strongest as a conceptual/theoretical integration paper: an architecture-specific estimand transport, a unified critical-surface theorem, one-family constructive split witnesses, one exact process-level invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
 
 The submission framing must emphasize biological theory and falsifiable measurement consequences, not software governance, repository integration, or bookkeeping.
 
@@ -53,8 +53,8 @@ WITNESS_ARITHMETIC                       PASS
 FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
-AMNAT_ABSTRACT_WORDS                    172 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       2941 PASS
+AMNAT_ABSTRACT_WORDS                    187 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE       3401 PASS
 AMNAT_FIGURES                             3 PASS
 FULL_CI_PY311_PY312                      PASS
 REVIEW_MANUSCRIPT_PDF                    18 PAGES PASS
@@ -90,7 +90,7 @@ The remaining reviewer question is:
 The submission answer must center on three deductions:
 
 1. the same upstream architecture comparison can change verdict as it is transported through later estimands;
-2. the framework identifies exactly where a verdict must be re-tested and gives constructive witness regimes for those failures;
+2. the unified threshold atlas identifies exactly where a verdict must be re-tested, with all five failures realized inside one convex recovery family;
 3. separation is not universal: the registered process forces reciprocal fixation ordering and weak-mutation occupancy ordering to re-align, showing that the framework predicts both splits and invariants.
 
 ## Submission state
@@ -98,7 +98,7 @@ The submission answer must center on three deductions:
 ```text
 TARGET                  = THE_AMERICAN_NATURALIST
 ARTICLE_TYPE            = MAJOR_ARTICLE
-MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V3.md
+MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V4.md
 THEORY                  = READY
 JOURNAL_PROSE           = READY
 PRIOR_ART_CORE          = READY

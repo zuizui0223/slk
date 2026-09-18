@@ -2,7 +2,9 @@
 
 ## Purpose
 
-The flagship hierarchy contains several distinct evolutionary statements, but not every adjacent pair is non-equivalent under every registered process. This document gives explicit witness regimes for the genuine separations and records the fixation–occupancy invariant that closes one apparent gap.
+The flagship hierarchy contains several distinct evolutionary statements, but not every adjacent pair is non-equivalent under every registered process. This document records explicit witness regimes for the genuine separations and the fixation-occupancy invariant that closes one apparent gap.
+
+The witnesses are now embedded in the single registered family in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`, so the flagship no longer relies on disconnected toy examples.
 
 ## Definitions
 
@@ -19,7 +21,7 @@ R=sL,
 Phi=sL-K.
 ```
 
-For a canonical two-architecture population game,
+For the registered canonical two-architecture population game,
 
 ```text
 Delta(p)=Phi+eta(2p-1).
@@ -31,7 +33,7 @@ For the declared self-excluding exponential Moran process,
 rho_D/rho_S = exp[beta(N-2)Phi].
 ```
 
-Under weak selection, absolute fixation advantage of a single D mutant over neutrality obeys
+Under weak selection, absolute fixation advantage of a single D mutant over neutrality obeys the registered first-order criterion
 
 ```text
 rho_D > 1/N  iff  3Phi > eta.
@@ -44,40 +46,72 @@ Pi_i proportional to exp[beta(N-2)u_i],
 u_i=A_ii/2.
 ```
 
+## Common constructive family
+
+Use throughout
+
+```text
+d in [0,1],
+R(d)=d+d^2,
+K(d)=k d.
+```
+
+Then
+
+```text
+k_local=R'(0)=1,
+k_global=R(1)=2,
+Phi=R(1)-K(1)=2-k.
+```
+
+When an upstream conflict budget is required, set `L=2`, so `R(1)=L`.
+
+This one family supplies NE1-NE5.
+
 ## Theorem NE1 — conflict does not imply profitable differentiation
 
-There exist parameters with
+Choose
+
+```text
+L=2,
+k=2.2.
+```
+
+Then
+
+```text
+R(1)=2,
+K(1)=2.2,
+Phi=-0.2.
+```
+
+Thus
 
 ```text
 L>0
 ```
 
-but
+does not imply
 
 ```text
-Phi<0.
+Phi>0.
 ```
 
-General witness:
+The mathematical point is a non-implication; the biological point is that a real conflict budget can be cheaper to tolerate than to recover with the declared differentiated architecture.
+
+## Theorem NE2 — profitable differentiation does not imply small-step selective accessibility
+
+For convex recovery define
 
 ```text
-L=1
-R=1/2
-K=1
-Phi=-1/2.
-```
-
-This does not require the quadratic bridge. A bridge-compatible realization is `s=1/2`, so `R=sL=1/2`.
-
-Thus real shared-axis conflict can coexist with persistent compromise.
-
-## Theorem NE2 — profitable differentiation does not imply local accessibility
-
-For convex recovery, define
-
-```text
-k_local=R'(0)
+k_local=R'(0),
 k_global=R(dmax)/dmax.
+```
+
+Convexity with `R(0)=0` gives
+
+```text
+k_local<=k_global.
 ```
 
 Whenever
@@ -86,88 +120,123 @@ Whenever
 k_local<k<k_global,
 ```
 
-complete release has positive net payoff while sufficiently small release is selected against.
+the endpoint has positive net value while sufficiently small release steps are selectively downhill.
 
-Quadratic witness:
-
-```text
-s0=1/2
-Delta=2
-k_local=s0^2 Delta^2=1
-k_global=s0 Delta^2=2
-k=3/2.
-```
-
-Hence global architecture advantage need not be reachable by local release mutations.
-
-## Theorem NE3 — local accessibility and positive intrinsic architecture value do not imply rare invasion
-
-Take a locally accessible architecture with no release barrier and choose
+In the common family choose
 
 ```text
-Phi=0.2
-eta=0.5.
+k=1.5.
 ```
 
-Then D has positive intrinsic architecture value, but when rare
+Then
 
 ```text
-Delta(0)=Phi-eta=-0.3<0.
+Phi=0.5>0,
+Phi'(0)=1-1.5=-0.5<0.
 ```
 
-So D cannot invade S from rarity. This is the coordination region.
+Hence global architecture advantage need not imply accessibility through sufficiently small selectively uphill release steps.
+
+This does not prove absolute historical unreachability by drift, large mutations, recombination, or other paths.
+
+## Theorem NE3 — small-step accessibility and positive intrinsic architecture value do not imply rare invasion
+
+Use the same architecture family and choose
+
+```text
+k=0.8,
+eta=1.5.
+```
+
+Then
+
+```text
+Phi=1.2>0
+```
+
+and the release direction is locally uphill because
+
+```text
+Phi'(0)=1-0.8=0.2>0.
+```
+
+But when D is rare,
+
+```text
+Delta(0)=Phi-eta=1.2-1.5=-0.3<0.
+```
+
+Thus the same explicit architecture model is both locally accessible and globally favorable before population feedback, yet D cannot invade S from rarity after the registered frequency-dependent interaction is introduced.
 
 ## Theorem NE4 — rare invasion does not imply reciprocal fixation superiority
 
-Choose
+Use the same architecture family and choose
 
 ```text
-Phi=-0.2
+k=2.2,
 eta=-1.
 ```
 
 Then
 
 ```text
+Phi=-0.2
+```
+
+but
+
+```text
 Delta(0)=Phi-eta=0.8>0,
 ```
 
-so D invades when rare. But for beta>0 and N>2,
+so D invades when rare.
+
+For `beta>0` and `N>2`,
 
 ```text
-rho_D/rho_S=exp[beta(N-2)Phi]<1.
+rho_D/rho_S
+=exp[beta(N-2)Phi]
+<1.
 ```
 
-Thus D can invade S when rare while a D mutant fixes less often in S than an S mutant fixes in D.
+Thus D can invade S from rarity while a D mutant fixes less often in S than an S mutant fixes in D.
 
 ## Theorem NE5 — absolute fixation advantage does not imply greater symmetric weak-mutation occupancy
 
-Choose
+Use the same architecture family and choose
 
 ```text
-Phi=-0.1
+k=2.1,
 eta=-0.5.
 ```
 
-Under weak selection,
+Then
 
 ```text
-3Phi=-0.3>eta=-0.5,
+Phi=-0.1
 ```
 
-so a single D mutant has
+and, under the registered weak-selection criterion,
 
 ```text
-rho_D>1/N.
+3Phi=-0.3>eta=-0.5.
 ```
+
+Therefore a single D mutant has
+
+```text
+rho_D>1/N
+```
+
+to first order in the weak-selection expansion.
 
 However `Phi<0`, so for the corresponding symmetric pair
 
 ```text
-u_D-u_S=Phi<0,
+u_D-u_S=Phi<0
 ```
 
-and therefore under connected symmetric rare mutation
+and under connected symmetric rare mutation
 
 ```text
 Pi_D<Pi_S.
@@ -205,12 +274,24 @@ This equivalence breaks if the assumptions used for the Gibbs law are changed, f
 
 ## Flagship synthesis
 
-The correct SLK structure is therefore not a chain of universal pairwise non-equivalences. It is a branching hierarchy with both separations and one registered invariant:
+The non-equivalence results are now a corollary of a common threshold atlas rather than a list of unrelated examples:
+
+```text
+small-step release surface       k=k_local
+global endpoint-value surface    k=k_global  <=> Phi=0
+rare-D-invasion surface          Phi=eta
+reverse-invasion surface         Phi=-eta
+reciprocal-fixation surface      Phi=0
+absolute-fixation surface        3Phi=eta    [weak selection]
+rare-mutation occupancy surface  Phi=0
+```
+
+The correct SLK structure is therefore a hierarchy with both separations and one registered re-alignment:
 
 ```text
 conflict L>0
    !=> Phi>0
-          !=> local accessibility
+          !=> small-step accessibility
                  !=> rare invasion
                         !=> reciprocal fixation superiority
 
@@ -222,4 +303,4 @@ reciprocal fixation ordering
     <=> stationary monomorphic occupancy ordering.
 ```
 
-The conceptual contribution is stronger when these distinctions are stated exactly: evolutionary criteria split where different biological mechanisms enter, and can re-align when a process-level invariant forces them to.
+See `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` for the master critical-surface theorem and its proof.

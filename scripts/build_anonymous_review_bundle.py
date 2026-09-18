@@ -14,9 +14,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUT = ROOT / "submission" / "amnat_review" / "generated" / "reviewer_bundle"
 
 FILES = {
-    "manuscript/SLK_MANUSCRIPT_AMNAT_V3.md": "MANUSCRIPT_SOURCE.md",
+    "manuscript/SLK_MANUSCRIPT_AMNAT_V4.md": "MANUSCRIPT_SOURCE.md",
     "manuscript/AMNAT_TITLE_PAGE_V1.md": "ANONYMOUS_TITLE_PAGE_SOURCE.md",
     "theory/SLK_CORE_THEORY_V1.md": "theory/SLK_CORE_THEORY_V1.md",
+    "theory/UNIFIED_THRESHOLD_ATLAS_V1.md": "theory/UNIFIED_THRESHOLD_ATLAS_V1.md",
     "theory/NON_EQUIVALENCE_THEOREM_V1.md": "theory/NON_EQUIVALENCE_THEOREM_V1.md",
     "figures/FIG1_LOGIC_DIAGRAM.svg": "figures/FIG1_LOGIC_DIAGRAM.svg",
     "figures/FIG2_PHASE_MAP.svg": "figures/FIG2_PHASE_MAP.svg",
@@ -40,7 +41,7 @@ This package accompanies the manuscript **From functional conflict to evolutiona
 
 The submitted paper is a theory/concept paper. It does not estimate its headline results from a private or external empirical dataset. Numerical values in the witness table are constructive parameter regimes used to demonstrate logical non-implications. The three figures are theory diagrams/phase summaries.
 
-The package therefore contains the exact manuscript source, the two theory notes underlying the registered split-and-invariant claims, the three submitted figure sources, and a standard-library Python verifier for the five witness regimes plus the fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package therefore contains the exact manuscript source, the unified threshold-atlas theorem, the supporting core/non-equivalence theory notes, the three submitted figure sources, and a standard-library Python verifier for the common witness family, five separation regimes, critical surfaces, and fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 

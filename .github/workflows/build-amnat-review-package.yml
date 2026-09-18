@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'manuscript/SLK_MANUSCRIPT_AMNAT_V3.md'
+      - 'manuscript/SLK_MANUSCRIPT_AMNAT_V4.md'
       - 'manuscript/AMNAT_TITLE_PAGE_V1.md'
       - 'figures/FIG1_LOGIC_DIAGRAM.svg'
       - 'figures/FIG2_PHASE_MAP.svg'
@@ -19,7 +19,7 @@ on:
       - '.github/workflows/build-amnat-review-package.yml'
   pull_request:
     paths:
-      - 'manuscript/SLK_MANUSCRIPT_AMNAT_V3.md'
+      - 'manuscript/SLK_MANUSCRIPT_AMNAT_V4.md'
       - 'manuscript/AMNAT_TITLE_PAGE_V1.md'
       - 'figures/**'
       - 'theory/**'
@@ -63,7 +63,7 @@ jobs:
           rsvg-convert figures/FIG3_EMPIRICAL_LADDER.svg -o "$GEN/figures/FIG3_EMPIRICAL_LADDER.png"
           python - <<'PY'
           from pathlib import Path
-          src = Path('manuscript/SLK_MANUSCRIPT_AMNAT_V3.md').read_text(encoding='utf-8')
+          src = Path('manuscript/SLK_MANUSCRIPT_AMNAT_V4.md').read_text(encoding='utf-8')
           src = src.replace('../figures/FIG1_LOGIC_DIAGRAM.svg', 'figures/FIG1_LOGIC_DIAGRAM.png')
           src = src.replace('../figures/FIG2_PHASE_MAP.svg', 'figures/FIG2_PHASE_MAP.png')
           src = src.replace('../figures/FIG3_EMPIRICAL_LADDER.svg', 'figures/FIG3_EMPIRICAL_LADDER.png')
@@ -128,7 +128,7 @@ jobs:
           TITLE_PAGES=$(pdfinfo "$TITLE_PDF" | awk '/^Pages:/ {print $2}')
           MEDIA_COUNT=$(unzip -l "$GEN/SLK_AMNAT_REVIEW_MANUSCRIPT.docx" | grep -c 'word/media/' || true)
           {
-            echo "canonical_manuscript=manuscript/SLK_MANUSCRIPT_AMNAT_V3.md"
+            echo "canonical_manuscript=manuscript/SLK_MANUSCRIPT_AMNAT_V4.md"
             echo "main_pages=$MAIN_PAGES"
             echo "title_pages=$TITLE_PAGES"
             echo "double_spaced=true"

@@ -1,0 +1,390 @@
+# SLK unified critical-surface theorem V1
+
+## Purpose
+
+The flagship should not read as a collection of unrelated counterexamples. The same declared architecture comparison can be carried through architecture construction, frequency-dependent competition, finite-population fixation, and rare-mutation occupancy. Each stage introduces a different critical surface. Some surfaces split; others coincide exactly.
+
+This document registers that common model and its threshold atlas.
+
+## 1. Composite registered model
+
+### Architecture construction
+
+Let release from the shared architecture be
+
+```text
+d in [0,dmax]
+```
+
+with recoverable benefit `R(d)`, where
+
+```text
+R(0)=0,
+R'(d) exists,
+R(d) is convex.
+```
+
+Let architecture debit be linear along this local release path,
+
+```text
+K(d)=k d,
+```
+
+with `k>=0`. The endpoint differentiated architecture is `D:d=dmax`; the shared architecture is `S:d=0`.
+
+Define
+
+```text
+k_local  = R'(0),
+k_global = R(dmax)/dmax,
+Phi      = R(dmax)-k dmax
+         = dmax (k_global-k).
+```
+
+Thus `Phi` is the same endpoint architecture margin used by the flagship.
+
+### Population competition
+
+Place the same endpoint architectures `S` and `D` into the registered symmetric canonical pair
+
+```text
+          S          D
+S         0       Phi-eta
+D      Phi-eta      2Phi
+```
+
+so that, when `p` is the frequency of `D`,
+
+```text
+Delta(p)=pi_D-pi_S
+        =Phi+eta(2p-1).
+```
+
+Here `eta` is the frequency-dependent interaction-curvature coordinate. This mapping assumes the registered equal-diagonal-feedback normalization under which the intrinsic endpoint architecture gap is the canonical `Phi`.
+
+### Finite population and rare mutation
+
+Use the registered self-excluding exponential-fitness Moran process with `beta>0` and `N>2`. For reciprocal fixation,
+
+```text
+rho_D/rho_S
+=exp[beta(N-2)Phi].
+```
+
+Under connected symmetric rare mutation between monomorphic architecture states,
+
+```text
+Pi_D/Pi_S
+=exp[beta(N-2)Phi].
+```
+
+For absolute fixation advantage over neutrality, retain the registered weak-selection criterion
+
+```text
+rho_D>1/N
+iff
+3Phi>eta
+```
+
+to first order in the weak-selection expansion used by the source result.
+
+---
+
+## Theorem UTA1 — exact critical-surface atlas
+
+Within the composite registered model above, the following evolutionary questions are separated by the stated surfaces.
+
+| Question | Criterion for D | Critical surface |
+|---|---|---|
+| Small-step selective release from S | `k<k_local` | `k=k_local` |
+| Global endpoint architecture value | `Phi>0` equivalently `k<k_global` | `Phi=0` equivalently `k=k_global` |
+| Rare invasion of D into S | `Phi>eta` | `Phi=eta` |
+| Resistance of D to rare S invasion | `Phi>-eta` | `Phi=-eta` |
+| Reciprocal fixation ordering favors D | `Phi>0` | `Phi=0` |
+| Absolute fixation advantage over neutrality, weak selection | `3Phi>eta` | `3Phi=eta` |
+| Symmetric rare-mutation monomorphic occupancy favors D | `Phi>0` | `Phi=0` |
+
+### Proof
+
+1. **Small-step release.** Net architecture value along the release path is
+   ```text
+   Phi(d)=R(d)-kd.
+   ```
+   Therefore
+   ```text
+   Phi'(0)=R'(0)-k=k_local-k,
+   ```
+   so sufficiently small positive releases are selectively uphill exactly when `k<k_local`.
+
+2. **Global endpoint value.**
+   ```text
+   Phi=R(dmax)-kdmax
+      =dmax(k_global-k).
+   ```
+   Because `dmax>0`, `Phi>0` iff `k<k_global`.
+
+3. **Rare invasion.** At `p=0`,
+   ```text
+   Delta(0)=Phi-eta,
+   ```
+   so D invades from rarity iff `Phi>eta`.
+
+4. **Resistance to reverse invasion.** At `p=1`,
+   ```text
+   Delta(1)=Phi+eta.
+   ```
+   Rare S has negative advantage in a D resident population iff `Delta(1)>0`, equivalently `Phi>-eta`.
+
+5. **Reciprocal fixation ordering.**
+   ```text
+   rho_D/rho_S=exp[beta(N-2)Phi].
+   ```
+   Since `beta(N-2)>0`, this ratio exceeds one exactly when `Phi>0`.
+
+6. **Absolute fixation advantage.** The registered weak-selection expansion gives `rho_D>1/N iff 3Phi>eta`.
+
+7. **Rare-mutation occupancy.**
+   ```text
+   Pi_D/Pi_S=exp[beta(N-2)Phi],
+   ```
+   hence `Pi_D>Pi_S` exactly when `Phi>0`.
+
+QED.
+
+---
+
+## Corollary UTA1.1 — global value and small-step accessibility split whenever convex recovery is strict
+
+Convexity with `R(0)=0` gives
+
+```text
+k_local<=k_global.
+```
+
+If the secant-tangent inequality is strict,
+
+```text
+k_local<k_global,
+```
+
+then the interval
+
+```text
+k_local<k<k_global
+```
+
+is nonempty. Every point in this interval satisfies
+
+```text
+Phi>0
+```
+
+but
+
+```text
+Phi'(0)<0.
+```
+
+Thus the endpoint architecture is globally better while sufficiently small release steps are selectively downhill.
+
+This is a statement about the declared small-step selective path. It is not a proof that drift, large mutations, recombination, developmental reorganization, or other paths cannot cross the barrier.
+
+---
+
+## Corollary UTA1.2 — population phases are cuts through the same endpoint comparison
+
+The two invasion surfaces are
+
+```text
+Phi=eta,
+Phi=-eta.
+```
+
+Therefore
+
+```text
+Phi>|eta|              D dominance
+Phi<-|eta|             S dominance
+|Phi|<|eta|, eta<0     mutual invasibility / stable coexistence
+|Phi|<|eta|, eta>0     mutual non-invasibility / coordination bistability.
+```
+
+The architecture-value surface `Phi=0` is generally distinct from both invasion surfaces.
+
+---
+
+## Corollary UTA1.3 — one exact re-alignment is forced
+
+Under the registered exponential Moran process and connected symmetric rare mutation,
+
+```text
+rho_D>rho_S
+iff
+Phi>0
+iff
+Pi_D>Pi_S.
+```
+
+Thus reciprocal fixation ordering and stationary monomorphic occupancy ordering are not two separate thresholds in this model. They are the same critical surface.
+
+This does not equate either criterion with rare invasion or with absolute fixation advantage.
+
+---
+
+## 2. One-family constructive witnesses
+
+To avoid proving different separations with disconnected toy models, use one convex recovery family throughout:
+
+```text
+dmax=1,
+R(d)=d+d^2,
+K(d)=k d.
+```
+
+Then
+
+```text
+k_local=1,
+k_global=2,
+Phi=2-k.
+```
+
+If desired, set the upstream conflict budget to `L=2`, so full endpoint recovery satisfies `R(1)=L`.
+
+### W1 — real conflict without profitable differentiation
+
+Choose
+
+```text
+L=2,
+k=2.2.
+```
+
+Then
+
+```text
+R(1)=2,
+K(1)=2.2,
+Phi=-0.2.
+```
+
+Hence `L>0` but `Phi<0`.
+
+### W2 — global value without small-step accessibility
+
+Choose
+
+```text
+k=1.5.
+```
+
+Then
+
+```text
+Phi=0.5>0,
+Phi'(0)=1-1.5=-0.5<0.
+```
+
+So the endpoint is globally favored while sufficiently small release mutations are selected against.
+
+### W3 — small-step accessibility and positive value without rare invasion
+
+Choose
+
+```text
+k=0.8,
+eta=1.5.
+```
+
+Then
+
+```text
+Phi=1.2>0,
+Phi'(0)=1-0.8=0.2>0,
+Delta(0)=1.2-1.5=-0.3<0.
+```
+
+Thus the same explicit architecture model is locally uphill and globally favorable, yet D cannot invade when rare after frequency-dependent population feedback is introduced.
+
+### W4 — rare invasion without reciprocal fixation superiority
+
+Choose
+
+```text
+k=2.2,
+eta=-1.
+```
+
+Then
+
+```text
+Phi=-0.2,
+Delta(0)=-0.2-(-1)=0.8>0,
+rho_D/rho_S<1.
+```
+
+So D invades from rarity but loses the reciprocal fixation comparison.
+
+### W5 — absolute fixation advantage without greater rare-mutation occupancy
+
+Choose
+
+```text
+k=2.1,
+eta=-0.5.
+```
+
+Then
+
+```text
+Phi=-0.1,
+3Phi=-0.3>-0.5=eta,
+```
+
+so the registered weak-selection criterion gives `rho_D>1/N`, while
+
+```text
+Pi_D/Pi_S<1
+```
+
+because `Phi<0`.
+
+These witnesses now live in one architecture-recovery family rather than five unrelated constructions.
+
+---
+
+## 3. Interpretation
+
+The theorem does not say that one scalar controls evolution. It says the opposite: one architecture comparison encounters different decision surfaces as new mechanisms enter.
+
+The common transport is
+
+```text
+shared conflict
+-> endpoint recovery and cost
+-> local release geometry
+-> frequency-dependent competition
+-> finite-population fixation
+-> rare-mutation occupancy.
+```
+
+What changes from stage to stage is the additional coordinate required to answer the next question:
+
+```text
+architecture value        needs R and K,
+small-step accessibility  additionally needs local release geometry,
+rare invasion             additionally needs eta,
+fixation                   additionally needs a stochastic population process,
+occupancy                  additionally needs a mutation process.
+```
+
+The flagship contribution is therefore best stated as a **critical-surface transport theorem** with both separations and an exact re-alignment, not as a list of generic claims that evolutionary criteria differ.
+
+## Claim boundary
+
+- `Phi=R-K` remains the general architecture-value definition.
+- The equality `Phi=dmax(k_global-k)` belongs to the declared linear path-cost construction above.
+- The invasion surfaces belong to the registered symmetric canonical pair.
+- The reciprocal fixation and occupancy surfaces belong to the registered exponential-Moran / symmetric rare-mutation process.
+- The `3Phi=eta` absolute-fixation surface is a weak-selection result.
+- Small-step inaccessibility does not imply absolute historical impossibility of reaching D.
