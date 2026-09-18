@@ -176,7 +176,7 @@ absolute fixation vs neutrality    3Phi=eta [weak selection]
 rare-mutation occupancy ordering   Phi=0
 ```
 
-The theorem synthesizes previously derived source mathematics into one registered architecture comparison. It does not erase source provenance or claim that the individual mathematical ingredients are new in isolation.
+The theorem synthesizes previously derived source mathematics into one registered architecture comparison. The compatibility lemma additionally registers `A_DD/2-A_SS/2=Phi`, so the architecture endpoint contrast is the same self-play difference transported into reciprocal fixation and symmetric rare-mutation occupancy. It does not erase source provenance or claim that the individual mathematical ingredients are new in isolation.
 
 The constructive non-equivalence witnesses are now all embedded in the common family `R(d)=d+d^2`, `K(d)=kd`, rather than being presented as disconnected toy parameterizations.
 

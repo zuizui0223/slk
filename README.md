@@ -70,13 +70,13 @@ but, under the registered symmetric rare-mutation exponential-Moran process,
 reciprocal fixation ordering <=> stationary monomorphic occupancy ordering.
 ```
 
-![Figure 1. SLK hierarchy showing genuine splits and the fixation-occupancy invariant.](figures/FIG1_LOGIC_DIAGRAM.svg)
+![Figure 1. Unified critical-surface transport from conflict to evolutionary outcome.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
 ![Figure 2. Architecture-value phase map with accessibility and invasion insets.](figures/FIG2_PHASE_MAP.svg)
 
 ![Figure 3. Empirical measurement ladder for SLK.](figures/FIG3_EMPIRICAL_LADDER.svg)
 
-The three figures have distinct jobs. Figure 1 shows the inferential hierarchy and its split/invariant structure. Figure 2 shows the coordinate geometry and why accessibility and invasion cannot be collapsed into the `L-Phi` plane. Figure 3 shows the empirical gate sequence required to justify progressively stronger biological claims.
+The three figures have distinct jobs. Figure 1 shows the unified critical-surface transport, the one-family witness system, and the exact `Phi=0` re-alignment. Figure 2 shows the coordinate geometry and why small-step accessibility and invasion cannot be collapsed into the `L-Phi` plane. Figure 3 shows the empirical gate sequence required to justify progressively stronger biological claims.
 
 ## What SLK owns
 
@@ -86,7 +86,7 @@ SLK owns the cross-repository theory needed for the integrated hierarchy:
 2. the registered quadratic partial-release bridge `R=sL` as a model-specific corollary, not a universal identity;
 3. the distinction between global architecture value and local evolutionary accessibility;
 4. the minimal transport from architecture value to invasion, fixation, and occupancy;
-5. the unified critical-surface theorem showing where small-step release, endpoint value, invasion, fixation, and occupancy diverge or re-align;
+5. the unified critical-surface theorem showing where small-step release, endpoint value, invasion, fixation, and occupancy diverge or re-align, with one preserved endpoint contrast across the registered levels;
 6. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
@@ -198,7 +198,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 23. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
 24. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
 25. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V1.md` — skeptical-reviewer audit and remaining submission risks.
+26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V3.md` — current skeptical-reviewer audit after the threshold-atlas upgrade.
 27. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
 28. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
 29. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
@@ -239,6 +239,9 @@ FIRST_EXECUTABLE_PEDICULARIS_TASK_IS_RECOVER_CANDIDATE_CONTEXT_AND_FREEZE_P0_SCR
 K_OPERATIONAL_DEFINITION_REGISTERED
 PRIOR_ART_BOUNDARY_EXPANDED
 FIRST_AMNAT_REVIEWER_REPAIR_ROUND_COMPLETE
+THRESHOLD_ATLAS_FRAMING_COMPLETE
+CROSS_LEVEL_PHI_COMPATIBILITY_REGISTERED
+FIGURE_1_THRESHOLD_ATLAS_REGISTERED
 CORE_THEORY_MIGRATED_CONCEPTUALLY
 THEOREM_CLAIM_LEDGER_REGISTERED
 SECTION_CLAIM_MAP_REGISTERED

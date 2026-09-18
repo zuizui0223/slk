@@ -40,7 +40,7 @@
   <path d="M930 315 C1000 310, 1080 300, 1140 260 S1240 205,1260 195" stroke="#111" stroke-width="3" fill="none"/>
   <line x1="930" y1="300" x2="1260" y2="215" class="grid"/>
   <text x="970" y="205" class="t xs">k_local &lt; k &lt; k_global</text>
-  <text x="970" y="235" class="t xs">small steps lose, full release wins</text>
+  <text x="970" y="235" class="t xs">small release steps downhill; endpoint wins</text>
 
   <rect x="860" y="435" width="470" height="325" class="box"/>
   <text x="885" y="475" class="t m">C. Invasion inset</text>

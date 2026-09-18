@@ -6,7 +6,7 @@
 
 Working title:
 
-**From functional conflict to evolutionary architecture: when does differentiation pay, and when does payoff become evolution?**
+**From functional conflict to evolutionary architecture: thresholds for differentiation**
 
 Primary target: **The American Naturalist**.
 
@@ -22,9 +22,10 @@ Core claims:
 1. `L` separates multifunctionality from identified shared-coordinate conflict.
 2. `L>0, Phi<0` is a real persistent-compromise state, not absence of conflict.
 3. `Phi=R-K` is the architecture-value crossing, with `R=sL` retained only as the quadratic partial-release bridge.
-4. `Phi>0` does not imply local evolutionary accessibility.
-5. architecture value, rare invasion, fixation, and long-run occupancy are distinct estimands.
-6. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
+4. UTA1 places small-step release, endpoint value, invasion, fixation, and occupancy on explicit critical surfaces within one registered composite model.
+5. all five flagship non-implications are realized inside one convex recovery family rather than disconnected witnesses.
+6. the endpoint architecture contrast `Phi` is preserved through the registered canonical pair, reciprocal fixation ratio, and symmetric rare-mutation occupancy ratio.
+7. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
 
 Flagship exclusions:
 
@@ -36,7 +37,7 @@ Flagship exclusions:
 - general spatial spectral transport;
 - temporal Floquet theory beyond what is required for the flagship spine.
 
-The flagship owns the cross-repository estimand transport and claim-ceiling logic, not every technical extension developed in the source repositories.
+The flagship owns the cross-repository estimand transport, the unified critical-surface theorem, and the claim-ceiling logic, not every technical extension developed in the source repositories.
 
 ---
 

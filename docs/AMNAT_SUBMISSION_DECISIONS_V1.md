@@ -49,27 +49,31 @@ JOURNAL_PROSE_CONVERSION                 CLOSED
 REGISTERED_PRIOR_ART_COVERAGE            8/8 PASS
 CORE_LITERATURE_CITED                    CLOSED
 THEOREM_FORMULA_CONSISTENCY              PASS_AFTER_REPAIR
+UNIFIED_THRESHOLD_ATLAS                  PASS
+CROSS_LEVEL_PHI_COMPATIBILITY            PASS
+FIGURE_1_THRESHOLD_ATLAS                 PASS
 WITNESS_ARITHMETIC                       PASS
 FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
-AMNAT_ABSTRACT_WORDS                    187 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       3401 PASS
+AMNAT_ABSTRACT_WORDS                    177 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE       3560 PASS
 AMNAT_FIGURES                             3 PASS
 FULL_CI_PY311_PY312                      PASS
-REVIEW_MANUSCRIPT_PDF                    18 PAGES PASS
+REVIEW_MANUSCRIPT_PDF                    21 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
 DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
 ANONYMOUS_REVIEWER_BUNDLE                PASS
 IDENTITY_SCAN                             PASS
 CLAIM_VERIFIER_NE1_NE5                    PASS
 FIXATION_OCCUPANCY_INVARIANT_GRID        112/112 PASS
-VISUAL_QA                                 19/19 PAGES PASS
+FIGURE_1_MANUAL_QA                       PASS
+FINAL_FULL_PAGE_PROOFREAD                 OPEN
 ```
 
 ## Remaining submission actions
 
-There is no remaining internal theory, formatting, or reviewer-package construction task required before upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
+There is no remaining internal theory or reviewer-package construction task required before upload. The generated files pass structural and anonymity checks; a final human page-by-page proofread remains before portal upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
 
 Remaining actions are controlled outside the scientific package:
 
@@ -85,7 +89,7 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Does the integrated transport generate enough biological insight to be more than a careful synthesis of known criteria?
+> Does the exact critical-surface transport generate enough biological insight to justify a general theory contribution beyond the known component results?
 
 The submission answer must center on three deductions:
 
@@ -109,5 +113,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = CONCEPTUAL_IMPORTANCE_FRAMING
+MAIN_OPEN_RISK          = BIOLOGICAL_IMPORTANCE_OF_THRESHOLD_TRANSPORT
 ```
