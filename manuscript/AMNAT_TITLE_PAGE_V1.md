@@ -6,7 +6,7 @@
 
 **Keywords:** functional conflict; trait architecture; modularity; evolutionary accessibility; fixation; weak mutation
 
-**Text word count:** 4,298 words excluding Literature Cited, using `scripts/check_amnat_manuscript.py`
+**Text word count:** 4,277 words excluding Literature Cited, using `scripts/check_amnat_manuscript.py`
 
 **Abstract word count:** 169
 
