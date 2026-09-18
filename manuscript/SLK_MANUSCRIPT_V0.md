@@ -324,8 +324,16 @@ E_I=E_V+eta/a.
 The displacement is therefore
 
 ```text
-E_I-E_V=eta/a.
+E_I-E_V=eta/a,
 ```
+
+and the environmental distance between the two reciprocal invasion boundaries is
+
+```text
+|E_I-E_R|=2|eta|/a.
+```
+
+Thus the same parameters predict not only which transition occurs first but also the width of the coordination or coexistence zone along the ecological gradient.
 
 If `eta>0`, coordination-like ecological feedback creates an interval in which differentiation already pays but cannot establish from rarity. If `eta<0`, negative-frequency feedback allows the differentiated type to invade before its intrinsic endpoint margin becomes positive; in the registered deterministic game this leads toward coexistence rather than proving intrinsic endpoint superiority.
 
