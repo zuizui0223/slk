@@ -90,7 +90,7 @@ def verify() -> dict[str, object]:
     }
 
     return {
-        "manuscript": "SLK_MANUSCRIPT_AMNAT_V3",
+        "manuscript": "SLK_MANUSCRIPT_AMNAT_V4",
         "registered_process": "connected symmetric rare mutation + exponential Moran",
         "all_checks_pass": all(bool(v["pass"]) for v in checks.values()),
         "checks": checks,
