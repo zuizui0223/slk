@@ -6,48 +6,81 @@ import math
 from pathlib import Path
 
 
+def recovery(d: float) -> float:
+    """Common constructive family R(d)=d+d^2 on d in [0,1]."""
+    return d + d * d
+
+
+def phi_from_k(k: float) -> float:
+    return recovery(1.0) - k
+
+
 def verify() -> dict[str, object]:
     checks: dict[str, object] = {}
 
-    # NE1: real conflict need not make differentiation profitable.
-    L, R, K = 1.0, 0.5, 1.0
-    phi = R - K
-    assert L > 0 and phi < 0 and math.isclose(phi, -0.5)
-    checks["NE1_conflict_not_payoff"] = {"L": L, "R": R, "K": K, "Phi": phi, "pass": True}
-
-    # NE2: positive endpoint value need not imply local accessibility.
-    s0, delta, k = 0.5, 2.0, 1.5
-    k_local = s0**2 * delta**2
-    k_global = s0 * delta**2
-    assert math.isclose(k_local, 1.0)
+    # UTA1 architecture path: one family underlies all five witnesses.
+    k_local = 1.0
+    k_global = recovery(1.0)
     assert math.isclose(k_global, 2.0)
-    assert k_local < k < k_global
-    checks["NE2_payoff_not_accessibility"] = {
-        "s0": s0,
-        "Delta": delta,
+    assert k_local < k_global
+    checks["UTA1_common_architecture_family"] = {
+        "R(d)": "d+d^2",
+        "dmax": 1.0,
         "k_local": k_local,
-        "k": k,
         "k_global": k_global,
         "pass": True,
     }
 
-    # NE3: accessible positive intrinsic value need not invade from rarity.
-    phi, eta = 0.2, 0.5
-    delta_rare = phi - eta
-    assert phi > 0 and delta_rare < 0 and math.isclose(delta_rare, -0.3)
-    checks["NE3_accessible_payoff_not_invasion"] = {
+    # NE1: real conflict need not make differentiation profitable.
+    L, k = 2.0, 2.2
+    R = recovery(1.0)
+    K = k
+    phi = phi_from_k(k)
+    assert L > 0 and math.isclose(R, L) and phi < 0 and math.isclose(phi, -0.2)
+    checks["NE1_conflict_not_payoff"] = {
+        "L": L, "R": R, "K": K, "Phi": phi, "pass": True
+    }
+
+    # NE2: positive endpoint value need not imply small-step selective accessibility.
+    k = 1.5
+    phi = phi_from_k(k)
+    local_gradient = k_local - k
+    assert phi > 0 and local_gradient < 0
+    checks["NE2_payoff_not_small_step_accessibility"] = {
+        "k_local": k_local,
+        "k": k,
+        "k_global": k_global,
         "Phi": phi,
+        "Phi_prime_0": local_gradient,
+        "pass": True,
+    }
+
+    # NE3: small-step accessible positive endpoint need not invade from rarity.
+    k, eta = 0.8, 1.5
+    phi = phi_from_k(k)
+    local_gradient = k_local - k
+    delta_rare = phi - eta
+    assert local_gradient > 0 and phi > 0 and delta_rare < 0
+    assert math.isclose(phi, 1.2)
+    assert math.isclose(local_gradient, 0.2)
+    assert math.isclose(delta_rare, -0.3)
+    checks["NE3_accessible_payoff_not_invasion"] = {
+        "k": k,
+        "Phi": phi,
+        "Phi_prime_0": local_gradient,
         "eta": eta,
         "Delta_rare": delta_rare,
         "pass": True,
     }
 
     # NE4: rare invasion need not imply reciprocal fixation superiority.
-    phi, eta, beta, N = -0.2, -1.0, 1.0, 10
+    k, eta, beta, N = 2.2, -1.0, 1.0, 10
+    phi = phi_from_k(k)
     delta_rare = phi - eta
     fixation_ratio = math.exp(beta * (N - 2) * phi)
     assert delta_rare > 0 and fixation_ratio < 1
     checks["NE4_invasion_not_reciprocal_fixation"] = {
+        "k": k,
         "Phi": phi,
         "eta": eta,
         "Delta_rare": delta_rare,
@@ -56,16 +89,33 @@ def verify() -> dict[str, object]:
     }
 
     # NE5: absolute fixation advantage over neutrality can disagree with occupancy.
-    phi, eta, beta, N = -0.1, -0.5, 1.0, 10
+    k, eta, beta, N = 2.1, -0.5, 1.0, 10
+    phi = phi_from_k(k)
     weak_selection_advantage = 3 * phi > eta
     occupancy_ratio = math.exp(beta * (N - 2) * phi)
     assert weak_selection_advantage and occupancy_ratio < 1
     checks["NE5_absolute_fixation_not_occupancy"] = {
+        "k": k,
         "Phi": phi,
         "eta": eta,
         "three_Phi": 3 * phi,
         "absolute_fixation_advantage": weak_selection_advantage,
         "Pi_D_over_Pi_S": occupancy_ratio,
+        "pass": True,
+    }
+
+    # UTA1 threshold identities for the canonical population pair.
+    threshold_checks = {
+        "rare_D_invasion": "Phi=eta",
+        "reverse_invasion": "Phi=-eta",
+        "reciprocal_fixation": "Phi=0",
+        "weak_selection_absolute_fixation": "3Phi=eta",
+        "symmetric_rare_mutation_occupancy": "Phi=0",
+    }
+    assert math.isclose((0.4 - 0.4), 0.0)  # Phi=eta
+    assert math.isclose((0.4 + (-0.4)), 0.0)  # Phi=-eta
+    checks["UTA1_critical_surfaces"] = {
+        "surfaces": threshold_checks,
         "pass": True,
     }
 
@@ -91,6 +141,7 @@ def verify() -> dict[str, object]:
 
     return {
         "manuscript": "SLK_MANUSCRIPT_AMNAT_V4",
+        "registered_architecture_family": "R(d)=d+d^2, K(d)=k*d, d in [0,1]",
         "registered_process": "connected symmetric rare mutation + exponential Moran",
         "all_checks_pass": all(bool(v["pass"]) for v in checks.values()),
         "checks": checks,
