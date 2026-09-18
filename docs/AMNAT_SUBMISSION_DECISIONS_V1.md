@@ -53,6 +53,7 @@ UNIFIED_THRESHOLD_ATLAS                  PASS
 CROSS_LEVEL_PHI_COMPATIBILITY            PASS
 ECOLOGICAL_THRESHOLD_DISPLACEMENT        PASS
 ECOLOGICAL_FEEDBACK_GRADIENT             PASS
+TWO_FREQUENCY_PHI_ETA_IDENTIFICATION      PASS
 CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
 FIGURE_2_ECOLOGICAL_PANEL                PASS
 FIGURE_1_THRESHOLD_ATLAS                 PASS
@@ -95,7 +96,7 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Can empirical studies estimate `Phi(E)`, `eta(E)`, and their local slopes on compatible scales well enough to test the ecological threshold-displacement predictions?
+> Does real frequency dependence remain close enough to the registered canonical linear-in-frequency mapping for `Phi(E)` and `eta(E)` to be meaningful summaries?
 
 The submission answer must center on four deductions:
 
@@ -120,5 +121,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = EMPIRICAL_IDENTIFIABILITY_OF_PHI_AND_ETA
+MAIN_OPEN_RISK          = ADEQUACY_OF_CANONICAL_FREQUENCY_MAPPING
 ```
