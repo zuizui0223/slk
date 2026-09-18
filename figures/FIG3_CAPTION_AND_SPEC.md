@@ -22,7 +22,7 @@ Figure 3 is the empirical counterpart to Figures 1 and 2.
 | G4 | `K` | operational architecture-cost definition on same scale | architecture cost is quantified |
 | G5 | `Phi=R-K` | G2–G4 on compatible scales | persistent compromise (`Phi<0`) or global differentiated advantage (`Phi>0`) |
 | G6 | small-step accessibility | mutation/release neighborhood or stepwise intervention path | sufficiently small changes toward the target are selectively uphill/downhill on the declared path |
-| G7 | invasion / feedback | rare-frequency assays or frequency-dependent performance | invasion phase is identified under declared population mapping |
+| G7 | invasion / feedback | rare-frequency assays plus 2-frequency estimation and, where needed, a 3-frequency curvature check | invasion phase is identified under an adequate declared population mapping |
 | G8 | fixation | explicit stochastic finite-population process | reciprocal fixation ordering and/or absolute fixation advantage |
 | G9 | occupancy | mutation graph and mutation kernel | weak-mutation monomorphic stationary occupancy |
 
@@ -79,4 +79,4 @@ Phi=[Delta(p_+)+Delta(p_-)]/2
 eta=[Delta(p_+)-Delta(p_-)]/(4q).
 ```
 
-Repeating this crossed frequency design across ecological contexts `E` provides direct estimates of `Phi(E)` and `eta(E)`, which can be used to locate `E_V`, `E_I`, and estimate the local slopes required by UTA1.4b. This identification is conditional on the registered linear-in-frequency pair; curvature in the empirical frequency response is a diagnostic failure of that minimal mapping.
+Repeating this crossed frequency design across ecological contexts `E` provides direct estimates of `Phi(E)` and `eta(E)`, which can be used to locate `E_V`, `E_I`, and estimate the local slopes required by UTA1.4b. This identification is conditional on the registered linear-in-frequency pair. Add a balanced-frequency treatment `p=1/2` to test that assumption: with independently measured `Phi`, the three treatments identify `h0`, `eta`, and quadratic curvature `kappa`. Nonzero `h0` or `kappa` rejects the minimal canonical mapping but still yields repaired invasion surfaces under UTA1.7.
