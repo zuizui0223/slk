@@ -3,8 +3,9 @@
   "status": "TEMPLATE_ONLY_REQUIRES_INDEPENDENT_CALIBRATION_INPUTS",
   "defaults": {
     "alpha": 0.05,
-    "power": 0.80,
-    "attrition": 0.15
+    "power": 0.8,
+    "attrition": 0.15,
+    "joint_qualification_power": 0.8
   },
   "input_provenance": {
     "population_id": "REQUIRED_BEFORE_USE",
@@ -49,7 +50,9 @@
       "sd_diff": null,
       "min_effect": null,
       "directional": true,
-      "input_source": "PED_D0_CAL_V1 D0-SHAM early attack or predation difference"
+      "input_source": "PED_D0_CAL_V1 D0-SHAM early attack or predation difference",
+      "planning_effect": null,
+      "planning_effect_source": "REQUIRED_BEFORE_USE_INDEPENDENT_CALIBRATION"
     },
     {
       "endpoint_id": "D0_Q5_SHAM_BURDEN_PRECISION",
