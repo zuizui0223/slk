@@ -19,6 +19,7 @@ FILES = {
     "theory/SLK_CORE_THEORY_V1.md": "theory/SLK_CORE_THEORY_V1.md",
     "theory/UNIFIED_THRESHOLD_ATLAS_V1.md": "theory/UNIFIED_THRESHOLD_ATLAS_V1.md",
     "theory/NON_EQUIVALENCE_THEOREM_V1.md": "theory/NON_EQUIVALENCE_THEOREM_V1.md",
+    "docs/INV1_EXECUTABLE_VALIDATION_V1.md": "docs/INV1_EXECUTABLE_VALIDATION_V1.md",
     "figures/FIG1_LOGIC_DIAGRAM.svg": "figures/FIG1_LOGIC_DIAGRAM.svg",
     "figures/FIG2_PHASE_MAP.svg": "figures/FIG2_PHASE_MAP.svg",
     "figures/FIG3_EMPIRICAL_LADDER.svg": "figures/FIG3_EMPIRICAL_LADDER.svg",
