@@ -260,3 +260,35 @@ def test_same_block_route_does_not_apply_bridge_sample_floor() -> None:
         out["sampling"]["minimum_analyzable_plants_per_world"]
         == plan["decomposition"]["minimum_analyzable_plants_per_world"]
     )
+
+
+def test_same_block_route_allows_no_bridge_precision_target() -> None:
+    precision = _precision_freeze()
+    precision["targets"]["bridge_residual_equivalence_margin"] = None
+    plan = planmod.plan(precision, _variance())
+    assert (
+        plan["components"]["bridge_equivalence_n_per_world_each_block"]
+        == 0
+    )
+    out = compiler.compile_sampling(
+        _effect("SAME_BLOCK_INTERNAL_IDENTITY"),
+        precision,
+        plan,
+    )
+    assert (
+        out["sampling"]["minimum_analyzable_plants_per_world"]
+        == plan["decomposition"]["minimum_analyzable_plants_per_world"]
+    )
+
+
+def test_independent_route_requires_bridge_precision_target() -> None:
+    precision = _precision_freeze()
+    precision["targets"]["bridge_residual_equivalence_margin"] = None
+    plan = planmod.plan(precision, _variance())
+    effect = _effect("INDEPENDENT_DIRECT_PHI_BLOCK")
+    effect["independent_concordance"]["residual_equivalence_margin"] = None
+    with pytest.raises(
+        ValueError,
+        match="independent route requires bridge equivalence target",
+    ):
+        compiler.compile_sampling(effect, precision, plan)
