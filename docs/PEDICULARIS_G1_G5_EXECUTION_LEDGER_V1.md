@@ -264,7 +264,7 @@ PEDICULARIS_G3_G5_MEASURED_CONCORDANT
 PEDICULARIS_G3_G5_MEASURED_BRIDGE_NOT_CONCORDANT.
 ```
 
-Only the independent direct-Phi route can support empirical concordance.
+Only the independent direct-Phi route can support empirical concordance, and only when the bridge-residual CI lies wholly inside the prospectively frozen equivalence margin.
 
 ## 4. Current programme state
 
