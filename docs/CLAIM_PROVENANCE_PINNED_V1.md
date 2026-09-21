@@ -253,6 +253,35 @@ D resists rare S <=> Phi+h_D>0.
 
 The result is exact for deterministic endpoint invasion and does not import arbitrary-frequency fixation or occupancy claims.
 
+## UTA1.9 — finite-frequency endpoint certification
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+- `figures/FIG3_CAPTION_AND_SPEC.md`
+- `scripts/slk_threshold_atlas.py`
+- `tests/test_unified_threshold_atlas.py`
+
+Registered claim:
+
+```text
+finite epsilon + local smoothness receipt
+-> certified endpoint interval
+
+one point:
+error O(epsilon)
+
+two-point extrapolation:
+error O(epsilon^2)
+
+sampling uncertainty:
+combined by interval widening.
+```
+
+Intervals overlapping zero remain unresolved and must not be promoted to biological non-invasion.
+
 ## Freeze rule
 
 The SLK manuscript may simplify notation, but it may not strengthen the source claim. In particular:
