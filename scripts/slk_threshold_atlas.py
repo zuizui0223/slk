@@ -8,7 +8,249 @@ It does not replace the analytical proofs.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import exp
+from math import exp, isclose, log
+
+
+DEFAULT_ABS_TOL = 1e-12
+DEFAULT_REL_TOL = 1e-10
+DEFAULT_ZERO_TOL = 1e-12
+
+
+def numerically_close(
+    a: float,
+    b: float,
+    *,
+    rel_tol: float = DEFAULT_REL_TOL,
+    abs_tol: float = DEFAULT_ABS_TOL,
+) -> bool:
+    """Project-wide floating comparison policy for theoretical quantities."""
+    return isclose(a, b, rel_tol=rel_tol, abs_tol=abs_tol)
+
+
+def require_numerically_nonzero(
+    value: float,
+    name: str,
+    *,
+    zero_tol: float = DEFAULT_ZERO_TOL,
+) -> None:
+    """Reject numerically singular denominators instead of testing value == 0."""
+    if abs(value) <= zero_tol:
+        raise ValueError(
+            f"{name} is numerically singular: |{name}|={abs(value):.3g} <= {zero_tol:.3g}"
+        )
+
+
+@dataclass(frozen=True)
+class SymmetricTwoStrategyGame:
+    """Symmetric two-strategy payoff game with S and D strategies."""
+
+    ss: float
+    sd: float
+    dd: float
+
+    @property
+    def self_play_gap(self) -> float:
+        """A_DD/2 - A_SS/2."""
+        return 0.5 * (self.dd - self.ss)
+
+    @property
+    def eta_coordinate(self) -> float:
+        """Canonical interaction coordinate when the architecture mapping is valid."""
+        return 0.5 * (self.ss + self.dd) - self.sd
+
+
+@dataclass(frozen=True)
+class CanonicalArchitectureGame:
+    """Explicit receipt for the registered equal-diagonal-feedback canonical map."""
+
+    phi: float
+    eta: float
+    baseline: float = 0.0
+
+    def as_game(self) -> SymmetricTwoStrategyGame:
+        return SymmetricTwoStrategyGame(
+            ss=self.baseline,
+            sd=self.baseline + self.phi - self.eta,
+            dd=self.baseline + 2.0 * self.phi,
+        )
+
+
+def canonical_architecture_game(
+    phi: float,
+    eta: float,
+    *,
+    baseline: float = 0.0,
+) -> CanonicalArchitectureGame:
+    """Construct the registered canonical pair explicitly."""
+    return CanonicalArchitectureGame(phi=phi, eta=eta, baseline=baseline)
+
+
+def validate_canonical_mapping(
+    game: SymmetricTwoStrategyGame,
+    *,
+    phi: float,
+    eta: float,
+    rel_tol: float = DEFAULT_REL_TOL,
+    abs_tol: float = DEFAULT_ABS_TOL,
+) -> None:
+    """Require a generic symmetric game to match the registered canonical coordinates."""
+    if not numerically_close(
+        game.self_play_gap, phi, rel_tol=rel_tol, abs_tol=abs_tol
+    ):
+        raise ValueError(
+            "equal-diagonal-feedback canonical mapping violated: "
+            f"self-play gap={game.self_play_gap!r}, expected phi={phi!r}"
+        )
+    if not numerically_close(
+        game.eta_coordinate, eta, rel_tol=rel_tol, abs_tol=abs_tol
+    ):
+        raise ValueError(
+            "canonical interaction coordinate violated: "
+            f"eta(game)={game.eta_coordinate!r}, expected eta={eta!r}"
+        )
+
+
+def self_excluding_payoffs(
+    game: SymmetricTwoStrategyGame,
+    d_count: int,
+    n: int,
+) -> tuple[float, float]:
+    """Return (pi_S, pi_D) for a state with d_count D individuals."""
+    if n <= 2:
+        raise ValueError("n must exceed 2")
+    if not (1 <= d_count <= n - 1):
+        raise ValueError("d_count must be between 1 and n-1")
+    s_count = n - d_count
+    pi_d = (
+        (d_count - 1) * game.dd + s_count * game.sd
+    ) / (n - 1)
+    pi_s = (
+        d_count * game.sd + (s_count - 1) * game.ss
+    ) / (n - 1)
+    return pi_s, pi_d
+
+
+def moran_transition_probabilities(
+    game: SymmetricTwoStrategyGame,
+    d_count: int,
+    beta: float,
+    n: int,
+) -> tuple[float, float]:
+    """Return (T_plus, T_minus) for the self-excluding exponential Moran process."""
+    if beta <= 0:
+        raise ValueError("beta must be positive")
+    pi_s, pi_d = self_excluding_payoffs(game, d_count, n)
+    s_count = n - d_count
+    f_d = exp(beta * pi_d)
+    f_s = exp(beta * pi_s)
+    total_reproduction = d_count * f_d + s_count * f_s
+    t_plus = (d_count * f_d / total_reproduction) * (s_count / n)
+    t_minus = (s_count * f_s / total_reproduction) * (d_count / n)
+    return t_plus, t_minus
+
+
+def _fixation_probability_d_from_game(
+    game: SymmetricTwoStrategyGame,
+    beta: float,
+    n: int,
+) -> float:
+    """Exact birth-death fixation probability of one D mutant in S."""
+    if beta <= 0:
+        raise ValueError("beta must be positive")
+    if n <= 2:
+        raise ValueError("n must exceed 2")
+
+    log_products: list[float] = []
+    cumulative_log_gamma = 0.0
+    for d_count in range(1, n):
+        t_plus, t_minus = moran_transition_probabilities(
+            game, d_count, beta, n
+        )
+        if t_plus <= 0 or t_minus <= 0:
+            raise ValueError("interior Moran transition probabilities must be positive")
+        cumulative_log_gamma += log(t_minus) - log(t_plus)
+        log_products.append(cumulative_log_gamma)
+
+    # Stable evaluation of 1 / (1 + sum(exp(log_products))).
+    max_log = max(0.0, *log_products)
+    scaled_denom = exp(-max_log) + sum(
+        exp(value - max_log) for value in log_products
+    )
+    return exp(-max_log) / scaled_denom
+
+
+def fixation_probability_d(
+    game: SymmetricTwoStrategyGame,
+    beta: float,
+    n: int,
+) -> float:
+    """Fixation probability of one D mutant in an S resident population."""
+    return _fixation_probability_d_from_game(game, beta, n)
+
+
+def swap_strategies(game: SymmetricTwoStrategyGame) -> SymmetricTwoStrategyGame:
+    """Relabel S<->D while preserving the underlying biological game."""
+    return SymmetricTwoStrategyGame(
+        ss=game.dd,
+        sd=game.sd,
+        dd=game.ss,
+    )
+
+
+def fixation_probability_s(
+    game: SymmetricTwoStrategyGame,
+    beta: float,
+    n: int,
+) -> float:
+    """Fixation probability of one S mutant in a D resident population."""
+    return _fixation_probability_d_from_game(swap_strategies(game), beta, n)
+
+
+def reciprocal_fixation_ratio_from_process(
+    game: SymmetricTwoStrategyGame,
+    beta: float,
+    n: int,
+) -> float:
+    """Compute rho_D/rho_S from the Moran birth-death process itself."""
+    rho_d = fixation_probability_d(game, beta, n)
+    rho_s = fixation_probability_s(game, beta, n)
+    return rho_d / rho_s
+
+
+def symmetric_rare_mutation_stationary_distribution(
+    rho_d: float,
+    rho_s: float,
+) -> tuple[float, float]:
+    """Stationary (Pi_S, Pi_D) of the two-state symmetric rare-mutation chain."""
+    if rho_d <= 0 or rho_s <= 0:
+        raise ValueError("fixation probabilities must be positive")
+    total = rho_d + rho_s
+    return rho_s / total, rho_d / total
+
+
+def occupancy_ratio_from_process(
+    game: SymmetricTwoStrategyGame,
+    beta: float,
+    n: int,
+) -> float:
+    """Compute Pi_D/Pi_S through fixation probabilities and the mutation chain."""
+    rho_d = fixation_probability_d(game, beta, n)
+    rho_s = fixation_probability_s(game, beta, n)
+    pi_s, pi_d = symmetric_rare_mutation_stationary_distribution(rho_d, rho_s)
+    return pi_d / pi_s
+
+
+def canonical_reciprocal_fixation_ratio_closed_form(
+    canonical: CanonicalArchitectureGame,
+    beta: float,
+    n: int,
+) -> float:
+    """Registered closed form; the canonical-mapping assumption is explicit in the type."""
+    if beta <= 0:
+        raise ValueError("beta must be positive")
+    if n <= 2:
+        raise ValueError("n must exceed 2")
+    return exp(beta * (n - 2) * canonical.phi)
 
 
 @dataclass(frozen=True)
@@ -51,16 +293,25 @@ def reverse_invasion_resistance_margin(phi: float, eta: float) -> float:
 
 
 def reciprocal_fixation_ratio(phi: float, beta: float, n: int) -> float:
-    if beta <= 0:
-        raise ValueError("beta must be positive")
-    if n <= 2:
-        raise ValueError("n must exceed 2")
-    return exp(beta * (n - 2) * phi)
+    """Legacy analytical convenience for the registered canonical pair.
+
+    Prefer canonical_reciprocal_fixation_ratio_closed_form() when the
+    equal-diagonal-feedback assumption should be explicit in the API.
+    """
+    return canonical_reciprocal_fixation_ratio_closed_form(
+        canonical_architecture_game(phi, eta=0.0),
+        beta,
+        n,
+    )
 
 
 def occupancy_ratio(phi: float, beta: float, n: int) -> float:
-    """Symmetric rare-mutation D:S monomorphic occupancy ratio."""
-    return reciprocal_fixation_ratio(phi, beta, n)
+    """Process-derived symmetric rare-mutation D:S occupancy ratio.
+
+    This intentionally does NOT alias reciprocal_fixation_ratio().
+    """
+    game = canonical_architecture_game(phi, eta=0.0).as_game()
+    return occupancy_ratio_from_process(game, beta, n)
 
 
 def weak_selection_absolute_fixation_margin(phi: float, eta: float) -> float:
@@ -70,21 +321,21 @@ def weak_selection_absolute_fixation_margin(phi: float, eta: float) -> float:
 
 def environmental_phi(e: float, slope: float, value_threshold: float) -> float:
     """Affine environmental architecture margin Phi(E)=slope*(E-E_V)."""
-    if slope == 0:
+    if abs(slope) <= DEFAULT_ZERO_TOL:
         raise ValueError("slope must be nonzero")
     return slope * (e - value_threshold)
 
 
 def rare_invasion_environment(value_threshold: float, slope: float, eta: float) -> float:
     """Environmental E where Phi(E)=eta."""
-    if slope == 0:
+    if abs(slope) <= DEFAULT_ZERO_TOL:
         raise ValueError("slope must be nonzero")
     return value_threshold + eta / slope
 
 
 def reverse_invasion_environment(value_threshold: float, slope: float, eta: float) -> float:
     """Environmental E where Phi(E)=-eta."""
-    if slope == 0:
+    if abs(slope) <= DEFAULT_ZERO_TOL:
         raise ValueError("slope must be nonzero")
     return value_threshold - eta / slope
 
@@ -97,7 +348,7 @@ def rare_invasion_environment_affine_feedback(
 ) -> float:
     """Solve Phi(E)=eta(E) for affine Phi and affine eta."""
     denom = phi_slope - eta_slope
-    if denom == 0:
+    if abs(denom) <= DEFAULT_ZERO_TOL:
         raise ValueError("phi_slope must differ from eta_slope")
     return value_threshold + eta_at_value / denom
 
@@ -110,7 +361,7 @@ def reverse_invasion_environment_affine_feedback(
 ) -> float:
     """Solve Phi(E)=-eta(E) for affine Phi and affine eta."""
     denom = phi_slope + eta_slope
-    if denom == 0:
+    if abs(denom) <= DEFAULT_ZERO_TOL:
         raise ValueError("phi_slope must differ from -eta_slope")
     return value_threshold - eta_at_value / denom
 
@@ -182,7 +433,7 @@ def rare_invasion_environment_quadratic_frequency(
     kappa: float,
 ) -> float:
     """Solve Phi(E)+h0-eta+kappa=0 for affine Phi(E)."""
-    if phi_slope == 0:
+    if abs(phi_slope) <= DEFAULT_ZERO_TOL:
         raise ValueError("phi_slope must be nonzero")
     return value_threshold + (eta - kappa - h0) / phi_slope
 
@@ -195,7 +446,7 @@ def reverse_invasion_environment_quadratic_frequency(
     kappa: float,
 ) -> float:
     """Solve Phi(E)+h0+eta+kappa=0 for affine Phi(E)."""
-    if phi_slope == 0:
+    if abs(phi_slope) <= DEFAULT_ZERO_TOL:
         raise ValueError("phi_slope must be nonzero")
     return value_threshold - (eta + kappa + h0) / phi_slope
 
@@ -216,7 +467,7 @@ def invasion_environment_from_endpoint_offset(
     endpoint_offset: float,
 ) -> float:
     """Solve Phi(E)+h_endpoint=0 for affine Phi(E)."""
-    if phi_slope == 0:
+    if abs(phi_slope) <= DEFAULT_ZERO_TOL:
         raise ValueError("phi_slope must be nonzero")
     return value_threshold - endpoint_offset / phi_slope
 
