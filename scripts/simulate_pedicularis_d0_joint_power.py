@@ -110,7 +110,15 @@ def _circular_difference_deg(a: float, b: float) -> float:
 def _by_plant(rows: list[dict[str, str]]) -> tuple[dict[str, dict[str, dict[str, str]]], dict[str, dict[str, dict[str, str]]]]:
     grouped: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in rows:
-        _need(row.get("dataset_id") == D0_DATASET_ID, "wrong D0-CAL dataset id")
+        _need(
+            row.get("dataset_id") == D0_DATASET_ID,
+            "wrong D0-CAL dataset id",
+        )
+        _need(
+            str(row.get("confirmatory_eligible", "")).strip().lower()
+            == "false",
+            "D0-CAL row marked confirmatory eligible",
+        )
         plant_id = str(row.get("plant_id", "")).strip()
         _need(plant_id, "missing plant_id")
         grouped[plant_id].append(row)
@@ -427,6 +435,11 @@ def _validate_simulation_freeze(
     _need(context.get("confirmatory_outcomes_opened") is False, "joint simulation freeze shows opened confirmatory outcomes")
 
     provenance = compiled_precision_input.get("input_provenance", {})
+    planned_provenance = planned_precision_output.get("input_provenance")
+    _need(
+        isinstance(planned_provenance, dict),
+        "planned precision provenance missing",
+    )
     for key in (
         "population_id",
         "season_id",
@@ -438,6 +451,10 @@ def _validate_simulation_freeze(
         _need(
             context.get(key) == provenance.get(key),
             f"joint simulation/precision mismatch: {key}",
+        )
+        _need(
+            planned_provenance.get(key) == provenance.get(key),
+            f"planned/compiled precision provenance mismatch: {key}",
         )
 
     simulation = freeze.get("simulation", {})
