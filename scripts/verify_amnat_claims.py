@@ -292,6 +292,48 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.9: finite-frequency endpoint certification.
+    epsilon = 0.05
+    lipschitz = 1.5
+    delta_eps = 0.20
+    lip_lower = delta_eps - lipschitz * epsilon
+    lip_upper = delta_eps + lipschitz * epsilon
+    assert lip_lower > 0
+    checks["UTA1_9_one_point_endpoint_certificate"] = {
+        "epsilon": epsilon,
+        "M": lipschitz,
+        "lower": lip_lower,
+        "upper": lip_upper,
+        "pass": True,
+    }
+
+    d0, d1, c_quad = 0.15, -0.3, 0.8
+    d_eps = d0 + d1 * epsilon + c_quad * epsilon * epsilon
+    d_2eps = d0 + d1 * 2 * epsilon + c_quad * (2 * epsilon) ** 2
+    endpoint_hat = 2 * d_eps - d_2eps
+    curvature_bound = 2 * abs(c_quad)
+    error_bound = curvature_bound * epsilon * epsilon
+    assert abs(endpoint_hat - d0) <= error_bound + 1e-12
+    checks["UTA1_9_two_point_endpoint_certificate"] = {
+        "epsilon": epsilon,
+        "endpoint_hat": endpoint_hat,
+        "true_endpoint": d0,
+        "curvature_bound": curvature_bound,
+        "error_bound": error_bound,
+        "pass": True,
+    }
+
+    l1, u1 = 0.18, 0.22
+    l2, u2 = 0.10, 0.14
+    combined_lower = 2 * l1 - u2 - error_bound
+    combined_upper = 2 * u1 - l2 + error_bound
+    assert combined_lower > 0
+    checks["UTA1_9_sampling_plus_endpoint_error"] = {
+        "lower": combined_lower,
+        "upper": combined_upper,
+        "pass": True,
+    }
+
     # INV1: reciprocal fixation and symmetric rare-mutation occupancy ordering
     # are driven by the same exponential score ratio under the registered process.
     max_abs_error = 0.0
