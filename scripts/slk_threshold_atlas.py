@@ -141,11 +141,19 @@ def moran_transition_probabilities(
         raise ValueError("beta must be positive")
     pi_s, pi_d = self_excluding_payoffs(game, d_count, n)
     s_count = n - d_count
-    f_d = exp(beta * pi_d)
-    f_s = exp(beta * pi_s)
-    total_reproduction = d_count * f_d + s_count * f_s
-    t_plus = (d_count * f_d / total_reproduction) * (s_count / n)
-    t_minus = (s_count * f_s / total_reproduction) * (d_count / n)
+
+    # Stable exponential-fitness reproduction probabilities.  Subtracting the
+    # larger log weight prevents overflow without changing the Moran kernel.
+    log_weight_d = log(d_count) + beta * pi_d
+    log_weight_s = log(s_count) + beta * pi_s
+    max_log_weight = max(log_weight_d, log_weight_s)
+    weight_d = exp(log_weight_d - max_log_weight)
+    weight_s = exp(log_weight_s - max_log_weight)
+    birth_d = weight_d / (weight_d + weight_s)
+    birth_s = weight_s / (weight_d + weight_s)
+
+    t_plus = birth_d * (s_count / n)
+    t_minus = birth_s * (d_count / n)
     return t_plus, t_minus
 
 
@@ -529,8 +537,9 @@ def environmental_threshold_error_bound(
     """Convert a fitness-scale endpoint error bound to environmental distance."""
     if fitness_margin_error_bound < 0:
         raise ValueError("fitness_margin_error_bound must be nonnegative")
-    if phi_environment_slope == 0:
-        raise ValueError("phi_environment_slope must be nonzero")
+    require_numerically_nonzero(
+        phi_environment_slope, "phi_environment_slope"
+    )
     return fitness_margin_error_bound / abs(phi_environment_slope)
 
 
