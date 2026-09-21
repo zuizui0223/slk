@@ -96,6 +96,10 @@ def test_complete_registered_calibration_produces_ready_variance_receipt() -> No
     receipt = summary.summarize(_completed_rows(), "PED_D0_CONFIRM_V1")
     assert receipt["status"] == "INDEPENDENT_CALIBRATION_VARIANCE_READY"
     assert receipt["planner_defaults"]["joint_qualification_power"] == 0.80
+    assert (
+        receipt["precision_planning_readiness"]
+        == "BLOCKED_Q4_PLANNING_ALTERNATIVE_NOT_FROZEN"
+    )
     assert receipt["source_counts"] == {"low_y_plants": 24, "high_y_plants": 24}
     assert receipt["context"]["fitness_scale_id"] == "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
     assert receipt["context"]["time_horizon_id"] == "FLOWER_TO_MATURE_VIABLE_SEED"
@@ -177,6 +181,10 @@ def test_calibration_receipt_can_freeze_q4_planning_alternative() -> None:
     assert wet["planning_effect"] == 0.25
     assert wet["planning_effect_source"] == (
         "PED_D0_CAL_V1_PREDECLARED_CALIBRATION_ESTIMATE"
+    )
+    assert (
+        receipt["precision_planning_readiness"]
+        == "READY_FOR_PRECISION_COMPILATION"
     )
 
 
