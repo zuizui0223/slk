@@ -1,0 +1,40 @@
+{
+  "schema_version": "SLK_PEDICULARIS_D0_JOINT_POWER_SIMULATION_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "d0_cal_dataset_id": "PED_D0_CAL_V1",
+    "confirmatory_dataset_id": "REQUIRED_BEFORE_USE",
+    "margin_freeze_commit": "REQUIRED_BEFORE_USE",
+    "confirmatory_outcomes_opened": false,
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    "time_horizon_id": "REQUIRED_BEFORE_USE"
+  },
+  "simulation": {
+    "model": "WHOLE_PLANT_EMPIRICAL_RESAMPLING_NORMAL_APPROX_ENDPOINT_ADJUDICATION",
+    "random_seed": null,
+    "reps": 5000,
+    "minimum_reps": 5000,
+    "mc_interval_level": 0.95,
+    "target_all_pass_power": 0.8,
+    "attrition_source": "COMPILED_PRECISION_INPUT_FROZEN_DEFAULT"
+  },
+  "field_burden_weights": {
+    "low_y_recruit": 3,
+    "high_y_recruit": 1
+  },
+  "candidate_allocations": [],
+  "firewall": {
+    "calibration_units_confirmatory_eligible": false,
+    "candidate_grid_frozen_before_confirmatory_outcomes": false,
+    "simulation_seed_frozen_before_confirmatory_outcomes": false,
+    "planning_truths_from_confirmatory_outcomes_forbidden": true
+  },
+  "freeze_metadata": {
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "notes": "Populate only after independent D0-CAL and margin/variance compilation, but before confirmatory outcomes. Candidate allocations, seed, replicate count and model class are frozen design inputs."
+}

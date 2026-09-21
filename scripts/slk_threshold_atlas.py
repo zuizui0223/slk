@@ -16,6 +16,17 @@ DEFAULT_REL_TOL = 1e-10
 DEFAULT_ZERO_TOL = 1e-12
 
 
+REGISTERED_WITNESS_PARAMETERS = {
+    "W1": {"L": 2.0, "k": 2.2},
+    "W2": {"k": 1.5},
+    "W3": {"k": 0.8, "eta": 1.5},
+    "W4": {"k": 2.2, "eta": -1.0},
+    "W5": {"k": 2.1, "eta": -0.5},
+}
+REGISTERED_WITNESS_MORAN_BETA = 0.1
+REGISTERED_WITNESS_MORAN_N = 20
+
+
 def numerically_close(
     a: float,
     b: float,

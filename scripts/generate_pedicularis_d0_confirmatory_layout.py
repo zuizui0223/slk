@@ -156,6 +156,18 @@ def _required_n(precision_plan: dict) -> tuple[int, int, dict]:
     maxima = precision_plan.get("maxima_by_allocation_unit", {})
     _need(isinstance(maxima, dict) and maxima, "precision allocation maxima missing")
 
+    joint = precision_plan.get("joint_qualification_design", {})
+    _need(isinstance(joint, dict) and joint, "joint qualification design missing")
+    _need(
+        joint.get("method") == "BONFERRONI_FAILURE_BUDGET_UNION_BOUND",
+        "unregistered joint qualification power method",
+    )
+    target = joint.get("target_all_pass_power")
+    _need(
+        isinstance(target, (int, float)) and 0 < float(target) < 1,
+        "invalid joint qualification power target",
+    )
+
     def n_for(unit: str) -> int:
         block = maxima.get(unit)
         if block is None:
@@ -178,6 +190,44 @@ def _required_n(precision_plan: dict) -> tuple[int, int, dict]:
     }
 
 
+def _analysis_required_n(
+    precision_plan: dict,
+) -> tuple[int, int, dict]:
+    """Return analyzable complete-case minima, distinct from recruitment n."""
+    minima = precision_plan.get("analysis_minima_by_allocation_unit", {})
+    _need(
+        isinstance(minima, dict) and minima,
+        "precision analysis minima missing",
+    )
+
+    def n_for(unit: str) -> int:
+        block = minima.get(unit)
+        if block is None:
+            return 0
+        n = block.get("raw_required_n")
+        _need(
+            isinstance(n, int) and n >= 2,
+            f"invalid analysis minimum for {unit}",
+        )
+        return n
+
+    paired_n = n_for("paired_plants_total")
+    total_n = n_for("plants_total")
+    per_group_n = n_for("plants_per_group")
+    _need(
+        per_group_n >= 2,
+        "D0 confirmatory Q2 requires a plants_per_group analysis minimum",
+    )
+    low_n = max(paired_n, total_n, per_group_n)
+    high_n = per_group_n
+    _need(low_n >= 2 and high_n >= 2, "invalid analysis minima")
+    return low_n, high_n, {
+        "paired_plants_total": paired_n,
+        "plants_total": total_n,
+        "plants_per_group": per_group_n,
+    }
+
+
 def generate_layout(
     precision_plan: dict,
     structural_y_receipt: dict,
@@ -188,6 +238,10 @@ def generate_layout(
     ctx = _validate_analysis_freeze(analysis_freeze)
     band = _validate_y_receipt(structural_y_receipt, ctx)
     low_n, high_n, source_n = _required_n(precision_plan)
+    low_analysis_n, high_analysis_n, analysis_source_n = (
+        _analysis_required_n(precision_plan)
+    )
+    joint_design = precision_plan["joint_qualification_design"]
     rng = random.Random(randomization_seed)
     rows: list[dict[str, str]] = []
 
@@ -257,6 +311,10 @@ def generate_layout(
             "low_y_rows": low_n * 3,
             "high_y_rows": high_n,
             "source_precision_maxima": source_n,
+            "analysis_minimum_low_y_complete_plants": low_analysis_n,
+            "analysis_minimum_high_y_complete_plants": high_analysis_n,
+            "source_analysis_minima": analysis_source_n,
+            "joint_qualification_design": joint_design,
         },
         "randomization_seed": randomization_seed,
         "firewall": {

@@ -338,11 +338,12 @@ Unless a gate has a stronger biological reason, the planning defaults are:
 
 ```text
 alpha = 0.05
-power = 0.80
+marginal endpoint power floor = 0.80
+joint D0 all-pass qualification target = 0.80
 expected pre-outcome attrition inflation = 15%
 ```
 
-Equivalence uses two one-sided tests conceptually; the normal-approximation planner uses `z_(1-alpha) + z_power`. Superiority planning defaults to a two-sided alpha unless the frozen gate is explicitly directional.
+Equivalence uses two one-sided tests. For a symmetric equivalence margin and planning truth difference 0, the normal-approximation planner solves the joint TOST pass probability using `z_(1-alpha) + z_((1+power)/2)`, not `z_(1-alpha) + z_power`. Because full D0 qualification is an intersection-union all-pass event, the planner allocates the frozen joint failure budget conservatively across all power-based endpoints: `p_endpoint >= 1-(1-p_joint)/m`. This does not assume endpoint independence. Superiority planning requires a prospectively calibrated `planning_effect` strictly beyond the frozen minimum useful effect.
 
 These defaults are planning conventions, not biological equivalence margins. Every margin/effect size must still have its own biological or measurement rationale.
 
@@ -406,7 +407,8 @@ D. freeze biological margins and minimum useful effects
 
 E. run precision planner
    -> final independent-plant n for every primary qualification gate
-   -> take maximum + frozen attrition inflation
+   -> take raw maximum as the analyzable complete-case floor
+   -> inflate that raw floor prospectively for recruitment attrition
 
 F. only then open the disjoint confirmatory structural-y / D0 qualification experiment.
 ```
@@ -426,3 +428,41 @@ calibrate y
 ```
 
 No new theorem is needed for this step.
+## Joint qualification power and attrition interpretation
+
+D0 qualification is an intersection-union decision: every active Q1-Q5 endpoint must pass, with Q6 fixed by design identity. Therefore `power=0.80` for each endpoint is **not** an 80% qualification design.
+
+For the default negligible-burden route there are 15 stochastic active endpoints. A conservative 80% all-pass target allocates the endpoint failure budget as:
+
+```text
+p_endpoint >= 1 - (1-0.80)/15 = 0.986666...
+```
+
+The planner keeps two different sample-size objects:
+
+```text
+raw_required_n      = minimum analyzable complete-case count
+inflated_required_n = prospective recruitment target after attrition inflation
+```
+
+The confirmatory adjudicator compares endpoint complete cases with `raw_required_n`, not with the inflated recruitment count. Otherwise attrition inflation would provide no actual attrition allowance.
+
+The measured-burden-adjustment Q5 lane uses a CI-half-width criterion rather than a standard power endpoint. Until a prospectively registered pass-probability simulation is supplied for that precision endpoint, the planner labels the full joint-power receipt incomplete for that lane.
+
+## Q4 superiority planning alternative handoff
+
+The D0-CAL variance summarizer now carries the joint qualification target and can freeze the Q4 wet-channel planning alternative:
+
+```bash
+python scripts/summarize_pedicularis_d0_calibration_variance.py \
+  PEDICULARIS_D0_CAL_FIELD_V1.csv \
+  --confirmatory-dataset-id PED_D0_QUAL_CONFIRM_V1 \
+  --joint-qualification-power 0.80 \
+  --q4-wet-planning-effect <independent-calibration-alternative> \
+  --q4-wet-planning-effect-source <source-id> \
+  --output PEDICULARIS_D0_VARIANCE_INPUT_V1.json
+```
+
+The compiler fails closed if Q4 has no positive planning alternative or if the planning alternative does not exceed the frozen minimum useful effect. The minimum useful effect is the decision threshold; it is not reused as the assumed true effect for power.
+
+The compact six-endpoint precision-input template is example-only. Production precision input must come from `compile_pedicularis_d0_precision_input.py`, which expands the full active endpoint inventory from the frozen margin and variance receipts.

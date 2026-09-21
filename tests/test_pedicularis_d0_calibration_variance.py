@@ -95,6 +95,11 @@ def _endpoint(receipt: dict, endpoint_id: str) -> dict:
 def test_complete_registered_calibration_produces_ready_variance_receipt() -> None:
     receipt = summary.summarize(_completed_rows(), "PED_D0_CONFIRM_V1")
     assert receipt["status"] == "INDEPENDENT_CALIBRATION_VARIANCE_READY"
+    assert receipt["planner_defaults"]["joint_qualification_power"] == 0.80
+    assert (
+        receipt["precision_planning_readiness"]
+        == "BLOCKED_Q4_PLANNING_ALTERNATIVE_NOT_FROZEN"
+    )
     assert receipt["source_counts"] == {"low_y_plants": 24, "high_y_plants": 24}
     assert receipt["context"]["fitness_scale_id"] == "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
     assert receipt["context"]["time_horizon_id"] == "FLOWER_TO_MATURE_VIABLE_SEED"
@@ -161,3 +166,41 @@ def test_multiple_time_horizons_are_rejected() -> None:
     rows[0]["time_horizon_id"] = "OTHER_HORIZON"
     with pytest.raises(ValueError, match="multiple contexts"):
         summary.summarize(rows, "PED_D0_CONFIRM_V1")
+
+
+def test_calibration_receipt_can_freeze_q4_planning_alternative() -> None:
+    receipt = summary.summarize(
+        _completed_rows(),
+        "PED_D0_CONFIRM_V1",
+        joint_qualification_power=0.85,
+        q4_wet_planning_effect=0.25,
+        q4_wet_planning_effect_source="PED_D0_CAL_V1_PREDECLARED_CALIBRATION_ESTIMATE",
+    )
+    wet = _endpoint(receipt, "D0_Q4_WET_EFFECT")
+    assert receipt["planner_defaults"]["joint_qualification_power"] == 0.85
+    assert wet["planning_effect"] == 0.25
+    assert wet["planning_effect_source"] == (
+        "PED_D0_CAL_V1_PREDECLARED_CALIBRATION_ESTIMATE"
+    )
+    assert (
+        receipt["precision_planning_readiness"]
+        == "READY_FOR_PRECISION_COMPILATION"
+    )
+
+
+def test_q4_planning_effect_requires_source() -> None:
+    with pytest.raises(ValueError, match="planning_effect_source"):
+        summary.summarize(
+            _completed_rows(),
+            "PED_D0_CONFIRM_V1",
+            q4_wet_planning_effect=0.25,
+        )
+
+
+def test_joint_qualification_power_must_be_probability() -> None:
+    with pytest.raises(ValueError, match="joint_qualification_power"):
+        summary.summarize(
+            _completed_rows(),
+            "PED_D0_CONFIRM_V1",
+            joint_qualification_power=1.0,
+        )
