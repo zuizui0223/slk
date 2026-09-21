@@ -98,9 +98,12 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
     _need(vctx.get("confirmatory_outcomes_opened") is False, "variance inputs opened confirmatory outcomes")
 
     defaults = variance.get("planner_defaults", {})
-    for key in ("alpha", "power"):
+    for key in ("alpha", "power", "joint_qualification_power"):
         value = defaults.get(key)
-        _need(isinstance(value, (int, float)) and 0 < float(value) < 1, f"bad planner default: {key}")
+        _need(
+            isinstance(value, (int, float)) and 0 < float(value) < 1,
+            f"bad planner default: {key}",
+        )
     attrition = defaults.get("attrition")
     _need(isinstance(attrition, (int, float)) and 0 <= float(attrition) < 1, "bad planner default: attrition")
 
@@ -139,7 +142,25 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
             base.update({"kind": "two_group_equivalence", "sd": sd_value, "margin": margin_value})
         elif endpoint_id == WET_EFFECT_ID:
             _need(v.get("variance_kind") == "sd_diff", f"expected sd_diff: {endpoint_id}")
-            base.update({"kind": "paired_superiority", "sd_diff": sd_value, "min_effect": margin_value, "directional": True})
+            planning_effect = v.get("planning_effect")
+            _need(
+                _positive_number(planning_effect),
+                f"missing/invalid planning_effect: {endpoint_id}",
+            )
+            _need(
+                float(planning_effect) > float(margin_value),
+                f"planning_effect must exceed frozen minimum effect: {endpoint_id}",
+            )
+            base.update(
+                {
+                    "kind": "paired_superiority",
+                    "sd_diff": sd_value,
+                    "min_effect": margin_value,
+                    "planning_effect": float(planning_effect),
+                    "directional": True,
+                    "planning_effect_source": v.get("planning_effect_source"),
+                }
+            )
         elif endpoint_id == BURDEN_PRECISION_ID:
             _need(v.get("variance_kind") == "sd_diff", f"expected sd_diff: {endpoint_id}")
             base.update({"kind": "mean_precision", "sd": sd_value, "half_width": margin_value})
@@ -153,6 +174,9 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
         "defaults": {
             "alpha": float(defaults["alpha"]),
             "power": float(defaults["power"]),
+            "joint_qualification_power": float(
+                defaults["joint_qualification_power"]
+            ),
             "attrition": float(defaults["attrition"]),
         },
         "input_provenance": {
