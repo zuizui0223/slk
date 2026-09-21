@@ -1,7 +1,9 @@
 from scripts.slk_threshold_atlas import (
     ArchitecturePath,
     endpoint_curvature_interval,
+    endpoint_curvature_interval_with_sampling,
     endpoint_lipschitz_interval,
+    endpoint_lipschitz_interval_with_sampling,
     environmental_phi,
     environmental_threshold_error_bound,
     extrapolate_endpoint_two_frequency,
@@ -356,3 +358,28 @@ def test_second_order_threshold_error_bound_scales_as_epsilon_squared():
     fitness_error = curvature_bound * epsilon**2
     env_error = environmental_threshold_error_bound(fitness_error, slope)
     assert abs(env_error - curvature_bound * epsilon**2 / slope) < 1e-12
+
+
+def test_sampling_interval_combines_with_lipschitz_endpoint_error():
+    interval = endpoint_lipschitz_interval_with_sampling(
+        measured_interval=(0.18, 0.24),
+        epsilon=0.05,
+        lipschitz_bound=1.0,
+    )
+    assert abs(interval[0] - 0.13) < 1e-12
+    assert abs(interval[1] - 0.29) < 1e-12
+    assert sign_certificate(interval) == "positive"
+
+
+def test_sampling_intervals_combine_with_two_point_curvature_remainder():
+    interval = endpoint_curvature_interval_with_sampling(
+        interval_epsilon=(0.20, 0.24),
+        interval_two_epsilon=(0.12, 0.16),
+        epsilon=0.05,
+        curvature_bound=2.0,
+    )
+    expected_lower = 2 * 0.20 - 0.16 - 2.0 * 0.05**2
+    expected_upper = 2 * 0.24 - 0.12 + 2.0 * 0.05**2
+    assert abs(interval[0] - expected_lower) < 1e-12
+    assert abs(interval[1] - expected_upper) < 1e-12
+    assert sign_certificate(interval) == "positive"
