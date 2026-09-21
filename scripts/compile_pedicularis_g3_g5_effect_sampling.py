@@ -62,7 +62,25 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
     targets = precision_freeze.get("targets", {})
     _need(plan.get("targets", {}).get("world_cell_mean_half_width") == targets.get("world_cell_mean_half_width"), "half-width target mismatch")
     _need(plan.get("targets", {}).get("minimum_recoverable_benefit_R") == targets.get("minimum_recoverable_benefit_R"), "R target mismatch")
-    _need(plan.get("targets", {}).get("minimum_abs_architecture_value_Phi") == targets.get("minimum_abs_architecture_value_Phi"), "Phi target mismatch")
+    _need(
+        plan.get("targets", {}).get("minimum_abs_architecture_value_Phi")
+        == targets.get("minimum_abs_architecture_value_Phi"),
+        "Phi target mismatch",
+    )
+    _need(
+        plan.get("targets", {}).get("bridge_residual_equivalence_margin")
+        == targets.get("bridge_residual_equivalence_margin"),
+        "bridge equivalence target mismatch",
+    )
+    effect_bridge_margin = effect.get(
+        "independent_concordance", {}
+    ).get("residual_equivalence_margin")
+    if route == "INDEPENDENT_DIRECT_PHI_BLOCK":
+        _need(
+            effect_bridge_margin
+            == targets.get("bridge_residual_equivalence_margin"),
+            "effect/precision bridge equivalence margin mismatch",
+        )
     _need(
         plan.get("variance_input", {}).get("sd_safety_multiplier")
         == precision_freeze.get("variance_transport", {}).get("sd_safety_multiplier"),
@@ -75,30 +93,78 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
         "R_effect_n_per_world",
         "Phi_effect_n_per_world",
         "direct_block_cell_precision_n_per_world",
+        "bridge_equivalence_n_per_world_each_block",
     )
     for key in required_component_keys:
         _need(isinstance(components.get(key), int) and components[key] > 0, f"bad precision component: {key}")
 
     decomp = plan.get("decomposition", {})
     direct = plan.get("independent_direct_phi", {})
-    min_world = decomp.get("minimum_analyzable_plants_per_world")
-    rec_world = decomp.get("recruitment_plants_per_world")
-    expected_min_world = max(
+    concordance = plan.get("independent_concordance", {})
+
+    base_min_world = decomp.get("minimum_analyzable_plants_per_world")
+    base_rec_world = decomp.get("recruitment_plants_per_world")
+    expected_base_min_world = max(
         components["decomposition_cell_precision_n_per_world"],
         components["R_effect_n_per_world"],
         components["Phi_effect_n_per_world"],
     )
-    _need(min_world == expected_min_world, "decomposition minimum n is inconsistent with precision components")
-    _need(isinstance(rec_world, int) and rec_world >= min_world, "bad decomposition recruitment n")
+    _need(
+        base_min_world == expected_base_min_world,
+        "decomposition minimum n is inconsistent with precision components",
+    )
+    _need(
+        isinstance(base_rec_world, int)
+        and base_rec_world >= base_min_world,
+        "bad decomposition recruitment n",
+    )
 
-    min_direct = direct.get("minimum_analyzable_plants_per_world")
-    rec_direct = direct.get("recruitment_plants_per_world")
-    expected_min_direct = max(
+    base_min_direct = direct.get("minimum_analyzable_plants_per_world")
+    base_rec_direct = direct.get("recruitment_plants_per_world")
+    expected_base_min_direct = max(
         components["direct_block_cell_precision_n_per_world"],
         components["Phi_effect_n_per_world"],
     )
-    _need(min_direct == expected_min_direct, "direct minimum n is inconsistent with precision components")
-    _need(isinstance(rec_direct, int) and rec_direct >= min_direct, "bad direct-block recruitment n")
+    _need(
+        base_min_direct == expected_base_min_direct,
+        "direct minimum n is inconsistent with precision components",
+    )
+    _need(
+        isinstance(base_rec_direct, int)
+        and base_rec_direct >= base_min_direct,
+        "bad direct-block recruitment n",
+    )
+
+    bridge_min = concordance.get(
+        "minimum_analyzable_plants_per_world_each_block"
+    )
+    bridge_rec = concordance.get(
+        "recruitment_plants_per_world_each_block"
+    )
+    _need(
+        bridge_min == components["bridge_equivalence_n_per_world_each_block"],
+        "bridge minimum n is inconsistent with precision component",
+    )
+    _need(
+        isinstance(bridge_rec, int) and bridge_rec >= bridge_min,
+        "bad bridge-equivalence recruitment n",
+    )
+    _need(
+        concordance.get("bridge_residual_equivalence_margin")
+        == targets.get("bridge_residual_equivalence_margin"),
+        "bridge margin drift inside precision plan",
+    )
+
+    if route == "INDEPENDENT_DIRECT_PHI_BLOCK":
+        min_world = max(base_min_world, bridge_min)
+        rec_world = max(base_rec_world, bridge_rec)
+        min_direct = max(base_min_direct, bridge_min)
+        rec_direct = max(base_rec_direct, bridge_rec)
+    else:
+        min_world = base_min_world
+        rec_world = base_rec_world
+        min_direct = base_min_direct
+        rec_direct = base_rec_direct
 
     out = copy.deepcopy(effect)
     sampling = out.setdefault("sampling", {})
