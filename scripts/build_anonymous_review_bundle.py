@@ -22,7 +22,10 @@ FILES = {
     "figures/FIG1_LOGIC_DIAGRAM.svg": "figures/FIG1_LOGIC_DIAGRAM.svg",
     "figures/FIG2_PHASE_MAP.svg": "figures/FIG2_PHASE_MAP.svg",
     "figures/FIG3_EMPIRICAL_LADDER.svg": "figures/FIG3_EMPIRICAL_LADDER.svg",
+    "scripts/slk_threshold_atlas.py": "code/slk_threshold_atlas.py",
     "scripts/verify_amnat_claims.py": "code/verify_amnat_claims.py",
+    "tests/test_moran_process_invariant.py": "tests/test_moran_process_invariant.py",
+    "pytest.ini": "pytest.ini",
 }
 
 FORBIDDEN_IDENTITY_STRINGS = (
@@ -41,7 +44,7 @@ This package accompanies the manuscript **From functional conflict to evolutiona
 
 The submitted paper is a theory/concept paper. It does not estimate its headline results from a private or external empirical dataset. Numerical values in the witness table are constructive parameter regimes used to demonstrate logical non-implications. The three figures are theory diagrams/phase summaries.
 
-The package therefore contains the exact manuscript source, the unified threshold-atlas theorem, the supporting core/non-equivalence theory notes, the three submitted figure sources, and a standard-library Python verifier for the common witness family, five separation regimes, ecological threshold displacement, two- and three-frequency feedback identification, curvature diagnostics, arbitrary-shape endpoint invasion, finite-frequency endpoint certification, comparative conflict-differentiation discordance, critical surfaces, and fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package therefore contains the exact manuscript source, the unified threshold-atlas theorem, the supporting core/non-equivalence theory notes, the three submitted figure sources, the authoritative standard-library threshold/process implementation, an independent Moran-process regression test, and a Python verifier for the common witness family, five separation regimes, ecological threshold displacement, two- and three-frequency feedback identification, curvature diagnostics, arbitrary-shape endpoint invasion, finite-frequency endpoint certification, comparative conflict-differentiation discordance, critical surfaces, and fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 
@@ -49,6 +52,7 @@ From the root of this extracted package, run:
 
 ```bash
 python code/verify_amnat_claims.py --output CLAIM_VERIFICATION_RECEIPT.json
+python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py
 ```
 
 A successful run writes a JSON receipt with `all_checks_pass: true`.
