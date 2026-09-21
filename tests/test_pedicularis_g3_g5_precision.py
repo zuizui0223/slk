@@ -93,6 +93,7 @@ def _freeze() -> dict:
             "world_cell_mean_half_width": 0.50,
             "minimum_recoverable_benefit_R": 1.00,
             "minimum_abs_architecture_value_Phi": 0.80,
+            "bridge_residual_equivalence_margin": 0.30,
             "target_source_type": "DOWNSTREAM_DECISION_INVARIANCE",
             "target_source_reference": "SLK:G3_G5_DECISION_TARGETS_V1",
             "biological_rationale": "resolve the smallest architecture-value effects worth interpreting",
@@ -213,3 +214,34 @@ def test_precision_context_mismatch_is_rejected() -> None:
     freeze["context"]["population_id"] = "pop2"
     with pytest.raises(ValueError, match="context mismatch"):
         planmod.plan(freeze, variance)
+
+
+def test_bridge_equivalence_component_is_planned_prospectively() -> None:
+    variance = varmod.summarize(_rows(), _d0_receipt())
+    result = planmod.plan(_freeze(), variance)
+    bridge = result["independent_concordance"]
+    assert bridge["bridge_residual_equivalence_margin"] == 0.30
+    assert bridge["criterion"] == "SYMMETRIC_TOST_EQUIVALENCE"
+    assert bridge["minimum_analyzable_plants_per_world_each_block"] == (
+        result["components"]["bridge_equivalence_n_per_world_each_block"]
+    )
+    assert (
+        bridge["recruitment_plants_per_world_each_block"]
+        >= bridge["minimum_analyzable_plants_per_world_each_block"]
+    )
+
+
+def test_tighter_bridge_equivalence_margin_never_reduces_bridge_n() -> None:
+    variance = varmod.summarize(_rows(), _d0_receipt())
+    base = planmod.plan(_freeze(), variance)
+    tighter = _freeze()
+    tighter["targets"]["bridge_residual_equivalence_margin"] = 0.20
+    tighter_plan = planmod.plan(tighter, variance)
+    assert (
+        tighter_plan["independent_concordance"][
+            "minimum_analyzable_plants_per_world_each_block"
+        ]
+        >= base["independent_concordance"][
+            "minimum_analyzable_plants_per_world_each_block"
+        ]
+    )
