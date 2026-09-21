@@ -516,6 +516,19 @@ C_R epsilon^2.
 
 The same construction applies near `p=1` using `1-epsilon` and `1-2epsilon`. Thus finite-frequency experiments can reduce deterministic endpoint approximation error from order `epsilon` to order `epsilon^2` when a curvature bound is available.
 
+Sampling uncertainty can be folded into the same certificate. If `Delta(epsilon)` and `Delta(2epsilon)` have intervals `[L_1,U_1]` and `[L_2,U_2]`, then
+
+```text
+Delta_R
+in
+[
+2L_1-U_2-C_R epsilon^2,
+2U_1-L_2+C_R epsilon^2
+].
+```
+
+Only an interval entirely above or below zero licenses an invasion or non-invasion verdict; overlap with zero remains unresolved.
+
 Along an environmental value gradient `Phi(E)=a(E-E_V)`, a fitness-scale endpoint error bound `B` translates directly into environmental threshold uncertainty
 
 ```text
