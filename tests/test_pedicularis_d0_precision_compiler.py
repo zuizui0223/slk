@@ -75,6 +75,9 @@ def _variance() -> dict:
     for endpoint in v["endpoints"]:
         endpoint["value"] = 1.0
         endpoint["meets_registered_floor"] = True
+        if endpoint["endpoint_id"] == "D0_Q4_WET_EFFECT":
+            endpoint["planning_effect"] = 1.0
+            endpoint["planning_effect_source"] = "PED_D0_CAL_V1"
     return v
 
 
@@ -86,11 +89,17 @@ def test_compiled_equivalence_route_is_accepted_by_precision_planner() -> None:
     compiled = compiler.compile_precision_input(_margin(), _variance())
     assert compiled["schema_version"] == "SLK_PEDICULARIS_Y_D0_PRECISION_INPUT_V2"
     assert compiled["input_provenance"]["time_horizon_id"] == "FLOWER_TO_MATURE_VIABLE_SEED"
+    assert compiled["defaults"]["joint_qualification_power"] == 0.80
     assert "D0_Q5_BURDEN_EQ" in _ids(compiled)
     assert "D0_Q5_BURDEN_PRECISION" not in _ids(compiled)
     planned = planner.plan_manifest(compiled)
     assert planned["status"] == "PLANNING_ONLY_NOT_A_BIOLOGICAL_RECEIPT"
     assert planned["maxima_by_allocation_unit"]
+    assert planned["analysis_minima_by_allocation_unit"]
+    assert (
+        planned["joint_qualification_design"]["status"]
+        == "JOINT_QUALIFICATION_POWER_TARGET_REGISTERED"
+    )
 
 
 def test_compiled_adjustment_route_uses_burden_precision_not_equivalence() -> None:
@@ -100,6 +109,11 @@ def test_compiled_adjustment_route_uses_burden_precision_not_equivalence() -> No
     burden = next(x for x in compiled["endpoints"] if x["endpoint_id"] == "D0_Q5_BURDEN_PRECISION")
     assert burden["kind"] == "mean_precision"
     assert burden["half_width"] == 0.5
+    planned = planner.plan_manifest(compiled)
+    assert (
+        planned["joint_qualification_design"]["status"]
+        == "JOINT_POWER_INCOMPLETE_PRECISION_ENDPOINT_REQUIRES_SIMULATION"
+    )
 
 
 def test_margin_and_variance_contexts_must_match() -> None:
@@ -159,4 +173,26 @@ def test_endpoint_below_registered_pilot_floor_is_rejected() -> None:
     endpoint = next(x for x in variance["endpoints"] if x["endpoint_id"] == "D0_Q3_POLLEN")
     endpoint["meets_registered_floor"] = False
     with pytest.raises(ValueError, match="below registered calibration floor"):
+        compiler.compile_precision_input(_margin(), variance)
+
+
+def test_q4_superiority_requires_independent_planning_alternative() -> None:
+    variance = _variance()
+    endpoint = next(
+        x for x in variance["endpoints"]
+        if x["endpoint_id"] == "D0_Q4_WET_EFFECT"
+    )
+    endpoint["planning_effect"] = None
+    with pytest.raises(ValueError, match="planning_effect"):
+        compiler.compile_precision_input(_margin(), variance)
+
+
+def test_q4_planning_alternative_must_exceed_minimum_useful_effect() -> None:
+    variance = _variance()
+    endpoint = next(
+        x for x in variance["endpoints"]
+        if x["endpoint_id"] == "D0_Q4_WET_EFFECT"
+    )
+    endpoint["planning_effect"] = 0.5
+    with pytest.raises(ValueError, match="must exceed frozen minimum effect"):
         compiler.compile_precision_input(_margin(), variance)
