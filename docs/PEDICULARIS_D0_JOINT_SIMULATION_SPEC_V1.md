@@ -2,15 +2,12 @@
 
 ## Status
 
-Prospective simulation specification only.
+Prospective simulation specification with an executable normal-approximation implementation. No biological D0 result exists.
 
 This document does not replace the conservative union-bound design in
 `plan_pedicularis_y_d0_precision.py`.
 
-The simulation becomes eligible to replace that fallback only after independent
-D0-CAL data exist and the simulation code, planning alternatives, random seed,
-replicate count and candidate sample-size grid are frozen before confirmatory
-outcomes are opened.
+The executable implementation is `scripts/simulate_pedicularis_d0_joint_power.py`. It becomes eligible to replace the conservative fallback only after independent D0-CAL data exist and a `SLK_PEDICULARIS_D0_JOINT_POWER_SIMULATION_FREEZE_V1` receipt freezes the planning alternatives, simulation model, random seed, replicate count, Monte Carlo interval, candidate sample-size grid and burden weights before confirmatory outcomes are opened.
 
 ## Goal
 
@@ -223,8 +220,11 @@ requires a new protocol version rather than a sample-size patch.
 UNION_BOUND_PLANNER
 = ACTIVE_SAFE_FALLBACK
 
-CALIBRATION_JOINT_SIMULATION
-= SPECIFIED_NOT_YET_IMPLEMENTED
+CALIBRATION_JOINT_SIMULATION_NORMAL_APPROX
+= IMPLEMENTED_REQUIRES_PROSPECTIVE_FREEZE
+
+EXACT_BOOTSTRAP_CONFIRMATORY_SIMULATION
+= OPTIONAL_FUTURE_UPGRADE
 
 ENDPOINT_DEMOTION
 = NOT_AUTHORIZED
@@ -232,3 +232,44 @@ ENDPOINT_DEMOTION
 BIOLOGICAL_D0_RECEIPT
 = ZERO
 ```
+
+## Executable implementation
+
+The first registered implementation uses:
+
+```text
+whole-plant empirical resampling of independent D0-CAL units
++ frozen whole-plant attrition
++ calibration missingness patterns
++ endpoint-specific planning-truth shifts
++ normal-approximation endpoint adjudication
++ exact all-endpoints-pass aggregation
++ Wilson Monte Carlo interval for the all-pass probability.
+```
+
+LOW-Y multivariate endpoint vectors are resampled as whole plants, preserving covariance among Q1/Q3/Q4/Q5 contrasts and the LOW-Y side of Q2. HIGH-Y D-CAL vectors are resampled independently as whole plants for Q2.
+
+Candidate allocations are eligible only when the lower Monte Carlo confidence bound for full qualification reaches the frozen joint target.
+
+The output also reports the conservative analytical union-bound allocation so that any efficiency gain is explicit rather than assumed.
+
+The implementation intentionally does not impose the union-bound raw required sample size as a floor inside the simulation. Doing so would prevent the simulation from identifying a smaller dependence-aware design. Candidate n is judged by its simulated all-pass probability.
+
+## Freeze requirement
+
+Use `data/PEDICULARIS_D0_JOINT_POWER_SIMULATION_FREEZE_TEMPLATE_V1.json` and freeze, at minimum:
+
+```text
+population / season / fitness scale / horizon
+confirmatory dataset id
+margin freeze commit
+candidate allocation grid
+simulation model
+random seed
+replicate count
+Monte Carlo interval level
+target all-pass power
+field-burden weights.
+```
+
+The simulator rejects context drift, target drift, duplicate candidates, unfrozen candidate grids, unfrozen seeds and opened confirmatory outcomes.
