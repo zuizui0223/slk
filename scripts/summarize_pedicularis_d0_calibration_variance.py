@@ -199,12 +199,37 @@ def _two_group_receipt(low_by_plant: dict[str, dict[str, dict[str, str]]], high_
     }
 
 
-def summarize(rows: list[dict[str, str]], confirmatory_dataset_id: str, alpha: float = 0.05, power: float = 0.80, attrition: float = 0.15) -> dict:
+def summarize(
+    rows: list[dict[str, str]],
+    confirmatory_dataset_id: str,
+    alpha: float = 0.05,
+    power: float = 0.80,
+    joint_qualification_power: float = 0.80,
+    attrition: float = 0.15,
+    q4_wet_planning_effect: float | None = None,
+    q4_wet_planning_effect_source: str | None = None,
+) -> dict:
     _need(bool(rows), "D0-CAL rows are empty")
     _need(confirmatory_dataset_id and confirmatory_dataset_id != D0_DATASET_ID, "invalid confirmatory_dataset_id")
     _need(0 < alpha < 1, "alpha must be in (0,1)")
     _need(0 < power < 1, "power must be in (0,1)")
+    _need(
+        0 < joint_qualification_power < 1,
+        "joint_qualification_power must be in (0,1)",
+    )
     _need(0 <= attrition < 1, "attrition must be in [0,1)")
+    if q4_wet_planning_effect is not None:
+        _need(
+            isinstance(q4_wet_planning_effect, (int, float))
+            and math.isfinite(float(q4_wet_planning_effect))
+            and float(q4_wet_planning_effect) > 0,
+            "q4_wet_planning_effect must be positive finite numeric",
+        )
+        _need(
+            isinstance(q4_wet_planning_effect_source, str)
+            and bool(q4_wet_planning_effect_source.strip()),
+            "q4_wet_planning_effect_source is required when planning effect is supplied",
+        )
 
     for row in rows:
         _need(row.get("dataset_id") == D0_DATASET_ID, "wrong dataset_id in D0-CAL")
@@ -254,6 +279,16 @@ def summarize(rows: list[dict[str, str]], confirmatory_dataset_id: str, alpha: f
         _two_group_receipt(low_by_plant, high_by_plant, endpoint_id) for endpoint_id in TWO_GROUP_SPECS
     ]
     endpoint_rows.sort(key=lambda x: x["endpoint_id"])
+    wet_row = next(
+        x for x in endpoint_rows
+        if x["endpoint_id"] == "D0_Q4_WET_EFFECT"
+    )
+    wet_row["planning_effect"] = (
+        float(q4_wet_planning_effect)
+        if q4_wet_planning_effect is not None
+        else None
+    )
+    wet_row["planning_effect_source"] = q4_wet_planning_effect_source
     all_ready = all(row["meets_registered_floor"] for row in endpoint_rows)
 
     return {
@@ -271,7 +306,12 @@ def summarize(rows: list[dict[str, str]], confirmatory_dataset_id: str, alpha: f
             "confirmatory_dataset_id": confirmatory_dataset_id,
             "confirmatory_outcomes_opened": False,
         },
-        "planner_defaults": {"alpha": alpha, "power": power, "attrition": attrition},
+        "planner_defaults": {
+            "alpha": alpha,
+            "power": power,
+            "joint_qualification_power": joint_qualification_power,
+            "attrition": attrition,
+        },
         "endpoints": endpoint_rows,
         "source_counts": {"low_y_plants": len(low_by_plant), "high_y_plants": len(high_by_plant)},
         "claim_ceiling": "CALIBRATION_VARIANCE_ONLY_NO_D0_OR_G3_G5_EFFECT",
@@ -289,11 +329,23 @@ def main() -> None:
     parser.add_argument("--confirmatory-dataset-id", required=True)
     parser.add_argument("--alpha", type=float, default=0.05)
     parser.add_argument("--power", type=float, default=0.80)
+    parser.add_argument("--joint-qualification-power", type=float, default=0.80)
     parser.add_argument("--attrition", type=float, default=0.15)
+    parser.add_argument("--q4-wet-planning-effect", type=float)
+    parser.add_argument("--q4-wet-planning-effect-source")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
 
-    result = summarize(_read_csv(args.d0_cal_csv), args.confirmatory_dataset_id, alpha=args.alpha, power=args.power, attrition=args.attrition)
+    result = summarize(
+        _read_csv(args.d0_cal_csv),
+        args.confirmatory_dataset_id,
+        alpha=args.alpha,
+        power=args.power,
+        joint_qualification_power=args.joint_qualification_power,
+        attrition=args.attrition,
+        q4_wet_planning_effect=args.q4_wet_planning_effect,
+        q4_wet_planning_effect_source=args.q4_wet_planning_effect_source,
+    )
     text = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
         args.output.write_text(text, encoding="utf-8")
