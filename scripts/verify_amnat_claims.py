@@ -8,6 +8,9 @@ from pathlib import Path
 try:
     from scripts.slk_threshold_atlas import (
         ArchitecturePath,
+        REGISTERED_WITNESS_MORAN_BETA,
+        REGISTERED_WITNESS_MORAN_N,
+        REGISTERED_WITNESS_PARAMETERS,
         SymmetricTwoStrategyGame,
         canonical_architecture_game,
         canonical_reciprocal_fixation_ratio_closed_form,
@@ -21,6 +24,9 @@ try:
 except ImportError:  # direct execution via `python scripts/verify_amnat_claims.py`
     from slk_threshold_atlas import (
         ArchitecturePath,
+        REGISTERED_WITNESS_MORAN_BETA,
+        REGISTERED_WITNESS_MORAN_N,
+        REGISTERED_WITNESS_PARAMETERS,
         SymmetricTwoStrategyGame,
         canonical_architecture_game,
         canonical_reciprocal_fixation_ratio_closed_form,
@@ -52,7 +58,8 @@ def verify() -> dict[str, object]:
     }
 
     # NE1: real conflict need not make differentiation profitable.
-    L, k = 2.0, 2.2
+    L = REGISTERED_WITNESS_PARAMETERS["W1"]["L"]
+    k = REGISTERED_WITNESS_PARAMETERS["W1"]["k"]
     R = architecture.recovery(architecture.dmax)
     K = k
     phi = architecture.phi(k)
@@ -62,7 +69,7 @@ def verify() -> dict[str, object]:
     }
 
     # NE2: positive endpoint value need not imply small-step selective accessibility.
-    k = 1.5
+    k = REGISTERED_WITNESS_PARAMETERS["W2"]["k"]
     phi = architecture.phi(k)
     local_gradient = k_local - k
     assert phi > 0 and local_gradient < 0
@@ -76,7 +83,8 @@ def verify() -> dict[str, object]:
     }
 
     # NE3: small-step accessible positive endpoint need not invade from rarity.
-    k, eta = 0.8, 1.5
+    k = REGISTERED_WITNESS_PARAMETERS["W3"]["k"]
+    eta = REGISTERED_WITNESS_PARAMETERS["W3"]["eta"]
     phi = architecture.phi(k)
     local_gradient = k_local - k
     delta_rare = phi - eta
@@ -94,7 +102,10 @@ def verify() -> dict[str, object]:
     }
 
     # NE4: rare invasion need not imply reciprocal fixation superiority.
-    k, eta, beta, N = 2.2, -1.0, 1.0, 10
+    k = REGISTERED_WITNESS_PARAMETERS["W4"]["k"]
+    eta = REGISTERED_WITNESS_PARAMETERS["W4"]["eta"]
+    beta = REGISTERED_WITNESS_MORAN_BETA
+    N = REGISTERED_WITNESS_MORAN_N
     phi = architecture.phi(k)
     delta_rare = phi - eta
     game = canonical_architecture_game(phi, eta).as_game()
@@ -112,7 +123,10 @@ def verify() -> dict[str, object]:
     }
 
     # NE5: absolute fixation advantage over neutrality can disagree with occupancy.
-    k, eta, beta, N = 2.1, -0.5, 1.0, 10
+    k = REGISTERED_WITNESS_PARAMETERS["W5"]["k"]
+    eta = REGISTERED_WITNESS_PARAMETERS["W5"]["eta"]
+    beta = REGISTERED_WITNESS_MORAN_BETA
+    N = REGISTERED_WITNESS_MORAN_N
     phi = architecture.phi(k)
     weak_selection_advantage = 3 * phi > eta
     game = canonical_architecture_game(phi, eta).as_game()
