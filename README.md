@@ -202,7 +202,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 22. `docs/PEDICULARIS_D0_EQUIVALENCE_MARGIN_LEDGER_V1.md` — biological margin-source contract.
 23. `docs/PEDICULARIS_D0_CONFIRMATORY_QUALIFICATION_V1.md` — independent D0 Q1-Q6 qualification.
 24. `docs/PEDICULARIS_D0_JOINT_POWER_AUDIT_V1.md` — corrected TOST planning, all-pass power bounds, attrition semantics and endpoint-retention decision.
-25. `docs/PEDICULARIS_D0_JOINT_SIMULATION_SPEC_V1.md` — prospective calibration-resampling design for covariance-aware full-qualification power.
+25. `docs/PEDICULARIS_D0_JOINT_SIMULATION_SPEC_V1.md` — executable, prospectively frozen calibration-resampling design for covariance-aware full-qualification power.
 26. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
 27. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
 28. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
@@ -248,6 +248,8 @@ PEDICULARIS_D0_JOINT_QUALIFICATION_POWER_REGISTERED
 PEDICULARIS_D0_RECRUITMENT_ANALYSIS_N_SEPARATED
 PEDICULARIS_D0_MISSINGNESS_RECEIPT_REGISTERED
 PEDICULARIS_D0_JOINT_SIMULATION_SPEC_REGISTERED
+PEDICULARIS_D0_JOINT_SIMULATION_IMPLEMENTED
+PEDICULARIS_D0_JOINT_SIMULATION_FREEZE_REGISTERED
 PEDICULARIS_D0_ENDPOINT_DEMOTION_NOT_AUTHORIZED
 PEDICULARIS_G3_G5_EFFECT_PIPELINE_REGISTERED
 PEDICULARIS_G3_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED
