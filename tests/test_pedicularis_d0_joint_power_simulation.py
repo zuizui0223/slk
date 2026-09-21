@@ -123,6 +123,16 @@ def _planned() -> dict:
         "joint_qualification_design": {
             "target_all_pass_power": 0.80,
         },
+        "maxima_by_allocation_unit": {
+            "paired_plants_total": {
+                "inflated_required_n": 20,
+                "driving_endpoints": ["D0_Q4_WET_EFFECT"],
+            },
+            "plants_per_group": {
+                "inflated_required_n": 20,
+                "driving_endpoints": ["D0_Q2_VOLUME"],
+            },
+        },
         "results": [],
     }
 
@@ -186,6 +196,13 @@ def test_joint_simulation_runs_whole_plant_design_and_selects_feasible_candidate
     assert result["selected_allocation"]["n_high_recruit"] in {8, 20}
     assert result["simulation_model"].startswith("WHOLE_PLANT_EMPIRICAL_RESAMPLING")
     assert result["calibration_context"]["population_id"] == "pop1"
+    fallback = result["analytical_union_bound_fallback"]
+    assert fallback["n_low_recruit"] == 20
+    assert fallback["n_high_recruit"] == 20
+    assert (
+        result["selected_allocation"]["field_burden"]
+        <= fallback["field_burden"]
+    )
     assert set(result["selected_allocation"]["gate_pass_probabilities"]) == {
         "Q1",
         "Q2",
