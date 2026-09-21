@@ -84,3 +84,13 @@ def test_arbitrary_shape_endpoint_invasion_is_registered() -> None:
     assert "UTA1.8" in ledger
     assert "Phi=-h_R" in manuscript
     assert "regardless of how nonlinear the interior frequency response may be" in manuscript
+
+
+def test_finite_frequency_endpoint_certification_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    assert "UTA1.9" in theory
+    assert "UTA1.9" in ledger
+    assert "C_R epsilon^2" in manuscript
+    assert "overlap with zero remains unresolved" in manuscript
