@@ -448,3 +448,21 @@ inflated_required_n = prospective recruitment target after attrition inflation
 The confirmatory adjudicator compares endpoint complete cases with `raw_required_n`, not with the inflated recruitment count. Otherwise attrition inflation would provide no actual attrition allowance.
 
 The measured-burden-adjustment Q5 lane uses a CI-half-width criterion rather than a standard power endpoint. Until a prospectively registered pass-probability simulation is supplied for that precision endpoint, the planner labels the full joint-power receipt incomplete for that lane.
+
+## Q4 superiority planning alternative handoff
+
+The D0-CAL variance summarizer now carries the joint qualification target and can freeze the Q4 wet-channel planning alternative:
+
+```bash
+python scripts/summarize_pedicularis_d0_calibration_variance.py \
+  PEDICULARIS_D0_CAL_FIELD_V1.csv \
+  --confirmatory-dataset-id PED_D0_QUAL_CONFIRM_V1 \
+  --joint-qualification-power 0.80 \
+  --q4-wet-planning-effect <independent-calibration-alternative> \
+  --q4-wet-planning-effect-source <source-id> \
+  --output PEDICULARIS_D0_VARIANCE_INPUT_V1.json
+```
+
+The compiler fails closed if Q4 has no positive planning alternative or if the planning alternative does not exceed the frozen minimum useful effect. The minimum useful effect is the decision threshold; it is not reused as the assumed true effect for power.
+
+The compact six-endpoint precision-input template is example-only. Production precision input must come from `compile_pedicularis_d0_precision_input.py`, which expands the full active endpoint inventory from the frozen margin and variance receipts.
