@@ -201,14 +201,15 @@ These modules may be cited by SLK without being promoted to independent manuscri
 21. `docs/PEDICULARIS_D0_FEASIBILITY_PROTOCOL_V1.md` — pre-cost comparator definition and incremental-K boundary.
 22. `docs/PEDICULARIS_D0_EQUIVALENCE_MARGIN_LEDGER_V1.md` — biological margin-source contract.
 23. `docs/PEDICULARIS_D0_CONFIRMATORY_QUALIFICATION_V1.md` — independent D0 Q1-Q6 qualification.
-24. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
-25. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
-26. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-27. `docs/AMNAT_REVIEWER_RISK_AUDIT_V9.md` — current skeptical-reviewer audit after converting endpoint invasion into finite-frequency certification.
-28. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-29. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
-30. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
-31. `PROVENANCE.md` — historical provenance separated from current scientific ownership.
+24. `docs/PEDICULARIS_D0_JOINT_POWER_AUDIT_V1.md` — corrected TOST planning, all-pass power bounds, attrition semantics and endpoint-retention decision.
+25. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
+26. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
+27. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
+28. `docs/AMNAT_REVIEWER_RISK_AUDIT_V9.md` — current skeptical-reviewer audit after converting endpoint invasion into finite-frequency certification.
+29. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+30. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
+31. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
+32. `PROVENANCE.md` — historical provenance separated from current scientific ownership.
 
 ## Current status
 
@@ -241,6 +242,10 @@ PEDICULARIS_UNIFIED_CALIBRATION_PROGRAM_REGISTERED
 PEDICULARIS_STRUCTURAL_Y_Y0_Y3_PIPELINE_REGISTERED
 PEDICULARIS_D0_CALIBRATION_AND_MARGIN_PIPELINE_REGISTERED
 PEDICULARIS_D0_INDEPENDENT_CONFIRMATORY_PIPELINE_REGISTERED
+PEDICULARIS_D0_TOST_POWER_CORRECTED
+PEDICULARIS_D0_JOINT_QUALIFICATION_POWER_REGISTERED
+PEDICULARIS_D0_RECRUITMENT_ANALYSIS_N_SEPARATED
+PEDICULARIS_D0_MISSINGNESS_RECEIPT_REGISTERED
 PEDICULARIS_G3_G5_EFFECT_PIPELINE_REGISTERED
 PEDICULARIS_G3_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED
 PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED
