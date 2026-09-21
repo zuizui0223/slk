@@ -31,6 +31,8 @@ on:
       - 'theory/**'
       - 'scripts/**'
       - 'tests/test_amnat_submission_tools.py'
+      - 'tests/test_moran_process_invariant.py'
+      - 'pytest.ini'
       - '.github/workflows/build-amnat-review-package.yml'
 
 concurrency:
