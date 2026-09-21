@@ -229,16 +229,37 @@ def plan_manifest(manifest: dict) -> dict:
     )
 
     maxima_by_unit: dict[str, dict] = {}
+    analysis_minima_by_unit: dict[str, dict] = {}
     for row in results:
         unit = row["n_unit"]
-        n = row["inflated_required_n"]
-        if unit not in maxima_by_unit or n > maxima_by_unit[unit]["inflated_required_n"]:
+
+        inflated_n = row["inflated_required_n"]
+        if (
+            unit not in maxima_by_unit
+            or inflated_n > maxima_by_unit[unit]["inflated_required_n"]
+        ):
             maxima_by_unit[unit] = {
-                "inflated_required_n": n,
+                "inflated_required_n": inflated_n,
                 "driving_endpoints": [row["endpoint_id"]],
             }
-        elif n == maxima_by_unit[unit]["inflated_required_n"]:
-            maxima_by_unit[unit]["driving_endpoints"].append(row["endpoint_id"])
+        elif inflated_n == maxima_by_unit[unit]["inflated_required_n"]:
+            maxima_by_unit[unit]["driving_endpoints"].append(
+                row["endpoint_id"]
+            )
+
+        raw_n = row["raw_required_n"]
+        if (
+            unit not in analysis_minima_by_unit
+            or raw_n > analysis_minima_by_unit[unit]["raw_required_n"]
+        ):
+            analysis_minima_by_unit[unit] = {
+                "raw_required_n": raw_n,
+                "driving_endpoints": [row["endpoint_id"]],
+            }
+        elif raw_n == analysis_minima_by_unit[unit]["raw_required_n"]:
+            analysis_minima_by_unit[unit]["driving_endpoints"].append(
+                row["endpoint_id"]
+            )
 
     return {
         "planner_schema_version": "SLK_PEDICULARIS_Y_D0_PRECISION_PLAN_V1",
@@ -259,9 +280,11 @@ def plan_manifest(manifest: dict) -> dict:
         },
         "results": results,
         "maxima_by_allocation_unit": maxima_by_unit,
+        "analysis_minima_by_allocation_unit": analysis_minima_by_unit,
         "allocation_rule": (
             "Do not take one numeric maximum across incompatible units. "
-            "paired_plants_total, plants_total, and plants_per_group must be translated into the frozen field allocation separately."
+            "paired_plants_total, plants_total, and plants_per_group must be translated into the frozen field allocation separately. "
+            "inflated_required_n is the recruitment target; raw_required_n is the minimum analyzable complete-case floor after attrition."
         ),
         "anti_peeking": (
             "Inputs must come from independent calibration, literature, or prospectively justified margins/effects; "
