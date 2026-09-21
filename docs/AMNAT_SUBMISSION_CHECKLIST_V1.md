@@ -13,8 +13,8 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
 TITLE_WORDS                         9
-ABSTRACT_WORDS                    169
-TEXT_WORDS_EXCL_LITERATURE_CITED 4815
+ABSTRACT_WORDS                    189
+TEXT_WORDS_EXCL_LITERATURE_CITED 5085
 FIGURES                             3
 ```
 
@@ -41,7 +41,7 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 The CI-built review manuscript is generated directly from the canonical V4 source. The current build renders successfully, passes DOCX/PDF structure and anonymity checks, and embeds all three figures.
 
 ```text
-MAIN_REVIEW_PDF_PAGES      28
+MAIN_REVIEW_PDF_PAGES      29
 ANONYMOUS_TITLE_PDF_PAGES   1
 DOUBLE_SPACED               true
 LINE_NUMBERS                true
@@ -49,7 +49,7 @@ PAGE_NUMBERS                true
 EMBEDDED_FIGURES            3
 RENDERED_IDENTITY_SCAN      PASS
 FIGURE_1_MANUAL_QA          PASS — threshold atlas readable, no clipping, no duplicate caption
-FIGURE_3_MANUAL_QA          PASS — G7 2–3 frequency diagnostic readable, no clipping
+FIGURE_3_MANUAL_QA          PASS — G7 endpoint + 2–3+ frequency diagnostics readable, no clipping
 FULL_PAGE_BY_PAGE_PROOFREAD OPEN
 ```
 

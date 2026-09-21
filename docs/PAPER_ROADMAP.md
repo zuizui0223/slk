@@ -28,7 +28,8 @@ Core claims:
 7. along `Phi(E)=a(E-E_V)`, ecology displaces the rare-invasion threshold by `E_I-E_V=eta/a`, so realized differentiation can lag behind or precede intrinsic architecture value;
 8. when `eta(E)=eta_0+b(E-E_V)`, the feedback slope changes the displacement to `eta_0/(a-b)` and can amplify or remove a forward invasion crossing;
 9. under the quadratic bridge, conflict magnitude alone cannot rank differentiation across systems when recoverability or architecture cost varies;
-10. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
+10. deterministic invasion remains exact for arbitrary interior frequency-response shape when expressed through rare-D and resident-D endpoint ecological offsets;
+11. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
 
 Flagship exclusions:
 

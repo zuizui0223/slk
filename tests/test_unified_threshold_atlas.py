@@ -3,17 +3,20 @@ from scripts.slk_threshold_atlas import (
     environmental_phi,
     identify_phi_eta_from_symmetric_frequencies,
     identify_quadratic_frequency_components,
+    invasion_environment_from_endpoint_offset,
     occupancy_ratio,
     rare_invasion_environment,
     rare_invasion_environment_affine_feedback,
     rare_invasion_environment_quadratic_frequency,
     rare_invasion_margin,
+    rare_invasion_margin_endpoint,
     rare_invasion_margin_quadratic_frequency,
     reciprocal_fixation_ratio,
     reverse_invasion_environment,
     reverse_invasion_environment_affine_feedback,
     reverse_invasion_environment_quadratic_frequency,
     reverse_invasion_resistance_margin,
+    reverse_invasion_resistance_margin_endpoint,
     reverse_invasion_resistance_margin_quadratic_frequency,
     selection_gap,
     selection_gap_quadratic_frequency,
@@ -246,3 +249,48 @@ def test_nonzero_curvature_rejects_minimal_canonical_frequency_map():
         phi, delta_mid, delta_minus, delta_plus, q
     )
     assert abs(kappa_hat) > 0
+
+
+def test_general_endpoint_invasion_recovers_canonical_pair():
+    phi = 0.3
+    eta = 0.4
+    h_rare = -eta
+    h_resident_d = eta
+    assert rare_invasion_margin_endpoint(phi, h_rare) == phi - eta
+    assert reverse_invasion_resistance_margin_endpoint(
+        phi, h_resident_d
+    ) == phi + eta
+
+
+def test_general_endpoint_invasion_recovers_quadratic_frequency_extension():
+    phi = 0.5
+    h0 = -0.2
+    eta = 0.6
+    kappa = 0.1
+    h_rare = h0 - eta + kappa
+    h_resident_d = h0 + eta + kappa
+    assert abs(
+        rare_invasion_margin_endpoint(phi, h_rare)
+        - rare_invasion_margin_quadratic_frequency(phi, h0, eta, kappa)
+    ) < 1e-12
+    assert abs(
+        reverse_invasion_resistance_margin_endpoint(phi, h_resident_d)
+        - reverse_invasion_resistance_margin_quadratic_frequency(
+            phi, h0, eta, kappa
+        )
+    ) < 1e-12
+
+
+def test_endpoint_offsets_control_window_width_and_center_without_interior_shape():
+    e_v = 7.0
+    slope = 1.5
+    h_rare = -0.8
+    h_resident_d = 0.4
+    e_i = invasion_environment_from_endpoint_offset(e_v, slope, h_rare)
+    e_r = invasion_environment_from_endpoint_offset(
+        e_v, slope, h_resident_d
+    )
+    expected_width = (h_resident_d - h_rare) / slope
+    expected_center_shift = -(h_rare + h_resident_d) / (2 * slope)
+    assert abs((e_i - e_r) - expected_width) < 1e-12
+    assert abs(((e_i + e_r) / 2 - e_v) - expected_center_shift) < 1e-12
