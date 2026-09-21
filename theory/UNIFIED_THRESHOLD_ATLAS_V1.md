@@ -1073,6 +1073,79 @@ at the rare-D endpoint, with the symmetric design near `p=1`.
 
 The second-order certificate improves the deterministic approximation error from `O(epsilon)` to `O(epsilon^2)` when a valid curvature bound is available.
 
+### Combining sampling uncertainty with endpoint approximation
+
+Suppose the measured selection difference at `p=epsilon` has an uncertainty interval
+
+```text
+Delta(epsilon)
+in
+[L_epsilon,U_epsilon].
+```
+
+Under the one-point Lipschitz condition, the endpoint interval becomes
+
+```text
+Delta_R
+in
+[
+L_epsilon-M_R epsilon,
+U_epsilon+M_R epsilon
+].
+```
+
+Thus sampling uncertainty and finite-frequency approximation error combine by widening the measured interval.
+
+For the two-point design, suppose
+
+```text
+Delta(epsilon)
+in
+[L_1,U_1]
+```
+
+and
+
+```text
+Delta(2epsilon)
+in
+[L_2,U_2].
+```
+
+Because
+
+```text
+Delta_R_hat
+=
+2Delta(epsilon)-Delta(2epsilon),
+```
+
+interval arithmetic gives
+
+```text
+Delta_R_hat
+in
+[
+2L_1-U_2,
+2U_1-L_2
+].
+```
+
+Adding the curvature remainder yields the certified endpoint interval
+
+```text
+Delta_R
+in
+[
+2L_1-U_2-C_R epsilon^2,
+2U_1-L_2+C_R epsilon^2
+].
+```
+
+The corresponding resident-D formula is obtained by replacing `epsilon,2epsilon` with `1-epsilon,1-2epsilon`.
+
+A positive lower endpoint certifies invasion; a negative upper endpoint certifies non-invasion; overlap with zero remains unresolved.
+
 ### Environmental threshold uncertainty
 
 If architecture value is locally
