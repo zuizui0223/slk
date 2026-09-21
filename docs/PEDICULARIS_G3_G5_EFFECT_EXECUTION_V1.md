@@ -305,7 +305,7 @@ PEDICULARIS_G3_G5_MEASURED_INTERNAL_IDENTITY
     direct/decomposed equality is only algebraic.
 
 PEDICULARIS_G3_G5_MEASURED_CONCORDANT
-    independent direct Phi agrees with the R/K target under the frozen bridge rule.
+    independent direct Phi is equivalent to the R/K target within the frozen bridge-residual margin.
 
 PEDICULARIS_G3_G5_MEASURED_BRIDGE_NOT_CONCORDANT
     both routes are measured, but the independent bridge rule fails.
