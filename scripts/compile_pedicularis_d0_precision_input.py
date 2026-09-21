@@ -151,6 +151,13 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
                 float(planning_effect) > float(margin_value),
                 f"planning_effect must exceed frozen minimum effect: {endpoint_id}",
             )
+            planning_effect_source = v.get("planning_effect_source")
+            _need(
+                isinstance(planning_effect_source, str)
+                and bool(planning_effect_source.strip())
+                and "REQUIRED_BEFORE_USE" not in planning_effect_source,
+                f"missing planning_effect_source: {endpoint_id}",
+            )
             base.update(
                 {
                     "kind": "paired_superiority",
@@ -158,7 +165,7 @@ def compile_precision_input(margin: dict, variance: dict) -> dict:
                     "min_effect": margin_value,
                     "planning_effect": float(planning_effect),
                     "directional": True,
-                    "planning_effect_source": v.get("planning_effect_source"),
+                    "planning_effect_source": planning_effect_source,
                 }
             )
         elif endpoint_id == BURDEN_PRECISION_ID:
