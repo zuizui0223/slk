@@ -273,3 +273,21 @@ field-burden weights.
 ```
 
 The simulator rejects context drift, target drift, duplicate candidates, unfrozen candidate grids, unfrozen seeds and opened confirmatory outcomes.
+
+
+## Calibration-sample uncertainty boundary
+
+The executable V1 simulation is an **inner empirical-resampling design calculation**. It preserves the observed plant-level covariance and missingness structure, but conditions on the finite D0-CAL empirical distribution.
+
+Therefore the reported Monte Carlo confidence interval quantifies uncertainty from the finite number of simulation replicates. It does **not** by itself include uncertainty caused by having only a finite calibration sample.
+
+Before a simulation-selected design replaces the conservative union-bound fallback, report at minimum:
+
+1. the number of LOW-Y and HIGH-Y calibration plants;
+2. endpoint-specific calibration completeness;
+3. sensitivity of the selected allocation to plausible perturbations or an outer calibration bootstrap;
+4. the analytical union-bound fallback beside the simulation choice.
+
+If outer-bootstrap calibration uncertainty materially lowers the qualification-power lower bound, retain the more conservative allocation.
+
+An outer calibration bootstrap is an optional future implementation upgrade; V1 must not describe its inner Monte Carlo interval as a full predictive uncertainty interval.
