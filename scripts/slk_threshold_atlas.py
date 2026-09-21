@@ -219,3 +219,65 @@ def invasion_environment_from_endpoint_offset(
     if phi_slope == 0:
         raise ValueError("phi_slope must be nonzero")
     return value_threshold - endpoint_offset / phi_slope
+
+
+def endpoint_lipschitz_interval(
+    delta_at_epsilon: float,
+    epsilon: float,
+    lipschitz_bound: float,
+) -> tuple[float, float]:
+    """Deterministic endpoint interval from one finite-frequency assay."""
+    if epsilon <= 0:
+        raise ValueError("epsilon must be positive")
+    if lipschitz_bound < 0:
+        raise ValueError("lipschitz_bound must be nonnegative")
+    radius = lipschitz_bound * epsilon
+    return delta_at_epsilon - radius, delta_at_epsilon + radius
+
+
+def extrapolate_endpoint_two_frequency(
+    delta_epsilon: float,
+    delta_two_epsilon: float,
+) -> float:
+    """Linear extrapolation of endpoint value from epsilon and 2*epsilon."""
+    return 2.0 * delta_epsilon - delta_two_epsilon
+
+
+def endpoint_curvature_interval(
+    delta_epsilon: float,
+    delta_two_epsilon: float,
+    epsilon: float,
+    curvature_bound: float,
+) -> tuple[float, float]:
+    """Second-order endpoint interval under |Delta''| <= curvature_bound."""
+    if epsilon <= 0:
+        raise ValueError("epsilon must be positive")
+    if curvature_bound < 0:
+        raise ValueError("curvature_bound must be nonnegative")
+    estimate = extrapolate_endpoint_two_frequency(
+        delta_epsilon, delta_two_epsilon
+    )
+    radius = curvature_bound * epsilon * epsilon
+    return estimate - radius, estimate + radius
+
+
+def sign_certificate(interval: tuple[float, float]) -> str:
+    """Return positive, negative, or unresolved for a deterministic interval."""
+    lower, upper = interval
+    if lower > 0:
+        return "positive"
+    if upper < 0:
+        return "negative"
+    return "unresolved"
+
+
+def environmental_threshold_error_bound(
+    fitness_margin_error_bound: float,
+    phi_environment_slope: float,
+) -> float:
+    """Convert a fitness-scale endpoint error bound to environmental distance."""
+    if fitness_margin_error_bound < 0:
+        raise ValueError("fitness_margin_error_bound must be nonnegative")
+    if phi_environment_slope == 0:
+        raise ValueError("phi_environment_slope must be nonzero")
+    return fitness_margin_error_bound / abs(phi_environment_slope)
