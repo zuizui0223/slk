@@ -1,4 +1,4 @@
-from math import exp, isclose
+from math import exp
 
 import pytest
 
@@ -9,6 +9,7 @@ from scripts.slk_threshold_atlas import (
     fixation_probability_d,
     fixation_probability_s,
     moran_transition_probabilities,
+    numerically_close,
     occupancy_ratio_from_process,
     reciprocal_fixation_ratio_from_process,
     symmetric_rare_mutation_stationary_distribution,
@@ -32,18 +33,8 @@ def test_moran_process_reproduces_canonical_reciprocal_fixation_ratio(phi, eta):
         canonical, beta, n
     )
 
-    assert isclose(
-        process_ratio,
-        closed_form,
-        rel_tol=1e-10,
-        abs_tol=1e-12,
-    )
-    assert isclose(
-        process_ratio,
-        exp(beta * (n - 2) * phi),
-        rel_tol=1e-10,
-        abs_tol=1e-12,
-    )
+    assert numerically_close(process_ratio, closed_form)
+    assert numerically_close(process_ratio, exp(beta * (n - 2) * phi))
 
 
 @pytest.mark.theory_process
@@ -63,7 +54,7 @@ def test_eta_changes_statewise_moran_transitions_even_when_fixation_ratio_cancel
 
     ratio_a = reciprocal_fixation_ratio_from_process(game_a, beta, n)
     ratio_b = reciprocal_fixation_ratio_from_process(game_b, beta, n)
-    assert isclose(ratio_a, ratio_b, rel_tol=1e-10, abs_tol=1e-12)
+    assert numerically_close(ratio_a, ratio_b)
 
 
 @pytest.mark.theory_process
@@ -80,17 +71,10 @@ def test_inv1_stationary_occupancy_is_computed_from_fixations_not_aliased():
     fixation_ratio = rho_d / rho_s
     occupancy_ratio = pi_d / pi_s
 
-    assert isclose(
-        fixation_ratio,
-        occupancy_ratio,
-        rel_tol=1e-10,
-        abs_tol=1e-12,
-    )
-    assert isclose(
+    assert numerically_close(fixation_ratio, occupancy_ratio)
+    assert numerically_close(
         occupancy_ratio_from_process(game, beta, n),
         occupancy_ratio,
-        rel_tol=1e-10,
-        abs_tol=1e-12,
     )
 
 
@@ -116,12 +100,7 @@ def test_noncanonical_diagonal_feedback_breaks_phi_only_closed_form():
     )
     phi_only_prediction = exp(beta * (n - 2) * phi)
 
-    assert not isclose(
-        process_ratio,
-        phi_only_prediction,
-        rel_tol=1e-10,
-        abs_tol=1e-12,
-    )
+    assert not numerically_close(process_ratio, phi_only_prediction)
 
 
 @pytest.mark.theory_process
@@ -139,5 +118,5 @@ def test_canonical_builder_declares_and_validates_required_mapping():
         phi=canonical.phi,
         eta=canonical.eta,
     )
-    assert isclose(game.self_play_gap, canonical.phi)
-    assert isclose(game.eta_coordinate, canonical.eta)
+    assert numerically_close(game.self_play_gap, canonical.phi)
+    assert numerically_close(game.eta_coordinate, canonical.eta)
