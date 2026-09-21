@@ -495,6 +495,39 @@ def _validate_simulation_freeze(
     }
 
 
+def _analytical_fallback_allocation(
+    planned_precision_output: dict,
+    low_weight: float,
+    high_weight: float,
+) -> dict:
+    maxima = planned_precision_output.get("maxima_by_allocation_unit", {})
+    _need(isinstance(maxima, dict) and maxima, "analytical fallback maxima missing")
+
+    def n_for(unit: str) -> int:
+        block = maxima.get(unit)
+        if block is None:
+            return 0
+        n = block.get("inflated_required_n")
+        _need(isinstance(n, int) and n >= 2, f"invalid fallback n: {unit}")
+        return n
+
+    paired_n = n_for("paired_plants_total")
+    total_n = n_for("plants_total")
+    group_n = n_for("plants_per_group")
+    low_n = max(paired_n, total_n, group_n)
+    high_n = group_n
+    _need(low_n >= 2 and high_n >= 2, "invalid fallback allocation")
+    return {
+        "n_low_recruit": low_n,
+        "n_high_recruit": high_n,
+        "field_burden": low_weight * low_n + high_weight * high_n,
+        "source_maxima_by_allocation_unit": maxima,
+        "joint_qualification_design": planned_precision_output.get(
+            "joint_qualification_design"
+        ),
+    }
+
+
 def simulate_joint_power(
     calibration_rows: list[dict[str, str]],
     compiled_precision_input: dict,
@@ -552,10 +585,29 @@ def simulate_joint_power(
 
     feasible = [x for x in results if x["meets_joint_target_by_lower_mc_bound"]]
     selected = (
-        min(feasible, key=lambda x: (x["field_burden"], x["n_low_recruit"], x["n_high_recruit"]))
+        min(
+            feasible,
+            key=lambda x: (
+                x["field_burden"],
+                x["n_low_recruit"],
+                x["n_high_recruit"],
+            ),
+        )
         if feasible
         else None
     )
+    fallback = _analytical_fallback_allocation(
+        planned_precision_output,
+        cfg["low_weight"],
+        cfg["high_weight"],
+    )
+    if selected is not None:
+        selected["field_burden_reduction_vs_union_bound"] = (
+            fallback["field_burden"] - selected["field_burden"]
+        )
+        selected["field_burden_ratio_vs_union_bound"] = (
+            selected["field_burden"] / fallback["field_burden"]
+        )
     return {
         "schema_version": "SLK_PEDICULARIS_D0_JOINT_POWER_SIMULATION_V1",
         "status": (
@@ -575,6 +627,7 @@ def simulate_joint_power(
             "high_y_recruit": cfg["high_weight"],
         },
         "candidate_results": results,
+        "analytical_union_bound_fallback": fallback,
         "selected_allocation": selected,
         "claim_ceiling": "PROSPECTIVE_SAMPLE_SIZE_DESIGN_ONLY_NO_BIOLOGICAL_D0_RESULT",
     }
