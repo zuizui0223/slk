@@ -477,6 +477,66 @@ The canonical and quadratic models are nested descriptions of these endpoint off
 
 This means higher-order frequency dependence changes how ecological mechanisms are decomposed, but it does not invalidate deterministic endpoint invasion inference if the endpoint selection limits can be estimated. Fixation and occupancy remain separate and are not rescued by this endpoint argument.
 
+### Finite-frequency assays can certify the endpoint signs
+
+Endpoint invasion does not require experimentally attaining exactly `p=0` or `p=1`. Suppose near the rare-D endpoint that
+
+```text
+|Delta(p)-Delta_R| <= M_R p.
+```
+
+A measurement at `p=epsilon` then implies
+
+```text
+Delta_R
+in
+[
+Delta(epsilon)-M_R epsilon,
+Delta(epsilon)+M_R epsilon
+].
+```
+
+If the lower bound is positive, rare D invasion is certified; if the upper bound is negative, failure of rare D invasion is certified. An interval containing zero is unresolved, not evidence of no invasion.
+
+A stronger second-order certificate uses two rare frequencies. If `|Delta''(p)|<=C_R` on `[0,2epsilon]`, define
+
+```text
+Delta_R_hat
+=
+2Delta(epsilon)-Delta(2epsilon).
+```
+
+Then
+
+```text
+|Delta_R_hat-Delta_R|
+<=
+C_R epsilon^2.
+```
+
+The same construction applies near `p=1` using `1-epsilon` and `1-2epsilon`. Thus finite-frequency experiments can reduce deterministic endpoint approximation error from order `epsilon` to order `epsilon^2` when a curvature bound is available.
+
+Sampling uncertainty can be folded into the same certificate. If `Delta(epsilon)` and `Delta(2epsilon)` have intervals `[L_1,U_1]` and `[L_2,U_2]`, then
+
+```text
+Delta_R
+in
+[
+2L_1-U_2-C_R epsilon^2,
+2U_1-L_2+C_R epsilon^2
+].
+```
+
+Only an interval entirely above or below zero licenses an invasion or non-invasion verdict; overlap with zero remains unresolved.
+
+Along an environmental value gradient `Phi(E)=a(E-E_V)`, a fitness-scale endpoint error bound `B` translates directly into environmental threshold uncertainty
+
+```text
+|E_I_hat-E_I| <= B/a.
+```
+
+For the two-point certificate, `B=C_R epsilon^2`. This turns endpoint invasion from an ideal limit into a prospective sampling-resolution problem.
+
 ### Discordance becomes diagnostic
 
 Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.

@@ -1,3 +1,5 @@
+import pytest
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -5,6 +7,8 @@ MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
 THEORY = ROOT / "theory" / "UNIFIED_THRESHOLD_ATLAS_V1.md"
 FIG2 = ROOT / "figures" / "FIG2_PHASE_MAP.svg"
 LEDGER = ROOT / "docs" / "THEOREM_CLAIM_LEDGER_V1.md"
+
+pytestmark = pytest.mark.document_sync
 
 
 def test_environmental_threshold_displacement_is_registered_everywhere() -> None:
@@ -84,3 +88,13 @@ def test_arbitrary_shape_endpoint_invasion_is_registered() -> None:
     assert "UTA1.8" in ledger
     assert "Phi=-h_R" in manuscript
     assert "regardless of how nonlinear the interior frequency response may be" in manuscript
+
+
+def test_finite_frequency_endpoint_certification_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    assert "UTA1.9" in theory
+    assert "UTA1.9" in ledger
+    assert "C_R epsilon^2" in manuscript
+    assert "overlap with zero remains unresolved" in manuscript

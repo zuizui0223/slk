@@ -1,6 +1,10 @@
+import pytest
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+pytestmark = pytest.mark.document_sync
 LEDGER = ROOT / "docs" / "QUANTITATIVE_CLAIM_LEDGER_V1.md"
 MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
 

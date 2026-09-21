@@ -91,7 +91,8 @@ SLK owns the cross-repository theory needed for the integrated hierarchy:
 7. the comparative prediction that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies;
 8. the three-frequency diagnostic that tests canonical frequency-map adequacy and repairs invasion thresholds when curvature is present;
 9. the arbitrary-shape endpoint result showing that deterministic invasion requires only rare-D and resident-D ecological offsets even when the interior frequency response is nonlinear;
-10. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+10. the finite-frequency certification result converting ideal endpoint limits into bounded one- or two-frequency near-endpoint assays with explicit unresolved states;
+12. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
@@ -187,26 +188,27 @@ These modules may be cited by SLK without being promoted to independent manuscri
 8. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
 9. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
 10. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
-11. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
-12. `docs/EMPIRICAL_G1_G9_SOURCE_LEDGER_V1.md` — source-adjudicated map of existing biological systems onto G1-G9, with explicit direct/partial/analogue/reality ceilings.
-13. `docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md` — canonical same-system execution order and design-versus-biological status boundary.
-14. `docs/PEDICULARIS_CONTEXT_SCREEN_V1.md` — fresh population-season P0 screen, field packet and relocation rule.
-15. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
-16. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — Qz/Qp/Qg field execution, hard stops and fallback policy.
-17. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective threshold-freeze rules.
-18. `docs/PEDICULARIS_STRUCTURAL_Y_RECEIPT_V1.md` — Y0-Y1 repeatability/range and z-y coupling receipt.
-19. `docs/PEDICULARIS_STRUCTURAL_Y_FUNCTION_RECEIPT_V1.md` — Y2 preferential loading and Y3 performance-intervention receipt.
-20. `docs/PEDICULARIS_D0_FEASIBILITY_PROTOCOL_V1.md` — pre-cost comparator definition and incremental-K boundary.
-21. `docs/PEDICULARIS_D0_EQUIVALENCE_MARGIN_LEDGER_V1.md` — biological margin-source contract.
-22. `docs/PEDICULARIS_D0_CONFIRMATORY_QUALIFICATION_V1.md` — independent D0 Q1-Q6 qualification.
-23. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
-24. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
-25. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-26. `docs/AMNAT_REVIEWER_RISK_AUDIT_V8.md` — current skeptical-reviewer audit after making deterministic invasion robust to arbitrary interior frequency-response shape.
-27. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-28. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
-29. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
-30. `PROVENANCE.md` — historical provenance separated from current scientific ownership.
+11. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent Moran-process / rare-mutation validation receipt, canonical-mapping guard, and numerical policy.
+12. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
+13. `docs/EMPIRICAL_G1_G9_SOURCE_LEDGER_V1.md` — source-adjudicated map of existing biological systems onto G1-G9, with explicit direct/partial/analogue/reality ceilings.
+14. `docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md` — canonical same-system execution order and design-versus-biological status boundary.
+15. `docs/PEDICULARIS_CONTEXT_SCREEN_V1.md` — fresh population-season P0 screen, field packet and relocation rule.
+16. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
+17. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — Qz/Qp/Qg field execution, hard stops and fallback policy.
+18. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective threshold-freeze rules.
+19. `docs/PEDICULARIS_STRUCTURAL_Y_RECEIPT_V1.md` — Y0-Y1 repeatability/range and z-y coupling receipt.
+20. `docs/PEDICULARIS_STRUCTURAL_Y_FUNCTION_RECEIPT_V1.md` — Y2 preferential loading and Y3 performance-intervention receipt.
+21. `docs/PEDICULARIS_D0_FEASIBILITY_PROTOCOL_V1.md` — pre-cost comparator definition and incremental-K boundary.
+22. `docs/PEDICULARIS_D0_EQUIVALENCE_MARGIN_LEDGER_V1.md` — biological margin-source contract.
+23. `docs/PEDICULARIS_D0_CONFIRMATORY_QUALIFICATION_V1.md` — independent D0 Q1-Q6 qualification.
+24. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
+25. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
+26. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
+27. `docs/AMNAT_REVIEWER_RISK_AUDIT_V9.md` — current skeptical-reviewer audit after converting endpoint invasion into finite-frequency certification.
+28. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
+29. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
+30. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
+31. `PROVENANCE.md` — historical provenance separated from current scientific ownership.
 
 ## Current status
 
@@ -217,6 +219,11 @@ NON_EQUIVALENCE_THEOREM_REGISTERED
 UNIFIED_CRITICAL_SURFACE_ATLAS_REGISTERED
 ONE_FAMILY_WITNESS_SYSTEM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
+INV1_PROCESS_IMPLEMENTATION_REGISTERED
+INV1_PROCESS_TEST_REGISTERED
+CANONICAL_MAPPING_API_GUARD_REGISTERED
+NUMERICAL_TOLERANCE_POLICY_REGISTERED
+THEORY_TEST_CLASSES_SEPARATED
 FIGURE_1_REGISTERED
 FIGURE_2_REGISTERED
 FIGURE_3_REGISTERED
@@ -252,6 +259,8 @@ TWO_FREQUENCY_PHI_ETA_IDENTIFICATION_REGISTERED
 THREE_FREQUENCY_CURVATURE_DIAGNOSTIC_REGISTERED
 GENERALIZED_INVASION_SURFACES_REGISTERED
 ARBITRARY_SHAPE_ENDPOINT_INVASION_REGISTERED
+FINITE_FREQUENCY_ENDPOINT_CERTIFICATION_REGISTERED
+SAMPLING_PLUS_APPROXIMATION_INTERVAL_REGISTERED
 CONFLICT_DIFFERENTIATION_DISCORDANCE_REGISTERED
 FIGURE_2_ECOLOGICAL_PANEL_REGISTERED
 CORE_THEORY_MIGRATED_CONCEPTUALLY

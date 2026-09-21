@@ -29,7 +29,8 @@ Core claims:
 8. when `eta(E)=eta_0+b(E-E_V)`, the feedback slope changes the displacement to `eta_0/(a-b)` and can amplify or remove a forward invasion crossing;
 9. under the quadratic bridge, conflict magnitude alone cannot rank differentiation across systems when recoverability or architecture cost varies;
 10. deterministic invasion remains exact for arbitrary interior frequency-response shape when expressed through rare-D and resident-D endpoint ecological offsets;
-11. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
+11. finite-frequency endpoint assays certify invasion with `O(epsilon)` Lipschitz bounds or `O(epsilon^2)` two-point curvature bounds, with sampling uncertainty carried into the endpoint interval;
+12. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
 
 Flagship exclusions:
 

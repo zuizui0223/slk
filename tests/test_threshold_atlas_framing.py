@@ -1,6 +1,10 @@
+import pytest
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+pytestmark = pytest.mark.document_sync
 MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
 TITLE_PAGE = ROOT / "manuscript" / "AMNAT_TITLE_PAGE_V1.md"
 FIG1 = ROOT / "figures" / "FIG1_LOGIC_DIAGRAM.svg"
