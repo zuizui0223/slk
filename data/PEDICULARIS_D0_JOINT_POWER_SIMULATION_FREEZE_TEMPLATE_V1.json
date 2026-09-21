@@ -8,7 +8,9 @@
     "d0_cal_dataset_id": "PED_D0_CAL_V1",
     "confirmatory_dataset_id": "REQUIRED_BEFORE_USE",
     "margin_freeze_commit": "REQUIRED_BEFORE_USE",
-    "confirmatory_outcomes_opened": false
+    "confirmatory_outcomes_opened": false,
+    "fitness_scale_id": "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER",
+    "time_horizon_id": "REQUIRED_BEFORE_USE"
   },
   "simulation": {
     "model": "WHOLE_PLANT_EMPIRICAL_RESAMPLING_NORMAL_APPROX_ENDPOINT_ADJUDICATION",
