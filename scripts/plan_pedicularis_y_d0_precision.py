@@ -45,6 +45,33 @@ def inflate_for_attrition(n: int, attrition: float = DEFAULT_ATTRITION) -> int:
     return math.ceil(n / (1 - attrition))
 
 
+def normal_approx_paired_equivalence_power(
+    n: int,
+    sd_diff: float,
+    margin: float,
+    alpha: float = DEFAULT_ALPHA,
+) -> float:
+    _finite_pos(n, "n")
+    sd_diff = _finite_pos(sd_diff, "sd_diff")
+    margin = _finite_pos(margin, "margin")
+    standardized = margin * math.sqrt(n) / sd_diff - _z(1 - alpha)
+    return max(0.0, min(1.0, 2 * NormalDist().cdf(standardized) - 1))
+
+
+def normal_approx_two_group_equivalence_power(
+    n_per_group: int,
+    sd: float,
+    margin: float,
+    alpha: float = DEFAULT_ALPHA,
+) -> float:
+    _finite_pos(n_per_group, "n_per_group")
+    sd = _finite_pos(sd, "sd")
+    margin = _finite_pos(margin, "margin")
+    se = sd * math.sqrt(2 / n_per_group)
+    standardized = margin / se - _z(1 - alpha)
+    return max(0.0, min(1.0, 2 * NormalDist().cdf(standardized) - 1))
+
+
 def n_paired_equivalence(sd_diff: float, margin: float, alpha: float = DEFAULT_ALPHA,
                          power: float = DEFAULT_POWER) -> int:
     sd_diff = _finite_pos(sd_diff, "sd_diff")
