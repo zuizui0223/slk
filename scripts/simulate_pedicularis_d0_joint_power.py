@@ -10,6 +10,9 @@ from pathlib import Path
 from statistics import NormalDist, mean, stdev
 
 D0_DATASET_ID = "PED_D0_CAL_V1"
+FREEZE_SCHEMA = "SLK_PEDICULARIS_D0_JOINT_POWER_SIMULATION_FREEZE_V1"
+FREEZE_STATUS = "D0_JOINT_POWER_SIMULATION_PROSPECTIVELY_FROZEN"
+SIMULATION_MODEL = "WHOLE_PLANT_EMPIRICAL_RESAMPLING_NORMAL_APPROX_ENDPOINT_ADJUDICATION"
 
 PAIR_SPECS = {
     "D0_Q1_Z": ("D0_CAL", "SHAM_CAL", "exsertion_z", "difference"),
@@ -389,19 +392,93 @@ def simulate_candidate(
     }
 
 
+def _validate_simulation_freeze(
+    freeze: dict,
+    compiled_precision_input: dict,
+    planned_precision_output: dict,
+) -> dict:
+    _need(freeze.get("schema_version") == FREEZE_SCHEMA, "wrong joint simulation freeze schema")
+    _need(freeze.get("status") == FREEZE_STATUS, "joint simulation is not prospectively frozen")
+
+    context = freeze.get("context", {})
+    _need(context.get("system") == "Pedicularis rex", "wrong joint simulation system")
+    _need(context.get("d0_cal_dataset_id") == D0_DATASET_ID, "wrong D0 calibration dataset")
+    _need(context.get("confirmatory_outcomes_opened") is False, "joint simulation freeze shows opened confirmatory outcomes")
+
+    provenance = compiled_precision_input.get("input_provenance", {})
+    for key in ("population_id", "season_id", "confirmatory_dataset_id", "margin_freeze_commit"):
+        _need(context.get(key) == provenance.get(key), f"joint simulation/precision mismatch: {key}")
+
+    simulation = freeze.get("simulation", {})
+    _need(simulation.get("model") == SIMULATION_MODEL, "unregistered joint simulation model")
+    seed = simulation.get("random_seed")
+    reps = simulation.get("reps")
+    minimum_reps = simulation.get("minimum_reps")
+    mc_level = simulation.get("mc_interval_level")
+    target = simulation.get("target_all_pass_power")
+    _need(isinstance(seed, int), "joint simulation random_seed must be frozen integer")
+    _need(isinstance(minimum_reps, int) and minimum_reps >= 1000, "joint simulation minimum_reps invalid")
+    _need(isinstance(reps, int) and reps >= minimum_reps, "joint simulation reps below frozen minimum")
+    _need(isinstance(mc_level, (int, float)) and 0 < float(mc_level) < 1, "joint simulation MC level invalid")
+    _need(isinstance(target, (int, float)) and 0 < float(target) < 1, "joint simulation target invalid")
+
+    planned_target = float(
+        planned_precision_output["joint_qualification_design"]["target_all_pass_power"]
+    )
+    _need(abs(float(target) - planned_target) <= 1e-12, "joint simulation target differs from precision plan")
+
+    candidates = freeze.get("candidate_allocations", [])
+    _need(isinstance(candidates, list) and candidates, "joint simulation candidate grid is empty")
+    seen: set[tuple[int, int]] = set()
+    for candidate in candidates:
+        _need(isinstance(candidate, dict), "candidate allocation must be object")
+        n_low = candidate.get("n_low_recruit")
+        n_high = candidate.get("n_high_recruit")
+        _need(isinstance(n_low, int) and n_low >= 2, "invalid n_low_recruit")
+        _need(isinstance(n_high, int) and n_high >= 2, "invalid n_high_recruit")
+        key = (n_low, n_high)
+        _need(key not in seen, "duplicate candidate allocation")
+        seen.add(key)
+
+    weights = freeze.get("field_burden_weights", {})
+    low_weight = weights.get("low_y_recruit")
+    high_weight = weights.get("high_y_recruit")
+    _need(isinstance(low_weight, (int, float)) and float(low_weight) > 0, "invalid low-y burden weight")
+    _need(isinstance(high_weight, (int, float)) and float(high_weight) > 0, "invalid high-y burden weight")
+
+    firewall = freeze.get("firewall", {})
+    _need(firewall.get("calibration_units_confirmatory_eligible") is False, "calibration/confirmatory firewall violated")
+    _need(firewall.get("candidate_grid_frozen_before_confirmatory_outcomes") is True, "candidate grid not frozen prospectively")
+    _need(firewall.get("simulation_seed_frozen_before_confirmatory_outcomes") is True, "simulation seed not frozen prospectively")
+    _need(firewall.get("planning_truths_from_confirmatory_outcomes_forbidden") is True, "planning-truth firewall not frozen")
+
+    return {
+        "seed": seed,
+        "reps": reps,
+        "mc_level": float(mc_level),
+        "target": float(target),
+        "candidates": candidates,
+        "low_weight": float(low_weight),
+        "high_weight": float(high_weight),
+        "context": context,
+    }
+
+
 def simulate_joint_power(
     calibration_rows: list[dict[str, str]],
     compiled_precision_input: dict,
     planned_precision_output: dict,
-    candidate_allocations: list[dict[str, int]],
-    reps: int,
-    seed: int,
-    mc_level: float = 0.95,
+    simulation_freeze: dict,
 ) -> dict:
-    _need(reps >= 1000, "joint simulation requires at least 1000 reps")
-    _need(isinstance(seed, int), "simulation seed must be integer")
-    _need(candidate_allocations, "candidate allocation grid is empty")
-    _need(0 < mc_level < 1, "mc_level must be in (0,1)")
+    cfg = _validate_simulation_freeze(
+        simulation_freeze,
+        compiled_precision_input,
+        planned_precision_output,
+    )
+    reps = cfg["reps"]
+    seed = cfg["seed"]
+    mc_level = cfg["mc_level"]
+    candidate_allocations = cfg["candidates"]
 
     endpoint_ids = [x["endpoint_id"] for x in compiled_precision_input["endpoints"]]
     low_by_plant, high_by_plant = _by_plant(calibration_rows)
@@ -410,11 +487,7 @@ def simulate_joint_power(
 
     payload = json.loads(json.dumps(compiled_precision_input))
 
-    target = float(
-        planned_precision_output["joint_qualification_design"][
-            "target_all_pass_power"
-        ]
-    )
+    target = cfg["target"]
     results: list[dict] = []
     for index, candidate in enumerate(candidate_allocations):
         n_low = int(candidate["n_low_recruit"])
@@ -427,6 +500,10 @@ def simulate_joint_power(
             n_high,
             reps,
             seed + 100003 * index,
+        )
+        result["field_burden"] = (
+            cfg["low_weight"] * n_low
+            + cfg["high_weight"] * n_high
         )
         # Recompute CI at requested level if non-default.
         successes = round(result["all_pass_probability"] * reps)
@@ -454,6 +531,11 @@ def simulate_joint_power(
         "simulation_reps": reps,
         "mc_interval_level": mc_level,
         "target_all_pass_power": target,
+        "freeze_context": cfg["context"],
+        "field_burden_weights": {
+            "low_y_recruit": cfg["low_weight"],
+            "high_y_recruit": cfg["high_weight"],
+        },
         "candidate_results": results,
         "selected_allocation": selected,
         "claim_ceiling": "PROSPECTIVE_SAMPLE_SIZE_DESIGN_ONLY_NO_BIOLOGICAL_D0_RESULT",
@@ -470,22 +552,15 @@ def main() -> None:
     parser.add_argument("d0_cal_csv", type=Path)
     parser.add_argument("compiled_precision_input_json", type=Path)
     parser.add_argument("planned_precision_output_json", type=Path)
-    parser.add_argument("candidate_grid_json", type=Path)
-    parser.add_argument("--reps", type=int, default=5000)
-    parser.add_argument("--seed", type=int, required=True)
-    parser.add_argument("--mc-level", type=float, default=0.95)
+    parser.add_argument("simulation_freeze_json", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
 
-    candidates = json.loads(args.candidate_grid_json.read_text(encoding="utf-8"))
     result = simulate_joint_power(
         _read_csv(args.d0_cal_csv),
         json.loads(args.compiled_precision_input_json.read_text(encoding="utf-8")),
         json.loads(args.planned_precision_output_json.read_text(encoding="utf-8")),
-        candidates["candidate_allocations"],
-        args.reps,
-        args.seed,
-        args.mc_level,
+        json.loads(args.simulation_freeze_json.read_text(encoding="utf-8")),
     )
     text_out = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
