@@ -172,10 +172,34 @@ def _precision(route: str = "NEGLIGIBLE_BURDEN_EQUIVALENCE") -> dict:
             "q5_route": route,
         },
         "results": [],
+        "joint_qualification_design": {
+            "target_all_pass_power": 0.80,
+            "method": "BONFERRONI_FAILURE_BUDGET_UNION_BOUND",
+            "power_endpoint_count": 15 if route == "NEGLIGIBLE_BURDEN_EQUIVALENCE" else 14,
+            "per_endpoint_power_floor": (
+                1 - (1 - 0.80) / (
+                    15 if route == "NEGLIGIBLE_BURDEN_EQUIVALENCE" else 14
+                )
+            ),
+            "precision_only_endpoints": (
+                [] if route == "NEGLIGIBLE_BURDEN_EQUIVALENCE"
+                else ["D0_Q5_BURDEN_PRECISION"]
+            ),
+            "status": (
+                "JOINT_QUALIFICATION_POWER_TARGET_REGISTERED"
+                if route == "NEGLIGIBLE_BURDEN_EQUIVALENCE"
+                else "JOINT_POWER_INCOMPLETE_PRECISION_ENDPOINT_REQUIRES_SIMULATION"
+            ),
+        },
         "maxima_by_allocation_unit": {
             "paired_plants_total": {"inflated_required_n": 24, "driving_endpoints": ["D0_Q3_POLLEN"]},
             "plants_per_group": {"inflated_required_n": 24, "driving_endpoints": ["D0_Q2_VOLUME"]},
             "plants_total": {"inflated_required_n": 20, "driving_endpoints": ["D0_Q5_BURDEN_PRECISION"]},
+        },
+        "analysis_minima_by_allocation_unit": {
+            "paired_plants_total": {"raw_required_n": 20, "driving_endpoints": ["D0_Q3_POLLEN"]},
+            "plants_per_group": {"raw_required_n": 20, "driving_endpoints": ["D0_Q2_VOLUME"]},
+            "plants_total": {"raw_required_n": 17, "driving_endpoints": ["D0_Q5_BURDEN_PRECISION"]},
         },
     }
 
@@ -321,3 +345,48 @@ def test_g3_g5_eligibility_leak_is_rejected() -> None:
     rows[0]["g3_g5_eligible"] = "true"
     with pytest.raises(ValueError, match="leaked into G3-G5"):
         adj.adjudicate(rows, _margin(), _precision(), _y_receipt(), _analysis_freeze())
+
+
+def test_single_missing_measurement_is_reported_not_silently_dropped() -> None:
+    rows = _layout()
+    target = next(
+        row for row in rows
+        if row["phenotype_stratum"] == "LOW_Y"
+        and row["treatment"] == "D0_QUAL"
+    )
+    target["pollen_receipt_grains"] = ""
+    result = adj.adjudicate(
+        rows, _margin(), _precision(), _y_receipt(), _analysis_freeze()
+    )
+    pollen = result["endpoint_results"]["D0_Q3_POLLEN"]
+    assert pollen["missingness"]["excluded_plants"] == 1
+    assert pollen["missingness"]["complete_plants"] == 23
+    assert result["missingness_summary"]["total_endpoint_exclusion_events"] >= 1
+    assert "D0_Q3_POLLEN" in result["missingness_summary"]["endpoints_with_exclusions"]
+
+
+def test_missingness_below_frozen_valid_fraction_blocks_endpoint_pass() -> None:
+    rows = _layout()
+    affected = [
+        row for row in rows
+        if row["phenotype_stratum"] == "LOW_Y"
+        and row["treatment"] == "D0_QUAL"
+    ][:3]
+    for row in affected:
+        row["pollen_receipt_grains"] = ""
+    result = adj.adjudicate(
+        rows, _margin(), _precision(), _y_receipt(), _analysis_freeze()
+    )
+    pollen = result["endpoint_results"]["D0_Q3_POLLEN"]
+    assert pollen["missingness"]["complete_plants"] == 21
+    assert pollen["valid_fraction_pass"] is False
+    assert pollen["pass"] is False
+
+
+def test_attrition_inflation_is_recruitment_not_analysis_floor() -> None:
+    result = adj.adjudicate(
+        _layout(), _margin(), _precision(), _y_receipt(), _analysis_freeze()
+    )
+    pollen = result["endpoint_results"]["D0_Q3_POLLEN"]
+    assert pollen["recruited_low_y_target"] == 24
+    assert pollen["required_analysis_n"] == 20
