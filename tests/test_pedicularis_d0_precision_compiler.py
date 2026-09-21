@@ -196,3 +196,28 @@ def test_q4_planning_alternative_must_exceed_minimum_useful_effect() -> None:
     endpoint["planning_effect"] = 0.5
     with pytest.raises(ValueError, match="must exceed frozen minimum effect"):
         compiler.compile_precision_input(_margin(), variance)
+
+
+def test_production_route_endpoint_inventory_matches_joint_power_contract() -> None:
+    compiled = compiler.compile_precision_input(_margin(), _variance())
+    assert len(compiled["endpoints"]) == 15
+    planned = planner.plan_manifest(compiled)
+    joint = planned["joint_qualification_design"]
+    assert joint["power_endpoint_count"] == 15
+    assert joint["precision_only_endpoints"] == []
+    assert abs(
+        joint["per_endpoint_power_floor"]
+        - (1 - (1 - 0.80) / 15)
+    ) < 1e-12
+
+    compiled_adjusted = compiler.compile_precision_input(
+        _margin("MEASURED_BURDEN_ADJUSTMENT"),
+        _variance(),
+    )
+    assert len(compiled_adjusted["endpoints"]) == 15
+    planned_adjusted = planner.plan_manifest(compiled_adjusted)
+    joint_adjusted = planned_adjusted["joint_qualification_design"]
+    assert joint_adjusted["power_endpoint_count"] == 14
+    assert joint_adjusted["precision_only_endpoints"] == [
+        "D0_Q5_BURDEN_PRECISION"
+    ]
