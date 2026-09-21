@@ -201,3 +201,20 @@ def test_fifteen_endpoint_joint_target_gives_reference_n_values():
         )
         >= joint_floor
     )
+
+
+def test_all_pass_probability_bounds_do_not_assume_endpoint_independence():
+    old_probs = [0.80] * 15
+    lower, upper = module.all_pass_probability_bounds(old_probs)
+    independent = module.all_pass_probability_independence(old_probs)
+    assert lower == 0.0
+    assert abs(upper - 0.80) < 1e-12
+    assert abs(independent - 0.80**15) < 1e-12
+
+    joint_floor = 1 - (1 - 0.80) / 15
+    new_probs = [joint_floor] * 15
+    lower, upper = module.all_pass_probability_bounds(new_probs)
+    independent = module.all_pass_probability_independence(new_probs)
+    assert abs(lower - 0.80) < 1e-12
+    assert abs(upper - joint_floor) < 1e-12
+    assert independent >= 0.80
