@@ -45,6 +45,7 @@ def _precision_freeze() -> dict:
             "world_cell_mean_half_width": 0.5,
             "minimum_recoverable_benefit_R": 1.0,
             "minimum_abs_architecture_value_Phi": 0.8,
+            "bridge_residual_equivalence_margin": 0.30,
             "target_source_type": "DOWNSTREAM_DECISION_INVARIANCE",
             "target_source_reference": "SLK:G3_G5_DECISION_TARGETS_V1",
             "biological_rationale": "predeclared resolution target",
@@ -135,7 +136,13 @@ def _effect(route: str = "SAME_BLOCK_INTERNAL_IDENTITY") -> dict:
             "sample_size_rationale": "REQUIRED_BEFORE_USE",
         },
         "analysis": {},
-        "independent_concordance": {},
+        "independent_concordance": {
+            "residual_equivalence_margin": (
+                0.30 if route == "INDEPENDENT_DIRECT_PHI_BLOCK" else None
+            ),
+            "residual_ci_must_be_within_equivalence_margin": True,
+            "required_only_for_route": "INDEPENDENT_DIRECT_PHI_BLOCK",
+        },
         "firewall": {},
         "freeze_metadata": {},
         "production_status": "PEDICULARIS_G3_G5_EFFECT_PROSPECTIVELY_FROZEN",
@@ -158,11 +165,35 @@ def test_same_block_sampling_is_compiled_without_direct_block_n() -> None:
     assert out["context"]["frozen_before_g3_g5_outcomes"] is False
 
 
-def test_independent_route_receives_direct_block_sample_sizes() -> None:
+def test_independent_route_receives_bridge_adjusted_sample_sizes() -> None:
     plan = _plan()
-    out = compiler.compile_sampling(_effect("INDEPENDENT_DIRECT_PHI_BLOCK"), _precision_freeze(), plan)
-    assert out["sampling"]["minimum_analyzable_plants_per_direct_world"] == plan["independent_direct_phi"]["minimum_analyzable_plants_per_world"]
-    assert out["sampling"]["recruitment_plants_per_direct_world"] == plan["independent_direct_phi"]["recruitment_plants_per_world"]
+    out = compiler.compile_sampling(
+        _effect("INDEPENDENT_DIRECT_PHI_BLOCK"),
+        _precision_freeze(),
+        plan,
+    )
+    bridge_min = plan["independent_concordance"][
+        "minimum_analyzable_plants_per_world_each_block"
+    ]
+    bridge_rec = plan["independent_concordance"][
+        "recruitment_plants_per_world_each_block"
+    ]
+    assert out["sampling"]["minimum_analyzable_plants_per_world"] == max(
+        plan["decomposition"]["minimum_analyzable_plants_per_world"],
+        bridge_min,
+    )
+    assert out["sampling"]["minimum_analyzable_plants_per_direct_world"] == max(
+        plan["independent_direct_phi"]["minimum_analyzable_plants_per_world"],
+        bridge_min,
+    )
+    assert out["sampling"]["recruitment_plants_per_world"] == max(
+        plan["decomposition"]["recruitment_plants_per_world"],
+        bridge_rec,
+    )
+    assert out["sampling"]["recruitment_plants_per_direct_world"] == max(
+        plan["independent_direct_phi"]["recruitment_plants_per_world"],
+        bridge_rec,
+    )
 
 
 def test_z_grid_count_mismatch_is_rejected() -> None:
@@ -205,3 +236,27 @@ def test_tampered_decomposition_minimum_n_is_rejected() -> None:
     plan["decomposition"]["minimum_analyzable_plants_per_world"] -= 1
     with pytest.raises(ValueError, match="inconsistent with precision components"):
         compiler.compile_sampling(_effect(), _precision_freeze(), plan)
+
+
+def test_independent_route_rejects_bridge_margin_drift() -> None:
+    effect = _effect("INDEPENDENT_DIRECT_PHI_BLOCK")
+    effect["independent_concordance"]["residual_equivalence_margin"] = 0.40
+    with pytest.raises(ValueError, match="bridge equivalence margin mismatch"):
+        compiler.compile_sampling(
+            effect,
+            _precision_freeze(),
+            _plan(),
+        )
+
+
+def test_same_block_route_does_not_apply_bridge_sample_floor() -> None:
+    plan = _plan()
+    out = compiler.compile_sampling(
+        _effect("SAME_BLOCK_INTERNAL_IDENTITY"),
+        _precision_freeze(),
+        plan,
+    )
+    assert (
+        out["sampling"]["minimum_analyzable_plants_per_world"]
+        == plan["decomposition"]["minimum_analyzable_plants_per_world"]
+    )
