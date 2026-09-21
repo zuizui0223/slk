@@ -301,35 +301,25 @@ def simulate_candidate(
     rng = random.Random(seed)
 
     endpoint_passes = {endpoint_id: 0 for endpoint_id in endpoint_ids}
+    gate_names = ["Q1", "Q2", "Q3", "Q4", "Q5"]
+    gate_passes = {gate: 0 for gate in gate_names}
     all_passes = 0
-    low_floor_failures = 0
-    high_floor_failures = 0
+    low_pool_too_small = 0
+    high_pool_too_small = 0
     failure_patterns: dict[str, int] = {}
 
     planning_low, planning_high = _prepare_planning_vectors(
         low_vectors, high_vectors, compiled_precision_input
     )
 
-    # Candidate-specific raw floors are derived from the endpoint planner rows,
-    # not from the union-bound recruitment plan.
-    raw_low_floor = max(
-        int(x["raw_required_n"])
-        for x in compiled_precision_input.get("_planned_results", [])
-        if x["n_unit"] in {"paired_plants_total", "plants_total", "plants_per_group"}
-    ) if compiled_precision_input.get("_planned_results") else 2
-    raw_high_floor = max(
-        [int(x["raw_required_n"]) for x in compiled_precision_input.get("_planned_results", []) if x["n_unit"] == "plants_per_group"]]
-        or [2]
-    )
-
     for _ in range(reps):
         low_sample = _sample_vectors(planning_low, n_low_recruit, attrition, rng)
         high_sample = _sample_vectors(planning_high, n_high_recruit, attrition, rng)
 
-        if len(low_sample) < raw_low_floor:
-            low_floor_failures += 1
-        if len(high_sample) < raw_high_floor:
-            high_floor_failures += 1
+        if len(low_sample) < 2:
+            low_pool_too_small += 1
+        if len(high_sample) < 2:
+            high_pool_too_small += 1
 
         passed_ids: list[str] = []
         failed_ids: list[str] = []
@@ -340,23 +330,17 @@ def simulate_candidate(
             if endpoint_id in PAIR_SPECS:
                 values = [x.get(endpoint_id) for x in low_sample]
                 complete = [x for x in values if x is not None]
-                endpoint_floor = next(
-                    (int(x["raw_required_n"]) for x in compiled_precision_input["_planned_results"] if x["endpoint_id"] == endpoint_id),
-                    2,
+                passed = len(complete) >= 2 and _paired_pass(
+                    complete, spec, alpha
                 )
-                passed = len(complete) >= endpoint_floor and _paired_pass(complete, spec, alpha)
             else:
                 g1 = [x.get(endpoint_id) for x in low_sample]
                 g2 = [x.get(endpoint_id) for x in high_sample]
                 g1c = [x for x in g1 if x is not None]
                 g2c = [x for x in g2 if x is not None]
-                endpoint_floor = next(
-                    (int(x["raw_required_n"]) for x in compiled_precision_input["_planned_results"] if x["endpoint_id"] == endpoint_id),
-                    2,
-                )
                 passed = (
-                    len(g1c) >= endpoint_floor
-                    and len(g2c) >= endpoint_floor
+                    len(g1c) >= 2
+                    and len(g2c) >= 2
                     and _two_group_pass(g1c, g2c, spec, alpha)
                 )
             if passed:
@@ -364,6 +348,17 @@ def simulate_candidate(
                 passed_ids.append(endpoint_id)
             else:
                 failed_ids.append(endpoint_id)
+
+        for gate in gate_names:
+            gate_ids = [
+                endpoint_id
+                for endpoint_id in endpoint_ids
+                if endpoint_id.startswith(f"D0_{gate}_")
+            ]
+            if gate_ids and all(
+                endpoint_id in passed_ids for endpoint_id in gate_ids
+            ):
+                gate_passes[gate] += 1
 
         if not failed_ids:
             all_passes += 1
@@ -383,8 +378,11 @@ def simulate_candidate(
             endpoint_id: endpoint_passes[endpoint_id] / reps
             for endpoint_id in endpoint_ids
         },
-        "low_analysis_floor_failure_probability": low_floor_failures / reps,
-        "high_analysis_floor_failure_probability": high_floor_failures / reps,
+        "gate_pass_probabilities": {
+            gate: gate_passes[gate] / reps for gate in gate_names
+        },
+        "low_retained_pool_below_two_probability": low_pool_too_small / reps,
+        "high_retained_pool_below_two_probability": high_pool_too_small / reps,
         "failure_pattern_frequencies": dict(
             sorted(failure_patterns.items(), key=lambda item: (-item[1], item[0]))
         ),
@@ -410,10 +408,7 @@ def simulate_joint_power(
     low_vectors = [_low_vector(x, endpoint_ids) for x in low_by_plant.values()]
     high_vectors = [_high_vector(x, endpoint_ids) for x in high_by_plant.values()]
 
-    # Attach the prospectively planned endpoint-specific raw floors without
-    # duplicating the planner formulas in this simulation module.
     payload = json.loads(json.dumps(compiled_precision_input))
-    payload["_planned_results"] = planned_precision_output["results"]
 
     target = float(
         planned_precision_output["joint_qualification_design"][
