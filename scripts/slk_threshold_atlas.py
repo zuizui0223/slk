@@ -281,3 +281,39 @@ def environmental_threshold_error_bound(
     if phi_environment_slope == 0:
         raise ValueError("phi_environment_slope must be nonzero")
     return fitness_margin_error_bound / abs(phi_environment_slope)
+
+
+def endpoint_lipschitz_interval_with_sampling(
+    measured_interval: tuple[float, float],
+    epsilon: float,
+    lipschitz_bound: float,
+) -> tuple[float, float]:
+    """Combine sampling interval with one-point endpoint approximation error."""
+    lower, upper = measured_interval
+    if lower > upper:
+        raise ValueError("measured_interval must satisfy lower <= upper")
+    if epsilon <= 0:
+        raise ValueError("epsilon must be positive")
+    if lipschitz_bound < 0:
+        raise ValueError("lipschitz_bound must be nonnegative")
+    radius = lipschitz_bound * epsilon
+    return lower - radius, upper + radius
+
+
+def endpoint_curvature_interval_with_sampling(
+    interval_epsilon: tuple[float, float],
+    interval_two_epsilon: tuple[float, float],
+    epsilon: float,
+    curvature_bound: float,
+) -> tuple[float, float]:
+    """Combine two sampling intervals with second-order endpoint remainder."""
+    l1, u1 = interval_epsilon
+    l2, u2 = interval_two_epsilon
+    if l1 > u1 or l2 > u2:
+        raise ValueError("sampling intervals must satisfy lower <= upper")
+    if epsilon <= 0:
+        raise ValueError("epsilon must be positive")
+    if curvature_bound < 0:
+        raise ValueError("curvature_bound must be nonnegative")
+    radius = curvature_bound * epsilon * epsilon
+    return 2.0 * l1 - u2 - radius, 2.0 * u1 - l2 + radius
