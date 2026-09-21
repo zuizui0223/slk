@@ -183,7 +183,7 @@ P(D0_FULLY_QUALIFIED | registered planning alternative)
 target_all_pass_power.
 ```
 
-Only a prospectively frozen simulation with independent calibration inputs may replace the union-bound design.
+Only a prospectively frozen simulation with independent calibration inputs may replace the union-bound design. The registered executable V1 is `scripts/simulate_pedicularis_d0_joint_power.py`; it uses whole-plant empirical resampling with normal-approximation endpoint adjudication and must report the analytical fallback beside any selected allocation.
 
 ## Q5 measured-burden lane
 
@@ -228,7 +228,8 @@ Outcome-dependent missingness can bias equivalence toward zero and therefore req
 ```text
 ENDPOINT_DEMOTION = NOT_JUSTIFIED_YET
 BONFERRONI_FAILURE_BUDGET = SAFE_PROSPECTIVE_FALLBACK
-CALIBRATION_BASED_FULL_PIPELINE_SIMULATION = PREFERRED_EFFICIENCY_UPGRADE
+CALIBRATION_BASED_JOINT_SIMULATION_NORMAL_APPROX = IMPLEMENTED_REQUIRES_PROSPECTIVE_FREEZE
+EXACT_BOOTSTRAP_CONFIRMATORY_SIMULATION = OPTIONAL_FUTURE_UPGRADE
 Q5_MEASURED_ADJUSTMENT_JOINT_POWER = OPEN
 BIOLOGICAL_D0_RECEIPT = ZERO
 ```
