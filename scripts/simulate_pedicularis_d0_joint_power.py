@@ -646,6 +646,12 @@ def simulate_joint_power(
         "candidate_results": results,
         "analytical_union_bound_fallback": fallback,
         "selected_allocation": selected,
+        "calibration_uncertainty_boundary": (
+            "Inner whole-plant resampling preserves empirical endpoint dependence "
+            "but conditions on the observed D0-CAL empirical distribution. "
+            "The Monte Carlo interval quantifies simulation error, not uncertainty "
+            "from having only a finite calibration sample."
+        ),
         "claim_ceiling": "PROSPECTIVE_SAMPLE_SIZE_DESIGN_ONLY_NO_BIOLOGICAL_D0_RESULT",
     }
 
