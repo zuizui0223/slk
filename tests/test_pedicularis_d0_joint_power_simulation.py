@@ -120,6 +120,7 @@ def _compiled() -> dict:
 
 def _planned() -> dict:
     return {
+        "input_provenance": dict(_compiled()["input_provenance"]),
         "joint_qualification_design": {
             "target_all_pass_power": 0.80,
         },
@@ -244,4 +245,28 @@ def test_joint_simulation_rejects_target_drift() -> None:
             _compiled(),
             _planned(),
             freeze,
+        )
+
+
+def test_joint_simulation_rejects_calibration_row_marked_confirmatory_eligible() -> None:
+    rows = _calibration_rows()
+    rows[0]["confirmatory_eligible"] = "true"
+    with pytest.raises(ValueError, match="confirmatory eligible"):
+        sim.simulate_joint_power(
+            rows,
+            _compiled(),
+            _planned(),
+            _freeze(),
+        )
+
+
+def test_joint_simulation_rejects_planned_compiled_provenance_drift() -> None:
+    planned = _planned()
+    planned["input_provenance"]["margin_freeze_commit"] = "other"
+    with pytest.raises(ValueError, match="planned/compiled precision provenance mismatch"):
+        sim.simulate_joint_power(
+            _calibration_rows(),
+            _compiled(),
+            planned,
+            _freeze(),
         )
