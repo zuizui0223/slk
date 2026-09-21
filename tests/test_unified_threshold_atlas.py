@@ -307,7 +307,8 @@ def test_one_point_lipschitz_certificate_can_certify_endpoint_sign():
         epsilon=0.05,
         lipschitz_bound=2.0,
     )
-    assert interval == (0.19999999999999998, 0.4)
+    assert abs(interval[0] - 0.2) < 1e-12
+    assert abs(interval[1] - 0.4) < 1e-12
     assert sign_certificate(interval) == "positive"
 
     unresolved = endpoint_lipschitz_interval(
