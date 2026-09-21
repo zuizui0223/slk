@@ -13,6 +13,7 @@ try:
         canonical_reciprocal_fixation_ratio_closed_form,
         fixation_probability_d,
         fixation_probability_s,
+        occupancy_ratio_from_process,
         reciprocal_fixation_ratio_from_process,
         symmetric_rare_mutation_stationary_distribution,
         validate_canonical_mapping,
@@ -25,6 +26,7 @@ except ImportError:  # direct execution via `python scripts/verify_amnat_claims.
         canonical_reciprocal_fixation_ratio_closed_form,
         fixation_probability_d,
         fixation_probability_s,
+        occupancy_ratio_from_process,
         reciprocal_fixation_ratio_from_process,
         symmetric_rare_mutation_stationary_distribution,
         validate_canonical_mapping,
@@ -95,7 +97,10 @@ def verify() -> dict[str, object]:
     k, eta, beta, N = 2.2, -1.0, 1.0, 10
     phi = architecture.phi(k)
     delta_rare = phi - eta
-    fixation_ratio = math.exp(beta * (N - 2) * phi)
+    game = canonical_architecture_game(phi, eta).as_game()
+    fixation_ratio = reciprocal_fixation_ratio_from_process(
+        game, beta, N
+    )
     assert delta_rare > 0 and fixation_ratio < 1
     checks["NE4_invasion_not_reciprocal_fixation"] = {
         "k": k,
@@ -110,7 +115,10 @@ def verify() -> dict[str, object]:
     k, eta, beta, N = 2.1, -0.5, 1.0, 10
     phi = architecture.phi(k)
     weak_selection_advantage = 3 * phi > eta
-    occupancy_ratio = math.exp(beta * (N - 2) * phi)
+    game = canonical_architecture_game(phi, eta).as_game()
+    occupancy_ratio = occupancy_ratio_from_process(
+        game, beta, N
+    )
     assert weak_selection_advantage and occupancy_ratio < 1
     checks["NE5_absolute_fixation_not_occupancy"] = {
         "k": k,
