@@ -304,7 +304,11 @@ def simulate_candidate(
     rng = random.Random(seed)
 
     endpoint_passes = {endpoint_id: 0 for endpoint_id in endpoint_ids}
-    gate_names = ["Q1", "Q2", "Q3", "Q4", "Q5"]
+    gate_names = sorted({
+        endpoint_id.split("_")[1]
+        for endpoint_id in endpoint_ids
+        if endpoint_id.startswith("D0_Q")
+    })
     gate_passes = {gate: 0 for gate in gate_names}
     all_passes = 0
     low_pool_too_small = 0
@@ -392,6 +396,23 @@ def simulate_candidate(
     }
 
 
+def _calibration_context(
+    rows: list[dict[str, str]],
+) -> dict[str, str]:
+    keys = (
+        "population_id",
+        "season_id",
+        "fitness_scale_id",
+        "time_horizon_id",
+    )
+    out: dict[str, str] = {}
+    for key in keys:
+        values = {str(row.get(key, "")).strip() for row in rows}
+        _need("" not in values and len(values) == 1, f"D0-CAL must have one non-empty {key}")
+        out[key] = next(iter(values))
+    return out
+
+
 def _validate_simulation_freeze(
     freeze: dict,
     compiled_precision_input: dict,
@@ -406,8 +427,18 @@ def _validate_simulation_freeze(
     _need(context.get("confirmatory_outcomes_opened") is False, "joint simulation freeze shows opened confirmatory outcomes")
 
     provenance = compiled_precision_input.get("input_provenance", {})
-    for key in ("population_id", "season_id", "confirmatory_dataset_id", "margin_freeze_commit"):
-        _need(context.get(key) == provenance.get(key), f"joint simulation/precision mismatch: {key}")
+    for key in (
+        "population_id",
+        "season_id",
+        "fitness_scale_id",
+        "time_horizon_id",
+        "confirmatory_dataset_id",
+        "margin_freeze_commit",
+    ):
+        _need(
+            context.get(key) == provenance.get(key),
+            f"joint simulation/precision mismatch: {key}",
+        )
 
     simulation = freeze.get("simulation", {})
     _need(simulation.get("model") == SIMULATION_MODEL, "unregistered joint simulation model")
@@ -481,6 +512,12 @@ def simulate_joint_power(
     candidate_allocations = cfg["candidates"]
 
     endpoint_ids = [x["endpoint_id"] for x in compiled_precision_input["endpoints"]]
+    calibration_context = _calibration_context(calibration_rows)
+    for key in ("population_id", "season_id", "fitness_scale_id", "time_horizon_id"):
+        _need(
+            calibration_context[key] == cfg["context"][key],
+            f"D0-CAL/joint simulation mismatch: {key}",
+        )
     low_by_plant, high_by_plant = _by_plant(calibration_rows)
     low_vectors = [_low_vector(x, endpoint_ids) for x in low_by_plant.values()]
     high_vectors = [_high_vector(x, endpoint_ids) for x in high_by_plant.values()]
@@ -532,6 +569,7 @@ def simulate_joint_power(
         "mc_interval_level": mc_level,
         "target_all_pass_power": target,
         "freeze_context": cfg["context"],
+        "calibration_context": calibration_context,
         "field_burden_weights": {
             "low_y_recruit": cfg["low_weight"],
             "high_y_recruit": cfg["high_weight"],
