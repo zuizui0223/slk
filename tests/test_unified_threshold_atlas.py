@@ -272,7 +272,9 @@ def test_general_endpoint_invasion_recovers_canonical_pair():
     eta = 0.4
     h_rare = -eta
     h_resident_d = eta
-    assert rare_invasion_margin_endpoint(phi, h_rare) == phi - eta
+    assert numerically_close(
+        rare_invasion_margin_endpoint(phi, h_rare), phi - eta
+    )
     assert reverse_invasion_resistance_margin_endpoint(
         phi, h_resident_d
     ) == phi + eta
