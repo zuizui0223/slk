@@ -188,7 +188,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 8. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
 9. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
 10. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
-12. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent Moran-process / rare-mutation validation receipt, canonical-mapping guard, and numerical policy.
+11. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent Moran-process / rare-mutation validation receipt, canonical-mapping guard, and numerical policy.
 12. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
 13. `docs/EMPIRICAL_G1_G9_SOURCE_LEDGER_V1.md` — source-adjudicated map of existing biological systems onto G1-G9, with explicit direct/partial/analogue/reality ceilings.
 14. `docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md` — canonical same-system execution order and design-versus-biological status boundary.
