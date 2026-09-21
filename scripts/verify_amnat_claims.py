@@ -5,22 +5,27 @@ import json
 import math
 from pathlib import Path
 
-
-def recovery(d: float) -> float:
-    """Common constructive family R(d)=d+d^2 on d in [0,1]."""
-    return d + d * d
-
-
-def phi_from_k(k: float) -> float:
-    return recovery(1.0) - k
+from slk_threshold_atlas import (
+    ArchitecturePath,
+    SymmetricTwoStrategyGame,
+    canonical_architecture_game,
+    canonical_reciprocal_fixation_ratio_closed_form,
+    fixation_probability_d,
+    fixation_probability_s,
+    reciprocal_fixation_ratio_from_process,
+    symmetric_rare_mutation_stationary_distribution,
+    validate_canonical_mapping,
+)
 
 
 def verify() -> dict[str, object]:
     checks: dict[str, object] = {}
 
-    # UTA1 architecture path: one family underlies all five witnesses.
-    k_local = 1.0
-    k_global = recovery(1.0)
+    # UTA1 architecture path: use the canonical implementation directly.
+    architecture = ArchitecturePath()
+    k_local = architecture.k_local
+    k_global = architecture.k_global
+    assert math.isclose(k_local, 1.0)
     assert math.isclose(k_global, 2.0)
     assert k_local < k_global
     checks["UTA1_common_architecture_family"] = {
@@ -33,9 +38,9 @@ def verify() -> dict[str, object]:
 
     # NE1: real conflict need not make differentiation profitable.
     L, k = 2.0, 2.2
-    R = recovery(1.0)
+    R = architecture.recovery(architecture.dmax)
     K = k
-    phi = phi_from_k(k)
+    phi = architecture.phi(k)
     assert L > 0 and math.isclose(R, L) and phi < 0 and math.isclose(phi, -0.2)
     checks["NE1_conflict_not_payoff"] = {
         "L": L, "R": R, "K": K, "Phi": phi, "pass": True
@@ -43,7 +48,7 @@ def verify() -> dict[str, object]:
 
     # NE2: positive endpoint value need not imply small-step selective accessibility.
     k = 1.5
-    phi = phi_from_k(k)
+    phi = architecture.phi(k)
     local_gradient = k_local - k
     assert phi > 0 and local_gradient < 0
     checks["NE2_payoff_not_small_step_accessibility"] = {
@@ -57,7 +62,7 @@ def verify() -> dict[str, object]:
 
     # NE3: small-step accessible positive endpoint need not invade from rarity.
     k, eta = 0.8, 1.5
-    phi = phi_from_k(k)
+    phi = architecture.phi(k)
     local_gradient = k_local - k
     delta_rare = phi - eta
     assert local_gradient > 0 and phi > 0 and delta_rare < 0
@@ -75,7 +80,7 @@ def verify() -> dict[str, object]:
 
     # NE4: rare invasion need not imply reciprocal fixation superiority.
     k, eta, beta, N = 2.2, -1.0, 1.0, 10
-    phi = phi_from_k(k)
+    phi = architecture.phi(k)
     delta_rare = phi - eta
     fixation_ratio = math.exp(beta * (N - 2) * phi)
     assert delta_rare > 0 and fixation_ratio < 1
@@ -90,7 +95,7 @@ def verify() -> dict[str, object]:
 
     # NE5: absolute fixation advantage over neutrality can disagree with occupancy.
     k, eta, beta, N = 2.1, -0.5, 1.0, 10
-    phi = phi_from_k(k)
+    phi = architecture.phi(k)
     weak_selection_advantage = 3 * phi > eta
     occupancy_ratio = math.exp(beta * (N - 2) * phi)
     assert weak_selection_advantage and occupancy_ratio < 1
@@ -334,23 +339,82 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
-    # INV1: reciprocal fixation and symmetric rare-mutation occupancy ordering
-    # are driven by the same exponential score ratio under the registered process.
-    max_abs_error = 0.0
+    # INV1: derive both fixation and occupancy from the registered process.
+    max_relative_error = 0.0
     comparisons = 0
     for beta in (0.1, 0.5, 1.0, 2.0):
         for N in (3, 4, 10, 50):
-            for score_diff in (-2.0, -0.5, -0.1, 0.0, 0.1, 0.5, 2.0):
-                fixation_ratio = math.exp(beta * (N - 2) * score_diff)
-                occupancy_ratio = math.exp(beta * (N - 2) * score_diff)
-                error = abs(fixation_ratio - occupancy_ratio)
-                max_abs_error = max(max_abs_error, error)
-                assert error == 0.0
-                assert (fixation_ratio > 1) == (occupancy_ratio > 1)
-                comparisons += 1
+            for phi in (-2.0, -0.5, -0.1, 0.0, 0.1, 0.5, 2.0):
+                for eta in (-1.0, 0.0, 1.5):
+                    canonical = canonical_architecture_game(phi, eta)
+                    game = canonical.as_game()
+
+                    rho_d = fixation_probability_d(game, beta, N)
+                    rho_s = fixation_probability_s(game, beta, N)
+                    fixation_ratio = rho_d / rho_s
+
+                    pi_s, pi_d = symmetric_rare_mutation_stationary_distribution(
+                        rho_d, rho_s
+                    )
+                    occupancy_ratio = pi_d / pi_s
+
+                    closed_form = canonical_reciprocal_fixation_ratio_closed_form(
+                        canonical, beta, N
+                    )
+                    process_ratio = reciprocal_fixation_ratio_from_process(
+                        game, beta, N
+                    )
+
+                    assert math.isclose(
+                        process_ratio,
+                        closed_form,
+                        rel_tol=1e-10,
+                        abs_tol=1e-12,
+                    )
+                    assert math.isclose(
+                        fixation_ratio,
+                        occupancy_ratio,
+                        rel_tol=1e-10,
+                        abs_tol=1e-12,
+                    )
+
+                    scale = max(abs(closed_form), 1e-300)
+                    relative_error = abs(process_ratio - closed_form) / scale
+                    max_relative_error = max(
+                        max_relative_error, relative_error
+                    )
+                    comparisons += 1
+
     checks["INV1_fixation_occupancy_invariant"] = {
         "comparisons": comparisons,
-        "max_abs_error": max_abs_error,
+        "max_relative_error": max_relative_error,
+        "derived_from_moran_process": True,
+        "derived_from_rare_mutation_chain": True,
+        "pass": True,
+    }
+
+    # Canonical-mapping guard: unequal diagonal feedback invalidates Phi-only transport.
+    violating = SymmetricTwoStrategyGame(ss=0.0, sd=0.0, dd=-0.2)
+    canonical_guard_raised = False
+    try:
+        validate_canonical_mapping(violating, phi=0.0, eta=0.0)
+    except ValueError:
+        canonical_guard_raised = True
+    assert canonical_guard_raised
+
+    violating_ratio = reciprocal_fixation_ratio_from_process(
+        violating, beta=0.1, n=20
+    )
+    assert not math.isclose(
+        violating_ratio,
+        1.0,
+        rel_tol=1e-10,
+        abs_tol=1e-12,
+    )
+    checks["CANONICAL_MAPPING_GUARD"] = {
+        "guard_raised": canonical_guard_raised,
+        "violating_game_fixation_ratio": violating_ratio,
+        "phi_only_prediction": 1.0,
         "pass": True,
     }
 
