@@ -165,46 +165,142 @@ def _paired_differences(
     by_plant: dict[str, dict[str, dict[str, str]]],
     strata: dict[str, str],
     endpoint_id: str,
-) -> list[float]:
+) -> tuple[list[float], dict]:
     a_t, b_t, field, operation = PAIR_SPECS[endpoint_id]
     out: list[float] = []
+    exclusions: list[dict[str, str]] = []
+    eligible = 0
     for plant_id in sorted(by_plant):
         if strata[plant_id] != "LOW_Y":
             continue
+        eligible += 1
         treatments = by_plant[plant_id]
         if a_t not in treatments or b_t not in treatments:
+            exclusions.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": "MISSING_REQUIRED_TREATMENT",
+                }
+            )
             continue
         try:
             a = _derived(treatments[a_t], field)
             b = _derived(treatments[b_t], field)
-        except ValueError:
+        except ValueError as exc:
+            exclusions.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": str(exc),
+                }
+            )
             continue
-        out.append(_circular_difference_deg(a, b) if operation == "circular_difference_deg" else a - b)
-    return out
+        out.append(
+            _circular_difference_deg(a, b)
+            if operation == "circular_difference_deg"
+            else a - b
+        )
+    reason_counts: dict[str, int] = {}
+    for item in exclusions:
+        reason = item["reason"]
+        reason_counts[reason] = reason_counts.get(reason, 0) + 1
+    receipt = {
+        "eligible_plants": eligible,
+        "complete_plants": len(out),
+        "excluded_plants": len(exclusions),
+        "valid_fraction": (len(out) / eligible) if eligible else 0.0,
+        "exclusion_reason_counts": reason_counts,
+        "exclusions": exclusions,
+    }
+    return out, receipt
 
 
 def _two_group_values(
     by_plant: dict[str, dict[str, dict[str, str]]],
     strata: dict[str, str],
     endpoint_id: str,
-) -> tuple[list[float], list[float]]:
+) -> tuple[list[float], list[float], dict]:
     low_t, high_t, field = TWO_GROUP_SPECS[endpoint_id]
     low: list[float] = []
     high: list[float] = []
+    exclusions: list[dict[str, str]] = []
+    low_eligible = 0
+    high_eligible = 0
     for plant_id in sorted(by_plant):
         treatments = by_plant[plant_id]
-        try:
-            if strata[plant_id] == "LOW_Y" and low_t in treatments:
+        stratum = strata[plant_id]
+        if stratum == "LOW_Y":
+            low_eligible += 1
+            if low_t not in treatments:
+                exclusions.append(
+                    {
+                        "plant_id": plant_id,
+                        "group": "LOW_Y",
+                        "reason": "MISSING_REQUIRED_TREATMENT",
+                    }
+                )
+                continue
+            try:
                 low.append(_derived(treatments[low_t], field))
-            elif strata[plant_id] == "HIGH_Y" and high_t in treatments:
+            except ValueError as exc:
+                exclusions.append(
+                    {
+                        "plant_id": plant_id,
+                        "group": "LOW_Y",
+                        "reason": str(exc),
+                    }
+                )
+        elif stratum == "HIGH_Y":
+            high_eligible += 1
+            if high_t not in treatments:
+                exclusions.append(
+                    {
+                        "plant_id": plant_id,
+                        "group": "HIGH_Y",
+                        "reason": "MISSING_REQUIRED_TREATMENT",
+                    }
+                )
+                continue
+            try:
                 high.append(_derived(treatments[high_t], field))
-        except ValueError:
-            continue
-    return low, high
+            except ValueError as exc:
+                exclusions.append(
+                    {
+                        "plant_id": plant_id,
+                        "group": "HIGH_Y",
+                        "reason": str(exc),
+                    }
+                )
+    reason_counts: dict[str, int] = {}
+    for item in exclusions:
+        reason = item["reason"]
+        reason_counts[reason] = reason_counts.get(reason, 0) + 1
+    receipt = {
+        "eligible_low_y_plants": low_eligible,
+        "complete_low_y_plants": len(low),
+        "low_y_valid_fraction": (
+            len(low) / low_eligible if low_eligible else 0.0
+        ),
+        "eligible_high_y_plants": high_eligible,
+        "complete_high_y_plants": len(high),
+        "high_y_valid_fraction": (
+            len(high) / high_eligible if high_eligible else 0.0
+        ),
+        "excluded_plants": len(exclusions),
+        "exclusion_reason_counts": reason_counts,
+        "exclusions": exclusions,
+    }
+    return low, high, receipt
 
 
-def _validate_precision_provenance(plan: dict, freeze_ctx: dict, margin: dict) -> tuple[int, int, dict]:
+def _validate_precision_provenance(
+    plan: dict,
+    freeze_ctx: dict,
+    margin: dict,
+) -> tuple[int, int, dict, int, int, dict, dict]:
     low_n, high_n, source_n = generator._required_n(plan)
+    low_analysis_n, high_analysis_n, analysis_source_n = (
+        generator._analysis_required_n(plan)
+    )
     provenance = plan.get("input_provenance")
     _need(isinstance(provenance, dict), "precision plan is missing input provenance")
     for key in ("population_id", "season_id", "fitness_scale_id", "time_horizon_id"):
@@ -215,8 +311,21 @@ def _validate_precision_provenance(plan: dict, freeze_ctx: dict, margin: dict) -
         provenance.get("margin_freeze_commit") == margin.get("freeze_metadata", {}).get("freeze_commit"),
         "precision plan uses a different margin freeze",
     )
-    _need(provenance.get("confirmatory_outcomes_opened") is False, "precision plan provenance shows opened outcomes")
-    return low_n, high_n, source_n
+    _need(
+        provenance.get("confirmatory_outcomes_opened") is False,
+        "precision plan provenance shows opened outcomes",
+    )
+    joint = plan.get("joint_qualification_design", {})
+    _need(isinstance(joint, dict) and joint, "joint qualification design missing")
+    return (
+        low_n,
+        high_n,
+        source_n,
+        low_analysis_n,
+        high_analysis_n,
+        analysis_source_n,
+        joint,
+    )
 
 
 def adjudicate(
@@ -235,7 +344,15 @@ def adjudicate(
         _need(mctx.get(key) == freeze_ctx.get(key), f"margin/confirmatory mismatch: {key}")
     _need(mctx.get("confirmatory_dataset_id") == DATASET_ID, "margin manifest targets a different confirmatory dataset")
     _need(margin_result.get("q5_route") == freeze_ctx.get("q5_route"), "margin q5 route mismatch")
-    low_required, high_required, source_n = _validate_precision_provenance(
+    (
+        low_required,
+        high_required,
+        source_n,
+        low_analysis_required,
+        high_analysis_required,
+        analysis_source_n,
+        joint_design,
+    ) = _validate_precision_provenance(
         precision_plan, freeze_ctx, margin_manifest
     )
 
@@ -288,6 +405,7 @@ def adjudicate(
     burden_level = float(analysis["burden_precision_ci_level"])
     seed = int(analysis["bootstrap_seed"])
     reps = int(analysis["bootstrap_reps"])
+    minimum_valid_fraction = float(analysis["minimum_valid_fraction"])
     margin_map = {x["endpoint_id"]: x for x in margin_manifest["endpoints"]}
     active_ids = set(margin_result["validated_endpoints"])
 
@@ -303,10 +421,23 @@ def adjudicate(
             continue
         margin = float(margin_map[endpoint_id]["value"])
         if endpoint_id in PAIR_SPECS:
-            diffs = _paired_differences(by_plant, strata, endpoint_id)
+            diffs, missingness = _paired_differences(
+                by_plant, strata, endpoint_id
+            )
             complete_n = len(diffs)
-            floor_pass = complete_n >= low_required
-            boot = _bootstrap_mean(diffs, seed + seed_offset, reps) if floor_pass else []
+            analysis_floor = analysis_source_n["paired_plants_total"]
+            if endpoint_id == "D0_Q5_BURDEN_PRECISION":
+                analysis_floor = analysis_source_n["plants_total"]
+            floor_pass = complete_n >= analysis_floor
+            valid_fraction_pass = (
+                missingness["valid_fraction"] >= minimum_valid_fraction
+            )
+            analyzable = floor_pass and valid_fraction_pass
+            boot = (
+                _bootstrap_mean(diffs, seed + seed_offset, reps)
+                if analyzable
+                else []
+            )
             point = sum(diffs) / complete_n if complete_n else None
             criterion = margin_map[endpoint_id]["criterion_type"]
             if criterion in {"EQUIVALENCE", "CONTAMINATION_BOUND"}:
@@ -343,15 +474,37 @@ def adjudicate(
             endpoint_results[endpoint_id] = {
                 "pass": passed,
                 "complete_n": complete_n,
-                "required_n": low_required,
+                "required_analysis_n": analysis_floor,
+                "recruited_low_y_target": low_required,
+                "minimum_valid_fraction": minimum_valid_fraction,
+                "valid_fraction_pass": valid_fraction_pass,
+                "missingness": missingness,
                 "point_difference": point,
                 **detail,
             }
             seed_offset += 1
         elif endpoint_id in TWO_GROUP_SPECS:
-            g1, g2 = _two_group_values(by_plant, strata, endpoint_id)
-            floor_pass = len(g1) >= source_n["plants_per_group"] and len(g2) >= source_n["plants_per_group"]
-            boot = _bootstrap_two_group_difference(g1, g2, seed + seed_offset, reps) if floor_pass else []
+            g1, g2, missingness = _two_group_values(
+                by_plant, strata, endpoint_id
+            )
+            analysis_floor = analysis_source_n["plants_per_group"]
+            floor_pass = (
+                len(g1) >= analysis_floor
+                and len(g2) >= analysis_floor
+            )
+            valid_fraction_pass = (
+                missingness["low_y_valid_fraction"] >= minimum_valid_fraction
+                and missingness["high_y_valid_fraction"]
+                >= minimum_valid_fraction
+            )
+            analyzable = floor_pass and valid_fraction_pass
+            boot = (
+                _bootstrap_two_group_difference(
+                    g1, g2, seed + seed_offset, reps
+                )
+                if analyzable
+                else []
+            )
             point = (sum(g1) / len(g1) - sum(g2) / len(g2)) if g1 and g2 else None
             ci = _central_ci(boot, eq_level) if boot else None
             passed = bool(ci and ci[0] > -margin and ci[1] < margin)
@@ -359,7 +512,11 @@ def adjudicate(
                 "pass": passed,
                 "n_d0": len(g1),
                 "n_d": len(g2),
-                "required_n_per_group": source_n["plants_per_group"],
+                "required_analysis_n_per_group": analysis_floor,
+                "recruited_n_per_group_target": source_n["plants_per_group"],
+                "minimum_valid_fraction": minimum_valid_fraction,
+                "valid_fraction_pass": valid_fraction_pass,
+                "missingness": missingness,
                 "point_difference_d0_minus_d": point,
                 "criterion": "EQUIVALENCE",
                 "margin": margin,
@@ -399,6 +556,26 @@ def adjudicate(
     q5_endpoint = next(iter(q5_ids)) if q5_ids else None
     burden_receipt = endpoint_results.get(q5_endpoint) if q5_endpoint else None
 
+    missingness_summary = {
+        "endpoints_with_exclusions": [
+            endpoint_id
+            for endpoint_id, result in endpoint_results.items()
+            if isinstance(result.get("missingness"), dict)
+            and result["missingness"].get("excluded_plants", 0) > 0
+        ],
+        "total_endpoint_exclusion_events": sum(
+            result.get("missingness", {}).get("excluded_plants", 0)
+            for result in endpoint_results.values()
+            if isinstance(result, dict)
+        ),
+        "minimum_valid_fraction": minimum_valid_fraction,
+        "interpretation": (
+            "Complete-case exclusions are reported endpoint by endpoint. "
+            "Passing requires the frozen minimum valid fraction and the raw analyzable sample-size floor. "
+            "Non-random missingness can still bias equivalence toward zero and requires substantive sensitivity analysis."
+        ),
+    }
+
     return {
         "schema_version": "SLK_PEDICULARIS_D0_CONFIRMATORY_RECEIPT_V1",
         "status": final_status,
@@ -414,15 +591,20 @@ def adjudicate(
             "q5_route": freeze_ctx["q5_route"],
         },
         "precision_plan": {
-            "required_low_y_plants": low_required,
-            "required_high_y_plants": high_required,
-            "source_allocation_maxima": source_n,
+            "recruitment_required_low_y_plants": low_required,
+            "recruitment_required_high_y_plants": high_required,
+            "recruitment_source_allocation_maxima": source_n,
+            "analysis_required_low_y_plants": low_analysis_required,
+            "analysis_required_high_y_plants": high_analysis_required,
+            "analysis_source_allocation_minima": analysis_source_n,
             "observed_low_y_plants": len(low_plants),
             "observed_high_y_plants": len(high_plants),
+            "joint_qualification_design": joint_design,
         },
         "structural_y_band_failure_count": len(band_failures),
         "gates": gates,
         "endpoint_results": endpoint_results,
+        "missingness_summary": missingness_summary,
         "apparatus_burden_receipt": burden_receipt,
         "firewall": {
             "d0_qualification_units_g3_g5_ineligible": True,
