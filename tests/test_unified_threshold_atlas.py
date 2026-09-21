@@ -2,6 +2,9 @@ import pytest
 
 from scripts.slk_threshold_atlas import (
     ArchitecturePath,
+    REGISTERED_WITNESS_MORAN_BETA,
+    REGISTERED_WITNESS_MORAN_N,
+    REGISTERED_WITNESS_PARAMETERS,
     canonical_architecture_game,
     canonical_reciprocal_fixation_ratio_closed_form,
     endpoint_curvature_interval,
@@ -46,8 +49,9 @@ def test_registered_quadratic_witness_family_has_split_local_and_global_threshol
 
 def test_w1_conflict_can_persist_without_profitable_endpoint():
     path = ArchitecturePath()
-    l_value = 2.0
-    phi = path.phi(k=2.2)
+    l_value = REGISTERED_WITNESS_PARAMETERS["W1"]["L"]
+    k = REGISTERED_WITNESS_PARAMETERS["W1"]["k"]
+    phi = path.phi(k=k)
     assert l_value > 0
     assert numerically_close(path.recovery(path.dmax), l_value)
     assert phi < 0
@@ -55,24 +59,27 @@ def test_w1_conflict_can_persist_without_profitable_endpoint():
 
 def test_w2_global_value_can_be_positive_while_small_release_is_downhill():
     path = ArchitecturePath()
-    phi = path.phi(k=1.5)
+    k = REGISTERED_WITNESS_PARAMETERS["W2"]["k"]
+    phi = path.phi(k=k)
     assert phi > 0
-    assert path.local_gradient(k=1.5) < 0
+    assert path.local_gradient(k=k) < 0
 
 
 def test_w3_accessible_positive_endpoint_can_fail_rare_invasion():
     path = ArchitecturePath()
-    phi = path.phi(k=0.8)
-    eta = 1.5
-    assert path.local_gradient(k=0.8) > 0
+    k = REGISTERED_WITNESS_PARAMETERS["W3"]["k"]
+    eta = REGISTERED_WITNESS_PARAMETERS["W3"]["eta"]
+    phi = path.phi(k=k)
+    assert path.local_gradient(k=k) > 0
     assert phi > 0
     assert rare_invasion_margin(phi, eta) < 0
 
 
 def test_w4_rare_invasion_can_disagree_with_reciprocal_fixation_ordering():
     path = ArchitecturePath()
-    phi = path.phi(k=2.2)
-    eta = -1.0
+    k = REGISTERED_WITNESS_PARAMETERS["W4"]["k"]
+    eta = REGISTERED_WITNESS_PARAMETERS["W4"]["eta"]
+    phi = path.phi(k=k)
     assert rare_invasion_margin(phi, eta) > 0
     canonical = canonical_architecture_game(phi, eta)
     assert canonical_reciprocal_fixation_ratio_closed_form(
@@ -82,8 +89,9 @@ def test_w4_rare_invasion_can_disagree_with_reciprocal_fixation_ordering():
 
 def test_w5_absolute_fixation_advantage_can_disagree_with_occupancy():
     path = ArchitecturePath()
-    phi = path.phi(k=2.1)
-    eta = -0.5
+    k = REGISTERED_WITNESS_PARAMETERS["W5"]["k"]
+    eta = REGISTERED_WITNESS_PARAMETERS["W5"]["eta"]
+    phi = path.phi(k=k)
     assert weak_selection_absolute_fixation_margin(phi, eta) > 0
     canonical = canonical_architecture_game(phi, eta)
     assert occupancy_ratio_from_process(
