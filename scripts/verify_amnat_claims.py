@@ -5,17 +5,30 @@ import json
 import math
 from pathlib import Path
 
-from slk_threshold_atlas import (
-    ArchitecturePath,
-    SymmetricTwoStrategyGame,
-    canonical_architecture_game,
-    canonical_reciprocal_fixation_ratio_closed_form,
-    fixation_probability_d,
-    fixation_probability_s,
-    reciprocal_fixation_ratio_from_process,
-    symmetric_rare_mutation_stationary_distribution,
-    validate_canonical_mapping,
-)
+try:
+    from scripts.slk_threshold_atlas import (
+        ArchitecturePath,
+        SymmetricTwoStrategyGame,
+        canonical_architecture_game,
+        canonical_reciprocal_fixation_ratio_closed_form,
+        fixation_probability_d,
+        fixation_probability_s,
+        reciprocal_fixation_ratio_from_process,
+        symmetric_rare_mutation_stationary_distribution,
+        validate_canonical_mapping,
+    )
+except ImportError:  # direct execution via `python scripts/verify_amnat_claims.py`
+    from slk_threshold_atlas import (
+        ArchitecturePath,
+        SymmetricTwoStrategyGame,
+        canonical_architecture_game,
+        canonical_reciprocal_fixation_ratio_closed_form,
+        fixation_probability_d,
+        fixation_probability_s,
+        reciprocal_fixation_ratio_from_process,
+        symmetric_rare_mutation_stationary_distribution,
+        validate_canonical_mapping,
+    )
 
 
 def verify() -> dict[str, object]:
