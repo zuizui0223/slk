@@ -22,8 +22,8 @@ FILES = {
     "figures/FIG1_LOGIC_DIAGRAM.svg": "figures/FIG1_LOGIC_DIAGRAM.svg",
     "figures/FIG2_PHASE_MAP.svg": "figures/FIG2_PHASE_MAP.svg",
     "figures/FIG3_EMPIRICAL_LADDER.svg": "figures/FIG3_EMPIRICAL_LADDER.svg",
-    "scripts/slk_threshold_atlas.py": "code/slk_threshold_atlas.py",
-    "scripts/verify_amnat_claims.py": "code/verify_amnat_claims.py",
+    "scripts/slk_threshold_atlas.py": "scripts/slk_threshold_atlas.py",
+    "scripts/verify_amnat_claims.py": "scripts/verify_amnat_claims.py",
     "tests/test_moran_process_invariant.py": "tests/test_moran_process_invariant.py",
     "pytest.ini": "pytest.ini",
 }
@@ -51,7 +51,7 @@ The package therefore contains the exact manuscript source, the unified threshol
 From the root of this extracted package, run:
 
 ```bash
-python code/verify_amnat_claims.py --output CLAIM_VERIFICATION_RECEIPT.json
+python scripts/verify_amnat_claims.py --output CLAIM_VERIFICATION_RECEIPT.json
 python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py
 ```
 
