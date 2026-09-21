@@ -1,6 +1,10 @@
 from scripts.slk_threshold_atlas import (
     ArchitecturePath,
+    endpoint_curvature_interval,
+    endpoint_lipschitz_interval,
     environmental_phi,
+    environmental_threshold_error_bound,
+    extrapolate_endpoint_two_frequency,
     identify_phi_eta_from_symmetric_frequencies,
     identify_quadratic_frequency_components,
     invasion_environment_from_endpoint_offset,
@@ -20,6 +24,7 @@ from scripts.slk_threshold_atlas import (
     reverse_invasion_resistance_margin_quadratic_frequency,
     selection_gap,
     selection_gap_quadratic_frequency,
+    sign_certificate,
     weak_selection_absolute_fixation_margin,
 )
 
@@ -294,3 +299,59 @@ def test_endpoint_offsets_control_window_width_and_center_without_interior_shape
     expected_center_shift = -(h_rare + h_resident_d) / (2 * slope)
     assert abs((e_i - e_r) - expected_width) < 1e-12
     assert abs(((e_i + e_r) / 2 - e_v) - expected_center_shift) < 1e-12
+
+
+def test_one_point_lipschitz_certificate_can_certify_endpoint_sign():
+    interval = endpoint_lipschitz_interval(
+        delta_at_epsilon=0.30,
+        epsilon=0.05,
+        lipschitz_bound=2.0,
+    )
+    assert interval == (0.19999999999999998, 0.4)
+    assert sign_certificate(interval) == "positive"
+
+    unresolved = endpoint_lipschitz_interval(
+        delta_at_epsilon=0.05,
+        epsilon=0.05,
+        lipschitz_bound=2.0,
+    )
+    assert sign_certificate(unresolved) == "unresolved"
+
+
+def test_two_point_endpoint_extrapolation_is_exact_for_linear_frequency_response():
+    # Delta(p)=d0+d1*p
+    d0 = -0.2
+    d1 = 1.7
+    epsilon = 0.1
+    d_eps = d0 + d1 * epsilon
+    d_2eps = d0 + d1 * 2 * epsilon
+    estimate = extrapolate_endpoint_two_frequency(d_eps, d_2eps)
+    assert abs(estimate - d0) < 1e-12
+
+
+def test_two_point_curvature_interval_contains_true_quadratic_endpoint():
+    # Delta(p)=d0+d1*p+c*p^2, so |Delta''|=2|c|.
+    d0 = 0.12
+    d1 = -0.4
+    c_quad = 0.75
+    epsilon = 0.08
+    d_eps = d0 + d1 * epsilon + c_quad * epsilon**2
+    d_2eps = d0 + d1 * 2 * epsilon + c_quad * (2 * epsilon) ** 2
+    curvature_bound = 2 * abs(c_quad)
+    interval = endpoint_curvature_interval(
+        d_eps,
+        d_2eps,
+        epsilon,
+        curvature_bound,
+    )
+    assert interval[0] <= d0 <= interval[1]
+    assert sign_certificate(interval) == "positive"
+
+
+def test_second_order_threshold_error_bound_scales_as_epsilon_squared():
+    epsilon = 0.05
+    curvature_bound = 3.0
+    slope = 1.5
+    fitness_error = curvature_bound * epsilon**2
+    env_error = environmental_threshold_error_bound(fitness_error, slope)
+    assert abs(env_error - curvature_bound * epsilon**2 / slope) < 1e-12
