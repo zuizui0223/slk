@@ -162,12 +162,23 @@ def _validate_freeze(freeze: dict) -> dict:
     _need(analysis.get("burden_uncertainty_rule") == "CONSERVATIVE_INTERVAL_ADDITION_FOR_R_AND_K; CANCELLATION_RETAINED_FOR_PHI", "burden uncertainty rule changed")
 
     concordance = freeze.get("independent_concordance", {})
-    concordance_tol = concordance.get("max_abs_phi_point_difference")
+    concordance_tol = concordance.get("residual_equivalence_margin")
     if route == "INDEPENDENT_DIRECT_PHI_BLOCK":
-        concordance_tol = _positive_float(concordance_tol, "max_abs_phi_point_difference")
-        _need(concordance.get("residual_ci_must_include_zero") is True, "residual zero-inclusion rule disabled")
+        concordance_tol = _positive_float(
+            concordance_tol,
+            "residual_equivalence_margin",
+        )
+        _need(
+            concordance.get(
+                "residual_ci_must_be_within_equivalence_margin"
+            ) is True,
+            "residual equivalence-CI rule disabled",
+        )
     else:
-        _need(concordance_tol in (None, 0), "same-block route must not register independent concordance tolerance")
+        _need(
+            concordance_tol in (None, 0),
+            "same-block route must not register independent concordance tolerance",
+        )
         concordance_tol = None
 
     firewall = freeze.get("firewall", {})
