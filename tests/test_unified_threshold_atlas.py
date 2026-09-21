@@ -2,6 +2,8 @@ import pytest
 
 from scripts.slk_threshold_atlas import (
     ArchitecturePath,
+    canonical_architecture_game,
+    canonical_reciprocal_fixation_ratio_closed_form,
     endpoint_curvature_interval,
     endpoint_curvature_interval_with_sampling,
     endpoint_lipschitz_interval,
@@ -13,14 +15,13 @@ from scripts.slk_threshold_atlas import (
     identify_quadratic_frequency_components,
     invasion_environment_from_endpoint_offset,
     numerically_close,
-    occupancy_ratio,
+    occupancy_ratio_from_process,
     rare_invasion_environment,
     rare_invasion_environment_affine_feedback,
     rare_invasion_environment_quadratic_frequency,
     rare_invasion_margin,
     rare_invasion_margin_endpoint,
     rare_invasion_margin_quadratic_frequency,
-    reciprocal_fixation_ratio,
     reverse_invasion_environment,
     reverse_invasion_environment_affine_feedback,
     reverse_invasion_environment_quadratic_frequency,
@@ -73,7 +74,10 @@ def test_w4_rare_invasion_can_disagree_with_reciprocal_fixation_ordering():
     phi = path.phi(k=2.2)
     eta = -1.0
     assert rare_invasion_margin(phi, eta) > 0
-    assert reciprocal_fixation_ratio(phi, beta=0.1, n=20) < 1
+    canonical = canonical_architecture_game(phi, eta)
+    assert canonical_reciprocal_fixation_ratio_closed_form(
+        canonical, beta=0.1, n=20
+    ) < 1
 
 
 def test_w5_absolute_fixation_advantage_can_disagree_with_occupancy():
@@ -81,7 +85,10 @@ def test_w5_absolute_fixation_advantage_can_disagree_with_occupancy():
     phi = path.phi(k=2.1)
     eta = -0.5
     assert weak_selection_absolute_fixation_margin(phi, eta) > 0
-    assert occupancy_ratio(phi, beta=0.1, n=20) < 1
+    canonical = canonical_architecture_game(phi, eta)
+    assert occupancy_ratio_from_process(
+        canonical.as_game(), beta=0.1, n=20
+    ) < 1
 
 
 def test_invasion_surfaces_are_phi_equals_plus_or_minus_eta():
@@ -90,10 +97,15 @@ def test_invasion_surfaces_are_phi_equals_plus_or_minus_eta():
     assert numerically_close(reverse_invasion_resistance_margin(phi, eta=-phi), 0.0)
 
 
-def test_fixation_and_occupancy_realign_exactly_on_phi_zero():
+def test_fixation_and_occupancy_realign_on_registered_canonical_process():
     for phi in (-0.2, 0.0, 0.2):
-        fixation = reciprocal_fixation_ratio(phi, beta=0.1, n=20)
-        occupancy = occupancy_ratio(phi, beta=0.1, n=20)
+        canonical = canonical_architecture_game(phi, eta=0.0)
+        fixation = canonical_reciprocal_fixation_ratio_closed_form(
+            canonical, beta=0.1, n=20
+        )
+        occupancy = occupancy_ratio_from_process(
+            canonical.as_game(), beta=0.1, n=20
+        )
         assert numerically_close(fixation, occupancy)
         assert (fixation > 1) == (phi > 0)
         assert (fixation < 1) == (phi < 0)
