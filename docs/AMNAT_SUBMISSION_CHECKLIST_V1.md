@@ -41,7 +41,7 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 The CI-built review manuscript is generated directly from the canonical V4 source. The current build renders successfully, passes DOCX/PDF structure and anonymity checks, and embeds all three figures.
 
 ```text
-MAIN_REVIEW_PDF_PAGES      29
+MAIN_REVIEW_PDF_PAGES      31
 ANONYMOUS_TITLE_PDF_PAGES   1
 DOUBLE_SPACED               true
 LINE_NUMBERS                true
@@ -50,6 +50,8 @@ EMBEDDED_FIGURES            3
 RENDERED_IDENTITY_SCAN      PASS
 FIGURE_1_MANUAL_QA          PASS — threshold atlas readable, no clipping, no duplicate caption
 FIGURE_3_MANUAL_QA          PASS — G7 endpoint + 2–3+ frequency diagnostics readable, no clipping
+ANON_REVIEW_MORAN_TEST      PASS — 13/13 process-level tests in extracted bundle
+INV1_REVIEW_RECEIPT         PASS — 336 process comparisons + canonical guard
 FULL_PAGE_BY_PAGE_PROOFREAD OPEN
 ```
 
