@@ -238,6 +238,10 @@ def generate_layout(
     ctx = _validate_analysis_freeze(analysis_freeze)
     band = _validate_y_receipt(structural_y_receipt, ctx)
     low_n, high_n, source_n = _required_n(precision_plan)
+    low_analysis_n, high_analysis_n, analysis_source_n = (
+        _analysis_required_n(precision_plan)
+    )
+    joint_design = precision_plan["joint_qualification_design"]
     rng = random.Random(randomization_seed)
     rows: list[dict[str, str]] = []
 
@@ -307,6 +311,10 @@ def generate_layout(
             "low_y_rows": low_n * 3,
             "high_y_rows": high_n,
             "source_precision_maxima": source_n,
+            "analysis_minimum_low_y_complete_plants": low_analysis_n,
+            "analysis_minimum_high_y_complete_plants": high_analysis_n,
+            "source_analysis_minima": analysis_source_n,
+            "joint_qualification_design": joint_design,
         },
         "randomization_seed": randomization_seed,
         "firewall": {
