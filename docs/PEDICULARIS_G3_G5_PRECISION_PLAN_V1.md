@@ -79,12 +79,15 @@ It is a transparent variance-transport safeguard, not a parameter that can be lo
 
 ## 4. Precision targets are biological/decision targets
 
-The precision freeze requires four targets that may not be defined from the later G3-G5 outcomes:
+The precision freeze requires three core targets that may not be defined from the later G3-G5 outcomes, plus a fourth target only when independent direct-Phi concordance is planned:
 
 ```text
+core:
 world_cell_mean_half_width
 minimum_recoverable_benefit_R
 minimum_abs_architecture_value_Phi
+
+independent-route only:
 bridge_residual_equivalence_margin.
 ```
 
@@ -160,7 +163,7 @@ Delta_bridge
 Phi_direct - Phi_internal.
 ```
 
-Freeze a bridge-residual equivalence margin `delta_bridge` before outcomes.
+If the independent route is planned, freeze a bridge-residual equivalence margin `delta_bridge` before outcomes. For the same-block internal-identity route this target may remain null and no bridge sample floor is applied.
 
 Under the equal-allocation planning approximation and common planning SD `sigma`, each Phi estimate is an S:D difference. With independent direct and decomposition blocks, the bridge residual has approximate standard error:
 
