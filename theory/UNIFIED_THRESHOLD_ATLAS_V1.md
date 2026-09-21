@@ -907,6 +907,213 @@ UTA1.8 is exact for deterministic endpoint invasion criteria. It does not by its
 
 ---
 
+## Corollary UTA1.9 — finite-frequency assays can certify endpoint invasion
+
+UTA1.8 defines invasion through the endpoint limits
+
+```text
+Delta_R(E)
+=
+lim_{p->0} Delta(p,E)
+```
+
+and
+
+```text
+Delta_D(E)
+=
+lim_{p->1} Delta(p,E).
+```
+
+In experiments, exactly zero or one frequency is often impossible. Endpoint invasion can nevertheless be certified from finite-frequency assays when local smoothness is bounded.
+
+### One-point Lipschitz certificate
+
+Suppose that near `p=0`,
+
+```text
+|Delta(p,E)-Delta_R(E)|
+<=
+M_R(E) p
+```
+
+for `0<=p<=epsilon_max`.
+
+At any measured rare frequency `epsilon>0`,
+
+```text
+Delta_R(E)
+in
+[
+Delta(epsilon,E)-M_R epsilon,
+Delta(epsilon,E)+M_R epsilon
+].
+```
+
+Therefore
+
+```text
+Delta(epsilon,E)-M_R epsilon > 0
+```
+
+is sufficient to certify rare D invasion, while
+
+```text
+Delta(epsilon,E)+M_R epsilon < 0
+```
+
+is sufficient to certify failure of rare D invasion.
+
+If the interval contains zero, the assay is unresolved rather than negative.
+
+Near `p=1`, if
+
+```text
+|Delta(p,E)-Delta_D(E)|
+<=
+M_D(E)(1-p),
+```
+
+then a measurement at `p=1-epsilon` gives
+
+```text
+Delta_D(E)
+in
+[
+Delta(1-epsilon,E)-M_D epsilon,
+Delta(1-epsilon,E)+M_D epsilon
+].
+```
+
+The same sign-certification rule applies to resistance against rare S invasion.
+
+### Two-point second-order endpoint extrapolation
+
+A stronger certificate is available if `Delta(p,E)` is twice differentiable near the endpoint and
+
+```text
+|partial^2 Delta / partial p^2|
+<=
+C_R(E)
+```
+
+for `0<=p<=2epsilon`.
+
+Use measurements at `p=epsilon` and `p=2epsilon` and define the linear endpoint extrapolator
+
+```text
+Delta_R_hat(E)
+=
+2 Delta(epsilon,E)
+-
+Delta(2epsilon,E).
+```
+
+The interpolation remainder gives
+
+```text
+|Delta_R_hat(E)-Delta_R(E)|
+<=
+C_R(E) epsilon^2.
+```
+
+Thus
+
+```text
+Delta_R_hat-C_R epsilon^2 > 0
+```
+
+certifies rare D invasion, whereas
+
+```text
+Delta_R_hat+C_R epsilon^2 < 0
+```
+
+certifies failure of rare D invasion.
+
+At the resident-D endpoint, with
+
+```text
+|partial^2 Delta / partial p^2|
+<=
+C_D(E)
+```
+
+for `1-2epsilon<=p<=1`, define
+
+```text
+Delta_D_hat(E)
+=
+2 Delta(1-epsilon,E)
+-
+Delta(1-2epsilon,E).
+```
+
+Then
+
+```text
+|Delta_D_hat(E)-Delta_D(E)|
+<=
+C_D(E) epsilon^2.
+```
+
+### Consequence for field and mesocosm design
+
+UTA1.9 converts the endpoint-limit requirement into a finite-frequency design:
+
+```text
+minimal first-order design:
+epsilon
+
+stronger second-order design:
+epsilon, 2epsilon
+```
+
+at the rare-D endpoint, with the symmetric design near `p=1`.
+
+The second-order certificate improves the deterministic approximation error from `O(epsilon)` to `O(epsilon^2)` when a valid curvature bound is available.
+
+### Environmental threshold uncertainty
+
+If architecture value is locally
+
+```text
+Phi(E)=a(E-E_V),
+a>0,
+```
+
+and the estimated endpoint invasion margin has uncertainty bound `B(E)` on the fitness scale, then the corresponding ecological threshold uncertainty is bounded by
+
+```text
+|E_I_hat-E_I|
+<=
+B/a
+```
+
+to first order when the local environmental slope `a` is treated as known.
+
+Under the two-point curvature certificate,
+
+```text
+B=C_R epsilon^2,
+```
+
+so
+
+```text
+|E_I_hat-E_I|
+<=
+C_R epsilon^2/a.
+```
+
+The same result applies to the reverse-invasion threshold using `C_D`.
+
+### Claim boundary
+
+These are deterministic approximation bounds conditional on valid local Lipschitz or curvature bounds. Sampling uncertainty in measured fitness differences must be added separately. A certified interval that overlaps zero is **uninformative**, not evidence of no invasion.
+
+---
+
 ## 2. One-family constructive witnesses
 
 To avoid proving different separations with disconnected toy models, use one convex recovery family throughout:
