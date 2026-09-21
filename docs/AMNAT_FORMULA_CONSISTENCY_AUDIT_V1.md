@@ -252,6 +252,48 @@ E_I-E_R=(h_D-h_R)/a
 
 Status: **PASS** across theory, AMNAT V4, executable helpers, verifier, and unit tests.
 
+## Finite-frequency endpoint-certification check
+
+For a one-point rare-frequency assay under
+
+```text
+|Delta(p)-Delta_R|<=M_R p,
+```
+
+the endpoint interval is
+
+```text
+[
+Delta(epsilon)-M_R epsilon,
+Delta(epsilon)+M_R epsilon
+].
+```
+
+For the two-point extrapolator
+
+```text
+Delta_R_hat=2Delta(epsilon)-Delta(2epsilon)
+```
+
+and local curvature bound `|Delta''|<=C_R`,
+
+```text
+|Delta_R_hat-Delta_R|
+<=
+C_R epsilon^2.
+```
+
+With sampling intervals `[L1,U1]` and `[L2,U2]`, the combined certified endpoint interval is
+
+```text
+[
+2L1-U2-C_R epsilon^2,
+2U1-L2+C_R epsilon^2
+].
+```
+
+Status: **PASS** across theory, AMNAT V4, G7 design, executable helpers, verifier, and unit tests.
+
 ## Independent witness arithmetic
 
 All registered separations were recalculated inside the common family
@@ -314,6 +356,7 @@ ECOLOGICAL_THRESHOLD_DISPLACEMENT PASS
 ECOLOGICAL_FEEDBACK_GRADIENT      PASS
 THREE_FREQUENCY_CURVATURE          PASS
 ARBITRARY_SHAPE_ENDPOINT_INVASION  PASS
+FINITE_FREQUENCY_ENDPOINT_BOUNDS   PASS
 WITNESS_ARITHMETIC              PASS
 MANUSCRIPT_LEDGER_SYNC          PASS_AFTER_REPAIR
 ```
