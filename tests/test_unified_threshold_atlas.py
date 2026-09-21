@@ -1,3 +1,5 @@
+import pytest
+
 from scripts.slk_threshold_atlas import (
     ArchitecturePath,
     endpoint_curvature_interval,
@@ -10,6 +12,7 @@ from scripts.slk_threshold_atlas import (
     identify_phi_eta_from_symmetric_frequencies,
     identify_quadratic_frequency_components,
     invasion_environment_from_endpoint_offset,
+    numerically_close,
     occupancy_ratio,
     rare_invasion_environment,
     rare_invasion_environment_affine_feedback,
@@ -30,11 +33,13 @@ from scripts.slk_threshold_atlas import (
     weak_selection_absolute_fixation_margin,
 )
 
+pytestmark = pytest.mark.theory_numeric
+
 
 def test_registered_quadratic_witness_family_has_split_local_and_global_thresholds():
     path = ArchitecturePath()
-    assert path.k_local == 1.0
-    assert path.k_global == 2.0
+    assert numerically_close(path.k_local, 1.0)
+    assert numerically_close(path.k_global, 2.0)
     assert path.k_local < path.k_global
 
 
@@ -43,7 +48,7 @@ def test_w1_conflict_can_persist_without_profitable_endpoint():
     l_value = 2.0
     phi = path.phi(k=2.2)
     assert l_value > 0
-    assert path.recovery(path.dmax) == l_value
+    assert numerically_close(path.recovery(path.dmax), l_value)
     assert phi < 0
 
 
@@ -81,15 +86,15 @@ def test_w5_absolute_fixation_advantage_can_disagree_with_occupancy():
 
 def test_invasion_surfaces_are_phi_equals_plus_or_minus_eta():
     phi = 0.4
-    assert rare_invasion_margin(phi, eta=phi) == 0
-    assert reverse_invasion_resistance_margin(phi, eta=-phi) == 0
+    assert numerically_close(rare_invasion_margin(phi, eta=phi), 0.0)
+    assert numerically_close(reverse_invasion_resistance_margin(phi, eta=-phi), 0.0)
 
 
 def test_fixation_and_occupancy_realign_exactly_on_phi_zero():
     for phi in (-0.2, 0.0, 0.2):
         fixation = reciprocal_fixation_ratio(phi, beta=0.1, n=20)
         occupancy = occupancy_ratio(phi, beta=0.1, n=20)
-        assert fixation == occupancy
+        assert numerically_close(fixation, occupancy)
         assert (fixation > 1) == (phi > 0)
         assert (fixation < 1) == (phi < 0)
 
@@ -101,8 +106,8 @@ def test_positive_eta_delays_invasion_beyond_value_threshold():
     e_i = rare_invasion_environment(e_v, slope, eta)
     e_r = reverse_invasion_environment(e_v, slope, eta)
     assert e_r < e_v < e_i
-    assert e_i - e_v == eta / slope
-    assert environmental_phi(e_i, slope, e_v) == eta
+    assert numerically_close(e_i - e_v, eta / slope)
+    assert numerically_close(environmental_phi(e_i, slope, e_v), eta)
 
 
 def test_negative_eta_allows_rare_invasion_before_positive_endpoint_value():
@@ -112,7 +117,7 @@ def test_negative_eta_allows_rare_invasion_before_positive_endpoint_value():
     e_i = rare_invasion_environment(e_v, slope, eta)
     e_r = reverse_invasion_environment(e_v, slope, eta)
     assert e_i < e_v < e_r
-    assert environmental_phi(e_i, slope, e_v) == eta
+    assert numerically_close(environmental_phi(e_i, slope, e_v), eta)
     midpoint = (e_i + e_v) / 2
     phi_mid = environmental_phi(midpoint, slope, e_v)
     assert phi_mid < 0
@@ -125,7 +130,7 @@ def test_environmental_invasion_window_width_is_two_abs_eta_over_slope():
     for eta in (-2.0, 2.0):
         e_i = rare_invasion_environment(e_v, slope, eta)
         e_r = reverse_invasion_environment(e_v, slope, eta)
-        assert abs(e_i - e_r) == 2 * abs(eta) / slope
+        assert numerically_close(abs(e_i - e_r), 2 * abs(eta) / slope)
 
 
 def test_varying_positive_coordination_feedback_delays_invasion_further():
@@ -183,7 +188,7 @@ def test_two_symmetric_frequency_treatments_recover_phi_and_eta():
 def test_balanced_frequency_selection_gap_equals_phi():
     phi = -0.3
     eta = 2.0
-    assert selection_gap(phi, eta, 0.5) == phi
+    assert numerically_close(selection_gap(phi, eta, 0.5), phi)
 
 
 def test_three_frequency_treatments_recover_quadratic_frequency_components():
@@ -212,12 +217,16 @@ def test_three_frequency_treatments_recover_quadratic_frequency_components():
 def test_quadratic_frequency_invasion_thresholds_reduce_to_canonical_when_h0_kappa_zero():
     phi = 0.4
     eta = 0.3
-    assert rare_invasion_margin_quadratic_frequency(phi, 0.0, eta, 0.0) == (
-        phi - eta
+    assert numerically_close(
+        rare_invasion_margin_quadratic_frequency(phi, 0.0, eta, 0.0),
+        phi - eta,
     )
-    assert reverse_invasion_resistance_margin_quadratic_frequency(
-        phi, 0.0, eta, 0.0
-    ) == (phi + eta)
+    assert numerically_close(
+        reverse_invasion_resistance_margin_quadratic_frequency(
+            phi, 0.0, eta, 0.0
+        ),
+        phi + eta,
+    )
 
 
 def test_eta_controls_window_width_while_h0_kappa_shift_window_center():
@@ -383,3 +392,20 @@ def test_sampling_intervals_combine_with_two_point_curvature_remainder():
     assert abs(interval[0] - expected_lower) < 1e-12
     assert abs(interval[1] - expected_upper) < 1e-12
     assert sign_certificate(interval) == "positive"
+
+
+def test_numerically_tiny_environmental_slopes_are_rejected():
+    with pytest.raises(ValueError):
+        environmental_phi(1.0, 1e-18, 0.0)
+    with pytest.raises(ValueError):
+        rare_invasion_environment(0.0, 1e-18, 1.0)
+
+
+def test_numerically_tiny_affine_feedback_denominator_is_rejected():
+    with pytest.raises(ValueError):
+        rare_invasion_environment_affine_feedback(
+            value_threshold=0.0,
+            phi_slope=1.0,
+            eta_at_value=1.0,
+            eta_slope=1.0 - 1e-15,
+        )
