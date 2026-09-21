@@ -9,7 +9,15 @@ from statistics import NormalDist
 
 DEFAULT_ALPHA = 0.05
 DEFAULT_POWER = 0.80
+DEFAULT_JOINT_QUALIFICATION_POWER = 0.80
 DEFAULT_ATTRITION = 0.15
+
+POWER_KINDS = {
+    "paired_equivalence",
+    "two_group_equivalence",
+    "paired_superiority",
+    "two_group_superiority",
+}
 
 
 def _finite_pos(x: float, label: str, allow_zero: bool = False) -> float:
@@ -41,7 +49,9 @@ def n_paired_equivalence(sd_diff: float, margin: float, alpha: float = DEFAULT_A
                          power: float = DEFAULT_POWER) -> int:
     sd_diff = _finite_pos(sd_diff, "sd_diff")
     margin = _finite_pos(margin, "margin")
-    zsum = _z(1 - alpha) + _z(power)
+    # For symmetric TOST equivalence at true difference 0:
+    # power = 2*Phi(Delta/se - z_(1-alpha)) - 1.
+    zsum = _z(1 - alpha) + _z((1 + power) / 2)
     return max(2, math.ceil((zsum * sd_diff / margin) ** 2))
 
 
@@ -49,26 +59,47 @@ def n_two_group_equivalence(sd: float, margin: float, alpha: float = DEFAULT_ALP
                             power: float = DEFAULT_POWER) -> int:
     sd = _finite_pos(sd, "sd")
     margin = _finite_pos(margin, "margin")
-    zsum = _z(1 - alpha) + _z(power)
+    # For symmetric TOST equivalence at true difference 0.
+    zsum = _z(1 - alpha) + _z((1 + power) / 2)
     return max(2, math.ceil(2 * (zsum * sd / margin) ** 2))
 
 
-def n_paired_superiority(sd_diff: float, min_effect: float, alpha: float = DEFAULT_ALPHA,
-                         power: float = DEFAULT_POWER, directional: bool = False) -> int:
+def n_paired_superiority(
+    sd_diff: float,
+    min_effect: float,
+    planning_effect: float,
+    alpha: float = DEFAULT_ALPHA,
+    power: float = DEFAULT_POWER,
+    directional: bool = False,
+) -> int:
     sd_diff = _finite_pos(sd_diff, "sd_diff")
     min_effect = _finite_pos(min_effect, "min_effect")
+    planning_effect = _finite_pos(planning_effect, "planning_effect")
+    separation = planning_effect - min_effect
+    if separation <= 0:
+        raise ValueError("planning_effect must exceed min_effect")
     za = _z(1 - alpha) if directional else _z(1 - alpha / 2)
     zsum = za + _z(power)
-    return max(2, math.ceil((zsum * sd_diff / min_effect) ** 2))
+    return max(2, math.ceil((zsum * sd_diff / separation) ** 2))
 
 
-def n_two_group_superiority(sd: float, min_effect: float, alpha: float = DEFAULT_ALPHA,
-                            power: float = DEFAULT_POWER, directional: bool = False) -> int:
+def n_two_group_superiority(
+    sd: float,
+    min_effect: float,
+    planning_effect: float,
+    alpha: float = DEFAULT_ALPHA,
+    power: float = DEFAULT_POWER,
+    directional: bool = False,
+) -> int:
     sd = _finite_pos(sd, "sd")
     min_effect = _finite_pos(min_effect, "min_effect")
+    planning_effect = _finite_pos(planning_effect, "planning_effect")
+    separation = planning_effect - min_effect
+    if separation <= 0:
+        raise ValueError("planning_effect must exceed min_effect")
     za = _z(1 - alpha) if directional else _z(1 - alpha / 2)
     zsum = za + _z(power)
-    return max(2, math.ceil(2 * (zsum * sd / min_effect) ** 2))
+    return max(2, math.ceil(2 * (zsum * sd / separation) ** 2))
 
 
 def n_mean_precision(sd: float, half_width: float, alpha: float = DEFAULT_ALPHA) -> int:
@@ -92,13 +123,21 @@ def plan_endpoint(spec: dict, defaults: dict | None = None) -> dict:
         n_unit = "plants_per_group"
     elif kind == "paired_superiority":
         raw = n_paired_superiority(
-            spec["sd_diff"], spec["min_effect"], alpha, power,
+            spec["sd_diff"],
+            spec["min_effect"],
+            spec["planning_effect"],
+            alpha,
+            power,
             bool(spec.get("directional", False)),
         )
         n_unit = "paired_plants_total"
     elif kind == "two_group_superiority":
         raw = n_two_group_superiority(
-            spec["sd"], spec["min_effect"], alpha, power,
+            spec["sd"],
+            spec["min_effect"],
+            spec["planning_effect"],
+            alpha,
+            power,
             bool(spec.get("directional", False)),
         )
         n_unit = "plants_per_group"
@@ -119,7 +158,7 @@ def plan_endpoint(spec: dict, defaults: dict | None = None) -> dict:
         "inflated_required_n": inflated,
         "n_unit": n_unit,
     }
-    for key in ("sd", "sd_diff", "margin", "min_effect", "half_width", "directional"):
+    for key in ("sd", "sd_diff", "margin", "min_effect", "planning_effect", "half_width", "directional"):
         if key in spec:
             out[key] = spec[key]
     return out
@@ -138,7 +177,57 @@ def plan_manifest(manifest: dict) -> dict:
         if provenance.get("confirmatory_outcomes_opened") is not False:
             raise ValueError("precision input provenance shows opened confirmatory outcomes")
 
-    results = [plan_endpoint(x, defaults) for x in endpoints]
+    joint_target = float(
+        defaults.get(
+            "joint_qualification_power",
+            DEFAULT_JOINT_QUALIFICATION_POWER,
+        )
+    )
+    if not 0 < joint_target < 1:
+        raise ValueError("joint_qualification_power must be in (0,1)")
+
+    power_endpoint_count = sum(
+        1 for endpoint in endpoints if endpoint.get("kind") in POWER_KINDS
+    )
+    if power_endpoint_count <= 0:
+        raise ValueError("no power-based D0 qualification endpoints supplied")
+
+    # Union-bound failure-budget allocation.  If every power-based endpoint
+    # actually attains this pass probability, the all-pass probability is at
+    # least joint_target regardless of endpoint dependence.
+    joint_power_floor = 1 - (1 - joint_target) / power_endpoint_count
+    marginal_default_power = float(defaults.get("power", DEFAULT_POWER))
+
+    planned_specs: list[dict] = []
+    for endpoint in endpoints:
+        planned = dict(endpoint)
+        if planned.get("kind") in POWER_KINDS:
+            requested = float(
+                planned.get("power", marginal_default_power)
+            )
+            planned["marginal_power_requested"] = requested
+            planned["power"] = max(requested, joint_power_floor)
+        planned_specs.append(planned)
+
+    results = [plan_endpoint(x, defaults) for x in planned_specs]
+    for row, spec in zip(results, planned_specs):
+        if row["kind"] in POWER_KINDS:
+            row["marginal_power_requested"] = spec[
+                "marginal_power_requested"
+            ]
+            row["joint_adjusted_power"] = row["power"]
+
+    precision_only_endpoints = [
+        x.get("endpoint_id")
+        for x in endpoints
+        if x.get("kind") == "mean_precision"
+    ]
+    joint_status = (
+        "JOINT_QUALIFICATION_POWER_TARGET_REGISTERED"
+        if not precision_only_endpoints
+        else "JOINT_POWER_INCOMPLETE_PRECISION_ENDPOINT_REQUIRES_SIMULATION"
+    )
+
     maxima_by_unit: dict[str, dict] = {}
     for row in results:
         unit = row["n_unit"]
@@ -155,6 +244,19 @@ def plan_manifest(manifest: dict) -> dict:
         "planner_schema_version": "SLK_PEDICULARIS_Y_D0_PRECISION_PLAN_V1",
         "status": "PLANNING_ONLY_NOT_A_BIOLOGICAL_RECEIPT",
         "input_provenance": provenance,
+        "joint_qualification_design": {
+            "target_all_pass_power": joint_target,
+            "method": "BONFERRONI_FAILURE_BUDGET_UNION_BOUND",
+            "power_endpoint_count": power_endpoint_count,
+            "per_endpoint_power_floor": joint_power_floor,
+            "precision_only_endpoints": precision_only_endpoints,
+            "status": joint_status,
+            "interpretation": (
+                "Conservative all-pass planning target for the power-based endpoints. "
+                "No independence assumption is required for the union-bound guarantee. "
+                "A precision-only endpoint requires a separate pass-probability simulation before full joint-power readiness."
+            ),
+        },
         "results": results,
         "maxima_by_allocation_unit": maxima_by_unit,
         "allocation_rule": (
@@ -166,8 +268,10 @@ def plan_manifest(manifest: dict) -> dict:
             "never from unblinded confirmatory outcomes."
         ),
         "approximation_boundary": (
-            "Normal-approximation planning assumes the equivalence target difference is near zero and uses independent-plant scale SD inputs. "
-            "Final analysis may use the registered cluster/bootstrap model, but sample-size inputs must remain prospective."
+            "Normal-approximation equivalence planning assumes the true difference is near zero and solves symmetric TOST power using z_(1-beta/2). "
+            "Superiority planning requires an independently calibrated planning_effect strictly above the frozen minimum useful effect. "
+            "The joint qualification target uses a conservative union-bound failure budget across all power-based endpoints. "
+            "Final analysis may use the registered bootstrap model, but sample-size inputs must remain prospective."
         ),
     }
 
