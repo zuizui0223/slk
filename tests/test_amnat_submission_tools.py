@@ -12,8 +12,12 @@ from scripts.verify_amnat_claims import verify
 def test_registered_slk_claims_recompute() -> None:
     receipt = verify()
     assert receipt["all_checks_pass"] is True
-    assert receipt["checks"]["INV1_fixation_occupancy_invariant"]["comparisons"] == 112
-    assert receipt["checks"]["INV1_fixation_occupancy_invariant"]["max_abs_error"] == 0.0
+    inv = receipt["checks"]["INV1_fixation_occupancy_invariant"]
+    assert inv["comparisons"] == 336
+    assert inv["derived_from_moran_process"] is True
+    assert inv["derived_from_rare_mutation_chain"] is True
+    assert inv["max_relative_error"] < 1e-10
+    assert receipt["checks"]["CANONICAL_MAPPING_GUARD"]["guard_raised"] is True
 
 
 def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:
@@ -21,6 +25,9 @@ def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:
     assert (out / "README.md").is_file()
     assert (out / "MANUSCRIPT_SOURCE.md").is_file()
     assert (out / "CLAIM_VERIFICATION_RECEIPT.json").is_file()
+    assert (out / "scripts" / "slk_threshold_atlas.py").is_file()
+    assert (out / "tests" / "test_moran_process_invariant.py").is_file()
+    assert (out / "docs" / "INV1_EXECUTABLE_VALIDATION_V1.md").is_file()
     assert (out / "ANONYMITY_AUDIT.txt").read_text(encoding="utf-8").startswith("identity_scan=PASS")
     assert (out / "SHA256SUMS.txt").is_file()
     assert not (out / ".git").exists()
