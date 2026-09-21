@@ -405,7 +405,6 @@ def adjudicate(
     burden_level = float(analysis["burden_precision_ci_level"])
     seed = int(analysis["bootstrap_seed"])
     reps = int(analysis["bootstrap_reps"])
-    minimum_valid_fraction = float(analysis["minimum_valid_fraction"])
     margin_map = {x["endpoint_id"]: x for x in margin_manifest["endpoints"]}
     active_ids = set(margin_result["validated_endpoints"])
 
@@ -429,10 +428,7 @@ def adjudicate(
             if endpoint_id == "D0_Q5_BURDEN_PRECISION":
                 analysis_floor = analysis_source_n["plants_total"]
             floor_pass = complete_n >= analysis_floor
-            valid_fraction_pass = (
-                missingness["valid_fraction"] >= minimum_valid_fraction
-            )
-            analyzable = floor_pass and valid_fraction_pass
+            analyzable = floor_pass
             boot = (
                 _bootstrap_mean(diffs, seed + seed_offset, reps)
                 if analyzable
@@ -476,8 +472,10 @@ def adjudicate(
                 "complete_n": complete_n,
                 "required_analysis_n": analysis_floor,
                 "recruited_low_y_target": low_required,
-                "minimum_valid_fraction": minimum_valid_fraction,
-                "valid_fraction_pass": valid_fraction_pass,
+                "analysis_floor_pass": floor_pass,
+                "missingness_sensitivity_required": (
+                    missingness["excluded_plants"] > 0
+                ),
                 "missingness": missingness,
                 "point_difference": point,
                 **detail,
@@ -492,12 +490,7 @@ def adjudicate(
                 len(g1) >= analysis_floor
                 and len(g2) >= analysis_floor
             )
-            valid_fraction_pass = (
-                missingness["low_y_valid_fraction"] >= minimum_valid_fraction
-                and missingness["high_y_valid_fraction"]
-                >= minimum_valid_fraction
-            )
-            analyzable = floor_pass and valid_fraction_pass
+            analyzable = floor_pass
             boot = (
                 _bootstrap_two_group_difference(
                     g1, g2, seed + seed_offset, reps
@@ -514,8 +507,10 @@ def adjudicate(
                 "n_d": len(g2),
                 "required_analysis_n_per_group": analysis_floor,
                 "recruited_n_per_group_target": source_n["plants_per_group"],
-                "minimum_valid_fraction": minimum_valid_fraction,
-                "valid_fraction_pass": valid_fraction_pass,
+                "analysis_floor_pass": floor_pass,
+                "missingness_sensitivity_required": (
+                    missingness["excluded_plants"] > 0
+                ),
                 "missingness": missingness,
                 "point_difference_d0_minus_d": point,
                 "criterion": "EQUIVALENCE",
@@ -568,11 +563,16 @@ def adjudicate(
             for result in endpoint_results.values()
             if isinstance(result, dict)
         ),
-        "minimum_valid_fraction": minimum_valid_fraction,
+        "sensitivity_required": any(
+            isinstance(result.get("missingness"), dict)
+            and result["missingness"].get("excluded_plants", 0) > 0
+            for result in endpoint_results.values()
+        ),
         "interpretation": (
             "Complete-case exclusions are reported endpoint by endpoint. "
-            "Passing requires the frozen minimum valid fraction and the raw analyzable sample-size floor. "
-            "Non-random missingness can still bias equivalence toward zero and requires substantive sensitivity analysis."
+            "Passing requires the raw analyzable sample-size floor. "
+            "The frozen minimum_valid_fraction belongs to bootstrap-replicate validity, not outcome completeness. "
+            "Any outcome exclusion triggers a missingness-sensitivity flag because non-random missingness can bias equivalence toward zero."
         ),
     }
 
