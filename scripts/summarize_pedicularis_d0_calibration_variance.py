@@ -290,6 +290,20 @@ def summarize(
     )
     wet_row["planning_effect_source"] = q4_wet_planning_effect_source
     all_ready = all(row["meets_registered_floor"] for row in endpoint_rows)
+    planning_alternative_ready = (
+        wet_row["planning_effect"] is not None
+        and isinstance(wet_row["planning_effect_source"], str)
+        and bool(wet_row["planning_effect_source"].strip())
+    )
+    precision_planning_readiness = (
+        "READY_FOR_PRECISION_COMPILATION"
+        if all_ready and planning_alternative_ready
+        else (
+            "BLOCKED_Q4_PLANNING_ALTERNATIVE_NOT_FROZEN"
+            if all_ready
+            else "BLOCKED_CALIBRATION_VARIANCE_INCOMPLETE"
+        )
+    )
 
     return {
         "schema_version": SCHEMA,
@@ -306,6 +320,7 @@ def summarize(
             "confirmatory_dataset_id": confirmatory_dataset_id,
             "confirmatory_outcomes_opened": False,
         },
+        "precision_planning_readiness": precision_planning_readiness,
         "planner_defaults": {
             "alpha": alpha,
             "power": power,
