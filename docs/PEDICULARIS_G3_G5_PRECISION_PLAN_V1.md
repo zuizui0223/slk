@@ -79,12 +79,13 @@ It is a transparent variance-transport safeguard, not a parameter that can be lo
 
 ## 4. Precision targets are biological/decision targets
 
-The precision freeze requires three targets that may not be defined from the later G3-G5 outcomes:
+The precision freeze requires four targets that may not be defined from the later G3-G5 outcomes:
 
 ```text
 world_cell_mean_half_width
 minimum_recoverable_benefit_R
-minimum_abs_architecture_value_Phi.
+minimum_abs_architecture_value_Phi
+bridge_residual_equivalence_margin.
 ```
 
 Allowed target-source classes are:
@@ -141,7 +142,7 @@ max(n_cell, n_R, n_Phi).
 
 A prospectively frozen attrition fraction then determines recruitment n.
 
-## 7. Independent direct-Phi block
+## 7. Independent direct-Phi block and bridge equivalence
 
 If the final effect route is:
 
@@ -149,15 +150,54 @@ If the final effect route is:
 INDEPENDENT_DIRECT_PHI_BLOCK,
 ```
 
-the direct block contains only S and D.
+the direct block contains only S and D and remains independent of the S/D0/D decomposition block.
 
-Its prospective floor is:
+The independent concordance claim is itself an equivalence claim on:
 
 ```text
-max(two-world simultaneous cell-precision n, n_Phi).
+Delta_bridge
+=
+Phi_direct - Phi_internal.
 ```
 
-The direct block remains independent of the S/D0/D decomposition block.
+Freeze a bridge-residual equivalence margin `delta_bridge` before outcomes.
+
+Under the equal-allocation planning approximation and common planning SD `sigma`, each Phi estimate is an S:D difference. With independent direct and decomposition blocks, the bridge residual has approximate standard error:
+
+```text
+SE_bridge
+=
+2 sigma / sqrt(n).
+```
+
+At planning truth `Delta_bridge=0`, symmetric TOST planning gives:
+
+```text
+n_bridge
+=
+ceil[
+  4 (
+    (z_(1-alpha) + z_((1+power)/2))
+    sigma / delta_bridge
+  )^2
+].
+```
+
+The planner records this as a separate bridge-equivalence floor.
+
+For the independent route, the sampling compiler applies:
+
+```text
+decomposition n
+=
+max(base decomposition n, n_bridge)
+
+direct S:D n
+=
+max(base direct n, n_bridge).
+```
+
+For the same-block internal-identity route, the bridge-equivalence floor is not applied because no independent concordance claim is made.
 
 ## 8. Planning commands
 
@@ -200,9 +240,10 @@ The compiler verifies:
 ```text
 same context / population / season / scale / horizon
 same number of registered z levels
-same R / Phi / cell-precision targets
+same R / Phi / cell-precision / bridge-equivalence targets
 precision freeze occurred before G3-G5 outcomes
-valid decomposition and direct-block sample sizes.
+valid decomposition, direct-block and independent-concordance sample sizes.
+For the independent route it also requires the effect-freeze bridge margin to equal the precision-freeze bridge margin exactly.
 ```
 
 It fills:
