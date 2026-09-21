@@ -1,3 +1,5 @@
+import pytest
+
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -5,6 +7,8 @@ MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
 THEORY = ROOT / "theory" / "UNIFIED_THRESHOLD_ATLAS_V1.md"
 FIG2 = ROOT / "figures" / "FIG2_PHASE_MAP.svg"
 LEDGER = ROOT / "docs" / "THEOREM_CLAIM_LEDGER_V1.md"
+
+pytestmark = pytest.mark.document_sync
 
 
 def test_environmental_threshold_displacement_is_registered_everywhere() -> None:
