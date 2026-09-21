@@ -191,6 +191,42 @@ def plan_endpoint(spec: dict, defaults: dict | None = None) -> dict:
     return out
 
 
+def all_pass_probability_bounds(
+    marginal_pass_probabilities: list[float],
+) -> tuple[float, float]:
+    """Dependence-agnostic Frechet bounds for an all-pass event."""
+    if not marginal_pass_probabilities:
+        raise ValueError("at least one marginal pass probability is required")
+    probs: list[float] = []
+    for value in marginal_pass_probabilities:
+        if not isinstance(value, (int, float)) or isinstance(value, bool):
+            raise ValueError("marginal pass probabilities must be numeric")
+        value = float(value)
+        if not 0 <= value <= 1:
+            raise ValueError("marginal pass probabilities must be in [0,1]")
+        probs.append(value)
+    lower = max(0.0, 1.0 - sum(1.0 - value for value in probs))
+    upper = min(probs)
+    return lower, upper
+
+
+def all_pass_probability_independence(
+    marginal_pass_probabilities: list[float],
+) -> float:
+    """Reference-only independence approximation, never a guaranteed bound."""
+    if not marginal_pass_probabilities:
+        raise ValueError("at least one marginal pass probability is required")
+    out = 1.0
+    for value in marginal_pass_probabilities:
+        if not isinstance(value, (int, float)) or isinstance(value, bool):
+            raise ValueError("marginal pass probabilities must be numeric")
+        value = float(value)
+        if not 0 <= value <= 1:
+            raise ValueError("marginal pass probabilities must be in [0,1]")
+        out *= value
+    return out
+
+
 def plan_manifest(manifest: dict) -> dict:
     defaults = manifest.get("defaults", {})
     endpoints = manifest.get("endpoints", [])
@@ -249,9 +285,24 @@ def plan_manifest(manifest: dict) -> dict:
         for x in endpoints
         if x.get("kind") == "mean_precision"
     ]
+    planned_power_values = [
+        float(spec["power"])
+        for spec in planned_specs
+        if spec.get("kind") in POWER_KINDS
+    ]
+    joint_lower_bound, joint_upper_bound = all_pass_probability_bounds(
+        planned_power_values
+    )
+    independence_reference = all_pass_probability_independence(
+        planned_power_values
+    )
+
     joint_status = (
         "JOINT_QUALIFICATION_POWER_TARGET_REGISTERED"
-        if not precision_only_endpoints
+        if (
+            not precision_only_endpoints
+            and joint_lower_bound + 1e-12 >= joint_target
+        )
         else "JOINT_POWER_INCOMPLETE_PRECISION_ENDPOINT_REQUIRES_SIMULATION"
     )
 
@@ -298,10 +349,14 @@ def plan_manifest(manifest: dict) -> dict:
             "power_endpoint_count": power_endpoint_count,
             "per_endpoint_power_floor": joint_power_floor,
             "precision_only_endpoints": precision_only_endpoints,
+            "frechet_all_pass_lower_bound": joint_lower_bound,
+            "frechet_all_pass_upper_bound": joint_upper_bound,
+            "independence_reference_only": independence_reference,
             "status": joint_status,
             "interpretation": (
                 "Conservative all-pass planning target for the power-based endpoints. "
-                "No independence assumption is required for the union-bound guarantee. "
+                "The Frechet lower bound equals the union-bound guarantee and does not assume endpoint independence. "
+                "The independence product is reported only as a reference, never as a guarantee. "
                 "A precision-only endpoint requires a separate pass-probability simulation before full joint-power readiness."
             ),
         },
