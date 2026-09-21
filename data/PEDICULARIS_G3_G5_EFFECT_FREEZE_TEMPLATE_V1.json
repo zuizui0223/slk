@@ -45,15 +45,15 @@
     "bootstrap_seed": null,
     "bootstrap_reps": null,
     "minimum_bootstrap_reps": 5000,
-    "minimum_valid_fraction": 0.90,
+    "minimum_valid_fraction": 0.9,
     "ci_level": 0.95,
     "resampling_unit": "INDEPENDENT_PLANT_WITH_COMPLETE_Z_GRID",
     "burden_correction": "ADD_INDEPENDENT_D0_QUALIFICATION_B_DEVICE_TO_OBSERVED_D0_WORLD",
     "burden_uncertainty_rule": "CONSERVATIVE_INTERVAL_ADDITION_FOR_R_AND_K; CANCELLATION_RETAINED_FOR_PHI"
   },
   "independent_concordance": {
-    "max_abs_phi_point_difference": null,
-    "residual_ci_must_include_zero": true,
+    "residual_equivalence_margin": null,
+    "residual_ci_must_be_within_equivalence_margin": true,
     "required_only_for_route": "INDEPENDENT_DIRECT_PHI_BLOCK"
   },
   "firewall": {
