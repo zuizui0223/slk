@@ -318,6 +318,6 @@ The field layout uses `inflated_required_n` for prospective recruitment. The con
 
 ### Missing outcomes are never silently discarded
 
-Every active endpoint receipt reports eligible plants, complete plants, excluded plants, valid fraction, exclusion counts by reason, and plant-level exclusion reasons. The frozen `minimum_valid_fraction` is enforced in addition to the raw analyzable sample floor.
+Every active endpoint receipt reports eligible plants, complete plants, excluded plants, observed complete fraction, exclusion counts by reason, and plant-level exclusion reasons. Endpoint analyzability is governed by the prospectively powered `raw_required_n` floor. The frozen `minimum_valid_fraction` refers to valid bootstrap replicates and is not repurposed as an outcome-completeness threshold.
 
 Complete-case inference does not make non-random missingness harmless. Endpoint receipts therefore state that outcome-dependent missingness requires substantive sensitivity analysis; an exclusion count is evidence to inspect, not a reason to widen an equivalence margin.
