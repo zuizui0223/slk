@@ -19,7 +19,7 @@ This document maps both manuscript surfaces onto the canonical theorem-claim led
 | 7. Fixation is another estimand | C8 | process-specific theorem | distinguish rare invasion, reciprocal fixation ordering, absolute fixation advantage | Moran-specific unless generalized |
 | 8. Weak-mutation occupancy and fixation-occupancy invariant | C9, INV1 | process-specific theorem + invariant | separate occupancy from accessibility/absolute fixation while proving reciprocal-fixation alignment | requires symmetric rare mutation + registered fixation kernel |
 | 9. Unified critical-surface theorem and constructive witnesses | UTA1, NE1-NE5, INV1 | theorem synthesis | place all realization criteria on explicit surfaces and derive all split witnesses in one recovery family | do not claim surfaces are universal outside registered assumptions |
-| 10. Ecological deductions from threshold ordering | UTA1.4, UTA1.4b, UTA1.5, UTA1.6, UTA1.7, UTA1.8 | ecological/comparative corollaries | predict environmental displacement between value and invasion, conflict–differentiation discordance, and gate-specific diagnostic patterns | affine environmental formula is exact only for the registered slice; discordance is diagnostic, not proof of one mechanism |
+| 10. Ecological deductions from threshold ordering | UTA1.4, UTA1.4b, UTA1.5, UTA1.6, UTA1.7, UTA1.8, UTA1.9 | ecological/comparative corollaries | predict environmental displacement between value and invasion, conflict–differentiation discordance, and gate-specific diagnostic patterns | affine environmental formula is exact only for the registered slice; discordance is diagnostic, not proof of one mechanism |
 | 11. Empirical measurement programme | G1-G9 internally | empirical gates / journal measurement ladder | give sequential validation design | no completed biological chain claimed |
 | 12. Discussion | C1-C9, UTA1, UTA1.4-1.5, INV1 | synthesis + novelty boundary | state what the critical-surface transport adds and what prior theory already owns | preserve all claim ceilings |
 
@@ -55,6 +55,8 @@ UTA1.6 two-frequency identification of Phi and eta
 UTA1.7 three-frequency curvature diagnostic / repaired invasion surfaces
  ↓
 UTA1.8 arbitrary-shape endpoint invasion result
+ ↓
+UTA1.9 finite-frequency endpoint certification
  ↓
 UTA1.5 conflict does not rank differentiation across systems
  ↘
