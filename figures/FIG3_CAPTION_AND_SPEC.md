@@ -22,7 +22,7 @@ Figure 3 is the empirical counterpart to Figures 1 and 2.
 | G4 | `K` | operational architecture-cost definition on same scale | architecture cost is quantified |
 | G5 | `Phi=R-K` | G2–G4 on compatible scales | persistent compromise (`Phi<0`) or global differentiated advantage (`Phi>0`) |
 | G6 | small-step accessibility | mutation/release neighborhood or stepwise intervention path | sufficiently small changes toward the target are selectively uphill/downhill on the declared path |
-| G7 | invasion / feedback | rare-D and resident-D endpoint assays for invasion; 2–3+ frequency treatments when feedback mechanism/shape is interpreted | invasion phase is identified; internal frequency-response structure is diagnosed only to the measured resolution |
+| G7 | invasion / feedback | finite rare-D/resident-D assays with endpoint certification; 2–3+ frequency treatments when feedback mechanism/shape is interpreted | invasion phase is certified or left unresolved; internal frequency-response structure is diagnosed only to the measured resolution |
 | G8 | fixation | explicit stochastic finite-population process | reciprocal fixation ordering and/or absolute fixation advantage |
 | G9 | occupancy | mutation graph and mutation kernel | weak-mutation monomorphic stationary occupancy |
 
@@ -103,3 +103,35 @@ and invasion is determined directly by the signs of `Delta_rare` and `Delta_resi
 Additional interior frequency treatments have a different role: they identify or test the ecological mechanism generating those endpoint offsets. Two symmetric treatments estimate the canonical `eta`; adding `p=1/2` identifies `h0` and quadratic curvature `kappa`; further frequencies test whether the quadratic approximation is adequate.
 
 Thus G7 separates **invasion identification** from **frequency-response mechanism identification**.
+
+
+## Finite-frequency endpoint certification
+
+Exact endpoint frequencies are not required. For rare-D invasion, first choose a feasible small frequency `epsilon`.
+
+Under a local Lipschitz bound `M_R`,
+
+```text
+Delta_R
+in
+[Delta(epsilon)-M_R epsilon,
+ Delta(epsilon)+M_R epsilon].
+```
+
+For a stronger second-order design, measure at `epsilon` and `2epsilon`. If local curvature satisfies `|Delta''|<=C_R`,
+
+```text
+Delta_R_hat
+=
+2Delta(epsilon)-Delta(2epsilon)
+
+|Delta_R_hat-Delta_R|
+<=
+C_R epsilon^2.
+```
+
+When measured effects have uncertainty intervals, widen the endpoint interval by the same deterministic remainder. The analogous design applies near `p=1`.
+
+A lower endpoint above zero certifies invasion. An upper endpoint below zero certifies non-invasion. An interval that overlaps zero is **unresolved**, not a biological negative.
+
+This provides a prospective frequency-resolution rule for G7 rather than requiring ideal `p=0` or `p=1` treatments.
