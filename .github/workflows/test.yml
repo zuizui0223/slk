@@ -27,5 +27,7 @@ jobs:
         run: python -m pip install --upgrade pip pytest python-docx
       - name: Check Am Nat manuscript limits
         run: python scripts/check_amnat_manuscript.py
-      - name: Run test suite
+      - name: Run numerical theory and process tests
+        run: python -m pytest -q -m "theory_numeric or theory_process"
+      - name: Run full repository checks
         run: python -m pytest -q
