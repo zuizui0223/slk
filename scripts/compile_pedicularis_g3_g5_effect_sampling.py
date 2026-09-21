@@ -96,7 +96,17 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
         "bridge_equivalence_n_per_world_each_block",
     )
     for key in required_component_keys:
-        _need(isinstance(components.get(key), int) and components[key] > 0, f"bad precision component: {key}")
+        value = components.get(key)
+        if key == "bridge_equivalence_n_per_world_each_block":
+            _need(
+                isinstance(value, int) and value >= 0,
+                f"bad precision component: {key}",
+            )
+        else:
+            _need(
+                isinstance(value, int) and value > 0,
+                f"bad precision component: {key}",
+            )
 
     decomp = plan.get("decomposition", {})
     direct = plan.get("independent_direct_phi", {})
@@ -142,7 +152,8 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
         "recruitment_plants_per_world_each_block"
     )
     _need(
-        bridge_min == components["bridge_equivalence_n_per_world_each_block"],
+        bridge_min
+        == components["bridge_equivalence_n_per_world_each_block"],
         "bridge minimum n is inconsistent with precision component",
     )
     _need(
@@ -156,6 +167,15 @@ def compile_sampling(effect: dict, precision_freeze: dict, plan: dict) -> dict:
     )
 
     if route == "INDEPENDENT_DIRECT_PHI_BLOCK":
+        _need(
+            isinstance(targets.get("bridge_residual_equivalence_margin"), (int, float))
+            and targets["bridge_residual_equivalence_margin"] > 0,
+            "independent route requires bridge equivalence target",
+        )
+        _need(
+            bridge_min > 0 and bridge_rec >= bridge_min,
+            "independent route requires positive bridge sample floor",
+        )
         min_world = max(base_min_world, bridge_min)
         rec_world = max(base_rec_world, bridge_rec)
         min_direct = max(base_min_direct, bridge_min)
