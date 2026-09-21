@@ -365,7 +365,7 @@ def test_single_missing_measurement_is_reported_not_silently_dropped() -> None:
     assert "D0_Q3_POLLEN" in result["missingness_summary"]["endpoints_with_exclusions"]
 
 
-def test_missingness_below_frozen_valid_fraction_blocks_endpoint_pass() -> None:
+def test_missingness_is_flagged_without_repurposing_bootstrap_valid_fraction() -> None:
     rows = _layout()
     affected = [
         row for row in rows
@@ -379,7 +379,26 @@ def test_missingness_below_frozen_valid_fraction_blocks_endpoint_pass() -> None:
     )
     pollen = result["endpoint_results"]["D0_Q3_POLLEN"]
     assert pollen["missingness"]["complete_plants"] == 21
-    assert pollen["valid_fraction_pass"] is False
+    assert pollen["analysis_floor_pass"] is True
+    assert pollen["missingness_sensitivity_required"] is True
+    assert result["missingness_summary"]["sensitivity_required"] is True
+
+
+def test_missingness_below_raw_analysis_floor_blocks_endpoint_pass() -> None:
+    rows = _layout()
+    affected = [
+        row for row in rows
+        if row["phenotype_stratum"] == "LOW_Y"
+        and row["treatment"] == "D0_QUAL"
+    ][:5]
+    for row in affected:
+        row["pollen_receipt_grains"] = ""
+    result = adj.adjudicate(
+        rows, _margin(), _precision(), _y_receipt(), _analysis_freeze()
+    )
+    pollen = result["endpoint_results"]["D0_Q3_POLLEN"]
+    assert pollen["missingness"]["complete_plants"] == 19
+    assert pollen["analysis_floor_pass"] is False
     assert pollen["pass"] is False
 
 
