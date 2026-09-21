@@ -14,11 +14,14 @@ on:
       - 'theory/NON_EQUIVALENCE_THEOREM_V1.md'
       - 'scripts/check_amnat_manuscript.py'
       - 'scripts/format_amnat_review_docx.py'
+      - 'scripts/slk_threshold_atlas.py'
       - 'scripts/verify_amnat_claims.py'
       - 'scripts/build_anonymous_review_bundle.py'
       - 'tests/test_amnat_submission_tools.py'
       - 'tests/test_threshold_atlas_framing.py'
       - 'tests/test_ecological_deductions.py'
+      - 'tests/test_moran_process_invariant.py'
+      - 'pytest.ini'
       - '.github/workflows/build-amnat-review-package.yml'
   pull_request:
     paths:
@@ -57,7 +60,7 @@ jobs:
       - name: Check frozen manuscript and submission tooling
         run: |
           python scripts/check_amnat_manuscript.py
-          python -m pytest -q tests/test_amnat_submission_tools.py tests/test_threshold_atlas_framing.py tests/test_ecological_deductions.py
+          python -m pytest -q tests/test_amnat_submission_tools.py tests/test_threshold_atlas_framing.py tests/test_ecological_deductions.py tests/test_moran_process_invariant.py
           python scripts/verify_amnat_claims.py
 
       - name: Prepare reviewer-facing manuscript source and raster figures
