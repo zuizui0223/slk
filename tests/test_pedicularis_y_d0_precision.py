@@ -171,3 +171,33 @@ def test_superiority_planning_requires_alternative_above_frozen_threshold():
             min_effect=0.5,
             planning_effect=0.5,
         )
+
+
+def test_fifteen_endpoint_joint_target_gives_reference_n_values():
+    joint_floor = 1 - (1 - 0.80) / 15
+    paired_n = module.n_paired_equivalence(
+        sd_diff=1.0,
+        margin=0.5,
+        alpha=0.05,
+        power=joint_floor,
+    )
+    two_group_n = module.n_two_group_equivalence(
+        sd=1.0,
+        margin=0.5,
+        alpha=0.05,
+        power=joint_floor,
+    )
+    assert paired_n == 68
+    assert two_group_n == 136
+    assert (
+        module.normal_approx_paired_equivalence_power(
+            paired_n, 1.0, 0.5, 0.05
+        )
+        >= joint_floor
+    )
+    assert (
+        module.normal_approx_two_group_equivalence_power(
+            two_group_n, 1.0, 0.5, 0.05
+        )
+        >= joint_floor
+    )
