@@ -295,3 +295,29 @@ python scripts/adjudicate_pedicularis_d0_confirmatory.py \
 ```
 
 Only `D0_FULLY_QUALIFIED` unlocks the point-identified G3/G4 decomposition route under the current protocol.
+
+## Joint-power and missingness amendment
+
+### Qualification power is planned for the all-pass event
+
+Full D0 qualification requires all active stochastic Q1-Q5 endpoints to pass. The precision plan records `target_all_pass_power`, `power_endpoint_count`, `per_endpoint_power_floor`, the joint-power allocation method, and any precision-only endpoints.
+
+The registered default is a conservative Bonferroni failure-budget allocation:
+
+```text
+p_endpoint >= 1-(1-p_joint)/m
+```
+
+which does not require independence among endpoints.
+
+For the Q5 measured-burden-adjustment route, the CI-half-width endpoint is not silently treated as an ordinary power test. Its joint-power status remains incomplete until a dedicated prospective pass-probability simulation is registered.
+
+### Recruitment and analyzable sample floors are different
+
+The field layout uses `inflated_required_n` for prospective recruitment. The confirmatory analysis uses `raw_required_n` as the minimum complete-case analysis floor. Thus frozen attrition inflation protects the analysis rather than being re-imposed as a complete-case requirement.
+
+### Missing outcomes are never silently discarded
+
+Every active endpoint receipt reports eligible plants, complete plants, excluded plants, valid fraction, exclusion counts by reason, and plant-level exclusion reasons. The frozen `minimum_valid_fraction` is enforced in addition to the raw analyzable sample floor.
+
+Complete-case inference does not make non-random missingness harmless. Endpoint receipts therefore state that outcome-dependent missingness requires substantive sensitivity analysis; an exclusion count is evidence to inspect, not a reason to widen an equivalence margin.
