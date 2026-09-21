@@ -70,9 +70,16 @@ def plan(freeze: dict, variance: dict) -> dict:
         targets.get("minimum_abs_architecture_value_Phi"),
         "minimum absolute Phi",
     )
-    bridge_margin = _positive(
-        targets.get("bridge_residual_equivalence_margin"),
-        "bridge residual equivalence margin",
+    bridge_margin_raw = targets.get(
+        "bridge_residual_equivalence_margin"
+    )
+    bridge_margin = (
+        _positive(
+            bridge_margin_raw,
+            "bridge residual equivalence margin",
+        )
+        if bridge_margin_raw not in (None, 0)
+        else None
     )
     source_type = _filled(targets.get("target_source_type"), "target_source_type")
     _need(source_type in ALLOWED_TARGET_SOURCES, "target source type is not allowed")
@@ -136,14 +143,18 @@ def plan(freeze: dict, variance: dict) -> dict:
     # independent S:D blocks, the residual SE is 2*sd/sqrt(n).
     # Under planning truth residual=0, symmetric TOST power uses
     # z_(1-alpha) + z_((1+power)/2).
-    z_bridge = _z(1 - alpha) + _z((1 + power) / 2)
-    n_bridge = max(
-        2,
-        math.ceil(
-            4 * (z_bridge * sd / bridge_margin) ** 2
-        ),
-    )
-    recruit_bridge = _inflate(n_bridge, attrition)
+    if bridge_margin is not None:
+        z_bridge = _z(1 - alpha) + _z((1 + power) / 2)
+        n_bridge = max(
+            2,
+            math.ceil(
+                4 * (z_bridge * sd / bridge_margin) ** 2
+            ),
+        )
+        recruit_bridge = _inflate(n_bridge, attrition)
+    else:
+        n_bridge = 0
+        recruit_bridge = 0
 
     base_decomposition = max(n_cell, n_r, n_phi)
     recruit_decomposition = _inflate(base_decomposition, attrition)
@@ -209,7 +220,11 @@ def plan(freeze: dict, variance: dict) -> dict:
             "minimum_analyzable_plants_per_world_each_block": n_bridge,
             "recruitment_plants_per_world_each_block": recruit_bridge,
             "planning_truth_residual": 0.0,
-            "criterion": "SYMMETRIC_TOST_EQUIVALENCE",
+            "criterion": (
+                "SYMMETRIC_TOST_EQUIVALENCE"
+                if bridge_margin is not None
+                else "NOT_REQUESTED"
+            ),
         },
         "planning_boundary": (
             "Normal approximations and independent D0-qualification fitness SDs set prospective sample floors only. "
