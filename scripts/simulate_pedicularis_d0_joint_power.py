@@ -387,6 +387,7 @@ def simulate_candidate(
         "n_high_recruit": n_high_recruit,
         "field_burden": 3 * n_low_recruit + n_high_recruit,
         "simulation_reps": reps,
+        "all_pass_count": all_passes,
         "all_pass_probability": all_pass_probability,
         "all_pass_mc_interval_95": list(ci),
         "endpoint_pass_probabilities": {
@@ -593,8 +594,10 @@ def simulate_joint_power(
             + cfg["high_weight"] * n_high
         )
         # Recompute CI at requested level if non-default.
-        successes = round(result["all_pass_probability"] * reps)
-        result["all_pass_mc_interval"] = list(_mc_interval(successes, reps, mc_level))
+        successes = int(result["all_pass_count"])
+        result["all_pass_mc_interval"] = list(
+            _mc_interval(successes, reps, mc_level)
+        )
         result["meets_joint_target_by_lower_mc_bound"] = (
             result["all_pass_mc_interval"][0] >= target
         )
