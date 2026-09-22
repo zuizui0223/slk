@@ -175,6 +175,11 @@ def test_missing_open_flower_count_makes_pollinator_bout_incomplete() -> None:
     target["simultaneously_open_focal_flowers"] = ""
     receipt = sum_mod.summarize(rows)
     assert receipt["packet_completion"]["completed_pollinator_rows"] == 5
+    assert receipt["packet_completion"]["incomplete_records"] == 1
+    assert receipt["packet_completion"]["missingness_sensitivity_required"] is True
+    detail = receipt["packet_completion"]["incomplete_record_details"][0]
+    assert detail["record_id"] == "POLL-006"
+    assert detail["reason"] == "MISSING_REQUIRED_MEASUREMENT"
 
 
 def test_below_capacity_packet_without_exhaustion_stays_incomplete() -> None:
@@ -211,3 +216,34 @@ def test_predator_and_water_rows_require_actual_plant_ids() -> None:
     target["plant_id"] = ""
     with pytest.raises(ValueError, match="missing plant_id"):
         sum_mod.summarize(rows)
+
+
+def test_extra_incomplete_screen_row_does_not_erase_completed_effort_but_is_flagged() -> None:
+    rows = _completed_rows()
+    extra = dict(next(r for r in rows if r["record_type"] == "POLLINATOR_BOUT"))
+    extra["record_id"] = "POLL-EXTRA"
+    extra["observed_observation_minutes"] = ""
+    extra["simultaneously_open_focal_flowers"] = ""
+    extra["legitimate_pollinator_visits"] = ""
+    rows.append(extra)
+
+    receipt = sum_mod.summarize(rows)
+    result = adj.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
+    assert result["missingness_sensitivity_required"] is True
+    assert (
+        result["packet_completion_audit"]["incomplete_records"] == 1
+    )
+
+
+def test_missing_census_fields_are_reported_in_packet_completion() -> None:
+    rows = _completed_rows()
+    census = next(r for r in rows if r["record_type"] == "CENSUS")
+    census["flowering_plants_censused"] = ""
+    census["population_census_exhausted"] = ""
+    receipt = sum_mod.summarize(rows)
+    reasons = receipt["packet_completion"]["incomplete_reason_counts"]
+    assert reasons["MISSING_CAPACITY_CENSUS_COUNT"] == 1
+    assert reasons["MISSING_CAPACITY_EXHAUSTION_STATUS"] == 1
+    result = adj.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
