@@ -122,3 +122,66 @@ def test_time_horizon_mismatch_fails_closed() -> None:
         row["time_horizon_id"] = "OTHER_HORIZON"
     with pytest.raises(ValueError, match="context mismatch"):
         val.validate_rows(y_rows, broken)
+
+
+def test_duplicate_low_y_treatment_fails_closed() -> None:
+    y_rows, d0_rows, _ = _layout()
+    broken = copy.deepcopy(d0_rows)
+    source = next(
+        row for row in broken
+        if row["plant_id"] == "D0L-001"
+        and row["treatment"] == "D0_CAL"
+    )
+    duplicate = copy.deepcopy(source)
+    duplicate["flower_id"] = "D0L-001-FX"
+    duplicate["flower_slot"] = "4"
+    broken.append(duplicate)
+    with pytest.raises(ValueError, match="duplicated"):
+        val.validate_rows(y_rows, broken)
+
+
+def test_y_cal_missing_primary_slot_fails_closed() -> None:
+    y_rows, d0_rows, _ = _layout()
+    broken = copy.deepcopy(y_rows)
+    target = next(
+        row for row in broken
+        if row["plant_id"] == "YCAL-001"
+        and row["flower_slot"] == "3"
+    )
+    target["flower_slot"] = "4"
+    target["flower_id"] = "YCAL-001-F4"
+    with pytest.raises(ValueError, match="slots must be exactly 1,2,3"):
+        val.validate_rows(broken, d0_rows)
+
+
+def test_high_y_duplicate_treatment_fails_closed() -> None:
+    y_rows, d0_rows, _ = _layout()
+    broken = copy.deepcopy(d0_rows)
+    source = next(
+        row for row in broken
+        if row["plant_id"] == "D0H-001"
+        and row["treatment"] == "D_CAL"
+    )
+    duplicate = copy.deepcopy(source)
+    duplicate["flower_id"] = "D0H-001-FX"
+    duplicate["flower_slot"] = "3"
+    broken.append(duplicate)
+    with pytest.raises(ValueError, match="duplicated"):
+        val.validate_rows(y_rows, broken)
+
+
+def test_calibration_randomization_seed_must_match_across_cohorts() -> None:
+    y_rows, d0_rows, _ = _layout()
+    broken = copy.deepcopy(y_rows)
+    for row in broken:
+        row["randomization_seed"] = "999"
+    with pytest.raises(ValueError, match="randomization seeds must match"):
+        val.validate_rows(broken, d0_rows)
+
+
+def test_calibration_flower_ids_must_be_disjoint_across_cohorts() -> None:
+    y_rows, d0_rows, _ = _layout()
+    broken = copy.deepcopy(d0_rows)
+    broken[0]["flower_id"] = y_rows[0]["flower_id"]
+    with pytest.raises(ValueError, match="flower IDs overlap"):
+        val.validate_rows(y_rows, broken)
