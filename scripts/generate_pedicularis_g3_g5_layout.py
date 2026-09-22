@@ -7,6 +7,11 @@ import math
 import random
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import validate_firewall_block
+except ImportError:
+    from pedicularis_physical_units import validate_firewall_block
+
 
 FREEZE_SCHEMA = "SLK_PEDICULARIS_G3_G5_EFFECT_FREEZE_V1"
 FITNESS_SCALE_ID = "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
@@ -28,6 +33,7 @@ FIELDS = [
     "fitness_scale_id",
     "time_horizon_id",
     "plant_id",
+    "physical_plant_tag",
     "expected_structural_y_stratum",
     "world",
     "baseline_primary_y_value",
@@ -196,6 +202,10 @@ def _validate_freeze(freeze: dict) -> dict:
     ):
         _need(firewall.get(key) is True, f"G3-G5 firewall disabled: {key}")
 
+    physical_firewall = validate_firewall_block(
+        freeze.get("physical_unit_firewall", {})
+    )
+
     metadata = freeze.get("freeze_metadata", {})
     for key in (
         "slk_source_commit", "g2_receipt_reference", "structural_y_receipt_reference",
@@ -217,6 +227,7 @@ def _validate_freeze(freeze: dict) -> dict:
         "minimum_valid_fraction": valid_fraction,
         "ci_level": ci_level,
         "concordance_tolerance": concordance_tol,
+        "physical_unit_firewall": physical_firewall,
     }
 
 
@@ -387,6 +398,16 @@ def generate_layout(
             "minimum_analyzable_plants_per_world": cfg["minimum_direct_n"],
             "worlds": ["S", "D"] if direct else [],
             "rows": len(direct),
+        },
+        "physical_unit_firewall": {
+            "status": "PHYSICAL_TAGS_MUST_BE_FILLED_AFTER_RECRUITMENT_BEFORE_OUTCOMES",
+            "required_column": "physical_plant_tag",
+            "prior_forbidden_tag_count": cfg["physical_unit_firewall"][
+                "forbidden_tag_count"
+            ],
+            "prior_tag_set_sha256": cfg["physical_unit_firewall"][
+                "prior_tag_set_sha256"
+            ],
         },
         "firewall": {
             "all_rows_are_new_g3_g5_units": True,
