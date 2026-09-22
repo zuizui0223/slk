@@ -109,6 +109,10 @@ def test_one_incomplete_plant_drops_below_registered_floor() -> None:
     assert receipt["complete_plant_floor_pass"] is False
     assert receipt["status"] == "STRUCTURAL_Y_CALIBRATION_INCOMPLETE"
     assert receipt["band_freeze"]["recruitment_authorized_for_disjoint_d0_cal"] is False
+    assert receipt["missingness"]["eligible_primary_plants"] == 36
+    assert receipt["missingness"]["complete_primary_plants"] == 35
+    assert receipt["missingness"]["excluded_primary_plants"] == 1
+    assert receipt["missingness"]["exclusions"][0]["plant_id"] == "YCAL-001"
 
 
 def test_y_cal_row_cannot_be_promoted_to_confirmatory() -> None:
@@ -139,3 +143,20 @@ def test_extra_calibration_flower_does_not_change_frozen_primary_three_flower_re
     assert receipt["status"] == baseline["status"]
     assert receipt["band_freeze"] == baseline["band_freeze"]
     assert receipt["ignored_nonprimary_rows"] == 1
+
+
+def test_incomplete_primary_flower_grid_is_reported_with_reason() -> None:
+    rows = _rows(True)
+    rows = [
+        row for row in rows
+        if not (
+            row["plant_id"] == "YCAL-001"
+            and row["flower_slot"] == "1"
+        )
+    ]
+    receipt = summary.summarize(rows, _freeze())
+    missing = receipt["missingness"]
+    assert missing["excluded_primary_plants"] == 1
+    assert missing["exclusions"][0]["reason"] == (
+        "INCOMPLETE_OR_DUPLICATE_PRIMARY_FLOWER_GRID"
+    )
