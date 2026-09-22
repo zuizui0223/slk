@@ -327,7 +327,13 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
                 "positive_plants": sum(water),
             },
         }
-        qualified = all(estimates[key]["lower_bound"] > 0 for key in estimates)
+        qualified = (
+            not exclusions
+            and all(
+                estimates[key]["lower_bound"] > 0
+                for key in estimates
+            )
+        )
 
     exclusion_reason_counts: dict[str, int] = {}
     for item in exclusions:
@@ -338,10 +344,18 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
 
     if not floors_pass:
         status = "P0_RELEVANCE_FRESH_CALIBRATION_INCOMPLETE"
+    elif exclusions:
+        status = (
+            "P0_RELEVANCE_FRESH_CALIBRATION_"
+            "MISSINGNESS_REQUIRES_SENSITIVITY"
+        )
     elif qualified:
         status = "P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED"
     else:
-        status = "P0_RELEVANCE_FRESH_CALIBRATION_ZERO_COMPATIBLE_UNRESOLVED"
+        status = (
+            "P0_RELEVANCE_FRESH_CALIBRATION_"
+            "ZERO_COMPATIBLE_UNRESOLVED"
+        )
 
     return {
         "schema_version": "SLK_PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_RECEIPT_V1",
@@ -369,6 +383,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "exclusion_reason_counts": exclusion_reason_counts,
             "exclusions": exclusions,
             "missingness_sensitivity_required": bool(exclusions),
+            "qualification_blocked_by_missingness": bool(exclusions),
         },
         "qualification_rule": {
             "rule": "ONE_SIDED_INDEPENDENT_UNIT_BOOTSTRAP_LOWER_QUANTILE",
