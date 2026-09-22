@@ -174,7 +174,15 @@ def test_missing_open_flower_count_makes_pollinator_bout_incomplete() -> None:
     target = next(r for r in rows if r["record_id"] == "POLL-006")
     target["simultaneously_open_focal_flowers"] = ""
     receipt = sum_mod.summarize(rows)
-    assert receipt["packet_completion"]["completed_pollinator_rows"] == 5
+    completion = receipt["packet_completion"]
+    assert completion["completed_pollinator_rows"] == 5
+    assert completion["incomplete_record_count"] == 1
+    assert completion["missingness_sensitivity_required"] is True
+    assert completion["incomplete_records"][0]["record_id"] == "POLL-006"
+    assert (
+        "simultaneously_open_focal_flowers"
+        in completion["incomplete_records"][0]["missing_fields"]
+    )
 
 
 def test_below_capacity_packet_without_exhaustion_stays_incomplete() -> None:
@@ -211,3 +219,20 @@ def test_predator_and_water_rows_require_actual_plant_ids() -> None:
     target["plant_id"] = ""
     with pytest.raises(ValueError, match="missing plant_id"):
         sum_mod.summarize(rows)
+
+
+def test_missing_predator_screen_measurement_is_receipted_and_effort_is_incomplete() -> None:
+    rows = _completed_rows()
+    target = next(
+        row for row in rows
+        if row["record_id"] == "PRED-030"
+    )
+    target["predator_attack_present"] = ""
+    receipt = sum_mod.summarize(rows)
+    completion = receipt["packet_completion"]
+    assert completion["completed_predator_rows"] == 29
+    assert completion["incomplete_record_count"] == 1
+    assert completion["incomplete_records"][0]["record_id"] == "PRED-030"
+    result = adj.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
+    assert result["effort"]["checks"]["predator_flowers"] is False
