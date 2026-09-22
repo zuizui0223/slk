@@ -57,6 +57,12 @@ def _positive_int(value: object, label: str) -> int:
     return int(out)
 
 
+def _nonnegative_int(value: object, label: str) -> int:
+    out = _finite(value, label, minimum=0)
+    _need(out.is_integer(), f"{label} must be an integer")
+    return int(out)
+
+
 def _optional_fraction(value: object, label: str) -> float | None:
     if value is None:
         return None
@@ -202,7 +208,14 @@ def validate_freeze(freeze: dict) -> dict:
 
 def adjudicate(receipt: dict, freeze: dict) -> dict:
     cfg = validate_freeze(freeze)
-    _need(receipt.get("schema_version") == RECEIPT_SCHEMA, "wrong context-screen receipt schema")
+    _need(
+        receipt.get("schema_version") == RECEIPT_SCHEMA,
+        "wrong context-screen receipt schema",
+    )
+    _need(
+        receipt.get("status") == "FILLED_SCREEN_DATA",
+        "context-screen receipt is not filled screen data",
+    )
 
     rctx = receipt.get("context", {})
     fctx = cfg["context"]
@@ -212,7 +225,15 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
     firewall = receipt.get("firewall", {})
     _need(firewall.get("screen_units_confirmatory_eligible") is False, "screen units cannot be confirmatory eligible")
     _need(firewall.get("screen_used_for_treatment_effect_estimation") is False, "P0 cannot estimate treatment effects")
-    _need(firewall.get("zero_detection_interpreted_as_biological_absence") is False, "zero detection cannot mean biological absence")
+    _need(
+        firewall.get("zero_detection_interpreted_as_biological_absence")
+        is False,
+        "zero detection cannot mean biological absence",
+    )
+    _need(
+        firewall.get("pollinator_exposure_unit") == "FLOWER_MINUTES",
+        "pollinator exposure unit must remain FLOWER_MINUTES",
+    )
 
     pollen = receipt.get("pollen_limitation", {})
     _need(pollen.get("status") == "UNRESOLVED_UNTIL_QP_CALIBRATION", "P0 pollen limitation must remain unresolved")
@@ -220,29 +241,170 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
 
     effort_raw = receipt.get("effort", {})
     obs = receipt.get("observations", {})
-    census = _finite(effort_raw.get("independent_flowering_plants_censused"), "observed flowering plants", minimum=0)
-    census_exhausted = _optional_bool(effort_raw.get("population_census_exhausted"), "population_census_exhausted")
-    poll_minutes = _finite(effort_raw.get("pollinator_observation_minutes_total"), "observed pollinator minutes", minimum=0)
-    poll_flower_minutes = _finite(effort_raw.get("pollinator_flower_minutes_total"), "observed pollinator flower-minutes", minimum=0)
-    poll_bouts = _finite(effort_raw.get("pollinator_observation_bouts"), "observed pollinator bouts", minimum=0)
-    pred_flowers = _finite(effort_raw.get("predator_screen_flowers"), "observed predator flowers", minimum=0)
-    water_plants = _finite(effort_raw.get("water_state_plants"), "observed water-state plants", minimum=0)
+    census = _nonnegative_int(
+        effort_raw.get("independent_flowering_plants_censused"),
+        "observed flowering plants",
+    )
+    census_exhausted = _optional_bool(
+        effort_raw.get("population_census_exhausted"),
+        "population_census_exhausted",
+    )
+    poll_minutes = _finite(
+        effort_raw.get("pollinator_observation_minutes_total"),
+        "observed pollinator minutes",
+        minimum=0,
+    )
+    poll_flower_minutes = _finite(
+        effort_raw.get("pollinator_flower_minutes_total"),
+        "observed pollinator flower-minutes",
+        minimum=0,
+    )
+    poll_bouts = _nonnegative_int(
+        effort_raw.get("pollinator_observation_bouts"),
+        "observed pollinator bouts",
+    )
+    pred_flowers = _nonnegative_int(
+        effort_raw.get("predator_screen_flowers"),
+        "observed predator flowers",
+    )
+    water_plants = _nonnegative_int(
+        effort_raw.get("water_state_plants"),
+        "observed water-state plants",
+    )
 
-    visits = _finite(obs.get("legitimate_pollinator_visits"), "legitimate pollinator visits", minimum=0)
-    attacked = _finite(obs.get("predator_attacked_flowers"), "predator-attacked flowers", minimum=0)
-    water_positive = _finite(obs.get("water_positive_plants"), "water-positive plants", minimum=0)
+    visits = _nonnegative_int(
+        obs.get("legitimate_pollinator_visits"),
+        "legitimate pollinator visits",
+    )
+    attacked = _nonnegative_int(
+        obs.get("predator_attacked_flowers"),
+        "predator-attacked flowers",
+    )
+    water_positive = _nonnegative_int(
+        obs.get("water_positive_plants"),
+        "water-positive plants",
+    )
     _need(attacked <= pred_flowers, "predator-attacked flowers cannot exceed screened flowers")
     _need(water_positive <= water_plants, "water-positive plants cannot exceed screened plants")
-    _filled(obs.get("notes_on_predator_evidence"), "notes_on_predator_evidence")
-    _filled(obs.get("notes_on_water_state"), "notes_on_water_state")
+    _filled(
+        obs.get("notes_on_predator_evidence"),
+        "notes_on_predator_evidence",
+    )
+    _filled(
+        obs.get("notes_on_water_state"),
+        "notes_on_water_state",
+    )
+
+    packet = receipt.get("packet_completion", {})
+    _need(isinstance(packet, dict), "packet_completion missing")
+    registered_poll = _nonnegative_int(
+        packet.get("registered_pollinator_rows"),
+        "registered pollinator rows",
+    )
+    completed_poll = _nonnegative_int(
+        packet.get("completed_pollinator_rows"),
+        "completed pollinator rows",
+    )
+    registered_pred = _nonnegative_int(
+        packet.get("registered_predator_rows"),
+        "registered predator rows",
+    )
+    completed_pred = _nonnegative_int(
+        packet.get("completed_predator_rows"),
+        "completed predator rows",
+    )
+    registered_water = _nonnegative_int(
+        packet.get("registered_water_rows"),
+        "registered water rows",
+    )
+    completed_water = _nonnegative_int(
+        packet.get("completed_water_rows"),
+        "completed water rows",
+    )
+    _need(
+        completed_poll == poll_bouts,
+        "pollinator packet completion disagrees with effort count",
+    )
+    _need(
+        completed_pred == pred_flowers,
+        "predator packet completion disagrees with effort count",
+    )
+    _need(
+        completed_water == water_plants,
+        "water packet completion disagrees with effort count",
+    )
+
+    bout_details = effort_raw.get("pollinator_bout_details")
+    _need(
+        isinstance(bout_details, list)
+        and len(bout_details) == poll_bouts,
+        "pollinator bout detail count mismatch",
+    )
+    bout_ids: set[str] = set()
+    valid_duration_bouts = 0
+    for detail in bout_details:
+        _need(isinstance(detail, dict), "pollinator bout detail must be object")
+        record_id = _filled(
+            detail.get("record_id"),
+            "pollinator bout record_id",
+        )
+        _need(record_id not in bout_ids, "duplicate pollinator bout detail")
+        bout_ids.add(record_id)
+        observed_minutes = _finite(
+            detail.get("observed_minutes"),
+            f"observed minutes/{record_id}",
+            minimum=0.000001,
+        )
+        open_flowers = _positive_int(
+            detail.get("simultaneously_open_focal_flowers"),
+            f"open focal flowers/{record_id}",
+        )
+        bout_visits = _nonnegative_int(
+            detail.get("legitimate_visits"),
+            f"legitimate visits/{record_id}",
+        )
+        if (
+            observed_minutes
+            >= cfg["effort"]["minimum_pollinator_minutes_per_bout"]
+        ):
+            valid_duration_bouts += 1
+        _need(open_flowers >= 1, f"no open focal flower/{record_id}")
+        _need(bout_visits >= 0, f"invalid bout visit count/{record_id}")
 
     ef = cfg["effort"]
     signal_effort_checks = {
-        "pollinator_minutes": poll_minutes >= ef["minimum_pollinator_observation_minutes_total"],
-        "pollinator_flower_minutes": poll_flower_minutes >= ef["minimum_pollinator_flower_minutes_total"],
-        "pollinator_bouts": poll_bouts >= ef["minimum_pollinator_observation_bouts"],
-        "predator_flowers": pred_flowers >= ef["minimum_predator_screen_flowers"],
-        "water_plants": water_plants >= ef["minimum_water_state_plants"],
+        "pollinator_minutes": (
+            poll_minutes
+            >= ef["minimum_pollinator_observation_minutes_total"]
+        ),
+        "pollinator_flower_minutes": (
+            poll_flower_minutes
+            >= ef["minimum_pollinator_flower_minutes_total"]
+        ),
+        "pollinator_bouts": (
+            poll_bouts
+            >= ef["minimum_pollinator_observation_bouts"]
+        ),
+        "pollinator_bout_duration": (
+            valid_duration_bouts
+            >= ef["minimum_pollinator_observation_bouts"]
+        ),
+        "registered_pollinator_rows": (
+            registered_poll
+            >= ef["minimum_pollinator_observation_bouts"]
+        ),
+        "predator_flowers": (
+            pred_flowers >= ef["minimum_predator_screen_flowers"]
+        ),
+        "registered_predator_rows": (
+            registered_pred >= ef["minimum_predator_screen_flowers"]
+        ),
+        "water_plants": (
+            water_plants >= ef["minimum_water_state_plants"]
+        ),
+        "registered_water_rows": (
+            registered_water >= ef["minimum_water_state_plants"]
+        ),
     }
     signal_effort_complete = all(signal_effort_checks.values())
 
@@ -322,6 +484,11 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
                 "legitimate_visits": visits,
                 "flower_minutes": poll_flower_minutes,
                 "observed_visit_rate_per_flower_min": poll_rate,
+                "completed_bouts": poll_bouts,
+                "bouts_meeting_minimum_duration": valid_duration_bouts,
+                "minimum_minutes_per_bout": ef[
+                    "minimum_pollinator_minutes_per_bout"
+                ],
             },
             "predator": {
                 "pass": predator_pass if signal_effort_complete else None,
