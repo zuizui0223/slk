@@ -49,7 +49,26 @@ def _one_context(rows: list[dict[str, str]]) -> dict[str, str]:
 def summarize(rows: list[dict[str, str]]) -> dict:
     _need(bool(rows), "context screen packet is empty")
     ids = [str(row.get("record_id", "")).strip() for row in rows]
-    _need(all(ids) and len(ids) == len(set(ids)), "record_id must be non-empty and unique")
+    _need(
+        all(ids) and len(ids) == len(set(ids)),
+        "record_id must be non-empty and unique",
+    )
+    allowed_record_types = {
+        "CENSUS",
+        "POLLINATOR_BOUT",
+        "PREDATOR_FLOWER",
+        "WATER_PLANT",
+    }
+    unknown_types = {
+        str(row.get("record_type", "")).strip()
+        for row in rows
+        if str(row.get("record_type", "")).strip()
+        not in allowed_record_types
+    }
+    _need(
+        not unknown_types,
+        f"unregistered context-screen record types: {sorted(unknown_types)}",
+    )
     ctx = _one_context(rows)
 
     for row in rows:
@@ -65,13 +84,23 @@ def summarize(rows: list[dict[str, str]]) -> dict:
 
     census_row = census_rows[0]
     census_raw = str(census_row.get("flowering_plants_censused", "")).strip()
-    census = _num(census_raw, "flowering_plants_censused") if census_raw else 0.0
+    census = (
+        _num(census_raw, "flowering_plants_censused")
+        if census_raw
+        else 0.0
+    )
+    _need(
+        census.is_integer(),
+        "flowering_plants_censused must be an integer count",
+    )
     census_exhausted = _optional_bool(
         census_row.get("population_census_exhausted", ""),
         "population_census_exhausted",
     )
 
     completed_poll = []
+    incomplete_poll_ids: list[str] = []
+    poll_bout_details: list[dict] = []
     total_minutes = 0.0
     total_flower_minutes = 0.0
     visits = 0.0
@@ -80,26 +109,74 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         flowers_raw = str(row.get("simultaneously_open_focal_flowers", "")).strip()
         visits_raw = str(row.get("legitimate_pollinator_visits", "")).strip()
         if not minutes_raw or not flowers_raw or not visits_raw:
+            incomplete_poll_ids.append(row["record_id"])
             continue
         minutes = _num(minutes_raw, f"observed minutes/{row['record_id']}", minimum=0.000001)
         flowers = _num(flowers_raw, f"simultaneously open focal flowers/{row['record_id']}", minimum=1)
         _need(flowers.is_integer(), f"simultaneously open focal flowers must be an integer: {row['record_id']}")
-        visit = _num(visits_raw, f"legitimate visits/{row['record_id']}")
+        visit = _num(
+            visits_raw,
+            f"legitimate visits/{row['record_id']}",
+        )
+        _need(
+            visit.is_integer(),
+            f"legitimate visits must be an integer count: {row['record_id']}",
+        )
+        planned_raw = str(
+            row.get("planned_observation_minutes", "")
+        ).strip()
+        _need(
+            planned_raw != "",
+            f"planned observation minutes missing: {row['record_id']}",
+        )
+        planned_minutes = _num(
+            planned_raw,
+            f"planned observation minutes/{row['record_id']}",
+            minimum=0.000001,
+        )
         total_minutes += minutes
         total_flower_minutes += minutes * flowers
         visits += visit
         completed_poll.append(row)
+        poll_bout_details.append(
+            {
+                "record_id": row["record_id"],
+                "planned_minutes": planned_minutes,
+                "observed_minutes": minutes,
+                "simultaneously_open_focal_flowers": int(flowers),
+                "legitimate_visits": int(visit),
+            }
+        )
 
     completed_pred = []
+    incomplete_pred_ids: list[str] = []
     attacked = 0
     pred_notes = []
+    pred_units: set[tuple[str, str]] = set()
     for row in pred_rows:
         raw = str(row.get("predator_attack_present", "")).strip()
         if raw == "":
+            incomplete_pred_ids.append(row["record_id"])
             continue
-        _need(str(row.get("plant_id", "")).strip(), f"predator row missing plant_id: {row['record_id']}")
-        _need(str(row.get("flower_id", "")).strip(), f"predator row missing flower_id: {row['record_id']}")
-        present = _bool(raw, f"predator_attack_present/{row['record_id']}")
+        plant_id = str(row.get("plant_id", "")).strip()
+        flower_id = str(row.get("flower_id", "")).strip()
+        _need(
+            plant_id,
+            f"predator row missing plant_id: {row['record_id']}",
+        )
+        _need(
+            flower_id,
+            f"predator row missing flower_id: {row['record_id']}",
+        )
+        unit = (plant_id, flower_id)
+        _need(
+            unit not in pred_units,
+            f"duplicate predator flower unit: {plant_id}/{flower_id}",
+        )
+        pred_units.add(unit)
+        present = _bool(
+            raw, f"predator_attack_present/{row['record_id']}"
+        )
         attacked += int(present)
         note = str(row.get("predator_evidence_note", "")).strip()
         if note:
@@ -107,13 +184,25 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         completed_pred.append(row)
 
     completed_water = []
+    incomplete_water_ids: list[str] = []
     water_positive = 0
     water_notes = []
+    water_units: set[str] = set()
     for row in water_rows:
         raw = str(row.get("water_positive", "")).strip()
         if raw == "":
+            incomplete_water_ids.append(row["record_id"])
             continue
-        _need(str(row.get("plant_id", "")).strip(), f"water row missing plant_id: {row['record_id']}")
+        plant_id = str(row.get("plant_id", "")).strip()
+        _need(
+            plant_id,
+            f"water row missing plant_id: {row['record_id']}",
+        )
+        _need(
+            plant_id not in water_units,
+            f"duplicate water-state plant unit: {plant_id}",
+        )
+        water_units.add(plant_id)
         present = _bool(raw, f"water_positive/{row['record_id']}")
         water_positive += int(present)
         note = str(row.get("water_state_note", "")).strip()
@@ -135,6 +224,15 @@ def summarize(rows: list[dict[str, str]]) -> dict:
             "pollinator_observation_minutes_total": total_minutes,
             "pollinator_flower_minutes_total": total_flower_minutes,
             "pollinator_observation_bouts": len(completed_poll),
+            "pollinator_bout_details": poll_bout_details,
+            "minimum_observed_pollinator_bout_minutes": (
+                min(
+                    detail["observed_minutes"]
+                    for detail in poll_bout_details
+                )
+                if poll_bout_details
+                else None
+            ),
             "predator_screen_flowers": len(completed_pred),
             "water_state_plants": len(completed_water),
         },
@@ -163,10 +261,13 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         "packet_completion": {
             "registered_pollinator_rows": len(poll_rows),
             "completed_pollinator_rows": len(completed_poll),
+            "incomplete_pollinator_record_ids": incomplete_poll_ids,
             "registered_predator_rows": len(pred_rows),
             "completed_predator_rows": len(completed_pred),
+            "incomplete_predator_record_ids": incomplete_pred_ids,
             "registered_water_rows": len(water_rows),
             "completed_water_rows": len(completed_water),
+            "incomplete_water_record_ids": incomplete_water_ids,
             "capacity_census_exhaustion_recorded": census_exhausted is not None,
         },
         "final_adjudication": "NOT_YET_EXECUTED",
