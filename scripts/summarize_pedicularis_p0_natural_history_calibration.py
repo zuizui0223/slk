@@ -190,6 +190,18 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
     poll_minutes = 0.0
     poll_flower_minutes = 0.0
     poll_visits = 0.0
+    exclusions: list[dict[str, object]] = []
+    registered_counts = {
+        "pollinator_bouts": sum(
+            row.get("record_type") == "POLLINATOR_BOUT" for row in rows
+        ),
+        "predator_flowers": sum(
+            row.get("record_type") == "PREDATOR_FLOWER" for row in rows
+        ),
+        "water_plants": sum(
+            row.get("record_type") == "WATER_PLANT" for row in rows
+        ),
+    }
 
     for row in rows:
         kind = row.get("record_type")
@@ -198,6 +210,26 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             flowers_raw = str(row.get("simultaneously_open_focal_flowers", "")).strip()
             visits_raw = str(row.get("legitimate_pollinator_visits", "")).strip()
             if not (minutes_raw and flowers_raw and visits_raw):
+                missing_fields = [
+                    name
+                    for name, value in (
+                        ("observed_minutes", minutes_raw),
+                        (
+                            "simultaneously_open_focal_flowers",
+                            flowers_raw,
+                        ),
+                        ("legitimate_pollinator_visits", visits_raw),
+                    )
+                    if not value
+                ]
+                exclusions.append(
+                    {
+                        "record_id": row.get("record_id"),
+                        "record_type": kind,
+                        "reason": "MISSING_REQUIRED_MEASUREMENT",
+                        "missing_fields": missing_fields,
+                    }
+                )
                 continue
             minutes = _number(minutes_raw, "pollinator observed minutes", minimum=0.000001)
             flowers = _positive_int(float(flowers_raw), "simultaneously open focal flowers")
@@ -209,6 +241,16 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         elif kind == "PREDATOR_FLOWER":
             raw = str(row.get("early_attack_or_oviposition_positive", "")).strip()
             if not raw:
+                exclusions.append(
+                    {
+                        "record_id": row.get("record_id"),
+                        "record_type": kind,
+                        "reason": "MISSING_REQUIRED_MEASUREMENT",
+                        "missing_fields": [
+                            "early_attack_or_oviposition_positive"
+                        ],
+                    }
+                )
                 continue
             _filled(row.get("plant_id"), "predator plant_id")
             _filled(row.get("flower_id"), "predator flower_id")
@@ -216,6 +258,14 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         elif kind == "WATER_PLANT":
             raw = str(row.get("water_positive", "")).strip()
             if not raw:
+                exclusions.append(
+                    {
+                        "record_id": row.get("record_id"),
+                        "record_type": kind,
+                        "reason": "MISSING_REQUIRED_MEASUREMENT",
+                        "missing_fields": ["water_positive"],
+                    }
+                )
                 continue
             _filled(row.get("plant_id"), "water plant_id")
             water.append(int(_bool(raw, "water_positive")))
@@ -279,6 +329,13 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         }
         qualified = all(estimates[key]["lower_bound"] > 0 for key in estimates)
 
+    exclusion_reason_counts: dict[str, int] = {}
+    for item in exclusions:
+        reason = str(item["reason"])
+        exclusion_reason_counts[reason] = (
+            exclusion_reason_counts.get(reason, 0) + 1
+        )
+
     if not floors_pass:
         status = "P0_RELEVANCE_FRESH_CALIBRATION_INCOMPLETE"
     elif qualified:
@@ -301,6 +358,18 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         },
         "sampling_floor_checks": floor_checks,
         "sampling_floors_pass": floors_pass,
+        "packet_completion": {
+            "registered_counts": registered_counts,
+            "completed_counts": {
+                "pollinator_bouts": len(poll_bouts),
+                "predator_flowers": len(predator),
+                "water_plants": len(water),
+            },
+            "excluded_records": len(exclusions),
+            "exclusion_reason_counts": exclusion_reason_counts,
+            "exclusions": exclusions,
+            "missingness_sensitivity_required": bool(exclusions),
+        },
         "qualification_rule": {
             "rule": "ONE_SIDED_INDEPENDENT_UNIT_BOOTSTRAP_LOWER_QUANTILE",
             "lower_quantile": cfg["lower_quantile"],
@@ -323,6 +392,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "calibration_units_downstream_confirmatory_ineligible": True,
             "values_may_define_p0_effort_only": True,
             "no_posthoc_rescue_if_zero_compatible": True,
+            "missing_calibration_rows_reported": True,
         },
         "claim_ceiling": "FRESH_NATURAL_HISTORY_SIGNAL_FLOOR_CALIBRATION_ONLY_NO_P0_PASS_NO_G1_G5_RESULT",
     }
