@@ -33,6 +33,8 @@ The primary metric may not be selected because it has the smallest pilot varianc
 ```text
 36 independent plants
 3 Y-CAL flowers per plant
+
+The value 36 is the registered v1 complete-plant floor, not a claim of a universal power-optimal sample size. Falling below it yields an incomplete calibration receipt rather than a biological negative.
 2 repeated retention trials per flower
 confirmatory_eligible = false
 ```
@@ -55,7 +57,7 @@ Separately estimate repeat-trial measurement error as:
 measurement_error_SD = SD(trial1 - trial2) / sqrt(2).
 ```
 
-Only complete 3-flower plants contribute to these quantities. Trial differences from an incomplete plant are discarded together with that plant, preventing partial-plant leakage into the error estimate.
+Only complete 3-flower plants contribute to these quantities. Trial differences from an incomplete plant are discarded together with that plant, preventing partial-plant leakage into the error estimate. The receipt must nevertheless report every excluded primary plant and its reason; incomplete or invalid plants are never silently dropped.
 
 ## LOW-Y / HIGH-Y recruitment bands
 
@@ -145,3 +147,19 @@ python scripts/summarize_pedicularis_structural_y_calibration.py \
 ```
 
 The metric-freeze file must be committed before Y-CAL outcomes are opened. The resulting receipt may freeze LOW/HIGH recruitment for new D0-CAL plants, but Y-CAL plants themselves remain permanently confirmatory-ineligible.
+
+
+## Missingness receipt
+
+The Y-CAL receipt reports:
+
+```text
+eligible primary plants
+complete primary plants
+excluded primary plants
+complete fraction
+exclusion reason counts
+plant-level exclusion reasons.
+```
+
+Missing primary flowers and invalid frozen-metric measurements therefore remain auditable even though only complete three-flower plants enter the variance/range calculations. No missing plant is reclassified as evidence for a weak structural-y range.
