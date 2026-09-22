@@ -176,34 +176,57 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
     flower_means_by_plant: dict[str, list[float]] = {}
     trial_differences: list[float] = []
     complete_plants = 0
+    exclusions: list[dict[str, str]] = []
 
     for plant_id in sorted(by_plant):
         plant_rows = by_plant[plant_id]
         slots = {str(row.get("flower_slot", "")).strip() for row in plant_rows}
         if len(plant_rows) != FLOWERS_PER_PLANT or slots != PRIMARY_FLOWER_SLOTS:
+            exclusions.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": "INCOMPLETE_OR_DUPLICATE_PRIMARY_FLOWER_GRID",
+                }
+            )
             continue
         flower_means: list[float] = []
         z_values: list[float] = []
         plant_trial_differences: list[float] = []
         complete = True
+        failure_reason = None
         for row in plant_rows:
             try:
                 t1 = _number(row, trial1_field, proportion=proportion)
                 t2 = _number(row, trial2_field, proportion=proportion)
                 z = _number(row, "exsertion_z")
-            except ValueError:
+            except ValueError as exc:
                 complete = False
+                failure_reason = str(exc)
                 break
             flower_means.append((t1 + t2) / 2)
             plant_trial_differences.append(t1 - t2)
             z_values.append(z)
         if not complete:
+            exclusions.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": "INVALID_PRIMARY_MEASUREMENT",
+                    "detail": failure_reason or "UNKNOWN",
+                }
+            )
             continue
         complete_plants += 1
         flower_means_by_plant[plant_id] = flower_means
         plant_means.append(sum(flower_means) / FLOWERS_PER_PLANT)
         plant_z.append(sum(z_values) / FLOWERS_PER_PLANT)
         trial_differences.extend(plant_trial_differences)
+
+    exclusion_reason_counts: dict[str, int] = {}
+    for item in exclusions:
+        reason = item["reason"]
+        exclusion_reason_counts[reason] = (
+            exclusion_reason_counts.get(reason, 0) + 1
+        )
 
     floor_pass = complete_plants >= MIN_PLANTS
     if complete_plants < 2:
@@ -215,6 +238,16 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "registered_floor_plants": MIN_PLANTS,
             "complete_plant_floor_pass": False,
             "ignored_nonprimary_rows": len(rows) - len(primary_rows),
+            "missingness": {
+                "eligible_primary_plants": len(by_plant),
+                "complete_primary_plants": complete_plants,
+                "excluded_primary_plants": len(exclusions),
+                "complete_fraction": (
+                    complete_plants / len(by_plant) if by_plant else 0.0
+                ),
+                "exclusion_reason_counts": exclusion_reason_counts,
+                "exclusions": exclusions,
+            },
             "claim_ceiling": "Y_CAL_INCOMPLETE_NO_STRUCTURAL_Y_PROMOTION",
         }
 
@@ -284,6 +317,15 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         "complete_independent_plants": complete_plants,
         "registered_floor_plants": MIN_PLANTS,
         "complete_plant_floor_pass": floor_pass,
+        "missingness": {
+            "eligible_primary_plants": len(by_plant),
+            "complete_primary_plants": complete_plants,
+            "excluded_primary_plants": len(exclusions),
+            "complete_fraction": (
+                complete_plants / len(by_plant) if by_plant else 0.0
+            ),
+            "exclusions": exclusions,
+        },
         "variance_components": {
             "between_plant_sd": between_sd,
             "within_plant_flower_sd": within_sd,

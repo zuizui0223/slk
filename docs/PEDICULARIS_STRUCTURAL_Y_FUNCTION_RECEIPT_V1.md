@@ -42,7 +42,7 @@ data/PEDICULARIS_STRUCTURAL_Y_FUNCTION_FREEZE_TEMPLATE_V1.json
 
 Endpoint choice after seeing which endpoint gives the best result is forbidden. A non-significant pollination coefficient does not define equivalence.
 
-Under v1 the bootstrap validity rule is fixed at at least 90% valid resamples. The template exposes `minimum_valid_fraction = 0.90`; changing that value requires a new protocol version rather than silent tuning.
+Under v1 the bootstrap validity rule is prospectively frozen in `bootstrap.minimum_valid_fraction` (the template value is 0.90). The adjudicator reads that frozen field directly; it is not hard-coded in analysis code. Changing the value requires a new protocol version rather than silent tuning.
 
 ## 3. Y2 natural preferential loading
 
@@ -53,7 +53,7 @@ LOW-Y plant  -> S_CAL
 HIGH-Y plant -> D_CAL.
 ```
 
-This yields a maximum of 48 independent natural structural observations.
+This yields a maximum of 48 independent natural structural observations. The registered `minimum_complete_n = 48` is a complete-case cohort requirement for v1, not a guarantee of a particular frequentist power. If missingness, band failure, or model singularity prevents the registered CI criterion from being evaluated or passed, Y2 remains open rather than being interpreted as absence of preferential loading.
 
 Each natural row must still satisfy the frozen Y-CAL recruitment band on the primary y metric:
 
@@ -146,6 +146,8 @@ inside
 [-max_abs_exsertion_shift, +max_abs_exsertion_shift].
 ```
 
+The registered `minimum_complete_paired_plants = 24` is likewise the v1 complete-pair floor, not a universal power guarantee. A wide CI fails to promote Y3 but is not treated as evidence that the intervention has no useful effect.
+
 Y3 therefore establishes **functional-performance manipulability while preserving z**. It does not establish heritability, developmental origin, or a historical modularization event.
 
 ## 5. Why Y2 and Y3 are both useful
@@ -221,3 +223,22 @@ STRUCTURAL_Y_Y0_RANGE_QUALIFIED_Y1_AUDITED
 ```
 
 and authorized disjoint D0-CAL recruitment can enter this adjudicator.
+
+
+## Missingness and band-definition audit
+
+Y2 and Y3 receipts distinguish two different reasons a plant may not enter the final analysis:
+
+```text
+missing / invalid measurement
+    -> recorded in the missingness receipt with plant id and reason
+    -> triggers missingness_sensitivity_required
+
+frozen structural-y band failure
+    -> recorded separately as a phenotype-definition failure
+    -> not relabeled as missing data.
+```
+
+For Y2 the receipt reports eligible natural plants, measurement-complete plants, in-band analyzed plants, exclusion reason counts and bootstrap-valid fractions. For Y3 it reports the analogous LOW-Y paired-intervention counts.
+
+Missing or invalid measurements are never silently converted into evidence for equivalence. Outcome-dependent missingness remains a sensitivity-analysis issue even when the complete-case floor is still met.

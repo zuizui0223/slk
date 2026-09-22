@@ -93,6 +93,7 @@ def _freeze() -> dict:
             "seed": 2027,
             "reps": 2000,
             "minimum_reps": 2000,
+            "minimum_valid_fraction": 0.90,
             "resampling_unit": "INDEPENDENT_PLANT",
         },
         "firewall": {
@@ -239,3 +240,75 @@ def test_one_natural_band_failure_breaks_registered_48_plant_y2_floor() -> None:
     assert result["y2"]["complete_n"] == 47
     assert result["y2"]["natural_band_failure_count"] == 1
     assert result["y2"]["pass"] is False
+
+
+def test_bootstrap_valid_fraction_is_taken_from_freeze() -> None:
+    f = _freeze()
+    f["bootstrap"]["minimum_valid_fraction"] = 0.95
+    result = func.adjudicate(_completed_rows(), _y_receipt(), f)
+    assert result["y2"]["bootstrap_minimum_valid_fraction"] == 0.95
+    assert result["y2"]["bootstrap_minimum_valid_replicates"] == 1900
+
+
+def test_missing_bootstrap_valid_fraction_is_rejected() -> None:
+    f = _freeze()
+    f["bootstrap"].pop("minimum_valid_fraction")
+    with pytest.raises(ValueError, match="minimum_valid_fraction"):
+        func.adjudicate(_completed_rows(), _y_receipt(), f)
+
+
+def test_invalid_bootstrap_valid_fraction_is_rejected() -> None:
+    f = _freeze()
+    f["bootstrap"]["minimum_valid_fraction"] = 1.2
+    with pytest.raises(ValueError, match="minimum_valid_fraction"):
+        func.adjudicate(_completed_rows(), _y_receipt(), f)
+
+
+def test_y2_missing_measurement_is_reported_not_silently_dropped() -> None:
+    rows = _completed_rows()
+    target = next(
+        row for row in rows
+        if row["plant_id"] == "D0H-001"
+        and row["treatment"] == "D_CAL"
+    )
+    target["pollen_receipt_grains"] = ""
+    result = func.adjudicate(rows, _y_receipt(), _freeze())
+    y2 = result["y2"]
+    assert y2["complete_n"] == 47
+    assert y2["missingness"]["excluded_for_missing_or_invalid_measurement"] == 1
+    assert y2["missingness"]["sensitivity_required"] is True
+    assert y2["missingness"]["exclusions"][0]["plant_id"] == "D0H-001"
+    assert result["missingness_summary"]["sensitivity_required"] is True
+    assert y2["pass"] is False
+
+
+def test_y3_missing_measurement_is_reported_not_silently_dropped() -> None:
+    rows = _completed_rows()
+    target = next(
+        row for row in rows
+        if row["plant_id"] == "D0L-001"
+        and row["treatment"] == "D0_CAL"
+    )
+    target["exsertion_z"] = ""
+    result = func.adjudicate(rows, _y_receipt(), _freeze())
+    y3 = result["y3"]
+    assert y3["paired_complete_n"] == 23
+    assert y3["missingness"]["excluded_for_missing_or_invalid_measurement"] == 1
+    assert y3["missingness"]["sensitivity_required"] is True
+    assert y3["pass"] is False
+
+
+def test_band_failure_is_not_mislabeled_as_missingness() -> None:
+    rows = _completed_rows()
+    target = next(
+        row for row in rows
+        if row["plant_id"] == "D0H-001"
+        and row["treatment"] == "D_CAL"
+    )
+    target["retention_trial1_max_ml"] = "1.5"
+    target["retention_trial2_max_ml"] = "1.5"
+    result = func.adjudicate(rows, _y_receipt(), _freeze())
+    y2 = result["y2"]
+    assert y2["natural_band_failure_count"] == 1
+    assert y2["missingness"]["excluded_for_missing_or_invalid_measurement"] == 0
+    assert y2["missingness"]["sensitivity_required"] is False
