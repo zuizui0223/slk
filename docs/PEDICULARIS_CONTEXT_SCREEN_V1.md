@@ -283,6 +283,8 @@ registered water-state plant rows.
 
 Completed predator observations must refer to unique `plant_id + flower_id` units. Completed water-state observations must refer to unique plant IDs. Repeating the same biological unit under several record IDs does not increase registered detection effort.
 
+Completed predator observations must refer to unique `plant_id + flower_id` units. Completed water-state observations must refer to unique plant IDs. Repeating the same biological unit under several record IDs does not increase registered detection effort.
+
 Every row is permanently:
 
 ```text
