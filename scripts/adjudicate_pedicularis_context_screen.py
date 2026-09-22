@@ -21,6 +21,7 @@ REQUIRED_SOURCE_FIELDS = {
     "screen_effort.minimum_pollinator_observation_minutes_total",
     "screen_effort.minimum_pollinator_flower_minutes_total",
     "screen_effort.minimum_pollinator_observation_bouts",
+    "screen_effort.minimum_pollinator_minutes_per_bout",
     "screen_effort.minimum_predator_screen_flowers",
     "screen_effort.minimum_water_state_plants",
     "screen_effort.minimum_capacity_margin_fraction",
@@ -99,8 +100,19 @@ def validate_freeze(freeze: dict) -> dict:
         "minimum pollinator flower-minutes",
         minimum=0.000001,
     )
-    min_poll_bouts = _positive_int(effort.get("minimum_pollinator_observation_bouts"), "minimum pollinator bouts")
-    min_pred_flowers = _positive_int(effort.get("minimum_predator_screen_flowers"), "minimum predator screen flowers")
+    min_poll_bouts = _positive_int(
+        effort.get("minimum_pollinator_observation_bouts"),
+        "minimum pollinator bouts",
+    )
+    min_poll_minutes_per_bout = _finite(
+        effort.get("minimum_pollinator_minutes_per_bout"),
+        "minimum pollinator minutes per bout",
+        minimum=0.000001,
+    )
+    min_pred_flowers = _positive_int(
+        effort.get("minimum_predator_screen_flowers"),
+        "minimum predator screen flowers",
+    )
     min_water_plants = _positive_int(effort.get("minimum_water_state_plants"), "minimum water-state plants")
     capacity_margin = _finite(effort.get("minimum_capacity_margin_fraction"), "minimum capacity margin fraction", minimum=0)
     _need(capacity_margin <= 1, "minimum capacity margin fraction must be <= 1")
@@ -167,6 +179,7 @@ def validate_freeze(freeze: dict) -> dict:
             "minimum_pollinator_observation_minutes_total": min_poll_minutes,
             "minimum_pollinator_flower_minutes_total": min_poll_flower_minutes,
             "minimum_pollinator_observation_bouts": min_poll_bouts,
+            "minimum_pollinator_minutes_per_bout": min_poll_minutes_per_bout,
             "minimum_predator_screen_flowers": min_pred_flowers,
             "minimum_water_state_plants": min_water_plants,
         },
