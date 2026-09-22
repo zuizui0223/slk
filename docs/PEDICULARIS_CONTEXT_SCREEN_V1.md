@@ -107,10 +107,13 @@ flower-minutes
 The field packet records, for every pollinator bout:
 
 ```text
+planned_observation_minutes
 observed_observation_minutes
 simultaneously_open_focal_flowers
 legitimate_pollinator_visits.
 ```
+
+Temporal coverage is not satisfied by total clock time alone. The final freeze carries the prospectively planned `minimum_pollinator_minutes_per_bout`; at least the frozen number of bouts must each meet that duration. One long bout cannot compensate for several near-zero bouts.
 
 The summary calculates:
 
@@ -149,11 +152,12 @@ P(no visit after E flower-minutes) = exp(-lambda_min E)
 E_required = ceil[-log(1-q) / lambda_min].
 ```
 
-P0 must satisfy both:
+P0 must satisfy all of:
 
 ```text
-minimum clock-time / bout coverage
-AND
+minimum total clock time
+minimum number of temporal bouts
+minimum duration for each qualifying bout
 minimum cumulative flower-minute exposure.
 ```
 
@@ -277,6 +281,8 @@ registered predator-screen flower rows
 registered water-state plant rows.
 ```
 
+Completed predator observations must refer to unique `plant_id + flower_id` units. Completed water-state observations must refer to unique plant IDs. Repeating the same biological unit under several record IDs does not increase registered detection effort.
+
 Every row is permanently:
 
 ```text
@@ -336,3 +342,20 @@ P0_CONTEXT_AND_SOURCE_QUALIFICATION_ONLY
 NO_G1_G2
 NO_R_K_PHI.
 ```
+
+
+## 14. Packet-integrity rules
+
+Before signal classification, the packet summary and adjudicator verify:
+
+```text
+registered record types only
+integer biological count variables
+pollinator bout details reconcile with aggregate minutes, flower-minutes and visits
+the frozen minimum number of bouts each meet the frozen minimum duration
+predator flower units are unique
+water-state plant units are unique
+registered/completed packet counts agree with the effort receipt.
+```
+
+A packet that violates these bookkeeping/independence rules fails closed. These checks protect the prospective detection guarantees rather than creating new biological thresholds.
