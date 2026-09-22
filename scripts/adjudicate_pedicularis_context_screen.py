@@ -109,6 +109,11 @@ def validate_freeze(freeze: dict) -> dict:
         "minimum pollinator minutes per bout",
         minimum=0.000001,
     )
+    _need(
+        min_poll_minutes
+        >= min_poll_bouts * min_poll_minutes_per_bout,
+        "total pollinator minutes are inconsistent with the frozen per-bout minimum",
+    )
     min_pred_flowers = _positive_int(
         effort.get("minimum_predator_screen_flowers"),
         "minimum predator screen flowers",
