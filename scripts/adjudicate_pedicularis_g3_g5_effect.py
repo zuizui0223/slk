@@ -8,6 +8,11 @@ import math
 import random
 from collections import defaultdict
 from pathlib import Path
+
+try:
+    from scripts.pedicularis_physical_units import validate_current_against_forbidden
+except ImportError:
+    from pedicularis_physical_units import validate_current_against_forbidden
 from sys import float_info
 
 
@@ -247,6 +252,29 @@ def adjudicate(
     d0: dict,
 ) -> dict:
     cfg = validate_contract(freeze, g2, y_receipt, y_function, d0)
+
+    decomp_physical = validate_current_against_forbidden(
+        decomposition_rows,
+        cfg["physical_unit_firewall"],
+    )
+
+    direct_physical = None
+    if direct_rows is not None and len(direct_rows) > 0:
+        direct_physical = validate_current_against_forbidden(
+            direct_rows,
+            cfg["physical_unit_firewall"],
+        )
+        overlap = set(
+            decomp_physical["assignment_to_physical_tag"].values()
+        ) & set(
+            direct_physical["assignment_to_physical_tag"].values()
+        )
+        _need(
+            not overlap,
+            "decomposition/direct physical plant tags overlap: "
+            + ",".join(sorted(overlap)),
+        )
+
     decomp, _, decomp_exclusions = _prepare_plants(
         decomposition_rows, DECOMP_DATASET, "DECOMPOSITION_RK", {"S", "D0", "D"}, cfg
     )
@@ -309,6 +337,20 @@ def adjudicate(
             "estimation_route": cfg["route"],
         },
         "g2_conflict_load": cfg["conflict_load"],
+        "physical_unit_firewall": {
+            "decomposition": {
+                "status": "CURRENT_COHORT_PHYSICAL_TAGS_VALIDATED_DISJOINT_FROM_PRIOR",
+                **decomp_physical,
+            },
+            "direct_phi": (
+                {
+                    "status": "CURRENT_COHORT_PHYSICAL_TAGS_VALIDATED_DISJOINT_FROM_PRIOR_AND_DECOMPOSITION",
+                    **direct_physical,
+                }
+                if direct_physical is not None
+                else None
+            ),
+        },
         "decomposition_block": {
             "dataset_id": DECOMP_DATASET,
             "complete_plant_counts": decomp_counts,
