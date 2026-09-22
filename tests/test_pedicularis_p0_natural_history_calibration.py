@@ -207,3 +207,51 @@ def test_unresolved_calibration_cannot_compile_qualification() -> None:
     receipt = sum_mod.summarize(_filled_rows(rare_predator=True), _freeze())
     with pytest.raises(ValueError, match="not qualified"):
         comp.compile_qualification(receipt, _qual_template())
+
+
+def test_missing_registered_pollinator_measurement_is_receipted_and_blocks_qualification() -> None:
+    rows = _filled_rows()
+    target = next(
+        row for row in rows
+        if row["record_id"] == "CAL-POLL-010"
+    )
+    target["legitimate_pollinator_visits"] = ""
+    receipt = sum_mod.summarize(rows, _freeze())
+    completion = receipt["packet_completion"]
+    assert completion["excluded_records"] == 1
+    assert completion["missingness_sensitivity_required"] is True
+    assert completion["qualification_blocked_by_missingness"] is True
+    assert completion["exclusions"][0]["record_id"] == "CAL-POLL-010"
+    assert "legitimate_pollinator_visits" in completion["exclusions"][0]["missing_fields"]
+    assert receipt["status"] == "P0_RELEVANCE_FRESH_CALIBRATION_INCOMPLETE"
+    assert receipt["qualification_ready"] is False
+
+
+def test_extra_registered_row_does_not_hide_calibration_missingness() -> None:
+    rows = _filled_rows()
+    extra = dict(
+        next(
+            row for row in rows
+            if row["record_id"] == "CAL-WATER-020"
+        )
+    )
+    extra["record_id"] = "CAL-WATER-021"
+    extra["plant_id"] = "WP021"
+    extra["water_positive"] = "true"
+    rows.append(extra)
+    target = next(
+        row for row in rows
+        if row["record_id"] == "CAL-WATER-020"
+    )
+    target["water_positive"] = ""
+
+    receipt = sum_mod.summarize(rows, _freeze())
+    assert receipt["sampling_floor_checks"]["water_plants"] is True
+    assert receipt["packet_completion"]["excluded_records"] == 1
+    assert receipt["status"] == (
+        "P0_RELEVANCE_FRESH_CALIBRATION_"
+        "MISSINGNESS_REQUIRES_SENSITIVITY"
+    )
+    assert receipt["qualification_ready"] is False
+    with pytest.raises(ValueError, match="not qualified"):
+        comp.compile_qualification(receipt, _qual_template())
