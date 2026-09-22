@@ -196,6 +196,13 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
     _need(firewall.get("screen_used_for_treatment_effect_estimation") is False, "P0 cannot estimate treatment effects")
     _need(firewall.get("zero_detection_interpreted_as_biological_absence") is False, "zero detection cannot mean biological absence")
 
+    packet_completion = receipt.get("packet_completion")
+    if packet_completion is not None:
+        _need(
+            isinstance(packet_completion, dict),
+            "packet_completion must be an object when present",
+        )
+
     pollen = receipt.get("pollen_limitation", {})
     _need(pollen.get("status") == "UNRESOLVED_UNTIL_QP_CALIBRATION", "P0 pollen limitation must remain unresolved")
     _need(pollen.get("used_as_context_screen_pass_gate") is False, "pollen limitation cannot be a P0 pass gate")
@@ -335,6 +342,15 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             "low_signal_is_biological_negative": False,
             "continue_capacity_census": signal_effort_complete and not failed and not capacity_resolved,
         },
+        "packet_completion_audit": packet_completion,
+        "missingness_sensitivity_required": (
+            bool(
+                packet_completion
+                and packet_completion.get(
+                    "missingness_sensitivity_required", False
+                )
+            )
+        ),
         "firewall": {
             "screen_is_logistical_not_g1_g2": True,
             "screen_units_confirmatory_ineligible": True,

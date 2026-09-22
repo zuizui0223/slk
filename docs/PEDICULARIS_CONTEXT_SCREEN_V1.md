@@ -336,3 +336,32 @@ P0_CONTEXT_AND_SOURCE_QUALIFICATION_ONLY
 NO_G1_G2
 NO_R_K_PHI.
 ```
+
+
+## 14. Incomplete-row audit
+
+The context-screen packet summary never silently drops an unfinished registered row.
+
+For pollinator, predator, water-state and capacity-census records, the packet receipt reports:
+
+```text
+registered rows
+completed rows
+incomplete rows
+incomplete reason counts
+record-level incomplete details.
+```
+
+The distinction from fresh calibration is deliberate.
+
+For P0 context screening, biological signal is judged only after the **completed** units satisfy the prospectively frozen minimum effort. Therefore an extra unfinished row does not automatically invalidate a screen that still meets every registered effort floor.
+
+However the final adjudication carries
+
+```text
+missingness_sensitivity_required = true
+```
+
+whenever incomplete registered records exist. Missingness therefore remains visible and auditable.
+
+If missingness causes any pollinator, predator, water-state or capacity effort floor to remain unmet, the only permitted status is `CONTEXT_SCREEN_INCOMPLETE`. It may not be reinterpreted as low biological signal.

@@ -207,3 +207,33 @@ def test_unresolved_calibration_cannot_compile_qualification() -> None:
     receipt = sum_mod.summarize(_filled_rows(rare_predator=True), _freeze())
     with pytest.raises(ValueError, match="not qualified"):
         comp.compile_qualification(receipt, _qual_template())
+
+
+def test_missing_calibration_measurement_is_reported_and_blocks_qualification() -> None:
+    rows = _filled_rows()
+    # Add one extra valid water row so the numerical floor can still pass after
+    # one registered row becomes incomplete.
+    extra = dict(next(r for r in rows if r["record_type"] == "WATER_PLANT"))
+    extra["record_id"] = "CAL-WATER-EXTRA"
+    extra["plant_id"] = "WP-EXTRA"
+    extra["water_positive"] = "true"
+    rows.append(extra)
+
+    target = next(r for r in rows if r["record_id"] == "CAL-WATER-020")
+    target["water_positive"] = ""
+
+    receipt = sum_mod.summarize(rows, _freeze())
+    assert receipt["sampling_floors_pass"] is True
+    assert receipt["completion_audit"]["registered_rows_complete"] is False
+    assert receipt["completion_audit"]["incomplete_records"] == 1
+    assert receipt["completion_audit"]["incomplete_record_details"][0][
+        "record_id"
+    ] == "CAL-WATER-020"
+    assert receipt["completion_audit"]["sensitivity_required"] is True
+    assert receipt["status"] == "P0_RELEVANCE_FRESH_CALIBRATION_INCOMPLETE"
+    assert receipt["qualification_ready"] is False
+
+
+def test_calibration_receipt_reports_frozen_bootstrap_valid_fraction() -> None:
+    receipt = sum_mod.summarize(_filled_rows(), _freeze())
+    assert receipt["qualification_rule"]["minimum_valid_fraction"] == 0.95
