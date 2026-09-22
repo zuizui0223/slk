@@ -194,7 +194,8 @@ These modules may be cited by SLK without being promoted to independent manuscri
 14. `docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md` — canonical same-system execution order and design-versus-biological status boundary.
 15. `docs/PEDICULARIS_CONTEXT_SCREEN_V1.md` — fresh population-season P0 screen, field packet and relocation rule.
 16. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
-17. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — Qz/Qp/Qg field execution, hard stops and fallback policy.
+17. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — execution order and stop rules.
+- `docs/PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1.md` — permanent field-tag registry preventing physical-plant reuse across calibration and confirmatory cohorts — Qz/Qp/Qg field execution, hard stops and fallback policy.
 18. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective threshold-freeze rules.
 19. `docs/PEDICULARIS_STRUCTURAL_Y_RECEIPT_V1.md` — Y0-Y1 repeatability/range and z-y coupling receipt.
 20. `docs/PEDICULARIS_STRUCTURAL_Y_FUNCTION_RECEIPT_V1.md` — Y2 preferential loading and Y3 performance-intervention receipt.
