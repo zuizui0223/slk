@@ -54,6 +54,7 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     effort["minimum_pollinator_observation_minutes_total"] = poll["planned_total_minutes"]
     effort["minimum_pollinator_flower_minutes_total"] = poll["planned_total_flower_minutes"]
     effort["minimum_pollinator_observation_bouts"] = poll["minimum_temporal_bouts"]
+    effort["minimum_pollinator_minutes_per_bout"] = poll["minimum_minutes_per_bout"]
     effort["minimum_predator_screen_flowers"] = pred["planned_screen_flowers"]
     effort["minimum_water_state_plants"] = water["planned_screen_plants"]
     effort["minimum_capacity_margin_fraction"] = capacity["reserve_fraction"]
@@ -86,6 +87,12 @@ def compile_effort(screen: dict, plan: dict) -> dict:
         },
         {
             "field_id": "screen_effort.minimum_pollinator_observation_bouts",
+            "source_type": poll["coverage_source"]["source_type"],
+            "source_reference": poll["coverage_source"]["source_reference"],
+            "rationale": poll["coverage_source"]["rationale"],
+        },
+        {
+            "field_id": "screen_effort.minimum_pollinator_minutes_per_bout",
             "source_type": poll["coverage_source"]["source_type"],
             "source_reference": poll["coverage_source"]["source_reference"],
             "rationale": poll["coverage_source"]["rationale"],
