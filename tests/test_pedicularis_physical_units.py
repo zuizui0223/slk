@@ -27,6 +27,9 @@ def _rows(prefix: str, tags: list[str]) -> list[dict[str, str]]:
         for flower in (1, 2):
             out.append(
                 {
+                    "context_id": "ctx1",
+                    "population_id": "pop1",
+                    "season_id": "2027",
                     "plant_id": plant_id,
                     "physical_plant_tag": tag,
                     "flower_id": f"{plant_id}-F{flower}",
@@ -117,4 +120,16 @@ def test_current_cohort_is_rejected_if_tag_is_in_registry_firewall() -> None:
         physical.validate_current_against_forbidden(
             _rows("NEW", ["PHY-PRIOR"]),
             firewall,
+        )
+
+
+def test_registry_rejects_context_drift() -> None:
+    rows = _rows("Y", ["PHY-1"])
+    rows[0]["population_id"] = "other"
+    with pytest.raises(ValueError, match="registry context mismatch"):
+        registry.build_registry(
+            {"YCAL": rows},
+            context_id="ctx1",
+            population_id="pop1",
+            season_id="2027",
         )
