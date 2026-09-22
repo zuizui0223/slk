@@ -242,10 +242,26 @@ def _validate_freeze(freeze: dict) -> dict:
     seed = boot.get("seed")
     reps = boot.get("reps")
     min_reps = boot.get("minimum_reps")
+    min_valid_fraction = boot.get("minimum_valid_fraction")
     _need(isinstance(seed, int), "bootstrap seed must be an integer")
-    _need(isinstance(min_reps, int) and min_reps >= 1000, "invalid bootstrap minimum reps")
-    _need(isinstance(reps, int) and reps >= min_reps, "bootstrap reps below frozen minimum")
-    _need(boot.get("resampling_unit") == "INDEPENDENT_PLANT", "wrong bootstrap unit")
+    _need(
+        isinstance(min_reps, int) and min_reps >= 1000,
+        "invalid bootstrap minimum reps",
+    )
+    _need(
+        isinstance(reps, int) and reps >= min_reps,
+        "bootstrap reps below frozen minimum",
+    )
+    _need(
+        isinstance(min_valid_fraction, (int, float))
+        and not isinstance(min_valid_fraction, bool)
+        and 0 < float(min_valid_fraction) <= 1,
+        "invalid bootstrap minimum_valid_fraction",
+    )
+    _need(
+        boot.get("resampling_unit") == "INDEPENDENT_PLANT",
+        "wrong bootstrap unit",
+    )
 
     firewall = freeze.get("firewall", {})
     for key in (
@@ -276,6 +292,7 @@ def _validate_freeze(freeze: dict) -> dict:
         "z_equivalence_ci_level": z_eq_level,
         "seed": seed,
         "reps": reps,
+        "minimum_valid_fraction": float(min_valid_fraction),
     }
 
 
@@ -343,20 +360,56 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
     natural_ant: list[tuple[float, float, float]] = []
     natural_poll: list[tuple[float, float, float]] = []
     natural_band_failures: list[str] = []
+    y2_missingness: list[dict[str, str]] = []
+    y2_measurement_complete = 0
 
     for plant_id in sorted(by_plant):
         stratum = strata[plant_id]
-        treatment = "S_CAL" if stratum == "LOW_Y" else "D_CAL" if stratum == "HIGH_Y" else None
-        if treatment is None or treatment not in by_plant[plant_id]:
+        treatment = (
+            "S_CAL"
+            if stratum == "LOW_Y"
+            else "D_CAL"
+            if stratum == "HIGH_Y"
+            else None
+        )
+        if treatment is None:
+            y2_missingness.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": "INVALID_PHENOTYPE_STRATUM",
+                    "detail": stratum,
+                }
+            )
+            continue
+        if treatment not in by_plant[plant_id]:
+            y2_missingness.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": "MISSING_REGISTERED_NATURAL_TREATMENT",
+                    "detail": treatment,
+                }
+            )
             continue
         row = by_plant[plant_id][treatment]
         try:
             y = _y_value(row, metric)
             z = _number(row, "exsertion_z")
-            ant = _endpoint_value(row, ant_endpoint, pollination=False)
-            poll = _endpoint_value(row, poll_endpoint, pollination=True)
-        except ValueError:
+            ant = _endpoint_value(
+                row, ant_endpoint, pollination=False
+            )
+            poll = _endpoint_value(
+                row, poll_endpoint, pollination=True
+            )
+        except ValueError as exc:
+            y2_missingness.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": "INVALID_NATURAL_MEASUREMENT",
+                    "detail": str(exc),
+                }
+            )
             continue
+        y2_measurement_complete += 1
         band_ok = (stratum == "LOW_Y" and y <= low_max) or (stratum == "HIGH_Y" and y >= high_min)
         if not band_ok:
             natural_band_failures.append(plant_id)
@@ -377,8 +430,12 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
     if ant_fit is not None and poll_fit is not None:
         ant_boot, ant_valid = _bootstrap_beta_y(natural_ant, cfg["seed"], cfg["reps"])
         poll_boot, poll_valid = _bootstrap_beta_y(natural_poll, cfg["seed"] + 1, cfg["reps"])
-    min_valid = math.ceil(cfg["reps"] * 0.90)
-    bootstrap_ready = ant_valid >= min_valid and poll_valid >= min_valid
+    min_valid = math.ceil(
+        cfg["reps"] * cfg["minimum_valid_fraction"]
+    )
+    bootstrap_ready = (
+        ant_valid >= min_valid and poll_valid >= min_valid
+    )
 
     ant_ci = None
     poll_ci = None
@@ -403,11 +460,27 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
     y3_y_diffs: list[float] = []
     y3_z_diffs: list[float] = []
     y3_baseline_band_failures: list[str] = []
+    y3_missingness: list[dict[str, str]] = []
+    y3_eligible_low_plants = 0
+    y3_measurement_complete = 0
     for plant_id in sorted(by_plant):
         if strata[plant_id] != "LOW_Y":
             continue
+        y3_eligible_low_plants += 1
         treatments = by_plant[plant_id]
-        if "D0_CAL" not in treatments or "SHAM_CAL" not in treatments:
+        missing_treatments = [
+            treatment
+            for treatment in ("D0_CAL", "SHAM_CAL")
+            if treatment not in treatments
+        ]
+        if missing_treatments:
+            y3_missingness.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": "MISSING_REGISTERED_INTERVENTION_TREATMENT",
+                    "detail": ",".join(missing_treatments),
+                }
+            )
             continue
         d0 = treatments["D0_CAL"]
         sham = treatments["SHAM_CAL"]
@@ -416,8 +489,16 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
             y_sham = _y_value(sham, metric)
             z_d0 = _number(d0, "exsertion_z")
             z_sham = _number(sham, "exsertion_z")
-        except ValueError:
+        except ValueError as exc:
+            y3_missingness.append(
+                {
+                    "plant_id": plant_id,
+                    "reason": "INVALID_INTERVENTION_MEASUREMENT",
+                    "detail": str(exc),
+                }
+            )
             continue
+        y3_measurement_complete += 1
         if y_sham > low_max:
             y3_baseline_band_failures.append(plant_id)
             continue
@@ -469,6 +550,16 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
             "complete_n": y2_n,
             "minimum_complete_n": cfg["minimum_y2_n"],
             "natural_band_failure_count": len(natural_band_failures),
+            "missingness": {
+                "eligible_natural_plants": len(by_plant),
+                "measurement_complete_plants": y2_measurement_complete,
+                "analyzed_in_band_plants": y2_n,
+                "excluded_for_missing_or_invalid_measurement": len(
+                    y2_missingness
+                ),
+                "exclusions": y2_missingness,
+                "sensitivity_required": bool(y2_missingness),
+            },
             "beta_y_antagonist": ant_fit["beta_y"] if ant_fit else None,
             "beta_y_antagonist_ci": list(ant_ci) if ant_ci else None,
             "antagonist_expected_direction_pass": antagonist_pass,
@@ -478,13 +569,39 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
             "pollination_equivalence_pass": pollination_equivalence_pass,
             "bootstrap_valid_antagonist": ant_valid,
             "bootstrap_valid_pollination": poll_valid,
+            "bootstrap_reps": cfg["reps"],
+            "bootstrap_minimum_valid_fraction": cfg[
+                "minimum_valid_fraction"
+            ],
+            "bootstrap_minimum_valid_replicates": min_valid,
+            "bootstrap_valid_fraction_antagonist": (
+                ant_valid / cfg["reps"] if cfg["reps"] else 0.0
+            ),
+            "bootstrap_valid_fraction_pollination": (
+                poll_valid / cfg["reps"] if cfg["reps"] else 0.0
+            ),
+            "bootstrap_ready": bootstrap_ready,
             "pass": y2_pass,
         },
         "y3": {
             "paired_complete_n": y3_n,
             "minimum_complete_paired_plants": cfg["minimum_y3_n"],
-            "baseline_low_y_band_failure_count": len(y3_baseline_band_failures),
-            "mean_primary_y_gain": (sum(y3_y_diffs) / y3_n) if y3_n else None,
+            "baseline_low_y_band_failure_count": len(
+                y3_baseline_band_failures
+            ),
+            "missingness": {
+                "eligible_low_y_plants": y3_eligible_low_plants,
+                "measurement_complete_plants": y3_measurement_complete,
+                "analyzed_in_band_plants": y3_n,
+                "excluded_for_missing_or_invalid_measurement": len(
+                    y3_missingness
+                ),
+                "exclusions": y3_missingness,
+                "sensitivity_required": bool(y3_missingness),
+            },
+            "mean_primary_y_gain": (
+                sum(y3_y_diffs) / y3_n if y3_n else None
+            ),
             "primary_y_gain_ci": list(y_gain_ci) if y_gain_ci else None,
             "minimum_primary_y_gain": cfg["minimum_y_gain"],
             "y_gain_pass": y_gain_pass,
@@ -494,6 +611,22 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
             "z_equivalence_pass": z_equivalence_pass,
             "pass": y3_pass,
             "interpretation": "FUNCTIONAL_PERFORMANCE_INTERVENTION_NOT_HISTORICAL_ORIGIN",
+        },
+        "missingness_summary": {
+            "y2_excluded_for_missing_or_invalid_measurement": len(
+                y2_missingness
+            ),
+            "y3_excluded_for_missing_or_invalid_measurement": len(
+                y3_missingness
+            ),
+            "sensitivity_required": bool(
+                y2_missingness or y3_missingness
+            ),
+            "interpretation": (
+                "Missing or invalid D0-CAL measurements are reported rather "
+                "than silently discarded. Band failures remain separate "
+                "registered phenotype-definition failures."
+            ),
         },
         "firewall": {
             "d0_cal_units_confirmatory_g3_g5_ineligible": True,
