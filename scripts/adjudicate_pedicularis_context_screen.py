@@ -342,6 +342,9 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
     )
     bout_ids: set[str] = set()
     valid_duration_bouts = 0
+    detail_total_minutes = 0.0
+    detail_total_flower_minutes = 0.0
+    detail_total_visits = 0
     for detail in bout_details:
         _need(isinstance(detail, dict), "pollinator bout detail must be object")
         record_id = _filled(
@@ -370,6 +373,32 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             valid_duration_bouts += 1
         _need(open_flowers >= 1, f"no open focal flower/{record_id}")
         _need(bout_visits >= 0, f"invalid bout visit count/{record_id}")
+        detail_total_minutes += observed_minutes
+        detail_total_flower_minutes += observed_minutes * open_flowers
+        detail_total_visits += bout_visits
+
+    _need(
+        math.isclose(
+            detail_total_minutes,
+            poll_minutes,
+            rel_tol=1e-10,
+            abs_tol=1e-10,
+        ),
+        "pollinator bout-detail minutes disagree with aggregate effort",
+    )
+    _need(
+        math.isclose(
+            detail_total_flower_minutes,
+            poll_flower_minutes,
+            rel_tol=1e-10,
+            abs_tol=1e-10,
+        ),
+        "pollinator bout-detail flower-minutes disagree with aggregate effort",
+    )
+    _need(
+        detail_total_visits == visits,
+        "pollinator bout-detail visits disagree with aggregate observation",
+    )
 
     ef = cfg["effort"]
     signal_effort_checks = {
