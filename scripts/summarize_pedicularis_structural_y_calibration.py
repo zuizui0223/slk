@@ -221,6 +221,13 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         plant_z.append(sum(z_values) / FLOWERS_PER_PLANT)
         trial_differences.extend(plant_trial_differences)
 
+    exclusion_reason_counts: dict[str, int] = {}
+    for item in exclusions:
+        reason = item["reason"]
+        exclusion_reason_counts[reason] = (
+            exclusion_reason_counts.get(reason, 0) + 1
+        )
+
     floor_pass = complete_plants >= MIN_PLANTS
     if complete_plants < 2:
         return {
@@ -238,6 +245,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
                 "complete_fraction": (
                     complete_plants / len(by_plant) if by_plant else 0.0
                 ),
+                "exclusion_reason_counts": exclusion_reason_counts,
                 "exclusions": exclusions,
             },
             "claim_ceiling": "Y_CAL_INCOMPLETE_NO_STRUCTURAL_Y_PROMOTION",
