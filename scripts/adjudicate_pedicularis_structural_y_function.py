@@ -417,6 +417,11 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
         natural_ant.append((y, z, ant))
         natural_poll.append((y, z, poll))
 
+    y2_reason_counts: dict[str, int] = {}
+    for item in y2_missingness:
+        reason = item["reason"]
+        y2_reason_counts[reason] = y2_reason_counts.get(reason, 0) + 1
+
     y2_n = len(natural_ant)
     _need(y2_n == len(natural_poll), "Y2 endpoint completeness mismatch")
     y2_floor_pass = y2_n >= cfg["minimum_y2_n"]
@@ -505,6 +510,11 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
         y3_y_diffs.append(y_d0 - y_sham)
         y3_z_diffs.append(z_d0 - z_sham)
 
+    y3_reason_counts: dict[str, int] = {}
+    for item in y3_missingness:
+        reason = item["reason"]
+        y3_reason_counts[reason] = y3_reason_counts.get(reason, 0) + 1
+
     y3_n = len(y3_y_diffs)
     _need(y3_n == len(y3_z_diffs), "Y3 paired completeness mismatch")
     y3_floor_pass = y3_n >= cfg["minimum_y3_n"]
@@ -557,6 +567,7 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
                 "excluded_for_missing_or_invalid_measurement": len(
                     y2_missingness
                 ),
+                "exclusion_reason_counts": y2_reason_counts,
                 "exclusions": y2_missingness,
                 "sensitivity_required": bool(y2_missingness),
             },
@@ -596,6 +607,7 @@ def adjudicate(rows: list[dict[str, str]], y_receipt: dict, freeze: dict) -> dic
                 "excluded_for_missing_or_invalid_measurement": len(
                     y3_missingness
                 ),
+                "exclusion_reason_counts": y3_reason_counts,
                 "exclusions": y3_missingness,
                 "sensitivity_required": bool(y3_missingness),
             },
