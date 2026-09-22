@@ -72,6 +72,7 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     )
 
     completed_poll = []
+    incomplete_records: list[dict[str, object]] = []
     total_minutes = 0.0
     total_flower_minutes = 0.0
     visits = 0.0
@@ -80,6 +81,26 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         flowers_raw = str(row.get("simultaneously_open_focal_flowers", "")).strip()
         visits_raw = str(row.get("legitimate_pollinator_visits", "")).strip()
         if not minutes_raw or not flowers_raw or not visits_raw:
+            missing_fields = [
+                name
+                for name, value in (
+                    ("observed_observation_minutes", minutes_raw),
+                    (
+                        "simultaneously_open_focal_flowers",
+                        flowers_raw,
+                    ),
+                    ("legitimate_pollinator_visits", visits_raw),
+                )
+                if not value
+            ]
+            incomplete_records.append(
+                {
+                    "record_id": row.get("record_id"),
+                    "record_type": "POLLINATOR_BOUT",
+                    "reason": "MISSING_REQUIRED_MEASUREMENT",
+                    "missing_fields": missing_fields,
+                }
+            )
             continue
         minutes = _num(minutes_raw, f"observed minutes/{row['record_id']}", minimum=0.000001)
         flowers = _num(flowers_raw, f"simultaneously open focal flowers/{row['record_id']}", minimum=1)
@@ -96,6 +117,14 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     for row in pred_rows:
         raw = str(row.get("predator_attack_present", "")).strip()
         if raw == "":
+            incomplete_records.append(
+                {
+                    "record_id": row.get("record_id"),
+                    "record_type": "PREDATOR_FLOWER",
+                    "reason": "MISSING_REQUIRED_MEASUREMENT",
+                    "missing_fields": ["predator_attack_present"],
+                }
+            )
             continue
         _need(str(row.get("plant_id", "")).strip(), f"predator row missing plant_id: {row['record_id']}")
         _need(str(row.get("flower_id", "")).strip(), f"predator row missing flower_id: {row['record_id']}")
@@ -112,6 +141,14 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     for row in water_rows:
         raw = str(row.get("water_positive", "")).strip()
         if raw == "":
+            incomplete_records.append(
+                {
+                    "record_id": row.get("record_id"),
+                    "record_type": "WATER_PLANT",
+                    "reason": "MISSING_REQUIRED_MEASUREMENT",
+                    "missing_fields": ["water_positive"],
+                }
+            )
             continue
         _need(str(row.get("plant_id", "")).strip(), f"water row missing plant_id: {row['record_id']}")
         present = _bool(raw, f"water_positive/{row['record_id']}")
@@ -122,6 +159,13 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         completed_water.append(row)
 
     poll_rate = visits / total_flower_minutes if total_flower_minutes > 0 else None
+    exclusion_reason_counts: dict[str, int] = {}
+    for item in incomplete_records:
+        reason = str(item["reason"])
+        exclusion_reason_counts[reason] = (
+            exclusion_reason_counts.get(reason, 0) + 1
+        )
+
     return {
         "schema_version": RECEIPT_SCHEMA,
         "status": "FILLED_SCREEN_DATA",
@@ -168,6 +212,12 @@ def summarize(rows: list[dict[str, str]]) -> dict:
             "registered_water_rows": len(water_rows),
             "completed_water_rows": len(completed_water),
             "capacity_census_exhaustion_recorded": census_exhausted is not None,
+            "incomplete_record_count": len(incomplete_records),
+            "incomplete_reason_counts": exclusion_reason_counts,
+            "incomplete_records": incomplete_records,
+            "missingness_sensitivity_required": bool(
+                incomplete_records
+            ),
         },
         "final_adjudication": "NOT_YET_EXECUTED",
     }
