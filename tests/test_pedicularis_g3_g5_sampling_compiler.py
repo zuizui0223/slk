@@ -9,6 +9,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 PLANNER = ROOT / "scripts" / "plan_pedicularis_g3_g5_effect_precision.py"
 COMPILER = ROOT / "scripts" / "compile_pedicularis_g3_g5_effect_sampling.py"
+PHYSICAL = ROOT / "scripts" / "pedicularis_physical_units.py"
 
 spec = importlib.util.spec_from_file_location("ped_g35_plan_compile", PLANNER)
 planmod = importlib.util.module_from_spec(spec)
@@ -19,6 +20,11 @@ spec2 = importlib.util.spec_from_file_location("ped_g35_compile", COMPILER)
 compiler = importlib.util.module_from_spec(spec2)
 assert spec2.loader is not None
 spec2.loader.exec_module(compiler)
+
+spec3 = importlib.util.spec_from_file_location("ped_physical_g35_compile", PHYSICAL)
+physical = importlib.util.module_from_spec(spec3)
+assert spec3.loader is not None
+spec3.loader.exec_module(physical)
 
 
 CTX = {
@@ -143,6 +149,14 @@ def _effect(route: str = "SAME_BLOCK_INTERNAL_IDENTITY") -> dict:
             "residual_ci_must_be_within_equivalence_margin": True,
             "required_only_for_route": "INDEPENDENT_DIRECT_PHI_BLOCK",
         },
+        "physical_unit_firewall": {
+            "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": [],
+            "prior_tag_source_references": ["TEST_EMPTY_PRIOR_REGISTRY"],
+            "prior_tag_set_sha256": physical.canonical_tag_hash([]),
+            "frozen_before_outcomes": True,
+        },
         "firewall": {},
         "freeze_metadata": {},
         "production_status": "PEDICULARIS_G3_G5_EFFECT_PROSPECTIVELY_FROZEN",
@@ -163,6 +177,9 @@ def test_same_block_sampling_is_compiled_without_direct_block_n() -> None:
     assert out["sampling"]["recruitment_plants_per_direct_world"] is None
     assert "precision-freeze-1" in out["sampling"]["sample_size_source"]
     assert out["context"]["frozen_before_g3_g5_outcomes"] is False
+    assert out["physical_unit_firewall"] == _effect()[
+        "physical_unit_firewall"
+    ]
 
 
 def test_independent_route_receives_bridge_adjusted_sample_sizes() -> None:
