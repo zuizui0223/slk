@@ -211,10 +211,13 @@ Possible statuses:
 ```text
 P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED
 P0_RELEVANCE_FRESH_CALIBRATION_ZERO_COMPATIBLE_UNRESOLVED
+P0_RELEVANCE_FRESH_CALIBRATION_MISSINGNESS_REQUIRES_SENSITIVITY
 P0_RELEVANCE_FRESH_CALIBRATION_INCOMPLETE.
 ```
 
 Only the first status supplies recommended minimum-relevance values.
+
+The receipt also records registered, completed and excluded calibration rows by endpoint, with record IDs and missing required fields. A registered calibration row with missing endpoint data blocks numeric source qualification even when extra rows leave the nominal sampling floor satisfied. This prevents outcome-dependent missingness from silently changing the minimum-relevance values passed into P0 effort planning.
 
 ## 8. Handoff to the source-qualification gate
 
@@ -269,3 +272,34 @@ NO_G1_G2
 NO_Y_D0
 NO_R_K_PHI.
 ```
+
+
+## 11. Missingness rule
+
+Fresh natural-history calibration values become **numeric design inputs** for the later P0 screen. Therefore missing registered calibration rows are treated more conservatively than ordinary logistical screen missingness.
+
+The receipt reports:
+
+```text
+registered rows by endpoint
+completed rows by endpoint
+excluded records
+record_id
+missing required fields
+missingness_sensitivity_required.
+```
+
+Decision rule:
+
+```text
+sampling floor fails
+-> P0_RELEVANCE_FRESH_CALIBRATION_INCOMPLETE
+
+sampling floor survives but any registered calibration row is incomplete
+-> P0_RELEVANCE_FRESH_CALIBRATION_MISSINGNESS_REQUIRES_SENSITIVITY
+
+all registered rows complete + all frozen lower bounds > 0
+-> P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED.
+```
+
+The middle state does not permit compilation into a fresh numeric relevance-source qualification. A missing row is never interpreted as a zero signal, but neither is it silently removed from the calibration used to set a production detection threshold.
