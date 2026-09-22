@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_pedicularis_d0_confirmatory_layout.py"
 ADJUDICATOR = ROOT / "scripts" / "adjudicate_pedicularis_d0_confirmatory.py"
 MARGIN_TEMPLATE = ROOT / "data" / "PEDICULARIS_D0_MARGIN_FREEZE_TEMPLATE_V1.json"
+PHYSICAL = ROOT / "scripts" / "pedicularis_physical_units.py"
 
 spec = importlib.util.spec_from_file_location("ped_d0_q_gen", GENERATOR)
 gen = importlib.util.module_from_spec(spec)
@@ -21,6 +22,11 @@ spec2 = importlib.util.spec_from_file_location("ped_d0_q_adj", ADJUDICATOR)
 adj = importlib.util.module_from_spec(spec2)
 assert spec2.loader is not None
 spec2.loader.exec_module(adj)
+
+spec3 = importlib.util.spec_from_file_location("ped_physical_d0_test", PHYSICAL)
+physical = importlib.util.module_from_spec(spec3)
+assert spec3.loader is not None
+spec3.loader.exec_module(physical)
 
 
 def _y_receipt() -> dict:
@@ -77,6 +83,14 @@ def _analysis_freeze(route: str = "NEGLIGIBLE_BURDEN_EQUIVALENCE") -> dict:
             "high_y_treatments": ["D_QUAL"],
             "low_y_within_plant_randomized": True,
             "high_y_single_natural_state": True,
+        },
+        "physical_unit_firewall": {
+            "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": [],
+            "prior_tag_source_references": ["TEST_EMPTY_PRIOR_REGISTRY"],
+            "prior_tag_set_sha256": physical.canonical_tag_hash([]),
+            "frozen_before_outcomes": True,
         },
         "firewall": {
             "d0_qualification_units_g3_g5_ineligible": True,
@@ -208,6 +222,9 @@ def _layout(route: str = "NEGLIGIBLE_BURDEN_EQUIVALENCE") -> list[dict[str, str]
     rows, _ = gen.generate_layout(_precision(route), _y_receipt(), _analysis_freeze(route), 777)
     out = copy.deepcopy(rows)
     for row in out:
+        row["physical_plant_tag"] = (
+            "PHY-D0Q-" + row["plant_id"]
+        )
         i = int(row["plant_id"].rsplit("-", 1)[1])
         t = row["treatment"]
         if row["phenotype_stratum"] == "LOW_Y":
@@ -409,3 +426,70 @@ def test_attrition_inflation_is_recruitment_not_analysis_floor() -> None:
     pollen = result["endpoint_results"]["D0_Q3_POLLEN"]
     assert pollen["recruited_low_y_target"] == 24
     assert pollen["required_analysis_n"] == 20
+
+
+def test_d0_confirmatory_requires_nonempty_physical_plant_tags() -> None:
+    rows = _layout()
+    rows[0]["physical_plant_tag"] = ""
+    with pytest.raises(ValueError, match="physical_plant_tag"):
+        adj.adjudicate(
+            rows,
+            _margin(),
+            _precision(),
+            _y_receipt(),
+            _analysis_freeze(),
+        )
+
+
+def test_d0_confirmatory_rejects_same_physical_plant_under_two_assignment_ids() -> None:
+    rows = _layout()
+    first = rows[0]["physical_plant_tag"]
+    other_plant = next(
+        row for row in rows
+        if row["plant_id"] != rows[0]["plant_id"]
+    )["plant_id"]
+    for row in rows:
+        if row["plant_id"] == other_plant:
+            row["physical_plant_tag"] = first
+    with pytest.raises(ValueError, match="physical plant tag reused"):
+        adj.adjudicate(
+            rows,
+            _margin(),
+            _precision(),
+            _y_receipt(),
+            _analysis_freeze(),
+        )
+
+
+def test_d0_confirmatory_rejects_prior_cohort_physical_plant_reuse() -> None:
+    rows = _layout()
+    reused = rows[0]["physical_plant_tag"]
+    freeze = _analysis_freeze()
+    freeze["physical_unit_firewall"][
+        "prior_physical_plant_tags_forbidden"
+    ] = [reused]
+    freeze["physical_unit_firewall"]["prior_tag_set_sha256"] = (
+        physical.canonical_tag_hash([reused])
+    )
+    with pytest.raises(ValueError, match="reuses prior physical plants"):
+        adj.adjudicate(
+            rows,
+            _margin(),
+            _precision(),
+            _y_receipt(),
+            freeze,
+        )
+
+
+def test_d0_receipt_records_physical_tag_hash() -> None:
+    result = adj.adjudicate(
+        _layout(),
+        _margin(),
+        _precision(),
+        _y_receipt(),
+        _analysis_freeze(),
+    )
+    firewall = result["physical_unit_firewall"]
+    assert firewall["overlap_count"] == 0
+    assert firewall["current_physical_plant_count"] == 48
+    assert len(firewall["current_tag_set_sha256"]) == 64
