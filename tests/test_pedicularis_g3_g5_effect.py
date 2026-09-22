@@ -9,6 +9,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 GENERATOR = ROOT / "scripts" / "generate_pedicularis_g3_g5_layout.py"
 ADJUDICATOR = ROOT / "scripts" / "adjudicate_pedicularis_g3_g5_effect.py"
+PHYSICAL = ROOT / "scripts" / "pedicularis_physical_units.py"
 
 spec = importlib.util.spec_from_file_location("ped_g35_gen", GENERATOR)
 gen = importlib.util.module_from_spec(spec)
@@ -19,6 +20,11 @@ spec2 = importlib.util.spec_from_file_location("ped_g35_adj", ADJUDICATOR)
 adj = importlib.util.module_from_spec(spec2)
 assert spec2.loader is not None
 spec2.loader.exec_module(adj)
+
+spec3 = importlib.util.spec_from_file_location("ped_physical_g35_test", PHYSICAL)
+physical = importlib.util.module_from_spec(spec3)
+assert spec3.loader is not None
+spec3.loader.exec_module(physical)
 
 
 CTX = {
@@ -87,6 +93,14 @@ def _freeze(route: str = "SAME_BLOCK_INTERNAL_IDENTITY", q5_route: str = "NEGLIG
             "residual_equivalence_margin": 0.30 if direct else None,
             "residual_ci_must_be_within_equivalence_margin": True,
             "required_only_for_route": "INDEPENDENT_DIRECT_PHI_BLOCK",
+        },
+        "physical_unit_firewall": {
+            "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": [],
+            "prior_tag_source_references": ["TEST_EMPTY_PRIOR_REGISTRY"],
+            "prior_tag_set_sha256": physical.canonical_tag_hash([]),
+            "frozen_before_outcomes": True,
         },
         "firewall": {
             "g1_g2_units_reused_for_g3_g5_forbidden": True,
@@ -223,6 +237,9 @@ def _make(route: str = "SAME_BLOCK_INTERNAL_IDENTITY", q5_route: str = "NEGLIGIB
 def _fill(rows: list[dict[str, str]], direct_shift: float = 0.0) -> list[dict[str, str]]:
     out = copy.deepcopy(rows)
     for row in out:
+        row["physical_plant_tag"] = (
+            "PHY-G35-" + row["plant_id"]
+        )
         i = int(row["plant_id"].rsplit("-", 1)[1])
         z = float(row["target_exsertion_z"])
         row["baseline_primary_y_value"] = "1.5" if row["world"] in {"S", "D0"} else "4.5"
@@ -385,3 +402,90 @@ def test_direct_route_rejects_zero_inclusion_only_freeze_rule() -> None:
             d0,
             randomization_seed=77,
         )
+
+
+def test_g3_g5_requires_nonempty_physical_plant_tags() -> None:
+    freeze, decomp, _, _, d0 = _make()
+    rows = _fill(decomp)
+    rows[0]["physical_plant_tag"] = ""
+    with pytest.raises(ValueError, match="physical_plant_tag"):
+        adj.adjudicate(
+            rows,
+            None,
+            freeze,
+            _g2(),
+            _y_receipt(),
+            _y_function(),
+            d0,
+        )
+
+
+def test_g3_g5_rejects_prior_physical_plant_reuse() -> None:
+    freeze, decomp, _, _, d0 = _make()
+    rows = _fill(decomp)
+    reused = rows[0]["physical_plant_tag"]
+    freeze["physical_unit_firewall"][
+        "prior_physical_plant_tags_forbidden"
+    ] = [reused]
+    freeze["physical_unit_firewall"]["prior_tag_set_sha256"] = (
+        physical.canonical_tag_hash([reused])
+    )
+    with pytest.raises(ValueError, match="reuses prior physical plants"):
+        adj.adjudicate(
+            rows,
+            None,
+            freeze,
+            _g2(),
+            _y_receipt(),
+            _y_function(),
+            d0,
+        )
+
+
+def test_direct_and_decomposition_cannot_hide_same_physical_plant_under_new_ids() -> None:
+    freeze, decomp, direct, _, d0 = _make(
+        "INDEPENDENT_DIRECT_PHI_BLOCK"
+    )
+    decomp_rows = _fill(decomp)
+    direct_rows = _fill(direct)
+
+    shared_tag = decomp_rows[0]["physical_plant_tag"]
+    direct_plant = direct_rows[0]["plant_id"]
+    for row in direct_rows:
+        if row["plant_id"] == direct_plant:
+            row["physical_plant_tag"] = shared_tag
+
+    with pytest.raises(
+        ValueError,
+        match="decomposition/direct physical plant tags overlap",
+    ):
+        adj.adjudicate(
+            decomp_rows,
+            direct_rows,
+            freeze,
+            _g2(),
+            _y_receipt(),
+            _y_function(),
+            d0,
+        )
+
+
+def test_g3_g5_receipt_records_physical_cohort_hashes() -> None:
+    freeze, decomp, direct, _, d0 = _make(
+        "INDEPENDENT_DIRECT_PHI_BLOCK"
+    )
+    result = adj.adjudicate(
+        _fill(decomp),
+        _fill(direct),
+        freeze,
+        _g2(),
+        _y_receipt(),
+        _y_function(),
+        d0,
+    )
+    firewall = result["physical_unit_firewall"]
+    assert firewall["decomposition"]["overlap_count"] == 0
+    assert firewall["direct_phi"]["overlap_count"] == 0
+    assert len(
+        firewall["decomposition"]["current_tag_set_sha256"]
+    ) == 64
