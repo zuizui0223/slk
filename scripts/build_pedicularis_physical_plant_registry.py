@@ -41,6 +41,21 @@ def build_registry(
 
     for cohort_id in sorted(cohorts):
         rows = cohorts[cohort_id]
+        _need(bool(rows), f"empty physical plant cohort: {cohort_id}")
+
+        for key, expected in (
+            ("context_id", context_id),
+            ("population_id", population_id),
+            ("season_id", season_id),
+        ):
+            values = {
+                str(row.get(key, "")).strip() for row in rows
+            }
+            _need(
+                values == {expected},
+                f"physical plant registry context mismatch: {cohort_id}/{key}",
+            )
+
         mapping = validate_physical_plant_mapping(rows)
         tags = sorted(set(mapping.values()))
         for tag in tags:
@@ -56,6 +71,9 @@ def build_registry(
             else:
                 seen_tags[tag] = cohort_id
         cohort_receipts[cohort_id] = {
+            "context_id": context_id,
+            "population_id": population_id,
+            "season_id": season_id,
             "assignment_plant_count": len(mapping),
             "physical_plant_count": len(tags),
             "tag_set_sha256": canonical_tag_hash(tags),
