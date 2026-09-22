@@ -216,15 +216,17 @@ The bridge residual is
 Delta_bridge = Phi_direct - Phi_internal.
 ```
 
-`STRUCTURAL_G1_G5` independent concordance requires both:
+`STRUCTURAL_G1_G5` independent concordance is an **equivalence claim** on the bridge residual. It therefore requires the residual confidence interval to lie wholly inside the prospectively frozen equivalence band:
 
 ```text
-abs(point residual) <= frozen point tolerance
+-delta_bridge < CI_lower
 and
-residual CI includes zero.
+CI_upper < +delta_bridge.
 ```
 
-Only this route is called an empirical concordance test.
+The point residual is also reported and must lie inside the same band, but zero inclusion by itself is insufficient. A wide confidence interval that contains zero is treated as unresolved/non-concordant rather than rewarded as agreement.
+
+The independent-route sample-size plan includes a dedicated symmetric-TOST bridge component and applies that sample floor to both the decomposition and direct S:D blocks. Only this independent route is called an empirical concordance test.
 
 ## 11. Diagnostic outcomes
 
