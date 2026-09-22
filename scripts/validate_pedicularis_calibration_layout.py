@@ -85,11 +85,25 @@ def validate_rows(y_rows: list[dict[str, str]], d0_rows: list[dict[str, str]]) -
     y_by_plant: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in y_rows:
         y_by_plant[row["plant_id"]].append(row)
-    _need(len(y_by_plant) >= Y_MIN_PLANTS, "Y-CAL has fewer than 36 independent plants")
+    _need(
+        len(y_by_plant) >= Y_MIN_PLANTS,
+        "Y-CAL has fewer than 36 independent plants",
+    )
     for plant_id, rows in y_by_plant.items():
-        _need(len(rows) >= Y_MIN_FLOWERS_PER_PLANT, f"Y-CAL plant has fewer than 3 flowers: {plant_id}")
         _need(
-            all(row.get("treatment") == "Y_CAL_REPEATED_MEASUREMENT" for row in rows),
+            len(rows) == Y_MIN_FLOWERS_PER_PLANT,
+            f"Y-CAL plant must have exactly 3 registered primary flowers: {plant_id}",
+        )
+        slots = [str(row.get("flower_slot", "")).strip() for row in rows]
+        _need(
+            set(slots) == {"1", "2", "3"} and len(slots) == len(set(slots)),
+            f"Y-CAL primary flower slots must be exactly 1,2,3: {plant_id}",
+        )
+        _need(
+            all(
+                row.get("treatment") == "Y_CAL_REPEATED_MEASUREMENT"
+                for row in rows
+            ),
             f"unexpected Y-CAL treatment: {plant_id}",
         )
 
@@ -113,19 +127,65 @@ def validate_rows(y_rows: list[dict[str, str]], d0_rows: list[dict[str, str]]) -
 
     for plant_id, rows in low.items():
         treatments = Counter(row.get("treatment") for row in rows)
-        _need(set(treatments) <= LOW_REQUIRED, f"unexpected LOW-Y treatment: {plant_id}")
-        _need(all(treatments[t] >= 1 for t in LOW_REQUIRED), f"LOW-Y treatment set incomplete: {plant_id}")
+        _need(
+            set(treatments) == LOW_REQUIRED,
+            f"LOW-Y treatment set incomplete or unexpected: {plant_id}",
+        )
+        _need(
+            all(treatments[t] == 1 for t in LOW_REQUIRED),
+            f"LOW-Y treatment duplicated within plant: {plant_id}",
+        )
+        slots = [str(row.get("flower_slot", "")).strip() for row in rows]
+        _need(
+            set(slots) == {"1", "2", "3"} and len(slots) == len(set(slots)),
+            f"LOW-Y flower slots must be exactly 1,2,3: {plant_id}",
+        )
     for plant_id, rows in high.items():
         treatments = Counter(row.get("treatment") for row in rows)
-        _need(set(treatments) <= HIGH_REQUIRED, f"unexpected HIGH-Y treatment: {plant_id}")
-        _need(all(treatments[t] >= 1 for t in HIGH_REQUIRED), f"HIGH-Y treatment set incomplete: {plant_id}")
+        _need(
+            set(treatments) == HIGH_REQUIRED,
+            f"HIGH-Y treatment set incomplete or unexpected: {plant_id}",
+        )
+        _need(
+            all(treatments[t] == 1 for t in HIGH_REQUIRED),
+            f"HIGH-Y treatment duplicated within plant: {plant_id}",
+        )
+        slots = [str(row.get("flower_slot", "")).strip() for row in rows]
+        _need(
+            set(slots) == {"1", "2"} and len(slots) == len(set(slots)),
+            f"HIGH-Y flower slots must be exactly 1,2: {plant_id}",
+        )
 
     y_plants = set(y_by_plant)
     d0_plants = set(d0_by_plant)
-    _need(not (y_plants & d0_plants), "Y-CAL and D0-CAL plant IDs overlap")
+    _need(
+        not (y_plants & d0_plants),
+        "Y-CAL and D0-CAL plant IDs overlap",
+    )
+    _need(
+        not (set(y_flowers) & set(d0_flowers)),
+        "Y-CAL and D0-CAL flower IDs overlap",
+    )
 
-    seeds = {row.get("randomization_seed", "").strip() for row in d0_rows}
-    _need("" not in seeds and len(seeds) == 1, "D0-CAL randomization seed must be fixed and recorded")
+    y_seeds = {
+        row.get("randomization_seed", "").strip() for row in y_rows
+    }
+    d0_seeds = {
+        row.get("randomization_seed", "").strip() for row in d0_rows
+    }
+    _need(
+        "" not in y_seeds and len(y_seeds) == 1,
+        "Y-CAL randomization seed must be fixed and recorded",
+    )
+    _need(
+        "" not in d0_seeds and len(d0_seeds) == 1,
+        "D0-CAL randomization seed must be fixed and recorded",
+    )
+    _need(
+        y_seeds == d0_seeds,
+        "Y-CAL and D0-CAL randomization seeds must match",
+    )
+    seeds = d0_seeds
 
     return {
         "schema_version": "SLK_PEDICULARIS_CALIBRATION_LAYOUT_VALIDATION_V1",
