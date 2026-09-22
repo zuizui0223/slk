@@ -75,11 +75,32 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     total_minutes = 0.0
     total_flower_minutes = 0.0
     visits = 0.0
+    incomplete_records: list[dict[str, str]] = []
     for row in poll_rows:
         minutes_raw = str(row.get("observed_observation_minutes", "")).strip()
         flowers_raw = str(row.get("simultaneously_open_focal_flowers", "")).strip()
         visits_raw = str(row.get("legitimate_pollinator_visits", "")).strip()
         if not minutes_raw or not flowers_raw or not visits_raw:
+            missing_fields = [
+                field
+                for field, value in (
+                    ("observed_observation_minutes", minutes_raw),
+                    (
+                        "simultaneously_open_focal_flowers",
+                        flowers_raw,
+                    ),
+                    ("legitimate_pollinator_visits", visits_raw),
+                )
+                if not value
+            ]
+            incomplete_records.append(
+                {
+                    "record_id": row["record_id"],
+                    "record_type": "POLLINATOR_BOUT",
+                    "reason": "MISSING_REQUIRED_MEASUREMENT",
+                    "detail": ",".join(missing_fields),
+                }
+            )
             continue
         minutes = _num(minutes_raw, f"observed minutes/{row['record_id']}", minimum=0.000001)
         flowers = _num(flowers_raw, f"simultaneously open focal flowers/{row['record_id']}", minimum=1)
@@ -96,6 +117,14 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     for row in pred_rows:
         raw = str(row.get("predator_attack_present", "")).strip()
         if raw == "":
+            incomplete_records.append(
+                {
+                    "record_id": row["record_id"],
+                    "record_type": "PREDATOR_FLOWER",
+                    "reason": "MISSING_REQUIRED_MEASUREMENT",
+                    "detail": "predator_attack_present",
+                }
+            )
             continue
         _need(str(row.get("plant_id", "")).strip(), f"predator row missing plant_id: {row['record_id']}")
         _need(str(row.get("flower_id", "")).strip(), f"predator row missing flower_id: {row['record_id']}")
@@ -112,6 +141,14 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     for row in water_rows:
         raw = str(row.get("water_positive", "")).strip()
         if raw == "":
+            incomplete_records.append(
+                {
+                    "record_id": row["record_id"],
+                    "record_type": "WATER_PLANT",
+                    "reason": "MISSING_REQUIRED_MEASUREMENT",
+                    "detail": "water_positive",
+                }
+            )
             continue
         _need(str(row.get("plant_id", "")).strip(), f"water row missing plant_id: {row['record_id']}")
         present = _bool(raw, f"water_positive/{row['record_id']}")
@@ -121,7 +158,35 @@ def summarize(rows: list[dict[str, str]]) -> dict:
             water_notes.append(note)
         completed_water.append(row)
 
-    poll_rate = visits / total_flower_minutes if total_flower_minutes > 0 else None
+    if not census_raw:
+        incomplete_records.append(
+            {
+                "record_id": census_row["record_id"],
+                "record_type": "CENSUS",
+                "reason": "MISSING_CAPACITY_CENSUS_COUNT",
+                "detail": "flowering_plants_censused",
+            }
+        )
+    if census_exhausted is None:
+        incomplete_records.append(
+            {
+                "record_id": census_row["record_id"],
+                "record_type": "CENSUS",
+                "reason": "MISSING_CAPACITY_EXHAUSTION_STATUS",
+                "detail": "population_census_exhausted",
+            }
+        )
+
+    reason_counts: dict[str, int] = {}
+    for item in incomplete_records:
+        reason = item["reason"]
+        reason_counts[reason] = reason_counts.get(reason, 0) + 1
+
+    poll_rate = (
+        visits / total_flower_minutes
+        if total_flower_minutes > 0
+        else None
+    )
     return {
         "schema_version": RECEIPT_SCHEMA,
         "status": "FILLED_SCREEN_DATA",
@@ -167,7 +232,15 @@ def summarize(rows: list[dict[str, str]]) -> dict:
             "completed_predator_rows": len(completed_pred),
             "registered_water_rows": len(water_rows),
             "completed_water_rows": len(completed_water),
-            "capacity_census_exhaustion_recorded": census_exhausted is not None,
+            "capacity_census_exhaustion_recorded": (
+                census_exhausted is not None
+            ),
+            "incomplete_records": len(incomplete_records),
+            "incomplete_reason_counts": reason_counts,
+            "incomplete_record_details": incomplete_records,
+            "missingness_sensitivity_required": bool(
+                incomplete_records
+            ),
         },
         "final_adjudication": "NOT_YET_EXECUTED",
     }
