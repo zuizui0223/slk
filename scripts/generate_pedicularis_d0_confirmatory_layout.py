@@ -6,6 +6,11 @@ import json
 import random
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import validate_firewall_block
+except ImportError:
+    from pedicularis_physical_units import validate_firewall_block
+
 
 DATASET_ID = "PED_D0_QUAL_CONFIRM_V1"
 FITNESS_SCALE_ID = "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
@@ -27,6 +32,7 @@ FIELDS = [
     "fitness_scale_id",
     "time_horizon_id",
     "plant_id",
+    "physical_plant_tag",
     "phenotype_stratum",
     "required_y_band",
     "screening_y_value",
@@ -125,6 +131,10 @@ def _validate_analysis_freeze(freeze: dict) -> dict:
     ):
         _need(firewall.get(key) is True, f"confirmatory firewall disabled: {key}")
 
+    physical_firewall = validate_firewall_block(
+        freeze.get("physical_unit_firewall", {})
+    )
+
     metadata = freeze.get("freeze_metadata", {})
     for key in (
         "slk_source_commit",
@@ -135,7 +145,9 @@ def _validate_analysis_freeze(freeze: dict) -> dict:
         "freeze_timestamp",
     ):
         _need(_filled(metadata.get(key)), f"confirmatory freeze metadata missing: {key}")
-    return ctx
+    out = dict(ctx)
+    out["_physical_unit_firewall"] = physical_firewall
+    return out
 
 
 def _validate_y_receipt(receipt: dict, ctx: dict) -> dict:
