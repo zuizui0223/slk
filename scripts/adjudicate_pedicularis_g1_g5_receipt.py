@@ -111,11 +111,33 @@ def adjudicate(r):
         if not _close(b, P - Pd):
             failures.append("bridge identity failed")
         _need(not failures, "; ".join(failures))
-        tol = rule.get("max_abs_point")
-        _need(isinstance(tol, (int, float)) and tol >= 0, "bad bridge tolerance")
-        concordant = abs(b) <= tol and blo <= 0 <= bhi
-        status = "STRUCTURAL_G1_G5_CLOSED_CONCORDANT" if concordant else "STRUCTURAL_G1_G5_DECOMPOSED"
-        ceiling = "SAME_SYSTEM_G1_G5_INDEPENDENT_CONCORDANCE" if concordant else "G1_G5_MEASURED_BRIDGE_NOT_CONCORDANT"
+        tol = rule.get("residual_equivalence_margin")
+        _need(
+            isinstance(tol, (int, float))
+            and not isinstance(tol, bool)
+            and math.isfinite(float(tol))
+            and float(tol) > 0,
+            "bad bridge equivalence margin",
+        )
+        _need(
+            rule.get("residual_ci_must_be_within_equivalence_margin")
+            is True,
+            "bridge equivalence-CI rule not frozen",
+        )
+        tol = float(tol)
+        point_within = abs(b) <= tol
+        ci_within = blo > -tol and bhi < tol
+        concordant = point_within and ci_within
+        status = (
+            "STRUCTURAL_G1_G5_CLOSED_CONCORDANT"
+            if concordant
+            else "STRUCTURAL_G1_G5_DECOMPOSED"
+        )
+        ceiling = (
+            "SAME_SYSTEM_G1_G5_INDEPENDENT_CONCORDANCE"
+            if concordant
+            else "G1_G5_MEASURED_BRIDGE_NOT_CONCORDANT"
+        )
     else:
         failures = []
         if not _close(R, WD0 - WS):
@@ -132,7 +154,25 @@ def adjudicate(r):
         status = "STRUCTURAL_G1_G5_CLOSED_INTERNAL_IDENTITY"
         ceiling = "SAME_SYSTEM_G1_G5_INTERNAL_COHERENCE"
 
-    out = {"status": status, "L": L, "R": R, "K": K, "Phi_direct": P, "Phi_decomp": Pd, "Phi_class": _phi_class(Plo, Phi), "bridge_residual": b, "bridge_concordant": concordant, "claim_ceiling": ceiling}
+    out = {
+        "status": status,
+        "L": L,
+        "R": R,
+        "K": K,
+        "Phi_direct": P,
+        "Phi_decomp": Pd,
+        "Phi_class": _phi_class(Plo, Phi),
+        "bridge_residual": b,
+        "bridge_concordant": concordant,
+        "claim_ceiling": ceiling,
+    }
+    if independent:
+        out["bridge_concordance_detail"] = {
+            "residual_equivalence_margin": tol,
+            "point_within_equivalence_margin": point_within,
+            "ci_includes_zero": blo <= 0 <= bhi,
+            "ci_within_equivalence_margin": ci_within,
+        }
     if Llo > 0 and Rlo > 0 and Phi < 0:
         out["diagnostic_pattern"] = "CONFLICT_REAL_RECOVERABLE_BUT_ARCHITECTURE_NOT_WORTH_COST"
     return out

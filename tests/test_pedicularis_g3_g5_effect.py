@@ -84,8 +84,8 @@ def _freeze(route: str = "SAME_BLOCK_INTERNAL_IDENTITY", q5_route: str = "NEGLIG
             "burden_uncertainty_rule": "CONSERVATIVE_INTERVAL_ADDITION_FOR_R_AND_K; CANCELLATION_RETAINED_FOR_PHI",
         },
         "independent_concordance": {
-            "max_abs_phi_point_difference": 0.30 if direct else None,
-            "residual_ci_must_include_zero": True,
+            "residual_equivalence_margin": 0.30 if direct else None,
+            "residual_ci_must_be_within_equivalence_margin": True,
             "required_only_for_route": "INDEPENDENT_DIRECT_PHI_BLOCK",
         },
         "firewall": {
@@ -286,6 +286,10 @@ def test_independent_direct_phi_can_close_nontrivial_concordance() -> None:
     assert result["status"] == "PEDICULARIS_G3_G5_MEASURED_CONCORDANT"
     assert result["bridge_concordance"]["concordant"] is True
     assert result["bridge_concordance"]["ci_includes_zero"] is True
+    assert (
+        result["bridge_concordance"]["ci_within_equivalence_margin"]
+        is True
+    )
 
 
 def test_independent_direct_phi_disagreement_is_not_silently_promoted() -> None:
@@ -329,3 +333,55 @@ def test_same_block_route_refuses_direct_dataset_peeking() -> None:
     fake_direct = copy.deepcopy(_fill(decomp[:10]))
     with pytest.raises(ValueError, match="must not inspect"):
         adj.adjudicate(_fill(decomp), fake_direct, freeze, _g2(), _y_receipt(), _y_function(), d0)
+
+
+def test_wide_residual_ci_is_not_concordance_even_when_it_includes_zero() -> None:
+    freeze, decomp, direct, _, d0 = _make(
+        "INDEPENDENT_DIRECT_PHI_BLOCK"
+    )
+    direct_rows = _fill(direct)
+    # Keep the mean shift near zero while injecting large plant-level
+    # heterogeneity into the D world of the independent block.
+    for row in direct_rows:
+        if row["world"] != "D":
+            continue
+        i = int(row["plant_id"].rsplit("-", 1)[1])
+        signed = 2.0 if i % 2 == 0 else -2.0
+        row["mature_viable_undamaged_seeds"] = str(
+            float(row["mature_viable_undamaged_seeds"]) + signed
+        )
+
+    result = adj.adjudicate(
+        _fill(decomp),
+        direct_rows,
+        freeze,
+        _g2(),
+        _y_receipt(),
+        _y_function(),
+        d0,
+    )
+    bridge = result["bridge_concordance"]
+    assert bridge["ci_includes_zero"] is True
+    assert bridge["ci_within_equivalence_margin"] is False
+    assert bridge["concordant"] is False
+    assert result["status"] == (
+        "PEDICULARIS_G3_G5_MEASURED_BRIDGE_NOT_CONCORDANT"
+    )
+
+
+def test_direct_route_rejects_zero_inclusion_only_freeze_rule() -> None:
+    freeze, _, _, _, d0 = _make("INDEPENDENT_DIRECT_PHI_BLOCK")
+    freeze["independent_concordance"] = {
+        "residual_equivalence_margin": 0.30,
+        "residual_ci_must_include_zero": True,
+        "required_only_for_route": "INDEPENDENT_DIRECT_PHI_BLOCK",
+    }
+    with pytest.raises(ValueError, match="equivalence-CI rule"):
+        gen.generate_layout(
+            freeze,
+            _g2(),
+            _y_receipt(),
+            _y_function(),
+            d0,
+            randomization_seed=77,
+        )

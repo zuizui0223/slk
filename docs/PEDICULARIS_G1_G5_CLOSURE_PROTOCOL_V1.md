@@ -256,7 +256,9 @@ A nontrivial empirical concordance test is permitted only when the direct route 
 bridge_residual = Phi_direct - Phi_decomp
 ```
 
-with joint uncertainty and a frozen concordance tolerance.
+with joint uncertainty and a prospectively frozen equivalence tolerance.
+
+Independent concordance requires the bridge-residual confidence interval to lie wholly inside that tolerance band. A confidence interval that merely includes zero is insufficient because imprecision must not be rewarded as agreement.
 
 G5 structural direct pass requires:
 

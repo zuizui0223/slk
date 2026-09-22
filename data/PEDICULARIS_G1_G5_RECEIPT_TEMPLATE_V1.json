@@ -15,7 +15,11 @@
     "g1": "NOT_YET_EXECUTED",
     "g2": "NOT_YET_EXECUTED",
     "g2_detail": "NOT_YET_EXECUTED",
-    "conflict_load": {"point": null, "lower_95": null, "upper_95": null},
+    "conflict_load": {
+      "point": null,
+      "lower_95": null,
+      "upper_95": null
+    },
     "anti_circularity": {
       "water_used_as_sch_antagonist_G": false,
       "independent_predator_exposure_used": null,
@@ -45,9 +49,30 @@
     "D0_Q6_common_horizon": null
   },
   "worlds": {
-    "S": {"registered_prospectively": null, "optimized_fitness": {"point": null, "lower_95": null, "upper_95": null}},
-    "D0": {"registered_prospectively": null, "optimized_fitness": {"point": null, "lower_95": null, "upper_95": null}},
-    "D": {"registered_prospectively": null, "optimized_fitness": {"point": null, "lower_95": null, "upper_95": null}}
+    "S": {
+      "registered_prospectively": null,
+      "optimized_fitness": {
+        "point": null,
+        "lower_95": null,
+        "upper_95": null
+      }
+    },
+    "D0": {
+      "registered_prospectively": null,
+      "optimized_fitness": {
+        "point": null,
+        "lower_95": null,
+        "upper_95": null
+      }
+    },
+    "D": {
+      "registered_prospectively": null,
+      "optimized_fitness": {
+        "point": null,
+        "lower_95": null,
+        "upper_95": null
+      }
+    }
   },
   "g3_R": {
     "status": "NOT_IDENTIFIED",
@@ -67,14 +92,30 @@
     "double_counting_audit_pass": null
   },
   "g5_Phi": {
-    "direct": {"status": "NOT_IDENTIFIED", "comparison": "S_TO_D", "point": null, "lower_95": null, "upper_95": null},
-    "decomposed": {"status": "NOT_IDENTIFIED", "point": null, "lower_95": null, "upper_95": null},
-    "bridge_residual": {"point": null, "lower_95": null, "upper_95": null},
+    "direct": {
+      "status": "NOT_IDENTIFIED",
+      "comparison": "S_TO_D",
+      "point": null,
+      "lower_95": null,
+      "upper_95": null
+    },
+    "decomposed": {
+      "status": "NOT_IDENTIFIED",
+      "point": null,
+      "lower_95": null,
+      "upper_95": null
+    },
+    "bridge_residual": {
+      "point": null,
+      "lower_95": null,
+      "upper_95": null
+    },
     "bridge_concordance": {
       "frozen_before_confirmatory_outcomes": false,
       "independent_estimation_blocks": false,
-      "max_abs_point": null,
-      "note": "If false, direct/decomposed equality is only an internal algebraic identity and must not be called empirical concordance."
+      "residual_equivalence_margin": null,
+      "residual_ci_must_be_within_equivalence_margin": null,
+      "note": "Independent empirical concordance requires the bridge-residual CI to lie wholly inside the prospectively frozen equivalence margin. Zero inclusion alone is insufficient. Same-block equality remains algebraic coherence only."
     }
   },
   "notes": "Populate only after prospective freezes. Nulls and REQUIRED_BEFORE_USE values are intentional hard stops."

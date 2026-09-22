@@ -66,7 +66,21 @@ def plan(freeze: dict, variance: dict) -> dict:
     _need(isinstance(z_levels, int) and z_levels >= 5, "registered_z_levels must be an integer >= 5")
     half_width = _positive(targets.get("world_cell_mean_half_width"), "world cell mean half-width")
     min_r = _positive(targets.get("minimum_recoverable_benefit_R"), "minimum recoverable R")
-    min_phi = _positive(targets.get("minimum_abs_architecture_value_Phi"), "minimum absolute Phi")
+    min_phi = _positive(
+        targets.get("minimum_abs_architecture_value_Phi"),
+        "minimum absolute Phi",
+    )
+    bridge_margin_raw = targets.get(
+        "bridge_residual_equivalence_margin"
+    )
+    bridge_margin = (
+        _positive(
+            bridge_margin_raw,
+            "bridge residual equivalence margin",
+        )
+        if bridge_margin_raw not in (None, 0)
+        else None
+    )
     source_type = _filled(targets.get("target_source_type"), "target_source_type")
     _need(source_type in ALLOWED_TARGET_SOURCES, "target source type is not allowed")
     _filled(targets.get("target_source_reference"), "target_source_reference")
@@ -117,7 +131,30 @@ def plan(freeze: dict, variance: dict) -> dict:
     z_contrast = _z(1 - alpha_contrast / 2)
     z_power = _z(power)
     n_r = max(2, math.ceil(2 * ((z_contrast + z_power) * sd / min_r) ** 2))
-    n_phi = max(2, math.ceil(2 * ((z_contrast + z_power) * sd / min_phi) ** 2))
+    n_phi = max(
+        2,
+        math.ceil(
+            2 * ((z_contrast + z_power) * sd / min_phi) ** 2
+        ),
+    )
+
+    # Independent direct-Phi concordance is an equivalence test on
+    # Phi_direct - Phi_internal.  With equal per-world n in the two
+    # independent S:D blocks, the residual SE is 2*sd/sqrt(n).
+    # Under planning truth residual=0, symmetric TOST power uses
+    # z_(1-alpha) + z_((1+power)/2).
+    if bridge_margin is not None:
+        z_bridge = _z(1 - alpha) + _z((1 + power) / 2)
+        n_bridge = max(
+            2,
+            math.ceil(
+                4 * (z_bridge * sd / bridge_margin) ** 2
+            ),
+        )
+        recruit_bridge = _inflate(n_bridge, attrition)
+    else:
+        n_bridge = 0
+        recruit_bridge = 0
 
     base_decomposition = max(n_cell, n_r, n_phi)
     recruit_decomposition = _inflate(base_decomposition, attrition)
@@ -160,12 +197,14 @@ def plan(freeze: dict, variance: dict) -> dict:
             "world_cell_mean_half_width": half_width,
             "minimum_recoverable_benefit_R": min_r,
             "minimum_abs_architecture_value_Phi": min_phi,
+            "bridge_residual_equivalence_margin": bridge_margin,
         },
         "components": {
             "decomposition_cell_precision_n_per_world": n_cell,
             "R_effect_n_per_world": n_r,
             "Phi_effect_n_per_world": n_phi,
             "direct_block_cell_precision_n_per_world": n_direct_cell,
+            "bridge_equivalence_n_per_world_each_block": n_bridge,
         },
         "decomposition": {
             "minimum_analyzable_plants_per_world": base_decomposition,
@@ -176,9 +215,20 @@ def plan(freeze: dict, variance: dict) -> dict:
             "minimum_analyzable_plants_per_world": base_direct,
             "recruitment_plants_per_world": recruit_direct,
         },
+        "independent_concordance": {
+            "bridge_residual_equivalence_margin": bridge_margin,
+            "minimum_analyzable_plants_per_world_each_block": n_bridge,
+            "recruitment_plants_per_world_each_block": recruit_bridge,
+            "planning_truth_residual": 0.0,
+            "criterion": (
+                "SYMMETRIC_TOST_EQUIVALENCE"
+                if bridge_margin is not None
+                else "NOT_REQUESTED"
+            ),
+        },
         "planning_boundary": (
             "Normal approximations and independent D0-qualification fitness SDs set prospective sample floors only. "
-            "Final G3-G5 inference remains the registered complete-grid plant bootstrap with z-grid re-optimization."
+            "Final G3-G5 inference remains the registered complete-grid plant bootstrap with z-grid re-optimization. The independent-route bridge sample floor is planned separately as a residual-equivalence target and is applied to both independent S:D blocks at sampling compilation."
         ),
         "firewall": {
             "source_d0_qualification_units_effect_estimation_ineligible": True,

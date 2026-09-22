@@ -390,9 +390,14 @@ def adjudicate(
         residual_boot = [a - b for a, b in zip(direct_boot, phi_internal_boot)]
         residual_point = direct_point - phi_internal_point
         residual_ci = _central_ci(residual_boot, level)
+        tolerance = cfg["concordance_tolerance"]
+        ci_within_tolerance = (
+            residual_ci[0] > -tolerance
+            and residual_ci[1] < tolerance
+        )
         concordant = (
-            abs(residual_point) <= cfg["concordance_tolerance"]
-            and residual_ci[0] <= 0 <= residual_ci[1]
+            abs(residual_point) <= tolerance
+            and ci_within_tolerance
         )
         direct_result = {
             "dataset_id": DIRECT_DATASET,
@@ -412,10 +417,19 @@ def adjudicate(
             "point": residual_point,
             "ci_level": level,
             "ci": list(residual_ci),
-            "max_abs_point_tolerance": cfg["concordance_tolerance"],
+            "residual_equivalence_margin": tolerance,
+            "point_within_equivalence_margin": (
+                abs(residual_point) <= tolerance
+            ),
             "ci_includes_zero": residual_ci[0] <= 0 <= residual_ci[1],
+            "ci_within_equivalence_margin": ci_within_tolerance,
             "concordant": concordant,
-            "interpretation": "Independent direct-Phi block versus same-target R-K decomposition; this is the nontrivial concordance test.",
+            "interpretation": (
+                "Independent direct-Phi block versus same-target R-K decomposition. "
+                "Concordance requires the bridge-residual CI to lie wholly inside "
+                "the prospectively frozen equivalence margin; zero inclusion alone "
+                "is not evidence of agreement."
+            ),
         }
         result["direct_phi_block"] = direct_result
         result["bridge_concordance"] = bridge

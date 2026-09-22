@@ -18,7 +18,8 @@
     "minimum_abs_architecture_value_Phi": null,
     "target_source_type": "REQUIRED_BEFORE_USE",
     "target_source_reference": "REQUIRED_BEFORE_USE",
-    "biological_rationale": "REQUIRED_BEFORE_USE"
+    "biological_rationale": "REQUIRED_BEFORE_USE",
+    "bridge_residual_equivalence_margin": null
   },
   "variance_transport": {
     "use_max_independent_world_sd": true,
@@ -28,7 +29,7 @@
   },
   "planning": {
     "familywise_alpha": 0.05,
-    "power": 0.80,
+    "power": 0.8,
     "attrition": 0.15,
     "bonferroni_across_world_x_z_cell_means": true,
     "two_sided_R_and_Phi_planning": true

@@ -71,7 +71,8 @@ def _receipt():
             "bridge_concordance": {
                 "frozen_before_confirmatory_outcomes": True,
                 "independent_estimation_blocks": False,
-                "max_abs_point": 0.25,
+                "residual_equivalence_margin": 0.25,
+                "residual_ci_must_be_within_equivalence_margin": True,
             },
         },
     }
@@ -100,6 +101,7 @@ def test_same_block_closure_is_internal_identity_not_concordance():
 def test_independent_blocks_can_close_empirical_concordance():
     r = _receipt()
     r["g5_Phi"]["bridge_concordance"]["independent_estimation_blocks"] = True
+    r["g5_Phi"]["bridge_concordance"]["residual_equivalence_margin"] = 0.35
     r["g3_R"].update(point=3.1, lower_95=1.0, upper_95=5.2)
     r["g4_K"].update(point=4.0, lower_95=2.0, upper_95=6.1)
     r["g5_Phi"]["decomposed"].update(point=-0.9, lower_95=-2.1, upper_95=-0.1)
@@ -149,3 +151,41 @@ def test_same_block_reports_all_broken_primitive_identities():
     assert "R identity failed" in message
     assert "K identity failed" in message
     assert "decomposed Phi identity failed" not in message
+
+
+def test_independent_concordance_rejects_wide_ci_that_only_includes_zero():
+    r = _receipt()
+    rule = r["g5_Phi"]["bridge_concordance"]
+    rule["independent_estimation_blocks"] = True
+    rule["residual_equivalence_margin"] = 0.25
+    rule["residual_ci_must_be_within_equivalence_margin"] = True
+
+    r["g3_R"].update(point=3.0, lower_95=1.0, upper_95=5.0)
+    r["g4_K"].update(point=4.0, lower_95=2.0, upper_95=6.0)
+    r["g5_Phi"]["decomposed"].update(
+        point=-1.0, lower_95=-2.0, upper_95=-0.1
+    )
+    r["g5_Phi"]["bridge_residual"].update(
+        point=0.0, lower_95=-0.60, upper_95=0.60
+    )
+
+    result = adjudicate(r)
+    assert result["bridge_concordant"] is False
+    detail = result["bridge_concordance_detail"]
+    assert detail["ci_includes_zero"] is True
+    assert detail["ci_within_equivalence_margin"] is False
+    assert result["status"] == "STRUCTURAL_G1_G5_DECOMPOSED"
+    assert result["claim_ceiling"] == "G1_G5_MEASURED_BRIDGE_NOT_CONCORDANT"
+
+
+def test_independent_concordance_rejects_old_zero_inclusion_only_rule():
+    r = _receipt()
+    rule = r["g5_Phi"]["bridge_concordance"]
+    rule["independent_estimation_blocks"] = True
+    rule.pop("residual_equivalence_margin", None)
+    rule.pop("residual_ci_must_be_within_equivalence_margin", None)
+    rule["max_abs_point"] = 0.25
+    rule["residual_ci_must_include_zero"] = True
+
+    with pytest.raises(ValueError, match="bridge equivalence margin"):
+        adjudicate(r)
