@@ -35,6 +35,8 @@ def test_default_layout_has_registered_sampling_floors() -> None:
     assert meta["d0_cal"]["high_y_plants"] == 24
     assert meta["fitness_scale_id"] == "UNDAMAGED_MATURE_VIABLE_SEEDS_PER_FOCAL_FLOWER"
     assert meta["time_horizon_id"] == "FLOWER_TO_MATURE_VIABLE_SEED"
+    assert all("physical_plant_tag" in row for row in y_rows + d0_rows)
+    assert all(row["physical_plant_tag"] == "" for row in y_rows + d0_rows)
 
 
 def test_each_d0_plant_gets_complete_registered_treatment_set() -> None:
