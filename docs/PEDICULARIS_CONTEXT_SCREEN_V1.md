@@ -277,6 +277,8 @@ registered predator-screen flower rows
 registered water-state plant rows.
 ```
 
+The summary receipt preserves both registered and completed row counts. Any incomplete pollinator, predator or water row is listed by `record_id` with its missing required fields. Incomplete rows do not contribute to the observed effort denominator.
+
 Every row is permanently:
 
 ```text
@@ -336,3 +338,21 @@ P0_CONTEXT_AND_SOURCE_QUALIFICATION_ONLY
 NO_G1_G2
 NO_R_K_PHI.
 ```
+
+
+## 14. Incomplete screen rows
+
+P0 is a logistical detectability screen, so incomplete screen rows are handled differently from low biological signal.
+
+```text
+registered row incomplete
+-> reduce completed effort
+-> record row id + missing fields
+-> if frozen effort floor is no longer met: CONTEXT_SCREEN_INCOMPLETE
+
+registered effort complete but observed positives below frozen signal threshold
+-> CONTEXT_UNINFORMATIVE_...
+-> still not a biological absence claim.
+```
+
+The receipt exposes `missingness_sensitivity_required` whenever any registered screen row is incomplete. Extra completed rows may recover the frozen effort floor, but the incomplete records remain visible in the packet-completion receipt.
