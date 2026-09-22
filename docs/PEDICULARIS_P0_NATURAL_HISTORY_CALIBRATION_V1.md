@@ -269,3 +269,34 @@ NO_G1_G2
 NO_Y_D0
 NO_R_K_PHI.
 ```
+
+
+## 11. Completion and missingness audit
+
+Every generated calibration row is registered prospectively. The summary receipt reports:
+
+```text
+registered rows
+completed pollinator bouts
+completed predator flowers
+completed water-state plants
+incomplete records
+reason counts
+record-level details.
+```
+
+A registered calibration row with a missing required measurement is not silently discarded.
+
+Because fresh calibration values become numeric lower signal bounds for later P0 effort planning, v1 requires:
+
+```text
+all registered calibration rows complete
+AND
+all frozen sampling floors met
+```
+
+before the calibration can earn `P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED`.
+
+Thus extra completed rows do not rescue an incomplete registered row inside the same frozen packet. A new prospectively frozen calibration wave is the clean route if the original packet is incomplete.
+
+The receipt also carries the frozen bootstrap `minimum_valid_fraction`; this is a bootstrap-replicate validity rule, not an outcome-completeness threshold.
