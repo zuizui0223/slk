@@ -268,7 +268,8 @@ def test_short_bouts_do_not_satisfy_temporal_coverage_even_if_totals_pass() -> N
     # Keep total minutes and flower-minutes unchanged: one short bout is
     # compensated by a longer bout.
     details[0]["observed_minutes"] = 5.0
-    details[1]["observed_minutes"] = 15.0
+    details[1]["observed_minutes"] = 5.0
+    details[2]["observed_minutes"] = 20.0
     receipt["effort"]["minimum_observed_pollinator_bout_minutes"] = 5.0
     result = module.adjudicate(receipt, _freeze())
     assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
