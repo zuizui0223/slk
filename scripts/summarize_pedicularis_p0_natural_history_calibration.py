@@ -190,6 +190,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
     poll_minutes = 0.0
     poll_flower_minutes = 0.0
     poll_visits = 0.0
+    incomplete_records: list[dict[str, str]] = []
 
     for row in rows:
         kind = row.get("record_type")
@@ -198,6 +199,26 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             flowers_raw = str(row.get("simultaneously_open_focal_flowers", "")).strip()
             visits_raw = str(row.get("legitimate_pollinator_visits", "")).strip()
             if not (minutes_raw and flowers_raw and visits_raw):
+                missing_fields = [
+                    field
+                    for field, value in (
+                        ("observed_minutes", minutes_raw),
+                        (
+                            "simultaneously_open_focal_flowers",
+                            flowers_raw,
+                        ),
+                        ("legitimate_pollinator_visits", visits_raw),
+                    )
+                    if not value
+                ]
+                incomplete_records.append(
+                    {
+                        "record_id": str(row.get("record_id", "")),
+                        "record_type": "POLLINATOR_BOUT",
+                        "reason": "MISSING_REQUIRED_MEASUREMENT",
+                        "detail": ",".join(missing_fields),
+                    }
+                )
                 continue
             minutes = _number(minutes_raw, "pollinator observed minutes", minimum=0.000001)
             flowers = _positive_int(float(flowers_raw), "simultaneously open focal flowers")
@@ -209,6 +230,14 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         elif kind == "PREDATOR_FLOWER":
             raw = str(row.get("early_attack_or_oviposition_positive", "")).strip()
             if not raw:
+                incomplete_records.append(
+                    {
+                        "record_id": str(row.get("record_id", "")),
+                        "record_type": "PREDATOR_FLOWER",
+                        "reason": "MISSING_REQUIRED_MEASUREMENT",
+                        "detail": "early_attack_or_oviposition_positive",
+                    }
+                )
                 continue
             _filled(row.get("plant_id"), "predator plant_id")
             _filled(row.get("flower_id"), "predator flower_id")
@@ -216,6 +245,14 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         elif kind == "WATER_PLANT":
             raw = str(row.get("water_positive", "")).strip()
             if not raw:
+                incomplete_records.append(
+                    {
+                        "record_id": str(row.get("record_id", "")),
+                        "record_type": "WATER_PLANT",
+                        "reason": "MISSING_REQUIRED_MEASUREMENT",
+                        "detail": "water_positive",
+                    }
+                )
                 continue
             _filled(row.get("plant_id"), "water plant_id")
             water.append(int(_bool(raw, "water_positive")))
@@ -230,6 +267,12 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         "water_plants": len(water) >= floors["water_plants"],
     }
     floors_pass = all(floor_checks.values())
+    registered_rows_complete = not incomplete_records
+
+    reason_counts: dict[str, int] = {}
+    for item in incomplete_records:
+        reason = item["reason"]
+        reason_counts[reason] = reason_counts.get(reason, 0) + 1
 
     estimates = {
         "pollinator": None,
@@ -237,8 +280,10 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         "water_state": None,
     }
     qualified = False
-    if floors_pass:
-        poll_boot = _bootstrap_pollinator(poll_bouts, cfg["reps"], cfg["seed"])
+    if floors_pass and registered_rows_complete:
+        poll_boot = _bootstrap_pollinator(
+            poll_bouts, cfg["reps"], cfg["seed"]
+        )
         pred_boot = _bootstrap_binary(predator, cfg["reps"], cfg["seed"] + 1)
         water_boot = _bootstrap_binary(water, cfg["reps"], cfg["seed"] + 2)
         min_valid = math.ceil(cfg["reps"] * cfg["minimum_valid_fraction"])
@@ -279,7 +324,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         }
         qualified = all(estimates[key]["lower_bound"] > 0 for key in estimates)
 
-    if not floors_pass:
+    if not floors_pass or not registered_rows_complete:
         status = "P0_RELEVANCE_FRESH_CALIBRATION_INCOMPLETE"
     elif qualified:
         status = "P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED"
@@ -301,10 +346,22 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         },
         "sampling_floor_checks": floor_checks,
         "sampling_floors_pass": floors_pass,
+        "completion_audit": {
+            "registered_rows": len(rows),
+            "completed_pollinator_bouts": len(poll_bouts),
+            "completed_predator_flowers": len(predator),
+            "completed_water_plants": len(water),
+            "incomplete_records": len(incomplete_records),
+            "registered_rows_complete": registered_rows_complete,
+            "incomplete_reason_counts": reason_counts,
+            "incomplete_record_details": incomplete_records,
+            "sensitivity_required": bool(incomplete_records),
+        },
         "qualification_rule": {
             "rule": "ONE_SIDED_INDEPENDENT_UNIT_BOOTSTRAP_LOWER_QUANTILE",
             "lower_quantile": cfg["lower_quantile"],
             "bootstrap_reps": cfg["reps"],
+            "minimum_valid_fraction": cfg["minimum_valid_fraction"],
             "freeze_commit": cfg["freeze_commit"],
         },
         "estimates": estimates,
@@ -323,6 +380,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "calibration_units_downstream_confirmatory_ineligible": True,
             "values_may_define_p0_effort_only": True,
             "no_posthoc_rescue_if_zero_compatible": True,
+            "incomplete_registered_calibration_rows_block_qualification": True,
         },
         "claim_ceiling": "FRESH_NATURAL_HISTORY_SIGNAL_FLOOR_CALIBRATION_ONLY_NO_P0_PASS_NO_G1_G5_RESULT",
     }
