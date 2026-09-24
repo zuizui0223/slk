@@ -8,13 +8,13 @@ from pathlib import Path
 try:
     from scripts.pedicularis_physical_units import (
         FIREWALL_SCHEMA,
-        FIREWALL_SCHEMA,
         canonical_tag_hash,
         validate_firewall_block,
         validate_physical_plant_mapping,
     )
 except ImportError:
     from pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
         canonical_tag_hash,
         validate_firewall_block,
         validate_physical_plant_mapping,
