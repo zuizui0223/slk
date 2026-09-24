@@ -67,6 +67,14 @@ def _payload() -> dict:
             "screen_window_id": "screen1",
             "p0_outcomes_opened": False,
         },
+        "physical_unit_firewall_handoff": {
+            "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": ["PHY-CAL-1"],
+            "prior_tag_source_references": ["TEST_FRESH_CALIBRATION"],
+            "prior_tag_set_sha256": "f6086223edbe01f333626e0caaa298686716cc3a9d917685e66dea2f338b413b",
+            "frozen_before_outcomes": True,
+        },
         "inputs": [
             _row("P0_POLLINATOR_MIN_RATE", "EXTERNAL_NUMERIC_TRANSPORT"),
             _row("P0_PREDATOR_MIN_PREVALENCE", "FRESH_INDEPENDENT_CALIBRATION"),
