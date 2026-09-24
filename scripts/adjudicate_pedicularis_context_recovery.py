@@ -191,55 +191,55 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
     diagnostic_checklist = None
     if taxon_method in FIELD_MORPHOLOGY_METHODS:
         raw_diag = fresh.get("taxon_diagnostic_checklist")
-        _need(isinstance(raw_diag, dict), "field morphology taxon checklist missing")
-        _need(
-            raw_diag.get("source_reference") == TAXON_KEY_SOURCE,
-            "field morphology taxon checklist source changed",
-        )
-        leaves_four = _optional_bool(
-            raw_diag.get("leaves_mostly_whorls_of_4_documented"),
-            "leaves_mostly_whorls_of_4_documented",
-        )
-        cupular = _optional_bool(
-            raw_diag.get(
-                "petiole_and_bract_bases_enlarged_connate_cupular_documented"
-            ),
-            "petiole_and_bract_bases_enlarged_connate_cupular_documented",
-        )
-        whole_ref = _optional_text(raw_diag.get("whole_plant_photo_reference"))
-        whorl_ref = _optional_text(raw_diag.get("leaf_whorl_photo_reference"))
-        cup_ref = _optional_text(raw_diag.get("cupular_base_photo_reference"))
-        color_required = _optional_bool(
-            raw_diag.get("flower_color_used_as_required_diagnostic"),
-            "flower_color_used_as_required_diagnostic",
-        )
-        diagnostic_checklist = {
-            "source_reference": TAXON_KEY_SOURCE,
-            "leaves_mostly_whorls_of_4_documented": leaves_four,
-            "petiole_and_bract_bases_enlarged_connate_cupular_documented": cupular,
-            "whole_plant_photo_reference": whole_ref,
-            "leaf_whorl_photo_reference": whorl_ref,
-            "cupular_base_photo_reference": cup_ref,
-            "flower_color_used_as_required_diagnostic": color_required,
-        }
-        if (
-            leaves_four is None
-            or cupular is None
-            or whole_ref is None
-            or whorl_ref is None
-            or cup_ref is None
-            or color_required is None
-        ):
-            diagnostic_checklist = None
-        elif taxon is True:
+        if isinstance(raw_diag, dict):
             _need(
-                leaves_four is True and cupular is True,
-                "positive field-morphology taxon confirmation requires both registered diagnostic features",
+                raw_diag.get("source_reference") == TAXON_KEY_SOURCE,
+                "field morphology taxon checklist source changed",
             )
-            _need(
-                color_required is False,
-                "flower color cannot be a required P. rex diagnostic",
+            leaves_four = _optional_bool(
+                raw_diag.get("leaves_mostly_whorls_of_4_documented"),
+                "leaves_mostly_whorls_of_4_documented",
             )
+            cupular = _optional_bool(
+                raw_diag.get(
+                    "petiole_and_bract_bases_enlarged_connate_cupular_documented"
+                ),
+                "petiole_and_bract_bases_enlarged_connate_cupular_documented",
+            )
+            whole_ref = _optional_text(raw_diag.get("whole_plant_photo_reference"))
+            whorl_ref = _optional_text(raw_diag.get("leaf_whorl_photo_reference"))
+            cup_ref = _optional_text(raw_diag.get("cupular_base_photo_reference"))
+            color_required = _optional_bool(
+                raw_diag.get("flower_color_used_as_required_diagnostic"),
+                "flower_color_used_as_required_diagnostic",
+            )
+            diagnostic_checklist = {
+                "source_reference": TAXON_KEY_SOURCE,
+                "leaves_mostly_whorls_of_4_documented": leaves_four,
+                "petiole_and_bract_bases_enlarged_connate_cupular_documented": cupular,
+                "whole_plant_photo_reference": whole_ref,
+                "leaf_whorl_photo_reference": whorl_ref,
+                "cupular_base_photo_reference": cup_ref,
+                "flower_color_used_as_required_diagnostic": color_required,
+            }
+            if (
+                leaves_four is None
+                or cupular is None
+                or whole_ref is None
+                or whorl_ref is None
+                or cup_ref is None
+                or color_required is None
+            ):
+                diagnostic_checklist = None
+            elif taxon is True:
+                _need(
+                    leaves_four is True and cupular is True,
+                    "positive field-morphology taxon confirmation requires both registered diagnostic features",
+                )
+                _need(
+                    color_required is False,
+                    "flower color cannot be a required P. rex diagnostic",
+                )
 
     evidence = {
         "taxon": _optional_text(fresh.get("taxon_evidence_reference")),
