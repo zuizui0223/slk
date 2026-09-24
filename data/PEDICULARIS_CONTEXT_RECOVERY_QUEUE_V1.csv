@@ -1,0 +1,12 @@
+candidate_id,recovery_wave,selection_basis,reason
+SONGZANLIN_EIA_2025,WAVE1,RECENT_OFFICIAL_OCCURRENCE,"2025 official evaluation-area vegetation record; freshest locality-specific anchor; interaction state still unknown"
+SHANGRILA_WUFENG,WAVE1,DIRECT_INTERACTION_SITE,"direct historical pollination and seed-predation field evidence; older record but strongest interaction relevance"
+SHANGRILA_ALPINE_BOT_GARDEN,WAVE1,DIRECT_INTERACTION_SITE,"direct historical pollination and seed-predation field evidence and historically documented flowering patches"
+HUTIAOXIA_SHANGRILA,WAVE2,RECENT_VOUCHER,"2019/2020 collection anchor; no interaction evidence"
+SHANGRILA_IFLORA_2011,WAVE2,SEED_DNA_COLLECTION,"two 2011 seed/DNA collection records in Shangri-La County; micro-locality unresolved"
+DAOCHENG_IFLORA_2011,WAVE2,SEED_DNA_COLLECTION,"2011 seed/DNA collection anchor in Daocheng County"
+BATANG_IFLORA_2011,WAVE2,SEED_DNA_COLLECTION,"2011 seed/DNA collection anchor in Batang County"
+KANGDING_ZHEDUO,WAVE3,OLDER_HERBARIUM,"1997 herbarium occurrence; useful only if higher-information candidates fail"
+XIANGCHENG_YIBAILINGBA,WAVE3,OLDER_HERBARIUM,"2004 herbarium occurrence; fresh context verification required"
+MIANNING_YELE,WAVE3,OLDER_HERBARIUM,"2005 herbarium occurrence; access/permit uncertainty"
+SHIMIAN_LIZIPING,WAVE3,OLDER_HERBARIUM,"2005 herbarium occurrence; fresh taxon/context verification especially important"

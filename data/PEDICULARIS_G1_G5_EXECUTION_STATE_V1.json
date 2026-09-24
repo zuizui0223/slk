@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "1540486e6aadca4b75b640bb44896eac0dcd30ee",
+  "source_main_commit_at_state_snapshot": "a00da3a3e89fc5c7bd61b41a8f5fb357dc7250b7",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_BACKED_DRAFT_PACKET_FRESH_TAXON_FLOWERING_ACCESS_AND_REVISIT_GATE_READY",
@@ -16,7 +16,14 @@
     "observation_template": "data/PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_TEMPLATE_V1.json",
     "next_if_positive": "P0_RELEVANCE_NATURAL_HISTORY_CALIBRATION",
     "next_if_not_ready": "COMPLETE_RECOVERY_OR_TRY_NEXT_HISTORICAL_CANDIDATE",
-    "historical_candidate_alone_cannot_unlock_p0": true
+    "historical_candidate_alone_cannot_unlock_p0": true,
+    "candidate_queue": "data/PEDICULARIS_CONTEXT_RECOVERY_QUEUE_V1.csv",
+    "recovery_wave1": [
+      "SONGZANLIN_EIA_2025",
+      "SHANGRILA_WUFENG",
+      "SHANGRILA_ALPINE_BOT_GARDEN"
+    ],
+    "wave1_logic": "RECENCY_OR_DIRECT_INTERACTION_EVIDENCE_WITHOUT_FRESH_PASS_PROMOTION"
   },
   "stages": [
     {
