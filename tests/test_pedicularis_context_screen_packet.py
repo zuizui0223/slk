@@ -284,6 +284,7 @@ def test_duplicate_predator_flower_unit_is_rejected() -> None:
     rows = _completed_rows()
     pred = [r for r in rows if r["record_type"] == "PREDATOR_FLOWER"]
     pred[1]["plant_id"] = pred[0]["plant_id"]
+    pred[1]["physical_plant_tag"] = pred[0]["physical_plant_tag"]
     pred[1]["flower_id"] = pred[0]["flower_id"]
     with pytest.raises(ValueError, match="duplicate predator flower unit"):
         sum_mod.summarize(rows)
@@ -293,6 +294,7 @@ def test_duplicate_water_plant_unit_is_rejected() -> None:
     rows = _completed_rows()
     water = [r for r in rows if r["record_type"] == "WATER_PLANT"]
     water[1]["plant_id"] = water[0]["plant_id"]
+    water[1]["physical_plant_tag"] = water[0]["physical_plant_tag"]
     with pytest.raises(ValueError, match="duplicate water-state plant unit"):
         sum_mod.summarize(rows)
 
