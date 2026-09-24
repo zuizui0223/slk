@@ -95,6 +95,9 @@ FRESH_INDEPENDENT_CALIBRATION.
 
 External values require endpoint, unit/denominator and focal-context transport to be explicitly qualified. Fresh calibration units must be disjoint from P0 decision units and downstream confirmatory units.
 
+
+For plant/flower-based predator and water units this disjointness is executable: fresh calibration emits a permanent-tag firewall, the final P0 freeze hash-locks it, and the screen adjudicator rejects any reused `physical_plant_tag`. Pollinator disjointness is temporal at the registered bout level.
+
 ## 5. Pollinator exposure uses flower-minutes
 
 Sun & Huang (2015) estimated `P. rex` visitation using 30-min plot censuses and normalized flower visits by the number of simultaneously open flowers. Therefore the P0 exposure unit is:
