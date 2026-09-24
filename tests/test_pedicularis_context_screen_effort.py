@@ -282,3 +282,27 @@ def test_fresh_relevance_source_requires_physical_firewall_handoff() -> None:
     freeze.pop("physical_unit_firewall_handoff")
     with pytest.raises(ValueError, match="requires physical-unit firewall handoff"):
         planner.plan(freeze)
+
+
+
+def test_external_source_route_preserves_preexisting_template_firewall() -> None:
+    freeze = _effort_freeze()
+    freeze.pop("physical_unit_firewall_handoff")
+    water = freeze["water_state_detection"]
+    water["source_type"] = "EXTERNAL_MATCHED_PRIMARY_SOURCE"
+    water["source_qualification_status"] = "NUMERIC_TRANSPORT_QUALIFIED"
+    plan = planner.plan(freeze)
+
+    screen = _screen_template()
+    screen["physical_unit_firewall"] = {
+        "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+        "require_nonempty_physical_plant_tag": True,
+        "prior_physical_plant_tags_forbidden": ["PHY-PRIOR"],
+        "prior_tag_source_references": ["TEST_PRIOR"],
+        "prior_tag_set_sha256": compiler.canonical_tag_hash(["PHY-PRIOR"]),
+        "frozen_before_outcomes": True,
+    }
+    result = compiler.compile_effort(screen, plan)
+    assert result["physical_unit_firewall"][
+        "prior_physical_plant_tags_forbidden"
+    ] == ["PHY-PRIOR"]
