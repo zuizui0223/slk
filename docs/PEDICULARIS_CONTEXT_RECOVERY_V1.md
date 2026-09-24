@@ -4,12 +4,12 @@ Status: **PROSPECTIVE / EXECUTABLE ENTRY GATE / NO BIOLOGICAL SIGNAL CLAIM**.
 
 ## Purpose
 
-The historical candidate ledger identifies places where `Pedicularis rex` has previously been collected or studied. Those records are useful for prioritization, but they cannot establish that a usable population exists in the current field season.
+The candidate ledger identifies places where `Pedicularis rex` has previously been collected, studied, or recently recorded in an official environmental assessment. These prior anchors are useful for prioritization, but none can establish that a usable population exists in the current field season.
 
 This gate sits before P0 natural-history calibration.
 
 ```text
-historical candidate
+prior candidate anchor
 -> fresh context recovery
 -> P0 natural-history calibration
 -> P0 context screen
@@ -60,6 +60,30 @@ scripts/compile_pedicularis_context_recovery_to_p0_calibration.py
 tests/test_pedicularis_context_recovery.py
 tests/test_pedicularis_context_recovery_packet.py
 ```
+
+## Recovery queue
+
+Candidate choice is organized prospectively as waves rather than a false-precision scalar ranking:
+
+```text
+data/PEDICULARIS_CONTEXT_RECOVERY_QUEUE_V1.csv
+scripts/validate_pedicularis_context_recovery_queue.py
+```
+
+`WAVE1` contains three complementary high-information anchors:
+
+```text
+SONGZANLIN_EIA_2025
+    freshest locality-specific record (2025 official environmental assessment)
+
+SHANGRILA_WUFENG
+    strongest direct historical interaction-site evidence
+
+SHANGRILA_ALPINE_BOT_GARDEN
+    second direct historical interaction-site anchor.
+```
+
+A wave is a recovery order, not a biological ranking. No prior anchor becomes a fresh pass without the recovery gate.
 
 ## Draft packet generation
 
