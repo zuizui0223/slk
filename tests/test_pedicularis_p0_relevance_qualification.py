@@ -155,3 +155,20 @@ def test_pollinator_units_must_be_flower_minute_based() -> None:
     _input(payload, "P0_POLLINATOR_MIN_RATE")["numeric_units"] = "LEGITIMATE_VISITS_PER_MINUTE"
     with pytest.raises(ValueError, match="flower-minute"):
         mod.validate(payload)
+
+
+
+def test_pollinator_only_fresh_route_does_not_invent_plant_firewall_requirement() -> None:
+    payload = _payload()
+    payload.pop("physical_unit_firewall_handoff")
+    _input(payload, "P0_POLLINATOR_MIN_RATE").update(
+        _row("P0_POLLINATOR_MIN_RATE", "FRESH_INDEPENDENT_CALIBRATION")
+    )
+    _input(payload, "P0_PREDATOR_MIN_PREVALENCE").update(
+        _row("P0_PREDATOR_MIN_PREVALENCE", "EXTERNAL_NUMERIC_TRANSPORT")
+    )
+    _input(payload, "P0_WATER_POSITIVE_PREVALENCE").update(
+        _row("P0_WATER_POSITIVE_PREVALENCE", "EXTERNAL_NUMERIC_TRANSPORT")
+    )
+    result = mod.validate(payload)
+    assert result["physical_unit_firewall_handoff"] is None
