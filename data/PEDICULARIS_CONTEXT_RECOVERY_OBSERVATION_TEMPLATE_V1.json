@@ -24,7 +24,16 @@
     "flowering_population_evidence_reference": "REQUIRED_BEFORE_USE",
     "access_evidence_reference": "REQUIRED_BEFORE_USE",
     "sampling_permission_reference": "REQUIRED_BEFORE_USE",
-    "revisit_plan_reference": "REQUIRED_BEFORE_USE"
+    "revisit_plan_reference": "REQUIRED_BEFORE_USE",
+    "taxon_diagnostic_checklist": {
+      "source_reference": "FLORA_OF_CHINA_PEDICULARIS_SERIES_REGES_KEY",
+      "leaves_mostly_whorls_of_4_documented": null,
+      "petiole_and_bract_bases_enlarged_connate_cupular_documented": null,
+      "whole_plant_photo_reference": "REQUIRED_BEFORE_USE",
+      "leaf_whorl_photo_reference": "REQUIRED_BEFORE_USE",
+      "cupular_base_photo_reference": "REQUIRED_BEFORE_USE",
+      "flower_color_used_as_required_diagnostic": false
+    }
   },
   "prohibited_recovery_inferences": {
     "pollinator_signal_scored": false,
