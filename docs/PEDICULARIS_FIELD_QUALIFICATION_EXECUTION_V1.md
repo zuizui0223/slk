@@ -6,6 +6,23 @@ This document operationalizes the first biological SLK bottleneck identified by 
 
 It does not replace the SCH evaluators. SCH remains the source of truth for the three qualification receipts and the full causal surface. SLK only freezes the execution logic, promotion order, and stop rules needed for the flagship.
 
+## -1. Fresh current-context recovery
+
+Historical sites and occurrence records prioritize where to look, but they cannot unlock P0 by themselves. Before natural-history calibration, one candidate must pass:
+
+```text
+docs/PEDICULARIS_CONTEXT_RECOVERY_V1.md
+scripts/adjudicate_pedicularis_context_recovery.py
+```
+
+Required status:
+
+```text
+CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION.
+```
+
+This stage confirms only current taxon/population presence and logistical feasibility. Pollinator, predator, water-state and capacity signals remain unscored.
+
 ## 0. Fresh P0 context screen before expensive calibration
 
 Before threshold calibration or Qz/Qp/Qg method qualification, the focal population-season must pass the registered P0 context screen:
@@ -156,7 +173,8 @@ No biological Q gate is logically upstream of another.
 For field-resource allocation, however, SLK freezes the following priority:
 
 ```text
-0. fresh P0 context screen
+-1. fresh current-context recovery
+0. P0 minimum-relevance calibration + fresh context screen
 1. independent calibration + threshold freeze
 2. Qg predator-method qualification
 3. Qz multi-level exsertion manipulation
