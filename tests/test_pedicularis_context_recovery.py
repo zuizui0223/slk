@@ -300,3 +300,14 @@ def test_taxon_unconfirmed_can_record_failed_morphology_without_false_pass() -> 
     out = adj.adjudicate(obs, _freeze())
     assert out["status"] == "CONTEXT_RECOVERY_TAXON_UNCONFIRMED"
     assert out["downstream_handoff"]["p0_relevance_calibration_authorized"] is False
+
+
+
+def test_expert_confirmation_route_does_not_require_field_photo_checklist() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_verification_method"] = "EXPERT_CONFIRMATION"
+    obs["fresh_verification"]["taxon_evidence_reference"] = "EXPERT_CONFIRMATION_001"
+    obs["fresh_verification"].pop("taxon_diagnostic_checklist")
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["taxon_diagnostic_checklist"] is None
