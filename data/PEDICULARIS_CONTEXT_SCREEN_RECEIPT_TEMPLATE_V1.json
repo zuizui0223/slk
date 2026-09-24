@@ -50,5 +50,13 @@
     "incomplete_reason_counts": {},
     "incomplete_record_details": [],
     "missingness_sensitivity_required": null
+  },
+  "physical_unit_audit": {
+    "status": "TEMPLATE_ONLY_NOT_DATA",
+    "assignment_to_physical_tag": {},
+    "current_physical_plant_count": null,
+    "current_physical_plant_tags": [],
+    "current_tag_set_sha256": null,
+    "scope_note": "Permanent tags apply to predator/water plant-based units; pollinator bouts remain temporal units."
   }
 }
