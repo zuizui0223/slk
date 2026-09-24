@@ -14,6 +14,7 @@ FIELDS = [
     "screen_window_id",
     "record_id",
     "plant_id",
+    "physical_plant_tag",
     "flower_id",
     "planned_observation_minutes",
     "observed_observation_minutes",
