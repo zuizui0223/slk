@@ -2,37 +2,118 @@
   "schema_version": "SLK_PEDICULARIS_G1_G5_EXECUTION_STATE_V1",
   "system": "Pedicularis rex",
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
-  "design_detail": "PEDICULARIS_G1_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED",
+  "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "da7c034da643fc5562f0bb3b14c839cc491fed5a",
+  "source_main_commit_at_state_snapshot": "bc1761a2fc08a02d53fe13515f1a0076ee8855d6",
   "current_execution_bottleneck": {
-    "stage_id": "P0_RELEVANCE_NATURAL_HISTORY_CALIBRATION",
-    "design_status": "REGISTERED_INDEPENDENT_CALIBRATION_PACKET_BOOTSTRAP_LOWER_BOUND_AND_QUALIFICATION_HANDOFF_READY",
+    "stage_id": "P0_CONTEXT_RECOVERY",
+    "design_status": "REGISTERED_FRESH_TAXON_FLOWERING_ACCESS_AND_REVISIT_GATE_READY",
     "biological_status": "NOT_EXECUTED",
-    "purpose": "QUALIFY_POLLINATOR_PREDATOR_AND_WATER_MINIMUM_RELEVANCE_INPUTS_FOR_P0_EFFORT_ONLY",
-    "required_positive_status": "P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED",
-    "protocol": "docs/PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_V1.md",
-    "freeze_template": "data/PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_TEMPLATE_V1.json",
-    "next_if_positive": "P0_MINIMUM_RELEVANCE_INPUTS_QUALIFIED_THEN_P0_EFFORT_FREEZE",
-    "next_if_zero_compatible": "NEW_PROSPECTIVE_CALIBRATION_WAVE_OR_NEXT_CONTEXT",
-    "p0_production_freeze_blocked_until_positive_qualification": true
+    "purpose": "PROMOTE_ONE_HISTORICAL_CANDIDATE_TO_A_FRESH_CURRENT_POPULATION_SEASON_CONTEXT_WITHOUT_SCORING_P0_SIGNALS",
+    "required_positive_status": "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION",
+    "protocol": "docs/PEDICULARIS_CONTEXT_RECOVERY_V1.md",
+    "freeze_template": "data/PEDICULARIS_CONTEXT_RECOVERY_FREEZE_TEMPLATE_V1.json",
+    "observation_template": "data/PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_TEMPLATE_V1.json",
+    "next_if_positive": "P0_RELEVANCE_NATURAL_HISTORY_CALIBRATION",
+    "next_if_not_ready": "COMPLETE_RECOVERY_OR_TRY_NEXT_HISTORICAL_CANDIDATE",
+    "historical_candidate_alone_cannot_unlock_p0": true
   },
   "stages": [
-    {"stage_id": "P0_RELEVANCE_NATURAL_HISTORY_CALIBRATION", "design_status": "REGISTERED_PACKET_BOOTSTRAP_AND_HANDOFF_READY", "biological_status": "NOT_EXECUTED", "required_positive_status": "P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED"},
-    {"stage_id": "P0_CONTEXT_SCREEN", "design_status": "REGISTERED_FIELD_PACKET_FLOWER_MINUTE_EFFORT_PLANNER_SOURCE_GATE_READY", "biological_status": "NOT_EXECUTED", "required_positive_status": "CONTEXT_SCREEN_PASS_CALIBRATION_READY"},
-    {"stage_id": "P1_THRESHOLD_FREEZE", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "THRESHOLD_FREEZE_VALIDATED"},
-    {"stage_id": "P2_QZ_QP_QG", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "QZ_QP_QG_ALL_VALIDATED"},
-    {"stage_id": "G1_CAUSAL_CONFLICT", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "DIRECT_PASS"},
-    {"stage_id": "G2_CONFLICT_LOAD", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "G2_DIRECT_PASS_POSITIVE"},
-    {"stage_id": "Y0_Y1_STRUCTURAL_RANGE", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "STRUCTURAL_Y_Y0_RANGE_QUALIFIED_Y1_AUDITED"},
-    {"stage_id": "Y2_Y3_FUNCTION", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "STRUCTURAL_Y_Y2_PREFERENTIAL_LOADING_Y3_PERFORMANCE_INTERVENTION"},
-    {"stage_id": "D0_CALIBRATION_PRECISION", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED"},
-    {"stage_id": "D0_CONFIRMATORY_Q1_Q6", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "D0_FULLY_QUALIFIED"},
-    {"stage_id": "G3_G5_FINAL_PRECISION", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "G3_G5_EFFECT_SAMPLE_SIZE_PROSPECTIVELY_PLANNED"},
-    {"stage_id": "G3_R", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "RECOVERABLE_ARCHITECTURE_BENEFIT_IDENTIFIED"},
-    {"stage_id": "G4_K_INCREMENTAL_Y", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "ARCHITECTURE_COST_IDENTIFIED"},
-    {"stage_id": "G5_PHI_INTERNAL", "design_status": "REGISTERED", "biological_status": "NOT_EXECUTED", "required_positive_status": "IDENTIFIED_INTERNAL_WORLDLINE"},
-    {"stage_id": "G5_INDEPENDENT_PHI_CONCORDANCE", "design_status": "REGISTERED_OPTIONAL_ROUTE", "biological_status": "NOT_EXECUTED", "required_positive_status": "PEDICULARIS_G3_G5_MEASURED_CONCORDANT"}
+    {
+      "stage_id": "P0_CONTEXT_RECOVERY",
+      "design_status": "REGISTERED_FRESH_CONTEXT_GATE_AND_P0_CALIBRATION_HANDOFF_READY",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    },
+    {
+      "stage_id": "P0_RELEVANCE_NATURAL_HISTORY_CALIBRATION",
+      "design_status": "REGISTERED_PACKET_BOOTSTRAP_PHYSICAL_FIREWALL_AND_QUALIFICATION_HANDOFF_READY",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED"
+    },
+    {
+      "stage_id": "P0_CONTEXT_SCREEN",
+      "design_status": "REGISTERED_TEMPORAL_UNIT_INTEGRITY_PHYSICAL_FIREWALL_AND_FIELD_PACKET_READY",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "CONTEXT_SCREEN_PASS_CALIBRATION_READY"
+    },
+    {
+      "stage_id": "P1_THRESHOLD_FREEZE",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "THRESHOLD_FREEZE_VALIDATED"
+    },
+    {
+      "stage_id": "P2_QZ_QP_QG",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "QZ_QP_QG_ALL_VALIDATED"
+    },
+    {
+      "stage_id": "G1_CAUSAL_CONFLICT",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "DIRECT_PASS"
+    },
+    {
+      "stage_id": "G2_CONFLICT_LOAD",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "G2_DIRECT_PASS_POSITIVE"
+    },
+    {
+      "stage_id": "Y0_Y1_STRUCTURAL_RANGE",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "STRUCTURAL_Y_Y0_RANGE_QUALIFIED_Y1_AUDITED"
+    },
+    {
+      "stage_id": "Y2_Y3_FUNCTION",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "STRUCTURAL_Y_Y2_PREFERENTIAL_LOADING_Y3_PERFORMANCE_INTERVENTION"
+    },
+    {
+      "stage_id": "D0_CALIBRATION_PRECISION",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED"
+    },
+    {
+      "stage_id": "D0_CONFIRMATORY_Q1_Q6",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "D0_FULLY_QUALIFIED"
+    },
+    {
+      "stage_id": "G3_G5_FINAL_PRECISION",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "G3_G5_EFFECT_SAMPLE_SIZE_PROSPECTIVELY_PLANNED"
+    },
+    {
+      "stage_id": "G3_R",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "RECOVERABLE_ARCHITECTURE_BENEFIT_IDENTIFIED"
+    },
+    {
+      "stage_id": "G4_K_INCREMENTAL_Y",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "ARCHITECTURE_COST_IDENTIFIED"
+    },
+    {
+      "stage_id": "G5_PHI_INTERNAL",
+      "design_status": "REGISTERED",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "IDENTIFIED_INTERNAL_WORLDLINE"
+    },
+    {
+      "stage_id": "G5_INDEPENDENT_PHI_CONCORDANCE",
+      "design_status": "REGISTERED_OPTIONAL_ROUTE",
+      "biological_status": "NOT_EXECUTED",
+      "required_positive_status": "PEDICULARIS_G3_G5_MEASURED_CONCORDANT"
+    }
   ],
   "claim_ceiling": "PROSPECTIVE_EXECUTION_MACHINERY_ONLY_NO_PEDICULARIS_G1_G5_BIOLOGICAL_RECEIPT",
   "canonical_ledger": "docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md"
