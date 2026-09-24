@@ -7,6 +7,8 @@ Status: **PROSPECTIVE / EXECUTABLE UNIT-IDENTITY CONTRACT / NO BIOLOGICAL RESULT
 SLK requires several Pedicularis cohorts to be biologically independent:
 
 ~~~text
+P0 natural-history calibration plant/flower units
+P0 context-screen predator/water plant units
 Y-CAL
 D0-CAL
 D0 confirmatory qualification
@@ -39,7 +41,25 @@ Rules:
 
 The physical tag should be attached to the plant before outcomes are opened and should not encode the treatment assignment.
 
-## 3. Calibration field workflow
+## 3. P0 entry-stage workflow
+
+P0 contains two kinds of independence unit and they must not be conflated.
+
+~~~text
+pollinator
+    independent temporal observation bout
+
+predator / water state
+    flower- or plant-based field unit with permanent physical_plant_tag
+~~~
+
+Fresh P0 natural-history calibration exports a hash-locked forbidden set for its predator/water plants. That set is carried automatically through source qualification and effort planning into the final P0 screen freeze. The P0 screen adjudicator rejects any predator/water plant whose permanent tag occurs in that prior set.
+
+After P0 screening, the adjudicator exports the union of prior calibration tags and current screen tags as the next-stage firewall. The general registry builder can accept that block through `--prior-firewall-json`, so Y-CAL/D0-CAL recruitment cannot silently reuse P0 plants under new dataset-local IDs.
+
+Pollinator bouts remain protected by the temporal-bout contract rather than being falsely represented as plant-level units.
+
+## 4. Calibration field workflow
 
 The Y-CAL and D0-CAL generated CSVs now contain a blank physical_plant_tag field.
 
@@ -67,7 +87,7 @@ python scripts/build_pedicularis_physical_plant_registry.py \
 
 The registry rejects one assignment id mapped to multiple physical tags, one physical tag hidden behind multiple assignment ids, physical-tag overlap across cohorts, and context/population/season mismatch.
 
-## 4. Hash-locked handoff to the next cohort
+## 5. Hash-locked handoff to the next cohort
 
 The registry exports all_prior_physical_plant_tags, all_prior_tag_set_sha256 and next_stage_firewall_block.
 
@@ -75,7 +95,7 @@ Copy the exported firewall block into the next prospective freeze. The freeze re
 
 The hash is an integrity receipt; it is not a privacy or cryptographic anonymization claim.
 
-## 5. D0 confirmatory qualification
+## 6. D0 confirmatory qualification
 
 PEDICULARIS_D0_CONFIRMATORY_ANALYSIS_FREEZE_V1 now requires a physical_unit_firewall block.
 
@@ -83,7 +103,7 @@ The generated confirmatory field sheet includes a blank physical_plant_tag field
 
 The D0 adjudicator refuses missing physical tags, assignment ids mapped to multiple physical tags, a physical tag hidden behind multiple assignment ids, or any physical tag present in the frozen prior-tag set. The D0 receipt records the current cohort tag-set hash.
 
-## 6. G3-G5 effect experiment
+## 7. G3-G5 effect experiment
 
 The G3-G5 freeze likewise carries a physical_unit_firewall.
 
@@ -101,19 +121,19 @@ empty set.
 
 This check uses physical_plant_tag, not the dataset-local plant_id.
 
-## 7. External G1-G2 / SCH units
+## 8. External G1-G2 / SCH units
 
 SLK does not own the SCH raw-data schema. If G1-G2 units come from another repository, their permanent plant tags must nevertheless be exported into the SLK prior-tag registry or equivalent frozen forbidden-tag list before G3-G5 recruitment.
 
 A prose statement that the cohorts are independent is not a substitute for the tag receipt when tags are available.
 
-## 8. What the firewall proves
+## 9. What the firewall proves
 
 The executable firewall can establish that registered physical plants are disjoint across the supplied cohorts.
 
 It does not establish random sampling from the population, absence of spatial kinship, absence of shared maternal family, biological independence of flowers within one plant, or correct treatment execution.
 
-## 9. Canonical implementation
+## 10. Canonical implementation
 
 ~~~text
 scripts/pedicularis_physical_units.py
@@ -125,7 +145,7 @@ scripts/generate_pedicularis_g3_g5_layout.py
 scripts/adjudicate_pedicularis_g3_g5_effect.py
 ~~~
 
-## 10. Claim ceiling
+## 11. Claim ceiling
 
 ~~~text
 PHYSICAL_UNIT_DISJOINTNESS_ONLY
