@@ -4,10 +4,10 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "048ff9932c4dab69c9f6ffa7a8318a2dae2ea201",
+  "source_main_commit_at_state_snapshot": "0f1d0e4d891f6e859d25b68c6e72e7ae3bf66d99",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
-    "design_status": "REGISTERED_LEDGER_BACKED_DRAFT_PACKET_FRESH_TAXON_FLOWERING_ACCESS_AND_REVISIT_GATE_READY",
+    "design_status": "REGISTERED_LEDGER_QUEUE_LOCATOR_BACKED_DRAFT_PACKET_AND_FRESH_RECOVERY_GATE_READY",
     "biological_status": "NOT_EXECUTED",
     "purpose": "PROMOTE_ONE_HISTORICAL_CANDIDATE_TO_A_FRESH_CURRENT_POPULATION_SEASON_CONTEXT_WITHOUT_SCORING_P0_SIGNALS",
     "required_positive_status": "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION",
@@ -25,7 +25,9 @@
     ],
     "wave1_logic": "RECENCY_OR_DIRECT_INTERACTION_EVIDENCE_WITHOUT_FRESH_PASS_PROMOTION",
     "scouting_locators": "data/PEDICULARIS_CONTEXT_RECOVERY_SCOUTING_LOCATORS_V1.csv",
-    "wave1_spatial_status": "ALL_WAVE1_CANDIDATES_HAVE_REGISTERED_SCOUTING_LOCATORS"
+    "wave1_spatial_status": "ALL_WAVE1_CANDIDATES_HAVE_REGISTERED_SCOUTING_LOCATORS",
+    "packet_generator": "scripts/generate_pedicularis_context_recovery_packet.py",
+    "packet_embeds_scouting_locator_when_registered": true
   },
   "stages": [
     {

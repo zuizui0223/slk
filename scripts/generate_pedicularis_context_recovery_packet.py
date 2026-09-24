@@ -8,6 +8,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LEDGER = ROOT / "data" / "PEDICULARIS_CONTEXT_CANDIDATE_LEDGER_V1.csv"
+QUEUE = ROOT / "data" / "PEDICULARIS_CONTEXT_RECOVERY_QUEUE_V1.csv"
+LOCATORS = ROOT / "data" / "PEDICULARIS_CONTEXT_RECOVERY_SCOUTING_LOCATORS_V1.csv"
 FREEZE_TEMPLATE = ROOT / "data" / "PEDICULARIS_CONTEXT_RECOVERY_FREEZE_TEMPLATE_V1.json"
 OBS_TEMPLATE = ROOT / "data" / "PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_TEMPLATE_V1.json"
 
@@ -38,6 +40,53 @@ def _candidate(candidate_id: str) -> dict[str, str]:
     return rows[0]
 
 
+def _one_csv_row(path: Path, candidate_id: str, *, required: bool) -> dict[str, str] | None:
+    with path.open(newline="", encoding="utf-8") as handle:
+        rows = [
+            row
+            for row in csv.DictReader(handle)
+            if str(row.get("candidate_id", "")).strip() == candidate_id
+        ]
+    if required:
+        _need(
+            len(rows) == 1,
+            f"candidate_id not uniquely registered in {path.name}: {candidate_id}",
+        )
+    else:
+        _need(
+            len(rows) <= 1,
+            f"candidate_id duplicated in {path.name}: {candidate_id}",
+        )
+    return rows[0] if rows else None
+
+
+def _clean_locator(row: dict[str, str] | None) -> dict | None:
+    if row is None:
+        return None
+    out = {
+        "candidate_id": row["candidate_id"],
+        "recovery_wave": row["recovery_wave"],
+        "locator_type": row["locator_type"],
+        "source_reference": row["source_reference"],
+        "locator_claim": row["locator_claim"],
+        "elevation_m_or_range": row["elevation_m_or_range"] or None,
+        "notes": row["notes"],
+    }
+    if row["locator_type"] == "POINT":
+        out["point"] = {
+            "latitude_deg": float(row["latitude_deg"]),
+            "longitude_deg": float(row["longitude_deg"]),
+        }
+    else:
+        out["envelope"] = {
+            "lat_min_deg": float(row["lat_min_deg"]),
+            "lat_max_deg": float(row["lat_max_deg"]),
+            "lon_min_deg": float(row["lon_min_deg"]),
+            "lon_max_deg": float(row["lon_max_deg"]),
+        }
+    return out
+
+
 def build_packet(
     *,
     candidate_id: str,
@@ -49,6 +98,9 @@ def build_packet(
     p0_screen_window_id: str,
 ) -> dict:
     row = _candidate(candidate_id)
+    queue_row = _one_csv_row(QUEUE, candidate_id, required=True)
+    locator_row = _one_csv_row(LOCATORS, candidate_id, required=False)
+    locator_snapshot = _clean_locator(locator_row)
     freeze = json.loads(FREEZE_TEMPLATE.read_text(encoding="utf-8"))
     observation = json.loads(OBS_TEMPLATE.read_text(encoding="utf-8"))
 
@@ -93,6 +145,12 @@ def build_packet(
     observation = copy.deepcopy(observation)
     observation["context"].update(values)
     observation["status"] = "TEMPLATE_ONLY_NOT_DATA"
+    observation["recovery_queue_snapshot"] = {
+        "recovery_wave": queue_row["recovery_wave"],
+        "selection_basis": queue_row["selection_basis"],
+        "reason": queue_row["reason"],
+    }
+    observation["scouting_locator_snapshot"] = locator_snapshot
 
     return {
         "schema_version": "SLK_PEDICULARIS_CONTEXT_RECOVERY_PACKET_V1",
@@ -106,6 +164,12 @@ def build_packet(
             "priority_for_fresh_p0": row["priority_for_fresh_p0"],
             "current_status": row["current_status"],
         },
+        "recovery_queue_snapshot": {
+            "recovery_wave": queue_row["recovery_wave"],
+            "selection_basis": queue_row["selection_basis"],
+            "reason": queue_row["reason"],
+        },
+        "scouting_locator_snapshot": locator_snapshot,
         "freeze_draft": freeze,
         "observation_template": observation,
         "next_action": (

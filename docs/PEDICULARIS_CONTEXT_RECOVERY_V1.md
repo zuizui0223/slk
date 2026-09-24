@@ -134,6 +134,8 @@ python scripts/generate_pedicularis_context_recovery_packet.py \
   --observation-output PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_V1.json
 ```
 
+The generated packet also embeds the candidate's recovery-wave snapshot and, when registered, its scouting point/envelope. Candidates without a source-backed locator retain `scouting_locator_snapshot = null`; the generator never invents coordinates.
+
 The generated freeze is deliberately **not frozen**. It cannot be adjudicated until freeze metadata are filled, the object is committed, `status` is changed to `FROZEN_CANDIDATE`, and `frozen_before_recovery_observations=true`.
 
 ## Execution
