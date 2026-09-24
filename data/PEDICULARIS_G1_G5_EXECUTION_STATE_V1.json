@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "25670bc13e658ef5f7441aa05b0712bbe7fe1e80",
+  "source_main_commit_at_state_snapshot": "eb341e8eaf666fd4ec7a94abe3bf28b62eff03c5",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_QUEUE_LOCATOR_BACKED_PACKET_WITH_AUDITABLE_RECOVERY_EVIDENCE_GATE_READY",
@@ -34,7 +34,13 @@
       "access_evidence_reference",
       "sampling_permission_reference",
       "revisit_plan_reference"
-    ]
+    ],
+    "taxon_checklist": "docs/PEDICULARIS_REX_RECOVERY_TAXON_CHECKLIST_V1.md",
+    "field_morphology_positive_features": [
+      "LEAVES_MOSTLY_WHORLS_OF_4",
+      "PETIOLE_AND_BRACT_BASES_ENLARGED_CONNATE_CUPULAR"
+    ],
+    "flower_color_required_for_taxon_gate": false
   },
   "stages": [
     {
