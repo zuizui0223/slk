@@ -138,6 +138,11 @@ It does not establish random sampling from the population, absence of spatial ki
 ~~~text
 scripts/pedicularis_physical_units.py
 scripts/build_pedicularis_physical_plant_registry.py
+scripts/generate_pedicularis_p0_natural_history_calibration_packet.py
+scripts/summarize_pedicularis_p0_natural_history_calibration.py
+scripts/generate_pedicularis_context_screen_packet.py
+scripts/summarize_pedicularis_context_screen_packet.py
+scripts/adjudicate_pedicularis_context_screen.py
 tests/test_pedicularis_physical_units.py
 scripts/generate_pedicularis_d0_confirmatory_layout.py
 scripts/adjudicate_pedicularis_d0_confirmatory.py
