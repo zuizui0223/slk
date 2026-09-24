@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "a00da3a3e89fc5c7bd61b41a8f5fb357dc7250b7",
+  "source_main_commit_at_state_snapshot": "048ff9932c4dab69c9f6ffa7a8318a2dae2ea201",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_BACKED_DRAFT_PACKET_FRESH_TAXON_FLOWERING_ACCESS_AND_REVISIT_GATE_READY",
@@ -23,7 +23,9 @@
       "SHANGRILA_WUFENG",
       "SHANGRILA_ALPINE_BOT_GARDEN"
     ],
-    "wave1_logic": "RECENCY_OR_DIRECT_INTERACTION_EVIDENCE_WITHOUT_FRESH_PASS_PROMOTION"
+    "wave1_logic": "RECENCY_OR_DIRECT_INTERACTION_EVIDENCE_WITHOUT_FRESH_PASS_PROMOTION",
+    "scouting_locators": "data/PEDICULARIS_CONTEXT_RECOVERY_SCOUTING_LOCATORS_V1.csv",
+    "wave1_spatial_status": "ALL_WAVE1_CANDIDATES_HAVE_REGISTERED_SCOUTING_LOCATORS"
   },
   "stages": [
     {

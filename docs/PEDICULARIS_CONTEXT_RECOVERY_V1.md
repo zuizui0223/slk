@@ -85,6 +85,37 @@ SHANGRILA_ALPINE_BOT_GARDEN
 
 A wave is a recovery order, not a biological ranking. No prior anchor becomes a fresh pass without the recovery gate.
 
+## Scouting locators
+
+Where published or official sources provide spatial information, recovery uses a separate scouting-locator layer:
+
+```text
+data/PEDICULARIS_CONTEXT_RECOVERY_SCOUTING_LOCATORS_V1.csv
+scripts/validate_pedicularis_context_recovery_scouting.py
+```
+
+The locator layer currently covers all three WAVE1 candidates plus Hutiaoxia:
+
+```text
+SHANGRILA_WUFENG
+    27°47′46″N, 99°42′35″E
+    historical 2005 study population point
+
+SHANGRILA_ALPINE_BOT_GARDEN
+    27°54′9–30″N, 99°38′8–20″E
+    historical 2011 study-population envelope
+
+SONGZANLIN_EIA_2025
+    official 2025 project/evaluation-area coordinate envelope
+    not an exact plant coordinate
+
+HUTIAOXIA_SHANGRILA
+    27°21′00″N, 99°54′36″E
+    voucher HW10086 collection point.
+```
+
+These are **scouting locators only**. They do not prove that a current flowering population is present. In particular, the Songzanlin envelope represents the official project/evaluation area, not the position of an individual `P. rex` plant.
+
 ## Draft packet generation
 
 Use the canonical ledger-backed generator so source type, source reference and prior candidate status are copied rather than retyped:
