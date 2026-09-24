@@ -7,6 +7,8 @@ from pathlib import Path
 
 try:
     from scripts.pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
+        FIREWALL_SCHEMA,
         canonical_tag_hash,
         validate_firewall_block,
         validate_physical_plant_mapping,
@@ -27,6 +29,20 @@ def _need(ok: bool, message: str) -> None:
         raise ValueError(message)
 
 
+def _resolve_prior_firewall(payload: dict) -> dict:
+    if payload.get("schema_version") == FIREWALL_SCHEMA:
+        return payload
+    direct = payload.get("next_stage_firewall_block")
+    if isinstance(direct, dict):
+        return direct
+    nested = payload.get("physical_unit_firewall")
+    if isinstance(nested, dict):
+        block = nested.get("next_stage_firewall_block")
+        if isinstance(block, dict):
+            return block
+    raise ValueError("could not resolve prior physical-unit firewall block")
+
+
 def build_registry(
     cohorts: dict[str, list[dict[str, str]]],
     *,
@@ -42,7 +58,11 @@ def build_registry(
     seen_tags: dict[str, str] = {}
     overlaps: list[dict[str, str]] = []
 
-    prior = validate_firewall_block(prior_firewall) if prior_firewall else None
+    prior = (
+        validate_firewall_block(_resolve_prior_firewall(prior_firewall))
+        if prior_firewall
+        else None
+    )
     prior_tags = set(prior["forbidden_tags"]) if prior else set()
 
     for cohort_id in sorted(cohorts):
