@@ -216,7 +216,10 @@ def test_capacity_below_requirement_without_exhaustive_census_is_incomplete() ->
 
 def test_incomplete_flower_minute_effort_never_calls_low_signal() -> None:
     receipt = _receipt()
-    receipt["effort"]["pollinator_flower_minutes_total"] = 80
+    for detail in receipt["effort"]["pollinator_bout_details"]:
+        detail["simultaneously_open_focal_flowers"] = 1
+        detail["legitimate_visits"] = 0
+    receipt["effort"]["pollinator_flower_minutes_total"] = 75
     receipt["observations"]["legitimate_pollinator_visits"] = 0
     result = module.adjudicate(receipt, _freeze())
     assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
@@ -226,6 +229,8 @@ def test_incomplete_flower_minute_effort_never_calls_low_signal() -> None:
 
 def test_multiple_low_signals_are_not_collapsed_to_one_cause() -> None:
     receipt = _receipt()
+    for detail in receipt["effort"]["pollinator_bout_details"]:
+        detail["legitimate_visits"] = 0
     receipt["observations"]["legitimate_pollinator_visits"] = 0
     receipt["observations"]["predator_attacked_flowers"] = 0
     result = module.adjudicate(receipt, _freeze())
