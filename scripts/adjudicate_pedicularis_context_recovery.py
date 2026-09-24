@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import math
 from pathlib import Path
@@ -13,6 +14,11 @@ ALLOWED_PRIOR_STATUSES = {
     "HISTORICAL_OCCURRENCE_ONLY",
 }
 ALLOWED_PERMISSION = {"CONFIRMED", "NOT_REQUIRED"}
+CANDIDATE_LEDGER_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "data"
+    / "PEDICULARIS_CONTEXT_CANDIDATE_LEDGER_V1.csv"
+)
 
 
 def _need(ok: bool, message: str) -> None:
@@ -48,6 +54,16 @@ def _optional_nonnegative_int(value: object, label: str) -> int | None:
     return int(out)
 
 
+def _candidate_ledger_row(candidate_id: str) -> dict[str, str]:
+    with CANDIDATE_LEDGER_PATH.open(newline="", encoding="utf-8") as handle:
+        rows = [
+            row for row in csv.DictReader(handle)
+            if str(row.get("candidate_id", "")).strip() == candidate_id
+        ]
+    _need(len(rows) == 1, f"candidate_id not uniquely registered in candidate ledger: {candidate_id}")
+    return rows[0]
+
+
 def validate_freeze(freeze: dict) -> dict:
     _need(freeze.get("schema_version") == FREEZE_SCHEMA, "wrong context-recovery freeze schema")
     _need(freeze.get("status") == "FROZEN_CANDIDATE", "context recovery freeze must be FROZEN_CANDIDATE")
@@ -62,6 +78,20 @@ def validate_freeze(freeze: dict) -> dict:
     anchor = freeze.get("historical_anchor", {})
     _filled(anchor.get("source_type"), "historical source_type")
     _filled(anchor.get("source_reference"), "historical source_reference")
+    ledger_row = _candidate_ledger_row(ctx["candidate_id"])
+    _need(
+        anchor.get("source_type") == ledger_row.get("source_type"),
+        "historical source_type does not match candidate ledger",
+    )
+    _need(
+        anchor.get("source_reference") == ledger_row.get("source_reference"),
+        "historical source_reference does not match candidate ledger",
+    )
+    _need(
+        anchor.get("candidate_status_before_recovery")
+        == ledger_row.get("current_status"),
+        "candidate prior status does not match candidate ledger",
+    )
     _need(
         anchor.get("candidate_status_before_recovery") in ALLOWED_PRIOR_STATUSES,
         "candidate must begin as a historical-only candidate",
