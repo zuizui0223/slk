@@ -95,6 +95,14 @@ def _freeze() -> dict:
             ],
         },
         "classification_rules": {},
+        "physical_unit_firewall": {
+            "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": ["PHY-P0CAL-001"],
+            "prior_tag_source_references": ["TEST_P0_CALIBRATION"],
+            "prior_tag_set_sha256": adj.canonical_tag_hash(["PHY-P0CAL-001"]),
+            "frozen_before_outcomes": True,
+        },
         "firewall": {
             "context_screen_is_not_g1_or_g2_evidence": True,
             "low_signal_context_is_not_biological_absence": True,
@@ -126,10 +134,12 @@ def _completed_rows() -> list[dict[str, str]]:
             row["legitimate_pollinator_visits"] = "1" if row["record_id"] == "POLL-001" else "0"
         elif row["record_type"] == "PREDATOR_FLOWER":
             row["plant_id"] = f"P-{row['record_id']}"
+            row["physical_plant_tag"] = f"PHY-SCREEN-{row['record_id']}"
             row["flower_id"] = f"F-{row['record_id']}"
             row["predator_attack_present"] = "true" if row["record_id"] == "PRED-001" else "false"
         elif row["record_type"] == "WATER_PLANT":
             row["plant_id"] = f"P-{row['record_id']}"
+            row["physical_plant_tag"] = f"PHY-SCREEN-{row['record_id']}"
             row["water_positive"] = "true"
     return rows
 
@@ -142,6 +152,7 @@ def test_generator_expands_registered_screen_effort() -> None:
     assert sum(r["record_type"] == "WATER_PLANT" for r in rows) == 20
     assert all(r["screen_only"] == "true" for r in rows)
     assert all(r["confirmatory_eligible"] == "false" for r in rows)
+    assert "physical_plant_tag" in rows[0]
     census = next(r for r in rows if r["record_type"] == "CENSUS")
     assert "exhaust the focal population" in census["notes"]
     poll = next(r for r in rows if r["record_type"] == "POLLINATOR_BOUT")
@@ -162,6 +173,7 @@ def test_completed_packet_summarizes_registered_effort_and_signals() -> None:
     assert receipt["observations"]["legitimate_pollinator_visits"] == 1
     assert receipt["observations"]["predator_attacked_flowers"] == 1
     assert receipt["observations"]["water_positive_plants"] == 20
+    assert receipt["physical_unit_audit"]["current_physical_plant_count"] == 50
 
 
 def test_packet_summary_and_adjudicator_unlock_calibration_end_to_end() -> None:
@@ -272,6 +284,7 @@ def test_duplicate_predator_flower_unit_is_rejected() -> None:
     rows = _completed_rows()
     pred = [r for r in rows if r["record_type"] == "PREDATOR_FLOWER"]
     pred[1]["plant_id"] = pred[0]["plant_id"]
+    pred[1]["physical_plant_tag"] = pred[0]["physical_plant_tag"]
     pred[1]["flower_id"] = pred[0]["flower_id"]
     with pytest.raises(ValueError, match="duplicate predator flower unit"):
         sum_mod.summarize(rows)
@@ -281,6 +294,7 @@ def test_duplicate_water_plant_unit_is_rejected() -> None:
     rows = _completed_rows()
     water = [r for r in rows if r["record_type"] == "WATER_PLANT"]
     water[1]["plant_id"] = water[0]["plant_id"]
+    water[1]["physical_plant_tag"] = water[0]["physical_plant_tag"]
     with pytest.raises(ValueError, match="duplicate water-state plant unit"):
         sum_mod.summarize(rows)
 
@@ -298,3 +312,32 @@ def test_unknown_record_type_is_rejected() -> None:
     rows[0]["record_type"] = "MYSTERY"
     with pytest.raises(ValueError, match="unregistered context-screen record types"):
         sum_mod.summarize(rows)
+
+
+
+def test_screen_rejects_reuse_of_p0_calibration_physical_plant() -> None:
+    rows = _completed_rows()
+    target = next(r for r in rows if r["record_type"] == "PREDATOR_FLOWER")
+    target["physical_plant_tag"] = "PHY-P0CAL-001"
+    receipt = sum_mod.summarize(rows)
+    with pytest.raises(ValueError, match="reuses prior calibration physical plants"):
+        adj.adjudicate(receipt, _freeze())
+
+
+def test_screen_requires_permanent_tags_for_plant_based_units() -> None:
+    rows = _completed_rows()
+    target = next(r for r in rows if r["record_type"] == "WATER_PLANT")
+    target["physical_plant_tag"] = ""
+    with pytest.raises(ValueError, match="physical_plant_tag"):
+        sum_mod.summarize(rows)
+
+
+def test_screen_exports_union_firewall_for_downstream_calibration() -> None:
+    receipt = sum_mod.summarize(_completed_rows())
+    result = adj.adjudicate(receipt, _freeze())
+    block = result["physical_unit_firewall"]["next_stage_firewall_block"]
+    assert "PHY-P0CAL-001" in block["prior_physical_plant_tags_forbidden"]
+    assert "PHY-SCREEN-PRED-001" in block["prior_physical_plant_tags_forbidden"]
+    assert block["prior_tag_set_sha256"] == adj.canonical_tag_hash(
+        block["prior_physical_plant_tags_forbidden"]
+    )

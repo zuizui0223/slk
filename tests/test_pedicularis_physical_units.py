@@ -133,3 +133,67 @@ def test_registry_rejects_context_drift() -> None:
             population_id="pop1",
             season_id="2027",
         )
+
+
+
+def _prior_firewall(tags: list[str]) -> dict:
+    return {
+        "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+        "require_nonempty_physical_plant_tag": True,
+        "prior_physical_plant_tags_forbidden": tags,
+        "prior_tag_source_references": ["TEST_P0_PRIOR"],
+        "prior_tag_set_sha256": physical.canonical_tag_hash(tags),
+        "frozen_before_outcomes": True,
+    }
+
+
+def test_registry_rejects_reuse_against_prior_p0_firewall() -> None:
+    with pytest.raises(ValueError, match="against prior firewall"):
+        registry.build_registry(
+            {"YCAL": _rows("Y", ["PHY-P0", "PHY-NEW"])},
+            context_id="ctx1",
+            population_id="pop1",
+            season_id="2027",
+            prior_firewall=_prior_firewall(["PHY-P0"]),
+        )
+
+
+def test_registry_extends_prior_firewall_with_new_calibration_tags() -> None:
+    result = registry.build_registry(
+        {"YCAL": _rows("Y", ["PHY-Y1", "PHY-Y2"])},
+        context_id="ctx1",
+        population_id="pop1",
+        season_id="2027",
+        prior_firewall=_prior_firewall(["PHY-P0-A", "PHY-P0-B"]),
+    )
+    block = result["next_stage_firewall_block"]
+    assert set(block["prior_physical_plant_tags_forbidden"]) == {
+        "PHY-P0-A",
+        "PHY-P0-B",
+        "PHY-Y1",
+        "PHY-Y2",
+    }
+    assert block["prior_tag_set_sha256"] == physical.canonical_tag_hash(
+        block["prior_physical_plant_tags_forbidden"]
+    )
+
+
+
+def test_registry_accepts_full_p0_adjudication_receipt_as_prior_firewall() -> None:
+    receipt = {
+        "physical_unit_firewall": {
+            "next_stage_firewall_block": _prior_firewall(["PHY-P0"])
+        }
+    }
+    result = registry.build_registry(
+        {"YCAL": _rows("Y", ["PHY-Y"])},
+        context_id="ctx1",
+        population_id="pop1",
+        season_id="2027",
+        prior_firewall=receipt,
+    )
+    assert set(
+        result["next_stage_firewall_block"][
+            "prior_physical_plant_tags_forbidden"
+        ]
+    ) == {"PHY-P0", "PHY-Y"}

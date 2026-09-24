@@ -43,6 +43,14 @@ def _effort_freeze() -> dict:
             **CTX,
             "frozen_before_screen_outcomes": True,
         },
+        "physical_unit_firewall_handoff": {
+            "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": ["PHY-P0CAL-1"],
+            "prior_tag_source_references": ["TEST_FRESH_P0_CAL"],
+            "prior_tag_set_sha256": compiler.canonical_tag_hash(["PHY-P0CAL-1"]),
+            "frozen_before_outcomes": True,
+        },
         "pollinator_detection": {
             "minimum_relevant_visit_rate_per_flower_min": 0.02,
             "visit_rate_unit": "LEGITIMATE_VISITS_PER_FLOWER_MINUTE",
@@ -185,6 +193,7 @@ def test_reference_detection_effort_values() -> None:
     assert result["predator"]["planned_screen_flowers"] == 59
     assert result["water_state"]["planned_screen_plants"] == 5
     assert result["capacity"]["required_flowering_plants"] == 93
+    assert result["physical_unit_firewall_handoff"]["prior_physical_plant_tags_forbidden"] == ["PHY-P0CAL-1"]
 
 
 def test_more_demanding_detection_guarantee_never_reduces_effort() -> None:
@@ -247,6 +256,7 @@ def test_compiler_populates_p0_effort_without_finalizing_freeze() -> None:
     assert result["decision_thresholds"]["minimum_legitimate_pollinator_visits"] == 1
     assert len(result["source_policy"]["threshold_source_records"]) == 10
     assert result["context"]["frozen_before_screen_outcomes"] is False
+    assert result["physical_unit_firewall"]["prior_physical_plant_tags_forbidden"] == ["PHY-P0CAL-1"]
 
 
 def test_compiler_rejects_context_mismatch() -> None:
@@ -264,3 +274,50 @@ def test_compiler_refuses_already_frozen_p0_contract() -> None:
     screen["context"]["frozen_before_screen_outcomes"] = True
     with pytest.raises(ValueError, match="unfrozen template"):
         compiler.compile_effort(screen, plan)
+
+
+
+def test_fresh_relevance_source_requires_physical_firewall_handoff() -> None:
+    freeze = _effort_freeze()
+    freeze.pop("physical_unit_firewall_handoff")
+    with pytest.raises(ValueError, match="requires physical-unit firewall handoff"):
+        planner.plan(freeze)
+
+
+
+def test_external_source_route_preserves_preexisting_template_firewall() -> None:
+    freeze = _effort_freeze()
+    freeze.pop("physical_unit_firewall_handoff")
+    water = freeze["water_state_detection"]
+    water["source_type"] = "EXTERNAL_MATCHED_PRIMARY_SOURCE"
+    water["source_qualification_status"] = "NUMERIC_TRANSPORT_QUALIFIED"
+    plan = planner.plan(freeze)
+
+    screen = _screen_template()
+    screen["physical_unit_firewall"] = {
+        "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+        "require_nonempty_physical_plant_tag": True,
+        "prior_physical_plant_tags_forbidden": ["PHY-PRIOR"],
+        "prior_tag_source_references": ["TEST_PRIOR"],
+        "prior_tag_set_sha256": compiler.canonical_tag_hash(["PHY-PRIOR"]),
+        "frozen_before_outcomes": True,
+    }
+    result = compiler.compile_effort(screen, plan)
+    assert result["physical_unit_firewall"][
+        "prior_physical_plant_tags_forbidden"
+    ] == ["PHY-PRIOR"]
+
+
+
+def test_pollinator_only_fresh_source_does_not_require_plant_handoff() -> None:
+    freeze = _effort_freeze()
+    freeze.pop("physical_unit_firewall_handoff")
+    poll = freeze["pollinator_detection"]
+    poll["rate_source_type"] = "INDEPENDENT_NATURAL_HISTORY_CALIBRATION"
+    poll["rate_source_qualification_status"] = "FRESH_CALIBRATION_QUALIFIED"
+    for key in ("predator_detection", "water_state_detection"):
+        block = freeze[key]
+        block["source_type"] = "EXTERNAL_MATCHED_PRIMARY_SOURCE"
+        block["source_qualification_status"] = "NUMERIC_TRANSPORT_QUALIFIED"
+    result = planner.plan(freeze)
+    assert result["physical_unit_firewall_handoff"] is None

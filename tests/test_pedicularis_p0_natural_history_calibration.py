@@ -112,6 +112,7 @@ def _filled_rows(*, rare_predator: bool = False) -> list[dict[str, str]]:
         elif row["record_type"] == "PREDATOR_FLOWER":
             pred_index += 1
             row["plant_id"] = f"PP{pred_index:03d}"
+            row["physical_plant_tag"] = f"PHY-P0CAL-PRED-{pred_index:03d}"
             row["flower_id"] = f"PF{pred_index:03d}"
             if rare_predator:
                 row["early_attack_or_oviposition_positive"] = "true" if pred_index == 1 else "false"
@@ -120,6 +121,7 @@ def _filled_rows(*, rare_predator: bool = False) -> list[dict[str, str]]:
         elif row["record_type"] == "WATER_PLANT":
             water_index += 1
             row["plant_id"] = f"WP{water_index:03d}"
+            row["physical_plant_tag"] = f"PHY-P0CAL-WATER-{water_index:03d}"
             row["water_positive"] = "true" if water_index <= 15 else "false"
     return rows
 
@@ -159,6 +161,9 @@ def test_positive_calibration_qualifies_all_three_lower_bounds() -> None:
     assert receipt["estimates"]["predator"]["lower_bound"] > 0
     assert receipt["estimates"]["water_state"]["lower_bound"] > 0
     assert receipt["firewall"]["calibration_units_p0_decision_ineligible"] is True
+    handoff = receipt["physical_unit_registry_handoff"]
+    assert handoff["current_physical_plant_count"] == 50
+    assert handoff["next_stage_firewall_block"]["prior_tag_set_sha256"] == handoff["current_tag_set_sha256"]
 
 
 def test_rare_predator_signal_can_remain_zero_compatible() -> None:
@@ -216,6 +221,7 @@ def test_missing_calibration_measurement_is_reported_and_blocks_qualification() 
     extra = dict(next(r for r in rows if r["record_type"] == "WATER_PLANT"))
     extra["record_id"] = "CAL-WATER-EXTRA"
     extra["plant_id"] = "WP-EXTRA"
+    extra["physical_plant_tag"] = "PHY-P0CAL-WATER-EXTRA"
     extra["water_positive"] = "true"
     rows.append(extra)
 
@@ -237,3 +243,20 @@ def test_missing_calibration_measurement_is_reported_and_blocks_qualification() 
 def test_calibration_receipt_reports_frozen_bootstrap_valid_fraction() -> None:
     receipt = sum_mod.summarize(_filled_rows(), _freeze())
     assert receipt["qualification_rule"]["minimum_valid_fraction"] == 0.95
+
+
+
+def test_p0_calibration_requires_permanent_tags_for_plant_based_units() -> None:
+    rows = _filled_rows()
+    target = next(r for r in rows if r["record_type"] == "WATER_PLANT")
+    target["physical_plant_tag"] = ""
+    with pytest.raises(ValueError, match="physical_plant_tag"):
+        sum_mod.summarize(rows, _freeze())
+
+
+def test_p0_calibration_rejects_same_physical_plant_hidden_by_two_ids() -> None:
+    rows = _filled_rows()
+    water = [r for r in rows if r["record_type"] == "WATER_PLANT"]
+    water[1]["physical_plant_tag"] = water[0]["physical_plant_tag"]
+    with pytest.raises(ValueError, match="reused across assignment IDs"):
+        sum_mod.summarize(rows, _freeze())

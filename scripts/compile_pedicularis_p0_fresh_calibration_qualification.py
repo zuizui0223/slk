@@ -65,6 +65,12 @@ def compile_qualification(calibration: dict, template: dict) -> dict:
         row["qualification_status"] = "FRESH_CALIBRATION_QUALIFIED"
         row["frozen_before_p0_outcomes"] = True
 
+    handoff = calibration.get("physical_unit_registry_handoff", {}).get(
+        "next_stage_firewall_block"
+    )
+    _need(isinstance(handoff, dict), "fresh calibration physical-unit firewall handoff missing")
+    out["physical_unit_firewall_handoff"] = copy.deepcopy(handoff)
+
     out["status"] = "CALIBRATION_VALUES_COMPILED_AWAITING_QUALIFICATION_METADATA"
     out["context"]["p0_outcomes_opened"] = False
     out["qualification_metadata"] = {

@@ -67,6 +67,14 @@ def _payload() -> dict:
             "screen_window_id": "screen1",
             "p0_outcomes_opened": False,
         },
+        "physical_unit_firewall_handoff": {
+            "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": ["PHY-CAL-1"],
+            "prior_tag_source_references": ["TEST_FRESH_CALIBRATION"],
+            "prior_tag_set_sha256": "f6086223edbe01f333626e0caaa298686716cc3a9d917685e66dea2f338b413b",
+            "frozen_before_outcomes": True,
+        },
         "inputs": [
             _row("P0_POLLINATOR_MIN_RATE", "EXTERNAL_NUMERIC_TRANSPORT"),
             _row("P0_PREDATOR_MIN_PREVALENCE", "FRESH_INDEPENDENT_CALIBRATION"),
@@ -147,3 +155,20 @@ def test_pollinator_units_must_be_flower_minute_based() -> None:
     _input(payload, "P0_POLLINATOR_MIN_RATE")["numeric_units"] = "LEGITIMATE_VISITS_PER_MINUTE"
     with pytest.raises(ValueError, match="flower-minute"):
         mod.validate(payload)
+
+
+
+def test_pollinator_only_fresh_route_does_not_invent_plant_firewall_requirement() -> None:
+    payload = _payload()
+    payload.pop("physical_unit_firewall_handoff")
+    _input(payload, "P0_POLLINATOR_MIN_RATE").update(
+        _row("P0_POLLINATOR_MIN_RATE", "FRESH_INDEPENDENT_CALIBRATION")
+    )
+    _input(payload, "P0_PREDATOR_MIN_PREVALENCE").update(
+        _row("P0_PREDATOR_MIN_PREVALENCE", "EXTERNAL_NUMERIC_TRANSPORT")
+    )
+    _input(payload, "P0_WATER_POSITIVE_PREVALENCE").update(
+        _row("P0_WATER_POSITIVE_PREVALENCE", "EXTERNAL_NUMERIC_TRANSPORT")
+    )
+    result = mod.validate(payload)
+    assert result["physical_unit_firewall_handoff"] is None

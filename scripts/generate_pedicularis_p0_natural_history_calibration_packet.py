@@ -16,6 +16,7 @@ FIELDS = [
     "calibration_window_id",
     "record_id",
     "plant_id",
+    "physical_plant_tag",
     "flower_id",
     "planned_minutes",
     "observed_minutes",

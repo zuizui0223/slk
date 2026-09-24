@@ -5,6 +5,19 @@ import json
 import math
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
+        canonical_tag_hash,
+        validate_firewall_block,
+    )
+except ImportError:
+    from pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
+        canonical_tag_hash,
+        validate_firewall_block,
+    )
+
 
 FREEZE_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_FREEZE_V1"
 RECEIPT_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_RECEIPT_V1"
@@ -175,6 +188,10 @@ def validate_freeze(freeze: dict) -> dict:
     ):
         _need(firewall.get(key) is True, f"context-screen firewall disabled: {key}")
 
+    physical_firewall = validate_firewall_block(
+        freeze.get("physical_unit_firewall", {})
+    )
+
     metadata = freeze.get("freeze_metadata", {})
     for key in ("slk_source_commit", "freeze_commit", "freeze_timestamp"):
         _filled(metadata.get(key), f"freeze_metadata.{key}")
@@ -200,6 +217,8 @@ def validate_freeze(freeze: dict) -> dict:
             "minimum_flowering_plants_for_calibration_with_reserve": capacity_required,
         },
         "capacity_margin_fraction": capacity_margin,
+        "physical_unit_firewall": physical_firewall,
+        "freeze_commit": metadata["freeze_commit"],
     }
 
 
@@ -215,6 +234,50 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
     fctx = cfg["context"]
     for key in ("system", "candidate_site_id", "population_id", "season_id", "screen_window_id"):
         _need(rctx.get(key) == fctx.get(key), f"receipt/freeze context mismatch: {key}")
+
+    physical_audit = receipt.get("physical_unit_audit", {})
+    _need(
+        physical_audit.get("status") == "P0_SCREEN_PLANT_TAGS_VALIDATED",
+        "P0 screen physical-unit audit missing",
+    )
+    current_tags_raw = physical_audit.get("current_physical_plant_tags")
+    _need(
+        isinstance(current_tags_raw, list) and current_tags_raw,
+        "P0 screen physical tags missing",
+    )
+    current_tags = [str(x).strip() for x in current_tags_raw]
+    _need(
+        all(current_tags) and len(current_tags) == len(set(current_tags)),
+        "P0 screen physical tags must be non-empty and unique",
+    )
+    _need(
+        physical_audit.get("current_physical_plant_count") == len(current_tags),
+        "P0 screen physical tag count mismatch",
+    )
+    current_hash = canonical_tag_hash(current_tags)
+    _need(
+        physical_audit.get("current_tag_set_sha256") == current_hash,
+        "P0 screen physical tag hash mismatch",
+    )
+    prior_physical = cfg["physical_unit_firewall"]
+    overlap = sorted(set(current_tags) & prior_physical["forbidden_tags"])
+    _need(
+        not overlap,
+        "P0 screen reuses prior calibration physical plants: "
+        + ",".join(overlap),
+    )
+    combined_tags = sorted(prior_physical["forbidden_tags"] | set(current_tags))
+    next_physical_firewall = {
+        "schema_version": FIREWALL_SCHEMA,
+        "require_nonempty_physical_plant_tag": True,
+        "prior_physical_plant_tags_forbidden": combined_tags,
+        "prior_tag_source_references": (
+            list(prior_physical["source_references"])
+            + [f"PED_P0_CONTEXT_SCREEN@{cfg['freeze_commit']}"]
+        ),
+        "prior_tag_set_sha256": canonical_tag_hash(combined_tags),
+        "frozen_before_outcomes": True,
+    }
 
     firewall = receipt.get("firewall", {})
     _need(firewall.get("screen_units_confirmatory_eligible") is False, "screen units cannot be confirmatory eligible")
@@ -461,6 +524,16 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             "population_id": fctx["population_id"],
             "season_id": fctx["season_id"],
             "screen_window_id": fctx["screen_window_id"],
+        },
+        "physical_unit_firewall": {
+            "status": "P0_SCREEN_PHYSICAL_TAGS_DISJOINT_FROM_PRIOR",
+            "prior_forbidden_tag_count": len(
+                prior_physical["forbidden_tags"]
+            ),
+            "current_physical_plant_count": len(current_tags),
+            "current_tag_set_sha256": current_hash,
+            "overlap_count": 0,
+            "next_stage_firewall_block": next_physical_firewall,
         },
         "effort": {
             "complete": effort_complete,

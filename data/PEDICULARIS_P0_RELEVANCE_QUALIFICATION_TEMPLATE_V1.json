@@ -81,5 +81,6 @@
     "slk_source_commit": "REQUIRED_BEFORE_USE",
     "qualification_commit": "REQUIRED_BEFORE_USE",
     "qualification_timestamp": "REQUIRED_BEFORE_USE"
-  }
+  },
+  "physical_unit_firewall_handoff": null
 }

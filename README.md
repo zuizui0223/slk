@@ -123,7 +123,7 @@ P0 fresh population-season context screen
 
 The entire execution path is now registered, including the fresh P0 population-season screen, field calibration, threshold freeze, structural-y promotion, D0 qualification, final G3-G5 precision planning, final sample-size compilation, registered-z-grid field layout, and bootstrap adjudication.
 
-P0 is deliberately logistical. It requires fresh pollinator activity, fresh predator exposure/attack, a functional water state and adequate flowering-plant capacity. It does **not** use pollen limitation as a pass gate; pollen limitation stays unresolved until Qp calibration. A fully observed low-signal P0 context is `CONTEXT_UNINFORMATIVE_*`, not a biological negative.
+P0 is deliberately logistical. It requires fresh pollinator activity, fresh predator exposure/attack, a functional water state and adequate flowering-plant capacity. It does **not** use pollen limitation as a pass gate; pollen limitation stays unresolved until Qp calibration. A fully observed low-signal P0 context is `CONTEXT_UNINFORMATIVE_*`, not a biological negative. Plant/flower-based P0 predator and water units now join the same permanent-tag firewall chain used downstream; pollinator P0 units remain independent temporal bouts.
 
 This is **design readiness, not empirical closure**. No Pedicularis G1-G5 biological receipt has yet been produced.
 
@@ -235,6 +235,8 @@ EMPIRICAL_GATE_LADDER_REGISTERED
 EMPIRICAL_SOURCE_SYSTEM_LEDGER_REGISTERED
 PEDICULARIS_CONTEXT_SCREEN_FIELD_PACKET_REGISTERED
 PEDICULARIS_CONTEXT_LOW_SIGNAL_IS_UNINFORMATIVE_NOT_NEGATIVE
+PEDICULARIS_P0_TEMPORAL_AND_UNIT_INTEGRITY_REGISTERED
+PEDICULARIS_P0_PHYSICAL_PLANT_FIREWALL_CHAIN_REGISTERED
 PEDICULARIS_G2_CLOSURE_PROTOCOL_REGISTERED
 FIRST_BIOLOGICAL_G2_TARGET_LOCKED
 PEDICULARIS_FIELD_QUALIFICATION_POLICY_REGISTERED

@@ -87,6 +87,14 @@ def _freeze() -> dict:
             "threshold_source_records": _source_records(),
         },
         "classification_rules": {},
+        "physical_unit_firewall": {
+            "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": [],
+            "prior_tag_source_references": ["TEST_EMPTY_PRIOR_P0_FIREWALL"],
+            "prior_tag_set_sha256": module.canonical_tag_hash([]),
+            "frozen_before_outcomes": True,
+        },
         "firewall": {
             "context_screen_is_not_g1_or_g2_evidence": True,
             "low_signal_context_is_not_biological_absence": True,
@@ -116,6 +124,21 @@ def _receipt() -> dict:
             "population_id": "pop1",
             "season_id": "2027",
             "screen_window_id": "screen1",
+        },
+        "physical_unit_audit": {
+            "status": "P0_SCREEN_PLANT_TAGS_VALIDATED",
+            "assignment_to_physical_tag": {
+                "PRED-A": "PHY-SCREEN-A",
+                "WATER-A": "PHY-SCREEN-B",
+            },
+            "current_physical_plant_count": 2,
+            "current_physical_plant_tags": [
+                "PHY-SCREEN-A",
+                "PHY-SCREEN-B",
+            ],
+            "current_tag_set_sha256": module.canonical_tag_hash(
+                ["PHY-SCREEN-A", "PHY-SCREEN-B"]
+            ),
         },
         "effort": {
             "independent_flowering_plants_censused": 120,

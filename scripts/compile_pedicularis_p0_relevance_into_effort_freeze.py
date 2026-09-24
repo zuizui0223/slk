@@ -50,6 +50,9 @@ def compile_relevance(effort: dict, qualification: dict) -> dict:
     water = rows["P0_WATER_POSITIVE_PREVALENCE"]
 
     out = copy.deepcopy(effort)
+    out["physical_unit_firewall_handoff"] = copy.deepcopy(
+        receipt.get("physical_unit_firewall_handoff")
+    )
     poll_block = out.setdefault("pollinator_detection", {})
     poll_block["minimum_relevant_visit_rate_per_flower_min"] = float(poll["numeric_value"])
     poll_block["visit_rate_unit"] = "LEGITIMATE_VISITS_PER_FLOWER_MINUTE"

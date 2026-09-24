@@ -7,12 +7,16 @@ from pathlib import Path
 
 try:
     from scripts.pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
         canonical_tag_hash,
+        validate_firewall_block,
         validate_physical_plant_mapping,
     )
 except ImportError:
     from pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
         canonical_tag_hash,
+        validate_firewall_block,
         validate_physical_plant_mapping,
     )
 
@@ -25,12 +29,27 @@ def _need(ok: bool, message: str) -> None:
         raise ValueError(message)
 
 
+def _resolve_prior_firewall(payload: dict) -> dict:
+    if payload.get("schema_version") == FIREWALL_SCHEMA:
+        return payload
+    direct = payload.get("next_stage_firewall_block")
+    if isinstance(direct, dict):
+        return direct
+    nested = payload.get("physical_unit_firewall")
+    if isinstance(nested, dict):
+        block = nested.get("next_stage_firewall_block")
+        if isinstance(block, dict):
+            return block
+    raise ValueError("could not resolve prior physical-unit firewall block")
+
+
 def build_registry(
     cohorts: dict[str, list[dict[str, str]]],
     *,
     context_id: str,
     population_id: str,
     season_id: str,
+    prior_firewall: dict | None = None,
 ) -> dict:
     _need(bool(cohorts), "physical plant registry requires cohorts")
     _need(bool(context_id and population_id and season_id), "registry context required")
@@ -38,6 +57,13 @@ def build_registry(
     cohort_receipts: dict[str, dict] = {}
     seen_tags: dict[str, str] = {}
     overlaps: list[dict[str, str]] = []
+
+    prior = (
+        validate_firewall_block(_resolve_prior_firewall(prior_firewall))
+        if prior_firewall
+        else None
+    )
+    prior_tags = set(prior["forbidden_tags"]) if prior else set()
 
     for cohort_id in sorted(cohorts):
         rows = cohorts[cohort_id]
@@ -58,6 +84,12 @@ def build_registry(
 
         mapping = validate_physical_plant_mapping(rows)
         tags = sorted(set(mapping.values()))
+        forbidden_overlap = sorted(set(tags) & prior_tags)
+        _need(
+            not forbidden_overlap,
+            "physical plant reuse detected against prior firewall: "
+            + ",".join(forbidden_overlap),
+        )
         for tag in tags:
             prior = seen_tags.get(tag)
             if prior is not None:
@@ -89,7 +121,9 @@ def build_registry(
         ),
     )
 
-    all_tags = sorted(seen_tags)
+    current_tags = sorted(seen_tags)
+    all_tags = sorted(prior_tags | set(current_tags))
+    prior_refs = list(prior["source_references"]) if prior else []
     return {
         "schema_version": REGISTRY_SCHEMA,
         "status": "PHYSICAL_PLANT_COHORTS_VALIDATED_DISJOINT",
@@ -100,6 +134,9 @@ def build_registry(
             "season_id": season_id,
         },
         "cohorts": cohort_receipts,
+        "current_physical_plant_tags": current_tags,
+        "current_tag_set_sha256": canonical_tag_hash(current_tags),
+        "prior_firewall_tag_count": len(prior_tags),
         "all_prior_physical_plant_tags": all_tags,
         "all_prior_tag_set_sha256": canonical_tag_hash(all_tags),
         "overlap_count": 0,
@@ -107,9 +144,10 @@ def build_registry(
             "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
             "require_nonempty_physical_plant_tag": True,
             "prior_physical_plant_tags_forbidden": all_tags,
-            "prior_tag_source_references": [
-                "SLK_PEDICULARIS_PHYSICAL_PLANT_REGISTRY_V1"
-            ],
+            "prior_tag_source_references": (
+                prior_refs
+                + ["SLK_PEDICULARIS_PHYSICAL_PLANT_REGISTRY_V1"]
+            ),
             "prior_tag_set_sha256": canonical_tag_hash(all_tags),
             "frozen_before_outcomes": True,
         },
@@ -135,6 +173,11 @@ def main() -> None:
         required=True,
         help="COHORT_ID=CSV_PATH; may be repeated",
     )
+    parser.add_argument(
+        "--prior-firewall-json",
+        type=Path,
+        help="Optional previously frozen physical-unit firewall to extend",
+    )
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
 
@@ -148,11 +191,17 @@ def main() -> None:
             raise ValueError("cohort ids must be non-empty and unique")
         cohorts[cohort_id] = _read_csv(Path(raw_path))
 
+    prior_firewall = (
+        json.loads(args.prior_firewall_json.read_text(encoding="utf-8"))
+        if args.prior_firewall_json
+        else None
+    )
     result = build_registry(
         cohorts,
         context_id=args.context_id,
         population_id=args.population_id,
         season_id=args.season_id,
+        prior_firewall=prior_firewall,
     )
     text_out = json.dumps(result, indent=2, sort_keys=True) + "\n"
     if args.output:
