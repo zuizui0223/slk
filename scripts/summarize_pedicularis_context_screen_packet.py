@@ -90,6 +90,16 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     _need(len(census_rows) == 1, "context screen packet must contain exactly one CENSUS row")
     _need(bool(poll_rows) and bool(pred_rows) and bool(water_rows), "context screen packet is missing a registered screen block")
 
+    for row in pred_rows:
+        _need(
+            str(row.get("plant_id", "")).strip(),
+            f"predator row missing plant_id: {row['record_id']}",
+        )
+    for row in water_rows:
+        _need(
+            str(row.get("plant_id", "")).strip(),
+            f"water row missing plant_id: {row['record_id']}",
+        )
     physical_rows = pred_rows + water_rows
     physical_mapping = validate_physical_plant_mapping(physical_rows)
     physical_tags = sorted(set(physical_mapping.values()))
