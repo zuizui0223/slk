@@ -241,6 +241,9 @@ candidate site visit
 
 The independent natural-history calibration units are not P0 decision units and remain ineligible for Qz/Qp/Qg, G1-G2, Y-CAL/D0-CAL or G3-G5 effect estimation.
 
+
+For predator/water plant-based calibration units, this exclusion is now enforced by a permanent-tag handoff. Any qualification payload using a fresh calibration route must carry the hash-locked `physical_unit_firewall_handoff`; the P0 effort planner refuses a fresh source if that handoff is missing.
+
 ## 9. Claim ceiling
 
 This source audit licenses no biological result.
