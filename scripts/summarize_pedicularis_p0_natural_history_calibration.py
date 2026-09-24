@@ -8,6 +8,19 @@ import random
 from collections import defaultdict
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
+        canonical_tag_hash,
+        validate_physical_plant_mapping,
+    )
+except ImportError:
+    from pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
+        canonical_tag_hash,
+        validate_physical_plant_mapping,
+    )
+
 
 SCHEMA = "SLK_PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_V1"
 PRODUCTION_STATUS = "PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_PROSPECTIVELY_FROZEN"
@@ -184,6 +197,14 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         _need(_bool(row.get("p0_decision_eligible"), "p0_decision_eligible") is False, "calibration row cannot be a P0 decision unit")
         _need(_bool(row.get("downstream_confirmatory_eligible"), "downstream_confirmatory_eligible") is False, "calibration row cannot be downstream confirmatory")
 
+    physical_rows = [
+        row
+        for row in rows
+        if row.get("record_type") in {"PREDATOR_FLOWER", "WATER_PLANT"}
+    ]
+    physical_mapping = validate_physical_plant_mapping(physical_rows)
+    physical_tags = sorted(set(physical_mapping.values()))
+
     poll_bouts: list[tuple[float, int, float]] = []
     predator: list[int] = []
     water: list[int] = []
@@ -343,6 +364,27 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "future_p0_screen_window_id": ctx["future_p0_screen_window_id"],
             "dataset_id": DATASET_ID,
             "p0_outcomes_opened": False,
+        },
+        "physical_unit_registry_handoff": {
+            "status": "P0_CALIBRATION_PLANT_TAGS_VALIDATED",
+            "assignment_to_physical_tag": physical_mapping,
+            "current_physical_plant_count": len(physical_tags),
+            "current_physical_plant_tags": physical_tags,
+            "current_tag_set_sha256": canonical_tag_hash(physical_tags),
+            "next_stage_firewall_block": {
+                "schema_version": FIREWALL_SCHEMA,
+                "require_nonempty_physical_plant_tag": True,
+                "prior_physical_plant_tags_forbidden": physical_tags,
+                "prior_tag_source_references": [
+                    f"PED_P0_NAT_HIST_CAL_V1@{cfg['freeze_commit']}"
+                ],
+                "prior_tag_set_sha256": canonical_tag_hash(physical_tags),
+                "frozen_before_outcomes": True,
+            },
+            "scope_note": (
+                "Permanent-tag firewall covers plant/flower-based predator and water calibration units. "
+                "Pollinator calibration independence remains temporal at the observation-bout level."
+            ),
         },
         "sampling_floor_checks": floor_checks,
         "sampling_floors_pass": floors_pass,
