@@ -95,3 +95,23 @@ def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
     out = adj.adjudicate(obs, freeze)
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
     assert out["context"]["candidate_id"] == "SHANGRILA_WUFENG"
+
+
+
+def test_new_daocheng_seed_dna_anchor_is_recovery_only() -> None:
+    packet = gen.build_packet(
+        candidate_id="DAOCHENG_IFLORA_2011",
+        candidate_site_id="site-daocheng",
+        population_id="pop-daocheng-2027",
+        season_id="2027",
+        recovery_window_id="recovery-daocheng-2027",
+        p0_relevance_calibration_window_id="cal-daocheng-2027",
+        p0_screen_window_id="screen-daocheng-2027",
+    )
+    snap = packet["candidate_ledger_snapshot"]
+    assert snap["source_type"] == "SEED_DNA_COLLECTION"
+    assert snap["source_reference"] == "iFlora.cn:SunH-07ZX-3605"
+    assert snap["current_status"] == "HISTORICAL_OCCURRENCE_ONLY"
+    assert packet["freeze_draft"]["historical_anchor"]["use"] == (
+        "PRIORITIZATION_ONLY_NOT_FRESH_CONTEXT_PASS"
+    )
