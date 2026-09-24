@@ -82,5 +82,6 @@
     "freeze_commit": "REQUIRED_BEFORE_USE",
     "freeze_timestamp": "REQUIRED_BEFORE_USE"
   },
-  "production_status": "PEDICULARIS_CONTEXT_SCREEN_EFFORT_PROSPECTIVELY_FROZEN"
+  "production_status": "PEDICULARIS_CONTEXT_SCREEN_EFFORT_PROSPECTIVELY_FROZEN",
+  "physical_unit_firewall_handoff": null
 }
