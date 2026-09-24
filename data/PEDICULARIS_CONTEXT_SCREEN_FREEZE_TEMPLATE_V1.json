@@ -14,6 +14,7 @@
     "minimum_pollinator_observation_minutes_total": null,
     "minimum_pollinator_flower_minutes_total": null,
     "minimum_pollinator_observation_bouts": null,
+    "minimum_pollinator_minutes_per_bout": null,
     "minimum_predator_screen_flowers": null,
     "minimum_water_state_plants": null,
     "minimum_capacity_margin_fraction": null
