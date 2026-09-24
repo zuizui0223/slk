@@ -115,3 +115,27 @@ def test_new_daocheng_seed_dna_anchor_is_recovery_only() -> None:
     assert packet["freeze_draft"]["historical_anchor"]["use"] == (
         "PRIORITIZATION_ONLY_NOT_FRESH_CONTEXT_PASS"
     )
+
+
+
+def test_songzanlin_2025_assessment_anchor_stays_occurrence_only() -> None:
+    packet = gen.build_packet(
+        candidate_id="SONGZANLIN_EIA_2025",
+        candidate_site_id="site-songzanlin-2027",
+        population_id="pop-songzanlin-2027",
+        season_id="2027",
+        recovery_window_id="recovery-songzanlin-2027",
+        p0_relevance_calibration_window_id="cal-songzanlin-2027",
+        p0_screen_window_id="screen-songzanlin-2027",
+    )
+    snap = packet["candidate_ledger_snapshot"]
+    assert snap["source_type"] == "RECENT_ENVIRONMENTAL_ASSESSMENT"
+    assert snap["current_status"] == "RECENT_ASSESSMENT_OCCURRENCE_ONLY"
+    assert snap["priority_for_fresh_p0"] == "HIGH"
+    freeze = packet["freeze_draft"]
+    assert freeze["historical_anchor"]["candidate_status_before_recovery"] == (
+        "RECENT_ASSESSMENT_OCCURRENCE_ONLY"
+    )
+    assert freeze["historical_anchor"]["use"] == (
+        "PRIORITIZATION_ONLY_NOT_FRESH_CONTEXT_PASS"
+    )
