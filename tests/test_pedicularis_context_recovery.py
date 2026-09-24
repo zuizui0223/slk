@@ -187,3 +187,38 @@ def test_historical_source_must_match_candidate_ledger() -> None:
     freeze["historical_anchor"]["source_reference"] = "WRONG_SOURCE"
     with pytest.raises(ValueError, match="source_reference does not match"):
         adj.adjudicate(_obs(), freeze)
+
+
+
+def test_recent_assessment_candidate_can_enter_fresh_recovery_gate() -> None:
+    freeze = _freeze()
+    freeze["context"].update(
+        {
+            "candidate_id": "SONGZANLIN_EIA_2025",
+            "candidate_site_id": "site-songzanlin",
+            "population_id": "pop-songzanlin-2027",
+            "recovery_window_id": "recovery-songzanlin-2027",
+        }
+    )
+    freeze["historical_anchor"].update(
+        {
+            "source_type": "RECENT_ENVIRONMENTAL_ASSESSMENT",
+            "source_reference": "XGLL_GOV_EIA_2025-10-13_P69",
+            "candidate_status_before_recovery": "RECENT_ASSESSMENT_OCCURRENCE_ONLY",
+        }
+    )
+
+    obs = _obs()
+    obs["context"].update(
+        {
+            "candidate_id": "SONGZANLIN_EIA_2025",
+            "candidate_site_id": "site-songzanlin",
+            "population_id": "pop-songzanlin-2027",
+            "recovery_window_id": "recovery-songzanlin-2027",
+        }
+    )
+    out = adj.adjudicate(obs, freeze)
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["historical_anchor"]["candidate_status_before_recovery"] == (
+        "RECENT_ASSESSMENT_OCCURRENCE_ONLY"
+    )
