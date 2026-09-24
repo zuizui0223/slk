@@ -5,6 +5,19 @@ import copy
 import json
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
+        canonical_tag_hash,
+        validate_firewall_block,
+    )
+except ImportError:
+    from pedicularis_physical_units import (
+        FIREWALL_SCHEMA,
+        canonical_tag_hash,
+        validate_firewall_block,
+    )
+
 
 SCREEN_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_FREEZE_V1"
 PLAN_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_EFFORT_PLAN_V1"
@@ -49,6 +62,31 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     _need(water.get("minimum_positive_plants_for_signal") == 1, "v1 water-state presence threshold must be one detection")
 
     out = copy.deepcopy(screen)
+    raw_handoff = plan.get("physical_unit_firewall_handoff")
+    if raw_handoff is None:
+        physical_block = {
+            "schema_version": FIREWALL_SCHEMA,
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": [],
+            "prior_tag_source_references": [
+                "NO_FRESH_P0_CALIBRATION_PHYSICAL_UNITS"
+            ],
+            "prior_tag_set_sha256": canonical_tag_hash([]),
+            "frozen_before_outcomes": True,
+        }
+    else:
+        validated = validate_firewall_block(raw_handoff)
+        physical_block = {
+            "schema_version": FIREWALL_SCHEMA,
+            "require_nonempty_physical_plant_tag": True,
+            "prior_physical_plant_tags_forbidden": sorted(
+                validated["forbidden_tags"]
+            ),
+            "prior_tag_source_references": validated["source_references"],
+            "prior_tag_set_sha256": validated["prior_tag_set_sha256"],
+            "frozen_before_outcomes": True,
+        }
+    out["physical_unit_firewall"] = physical_block
     effort = out.setdefault("screen_effort", {})
     effort["capacity_census_rule"] = CAPACITY_RULE
     effort["minimum_pollinator_observation_minutes_total"] = poll["planned_total_minutes"]
