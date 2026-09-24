@@ -1,0 +1,46 @@
+{
+  "schema_version": "SLK_PEDICULARIS_CONTEXT_RECOVERY_FREEZE_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "context": {
+    "system": "Pedicularis rex",
+    "candidate_id": "REQUIRED_BEFORE_USE",
+    "candidate_site_id": "REQUIRED_BEFORE_USE",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "recovery_window_id": "REQUIRED_BEFORE_USE",
+    "frozen_before_recovery_observations": false
+  },
+  "historical_anchor": {
+    "source_type": "REQUIRED_BEFORE_USE",
+    "source_reference": "REQUIRED_BEFORE_USE",
+    "candidate_status_before_recovery": "REQUIRED_BEFORE_USE",
+    "use": "PRIORITIZATION_ONLY_NOT_FRESH_CONTEXT_PASS"
+  },
+  "downstream_windows": {
+    "p0_relevance_calibration_window_id": "REQUIRED_BEFORE_USE",
+    "p0_screen_window_id": "REQUIRED_BEFORE_USE"
+  },
+  "decision_rules": {
+    "require_fresh_taxon_confirmation": true,
+    "require_current_flowering_population": true,
+    "require_current_site_access": true,
+    "require_sampling_permission_resolved": true,
+    "require_same_season_revisit_feasible": true,
+    "require_at_least_one_independent_flowering_plant_seen": true,
+    "interaction_signal_not_required_at_recovery": true,
+    "capacity_pass_not_inferred_at_recovery": true
+  },
+  "firewall": {
+    "historical_record_cannot_count_as_fresh_recovery": true,
+    "recovery_does_not_test_pollinator_predator_or_water_signal": true,
+    "recovery_does_not_establish_p0_capacity": true,
+    "failed_recovery_is_not_species_absence": true,
+    "p0_relevance_calibration_remains_next_biological_signal_gate": true
+  },
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "production_status": "PEDICULARIS_CONTEXT_RECOVERY_PROSPECTIVELY_FROZEN"
+}

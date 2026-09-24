@@ -44,7 +44,64 @@ and, from the structural-y layer onward, reproductive time horizon.
 
 ## 3. Canonical execution order
 
-### Stage P0 — context screen
+### Stage P-1 — fresh context recovery
+
+Goal:
+
+```text
+promote one historical candidate into a fresh current population-season context
+without using historical occurrence as a present-day pass
+and without scoring downstream ecological signals.
+```
+
+Canonical files:
+
+```text
+data/PEDICULARIS_CONTEXT_CANDIDATE_LEDGER_V1.csv
+data/PEDICULARIS_CONTEXT_RECOVERY_FREEZE_TEMPLATE_V1.json
+data/PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_TEMPLATE_V1.json
+docs/PEDICULARIS_CONTEXT_RECOVERY_V1.md
+scripts/adjudicate_pedicularis_context_recovery.py
+scripts/compile_pedicularis_context_recovery_to_p0_calibration.py
+```
+
+Required operational status:
+
+```text
+CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION.
+```
+
+This gate establishes only fresh taxon/population presence and logistical feasibility. It does not score pollinator, predator, water-state or capacity signals.
+
+### Stage P0a — fresh minimum-relevance calibration
+
+Goal:
+
+```text
+estimate prospectively bounded minimum-relevance inputs for
+pollinator flower-minute activity,
+predator early-attack prevalence,
+and water-positive prevalence
+using units that cannot later become P0 decision units.
+```
+
+Canonical files:
+
+```text
+data/PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_TEMPLATE_V1.json
+docs/PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_V1.md
+scripts/generate_pedicularis_p0_natural_history_calibration_packet.py
+scripts/summarize_pedicularis_p0_natural_history_calibration.py
+scripts/compile_pedicularis_p0_fresh_calibration_qualification.py
+```
+
+Required positive status:
+
+```text
+P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED.
+```
+
+### Stage P0b — context screen
 
 Goal:
 
@@ -80,7 +137,7 @@ Required operational status for the default calibration route:
 CONTEXT_SCREEN_PASS_CALIBRATION_READY.
 ```
 
-A completed low-signal screen is `CONTEXT_UNINFORMATIVE_*`, not a biological negative. P0 is logistical only and unlocks no G1/G2 claim.
+A completed low-signal screen is `CONTEXT_UNINFORMATIVE_*`, not a biological negative. P0 is logistical only and unlocks no G1/G2 claim. Plant/flower-based P0 calibration and screen units are linked into the permanent physical-plant firewall; pollinator units remain independent temporal bouts.
 
 ### Stage P1 — upstream threshold calibration and freeze
 

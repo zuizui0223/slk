@@ -1,0 +1,29 @@
+{
+  "schema_version": "SLK_PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_V1",
+  "status": "TEMPLATE_ONLY_NOT_DATA",
+  "context": {
+    "system": "Pedicularis rex",
+    "candidate_id": "REQUIRED_BEFORE_USE",
+    "candidate_site_id": "REQUIRED_BEFORE_USE",
+    "population_id": "REQUIRED_BEFORE_USE",
+    "season_id": "REQUIRED_BEFORE_USE",
+    "recovery_window_id": "REQUIRED_BEFORE_USE"
+  },
+  "fresh_verification": {
+    "verification_date": "REQUIRED_BEFORE_USE",
+    "verification_source_reference": "REQUIRED_BEFORE_USE",
+    "taxon_identity_confirmed": null,
+    "flowering_population_present": null,
+    "independent_flowering_plants_seen": null,
+    "site_access_confirmed": null,
+    "sampling_permission_status": "REQUIRED_BEFORE_USE",
+    "same_season_revisit_feasible": null,
+    "notes": ""
+  },
+  "prohibited_recovery_inferences": {
+    "pollinator_signal_scored": false,
+    "predator_signal_scored": false,
+    "water_state_signal_scored": false,
+    "p0_capacity_pass_scored": false
+  }
+}
