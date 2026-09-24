@@ -54,14 +54,36 @@ A failed recovery means only that the current candidate/context is not ready for
 data/PEDICULARIS_CONTEXT_CANDIDATE_LEDGER_V1.csv
 data/PEDICULARIS_CONTEXT_RECOVERY_FREEZE_TEMPLATE_V1.json
 data/PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_TEMPLATE_V1.json
+scripts/generate_pedicularis_context_recovery_packet.py
 scripts/adjudicate_pedicularis_context_recovery.py
 scripts/compile_pedicularis_context_recovery_to_p0_calibration.py
 tests/test_pedicularis_context_recovery.py
+tests/test_pedicularis_context_recovery_packet.py
 ```
+
+## Draft packet generation
+
+Use the canonical ledger-backed generator so source type, source reference and prior candidate status are copied rather than retyped:
+
+```bash
+python scripts/generate_pedicularis_context_recovery_packet.py \
+  --candidate-id SHANGRILA_WUFENG \
+  --candidate-site-id <fresh-site-id> \
+  --population-id <fresh-population-id> \
+  --season-id <season> \
+  --recovery-window-id <recovery-window> \
+  --p0-calibration-window-id <planned-calibration-window> \
+  --p0-screen-window-id <planned-screen-window> \
+  --packet-output PEDICULARIS_CONTEXT_RECOVERY_PACKET_DRAFT.json \
+  --freeze-output PEDICULARIS_CONTEXT_RECOVERY_FREEZE_DRAFT.json \
+  --observation-output PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_V1.json
+```
+
+The generated freeze is deliberately **not frozen**. It cannot be adjudicated until freeze metadata are filled, the object is committed, `status` is changed to `FROZEN_CANDIDATE`, and `frozen_before_recovery_observations=true`.
 
 ## Execution
 
-1. Choose a historical candidate from the candidate ledger.
+1. Choose a historical candidate from the candidate ledger or generate its draft packet with the ledger-backed generator.
 2. Freeze candidate/site/population/season identifiers, recovery window, and the future P0 calibration/screen windows before fresh recovery observations.
 3. Fill the fresh observation payload.
 4. Run the adjudicator.

@@ -12,6 +12,7 @@ Historical sites and occurrence records prioritize where to look, but they canno
 
 ```text
 docs/PEDICULARIS_CONTEXT_RECOVERY_V1.md
+scripts/generate_pedicularis_context_recovery_packet.py
 scripts/adjudicate_pedicularis_context_recovery.py
 ```
 
