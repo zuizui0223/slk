@@ -25,5 +25,7 @@
     "predator_signal_scored": false,
     "water_state_signal_scored": false,
     "p0_capacity_pass_scored": false
-  }
+  },
+  "recovery_queue_snapshot": null,
+  "scouting_locator_snapshot": null
 }
