@@ -255,6 +255,9 @@ def plan(freeze: dict) -> dict:
             "census_rule": CAPACITY_RULE,
             "source": capacity_source,
         },
+        "physical_unit_firewall_handoff": freeze.get(
+            "physical_unit_firewall_handoff"
+        ),
         "freeze_provenance": {
             "effort_freeze_commit": metadata["freeze_commit"],
             "slk_source_commit": metadata["slk_source_commit"],
