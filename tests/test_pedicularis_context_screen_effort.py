@@ -306,3 +306,18 @@ def test_external_source_route_preserves_preexisting_template_firewall() -> None
     assert result["physical_unit_firewall"][
         "prior_physical_plant_tags_forbidden"
     ] == ["PHY-PRIOR"]
+
+
+
+def test_pollinator_only_fresh_source_does_not_require_plant_handoff() -> None:
+    freeze = _effort_freeze()
+    freeze.pop("physical_unit_firewall_handoff")
+    poll = freeze["pollinator_detection"]
+    poll["rate_source_type"] = "INDEPENDENT_NATURAL_HISTORY_CALIBRATION"
+    poll["rate_source_qualification_status"] = "FRESH_CALIBRATION_QUALIFIED"
+    for key in ("predator_detection", "water_state_detection"):
+        block = freeze[key]
+        block["source_type"] = "EXTERNAL_MATCHED_PRIMARY_SOURCE"
+        block["source_qualification_status"] = "NUMERIC_TRANSPORT_QUALIFIED"
+    result = planner.plan(freeze)
+    assert result["physical_unit_firewall_handoff"] is None
