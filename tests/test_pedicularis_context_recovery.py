@@ -90,6 +90,15 @@ def _obs() -> dict:
             "taxon_identity_confirmed": True,
             "taxon_verification_method": "FIELD_MORPHOLOGY_PHOTO",
             "taxon_evidence_reference": "PHOTO_SET_TAXON_001",
+            "taxon_diagnostic_checklist": {
+                "source_reference": "FLORA_OF_CHINA_PEDICULARIS_SERIES_REGES_KEY",
+                "leaves_mostly_whorls_of_4_documented": True,
+                "petiole_and_bract_bases_enlarged_connate_cupular_documented": True,
+                "whole_plant_photo_reference": "PHOTO_WHOLE_001",
+                "leaf_whorl_photo_reference": "PHOTO_WHORL_001",
+                "cupular_base_photo_reference": "PHOTO_CUPULAR_001",
+                "flower_color_used_as_required_diagnostic": False,
+            },
             "flowering_population_present": True,
             "flowering_population_evidence_reference": "PHOTO_SET_FLOWERING_001",
             "independent_flowering_plants_seen": 12,
@@ -254,3 +263,51 @@ def test_positive_receipt_preserves_recovery_evidence_references() -> None:
     assert fresh["access_evidence_reference"] == "FIELD_ACCESS_LOG_001"
     assert fresh["sampling_permission_reference"] == "PERMIT_001"
     assert fresh["revisit_plan_reference"] == "REVISIT_PLAN_001"
+
+
+
+def test_field_morphology_confirmation_requires_diagnostic_checklist() -> None:
+    obs = _obs()
+    obs["fresh_verification"].pop("taxon_diagnostic_checklist")
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_INCOMPLETE"
+
+
+def test_positive_field_morphology_requires_both_registered_features() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_diagnostic_checklist"][
+        "leaves_mostly_whorls_of_4_documented"
+    ] = False
+    with pytest.raises(ValueError, match="requires both registered diagnostic features"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_flower_color_cannot_be_required_for_p_rex_confirmation() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_diagnostic_checklist"][
+        "flower_color_used_as_required_diagnostic"
+    ] = True
+    with pytest.raises(ValueError, match="flower color cannot be a required"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_taxon_unconfirmed_can_record_failed_morphology_without_false_pass() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_identity_confirmed"] = False
+    obs["fresh_verification"]["taxon_diagnostic_checklist"][
+        "leaves_mostly_whorls_of_4_documented"
+    ] = False
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_TAXON_UNCONFIRMED"
+    assert out["downstream_handoff"]["p0_relevance_calibration_authorized"] is False
+
+
+
+def test_expert_confirmation_route_does_not_require_field_photo_checklist() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_verification_method"] = "EXPERT_CONFIRMATION"
+    obs["fresh_verification"]["taxon_evidence_reference"] = "EXPERT_CONFIRMATION_001"
+    obs["fresh_verification"].pop("taxon_diagnostic_checklist")
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["taxon_diagnostic_checklist"] is None

@@ -52,6 +52,15 @@ EXPERT_CONFIRMATION
 COMBINED.
 ```
 
+
+For `FIELD_MORPHOLOGY_PHOTO` and `COMBINED`, the positive field-identification checklist is defined in:
+
+```text
+docs/PEDICULARIS_REX_RECOVERY_TAXON_CHECKLIST_V1.md
+```
+
+and requires photo documentation of the registered Flora of China key characters. Flower color is not a required diagnostic because it varies among `P. rex` infraspecific taxa.
+
 A boolean `taxon_identity_confirmed=true` without its evidence reference is incomplete, not a pass. The same rule applies to flowering presence, access, permission and revisit feasibility.
 
 ## What recovery does not ask
