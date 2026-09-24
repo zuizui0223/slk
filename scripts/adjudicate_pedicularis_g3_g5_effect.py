@@ -253,6 +253,15 @@ def adjudicate(
 ) -> dict:
     cfg = validate_contract(freeze, g2, y_receipt, y_function, d0)
 
+    # Route gating must happen before any direct-Phi row is inspected.  In the
+    # same-block route, even physical-unit validation would constitute peeking
+    # at a dataset that the prospective contract says must remain unseen.
+    if cfg["route"] != "INDEPENDENT_DIRECT_PHI_BLOCK":
+        _need(
+            direct_rows is None or len(direct_rows) == 0,
+            "same-block route must not inspect a direct-Phi dataset",
+        )
+
     decomp_physical = validate_current_against_forbidden(
         decomposition_rows,
         cfg["physical_unit_firewall"],
