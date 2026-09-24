@@ -124,6 +124,7 @@ def _screen_template() -> dict:
             "minimum_pollinator_observation_minutes_total": None,
             "minimum_pollinator_flower_minutes_total": None,
             "minimum_pollinator_observation_bouts": None,
+            "minimum_pollinator_minutes_per_bout": None,
             "minimum_predator_screen_flowers": None,
             "minimum_water_state_plants": None,
             "minimum_capacity_margin_fraction": None,
@@ -239,11 +240,12 @@ def test_compiler_populates_p0_effort_without_finalizing_freeze() -> None:
     assert result["status"] == "EFFORT_COMPILED_AWAITING_FINAL_P0_FREEZE"
     assert result["screen_effort"]["minimum_pollinator_observation_minutes_total"] == 150
     assert result["screen_effort"]["minimum_pollinator_flower_minutes_total"] == 150
+    assert result["screen_effort"]["minimum_pollinator_minutes_per_bout"] == 20
     assert result["screen_effort"]["minimum_predator_screen_flowers"] == 59
     assert result["screen_effort"]["minimum_water_state_plants"] == 5
     assert result["screen_effort"]["minimum_capacity_margin_fraction"] == pytest.approx(0.10)
     assert result["decision_thresholds"]["minimum_legitimate_pollinator_visits"] == 1
-    assert len(result["source_policy"]["threshold_source_records"]) == 9
+    assert len(result["source_policy"]["threshold_source_records"]) == 10
     assert result["context"]["frozen_before_screen_outcomes"] is False
 
 

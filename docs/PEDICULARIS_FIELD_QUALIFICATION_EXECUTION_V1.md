@@ -24,7 +24,7 @@ The required operational status for the default route is:
 CONTEXT_SCREEN_PASS_CALIBRATION_READY.
 ```
 
-P0 checks only fresh legitimate-pollinator activity, measurable predator exposure/early attack, functional cupulate-bract water state and enough flowering-plant capacity for the disjoint calibration programme.
+P0 checks only fresh legitimate-pollinator activity, measurable predator exposure/early attack, functional cupulate-bract water state and enough flowering-plant capacity for the disjoint calibration programme. Pollinator effort must satisfy total clock time, cumulative flower-minutes, the frozen number of temporal bouts, and the frozen minimum duration per qualifying bout. Predator and water-state screen units must be biologically distinct.
 
 Pollen limitation is **not** a P0 pass criterion. It remains:
 

@@ -15,7 +15,9 @@
     "pollinator_flower_minutes_total": null,
     "pollinator_observation_bouts": null,
     "predator_screen_flowers": null,
-    "water_state_plants": null
+    "water_state_plants": null,
+    "pollinator_bout_details": [],
+    "minimum_observed_pollinator_bout_minutes": null
   },
   "observations": {
     "legitimate_pollinator_visits": null,
@@ -35,5 +37,18 @@
     "zero_detection_interpreted_as_biological_absence": false,
     "pollinator_exposure_unit": "FLOWER_MINUTES"
   },
-  "final_adjudication": "NOT_YET_EXECUTED"
+  "final_adjudication": "NOT_YET_EXECUTED",
+  "packet_completion": {
+    "registered_pollinator_rows": null,
+    "completed_pollinator_rows": null,
+    "registered_predator_rows": null,
+    "completed_predator_rows": null,
+    "registered_water_rows": null,
+    "completed_water_rows": null,
+    "capacity_census_exhaustion_recorded": null,
+    "incomplete_records": null,
+    "incomplete_reason_counts": {},
+    "incomplete_record_details": [],
+    "missingness_sensitivity_required": null
+  }
 }

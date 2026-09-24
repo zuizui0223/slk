@@ -31,6 +31,7 @@ def _freeze() -> dict:
         "screen_effort.minimum_pollinator_observation_minutes_total",
         "screen_effort.minimum_pollinator_flower_minutes_total",
         "screen_effort.minimum_pollinator_observation_bouts",
+        "screen_effort.minimum_pollinator_minutes_per_bout",
         "screen_effort.minimum_predator_screen_flowers",
         "screen_effort.minimum_water_state_plants",
         "screen_effort.minimum_capacity_margin_fraction",
@@ -54,6 +55,7 @@ def _freeze() -> dict:
             "minimum_pollinator_observation_minutes_total": 60,
             "minimum_pollinator_flower_minutes_total": 120,
             "minimum_pollinator_observation_bouts": 6,
+            "minimum_pollinator_minutes_per_bout": 10,
             "minimum_predator_screen_flowers": 30,
             "minimum_water_state_plants": 20,
             "minimum_capacity_margin_fraction": 0.10,
@@ -150,6 +152,8 @@ def test_completed_packet_summarizes_registered_effort_and_signals() -> None:
     receipt = sum_mod.summarize(_completed_rows())
     assert receipt["effort"]["population_census_exhausted"] is False
     assert receipt["effort"]["pollinator_observation_bouts"] == 6
+    assert len(receipt["effort"]["pollinator_bout_details"]) == 6
+    assert receipt["effort"]["minimum_observed_pollinator_bout_minutes"] == pytest.approx(10.0)
     assert receipt["effort"]["pollinator_observation_minutes_total"] == pytest.approx(60.0)
     assert receipt["effort"]["pollinator_flower_minutes_total"] == pytest.approx(120.0)
     assert receipt["observations"]["legitimate_visit_rate_per_flower_min"] == pytest.approx(1 / 120)
@@ -247,3 +251,50 @@ def test_missing_census_fields_are_reported_in_packet_completion() -> None:
     assert reasons["MISSING_CAPACITY_EXHAUSTION_STATUS"] == 1
     result = adj.adjudicate(receipt, _freeze())
     assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
+
+
+
+def test_short_pollinator_bout_blocks_temporal_coverage_even_when_totals_match() -> None:
+    rows = _completed_rows()
+    p1 = next(r for r in rows if r["record_id"] == "POLL-001")
+    p2 = next(r for r in rows if r["record_id"] == "POLL-002")
+    p1["observed_observation_minutes"] = "5"
+    p2["observed_observation_minutes"] = "15"
+    receipt = sum_mod.summarize(rows)
+    assert receipt["effort"]["pollinator_observation_minutes_total"] == pytest.approx(60.0)
+    assert receipt["effort"]["pollinator_flower_minutes_total"] == pytest.approx(120.0)
+    result = adj.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
+    assert result["effort"]["checks"]["pollinator_bout_duration"] is False
+
+
+def test_duplicate_predator_flower_unit_is_rejected() -> None:
+    rows = _completed_rows()
+    pred = [r for r in rows if r["record_type"] == "PREDATOR_FLOWER"]
+    pred[1]["plant_id"] = pred[0]["plant_id"]
+    pred[1]["flower_id"] = pred[0]["flower_id"]
+    with pytest.raises(ValueError, match="duplicate predator flower unit"):
+        sum_mod.summarize(rows)
+
+
+def test_duplicate_water_plant_unit_is_rejected() -> None:
+    rows = _completed_rows()
+    water = [r for r in rows if r["record_type"] == "WATER_PLANT"]
+    water[1]["plant_id"] = water[0]["plant_id"]
+    with pytest.raises(ValueError, match="duplicate water-state plant unit"):
+        sum_mod.summarize(rows)
+
+
+def test_fractional_census_count_is_rejected() -> None:
+    rows = _completed_rows()
+    census = next(r for r in rows if r["record_type"] == "CENSUS")
+    census["flowering_plants_censused"] = "120.5"
+    with pytest.raises(ValueError, match="integer count"):
+        sum_mod.summarize(rows)
+
+
+def test_unknown_record_type_is_rejected() -> None:
+    rows = _completed_rows()
+    rows[0]["record_type"] = "MYSTERY"
+    with pytest.raises(ValueError, match="unregistered context-screen record types"):
+        sum_mod.summarize(rows)
