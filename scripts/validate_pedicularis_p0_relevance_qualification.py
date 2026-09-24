@@ -5,6 +5,11 @@ import json
 import math
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import validate_firewall_block
+except ImportError:
+    from pedicularis_physical_units import validate_firewall_block
+
 
 SCHEMA = "SLK_PEDICULARIS_P0_RELEVANCE_QUALIFICATION_V1"
 REQUIRED_IDS = {
@@ -77,6 +82,19 @@ def validate(payload: dict) -> dict:
 
     qualified = []
     values = {}
+    fresh_route_used = any(
+        row.get("qualification_route") == "FRESH_INDEPENDENT_CALIBRATION"
+        for row in inputs
+    )
+    physical_handoff = None
+    if fresh_route_used:
+        raw_handoff = payload.get("physical_unit_firewall_handoff")
+        _need(
+            isinstance(raw_handoff, dict),
+            "fresh calibration physical-unit firewall handoff missing",
+        )
+        physical_handoff = validate_firewall_block(raw_handoff)
+
     for row in inputs:
         input_id = row["input_id"]
         _need(row.get("target_metric") == TARGET_METRICS[input_id], f"target metric changed: {input_id}")
@@ -145,6 +163,24 @@ def validate(payload: dict) -> dict:
         },
         "qualified_inputs": qualified,
         "values": values,
+        "physical_unit_firewall_handoff": (
+            {
+                "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+                "require_nonempty_physical_plant_tag": True,
+                "prior_physical_plant_tags_forbidden": sorted(
+                    physical_handoff["forbidden_tags"]
+                ),
+                "prior_tag_source_references": physical_handoff[
+                    "source_references"
+                ],
+                "prior_tag_set_sha256": physical_handoff[
+                    "prior_tag_set_sha256"
+                ],
+                "frozen_before_outcomes": True,
+            }
+            if physical_handoff is not None
+            else None
+        ),
         "qualification_commit": metadata["qualification_commit"],
         "claim_ceiling": "MINIMUM_RELEVANCE_SOURCE_QUALIFICATION_ONLY_NO_P0_OR_G1_G5_RESULT",
     }
