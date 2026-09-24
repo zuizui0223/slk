@@ -111,7 +111,9 @@ The narrower novelty claim is the **architecture-specific estimand transport** f
 The first prospectively registered same-system empirical target is `Pedicularis rex`:
 
 ```text
-P0 fresh population-season context screen
+P-1 fresh current-context recovery
+-> P0a minimum-relevance natural-history calibration
+-> P0b fresh population-season context screen
 -> G1 causal shared-axis conflict
 -> G2 conflict load L
 -> structural-y Y0-Y3
@@ -121,7 +123,7 @@ P0 fresh population-season context screen
 -> G5 Phi.
 ```
 
-The entire execution path is now registered, including the fresh P0 population-season screen, field calibration, threshold freeze, structural-y promotion, D0 qualification, final G3-G5 precision planning, final sample-size compilation, registered-z-grid field layout, and bootstrap adjudication.
+The entire execution path is now registered, including fresh recovery of a currently usable population-season, P0 minimum-relevance calibration, the fresh P0 population-season screen, field calibration, threshold freeze, structural-y promotion, D0 qualification, final G3-G5 precision planning, final sample-size compilation, registered-z-grid field layout, and bootstrap adjudication.
 
 P0 is deliberately logistical. It requires fresh pollinator activity, fresh predator exposure/attack, a functional water state and adequate flowering-plant capacity. It does **not** use pollen limitation as a pass gate; pollen limitation stays unresolved until Qp calibration. A fully observed low-signal P0 context is `CONTEXT_UNINFORMATIVE_*`, not a biological negative. Plant/flower-based P0 predator and water units now join the same permanent-tag firewall chain used downstream; pollinator P0 units remain independent temporal bouts.
 
@@ -192,8 +194,9 @@ These modules may be cited by SLK without being promoted to independent manuscri
 12. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
 13. `docs/EMPIRICAL_G1_G9_SOURCE_LEDGER_V1.md` — source-adjudicated map of existing biological systems onto G1-G9, with explicit direct/partial/analogue/reality ceilings.
 14. `docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md` — canonical same-system execution order and design-versus-biological status boundary.
-15. `docs/PEDICULARIS_CONTEXT_SCREEN_V1.md` — fresh population-season P0 screen, field packet and relocation rule.
-16. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
+15. `docs/PEDICULARIS_CONTEXT_RECOVERY_V1.md` — fresh current-season candidate recovery gate before any P0 signal work.
+16. `docs/PEDICULARIS_CONTEXT_SCREEN_V1.md` — fresh population-season P0 screen, field packet and relocation rule.
+17. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
 17. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — execution order and stop rules.
 - `docs/PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1.md` — permanent field-tag registry preventing physical-plant reuse across calibration and confirmatory cohorts — Qz/Qp/Qg field execution, hard stops and fallback policy.
 18. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective threshold-freeze rules.
@@ -233,6 +236,8 @@ FIGURE_3_REGISTERED
 PHASE_COORDINATE_BOUNDARY_REGISTERED
 EMPIRICAL_GATE_LADDER_REGISTERED
 EMPIRICAL_SOURCE_SYSTEM_LEDGER_REGISTERED
+PEDICULARIS_CONTEXT_RECOVERY_GATE_REGISTERED
+PEDICULARIS_CONTEXT_RECOVERY_TO_P0_CALIBRATION_HANDOFF_REGISTERED
 PEDICULARIS_CONTEXT_SCREEN_FIELD_PACKET_REGISTERED
 PEDICULARIS_CONTEXT_LOW_SIGNAL_IS_UNINFORMATIVE_NOT_NEGATIVE
 PEDICULARIS_P0_TEMPORAL_AND_UNIT_INTEGRITY_REGISTERED
@@ -259,7 +264,7 @@ PEDICULARIS_G3_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED
 PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED
 PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN
 PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
-FIRST_EXECUTABLE_PEDICULARIS_TASK_IS_RECOVER_CANDIDATE_CONTEXT_AND_FREEZE_P0_SCREEN
+FIRST_EXECUTABLE_PEDICULARIS_TASK_IS_FRESH_CONTEXT_RECOVERY
 K_OPERATIONAL_DEFINITION_REGISTERED
 PRIOR_ART_BOUNDARY_EXPANDED
 FIRST_AMNAT_REVIEWER_REPAIR_ROUND_COMPLETE
