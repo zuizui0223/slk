@@ -14,18 +14,24 @@
     "frozen_before_confirmatory_outcomes": false
   },
   "analysis": {
-    "equivalence_ci_level": 0.90,
+    "equivalence_ci_level": 0.9,
     "directional_superiority_alpha": 0.05,
     "burden_precision_ci_level": 0.95,
     "bootstrap_seed": null,
     "bootstrap_reps": null,
     "minimum_bootstrap_reps": 5000,
-    "minimum_valid_fraction": 0.90,
+    "minimum_valid_fraction": 0.9,
     "resampling_unit": "INDEPENDENT_PLANT"
   },
   "layout": {
-    "low_y_treatments": ["S_QUAL", "SHAM_QUAL", "D0_QUAL"],
-    "high_y_treatments": ["D_QUAL"],
+    "low_y_treatments": [
+      "S_QUAL",
+      "SHAM_QUAL",
+      "D0_QUAL"
+    ],
+    "high_y_treatments": [
+      "D_QUAL"
+    ],
     "low_y_within_plant_randomized": true,
     "high_y_single_natural_state": true
   },
@@ -44,5 +50,15 @@
     "freeze_commit": "REQUIRED_BEFORE_USE",
     "freeze_timestamp": "REQUIRED_BEFORE_USE"
   },
-  "production_status": "D0_CONFIRMATORY_ANALYSIS_PROSPECTIVELY_FROZEN"
+  "production_status": "D0_CONFIRMATORY_ANALYSIS_PROSPECTIVELY_FROZEN",
+  "physical_unit_firewall": {
+    "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+    "require_nonempty_physical_plant_tag": true,
+    "prior_physical_plant_tags_forbidden": [],
+    "prior_tag_source_references": [
+      "REQUIRED_BEFORE_USE"
+    ],
+    "prior_tag_set_sha256": "REQUIRED_BEFORE_USE",
+    "frozen_before_outcomes": false
+  }
 }

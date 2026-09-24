@@ -9,6 +9,11 @@ import random
 from collections import defaultdict
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import validate_current_against_forbidden
+except ImportError:
+    from pedicularis_physical_units import validate_current_against_forbidden
+
 
 DATASET_ID = "PED_D0_QUAL_CONFIRM_V1"
 MARGIN_SCHEMA = "SLK_PEDICULARIS_D0_MARGIN_FREEZE_V1"
@@ -357,6 +362,10 @@ def adjudicate(
     )
 
     _need(bool(rows), "D0 confirmatory rows are empty")
+    physical_receipt = validate_current_against_forbidden(
+        rows,
+        freeze_ctx["_physical_unit_firewall"],
+    )
     for row in rows:
         _need(row.get("dataset_id") == DATASET_ID, "wrong D0 confirmatory dataset id")
         _need(row.get("analysis_partition") == "D0_CONFIRMATORY_QUALIFICATION_ONLY", "wrong analysis partition")
@@ -606,6 +615,10 @@ def adjudicate(
         "endpoint_results": endpoint_results,
         "missingness_summary": missingness_summary,
         "apparatus_burden_receipt": burden_receipt,
+        "physical_unit_firewall": {
+            "status": "CURRENT_COHORT_PHYSICAL_TAGS_VALIDATED_DISJOINT_FROM_PRIOR",
+            **physical_receipt,
+        },
         "firewall": {
             "d0_qualification_units_g3_g5_ineligible": True,
             "margins_frozen_before_confirmatory_outcomes": True,

@@ -23,6 +23,7 @@ FIELDS = [
     "fitness_scale_id",
     "time_horizon_id",
     "plant_id",
+    "physical_plant_tag",
     "phenotype_stratum",
     "flower_id",
     "flower_slot",
@@ -184,6 +185,7 @@ def generate_layout(
         "firewall": {
             "calibration_units_confirmatory_eligible": False,
             "y_cal_and_d0_cal_plant_ids_must_be_disjoint": True,
+            "physical_plant_tags_must_be_filled_and_registry_validated_before_outcomes": True,
         },
     }
     return y_rows, d0_rows, metadata

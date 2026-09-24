@@ -54,6 +54,20 @@ under `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md`.
 
 Calibration units used to set tolerances, timing windows, variance assumptions, or sample floors must be disjoint from the confirmatory qualification units used to decide Qz/Qp/Qg.
 
+## 1.5 Permanent physical-plant identity before cross-cohort firewalls
+
+Dataset-local plant IDs do not prove that calibration and confirmatory cohorts use different real plants.
+
+Before any calibration or confirmatory outcome is opened, every recruited plant must carry a permanent `physical_plant_tag` that is retained across all datasets. After each completed recruitment stage, build/update the cross-cohort registry:
+
+```text
+docs/PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1.md
+scripts/build_pedicularis_physical_plant_registry.py
+```
+
+The D0 confirmatory freeze must forbid all prior calibration physical tags. The G3-G5 freeze must additionally forbid D0 qualification tags and any same-context G1-G2/SCH units declared effect-estimation-ineligible.
+
+A later cohort may use new dataset-local `plant_id` values, but reuse of a frozen prior `physical_plant_tag` is a hard stop.
 ## 2. Required qualification receipts
 
 The corrected Pedicularis V2 path requires three independent source receipts from the same population and season:
@@ -159,6 +173,7 @@ If flower supply permits, Qg, Qz and Qp may be run in parallel on disjoint flowe
 ```text
 - P0 has already admitted the context;
 - assignments are independent;
+- permanent physical-plant tags are recorded and cross-cohort registry checks pass;
 - no flower contributes to more than one pilot;
 - calibration units do not enter qualification tests;
 - each pilot retains its own raw-data contract;

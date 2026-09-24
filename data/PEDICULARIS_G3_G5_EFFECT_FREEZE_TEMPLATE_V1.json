@@ -77,5 +77,15 @@
     "freeze_commit": "REQUIRED_BEFORE_USE",
     "freeze_timestamp": "REQUIRED_BEFORE_USE"
   },
-  "production_status": "PEDICULARIS_G3_G5_EFFECT_PROSPECTIVELY_FROZEN"
+  "production_status": "PEDICULARIS_G3_G5_EFFECT_PROSPECTIVELY_FROZEN",
+  "physical_unit_firewall": {
+    "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+    "require_nonempty_physical_plant_tag": true,
+    "prior_physical_plant_tags_forbidden": [],
+    "prior_tag_source_references": [
+      "REQUIRED_BEFORE_USE"
+    ],
+    "prior_tag_set_sha256": "REQUIRED_BEFORE_USE",
+    "frozen_before_outcomes": false
+  }
 }
