@@ -19,6 +19,7 @@ def _source_records() -> list[dict]:
         "screen_effort.minimum_pollinator_observation_minutes_total",
         "screen_effort.minimum_pollinator_flower_minutes_total",
         "screen_effort.minimum_pollinator_observation_bouts",
+        "screen_effort.minimum_pollinator_minutes_per_bout",
         "screen_effort.minimum_predator_screen_flowers",
         "screen_effort.minimum_water_state_plants",
         "screen_effort.minimum_capacity_margin_fraction",
@@ -54,6 +55,7 @@ def _freeze() -> dict:
             "minimum_pollinator_observation_minutes_total": 60,
             "minimum_pollinator_flower_minutes_total": 120,
             "minimum_pollinator_observation_bouts": 6,
+            "minimum_pollinator_minutes_per_bout": 10,
             "minimum_predator_screen_flowers": 30,
             "minimum_water_state_plants": 20,
             "minimum_capacity_margin_fraction": 0.10,
@@ -121,6 +123,17 @@ def _receipt() -> dict:
             "pollinator_observation_minutes_total": 75,
             "pollinator_flower_minutes_total": 150,
             "pollinator_observation_bouts": 8,
+            "pollinator_bout_details": [
+                {
+                    "record_id": f"POLL-{i:03d}",
+                    "planned_minutes": 10.0,
+                    "observed_minutes": 10.0 if i < 8 else 5.0,
+                    "simultaneously_open_focal_flowers": 2,
+                    "legitimate_visits": 1 if i <= 3 else 0,
+                }
+                for i in range(1, 9)
+            ],
+            "minimum_observed_pollinator_bout_minutes": 5.0,
             "predator_screen_flowers": 40,
             "water_state_plants": 25,
         },
@@ -141,6 +154,19 @@ def _receipt() -> dict:
             "screen_used_for_treatment_effect_estimation": False,
             "zero_detection_interpreted_as_biological_absence": False,
             "pollinator_exposure_unit": "FLOWER_MINUTES",
+        },
+        "packet_completion": {
+            "registered_pollinator_rows": 8,
+            "completed_pollinator_rows": 8,
+            "registered_predator_rows": 40,
+            "completed_predator_rows": 40,
+            "registered_water_rows": 25,
+            "completed_water_rows": 25,
+            "capacity_census_exhaustion_recorded": True,
+            "incomplete_records": 0,
+            "incomplete_reason_counts": {},
+            "incomplete_record_details": [],
+            "missingness_sensitivity_required": False,
         },
         "final_adjudication": "NOT_YET_EXECUTED",
     }
@@ -231,4 +257,32 @@ def test_context_mismatch_is_rejected() -> None:
     receipt = _receipt()
     receipt["context"]["population_id"] = "pop2"
     with pytest.raises(ValueError, match="context mismatch"):
+        module.adjudicate(receipt, _freeze())
+
+
+
+def test_short_bouts_do_not_satisfy_temporal_coverage_even_if_totals_pass() -> None:
+    receipt = _receipt()
+    details = receipt["effort"]["pollinator_bout_details"]
+    details[0]["observed_minutes"] = 5.0
+    details[1]["observed_minutes"] = 5.0
+    details[2]["observed_minutes"] = 20.0
+    receipt["effort"]["minimum_observed_pollinator_bout_minutes"] = 5.0
+    result = module.adjudicate(receipt, _freeze())
+    assert result["status"] == "CONTEXT_SCREEN_INCOMPLETE"
+    assert result["effort"]["checks"]["pollinator_bout_duration"] is False
+    assert result["signals"]["pollinator"]["bouts_meeting_minimum_duration"] == 5
+
+
+def test_fractional_count_receipt_is_rejected() -> None:
+    receipt = _receipt()
+    receipt["observations"]["legitimate_pollinator_visits"] = 3.5
+    with pytest.raises(ValueError, match="integer"):
+        module.adjudicate(receipt, _freeze())
+
+
+def test_pollinator_detail_aggregate_mismatch_is_rejected() -> None:
+    receipt = _receipt()
+    receipt["effort"]["pollinator_bout_details"][0]["legitimate_visits"] = 2
+    with pytest.raises(ValueError, match="visits disagree"):
         module.adjudicate(receipt, _freeze())
