@@ -58,7 +58,7 @@ Calibration units used to set tolerances, timing windows, variance assumptions, 
 
 Dataset-local plant IDs do not prove that calibration and confirmatory cohorts use different real plants.
 
-Before any calibration or confirmatory outcome is opened, every recruited plant must carry a permanent `physical_plant_tag` that is retained across all datasets. After each completed recruitment stage, build/update the cross-cohort registry:
+Before any plant/flower-based P0, calibration or confirmatory outcome is opened, every recruited plant must carry a permanent `physical_plant_tag` that is retained across all datasets. Pollinator P0 bouts remain temporal units. After each completed plant-based recruitment stage, build/update the cross-cohort registry:
 
 ```text
 docs/PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1.md
@@ -68,6 +68,9 @@ scripts/build_pedicularis_physical_plant_registry.py
 The D0 confirmatory freeze must forbid all prior calibration physical tags. The G3-G5 freeze must additionally forbid D0 qualification tags and any same-context G1-G2/SCH units declared effect-estimation-ineligible.
 
 A later cohort may use new dataset-local `plant_id` values, but reuse of a frozen prior `physical_plant_tag` is a hard stop.
+
+
+The P0 natural-history calibration receipt supplies the first forbidden-tag block. The P0 context-screen adjudication extends it with the screen predator/water plants. When Y-CAL/D0-CAL are recruited, pass that block to the registry builder with `--prior-firewall-json`; the registry then rejects P0 reuse and emits the extended firewall for D0 confirmatory recruitment.
 ## 2. Required qualification receipts
 
 The corrected Pedicularis V2 path requires three independent source receipts from the same population and season:
