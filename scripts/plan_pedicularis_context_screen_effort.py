@@ -5,6 +5,11 @@ import json
 import math
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import validate_firewall_block
+except ImportError:
+    from pedicularis_physical_units import validate_firewall_block
+
 
 SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_EFFORT_FREEZE_V1"
 PRODUCTION_STATUS = "PEDICULARIS_CONTEXT_SCREEN_EFFORT_PROSPECTIVELY_FROZEN"
@@ -170,6 +175,21 @@ def plan(freeze: dict) -> dict:
         label="water-state",
     )
 
+    fresh_calibration_source_used = any(
+        source["source_type"] == "INDEPENDENT_NATURAL_HISTORY_CALIBRATION"
+        for source in (rate_source, pred_source, water_source)
+    )
+    raw_physical_handoff = freeze.get("physical_unit_firewall_handoff")
+    physical_handoff = None
+    if fresh_calibration_source_used:
+        _need(
+            isinstance(raw_physical_handoff, dict),
+            "fresh calibration source requires physical-unit firewall handoff",
+        )
+        physical_handoff = validate_firewall_block(raw_physical_handoff)
+    elif raw_physical_handoff is not None:
+        physical_handoff = validate_firewall_block(raw_physical_handoff)
+
     capacity = freeze.get("capacity", {})
     reserve = _positive(capacity.get("reserve_fraction"), "capacity reserve fraction")
     _need(reserve <= 1, "capacity reserve fraction must be <= 1")
@@ -255,8 +275,23 @@ def plan(freeze: dict) -> dict:
             "census_rule": CAPACITY_RULE,
             "source": capacity_source,
         },
-        "physical_unit_firewall_handoff": freeze.get(
-            "physical_unit_firewall_handoff"
+        "physical_unit_firewall_handoff": (
+            {
+                "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
+                "require_nonempty_physical_plant_tag": True,
+                "prior_physical_plant_tags_forbidden": sorted(
+                    physical_handoff["forbidden_tags"]
+                ),
+                "prior_tag_source_references": physical_handoff[
+                    "source_references"
+                ],
+                "prior_tag_set_sha256": physical_handoff[
+                    "prior_tag_set_sha256"
+                ],
+                "frozen_before_outcomes": True,
+            }
+            if physical_handoff is not None
+            else None
         ),
         "freeze_provenance": {
             "effort_freeze_commit": metadata["freeze_commit"],
