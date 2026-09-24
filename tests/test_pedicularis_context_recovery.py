@@ -172,3 +172,18 @@ def test_freeze_must_be_prospective() -> None:
     freeze["context"]["frozen_before_recovery_observations"] = False
     with pytest.raises(ValueError, match="not frozen before observations"):
         adj.adjudicate(_obs(), freeze)
+
+
+
+def test_unregistered_candidate_cannot_be_frozen() -> None:
+    freeze = _freeze()
+    freeze["context"]["candidate_id"] = "MADE_UP_SITE"
+    with pytest.raises(ValueError, match="not uniquely registered"):
+        adj.adjudicate(_obs(), freeze)
+
+
+def test_historical_source_must_match_candidate_ledger() -> None:
+    freeze = _freeze()
+    freeze["historical_anchor"]["source_reference"] = "WRONG_SOURCE"
+    with pytest.raises(ValueError, match="source_reference does not match"):
+        adj.adjudicate(_obs(), freeze)
