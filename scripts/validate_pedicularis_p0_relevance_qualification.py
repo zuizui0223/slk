@@ -82,12 +82,16 @@ def validate(payload: dict) -> dict:
 
     qualified = []
     values = {}
-    fresh_route_used = any(
-        row.get("qualification_route") == "FRESH_INDEPENDENT_CALIBRATION"
+    plant_based_fresh_route_used = any(
+        row.get("input_id") in {
+            "P0_PREDATOR_MIN_PREVALENCE",
+            "P0_WATER_POSITIVE_PREVALENCE",
+        }
+        and row.get("qualification_route") == "FRESH_INDEPENDENT_CALIBRATION"
         for row in inputs
     )
     physical_handoff = None
-    if fresh_route_used:
+    if plant_based_fresh_route_used:
         raw_handoff = payload.get("physical_unit_firewall_handoff")
         _need(
             isinstance(raw_handoff, dict),
