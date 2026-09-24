@@ -1,0 +1,97 @@
+from __future__ import annotations
+
+import importlib.util
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).resolve().parents[1]
+GEN = ROOT / "scripts" / "generate_pedicularis_context_recovery_packet.py"
+ADJ = ROOT / "scripts" / "adjudicate_pedicularis_context_recovery.py"
+
+spec = importlib.util.spec_from_file_location("ped_context_packet_gen", GEN)
+gen = importlib.util.module_from_spec(spec)
+assert spec.loader is not None
+spec.loader.exec_module(gen)
+
+spec2 = importlib.util.spec_from_file_location("ped_context_recovery_adj_for_packet", ADJ)
+adj = importlib.util.module_from_spec(spec2)
+assert spec2.loader is not None
+spec2.loader.exec_module(adj)
+
+
+def _packet() -> dict:
+    return gen.build_packet(
+        candidate_id="SHANGRILA_WUFENG",
+        candidate_site_id="site-wufeng",
+        population_id="pop-wufeng-2027",
+        season_id="2027",
+        recovery_window_id="recovery-2027-a",
+        p0_relevance_calibration_window_id="p0-cal-2027-a",
+        p0_screen_window_id="p0-screen-2027-a",
+    )
+
+
+def test_packet_uses_canonical_candidate_ledger_snapshot() -> None:
+    packet = _packet()
+    snap = packet["candidate_ledger_snapshot"]
+    assert snap["candidate_id"] == "SHANGRILA_WUFENG"
+    assert snap["source_type"] == "DIRECT_INTERACTION_FIELD_SITE"
+    assert snap["source_reference"] == "10.1098/rsbl.2013.0387"
+    assert snap["current_status"] == "HISTORICAL_CANDIDATE_ONLY"
+    freeze = packet["freeze_draft"]
+    assert freeze["historical_anchor"]["source_reference"] == snap["source_reference"]
+    assert freeze["historical_anchor"]["candidate_status_before_recovery"] == snap["current_status"]
+
+
+def test_generated_draft_cannot_be_adjudicated_before_freeze() -> None:
+    packet = _packet()
+    freeze = packet["freeze_draft"]
+    obs = packet["observation_template"]
+    obs["status"] = "FRESH_CONTEXT_RECOVERY_DATA"
+    with pytest.raises(ValueError, match="must be FROZEN_CANDIDATE"):
+        adj.adjudicate(obs, freeze)
+
+
+def test_unknown_candidate_is_rejected() -> None:
+    with pytest.raises(ValueError, match="not uniquely registered"):
+        gen.build_packet(
+            candidate_id="NOT_IN_LEDGER",
+            candidate_site_id="site-x",
+            population_id="pop-x",
+            season_id="2027",
+            recovery_window_id="rec-x",
+            p0_relevance_calibration_window_id="cal-x",
+            p0_screen_window_id="screen-x",
+        )
+
+
+def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
+    packet = _packet()
+    freeze = packet["freeze_draft"]
+    freeze["status"] = "FROZEN_CANDIDATE"
+    freeze["context"]["frozen_before_recovery_observations"] = True
+    freeze["freeze_metadata"] = {
+        "slk_source_commit": "abc123",
+        "freeze_commit": "freeze123",
+        "freeze_timestamp": "2027-05-01T00:00:00Z",
+    }
+
+    obs = packet["observation_template"]
+    obs["status"] = "FRESH_CONTEXT_RECOVERY_DATA"
+    obs["fresh_verification"].update(
+        {
+            "verification_date": "2027-06-15",
+            "verification_source_reference": "FIELD_RECOVERY_LOG_001",
+            "taxon_identity_confirmed": True,
+            "flowering_population_present": True,
+            "independent_flowering_plants_seen": 8,
+            "site_access_confirmed": True,
+            "sampling_permission_status": "CONFIRMED",
+            "same_season_revisit_feasible": True,
+        }
+    )
+
+    out = adj.adjudicate(obs, freeze)
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["context"]["candidate_id"] == "SHANGRILA_WUFENG"
