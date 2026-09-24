@@ -6,6 +6,17 @@ import json
 import math
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_physical_units import (
+        canonical_tag_hash,
+        validate_physical_plant_mapping,
+    )
+except ImportError:
+    from pedicularis_physical_units import (
+        canonical_tag_hash,
+        validate_physical_plant_mapping,
+    )
+
 
 RECEIPT_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_RECEIPT_V1"
 
@@ -78,6 +89,10 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     water_rows = [row for row in rows if row.get("record_type") == "WATER_PLANT"]
     _need(len(census_rows) == 1, "context screen packet must contain exactly one CENSUS row")
     _need(bool(poll_rows) and bool(pred_rows) and bool(water_rows), "context screen packet is missing a registered screen block")
+
+    physical_rows = pred_rows + water_rows
+    physical_mapping = validate_physical_plant_mapping(physical_rows)
+    physical_tags = sorted(set(physical_mapping.values()))
 
     census_row = census_rows[0]
     census_raw = str(census_row.get("flowering_plants_censused", "")).strip()
@@ -264,6 +279,17 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         "context": {
             "system": "Pedicularis rex",
             **ctx,
+        },
+        "physical_unit_audit": {
+            "status": "P0_SCREEN_PLANT_TAGS_VALIDATED",
+            "assignment_to_physical_tag": physical_mapping,
+            "current_physical_plant_count": len(physical_tags),
+            "current_physical_plant_tags": physical_tags,
+            "current_tag_set_sha256": canonical_tag_hash(physical_tags),
+            "scope_note": (
+                "Permanent-tag firewall covers plant/flower-based predator and water screen units. "
+                "Pollinator screen independence remains temporal at the observation-bout level."
+            ),
         },
         "effort": {
             "independent_flowering_plants_censused": census,
