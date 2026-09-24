@@ -64,6 +64,22 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     out = copy.deepcopy(screen)
     raw_handoff = plan.get("physical_unit_firewall_handoff")
     if raw_handoff is None:
+        template_firewall = screen.get("physical_unit_firewall")
+        template_has_prior = (
+            isinstance(template_firewall, dict)
+            and (
+                bool(
+                    template_firewall.get(
+                        "prior_physical_plant_tags_forbidden"
+                    )
+                )
+                or template_firewall.get("frozen_before_outcomes") is True
+            )
+        )
+        if template_has_prior:
+            raw_handoff = template_firewall
+
+    if raw_handoff is None:
         physical_block = {
             "schema_version": FIREWALL_SCHEMA,
             "require_nonempty_physical_plant_tag": True,
