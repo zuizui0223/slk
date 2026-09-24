@@ -203,7 +203,7 @@ def test_recent_assessment_candidate_can_enter_fresh_recovery_gate() -> None:
     freeze["historical_anchor"].update(
         {
             "source_type": "RECENT_ENVIRONMENTAL_ASSESSMENT",
-            "source_reference": "XGLL_GOV_EIA_2025-10-13_P69",
+            "source_reference": "XGLL_EIA_2025",
             "candidate_status_before_recovery": "RECENT_ASSESSMENT_OCCURRENCE_ONLY",
         }
     )
