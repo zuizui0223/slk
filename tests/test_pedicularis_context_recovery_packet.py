@@ -90,11 +90,17 @@ def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
             "verification_date": "2027-06-15",
             "verification_source_reference": "FIELD_RECOVERY_LOG_001",
             "taxon_identity_confirmed": True,
+            "taxon_verification_method": "FIELD_MORPHOLOGY_PHOTO",
+            "taxon_evidence_reference": "PHOTO_SET_TAXON_001",
             "flowering_population_present": True,
+            "flowering_population_evidence_reference": "PHOTO_SET_FLOWERING_001",
             "independent_flowering_plants_seen": 8,
             "site_access_confirmed": True,
+            "access_evidence_reference": "FIELD_ACCESS_LOG_001",
             "sampling_permission_status": "CONFIRMED",
+            "sampling_permission_reference": "PERMIT_001",
             "same_season_revisit_feasible": True,
+            "revisit_plan_reference": "REVISIT_PLAN_001",
         }
     )
 

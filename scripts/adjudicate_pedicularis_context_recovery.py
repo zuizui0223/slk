@@ -15,6 +15,12 @@ ALLOWED_PRIOR_STATUSES = {
     "RECENT_ASSESSMENT_OCCURRENCE_ONLY",
 }
 ALLOWED_PERMISSION = {"CONFIRMED", "NOT_REQUIRED"}
+ALLOWED_TAXON_VERIFICATION_METHODS = {
+    "FIELD_MORPHOLOGY_PHOTO",
+    "VOUCHER_OR_SPECIMEN",
+    "EXPERT_CONFIRMATION",
+    "COMBINED",
+}
 CANDIDATE_LEDGER_PATH = (
     Path(__file__).resolve().parents[1]
     / "data"
@@ -31,6 +37,13 @@ def _filled(value: object, label: str) -> str:
     out = str(value).strip()
     _need(bool(out) and "REQUIRED_BEFORE_USE" not in out, f"unfrozen {label}")
     return out
+
+
+def _optional_text(value: object) -> str | None:
+    text = str(value).strip()
+    if not text or "REQUIRED_BEFORE_USE" in text:
+        return None
+    return text
 
 
 def _optional_bool(value: object, label: str) -> bool | None:
@@ -167,6 +180,24 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
     permission_raw = str(fresh.get("sampling_permission_status", "")).strip()
     revisit = _optional_bool(fresh.get("same_season_revisit_feasible"), "same_season_revisit_feasible")
 
+    taxon_method = _optional_text(fresh.get("taxon_verification_method"))
+    if taxon_method is not None:
+        _need(
+            taxon_method in ALLOWED_TAXON_VERIFICATION_METHODS,
+            "unregistered taxon verification method",
+        )
+    evidence = {
+        "taxon": _optional_text(fresh.get("taxon_evidence_reference")),
+        "flowering_population": _optional_text(
+            fresh.get("flowering_population_evidence_reference")
+        ),
+        "access": _optional_text(fresh.get("access_evidence_reference")),
+        "sampling_permission": _optional_text(
+            fresh.get("sampling_permission_reference")
+        ),
+        "revisit_plan": _optional_text(fresh.get("revisit_plan_reference")),
+    }
+
     complete = (
         bool(verification_date)
         and "REQUIRED_BEFORE_USE" not in verification_date
@@ -178,6 +209,8 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
         and access is not None
         and permission_raw not in {"", "REQUIRED_BEFORE_USE"}
         and revisit is not None
+        and taxon_method is not None
+        and all(value is not None for value in evidence.values())
     )
 
     if not complete:
@@ -212,11 +245,19 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             "verification_date": verification_date or None,
             "verification_source_reference": source_reference or None,
             "taxon_identity_confirmed": taxon,
+            "taxon_verification_method": taxon_method,
+            "taxon_evidence_reference": evidence["taxon"],
             "flowering_population_present": flowering,
+            "flowering_population_evidence_reference": evidence[
+                "flowering_population"
+            ],
             "independent_flowering_plants_seen": plants_seen,
             "site_access_confirmed": access,
+            "access_evidence_reference": evidence["access"],
             "sampling_permission_status": permission_raw or None,
+            "sampling_permission_reference": evidence["sampling_permission"],
             "same_season_revisit_feasible": revisit,
+            "revisit_plan_reference": evidence["revisit_plan"],
         },
         "historical_anchor": cfg["historical_anchor"],
         "downstream_handoff": {

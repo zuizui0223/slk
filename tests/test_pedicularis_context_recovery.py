@@ -88,11 +88,17 @@ def _obs() -> dict:
             "verification_date": "2027-06-15",
             "verification_source_reference": "FIELD_RECOVERY_LOG_2027_001",
             "taxon_identity_confirmed": True,
+            "taxon_verification_method": "FIELD_MORPHOLOGY_PHOTO",
+            "taxon_evidence_reference": "PHOTO_SET_TAXON_001",
             "flowering_population_present": True,
+            "flowering_population_evidence_reference": "PHOTO_SET_FLOWERING_001",
             "independent_flowering_plants_seen": 12,
             "site_access_confirmed": True,
+            "access_evidence_reference": "FIELD_ACCESS_LOG_001",
             "sampling_permission_status": "CONFIRMED",
+            "sampling_permission_reference": "PERMIT_001",
             "same_season_revisit_feasible": True,
+            "revisit_plan_reference": "REVISIT_PLAN_001",
             "notes": "fresh context only",
         },
         "prohibited_recovery_inferences": {
@@ -222,3 +228,29 @@ def test_recent_assessment_candidate_can_enter_fresh_recovery_gate() -> None:
     assert out["historical_anchor"]["candidate_status_before_recovery"] == (
         "RECENT_ASSESSMENT_OCCURRENCE_ONLY"
     )
+
+
+
+def test_recovery_without_evidence_references_is_incomplete() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_evidence_reference"] = ""
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_INCOMPLETE"
+    assert out["downstream_handoff"]["p0_relevance_calibration_authorized"] is False
+
+
+def test_unregistered_taxon_verification_method_is_rejected() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_verification_method"] = "GUESS"
+    with pytest.raises(ValueError, match="unregistered taxon verification method"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_positive_receipt_preserves_recovery_evidence_references() -> None:
+    out = adj.adjudicate(_obs(), _freeze())
+    fresh = out["fresh_verification"]
+    assert fresh["taxon_evidence_reference"] == "PHOTO_SET_TAXON_001"
+    assert fresh["flowering_population_evidence_reference"] == "PHOTO_SET_FLOWERING_001"
+    assert fresh["access_evidence_reference"] == "FIELD_ACCESS_LOG_001"
+    assert fresh["sampling_permission_reference"] == "PERMIT_001"
+    assert fresh["revisit_plan_reference"] == "REVISIT_PLAN_001"

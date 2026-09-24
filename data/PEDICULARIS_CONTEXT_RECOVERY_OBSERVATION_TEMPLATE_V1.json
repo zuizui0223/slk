@@ -18,7 +18,13 @@
     "site_access_confirmed": null,
     "sampling_permission_status": "REQUIRED_BEFORE_USE",
     "same_season_revisit_feasible": null,
-    "notes": ""
+    "notes": "",
+    "taxon_verification_method": "REQUIRED_BEFORE_USE",
+    "taxon_evidence_reference": "REQUIRED_BEFORE_USE",
+    "flowering_population_evidence_reference": "REQUIRED_BEFORE_USE",
+    "access_evidence_reference": "REQUIRED_BEFORE_USE",
+    "sampling_permission_reference": "REQUIRED_BEFORE_USE",
+    "revisit_plan_reference": "REQUIRED_BEFORE_USE"
   },
   "prohibited_recovery_inferences": {
     "pollinator_signal_scored": false,

@@ -31,6 +31,29 @@ AND a same-season revisit for P0 work is feasible.
 
 The flowering-plant count here is an existence check only. It is **not** the P0 capacity census and cannot establish the 84-plant calibration requirement.
 
+
+Every resolved recovery decision must be auditable. A complete observation therefore carries:
+
+```text
+taxon_verification_method
+taxon_evidence_reference
+flowering_population_evidence_reference
+access_evidence_reference
+sampling_permission_reference
+revisit_plan_reference.
+```
+
+Registered taxon-verification routes are:
+
+```text
+FIELD_MORPHOLOGY_PHOTO
+VOUCHER_OR_SPECIMEN
+EXPERT_CONFIRMATION
+COMBINED.
+```
+
+A boolean `taxon_identity_confirmed=true` without its evidence reference is incomplete, not a pass. The same rule applies to flowering presence, access, permission and revisit feasibility.
+
 ## What recovery does not ask
 
 Recovery must not score or infer:
