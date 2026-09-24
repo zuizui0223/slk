@@ -28,6 +28,9 @@ p0_decision_eligible = false
 downstream_confirmatory_eligible = false.
 ```
 
+
+For predator-flower and water-state rows, the field sheet also requires a permanent `physical_plant_tag`. The same real plant must retain the same tag across datasets. The calibration receipt validates the tag mapping and exports a hash-locked next-stage firewall for the P0 screen. Pollinator calibration remains an independent temporal-bout design and is not redefined as a plant-level unit.
+
 They may not enter:
 
 ```text
