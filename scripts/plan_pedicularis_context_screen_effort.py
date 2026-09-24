@@ -175,13 +175,13 @@ def plan(freeze: dict) -> dict:
         label="water-state",
     )
 
-    fresh_calibration_source_used = any(
+    fresh_plant_calibration_source_used = any(
         source["source_type"] == "INDEPENDENT_NATURAL_HISTORY_CALIBRATION"
-        for source in (rate_source, pred_source, water_source)
+        for source in (pred_source, water_source)
     )
     raw_physical_handoff = freeze.get("physical_unit_firewall_handoff")
     physical_handoff = None
-    if fresh_calibration_source_used:
+    if fresh_plant_calibration_source_used:
         _need(
             isinstance(raw_physical_handoff, dict),
             "fresh calibration source requires physical-unit firewall handoff",
