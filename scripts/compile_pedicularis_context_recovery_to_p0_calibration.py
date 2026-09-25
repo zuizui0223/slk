@@ -20,7 +20,7 @@ def compile_recovery(receipt: dict, calibration_template: dict) -> dict:
     _need(receipt.get("status") == READY_STATUS, "context recovery is not ready for P0 calibration")
     handoff = receipt.get("downstream_handoff", {})
     _need(handoff.get("p0_relevance_calibration_authorized") is True, "P0 relevance calibration not authorized")
-    permission_receipt = handoff.get("p0a_permission_scope_receipt")
+    permission_receipt = handoff.get("non_destructive_permission_scope_receipt")
     _need(
         isinstance(permission_receipt, dict),
         "P0a permission scope receipt missing from recovery handoff",
