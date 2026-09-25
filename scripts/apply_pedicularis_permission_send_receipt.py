@@ -44,6 +44,25 @@ def _filled(value: object, label: str) -> str:
     return text
 
 
+def _allowed_specific_contacts(canonical: str) -> set[str]:
+    parts = {
+        part.strip()
+        for part in canonical.split(";")
+        if part.strip()
+    }
+    return parts or {canonical.strip()}
+
+
+def _validate_channel_contact(channel: str, contact: str) -> None:
+    if channel == "EMAIL":
+        _need("@" in contact, "EMAIL send channel requires an email contact")
+    elif channel == "PHONE_SCRIPT":
+        _need(
+            any(ch.isdigit() for ch in contact),
+            "PHONE_SCRIPT send channel requires a phone-like contact",
+        )
+
+
 def _sent_at(value: object) -> datetime:
     text = _filled(value, "sent_at")
     try:
@@ -136,6 +155,10 @@ def apply_send_receipt(
         send_channel in ALLOWED_CHANNELS,
         f"unregistered manual send channel: {send_channel}",
     )
+    canonical_contact_snapshot = _filled(
+        send_receipt.get("canonical_contact_snapshot"),
+        "canonical_contact_snapshot",
+    )
     sent_to_contact = _filled(
         send_receipt.get("sent_to_contact"),
         "sent_to_contact",
@@ -163,10 +186,17 @@ def apply_send_receipt(
         "send receipt candidate/message mismatch",
     )
     message = ready["message"]
+    message_contact = str(message.get("public_contact", "")).strip()
     _need(
-        sent_to_contact == str(message.get("public_contact", "")).strip(),
-        "send receipt contact/message mismatch",
+        canonical_contact_snapshot == message_contact,
+        "send receipt canonical contact/message mismatch",
     )
+    allowed_contacts = _allowed_specific_contacts(message_contact)
+    _need(
+        sent_to_contact in allowed_contacts,
+        "send receipt contact is not a registered canonical contact option",
+    )
+    _validate_channel_contact(send_channel, sent_to_contact)
     _need(
         sent_content_sha256 == ready["message_content_sha256"],
         "send receipt content hash/message mismatch",
@@ -224,6 +254,7 @@ def apply_send_receipt(
         "sent_at": sent_at.isoformat(),
         "outreach_date": sent_at.date().isoformat(),
         "send_channel": send_channel,
+        "canonical_contact_snapshot": canonical_contact_snapshot,
         "sent_to_contact": sent_to_contact,
         "sent_message_reference": sent_message_reference,
         "message_content_sha256": sent_content_sha256,
