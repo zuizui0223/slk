@@ -176,6 +176,8 @@ def test_wufeng_local_routing_contact_cannot_authorize_site_scope() -> None:
                 "response_date": "2027-05-10",
                 "response_reference": "FORESTRY-EMAIL-003",
                 "activity_decisions": reg,
+                "valid_from": "2027-05-10",
+                "valid_through": "2027-09-30",
             },
             {
                 "response_id": "LOCAL-001",
