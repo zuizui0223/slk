@@ -110,7 +110,7 @@ def validate_freeze(freeze: dict) -> dict:
     ctx = freeze.get("context", {})
     _need(ctx.get("system") == "Pedicularis rex", "wrong system")
     _need(ctx.get("dataset_id") == DATASET_ID, "wrong calibration dataset id")
-    for key in ("candidate_site_id", "population_id", "season_id", "calibration_window_id", "future_p0_screen_window_id"):
+    for key in ("candidate_id", "candidate_site_id", "population_id", "season_id", "calibration_window_id", "future_p0_screen_window_id"):
         _filled(ctx.get(key), f"context.{key}")
     planned_start = _iso_date(
         ctx.get("planned_calibration_start_date"),
@@ -139,6 +139,10 @@ def validate_freeze(freeze: dict) -> dict:
     _need(
         permission.get("status") == PERMISSION_RECEIPT_STATUS,
         "P0a permission scope receipt is not confirmed",
+    )
+    _need(
+        permission.get("candidate_id") == ctx["candidate_id"],
+        "P0a permission scope receipt candidate mismatch",
     )
     _need(
         permission.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
@@ -456,6 +460,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
         "status": status,
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": ctx["candidate_id"],
             "candidate_site_id": ctx["candidate_site_id"],
             "population_id": ctx["population_id"],
             "season_id": ctx["season_id"],
