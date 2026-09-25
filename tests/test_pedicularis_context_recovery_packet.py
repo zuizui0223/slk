@@ -121,6 +121,43 @@ def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
             }
             for activity_id in "ABC"
         },
+        "all_activity_matrix": {
+            activity_id: (
+                {"regulatory": "PASS", "site": "PASS"}
+                if activity_id in "ABC"
+                else {"regulatory": "UNRESOLVED", "site": "UNRESOLVED"}
+            )
+            for activity_id in "ABCDEF"
+        },
+        "all_activity_validity": {
+            activity_id: (
+                {
+                    "regulatory": [
+                        {
+                            "response_id": "REG-001",
+                            "route_id": "TEST-REG",
+                            "response_reference": "REG-REF",
+                            "decision": "ALLOWED",
+                            "valid_from": "2027-05-01",
+                            "valid_through": "2027-09-30",
+                        }
+                    ],
+                    "site": [
+                        {
+                            "response_id": "SITE-001",
+                            "route_id": "TEST-SITE",
+                            "response_reference": "SITE-REF",
+                            "decision": "ALLOWED",
+                            "valid_from": "2027-05-01",
+                            "valid_through": "2027-09-30",
+                        }
+                    ],
+                }
+                if activity_id in "ABC"
+                else {"regulatory": [], "site": []}
+            )
+            for activity_id in "ABCDEF"
+        },
         "sampling_permission_reference": (
             "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
         )
