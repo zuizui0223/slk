@@ -25,6 +25,7 @@ _spec_manager.loader.exec_module(manager)
 SEND_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_V1"
 READY_MESSAGES_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_MESSAGE_DRAFTS_V1"
 ALLOWED_CHANNELS = {"EMAIL", "WEB_FORM", "LETTER", "PHONE_SCRIPT", "IN_PERSON_HANDOFF"}
+ALLOWED_SENT_LANGUAGES = {"CN", "EN", "BILINGUAL"}
 
 
 def _need(ok: bool, message: str) -> None:
@@ -132,15 +133,31 @@ def _ready_message(payload: dict, route_id: str) -> dict:
         and send_guard.get("automatic_send_allowed") is False,
         f"route message send guard invalid: {route_id}",
     )
-    canonical_hash = guard.message_content_sha256(message)
+    expected_hashes = {
+        "CN": guard.message_content_sha256(message, language="CN"),
+        "EN": guard.message_content_sha256(message, language="EN"),
+        "BILINGUAL": guard.message_content_sha256(
+            message,
+            language="BILINGUAL",
+        ),
+    }
     _need(
-        message.get("message_content_sha256") == canonical_hash,
-        f"ready message content hash mismatch: {route_id}",
+        message.get("message_content_sha256_cn") == expected_hashes["CN"],
+        f"ready CN message content hash mismatch: {route_id}",
+    )
+    _need(
+        message.get("message_content_sha256_en") == expected_hashes["EN"],
+        f"ready EN message content hash mismatch: {route_id}",
+    )
+    _need(
+        message.get("message_content_sha256_bilingual")
+        == expected_hashes["BILINGUAL"],
+        f"ready bilingual message content hash mismatch: {route_id}",
     )
     return {
         "candidate_id": candidate_id,
         "message": message,
-        "message_content_sha256": canonical_hash,
+        "message_content_sha256_by_language": expected_hashes,
     }
 
 
@@ -165,6 +182,14 @@ def apply_send_receipt(
     _need(
         send_channel in ALLOWED_CHANNELS,
         f"unregistered manual send channel: {send_channel}",
+    )
+    sent_language = _filled(
+        send_receipt.get("sent_language"),
+        "sent_language",
+    )
+    _need(
+        sent_language in ALLOWED_SENT_LANGUAGES,
+        f"unregistered sent language: {sent_language}",
     )
     canonical_contact_snapshot = _filled(
         send_receipt.get("canonical_contact_snapshot"),
@@ -208,8 +233,11 @@ def apply_send_receipt(
         "send receipt contact is not a registered canonical contact option",
     )
     _validate_channel_contact(send_channel, sent_to_contact)
+    expected_sent_hash = ready["message_content_sha256_by_language"][
+        sent_language
+    ]
     _need(
-        sent_content_sha256 == ready["message_content_sha256"],
+        sent_content_sha256 == expected_sent_hash,
         "send receipt content hash/message mismatch",
     )
 
@@ -265,6 +293,7 @@ def apply_send_receipt(
         "sent_at": sent_at.isoformat(),
         "outreach_date": sent_at.date().isoformat(),
         "send_channel": send_channel,
+        "sent_language": sent_language,
         "canonical_contact_snapshot": canonical_contact_snapshot,
         "sent_to_contact": sent_to_contact,
         "sent_message_reference": sent_message_reference,
