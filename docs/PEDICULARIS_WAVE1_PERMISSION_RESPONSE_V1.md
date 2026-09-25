@@ -103,6 +103,15 @@ conditions_compatible_with_registered_activity
 conditions_review_reference.
 ```
 
+
+`conditions` must be explicit. If the authority/site states that there are no additional conditions, record:
+
+```text
+NO_ADDITIONAL_CONDITIONS
+```
+
+rather than leaving the field blank. Missing condition text is unresolved and cannot support a positive effective scope.
+
 If `conditions_compatible_with_registered_activity = true`, the positive decision may contribute a validity interval to that authority side.
 
 If it is `false`, the raw authority decision remains visible as `ALLOWED` or `NO_PERMISSION_REQUIRED`, but the **effective scope decision is BLOCKED** for the registered protocol. The receipt does not silently reinterpret restrictive conditions as permission.
