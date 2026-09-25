@@ -199,8 +199,7 @@ def apply_followup_send_receipt(
     )
 
     policy_freeze_time = datetime.fromisoformat(
-        plan["policy_freeze_commit"]
-        and planner.policy_validator.validate(policy_payload)["freeze_timestamp"]
+        plan["policy_freeze_timestamp"]
     )
     initial_send._need(
         policy_freeze_time <= sent_at,
