@@ -16,11 +16,11 @@ def test_wave1_permission_contacts_cover_all_candidates_without_permission_promo
     out = mod.validate()
     assert out["status"] == "WAVE1_PERMISSION_CONTACT_ROUTES_VALIDATED"
     assert out["candidate_count"] == 3
-    assert out["route_count"] == 6
+    assert out["route_count"] == 7
     assert out["permission_status"] == "UNRESOLVED_FOR_ALL"
     assert out["candidate_route_counts"] == {
         "SHANGRILA_ALPINE_BOT_GARDEN": 2,
-        "SHANGRILA_WUFENG": 2,
+        "SHANGRILA_WUFENG": 3,
         "SONGZANLIN_EIA_2025": 2,
     }
     assert out["route_type_counts"]["REGULATORY_ROUTING"] == 3
