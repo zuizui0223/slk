@@ -64,6 +64,14 @@ def test_human_review_can_mark_messages_ready_for_manual_send_only() -> None:
     }
     assert all(m["status"] == "READY_FOR_MANUAL_SEND" for m in out["messages"])
     assert all(
+        len(m["message_content_sha256"]) == 64
+        for m in out["messages"]
+    )
+    assert all(
+        m["message_content_sha256"] == guard.message_content_sha256(m)
+        for m in out["messages"]
+    )
+    assert all(
         m["send_guard"]["automatic_send_allowed"] is False
         for m in out["messages"]
     )
@@ -74,3 +82,15 @@ def test_send_guard_rejects_automatic_send_promotion() -> None:
     payload["messages"][0]["send_guard"]["automatic_send_allowed"] = True
     with pytest.raises(ValueError, match="automatic send must remain disabled"):
         guard.validate_and_prepare(payload, human_review_approved=True)
+
+
+
+def test_message_content_hash_changes_when_reviewed_body_changes() -> None:
+    out = guard.validate_and_prepare(
+        _filled_payload(),
+        human_review_approved=True,
+    )
+    message = out["messages"][0]
+    original = message["message_content_sha256"]
+    message["body_en"] += "\nAdditional sentence."
+    assert guard.message_content_sha256(message) != original
