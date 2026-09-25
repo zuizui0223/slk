@@ -11,5 +11,6 @@
   "sent_content_sha256": "REQUIRED_BEFORE_USE",
   "manual_send_confirmed": false,
   "sender_identity_reference": "REQUIRED_BEFORE_USE",
-  "notes": ""
+  "notes": "",
+  "canonical_contact_snapshot": "REQUIRED_BEFORE_USE"
 }
