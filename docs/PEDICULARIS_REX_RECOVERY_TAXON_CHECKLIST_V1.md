@@ -71,7 +71,21 @@ NEW_FIELD_VOUCHER.
 
 For `PREEXISTING_AUTHORIZED_SPECIMEN`, the recovery record must cite the accession / authorization / provenance reference showing that the material already exists lawfully.
 
-For `NEW_FIELD_VOUCHER`, the ordinary A-C non-destructive permission scope is not enough. Activity D (voucher specimen collection) must be PASS on both regulatory and site sides and valid on the actual recovery date.
+A specimen route must also carry a same-context specimen receipt:
+
+```text
+schema_version = SLK_PEDICULARIS_RECOVERY_SPECIMEN_CONTEXT_RECEIPT_V1
+specimen_reference
+collection_date
+candidate_site_id
+population_id
+season_id
+provenance_reference.
+```
+
+The site, population and season must match the active recovery context. When the season id is a four-digit year, the collection date must fall in that year. Therefore an older museum/herbarium specimen from a previous season cannot by itself satisfy the **fresh** taxon-confirmation gate.
+
+For `NEW_FIELD_VOUCHER`, the ordinary A-C non-destructive permission scope is not enough. Activity D (voucher specimen collection) must be PASS on both regulatory and site sides and valid on the actual recovery date. The specimen collection date must equal the recovery verification date.
 
 `COMBINED` must explicitly name its second route:
 
