@@ -7,13 +7,24 @@ from collections import defaultdict
 from datetime import date
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_permission_activity_definitions import (
+        HASH_ALGORITHM as ACTIVITY_HASH_ALGORITHM,
+        activity_definition_sha256,
+        load_registry as load_activity_definition_registry,
+        registry_sha256 as activity_registry_sha256,
+    )
+except ImportError:
+    from pedicularis_permission_activity_definitions import (
+        HASH_ALGORITHM as ACTIVITY_HASH_ALGORITHM,
+        activity_definition_sha256,
+        load_registry as load_activity_definition_registry,
+        registry_sha256 as activity_registry_sha256,
+    )
+
 ROOT = Path(__file__).resolve().parents[1]
 ROUTES = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_CONTACT_ROUTES_V1.csv"
 QUEUE = ROOT / "data" / "PEDICULARIS_CONTEXT_RECOVERY_QUEUE_V1.csv"
-ACTIVITY_DEFINITIONS = (
-    ROOT / "data" / "PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json"
-)
-
 SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_RESPONSE_BUNDLE_V1"
 READY_STATUS = "FILLED_AUTHORITY_RESPONSES"
 REQUIRED_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
@@ -77,21 +88,6 @@ def _adjudication_day(value: object) -> date:
         raise ValueError("adjudication_timestamp must begin YYYY-MM-DD") from exc
 
 
-def _activity_definitions() -> dict[str, dict]:
-    payload = json.loads(ACTIVITY_DEFINITIONS.read_text(encoding="utf-8"))
-    _need(
-        payload.get("schema_version")
-        == "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1",
-        "wrong permission activity-definition schema",
-    )
-    activities = payload.get("activities")
-    _need(
-        isinstance(activities, dict) and set(activities) == ALL_ACTIVITIES,
-        "permission activity-definition inventory changed",
-    )
-    return activities
-
-
 def _read(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
@@ -151,7 +147,11 @@ def adjudicate(payload: dict) -> dict:
     _need(_is_wave1(candidate_id), "permission response candidate must be WAVE1")
     bundle_id = _filled(payload.get("response_bundle_id"), "response_bundle_id")
     canonical = _canonical_routes(candidate_id)
-    activity_definitions = _activity_definitions()
+    activity_definition_registry = load_activity_definition_registry()
+    activity_definitions = activity_definition_registry["activities"]
+    definition_registry_hash = activity_registry_sha256(
+        activity_definition_registry
+    )
 
     metadata = payload.get("adjudication_metadata", {})
     for key in ("slk_source_commit", "adjudication_commit", "adjudication_timestamp"):
@@ -268,6 +268,42 @@ def adjudicate(payload: dict) -> dict:
                         "condition review used wrong registered activity definition: "
                         f"{response_id}/{activity_id}",
                     )
+                    hash_algorithm = _filled(
+                        decision_row.get(
+                            "registered_activity_definition_hash_algorithm"
+                        ),
+                        "registered_activity_definition_hash_algorithm/"
+                        f"{response_id}/{activity_id}",
+                    )
+                    _need(
+                        hash_algorithm == ACTIVITY_HASH_ALGORITHM,
+                        "condition review used wrong activity-definition hash algorithm: "
+                        f"{response_id}/{activity_id}",
+                    )
+                    definition_hash = _filled(
+                        decision_row.get(
+                            "registered_activity_definition_sha256"
+                        ),
+                        "registered_activity_definition_sha256/"
+                        f"{response_id}/{activity_id}",
+                    )
+                    expected_definition_hash = activity_definition_sha256(
+                        activity_definitions[activity_id]
+                    )
+                    _need(
+                        definition_hash == expected_definition_hash,
+                        "condition review activity-definition hash mismatch: "
+                        f"{response_id}/{activity_id}",
+                    )
+                    registry_hash = _filled(
+                        decision_row.get("registered_activity_registry_sha256"),
+                        f"registered_activity_registry_sha256/{response_id}/{activity_id}",
+                    )
+                    _need(
+                        registry_hash == definition_registry_hash,
+                        "condition review activity-definition registry hash mismatch: "
+                        f"{response_id}/{activity_id}",
+                    )
                     reviewed_by = _filled(
                         decision_row.get("conditions_reviewed_by"),
                         f"conditions_reviewed_by/{response_id}/{activity_id}",
@@ -302,6 +338,15 @@ def adjudicate(payload: dict) -> dict:
                                 "conditions_review_reference": review_reference,
                                 "registered_activity_definition_reference": (
                                     definition_reference
+                                ),
+                                "registered_activity_definition_hash_algorithm": (
+                                    hash_algorithm
+                                ),
+                                "registered_activity_definition_sha256": (
+                                    definition_hash
+                                ),
+                                "registered_activity_registry_sha256": (
+                                    registry_hash
                                 ),
                                 "conditions_reviewed_by": reviewed_by,
                                 "conditions_review_date": review_date.isoformat(),
@@ -357,6 +402,15 @@ def adjudicate(payload: dict) -> dict:
                         "registered_activity_definition_reference": decision_rows[
                             activity_id
                         ].get("registered_activity_definition_reference"),
+                        "registered_activity_definition_hash_algorithm": decision_rows[
+                            activity_id
+                        ].get("registered_activity_definition_hash_algorithm"),
+                        "registered_activity_definition_sha256": decision_rows[
+                            activity_id
+                        ].get("registered_activity_definition_sha256"),
+                        "registered_activity_registry_sha256": decision_rows[
+                            activity_id
+                        ].get("registered_activity_registry_sha256"),
                         "conditions_reviewed_by": decision_rows[
                             activity_id
                         ].get("conditions_reviewed_by"),
@@ -449,6 +503,8 @@ def adjudicate(payload: dict) -> dict:
         "activity_definition_schema": (
             "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
         ),
+        "activity_definition_hash_algorithm": ACTIVITY_HASH_ALGORITHM,
+        "activity_definition_registry_sha256": definition_registry_hash,
         "responses": resolved,
         "recovery_handoff": {
             "sampling_permission_status": "CONFIRMED" if confirmed else "UNRESOLVED",
