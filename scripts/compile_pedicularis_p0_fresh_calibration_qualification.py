@@ -26,7 +26,7 @@ def compile_qualification(calibration: dict, template: dict) -> dict:
     cctx = calibration.get("context", {})
     tctx = template.get("context", {})
     _need(tctx.get("system") == "Pedicularis rex", "wrong qualification system")
-    for key in ("candidate_site_id", "population_id", "season_id"):
+    for key in ("candidate_id", "candidate_site_id", "population_id", "season_id"):
         _need(tctx.get(key) == cctx.get(key), f"calibration/qualification context mismatch: {key}")
     _need(tctx.get("p0_outcomes_opened") is False and cctx.get("p0_outcomes_opened") is False, "P0 outcomes already opened")
     _need(tctx.get("screen_window_id") == cctx.get("future_p0_screen_window_id"), "future P0 screen-window mismatch")
@@ -40,6 +40,13 @@ def compile_qualification(calibration: dict, template: dict) -> dict:
     }
 
     out = copy.deepcopy(template)
+    out["context"]["candidate_id"] = cctx["candidate_id"]
+    permission_receipt = calibration.get("permission_scope_receipt")
+    _need(
+        isinstance(permission_receipt, dict),
+        "qualified fresh calibration permission scope receipt missing",
+    )
+    out["permission_scope_receipt"] = copy.deepcopy(permission_receipt)
     rows = {row["input_id"]: row for row in out["inputs"]}
     freeze_commit = calibration.get("qualification_rule", {}).get("freeze_commit")
     _need(isinstance(freeze_commit, str) and freeze_commit.strip(), "calibration freeze commit missing")
