@@ -19,6 +19,9 @@ ALLOWED_PERMISSION = {"CONFIRMED"}
 REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
 PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+SPECIMEN_CONTEXT_RECEIPT_SCHEMA = (
+    "SLK_PEDICULARIS_RECOVERY_SPECIMEN_CONTEXT_RECEIPT_V1"
+)
 ALLOWED_TAXON_VERIFICATION_METHODS = {
     "FIELD_MORPHOLOGY_PHOTO",
     "VOUCHER_OR_SPECIMEN",
@@ -384,12 +387,68 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
     specimen_authorization_reference = _optional_text(
         fresh.get("taxonomic_material_authorization_reference")
     )
+    specimen_context_receipt = fresh.get("taxon_specimen_context_receipt")
+    validated_specimen_context = None
     new_voucher_permission_valid: bool | None = None
     if specimen_route_used:
         _need(
             specimen_origin in ALLOWED_SPECIMEN_EVIDENCE_ORIGINS,
             "voucher/specimen taxon route requires registered evidence origin",
         )
+        _need(
+            isinstance(specimen_context_receipt, dict),
+            "voucher/specimen taxon route requires specimen context receipt",
+        )
+        _need(
+            specimen_context_receipt.get("schema_version")
+            == SPECIMEN_CONTEXT_RECEIPT_SCHEMA,
+            "wrong specimen context receipt schema",
+        )
+        specimen_reference = _filled(
+            specimen_context_receipt.get("specimen_reference"),
+            "specimen_context_receipt.specimen_reference",
+        )
+        specimen_date = _optional_iso_date(
+            specimen_context_receipt.get("collection_date"),
+            "specimen_context_receipt.collection_date",
+        )
+        _need(
+            specimen_date is not None,
+            "specimen context receipt collection date missing",
+        )
+        _need(
+            specimen_context_receipt.get("candidate_site_id")
+            == fctx["candidate_site_id"],
+            "specimen context receipt candidate_site_id mismatch",
+        )
+        _need(
+            specimen_context_receipt.get("population_id")
+            == fctx["population_id"],
+            "specimen context receipt population_id mismatch",
+        )
+        _need(
+            specimen_context_receipt.get("season_id")
+            == fctx["season_id"],
+            "specimen context receipt season_id mismatch",
+        )
+        _need(
+            verification_day is not None and specimen_date <= verification_day,
+            "specimen collection date cannot follow recovery verification date",
+        )
+        provenance_reference = _filled(
+            specimen_context_receipt.get("provenance_reference"),
+            "specimen_context_receipt.provenance_reference",
+        )
+        validated_specimen_context = {
+            "schema_version": SPECIMEN_CONTEXT_RECEIPT_SCHEMA,
+            "specimen_reference": specimen_reference,
+            "collection_date": specimen_date.isoformat(),
+            "candidate_site_id": fctx["candidate_site_id"],
+            "population_id": fctx["population_id"],
+            "season_id": fctx["season_id"],
+            "provenance_reference": provenance_reference,
+        }
+
         if specimen_origin == "PREEXISTING_AUTHORIZED_SPECIMEN":
             _need(
                 specimen_authorization_reference is not None,
@@ -399,6 +458,10 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             _need(
                 permission_receipt_valid and verification_day is not None,
                 "new field voucher requires a valid permission receipt and date",
+            )
+            _need(
+                specimen_date == verification_day,
+                "new field voucher collection date must equal recovery verification date",
             )
             new_voucher_permission_valid = _permission_activity_valid_on_day(
                 permission_receipt,
@@ -412,7 +475,8 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
     else:
         _need(
             specimen_origin is None
-            and specimen_authorization_reference is None,
+            and specimen_authorization_reference is None
+            and specimen_context_receipt is None,
             "specimen evidence fields require a voucher/specimen taxon route",
         )
 
@@ -562,6 +626,7 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             "taxonomic_material_authorization_reference": (
                 specimen_authorization_reference
             ),
+            "taxon_specimen_context_receipt": validated_specimen_context,
             "new_voucher_permission_valid_on_verification_date": (
                 new_voucher_permission_valid
             ),
