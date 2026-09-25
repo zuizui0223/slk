@@ -308,6 +308,14 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
     physical_mapping = validate_physical_plant_mapping(physical_rows)
     physical_tags = sorted(set(physical_mapping.values()))
 
+    planned_start = date.fromisoformat(
+        cfg["planned_calibration_start_date"]
+    )
+    planned_end = date.fromisoformat(
+        cfg["planned_calibration_end_date"]
+    )
+    observed_dates: list[date] = []
+
     poll_bouts: list[tuple[float, int, float]] = []
     predator: list[int] = []
     water: list[int] = []
@@ -319,13 +327,15 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
     for row in rows:
         kind = row.get("record_type")
         if kind == "POLLINATOR_BOUT":
+            date_raw = str(row.get("observation_date", "")).strip()
             minutes_raw = str(row.get("observed_minutes", "")).strip()
             flowers_raw = str(row.get("simultaneously_open_focal_flowers", "")).strip()
             visits_raw = str(row.get("legitimate_pollinator_visits", "")).strip()
-            if not (minutes_raw and flowers_raw and visits_raw):
+            if not (date_raw and minutes_raw and flowers_raw and visits_raw):
                 missing_fields = [
                     field
                     for field, value in (
+                        ("observation_date", date_raw),
                         ("observed_minutes", minutes_raw),
                         (
                             "simultaneously_open_focal_flowers",
@@ -344,6 +354,15 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
                     }
                 )
                 continue
+            observation_date = _iso_date(
+                date_raw,
+                f"observation date/{row['record_id']}",
+            )
+            _need(
+                planned_start <= observation_date <= planned_end,
+                f"P0a observation outside planned calibration window: {row['record_id']}",
+            )
+            observed_dates.append(observation_date)
             minutes = _number(minutes_raw, "pollinator observed minutes", minimum=0.000001)
             flowers = _positive_int(float(flowers_raw), "simultaneously open focal flowers")
             visits = _number(visits_raw, "legitimate pollinator visits", minimum=0)
@@ -352,32 +371,68 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             poll_flower_minutes += minutes * flowers
             poll_visits += visits
         elif kind == "PREDATOR_FLOWER":
+            date_raw = str(row.get("observation_date", "")).strip()
             raw = str(row.get("early_attack_or_oviposition_positive", "")).strip()
-            if not raw:
+            if not (date_raw and raw):
+                missing_fields = [
+                    field
+                    for field, value in (
+                        ("observation_date", date_raw),
+                        ("early_attack_or_oviposition_positive", raw),
+                    )
+                    if not value
+                ]
                 incomplete_records.append(
                     {
                         "record_id": str(row.get("record_id", "")),
                         "record_type": "PREDATOR_FLOWER",
                         "reason": "MISSING_REQUIRED_MEASUREMENT",
-                        "detail": "early_attack_or_oviposition_positive",
+                        "detail": ",".join(missing_fields),
                     }
                 )
                 continue
+            observation_date = _iso_date(
+                date_raw,
+                f"observation date/{row['record_id']}",
+            )
+            _need(
+                planned_start <= observation_date <= planned_end,
+                f"P0a observation outside planned calibration window: {row['record_id']}",
+            )
+            observed_dates.append(observation_date)
             _filled(row.get("plant_id"), "predator plant_id")
             _filled(row.get("flower_id"), "predator flower_id")
             predator.append(int(_bool(raw, "early_attack_or_oviposition_positive")))
         elif kind == "WATER_PLANT":
+            date_raw = str(row.get("observation_date", "")).strip()
             raw = str(row.get("water_positive", "")).strip()
-            if not raw:
+            if not (date_raw and raw):
+                missing_fields = [
+                    field
+                    for field, value in (
+                        ("observation_date", date_raw),
+                        ("water_positive", raw),
+                    )
+                    if not value
+                ]
                 incomplete_records.append(
                     {
                         "record_id": str(row.get("record_id", "")),
                         "record_type": "WATER_PLANT",
                         "reason": "MISSING_REQUIRED_MEASUREMENT",
-                        "detail": "water_positive",
+                        "detail": ",".join(missing_fields),
                     }
                 )
                 continue
+            observation_date = _iso_date(
+                date_raw,
+                f"observation date/{row['record_id']}",
+            )
+            _need(
+                planned_start <= observation_date <= planned_end,
+                f"P0a observation outside planned calibration window: {row['record_id']}",
+            )
+            observed_dates.append(observation_date)
             _filled(row.get("plant_id"), "water plant_id")
             water.append(int(_bool(raw, "water_positive")))
         else:
@@ -483,6 +538,13 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             ],
             "required_activities": ["A", "B", "C"],
             "planned_window_fully_covered": True,
+            "observed_date_min": (
+                min(observed_dates).isoformat() if observed_dates else None
+            ),
+            "observed_date_max": (
+                max(observed_dates).isoformat() if observed_dates else None
+            ),
+            "all_completed_rows_within_planned_window": True,
         },
         "physical_unit_registry_handoff": {
             "status": "P0_CALIBRATION_PLANT_TAGS_VALIDATED",
