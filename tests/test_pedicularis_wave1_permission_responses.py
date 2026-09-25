@@ -65,7 +65,7 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
                 else None
             ),
             "conditions_review_date": (
-                "2027-05-13"
+                "2027-05-12"
                 if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             ),
@@ -125,7 +125,7 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
                 else None
             )
             row["conditions_review_date"] = (
-                "2027-05-13"
+                "2027-05-12"
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
@@ -685,7 +685,7 @@ def test_confirmed_receipt_preserves_condition_review_audit_metadata() -> None:
         "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A"
     )
     assert interval["conditions_reviewed_by"] == "TEST-REVIEWER"
-    assert interval["conditions_review_date"] == "2027-05-13"
+    assert interval["conditions_review_date"] == "2027-05-12"
     assert interval["conditions_review_rationale"]
     assert out["activity_definition_schema"] == (
         "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
