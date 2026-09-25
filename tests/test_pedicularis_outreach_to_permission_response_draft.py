@@ -124,6 +124,9 @@ def test_response_draft_matches_activity_specific_validity_contract() -> None:
                 "conditions_compatible_with_registered_activity",
                 "conditions_review_reference",
                 "registered_activity_definition_reference",
+                "registered_activity_definition_hash_algorithm",
+                "registered_activity_definition_sha256",
+                "registered_activity_registry_sha256",
                 "conditions_reviewed_by",
                 "conditions_review_date",
                 "conditions_review_rationale",
@@ -132,3 +135,8 @@ def test_response_draft_matches_activity_specific_validity_contract() -> None:
                 "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
                 + activity["activity_id"]
             )
+            assert activity[
+                "registered_activity_definition_hash_algorithm"
+            ] == "SHA256_CANONICAL_JSON_V1"
+            assert len(activity["registered_activity_definition_sha256"]) == 64
+            assert len(activity["registered_activity_registry_sha256"]) == 64
