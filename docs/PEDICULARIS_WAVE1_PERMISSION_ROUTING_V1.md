@@ -129,6 +129,28 @@ tests/test_pedicularis_wave1_permission_contacts.py
 tests/test_pedicularis_wave1_permission_inquiry.py
 ```
 
+## Response adjudication
+
+Returned authority/site responses are not interpreted manually. Record them in:
+
+```text
+data/PEDICULARIS_WAVE1_PERMISSION_RESPONSE_TEMPLATE_V1.json
+```
+
+and adjudicate with:
+
+```text
+scripts/adjudicate_pedicularis_wave1_permission_responses.py
+```
+
+The minimum P-1/P0a scope is defined in:
+
+```text
+docs/PEDICULARIS_WAVE1_PERMISSION_RESPONSE_V1.md
+```
+
+Only its confirmed receipt can be compiled into the fresh recovery observation.
+
 ## Claim ceiling
 
 ```text
