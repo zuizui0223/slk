@@ -64,6 +64,9 @@ def test_ready_candidate_compiles_unresolved_activity_decision_draft() -> None:
             and x["conditions"] is None
             and x["conditions_compatible_with_registered_activity"] is None
             and x["conditions_review_reference"] is None
+            and x["conditions_reviewed_by"] is None
+            and x["conditions_review_date"] is None
+            and x["conditions_review_rationale"] is None
             for x in response["activity_decisions"]
         )
         assert "valid_from" not in response
@@ -120,4 +123,12 @@ def test_response_draft_matches_activity_specific_validity_contract() -> None:
                 "conditions",
                 "conditions_compatible_with_registered_activity",
                 "conditions_review_reference",
+                "registered_activity_definition_reference",
+                "conditions_reviewed_by",
+                "conditions_review_date",
+                "conditions_review_rationale",
             }
+            assert activity["registered_activity_definition_reference"] == (
+                "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
+                + activity["activity_id"]
+            )
