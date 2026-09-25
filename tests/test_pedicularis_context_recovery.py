@@ -542,3 +542,25 @@ def test_null_optional_text_does_not_count_as_filled() -> None:
     obs["fresh_verification"]["sampling_permission_scope"] = None
     out = adj.adjudicate(obs, _freeze())
     assert out["status"] == "CONTEXT_RECOVERY_INCOMPLETE"
+
+
+
+def test_preexisting_specimen_route_requires_authorization_provenance() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "SPECIMEN-HERB-002"
+    fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh.pop("taxon_diagnostic_checklist")
+    with pytest.raises(ValueError, match="authorization/provenance reference missing"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_combined_photo_plus_new_voucher_requires_D_permission() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "COMBINED"
+    fresh["combined_secondary_taxon_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    with pytest.raises(ValueError, match="requires activity D"):
+        adj.adjudicate(obs, _freeze())
