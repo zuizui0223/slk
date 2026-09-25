@@ -67,7 +67,13 @@
     "p0b_planned_interval_must_be_fully_within_permission_validity": true,
     "p0b_completed_rows_require_observation_date": true,
     "p0b_completed_rows_must_fall_within_frozen_planned_interval": true,
-    "permission_scope_propagates_recovery_to_p0a_to_p0b": true
+    "permission_scope_propagates_recovery_to_p0a_to_p0b": true,
+    "taxon_specimen_permission_rule": {
+      "default_non_destructive_scope": "A_B_C",
+      "preexisting_specimen": "AUTHORIZED_PROVENANCE_REFERENCE_REQUIRED",
+      "new_field_voucher": "ACTIVITY_D_REGULATORY_AND_SITE_PASS_VALID_ON_RECOVERY_DATE_REQUIRED",
+      "combined_route": "SECONDARY_TAXON_METHOD_MUST_BE_EXPLICIT"
+    }
   },
   "stages": [
     {
