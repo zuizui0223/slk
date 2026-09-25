@@ -69,6 +69,25 @@ institutional site routing:
 
 The current route in the contact ledger uses the publicly published garden meeting contact. It is a way to reach the institution, not a pre-existing approval to conduct the recovery work.
 
+## Inquiry packet generation
+
+Generate an unsent candidate-specific packet with:
+
+```bash
+python scripts/generate_pedicularis_wave1_permission_inquiry.py \
+  --candidate-id <WAVE1_CANDIDATE_ID> \
+  --output PEDICULARIS_WAVE1_PERMISSION_INQUIRY_DRAFT.json
+```
+
+The draft automatically embeds the candidate, recovery wave, scouting locator when available, and all registered official contact routes. It begins at:
+
+```text
+status = DRAFT_NOT_SENT
+permission_status = UNKNOWN / UNRESOLVED.
+```
+
+Generating the packet does not contact anyone and does not alter the recovery gate.
+
 ## Questions that must be resolved before P-1 can pass
 
 The inquiry must distinguish activity classes:
@@ -105,7 +124,9 @@ and the context cannot pass the recovery gate.
 ```text
 data/PEDICULARIS_WAVE1_PERMISSION_CONTACT_ROUTES_V1.csv
 scripts/validate_pedicularis_wave1_permission_contacts.py
+scripts/generate_pedicularis_wave1_permission_inquiry.py
 tests/test_pedicularis_wave1_permission_contacts.py
+tests/test_pedicularis_wave1_permission_inquiry.py
 ```
 
 ## Claim ceiling
