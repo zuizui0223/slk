@@ -202,3 +202,31 @@ def test_policy_template_is_deliberately_unfrozen() -> None:
     assert payload["policy"]["followup_offsets_days"] == []
     assert payload["policy"]["frozen_before_first_send"] is False
     assert payload["policy"]["automatic_close_allowed"] is False
+
+
+
+def test_followup_policy_freeze_timestamp_requires_timezone() -> None:
+    payload = _policy()
+    payload["freeze_metadata"]["freeze_timestamp"] = "2027-04-20T00:00:00"
+    with pytest.raises(ValueError, match="timezone offset"):
+        validate.validate(payload)
+
+
+def test_followup_attempt_count_cannot_exceed_frozen_schedule() -> None:
+    rows = _rows()
+    row = _sent_row(rows)
+    row["followup_attempts_completed"] = "3"
+    row["last_followup_date"] = "2027-05-22"
+    row["last_followup_reference"] = "FOLLOWUP-003"
+    with pytest.raises(ValueError, match="exceed frozen policy schedule"):
+        planner.plan(rows, _policy(), as_of_date="2027-05-23")
+
+
+def test_followup_attempt_cannot_be_recorded_before_frozen_offset() -> None:
+    rows = _rows()
+    row = _sent_row(rows)
+    row["followup_attempts_completed"] = "1"
+    row["last_followup_date"] = "2027-05-06"
+    row["last_followup_reference"] = "FOLLOWUP-EARLY"
+    with pytest.raises(ValueError, match="precedes frozen attempt offset"):
+        planner.plan(rows, _policy(), as_of_date="2027-05-10")
