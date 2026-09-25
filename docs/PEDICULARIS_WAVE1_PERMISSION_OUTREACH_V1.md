@@ -134,6 +134,16 @@ response_reference.
 
 A routing-only response also requires the destination organization/contact. It does not count as a substantive regulatory or site authorization response.
 
+
+If a routing-only response identifies a new authority/site manager, the ledger reports:
+
+```text
+canonical_route_update_required = true
+routing_destinations_pending_canonical_registration.
+```
+
+That destination must first be reviewed and added to the canonical permission-contact route ledger before any later substantive response from it can count toward permission adjudication. A routing reply cannot dynamically create an authorizing route.
+
 ## Candidate-level readiness
 
 For a candidate to become:
