@@ -7,7 +7,8 @@
     "population_id": "REQUIRED_BEFORE_USE",
     "season_id": "REQUIRED_BEFORE_USE",
     "screen_window_id": "REQUIRED_BEFORE_USE",
-    "p0_outcomes_opened": false
+    "p0_outcomes_opened": false,
+    "candidate_id": "REQUIRED_BEFORE_USE"
   },
   "inputs": [
     {
@@ -82,5 +83,6 @@
     "qualification_commit": "REQUIRED_BEFORE_USE",
     "qualification_timestamp": "REQUIRED_BEFORE_USE"
   },
-  "physical_unit_firewall_handoff": null
+  "physical_unit_firewall_handoff": null,
+  "permission_scope_receipt": null
 }
