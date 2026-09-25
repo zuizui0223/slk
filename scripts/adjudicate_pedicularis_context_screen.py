@@ -339,10 +339,7 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
 
     timing = receipt.get("field_timing_audit")
     _need(isinstance(timing, dict), "P0b field timing audit missing")
-    _need(
-        timing.get("capacity_census_dated") is True,
-        "P0b capacity census observation date missing",
-    )
+    capacity_census_dated = timing.get("capacity_census_dated") is True
     observed_min = _iso_date(
         timing.get("observed_date_min"),
         "P0b observed_date_min",
@@ -599,11 +596,13 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
 
     capacity_required = th["minimum_flowering_plants_for_calibration_with_reserve"]
     capacity_pass = census >= capacity_required
-    capacity_resolved = capacity_pass or census_exhausted is True
+    capacity_count_resolved = capacity_pass or census_exhausted is True
+    capacity_resolved = capacity_count_resolved and capacity_census_dated
 
     effort_checks = {
         **signal_effort_checks,
         "capacity_census_resolved": capacity_resolved,
+        "capacity_census_dated": capacity_census_dated,
     }
     effort_complete = signal_effort_complete and capacity_resolved
 
@@ -715,7 +714,11 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             "calibration_unlocked": calibration_unlocked,
             "relocation_recommended": relocation_recommended,
             "low_signal_is_biological_negative": False,
-            "continue_capacity_census": signal_effort_complete and not failed and not capacity_resolved,
+            "continue_capacity_census": (
+                signal_effort_complete
+                and not failed
+                and not capacity_count_resolved
+            ),
         },
         "packet_completion_audit": packet_completion,
         "missingness_sensitivity_required": (
