@@ -71,6 +71,28 @@ def _locator_text(locator: dict | None) -> tuple[str, str]:
     )
 
 
+def _route_question_cn(route: dict) -> str:
+    route_type = route["route_type"]
+    if route_type == "REGULATORY_ROUTING":
+        return (
+            "请确认本项目拟开展的 A–F 各类活动分别应由哪些主管部门审批或备案，"
+            "贵单位对其中哪些活动具有监管/审批权限，以及是否还需其他部门书面同意。"
+        )
+    if route_type in {"SITE_MANAGEMENT_ROUTING", "INSTITUTIONAL_SITE_ROUTING"}:
+        return (
+            "请确认候选地点是否由贵单位管理、科研人员进入该地点需办理何种场地手续，"
+            "以及贵单位能否分别对 A–F 各类活动作出场地层面的允许、禁止或条件性要求。"
+        )
+    if route_type == "LOCAL_TERRITORIAL_ROUTING":
+        return (
+            "请协助确认候选地点目前的实际土地/场地管理单位，并提供可继续咨询科研进入"
+            "及活动许可的正式管理方联系方式；本次咨询不将属地转介视为科研许可。"
+        )
+    return (
+        "请协助确认贵单位在本候选地点科研活动中的管理职责，以及正确的许可/转介路径。"
+    )
+
+
 def _activity_questions_cn() -> str:
     lines = []
     for activity_id in "ABCDEF":
@@ -102,6 +124,7 @@ def render(candidate_id: str) -> dict:
     messages = []
     for route in packet["contact_routes"]:
         route_question = route["question_to_resolve"]
+        route_question_cn = _route_question_cn(route)
         subject_cn = (
             "关于 Pedicularis rex（马先蒿属）现生种群确认及科研活动许可路径的咨询"
         )
@@ -119,7 +142,7 @@ def render(candidate_id: str) -> dict:
 本次咨询本身不代表我们已获得任何采集或研究许可，也不会把公共开放、旅游访问或历史记录视为科研许可。
 
 针对贵单位所对应的管理/监管路径，我们希望首先确认：
-{route_question}
+{route_question_cn}
 
 同时，为避免把一种活动的许可误用于另一种活动，请对以下 A–F 六类活动分别答复：
 
