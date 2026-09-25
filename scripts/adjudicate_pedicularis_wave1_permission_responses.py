@@ -35,8 +35,14 @@ def _need(ok: bool, message: str) -> None:
 
 
 def _filled(value: object, label: str) -> str:
+    _need(value is not None, f"unresolved {label}")
     out = str(value).strip()
-    _need(bool(out) and "REQUIRED_BEFORE_USE" not in out, f"unresolved {label}")
+    _need(
+        bool(out)
+        and out.lower() not in {"none", "null"}
+        and "REQUIRED_BEFORE_USE" not in out,
+        f"unresolved {label}",
+    )
     return out
 
 
