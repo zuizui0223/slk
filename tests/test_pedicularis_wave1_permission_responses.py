@@ -117,6 +117,8 @@ def test_regulatory_and_site_pass_confirm_recovery_p0a_scope() -> None:
             "site": "PASS",
         }
     assert out["recovery_handoff"]["sampling_permission_status"] == "CONFIRMED"
+    assert set(out["all_activity_matrix"]) == set("ABCDEF")
+    assert set(out["all_activity_validity"]) == set("ABCDEF")
     for activity_id in "ABC":
         assert out["required_activity_validity"][activity_id]["regulatory"]
         assert out["required_activity_validity"][activity_id]["site"]
@@ -212,6 +214,12 @@ def test_confirmed_scope_compiles_into_recovery_observation() -> None:
     assert out["permission_scope_receipt"]["sampling_permission_reference"].endswith(
         "@perm123"
     )
+    assert set(out["permission_scope_receipt"]["all_activity_matrix"]) == set(
+        "ABCDEF"
+    )
+    assert set(out["permission_scope_receipt"]["all_activity_validity"]) == set(
+        "ABCDEF"
+    )
 
 
 def test_unconfirmed_scope_cannot_compile_into_recovery_observation() -> None:
@@ -294,4 +302,38 @@ def test_permission_cannot_expire_before_response_date() -> None:
     payload["responses"][0]["valid_from"] = "2027-04-01"
     payload["responses"][0]["valid_through"] = "2027-05-01"
     with pytest.raises(ValueError, match="expires before response date"):
+        adj.adjudicate(payload)
+
+
+
+def test_optional_D_permission_is_receipted_without_becoming_required_scope() -> None:
+    payload = _songzanlin_bundle()
+    for response, prefix in zip(payload["responses"], ("REGD", "SITED")):
+        target = next(
+            row for row in response["activity_decisions"]
+            if row["activity_id"] == "D"
+        )
+        target["decision"] = "ALLOWED"
+        target["response_reference"] = f"{prefix}-D"
+    out = adj.adjudicate(payload)
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+    assert out["required_activities"] == ["A", "B", "C"]
+    assert out["all_activity_matrix"]["D"] == {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    assert out["all_activity_validity"]["D"]["regulatory"]
+    assert out["all_activity_validity"]["D"]["site"]
+
+
+def test_optional_positive_D_permission_still_requires_validity_dates() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "D"
+    )
+    target["decision"] = "ALLOWED"
+    target["response_reference"] = "REG-D"
+    payload["responses"][0]["valid_through"] = None
+    with pytest.raises(ValueError, match="valid_through/REG-001"):
         adj.adjudicate(payload)
