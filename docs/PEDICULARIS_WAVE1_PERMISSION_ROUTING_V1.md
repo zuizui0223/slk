@@ -73,6 +73,18 @@ institutional site routing:
 
 The current route in the contact ledger uses the publicly published garden meeting contact. It is a way to reach the institution, not a pre-existing approval to conduct the recovery work.
 
+## Outreach tracking
+
+Once inquiry drafts are prepared, actual sends and replies are tracked with:
+
+```text
+docs/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_V1.md
+data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv
+scripts/manage_pedicularis_wave1_permission_outreach.py
+```
+
+The outreach ledger separates `NOT_SENT`, `SENT_AWAITING_RESPONSE`, routing-only replies, and substantive replies. A candidate is only ready to build a permission response bundle after at least one substantive regulatory response and one substantive site-authorizing response have been received.
+
 ## Inquiry packet generation
 
 Generate an unsent candidate-specific packet with:
