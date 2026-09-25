@@ -39,6 +39,16 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
                 else None
             ),
             "conditions": None,
+            "conditions_compatible_with_registered_activity": (
+                True
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "conditions_review_reference": (
+                "COND-REVIEW"
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
         }
         for activity_id in "ABCDEF"
     ]
@@ -60,6 +70,16 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
             )
             row["valid_through"] = (
                 "2027-09-30"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions_compatible_with_registered_activity"] = (
+                True
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions_review_reference"] = (
+                f"{prefix}-COND-REVIEW-{row['activity_id']}"
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
@@ -341,6 +361,8 @@ def test_optional_D_permission_is_receipted_without_becoming_required_scope() ->
         target["valid_from"] = "2027-06-01"
         target["valid_through"] = "2027-06-30"
         target["conditions"] = "voucher-only June window"
+        target["conditions_compatible_with_registered_activity"] = True
+        target["conditions_review_reference"] = f"{prefix}-D-COND-REVIEW"
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     assert out["required_activities"] == ["A", "B", "C"]
@@ -362,6 +384,8 @@ def test_optional_positive_D_permission_still_requires_validity_dates() -> None:
     target["response_reference"] = "REG-D"
     target["valid_from"] = "2027-06-01"
     target["valid_through"] = None
+    target["conditions_compatible_with_registered_activity"] = True
+    target["conditions_review_reference"] = "REG-D-COND-REVIEW"
     with pytest.raises(ValueError, match="valid_through/REG-001/D"):
         adj.adjudicate(payload)
 
@@ -379,6 +403,8 @@ def test_activity_specific_D_validity_can_be_narrower_than_A_C() -> None:
         d["valid_from"] = "2027-06-10"
         d["valid_through"] = "2027-06-20"
         d["conditions"] = "voucher only during June 10-20"
+        d["conditions_compatible_with_registered_activity"] = True
+        d["conditions_review_reference"] = f"{prefix}-D-COND-REVIEW"
     out = adj.adjudicate(payload)
     assert out["required_activity_validity"]["A"]["regulatory"][0][
         "valid_through"
@@ -403,3 +429,75 @@ def test_response_level_validity_does_not_substitute_for_activity_validity() -> 
     payload["responses"][0]["valid_through"] = "2027-09-30"
     with pytest.raises(ValueError, match="valid_from/REG-001/A"):
         adj.adjudicate(payload)
+
+
+
+def test_positive_activity_requires_condition_compatibility_review() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["conditions_compatible_with_registered_activity"] = None
+    with pytest.raises(
+        ValueError,
+        match="conditions_compatible_with_registered_activity/REG-001/A",
+    ):
+        adj.adjudicate(payload)
+
+
+def test_positive_activity_requires_condition_review_reference() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "B"
+    )
+    target["conditions_review_reference"] = None
+    with pytest.raises(ValueError, match="conditions_review_reference/SITE-001/B"):
+        adj.adjudicate(payload)
+
+
+def test_incompatible_allowed_condition_blocks_required_scope() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "C"
+    )
+    target["conditions"] = "site staff prohibit touching or measuring flowers"
+    target["conditions_compatible_with_registered_activity"] = False
+    target["conditions_review_reference"] = "METHOD-REVIEW-C-BLOCK"
+    out = adj.adjudicate(payload)
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_BLOCKED"
+    site_response = next(
+        row for row in out["responses"] if row["route_class"] == "SITE"
+    )
+    assert site_response["activity_decisions"]["C"] == "NO_PERMISSION_REQUIRED"
+    assert site_response["effective_scope_decisions"]["C"] == "PROHIBITED"
+    assert out["required_activity_matrix"]["C"]["site"] == "BLOCKED"
+    assert out["required_activity_validity"]["C"]["site"] == []
+
+
+def test_incompatible_optional_D_condition_does_not_block_default_A_C_scope() -> None:
+    payload = _songzanlin_bundle()
+    for response, prefix in zip(payload["responses"], ("REGD", "SITED")):
+        d = next(
+            row for row in response["activity_decisions"]
+            if row["activity_id"] == "D"
+        )
+        d["decision"] = "ALLOWED"
+        d["response_reference"] = f"{prefix}-D"
+        d["valid_from"] = "2027-06-01"
+        d["valid_through"] = "2027-06-30"
+        d["conditions"] = "voucher only outside the registered recovery area"
+        d["conditions_compatible_with_registered_activity"] = False
+        d["conditions_review_reference"] = f"{prefix}-D-BLOCK-REVIEW"
+    out = adj.adjudicate(payload)
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+    assert out["all_activity_matrix"]["D"] == {
+        "regulatory": "BLOCKED",
+        "site": "BLOCKED",
+    }
+    assert out["all_activity_validity"]["D"] == {
+        "regulatory": [],
+        "site": [],
+    }
