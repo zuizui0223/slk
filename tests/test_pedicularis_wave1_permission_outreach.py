@@ -85,19 +85,6 @@ def test_candidate_ready_requires_substantive_regulatory_and_site_response() -> 
     assert out["candidate_progress"]["SHANGRILA_WUFENG"][
         "ready_to_build_permission_response_bundle"
     ] is False
-    assert out["candidate_progress"]["SHANGRILA_WUFENG"][
-        "canonical_route_update_required"
-    ] is True
-    routed = out["candidate_progress"]["SHANGRILA_WUFENG"][
-        "routing_destinations_pending_canonical_registration"
-    ]
-    assert routed == [
-        {
-            "source_route_id": "WUFENG_LOCAL_ROUTING",
-            "organization": "Shangri-La State-owned Forest Farm, Jiantang Branch",
-            "contact": "via forestry bureau",
-        }
-    ]
 
 
 def test_local_routing_response_does_not_substitute_for_wufeng_site_authority() -> None:
@@ -136,3 +123,16 @@ def test_local_routing_response_does_not_substitute_for_wufeng_site_authority() 
     assert out["candidate_progress"]["SHANGRILA_WUFENG"][
         "ready_to_build_permission_response_bundle"
     ] is False
+    assert out["candidate_progress"]["SHANGRILA_WUFENG"][
+        "canonical_route_update_required"
+    ] is True
+    routed = out["candidate_progress"]["SHANGRILA_WUFENG"][
+        "routing_destinations_pending_canonical_registration"
+    ]
+    assert routed == [
+        {
+            "source_route_id": "WUFENG_LOCAL_ROUTING",
+            "organization": "Shangri-La State-owned Forest Farm, Jiantang Branch",
+            "contact": "via forestry bureau",
+        }
+    ]
