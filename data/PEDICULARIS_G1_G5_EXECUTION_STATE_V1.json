@@ -77,7 +77,21 @@
       "prior_season_specimen": "CANNOT_SATISFY_FRESH_RECOVERY"
     },
     "permission_validity_grain": "ACTIVITY_X_AUTHORITY_SIDE",
-    "response_level_validity_authoritative": false
+    "response_level_validity_authoritative": false,
+    "permission_outreach_protocol": "docs/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_V1.md",
+    "permission_outreach_template": "data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv",
+    "permission_outreach_manager": "scripts/manage_pedicularis_wave1_permission_outreach.py",
+    "permission_outreach_status": "REGISTERED_TRACKER_READY_NO_OUTREACH_EXECUTED",
+    "permission_response_bundle_ready_rule": "SUBSTANTIVE_REGULATORY_AND_SITE_RESPONSE_REQUIRED_PER_CANDIDATE",
+    "permission_response_draft_compiler": "scripts/compile_pedicularis_outreach_to_permission_response_draft.py",
+    "permission_response_draft_status": "READY_AFTER_SUBSTANTIVE_REGULATORY_AND_SITE_REPLIES",
+    "permission_response_draft_activity_decisions": "ALL_A_TO_F_START_UNRESOLVED_WITH_ACTIVITY_SPECIFIC_VALIDITY_FIELDS",
+    "permission_message_renderer": "scripts/render_pedicularis_wave1_permission_messages.py",
+    "permission_message_status": "BILINGUAL_DRAFT_RENDERING_READY_NOT_SENT",
+    "permission_message_send_guard": "scripts/validate_pedicularis_wave1_permission_messages_for_send.py",
+    "permission_message_send_policy": "MANUAL_SEND_ONLY_REQUESTER_FIELDS_AND_HUMAN_REVIEW_REQUIRED_AUTOMATIC_SEND_FALSE",
+    "permission_routing_update_rule": "ROUTING_ONLY_DESTINATIONS_MUST_BE_CANONICALLY_REGISTERED_BEFORE_AUTHORIZING_USE",
+    "permission_working_file_policy": "REQUESTER_AND_AUTHORITY_WORKING_FILES_LOCAL_GITIGNORED_CANONICAL_TEMPLATES_ONLY_TRACKED"
   },
   "stages": [
     {
