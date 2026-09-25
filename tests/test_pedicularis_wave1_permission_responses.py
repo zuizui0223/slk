@@ -53,6 +53,27 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
                 if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             ),
+            "registered_activity_definition_reference": (
+                "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
+                + activity_id
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "conditions_reviewed_by": (
+                "TEST-REVIEWER"
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "conditions_review_date": (
+                "2027-05-13"
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "conditions_review_rationale": (
+                "Authority condition is compatible with the registered activity definition."
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
         }
         for activity_id in "ABCDEF"
     ]
@@ -89,6 +110,27 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
             )
             row["conditions_review_reference"] = (
                 f"{prefix}-COND-REVIEW-{row['activity_id']}"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["registered_activity_definition_reference"] = (
+                "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
+                + row["activity_id"]
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions_reviewed_by"] = (
+                "TEST-REVIEWER"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions_review_date"] = (
+                "2027-05-13"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions_review_rationale"] = (
+                "Authority condition is compatible with the registered activity definition."
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
@@ -548,4 +590,76 @@ def test_no_additional_conditions_sentinel_is_explicitly_accepted() -> None:
     reg = next(row for row in out["responses"] if row["route_class"] == "REGULATORY")
     assert reg["activity_decision_details"]["A"]["conditions"] == (
         "NO_ADDITIONAL_CONDITIONS"
+    )
+
+
+
+def test_positive_activity_requires_registered_activity_definition_reference() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["registered_activity_definition_reference"] = (
+        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B"
+    )
+    with pytest.raises(ValueError, match="wrong registered activity definition"):
+        adj.adjudicate(payload)
+
+
+def test_positive_activity_requires_condition_reviewer() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["conditions_reviewed_by"] = None
+    with pytest.raises(ValueError, match="conditions_reviewed_by/REG-001/A"):
+        adj.adjudicate(payload)
+
+
+def test_condition_review_date_cannot_precede_authority_response() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "B"
+    )
+    target["conditions_review_date"] = "2027-05-11"
+    with pytest.raises(ValueError, match="must fall between response and adjudication"):
+        adj.adjudicate(payload)
+
+
+def test_condition_review_date_cannot_follow_adjudication() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "C"
+    )
+    target["conditions_review_date"] = "2027-05-14"
+    with pytest.raises(ValueError, match="must fall between response and adjudication"):
+        adj.adjudicate(payload)
+
+
+def test_positive_activity_requires_condition_review_rationale() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["conditions_review_rationale"] = None
+    with pytest.raises(ValueError, match="conditions_review_rationale/SITE-001/A"):
+        adj.adjudicate(payload)
+
+
+def test_confirmed_receipt_preserves_condition_review_audit_metadata() -> None:
+    out = adj.adjudicate(_songzanlin_bundle())
+    interval = out["required_activity_validity"]["A"]["regulatory"][0]
+    assert interval["registered_activity_definition_reference"] == (
+        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A"
+    )
+    assert interval["conditions_reviewed_by"] == "TEST-REVIEWER"
+    assert interval["conditions_review_date"] == "2027-05-13"
+    assert interval["conditions_review_rationale"]
+    assert out["activity_definition_schema"] == (
+        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
     )
