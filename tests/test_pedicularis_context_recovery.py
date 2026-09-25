@@ -105,10 +105,23 @@ def _obs() -> dict:
             "site_access_confirmed": True,
             "access_evidence_reference": "FIELD_ACCESS_LOG_001",
             "sampling_permission_status": "CONFIRMED",
-            "sampling_permission_reference": "PERMIT_001",
+            "sampling_permission_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+            "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123",
             "same_season_revisit_feasible": True,
             "revisit_plan_reference": "REVISIT_PLAN_001",
             "notes": "fresh context only",
+        },
+        "permission_scope_receipt": {
+            "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
+            "status": "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED",
+            "candidate_id": "SHANGRILA_WUFENG",
+            "response_bundle_id": "bundle-001",
+            "required_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+            "required_activity_matrix": {
+                "A": {"regulatory": "PASS", "site": "PASS"},
+                "B": {"regulatory": "PASS", "site": "PASS"},
+                "C": {"regulatory": "PASS", "site": "PASS"}
+            }
         },
         "prohibited_recovery_inferences": {
             "pollinator_signal_scored": False,
@@ -232,6 +245,7 @@ def test_recent_assessment_candidate_can_enter_fresh_recovery_gate() -> None:
             "recovery_window_id": "recovery-songzanlin-2027",
         }
     )
+    obs["permission_scope_receipt"]["candidate_id"] = "SONGZANLIN_EIA_2025"
     out = adj.adjudicate(obs, freeze)
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
     assert out["historical_anchor"]["candidate_status_before_recovery"] == (
@@ -261,7 +275,9 @@ def test_positive_receipt_preserves_recovery_evidence_references() -> None:
     assert fresh["taxon_evidence_reference"] == "PHOTO_SET_TAXON_001"
     assert fresh["flowering_population_evidence_reference"] == "PHOTO_SET_FLOWERING_001"
     assert fresh["access_evidence_reference"] == "FIELD_ACCESS_LOG_001"
-    assert fresh["sampling_permission_reference"] == "PERMIT_001"
+    assert fresh["sampling_permission_reference"] == (
+        "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
+    )
     assert fresh["revisit_plan_reference"] == "REVISIT_PLAN_001"
 
 
@@ -311,3 +327,18 @@ def test_expert_confirmation_route_does_not_require_field_photo_checklist() -> N
     out = adj.adjudicate(obs, _freeze())
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
     assert out["fresh_verification"]["taxon_diagnostic_checklist"] is None
+
+
+
+def test_confirmed_permission_without_scope_receipt_is_rejected() -> None:
+    obs = _obs()
+    obs.pop("permission_scope_receipt")
+    with pytest.raises(ValueError, match="permission scope receipt missing"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_confirmed_permission_with_wrong_scope_is_rejected() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["sampling_permission_scope"] = "ALL_FUTURE_SAMPLING"
+    with pytest.raises(ValueError, match="wrong scope"):
+        adj.adjudicate(obs, _freeze())

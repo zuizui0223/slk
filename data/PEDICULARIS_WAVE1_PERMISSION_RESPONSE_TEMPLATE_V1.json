@@ -1,0 +1,12 @@
+{
+  "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_RESPONSE_BUNDLE_V1",
+  "status": "TEMPLATE_ONLY_NOT_DATA",
+  "candidate_id": "REQUIRED_BEFORE_USE",
+  "response_bundle_id": "REQUIRED_BEFORE_USE",
+  "responses": [],
+  "adjudication_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "adjudication_commit": "REQUIRED_BEFORE_USE",
+    "adjudication_timestamp": "REQUIRED_BEFORE_USE"
+  }
+}

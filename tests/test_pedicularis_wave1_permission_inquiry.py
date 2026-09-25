@@ -42,7 +42,13 @@ def test_wufeng_packet_keeps_local_route_non_authorizing() -> None:
         row for row in out["contact_routes"]
         if row["route_type"] == "LOCAL_TERRITORIAL_ROUTING"
     )
+    site = next(
+        row for row in out["contact_routes"]
+        if row["route_id"] == "WUFENG_JIANTANG_FOREST_FARM"
+    )
     assert local["permission_status"] == "UNRESOLVED"
+    assert site["route_type"] == "SITE_MANAGEMENT_ROUTING"
+    assert "Jiantang Branch" in site["organization"]
     assert out["promotion_rule"].startswith(
         "This draft cannot set sampling_permission_status=CONFIRMED"
     )
