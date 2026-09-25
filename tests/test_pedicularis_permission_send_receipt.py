@@ -33,8 +33,8 @@ def _rows() -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def _ready() -> dict:
-    payload = render.render("SONGZANLIN_EIA_2025")
+def _ready(candidate_id: str = "SONGZANLIN_EIA_2025") -> dict:
+    payload = render.render(candidate_id)
     for message in payload["messages"]:
         message["body_cn"] = message["body_cn"].replace(
             "REQUIRED_BEFORE_SEND",
@@ -52,15 +52,20 @@ def _ready() -> dict:
 
 def _receipt(ready: dict, route_id: str = "SONGZANLIN_FORESTRY_REGULATOR") -> dict:
     message = next(m for m in ready["messages"] if m["route_id"] == route_id)
+    canonical_contact = message["public_contact"]
+    contact_options = [x.strip() for x in canonical_contact.split(";") if x.strip()]
+    sent_to_contact = contact_options[0]
+    send_channel = "EMAIL" if "@" in sent_to_contact else "PHONE_SCRIPT"
     return {
         "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_V1",
         "status": "MANUAL_SEND_RECORDED",
-        "candidate_id": "SONGZANLIN_EIA_2025",
+        "candidate_id": ready["candidate"]["candidate_id"],
         "route_id": route_id,
         "send_event_id": f"SEND-{route_id}-001",
         "sent_at": "2027-05-01T09:30:00+08:00",
-        "send_channel": "EMAIL",
-        "sent_to_contact": message["public_contact"],
+        "send_channel": send_channel,
+        "canonical_contact_snapshot": canonical_contact,
+        "sent_to_contact": sent_to_contact,
         "sent_message_reference": f"LOCAL-SENT-{route_id}-001",
         "sent_content_sha256": message["message_content_sha256"],
         "manual_send_confirmed": True,
@@ -117,7 +122,7 @@ def test_send_receipt_contact_must_match_reviewed_message() -> None:
     ready = _ready()
     receipt = _receipt(ready)
     receipt["sent_to_contact"] = "DIFFERENT_CONTACT"
-    with pytest.raises(ValueError, match="contact/message mismatch"):
+    with pytest.raises(ValueError, match="not a registered canonical contact option"):
         apply.apply_send_receipt(_rows(), ready, receipt)
 
 
@@ -177,7 +182,8 @@ def test_unreviewed_message_bundle_cannot_register_send() -> None:
         "route_id": route,
         "send_event_id": "SEND-UNREVIEWED-001",
         "sent_at": "2027-05-01T09:30:00+08:00",
-        "send_channel": "EMAIL",
+        "send_channel": "PHONE_SCRIPT",
+        "canonical_contact_snapshot": message["public_contact"],
         "sent_to_contact": message["public_contact"],
         "sent_message_reference": "LOCAL-SENT-UNREVIEWED",
         "sent_content_sha256": message["message_content_sha256"],
@@ -187,3 +193,46 @@ def test_unreviewed_message_bundle_cannot_register_send() -> None:
     }
     with pytest.raises(ValueError, match="not ready for manual send"):
         apply.apply_send_receipt(_rows(), unreviewed, receipt)
+
+
+
+def test_send_receipt_canonical_contact_snapshot_must_match_reviewed_message() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    receipt["canonical_contact_snapshot"] = "OTHER_CANONICAL_CONTACT"
+    with pytest.raises(ValueError, match="canonical contact/message mismatch"):
+        apply.apply_send_receipt(_rows(), ready, receipt)
+
+
+def test_multi_contact_route_can_use_one_registered_email_option() -> None:
+    ready = _ready("SHANGRILA_ALPINE_BOT_GARDEN")
+    route = "ALPINE_GARDEN_SITE_CONTACT"
+    receipt = _receipt(ready, route)
+    assert receipt["send_channel"] == "EMAIL"
+    assert "@" in receipt["sent_to_contact"]
+    updated, event = apply.apply_send_receipt(_rows(), ready, receipt)
+    target = next(row for row in updated if row["route_id"] == route)
+    assert target["outreach_status"] == "SENT_AWAITING_RESPONSE"
+    assert event["canonical_contact_snapshot"] == (
+        next(m for m in ready["messages"] if m["route_id"] == route)[
+            "public_contact"
+        ]
+    )
+
+
+def test_email_channel_rejects_phone_contact() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    receipt["send_channel"] = "EMAIL"
+    with pytest.raises(ValueError, match="EMAIL send channel requires"):
+        apply.apply_send_receipt(_rows(), ready, receipt)
+
+
+def test_phone_channel_rejects_non_phone_contact() -> None:
+    ready = _ready("SHANGRILA_ALPINE_BOT_GARDEN")
+    route = "ALPINE_GARDEN_SITE_CONTACT"
+    receipt = _receipt(ready, route)
+    receipt["send_channel"] = "PHONE_SCRIPT"
+    receipt["sent_to_contact"] = "598226819@qq.com"
+    with pytest.raises(ValueError, match="PHONE_SCRIPT send channel requires"):
+        apply.apply_send_receipt(_rows(), ready, receipt)
