@@ -33,7 +33,8 @@
       "leaf_whorl_photo_reference": "REQUIRED_BEFORE_USE",
       "cupular_base_photo_reference": "REQUIRED_BEFORE_USE",
       "flower_color_used_as_required_diagnostic": false
-    }
+    },
+    "sampling_permission_scope": "REQUIRED_BEFORE_USE"
   },
   "prohibited_recovery_inferences": {
     "pollinator_signal_scored": false,
@@ -42,5 +43,6 @@
     "p0_capacity_pass_scored": false
   },
   "recovery_queue_snapshot": null,
-  "scouting_locator_snapshot": null
+  "scouting_locator_snapshot": null,
+  "permission_scope_receipt": null
 }
