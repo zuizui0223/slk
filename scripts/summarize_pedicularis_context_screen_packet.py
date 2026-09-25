@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 import math
+from datetime import date
 from pathlib import Path
 
 try:
@@ -39,6 +40,15 @@ def _optional_bool(value: object, label: str) -> bool | None:
     return _bool(text, label)
 
 
+def _iso_date(value: object, label: str) -> date:
+    text = str(value).strip()
+    _need(bool(text), f"{label} missing")
+    try:
+        return date.fromisoformat(text)
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
+
+
 def _num(value: object, label: str, *, minimum: float = 0) -> float:
     try:
         out = float(value)
@@ -49,7 +59,7 @@ def _num(value: object, label: str, *, minimum: float = 0) -> float:
 
 
 def _one_context(rows: list[dict[str, str]]) -> dict[str, str]:
-    keys = ("candidate_site_id", "population_id", "season_id", "screen_window_id")
+    keys = ("candidate_id", "candidate_site_id", "population_id", "season_id", "screen_window_id")
     contexts = {tuple(str(row.get(k, "")).strip() for k in keys) for row in rows}
     _need(len(contexts) == 1, "context screen packet contains multiple contexts")
     values = next(iter(contexts))
@@ -105,6 +115,7 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     physical_tags = sorted(set(physical_mapping.values()))
 
     census_row = census_rows[0]
+    census_date_raw = str(census_row.get("observation_date", "")).strip()
     census_raw = str(census_row.get("flowering_plants_censused", "")).strip()
     census = _num(census_raw, "flowering_plants_censused") if census_raw else 0.0
     _need(
@@ -116,6 +127,7 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         "population_census_exhausted",
     )
 
+    observed_dates: list[date] = []
     completed_poll = []
     poll_bout_details: list[dict] = []
     total_minutes = 0.0
@@ -123,13 +135,15 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     visits = 0.0
     incomplete_records: list[dict[str, str]] = []
     for row in poll_rows:
+        date_raw = str(row.get("observation_date", "")).strip()
         minutes_raw = str(row.get("observed_observation_minutes", "")).strip()
         flowers_raw = str(row.get("simultaneously_open_focal_flowers", "")).strip()
         visits_raw = str(row.get("legitimate_pollinator_visits", "")).strip()
-        if not minutes_raw or not flowers_raw or not visits_raw:
+        if not date_raw or not minutes_raw or not flowers_raw or not visits_raw:
             missing_fields = [
                 field
                 for field, value in (
+                    ("observation_date", date_raw),
                     ("observed_observation_minutes", minutes_raw),
                     (
                         "simultaneously_open_focal_flowers",
@@ -148,6 +162,11 @@ def summarize(rows: list[dict[str, str]]) -> dict:
                 }
             )
             continue
+        observation_date = _iso_date(
+            date_raw,
+            f"observation_date/{row['record_id']}",
+        )
+        observed_dates.append(observation_date)
         minutes = _num(minutes_raw, f"observed minutes/{row['record_id']}", minimum=0.000001)
         flowers = _num(flowers_raw, f"simultaneously open focal flowers/{row['record_id']}", minimum=1)
         _need(flowers.is_integer(), f"simultaneously open focal flowers must be an integer: {row['record_id']}")
@@ -175,6 +194,7 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         poll_bout_details.append(
             {
                 "record_id": row["record_id"],
+                "observation_date": observation_date.isoformat(),
                 "planned_minutes": planned_minutes,
                 "observed_minutes": minutes,
                 "simultaneously_open_focal_flowers": int(flowers),
@@ -187,17 +207,35 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     pred_notes = []
     pred_units: set[tuple[str, str]] = set()
     for row in pred_rows:
+        date_raw = str(row.get("observation_date", "")).strip()
         raw = str(row.get("predator_attack_present", "")).strip()
-        if raw == "":
+        if not date_raw or raw == "":
             incomplete_records.append(
                 {
                     "record_id": row["record_id"],
                     "record_type": "PREDATOR_FLOWER",
                     "reason": "MISSING_REQUIRED_MEASUREMENT",
-                    "detail": "predator_attack_present",
+                    "detail": ",".join(
+                        field
+                        for field, value in (
+                            ("observation_date", date_raw),
+                            ("predator_attack_present", raw),
+                        )
+                        if not value
+                    ),
                 }
             )
             continue
+        observation_date = _iso_date(
+            date_raw,
+            f"observation_date/{row['record_id']}",
+        )
+        observed_dates.append(observation_date)
+        observation_date = _iso_date(
+            date_raw,
+            f"observation_date/{row['record_id']}",
+        )
+        observed_dates.append(observation_date)
         plant_id = str(row.get("plant_id", "")).strip()
         flower_id = str(row.get("flower_id", "")).strip()
         _need(
@@ -226,14 +264,22 @@ def summarize(rows: list[dict[str, str]]) -> dict:
     water_notes = []
     water_units: set[str] = set()
     for row in water_rows:
+        date_raw = str(row.get("observation_date", "")).strip()
         raw = str(row.get("water_positive", "")).strip()
-        if raw == "":
+        if not date_raw or raw == "":
             incomplete_records.append(
                 {
                     "record_id": row["record_id"],
                     "record_type": "WATER_PLANT",
                     "reason": "MISSING_REQUIRED_MEASUREMENT",
-                    "detail": "water_positive",
+                    "detail": ",".join(
+                        field
+                        for field, value in (
+                            ("observation_date", date_raw),
+                            ("water_positive", raw),
+                        )
+                        if not value
+                    ),
                 }
             )
             continue
@@ -253,6 +299,23 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         if note:
             water_notes.append(note)
         completed_water.append(row)
+
+    census_dated = False
+    if census_raw and census_exhausted is not None:
+        if census_date_raw:
+            observed_dates.append(
+                _iso_date(census_date_raw, "observation_date/CENSUS-001")
+            )
+            census_dated = True
+        else:
+            incomplete_records.append(
+                {
+                    "record_id": census_row["record_id"],
+                    "record_type": "CENSUS",
+                    "reason": "MISSING_CAPACITY_CENSUS_DATE",
+                    "detail": "observation_date",
+                }
+            )
 
     if not census_raw:
         incomplete_records.append(
@@ -289,6 +352,16 @@ def summarize(rows: list[dict[str, str]]) -> dict:
         "context": {
             "system": "Pedicularis rex",
             **ctx,
+        },
+        "field_timing_audit": {
+            "capacity_census_dated": census_dated,
+            "observed_date_min": (
+                min(observed_dates).isoformat() if observed_dates else None
+            ),
+            "observed_date_max": (
+                max(observed_dates).isoformat() if observed_dates else None
+            ),
+            "completed_dated_record_count": len(observed_dates),
         },
         "physical_unit_audit": {
             "status": "P0_SCREEN_PLANT_TAGS_VALIDATED",
