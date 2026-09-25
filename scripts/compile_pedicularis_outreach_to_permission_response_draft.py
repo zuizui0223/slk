@@ -9,6 +9,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANAGER_PATH = ROOT / "scripts" / "manage_pedicularis_wave1_permission_outreach.py"
 ROUTES = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_CONTACT_ROUTES_V1.csv"
+ACTIVITY_DEFINITIONS = (
+    ROOT / "data" / "PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json"
+)
 
 _spec = importlib.util.spec_from_file_location("ped_wave1_outreach_manager", MANAGER_PATH)
 manager = importlib.util.module_from_spec(_spec)
@@ -35,8 +38,17 @@ def _read(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def _activity_definitions() -> dict[str, dict]:
+    payload = json.loads(ACTIVITY_DEFINITIONS.read_text(encoding="utf-8"))
+    activities = payload.get("activities")
+    if not isinstance(activities, dict) or set(activities) != set(ACTIVITIES):
+        raise ValueError("permission activity-definition inventory changed")
+    return activities
+
+
 def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
     receipt = manager.validate(rows)
+    activity_definitions = _activity_definitions()
     progress = receipt["candidate_progress"].get(candidate_id)
     if progress is None:
         raise ValueError(f"candidate absent from WAVE1 outreach ledger: {candidate_id}")
@@ -79,6 +91,14 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
                         "conditions": None,
                         "conditions_compatible_with_registered_activity": None,
                         "conditions_review_reference": None,
+                        "registered_activity_definition_reference": (
+                            activity_definitions[activity_id][
+                                "definition_reference"
+                            ]
+                        ),
+                        "conditions_reviewed_by": None,
+                        "conditions_review_date": None,
+                        "conditions_review_rationale": None,
                     }
                     for activity_id, activity in ACTIVITIES.items()
                 ],
@@ -114,8 +134,9 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
         "next_action": (
             "Read each returned authority/site response; set A-F decisions separately; "
             "fill activity-level response references, validity dates and conditions; "
-            "review whether each positive condition is compatible with the registered "
-            "activity and record the review reference; then set "
+            "review whether each positive condition is compatible with the canonical "
+            "registered activity definition; record reviewer, review date, rationale, "
+            "and review reference; then set "
             "status=FILLED_AUTHORITY_RESPONSES before adjudication."
         ),
         "claim_ceiling": (
