@@ -90,7 +90,8 @@
     "permission_message_status": "BILINGUAL_DRAFT_RENDERING_READY_NOT_SENT",
     "permission_message_send_guard": "scripts/validate_pedicularis_wave1_permission_messages_for_send.py",
     "permission_message_send_policy": "MANUAL_SEND_ONLY_REQUESTER_FIELDS_AND_HUMAN_REVIEW_REQUIRED_AUTOMATIC_SEND_FALSE",
-    "permission_routing_update_rule": "ROUTING_ONLY_DESTINATIONS_MUST_BE_CANONICALLY_REGISTERED_BEFORE_AUTHORIZING_USE"
+    "permission_routing_update_rule": "ROUTING_ONLY_DESTINATIONS_MUST_BE_CANONICALLY_REGISTERED_BEFORE_AUTHORIZING_USE",
+    "permission_working_file_policy": "REQUESTER_AND_AUTHORITY_WORKING_FILES_LOCAL_GITIGNORED_CANONICAL_TEMPLATES_ONLY_TRACKED"
   },
   "stages": [
     {
