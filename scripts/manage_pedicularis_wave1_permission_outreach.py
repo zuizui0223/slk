@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 from collections import Counter, defaultdict
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +24,26 @@ RESPONSE_STATUSES = {
     "SUBSTANTIVE_RESPONSE_RECEIVED",
     "CLOSED_NO_RESPONSE_EXPECTED",
 }
+
+
+def _nonnegative_int(value: object, label: str) -> int:
+    if isinstance(value, bool):
+        raise ValueError(f"{label} must be a nonnegative integer")
+    try:
+        number = float(str(value).strip())
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{label} must be a nonnegative integer") from exc
+    if not number.is_integer() or number < 0:
+        raise ValueError(f"{label} must be a nonnegative integer")
+    return int(number)
+
+
+def _iso_date(value: object, label: str) -> date:
+    text = str(value).strip()
+    try:
+        return date.fromisoformat(text)
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
 
 
 def _read(path: Path) -> list[dict[str, str]]:
@@ -52,6 +73,9 @@ def generate_rows() -> list[dict[str, str]]:
                 "outreach_status": "NOT_SENT",
                 "outreach_date": "",
                 "outreach_reference": "",
+                "followup_attempts_completed": "0",
+                "last_followup_date": "",
+                "last_followup_reference": "",
                 "response_status": "NO_RESPONSE",
                 "response_date": "",
                 "response_reference": "",
@@ -89,6 +113,7 @@ def validate(rows: list[dict[str, str]]) -> dict:
     by_candidate: dict[str, list[dict[str, str]]] = defaultdict(list)
     status_counts: Counter[str] = Counter()
     substantive_responses = 0
+    total_followup_attempts = 0
 
     for row in rows:
         route_id = str(row.get("route_id", "")).strip()
@@ -115,13 +140,59 @@ def validate(rows: list[dict[str, str]]) -> dict:
         outreach_ref = str(row.get("outreach_reference", "")).strip()
         response_date = str(row.get("response_date", "")).strip()
         response_ref = str(row.get("response_reference", "")).strip()
+        followup_attempts = _nonnegative_int(
+            row.get("followup_attempts_completed", ""),
+            f"followup_attempts_completed/{route_id}",
+        )
+        last_followup_date = str(
+            row.get("last_followup_date", "")
+        ).strip()
+        last_followup_ref = str(
+            row.get("last_followup_reference", "")
+        ).strip()
 
         if outreach == "NOT_SENT":
-            if outreach_date or outreach_ref or response != "NO_RESPONSE":
-                raise ValueError(f"NOT_SENT route carries outreach/response evidence: {route_id}")
+            if (
+                outreach_date
+                or outreach_ref
+                or response != "NO_RESPONSE"
+                or followup_attempts != 0
+                or last_followup_date
+                or last_followup_ref
+            ):
+                raise ValueError(
+                    f"NOT_SENT route carries outreach/follow-up/response evidence: {route_id}"
+                )
         else:
             if not outreach_date or not outreach_ref:
                 raise ValueError(f"sent outreach lacks date/reference: {route_id}")
+
+        if followup_attempts == 0:
+            if last_followup_date or last_followup_ref:
+                raise ValueError(
+                    f"zero follow-up attempts cannot carry last-followup evidence: {route_id}"
+                )
+        else:
+            if outreach == "NOT_SENT":
+                raise ValueError(
+                    f"follow-up attempts require an initial send: {route_id}"
+                )
+            if not last_followup_date or not last_followup_ref:
+                raise ValueError(
+                    f"follow-up attempts lack last date/reference: {route_id}"
+                )
+            first_send_day = _iso_date(
+                outreach_date,
+                f"outreach_date/{route_id}",
+            )
+            followup_day = _iso_date(
+                last_followup_date,
+                f"last_followup_date/{route_id}",
+            )
+            if followup_day < first_send_day:
+                raise ValueError(
+                    f"last follow-up precedes initial outreach: {route_id}"
+                )
 
         if response == "NO_RESPONSE":
             if response_date or response_ref:
@@ -146,6 +217,7 @@ def validate(rows: list[dict[str, str]]) -> dict:
 
         by_candidate[candidate_id].append(row)
         status_counts[outreach] += 1
+        total_followup_attempts += followup_attempts
 
     if set(by_candidate) != wave1:
         raise ValueError("not all WAVE1 candidates are represented in outreach ledger")
@@ -173,6 +245,13 @@ def validate(rows: list[dict[str, str]]) -> dict:
         ]
         candidate_progress[candidate_id] = {
             "registered_routes": len(candidate_rows),
+            "followup_attempts_completed": sum(
+                _nonnegative_int(
+                    row.get("followup_attempts_completed", "0"),
+                    f"followup_attempts_completed/{row['route_id']}",
+                )
+                for row in candidate_rows
+            ),
             "regulatory_routes": len(regulatory),
             "site_authorizing_routes": len(site),
             "routing_destinations_pending_canonical_registration": routing_destinations,
@@ -204,6 +283,7 @@ def validate(rows: list[dict[str, str]]) -> dict:
         "candidate_count": len(wave1),
         "outreach_status_counts": dict(sorted(status_counts.items())),
         "substantive_response_count": substantive_responses,
+        "total_followup_attempts": total_followup_attempts,
         "candidate_progress": candidate_progress,
         "claim_ceiling": (
             "OUTREACH_TRACKING_ONLY_NO_PERMISSION_GRANTED_"
