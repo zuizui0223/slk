@@ -40,6 +40,16 @@ def compile_permission(receipt: dict, observation: dict) -> dict:
         isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
         "permission validity inventory missing",
     )
+    all_matrix = receipt.get("all_activity_matrix")
+    all_validity = receipt.get("all_activity_validity")
+    _need(
+        isinstance(all_matrix, dict) and set(all_matrix) == set("ABCDEF"),
+        "all-activity permission matrix missing",
+    )
+    _need(
+        isinstance(all_validity, dict) and set(all_validity) == set("ABCDEF"),
+        "all-activity permission validity missing",
+    )
     out["permission_scope_receipt"] = {
         "schema_version": RECEIPT_SCHEMA,
         "status": CONFIRMED_STATUS,
@@ -48,6 +58,8 @@ def compile_permission(receipt: dict, observation: dict) -> dict:
         "required_scope": REQUIRED_SCOPE,
         "required_activity_matrix": receipt["required_activity_matrix"],
         "required_activity_validity": copy.deepcopy(validity),
+        "all_activity_matrix": copy.deepcopy(all_matrix),
+        "all_activity_validity": copy.deepcopy(all_validity),
         "sampling_permission_reference": reference,
     }
     return out
