@@ -98,7 +98,13 @@
       "positive_condition_text_required": true,
       "no_additional_conditions_sentinel": "NO_ADDITIONAL_CONDITIONS",
       "incompatible_condition_effect": "BLOCK_EFFECTIVE_SCOPE",
-      "raw_authority_decision_preserved": true
+      "raw_authority_decision_preserved": true,
+      "activity_definition_registry": "data/PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json",
+      "reviewer_identity_required": true,
+      "review_date_required": true,
+      "review_rationale_required": true,
+      "review_date_window": "AUTHORITY_RESPONSE_DATE_TO_BUNDLE_ADJUDICATION_DATE",
+      "compatibility_judgment_source": "INTERNAL_PROJECT_REVIEW_NOT_AUTHORITY_STATEMENT"
     }
   },
   "stages": [
