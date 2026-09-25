@@ -68,7 +68,7 @@ Permission is additionally scope-bound. A positive recovery observation must car
 
 ```text
 sampling_permission_status = CONFIRMED
-sampling_permission_scope  = RECOVERY_PLUS_P0A_NONDESTRUCTIVE
+sampling_permission_scope  = RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE
 permission_scope_receipt    = confirmed WAVE1 permission-scope receipt.
 ```
 
