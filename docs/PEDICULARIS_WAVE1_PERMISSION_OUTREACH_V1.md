@@ -30,7 +30,9 @@ Only the dedicated permission-response adjudicator can convert substantive respo
 data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv
 scripts/manage_pedicularis_wave1_permission_outreach.py
 scripts/compile_pedicularis_outreach_to_permission_response_draft.py
+scripts/render_pedicularis_wave1_permission_messages.py
 tests/test_pedicularis_wave1_permission_outreach.py
+tests/test_pedicularis_wave1_permission_messages.py
 tests/test_pedicularis_outreach_to_permission_response_draft.py
 ```
 
@@ -49,6 +51,26 @@ python scripts/manage_pedicularis_wave1_permission_outreach.py \
   --validate PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER.csv \
   --receipt-output PEDICULARIS_WAVE1_PERMISSION_OUTREACH_STATUS.json
 ```
+
+## Unsent message rendering
+
+Candidate- and route-specific Chinese/English inquiry drafts can be rendered with:
+
+```bash
+python scripts/render_pedicularis_wave1_permission_messages.py \
+  --candidate-id <WAVE1_CANDIDATE_ID> \
+  --output PEDICULARIS_WAVE1_PERMISSION_MESSAGE_DRAFTS.json
+```
+
+The renderer uses the canonical candidate, scouting locator and contact-route records. Every message remains:
+
+```text
+status = DRAFT_NOT_SENT
+automatic_send_allowed = false
+human_review_required = true.
+```
+
+Requester identity, institution and reply address remain `REQUIRED_BEFORE_SEND`. The message asks for A-F decisions separately and asks for activity-specific validity dates and conditions. Scouting coordinates are explicitly described as historical/project locators rather than current plant positions.
 
 ## Outreach states
 
