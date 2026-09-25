@@ -63,6 +63,17 @@ and requires photo documentation of the registered Flora of China key characters
 
 A boolean `taxon_identity_confirmed=true` without its evidence reference is incomplete, not a pass. The same rule applies to flowering presence, access, permission and revisit feasibility.
 
+
+Permission is additionally scope-bound. A positive recovery observation must carry:
+
+```text
+sampling_permission_status = CONFIRMED
+sampling_permission_scope  = RECOVERY_PLUS_P0A_NONDESTRUCTIVE
+permission_scope_receipt    = confirmed WAVE1 permission-scope receipt.
+```
+
+The receipt must show A-C (observation, morphology photography and non-destructive measurement) passing on both regulatory and site sides. D-F destructive activities are not inferred from this receipt.
+
 ## What recovery does not ask
 
 Recovery must not score or infer:
