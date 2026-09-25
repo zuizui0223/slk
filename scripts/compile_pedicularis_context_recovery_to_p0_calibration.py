@@ -32,6 +32,7 @@ def compile_recovery(receipt: dict, calibration_template: dict) -> dict:
     ctx = receipt["context"]
     cctx = out["context"]
     _need(cctx.get("system") == "Pedicularis rex", "wrong P0 calibration system")
+    cctx["candidate_id"] = ctx["candidate_id"]
     cctx["candidate_site_id"] = ctx["candidate_site_id"]
     cctx["population_id"] = ctx["population_id"]
     cctx["season_id"] = ctx["season_id"]
