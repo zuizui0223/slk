@@ -292,7 +292,7 @@ def adjudicate(payload: dict) -> dict:
             "required_activity_validity": (
                 required_activity_validity if confirmed else None
             ),
-            "destructive_activities_D_to_F_required_for_recovery_p0a": False,
+            "destructive_activities_D_to_F_required_for_recovery_p0a_p0b": False,
         },
         "claim_ceiling": (
             "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY_"
