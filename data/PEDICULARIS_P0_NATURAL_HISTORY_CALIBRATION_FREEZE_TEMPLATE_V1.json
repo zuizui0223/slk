@@ -12,7 +12,8 @@
     "frozen_before_calibration_outcomes": false,
     "p0_outcomes_opened": false,
     "planned_calibration_start_date": "REQUIRED_BEFORE_USE",
-    "planned_calibration_end_date": "REQUIRED_BEFORE_USE"
+    "planned_calibration_end_date": "REQUIRED_BEFORE_USE",
+    "candidate_id": "REQUIRED_BEFORE_USE"
   },
   "sampling": {
     "minimum_pollinator_bouts": null,
