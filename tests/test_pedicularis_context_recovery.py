@@ -206,6 +206,7 @@ def test_positive_recovery_compiles_context_into_p0_calibration_template() -> No
     template = json.loads(CAL_TEMPLATE.read_text())
     out = comp.compile_recovery(receipt, template)
     assert out["status"] == "CONTEXT_RECOVERY_COMPILED_AWAITING_P0_CALIBRATION_DESIGN"
+    assert out["context"]["candidate_id"] == "SHANGRILA_WUFENG"
     assert out["context"]["candidate_site_id"] == "site-wufeng"
     assert out["context"]["population_id"] == "pop-wufeng-2027"
     assert out["context"]["season_id"] == "2027"
