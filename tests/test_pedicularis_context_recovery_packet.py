@@ -95,7 +95,35 @@ def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
             "A": {"regulatory": "PASS", "site": "PASS"},
             "B": {"regulatory": "PASS", "site": "PASS"},
             "C": {"regulatory": "PASS", "site": "PASS"}
-        }
+        },
+        "required_activity_validity": {
+            activity_id: {
+                "regulatory": [
+                    {
+                        "response_id": "REG-001",
+                        "route_id": "TEST-REG",
+                        "response_reference": "REG-REF",
+                        "decision": "ALLOWED",
+                        "valid_from": "2027-05-01",
+                        "valid_through": "2027-09-30",
+                    }
+                ],
+                "site": [
+                    {
+                        "response_id": "SITE-001",
+                        "route_id": "TEST-SITE",
+                        "response_reference": "SITE-REF",
+                        "decision": "ALLOWED",
+                        "valid_from": "2027-05-01",
+                        "valid_through": "2027-09-30",
+                    }
+                ],
+            }
+            for activity_id in "ABC"
+        },
+        "sampling_permission_reference": (
+            "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
+        )
     }
     obs["fresh_verification"].update(
         {
