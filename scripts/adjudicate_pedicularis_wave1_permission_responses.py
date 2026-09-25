@@ -206,6 +206,10 @@ def adjudicate(payload: dict) -> dict:
                         "permission expires before response date: "
                         f"{response_id}/{activity_id}",
                     )
+                    conditions = _filled(
+                        decision_row.get("conditions"),
+                        f"conditions/{response_id}/{activity_id}",
+                    )
                     compatible = _required_bool(
                         decision_row.get(
                             "conditions_compatible_with_registered_activity"
@@ -229,7 +233,7 @@ def adjudicate(payload: dict) -> dict:
                                 "decision": decision,
                                 "valid_from": valid_from.isoformat(),
                                 "valid_through": valid_through.isoformat(),
-                                "conditions": decision_row.get("conditions"),
+                                "conditions": conditions,
                                 "conditions_compatible_with_registered_activity": True,
                                 "conditions_review_reference": review_reference,
                             }
