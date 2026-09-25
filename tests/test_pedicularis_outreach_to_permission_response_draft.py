@@ -34,7 +34,7 @@ def _mark_response(rows: list[dict[str, str]], route_id: str) -> None:
 def test_response_draft_requires_both_regulatory_and_site_substantive_reply() -> None:
     rows = _rows()
     _mark_response(rows, "SONGZANLIN_FORESTRY_REGULATOR")
-    with pytest.raises(ValueError, match="lacks substantive regulatory \+ site"):
+    with pytest.raises(ValueError, match=r"lacks substantive regulatory \+ site"):
         mod.build(rows, "SONGZANLIN_EIA_2025")
 
 
