@@ -10,6 +10,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ROUTES = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_CONTACT_ROUTES_V1.csv"
 QUEUE = ROOT / "data" / "PEDICULARIS_CONTEXT_RECOVERY_QUEUE_V1.csv"
+ACTIVITY_DEFINITIONS = (
+    ROOT / "data" / "PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json"
+)
 
 SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_RESPONSE_BUNDLE_V1"
 READY_STATUS = "FILLED_AUTHORITY_RESPONSES"
@@ -63,6 +66,30 @@ def _iso_date(value: object, label: str) -> date:
         return date.fromisoformat(text)
     except ValueError as exc:
         raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
+
+
+def _adjudication_day(value: object) -> date:
+    text = _filled(value, "adjudication_timestamp")
+    _need(len(text) >= 10, "adjudication_timestamp must include ISO date")
+    try:
+        return date.fromisoformat(text[:10])
+    except ValueError as exc:
+        raise ValueError("adjudication_timestamp must begin YYYY-MM-DD") from exc
+
+
+def _activity_definitions() -> dict[str, dict]:
+    payload = json.loads(ACTIVITY_DEFINITIONS.read_text(encoding="utf-8"))
+    _need(
+        payload.get("schema_version")
+        == "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1",
+        "wrong permission activity-definition schema",
+    )
+    activities = payload.get("activities")
+    _need(
+        isinstance(activities, dict) and set(activities) == ALL_ACTIVITIES,
+        "permission activity-definition inventory changed",
+    )
+    return activities
 
 
 def _read(path: Path) -> list[dict[str, str]]:
@@ -124,6 +151,14 @@ def adjudicate(payload: dict) -> dict:
     _need(_is_wave1(candidate_id), "permission response candidate must be WAVE1")
     bundle_id = _filled(payload.get("response_bundle_id"), "response_bundle_id")
     canonical = _canonical_routes(candidate_id)
+    activity_definitions = _activity_definitions()
+
+    metadata = payload.get("adjudication_metadata", {})
+    for key in ("slk_source_commit", "adjudication_commit", "adjudication_timestamp"):
+        _filled(metadata.get(key), f"adjudication_metadata.{key}")
+    adjudication_day = _adjudication_day(
+        metadata.get("adjudication_timestamp")
+    )
 
     responses = payload.get("responses")
     _need(isinstance(responses, list) and responses, "permission responses missing")
@@ -221,6 +256,35 @@ def adjudicate(payload: dict) -> dict:
                         decision_row.get("conditions_review_reference"),
                         f"conditions_review_reference/{response_id}/{activity_id}",
                     )
+                    definition_reference = _filled(
+                        decision_row.get("registered_activity_definition_reference"),
+                        f"registered_activity_definition_reference/{response_id}/{activity_id}",
+                    )
+                    expected_definition_reference = activity_definitions[
+                        activity_id
+                    ]["definition_reference"]
+                    _need(
+                        definition_reference == expected_definition_reference,
+                        "condition review used wrong registered activity definition: "
+                        f"{response_id}/{activity_id}",
+                    )
+                    reviewed_by = _filled(
+                        decision_row.get("conditions_reviewed_by"),
+                        f"conditions_reviewed_by/{response_id}/{activity_id}",
+                    )
+                    review_date = _iso_date(
+                        decision_row.get("conditions_review_date"),
+                        f"conditions_review_date/{response_id}/{activity_id}",
+                    )
+                    _need(
+                        response_date <= review_date <= adjudication_day,
+                        "condition review date must fall between response and adjudication: "
+                        f"{response_id}/{activity_id}",
+                    )
+                    review_rationale = _filled(
+                        decision_row.get("conditions_review_rationale"),
+                        f"conditions_review_rationale/{response_id}/{activity_id}",
+                    )
                     if compatible:
                         validity_by_class[route_class][activity_id].append(
                             {
@@ -236,6 +300,12 @@ def adjudicate(payload: dict) -> dict:
                                 "conditions": conditions,
                                 "conditions_compatible_with_registered_activity": True,
                                 "conditions_review_reference": review_reference,
+                                "registered_activity_definition_reference": (
+                                    definition_reference
+                                ),
+                                "conditions_reviewed_by": reviewed_by,
+                                "conditions_review_date": review_date.isoformat(),
+                                "conditions_review_rationale": review_rationale,
                             }
                         )
                     else:
@@ -284,6 +354,18 @@ def adjudicate(payload: dict) -> dict:
                         "conditions_review_reference": decision_rows[
                             activity_id
                         ].get("conditions_review_reference"),
+                        "registered_activity_definition_reference": decision_rows[
+                            activity_id
+                        ].get("registered_activity_definition_reference"),
+                        "conditions_reviewed_by": decision_rows[
+                            activity_id
+                        ].get("conditions_reviewed_by"),
+                        "conditions_review_date": decision_rows[
+                            activity_id
+                        ].get("conditions_review_date"),
+                        "conditions_review_rationale": decision_rows[
+                            activity_id
+                        ].get("conditions_review_rationale"),
                     }
                     for activity_id in sorted(ALL_ACTIVITIES)
                 },
@@ -352,10 +434,6 @@ def adjudicate(payload: dict) -> dict:
     else:
         status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_INCOMPLETE"
 
-    metadata = payload.get("adjudication_metadata", {})
-    for key in ("slk_source_commit", "adjudication_commit", "adjudication_timestamp"):
-        _filled(metadata.get(key), f"adjudication_metadata.{key}")
-
     confirmed = status == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     return {
         "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
@@ -368,6 +446,9 @@ def adjudicate(payload: dict) -> dict:
         "required_activity_validity": required_activity_validity,
         "all_activity_matrix": all_activity_matrix,
         "all_activity_validity": all_activity_validity,
+        "activity_definition_schema": (
+            "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
+        ),
         "responses": resolved,
         "recovery_handoff": {
             "sampling_permission_status": "CONFIRMED" if confirmed else "UNRESOLVED",
