@@ -49,12 +49,16 @@ what separate forestry/wild-plant permission is required?
 regulatory routing:
     Shangri-La Municipal Forestry and Grassland Bureau
 
+site-management routing:
+    Shangri-La State-owned Forest Farm, Jiantang Branch
+    contact routed through the municipal forestry/grassland bureau
+
 local territorial routing:
     Jiantang Town People's Government
     public office contact: 0887-8222229
 ```
 
-The local route is used to identify the current manager of the historical south-slope micro-site. It is not treated as a collection permit.
+A 2026 municipal report states that Jiantang Branch staff and rangers patrol Wufeng Mountain, and recent municipal forestry approvals identify Jiantang Branch as an on-ground forest/grassland management and supervision unit within Jiantang Town. The branch therefore supplies the registered site-management route for Wufeng recovery. The town-government route remains routing-only and cannot satisfy the site authorization side.
 
 ### SHANGRILA_ALPINE_BOT_GARDEN
 
