@@ -20,6 +20,11 @@ def compile_recovery(receipt: dict, calibration_template: dict) -> dict:
     _need(receipt.get("status") == READY_STATUS, "context recovery is not ready for P0 calibration")
     handoff = receipt.get("downstream_handoff", {})
     _need(handoff.get("p0_relevance_calibration_authorized") is True, "P0 relevance calibration not authorized")
+    permission_receipt = handoff.get("p0a_permission_scope_receipt")
+    _need(
+        isinstance(permission_receipt, dict),
+        "P0a permission scope receipt missing from recovery handoff",
+    )
     _need(calibration_template.get("schema_version") == CAL_SCHEMA, "wrong P0 calibration template schema")
     _need(calibration_template.get("status") == "TEMPLATE_ONLY_NOT_FROZEN", "P0 calibration target must be an untouched template")
 
@@ -32,9 +37,12 @@ def compile_recovery(receipt: dict, calibration_template: dict) -> dict:
     cctx["season_id"] = ctx["season_id"]
     cctx["calibration_window_id"] = handoff["p0_relevance_calibration_window_id"]
     cctx["future_p0_screen_window_id"] = handoff["p0_screen_window_id"]
+    cctx["planned_calibration_start_date"] = "REQUIRED_BEFORE_USE"
+    cctx["planned_calibration_end_date"] = "REQUIRED_BEFORE_USE"
     cctx["frozen_before_calibration_outcomes"] = False
     cctx["p0_outcomes_opened"] = False
 
+    out["permission_scope_receipt"] = copy.deepcopy(permission_receipt)
     out["status"] = "CONTEXT_RECOVERY_COMPILED_AWAITING_P0_CALIBRATION_DESIGN"
     out.setdefault("freeze_metadata", {})["context_recovery_reference"] = (
         f"SLK_PEDICULARIS_CONTEXT_RECOVERY_RECEIPT_V1@{receipt['freeze_commit']}"
