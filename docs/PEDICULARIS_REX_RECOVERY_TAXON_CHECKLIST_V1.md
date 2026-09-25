@@ -61,7 +61,27 @@ EXPERT_CONFIRMATION
 
 do not require the field-photo diagnostic checklist, but they still require an auditable `taxon_evidence_reference`.
 
-`COMBINED` includes the field-morphology checklist plus another verification route.
+A voucher/specimen route must additionally declare the evidence origin:
+
+```text
+PREEXISTING_AUTHORIZED_SPECIMEN
+or
+NEW_FIELD_VOUCHER.
+```
+
+For `PREEXISTING_AUTHORIZED_SPECIMEN`, the recovery record must cite the accession / authorization / provenance reference showing that the material already exists lawfully.
+
+For `NEW_FIELD_VOUCHER`, the ordinary A-C non-destructive permission scope is not enough. Activity D (voucher specimen collection) must be PASS on both regulatory and site sides and valid on the actual recovery date.
+
+`COMBINED` must explicitly name its second route:
+
+```text
+EXPERT_CONFIRMATION
+or
+VOUCHER_OR_SPECIMEN.
+```
+
+If the second route is voucher/specimen, the same origin and activity-D rules apply.
 
 ## Source
 
