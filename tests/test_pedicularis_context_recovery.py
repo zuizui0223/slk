@@ -659,3 +659,43 @@ def test_new_field_voucher_collection_date_must_equal_recovery_date() -> None:
     }
     with pytest.raises(ValueError, match="must equal recovery verification date"):
         adj.adjudicate(obs, _freeze())
+
+
+
+def test_new_field_voucher_rejects_expired_D_permission_even_when_A_C_are_valid() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "NEW-VOUCHER-EXPIRED-D"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
+    fresh.pop("taxon_diagnostic_checklist")
+    receipt = obs["permission_scope_receipt"]
+    receipt["all_activity_matrix"]["D"] = {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    receipt["all_activity_validity"]["D"] = {
+        "regulatory": [
+            {
+                "response_id": "REG-D",
+                "route_id": "TEST-REG",
+                "response_reference": "REG-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-06-01",
+            }
+        ],
+        "site": [
+            {
+                "response_id": "SITE-D",
+                "route_id": "TEST-SITE",
+                "response_reference": "SITE-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-06-01",
+            }
+        ],
+    }
+    with pytest.raises(ValueError, match="requires activity D"):
+        adj.adjudicate(obs, _freeze())
