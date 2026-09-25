@@ -32,7 +32,9 @@ E  leaf / tissue sampling
 F  seed / fruit collection
 ```
 
-D-F may remain unresolved or prohibited without blocking P-1/P0a. They require separate authorization if later used.
+D-F may remain unresolved or prohibited without blocking the default non-destructive P-1/P0a/P0b path. They require separate authorization if later used.
+
+There is one explicit conditional exception: if the fresh taxon-identification route uses a **new field voucher**, activity D becomes required for that recovery record. The permission receipt therefore preserves A-F decisions and validity intervals even though only A-C define the default scope. A positive D response must also carry `valid_from` / `valid_through`; the recovery gate checks D on the actual voucher/recovery date.
 
 ## Two-sided permission requirement
 
