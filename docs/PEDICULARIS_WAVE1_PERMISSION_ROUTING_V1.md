@@ -107,6 +107,9 @@ F. seed/fruit collection
 
 A response authorizing one class must not be generalized to another. The validity window and conditions must also be recorded **per activity class**; a response-level date range cannot be copied onto activities whose authorization period differs.
 
+
+After a response is received, each positive activity must be reviewed against the exact registered field procedure. Record whether the stated conditions are compatible and cite the review reference. A raw `ALLOWED` answer with incompatible conditions cannot count as a PASS.
+
 The recovery observation may set:
 
 ```text
