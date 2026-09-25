@@ -109,10 +109,11 @@
     "permission_send_receipt_template": "data/PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json",
     "permission_send_receipt_applier": "scripts/apply_pedicularis_permission_send_receipt.py",
     "permission_send_transition": "NOT_SENT_TO_SENT_AWAITING_RESPONSE_ONLY_AFTER_HASH_MATCHED_MANUAL_SEND_RECEIPT",
-    "permission_message_content_hash": "SHA256_CANONICAL_ROUTE_MESSAGE",
+    "permission_message_content_hash": "SHA256_CANONICAL_ROUTE_MESSAGE_BY_CN_EN_OR_BILINGUAL_VARIANT",
     "permission_send_receipt_policy": "MANUAL_SEND_CONFIRMED_TIMEZONE_AWARE_SENT_AT_CONTACT_AND_HASH_MATCH_REQUIRED",
     "permission_send_contact_policy": "FULL_CANONICAL_CONTACT_SNAPSHOT_PLUS_REGISTERED_SPECIFIC_CONTACT_OPTION",
-    "permission_send_channel_contact_validation": "EMAIL_REQUIRES_EMAIL_PHONE_SCRIPT_REQUIRES_PHONE_LIKE_CONTACT"
+    "permission_send_channel_contact_validation": "EMAIL_REQUIRES_EMAIL_PHONE_SCRIPT_REQUIRES_PHONE_LIKE_CONTACT",
+    "permission_send_language_policy": "SENT_LANGUAGE_CN_EN_OR_BILINGUAL_MUST_MATCH_VARIANT_HASH"
   },
   "stages": [
     {
