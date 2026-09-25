@@ -44,7 +44,9 @@
     "permission_contact_routes": "data/PEDICULARIS_WAVE1_PERMISSION_CONTACT_ROUTES_V1.csv",
     "permission_routing_protocol": "docs/PEDICULARIS_WAVE1_PERMISSION_ROUTING_V1.md",
     "permission_status": "UNRESOLVED_FOR_ALL_WAVE1",
-    "permission_contact_status": "OFFICIAL_CONTACT_ROUTES_IDENTIFIED"
+    "permission_contact_status": "OFFICIAL_CONTACT_ROUTES_IDENTIFIED",
+    "permission_inquiry_generator": "scripts/generate_pedicularis_wave1_permission_inquiry.py",
+    "permission_inquiry_status": "DRAFT_GENERATION_READY_NOT_SENT"
   },
   "stages": [
     {
