@@ -33,6 +33,7 @@ def test_template_matches_generated_canonical_outreach_inventory() -> None:
     assert out["candidate_count"] == 3
     assert out["outreach_status_counts"] == {"NOT_SENT": 7}
     assert out["substantive_response_count"] == 0
+    assert out["total_followup_attempts"] == 0
     assert all(
         not progress["ready_to_build_permission_response_bundle"]
         for progress in out["candidate_progress"].values()
@@ -136,3 +137,66 @@ def test_local_routing_response_does_not_substitute_for_wufeng_site_authority() 
             "contact": "via forestry bureau",
         }
     ]
+
+
+
+def test_not_sent_route_cannot_claim_followup_attempt() -> None:
+    rows = _rows()
+    rows[0]["followup_attempts_completed"] = "1"
+    rows[0]["last_followup_date"] = "2027-05-08"
+    rows[0]["last_followup_reference"] = "FOLLOWUP-001"
+    with pytest.raises(ValueError, match="NOT_SENT route carries"):
+        mod.validate(rows)
+
+
+def test_followup_attempt_requires_last_date_and_reference() -> None:
+    rows = _rows()
+    row = rows[0]
+    row["outreach_status"] = "SENT_AWAITING_RESPONSE"
+    row["outreach_date"] = "2027-05-01"
+    row["outreach_reference"] = "SEND-001"
+    row["followup_attempts_completed"] = "1"
+    with pytest.raises(ValueError, match="lack last date/reference"):
+        mod.validate(rows)
+
+
+def test_zero_followup_attempts_cannot_carry_last_followup_evidence() -> None:
+    rows = _rows()
+    row = rows[0]
+    row["outreach_status"] = "SENT_AWAITING_RESPONSE"
+    row["outreach_date"] = "2027-05-01"
+    row["outreach_reference"] = "SEND-001"
+    row["last_followup_date"] = "2027-05-08"
+    row["last_followup_reference"] = "FOLLOWUP-001"
+    with pytest.raises(ValueError, match="zero follow-up attempts"):
+        mod.validate(rows)
+
+
+def test_last_followup_cannot_precede_initial_send() -> None:
+    rows = _rows()
+    row = rows[0]
+    row["outreach_status"] = "SENT_AWAITING_RESPONSE"
+    row["outreach_date"] = "2027-05-10"
+    row["outreach_reference"] = "SEND-001"
+    row["followup_attempts_completed"] = "1"
+    row["last_followup_date"] = "2027-05-08"
+    row["last_followup_reference"] = "FOLLOWUP-001"
+    with pytest.raises(ValueError, match="precedes initial outreach"):
+        mod.validate(rows)
+
+
+def test_valid_followup_attempt_is_counted_in_outreach_receipt() -> None:
+    rows = _rows()
+    row = rows[0]
+    row["outreach_status"] = "SENT_AWAITING_RESPONSE"
+    row["outreach_date"] = "2027-05-01"
+    row["outreach_reference"] = "SEND-001"
+    row["followup_attempts_completed"] = "1"
+    row["last_followup_date"] = "2027-05-08"
+    row["last_followup_reference"] = "FOLLOWUP-001"
+    out = mod.validate(rows)
+    assert out["total_followup_attempts"] == 1
+    candidate = row["candidate_id"]
+    assert out["candidate_progress"][candidate][
+        "followup_attempts_completed"
+    ] == 1
