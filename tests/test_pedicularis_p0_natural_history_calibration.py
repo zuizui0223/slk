@@ -78,6 +78,7 @@ def _freeze() -> dict:
         "context": {
             "system": "Pedicularis rex",
             "candidate_id": "SHANGRILA_WUFENG",
+            "candidate_id": "SHANGRILA_WUFENG",
             "candidate_site_id": "site1",
             "population_id": "pop1",
             "season_id": "2027",
