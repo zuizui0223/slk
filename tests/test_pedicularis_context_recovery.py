@@ -245,6 +245,7 @@ def test_recent_assessment_candidate_can_enter_fresh_recovery_gate() -> None:
             "recovery_window_id": "recovery-songzanlin-2027",
         }
     )
+    obs["permission_scope_receipt"]["candidate_id"] = "SONGZANLIN_EIA_2025"
     out = adj.adjudicate(obs, freeze)
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
     assert out["historical_anchor"]["candidate_status_before_recovery"] == (
@@ -274,7 +275,9 @@ def test_positive_receipt_preserves_recovery_evidence_references() -> None:
     assert fresh["taxon_evidence_reference"] == "PHOTO_SET_TAXON_001"
     assert fresh["flowering_population_evidence_reference"] == "PHOTO_SET_FLOWERING_001"
     assert fresh["access_evidence_reference"] == "FIELD_ACCESS_LOG_001"
-    assert fresh["sampling_permission_reference"] == "PERMIT_001"
+    assert fresh["sampling_permission_reference"] == (
+        "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
+    )
     assert fresh["revisit_plan_reference"] == "REVISIT_PLAN_001"
 
 
