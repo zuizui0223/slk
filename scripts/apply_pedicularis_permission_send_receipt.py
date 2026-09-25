@@ -69,7 +69,7 @@ def _validate_channel_contact(channel: str, contact: str) -> None:
         _need("@" in contact, "EMAIL send channel requires an email contact")
     elif channel == "PHONE_SCRIPT":
         _need(
-            any(ch.isdigit() for ch in contact),
+            re.fullmatch(r"\+?[0-9][0-9 -]{5,}[0-9]", contact) is not None,
             "PHONE_SCRIPT send channel requires a phone-like contact",
         )
 
