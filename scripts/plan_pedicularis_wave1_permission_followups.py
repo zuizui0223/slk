@@ -146,6 +146,7 @@ def plan(
         "status": "FOLLOWUP_PLAN_COMPUTED",
         "as_of_date": as_of.isoformat(),
         "policy_freeze_commit": policy["freeze_commit"],
+        "policy_freeze_timestamp": policy["freeze_timestamp"],
         "followup_offsets_days": offsets,
         "escalation_review_after_days": escalation_after,
         "automatic_close_allowed": False,
