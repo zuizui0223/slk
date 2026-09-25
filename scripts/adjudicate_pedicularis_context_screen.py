@@ -644,6 +644,7 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
         "status": status,
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": fctx["candidate_id"],
             "candidate_site_id": fctx["candidate_site_id"],
             "population_id": fctx["population_id"],
             "season_id": fctx["season_id"],
