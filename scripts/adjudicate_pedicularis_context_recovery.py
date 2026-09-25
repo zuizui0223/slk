@@ -14,7 +14,10 @@ ALLOWED_PRIOR_STATUSES = {
     "HISTORICAL_OCCURRENCE_ONLY",
     "RECENT_ASSESSMENT_OCCURRENCE_ONLY",
 }
-ALLOWED_PERMISSION = {"CONFIRMED", "NOT_REQUIRED"}
+ALLOWED_PERMISSION = {"CONFIRMED"}
+REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
+PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
+PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
 ALLOWED_TAXON_VERIFICATION_METHODS = {
     "FIELD_MORPHOLOGY_PHOTO",
     "VOUCHER_OR_SPECIMEN",
@@ -180,7 +183,50 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
     plants_seen = _optional_nonnegative_int(fresh.get("independent_flowering_plants_seen"), "independent_flowering_plants_seen")
     access = _optional_bool(fresh.get("site_access_confirmed"), "site_access_confirmed")
     permission_raw = str(fresh.get("sampling_permission_status", "")).strip()
+    permission_scope = _optional_text(fresh.get("sampling_permission_scope"))
     revisit = _optional_bool(fresh.get("same_season_revisit_feasible"), "same_season_revisit_feasible")
+
+    permission_receipt = observation.get("permission_scope_receipt")
+    permission_receipt_valid = False
+    if permission_raw in ALLOWED_PERMISSION:
+        _need(
+            permission_scope == REQUIRED_PERMISSION_SCOPE,
+            "confirmed recovery permission has wrong scope",
+        )
+        _need(
+            isinstance(permission_receipt, dict),
+            "confirmed recovery permission scope receipt missing",
+        )
+        _need(
+            permission_receipt.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
+            "wrong recovery permission scope receipt schema",
+        )
+        _need(
+            permission_receipt.get("status") == PERMISSION_RECEIPT_STATUS,
+            "recovery permission scope receipt is not confirmed",
+        )
+        _need(
+            permission_receipt.get("candidate_id") == fctx["candidate_id"],
+            "recovery permission scope receipt candidate mismatch",
+        )
+        _need(
+            permission_receipt.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
+            "recovery permission scope receipt scope changed",
+        )
+        matrix = permission_receipt.get("required_activity_matrix")
+        _need(
+            isinstance(matrix, dict) and set(matrix) == {"A", "B", "C"},
+            "recovery permission scope receipt activity matrix changed",
+        )
+        for activity_id in ("A", "B", "C"):
+            cell = matrix[activity_id]
+            _need(
+                isinstance(cell, dict)
+                and cell.get("regulatory") == "PASS"
+                and cell.get("site") == "PASS",
+                f"recovery permission scope not passed for activity {activity_id}",
+            )
+        permission_receipt_valid = True
 
     taxon_method = _optional_text(fresh.get("taxon_verification_method"))
     if taxon_method is not None:
@@ -263,6 +309,7 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
         and plants_seen is not None
         and access is not None
         and permission_raw not in {"", "REQUIRED_BEFORE_USE"}
+        and permission_scope is not None
         and revisit is not None
         and taxon_method is not None
         and all(value is not None for value in evidence.values())
@@ -315,7 +362,9 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             "site_access_confirmed": access,
             "access_evidence_reference": evidence["access"],
             "sampling_permission_status": permission_raw or None,
+            "sampling_permission_scope": permission_scope,
             "sampling_permission_reference": evidence["sampling_permission"],
+            "permission_scope_receipt_validated": permission_receipt_valid,
             "same_season_revisit_feasible": revisit,
             "revisit_plan_reference": evidence["revisit_plan"],
         },
