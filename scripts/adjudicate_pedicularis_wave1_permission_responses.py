@@ -21,11 +21,11 @@ ALLOWED_DECISIONS = {
     "PROHIBITED",
     "UNRESOLVED",
 }
-SITE_ROUTE_TYPES = {
+SITE_AUTHORIZING_ROUTE_TYPES = {
     "SITE_MANAGEMENT_ROUTING",
-    "LOCAL_TERRITORIAL_ROUTING",
     "INSTITUTIONAL_SITE_ROUTING",
 }
+ROUTING_ONLY_TYPES = {"LOCAL_TERRITORIAL_ROUTING"}
 
 
 def _need(ok: bool, message: str) -> None:
@@ -123,19 +123,29 @@ def adjudicate(payload: dict) -> dict:
             f"response_reference/{response_id}",
         )
         decisions = _decision_map(response, response_id)
-        route_class = (
-            "REGULATORY"
-            if route["route_type"].strip() == "REGULATORY_ROUTING"
-            else "SITE"
-        )
-        _need(
-            route_class == "REGULATORY"
-            or route["route_type"].strip() in SITE_ROUTE_TYPES,
-            f"unsupported permission response route type: {route_id}",
-        )
+        route_type = route["route_type"].strip()
+        if route_type == "REGULATORY_ROUTING":
+            route_class = "REGULATORY"
+        elif route_type in SITE_AUTHORIZING_ROUTE_TYPES:
+            route_class = "SITE"
+        elif route_type in ROUTING_ONLY_TYPES:
+            route_class = "ROUTING_ONLY"
+        else:
+            raise ValueError(
+                f"unsupported permission response route type: {route_id}"
+            )
 
-        for activity_id, decision in decisions.items():
-            activity_by_class[route_class][activity_id].add(decision)
+        if route_class == "ROUTING_ONLY":
+            _need(
+                all(
+                    decision in {"UNRESOLVED", "PROHIBITED"}
+                    for decision in decisions.values()
+                ),
+                f"routing-only contact cannot authorize activities: {route_id}",
+            )
+        else:
+            for activity_id, decision in decisions.items():
+                activity_by_class[route_class][activity_id].add(decision)
 
         resolved.append(
             {
