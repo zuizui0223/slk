@@ -54,6 +54,8 @@ def _filled(value: object, label: str) -> str:
 
 
 def _optional_text(value: object) -> str | None:
+    if value is None:
+        return None
     text = str(value).strip()
     if not text or "REQUIRED_BEFORE_USE" in text:
         return None
