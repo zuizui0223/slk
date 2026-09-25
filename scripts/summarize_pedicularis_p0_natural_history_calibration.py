@@ -6,6 +6,7 @@ import json
 import math
 import random
 from collections import defaultdict
+from datetime import date
 from pathlib import Path
 
 try:
@@ -25,6 +26,9 @@ except ImportError:
 SCHEMA = "SLK_PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_V1"
 PRODUCTION_STATUS = "PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_PROSPECTIVELY_FROZEN"
 DATASET_ID = "PED_P0_NAT_HIST_CAL_V1"
+PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
+PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
 ENDPOINTS = {
     "pollinator": "LEGITIMATE_VISITS_PER_FLOWER_MINUTE",
     "predator": "EARLY_ATTACK_OR_OVIPOSITION_POSITIVE_FLOWERS_PER_SCREENED_FLOWERS",
@@ -51,6 +55,14 @@ def _filled(value: object, label: str) -> str:
     out = str(value).strip()
     _need(bool(out) and "REQUIRED_BEFORE_USE" not in out, f"unfrozen {label}")
     return out
+
+
+def _iso_date(value: object, label: str) -> date:
+    text = _filled(value, label)
+    try:
+        return date.fromisoformat(text)
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
 
 
 def _number(value: object, label: str, minimum: float = 0.0) -> float:
@@ -100,8 +112,92 @@ def validate_freeze(freeze: dict) -> dict:
     _need(ctx.get("dataset_id") == DATASET_ID, "wrong calibration dataset id")
     for key in ("candidate_site_id", "population_id", "season_id", "calibration_window_id", "future_p0_screen_window_id"):
         _filled(ctx.get(key), f"context.{key}")
+    planned_start = _iso_date(
+        ctx.get("planned_calibration_start_date"),
+        "context.planned_calibration_start_date",
+    )
+    planned_end = _iso_date(
+        ctx.get("planned_calibration_end_date"),
+        "context.planned_calibration_end_date",
+    )
+    _need(
+        planned_start <= planned_end,
+        "planned calibration date interval reversed",
+    )
     _need(ctx.get("frozen_before_calibration_outcomes") is True, "calibration not frozen before outcomes")
     _need(ctx.get("p0_outcomes_opened") is False, "P0 outcomes already opened")
+
+    permission = freeze.get("permission_scope_receipt")
+    _need(
+        isinstance(permission, dict),
+        "P0a permission scope receipt missing",
+    )
+    _need(
+        permission.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
+        "wrong P0a permission scope receipt schema",
+    )
+    _need(
+        permission.get("status") == PERMISSION_RECEIPT_STATUS,
+        "P0a permission scope receipt is not confirmed",
+    )
+    _need(
+        permission.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
+        "P0a permission scope changed",
+    )
+    matrix = permission.get("required_activity_matrix")
+    validity = permission.get("required_activity_validity")
+    _need(
+        isinstance(matrix, dict) and set(matrix) == {"A", "B", "C"},
+        "P0a permission activity matrix changed",
+    )
+    _need(
+        isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
+        "P0a permission validity inventory changed",
+    )
+    for activity_id in ("A", "B", "C"):
+        cell = matrix[activity_id]
+        _need(
+            isinstance(cell, dict)
+            and cell.get("regulatory") == "PASS"
+            and cell.get("site") == "PASS",
+            f"P0a permission scope not passed for activity {activity_id}",
+        )
+        validity_cell = validity[activity_id]
+        _need(
+            isinstance(validity_cell, dict)
+            and set(validity_cell) == {"regulatory", "site"},
+            f"P0a permission validity cell changed: {activity_id}",
+        )
+        for side in ("regulatory", "site"):
+            intervals = validity_cell[side]
+            _need(
+                isinstance(intervals, list) and intervals,
+                f"P0a permission validity missing: {activity_id}/{side}",
+            )
+            covers_window = False
+            for index, interval in enumerate(intervals):
+                _need(
+                    isinstance(interval, dict),
+                    f"P0a permission interval must be object: {activity_id}/{side}/{index}",
+                )
+                valid_from = _iso_date(
+                    interval.get("valid_from"),
+                    f"P0a permission valid_from/{activity_id}/{side}/{index}",
+                )
+                valid_through = _iso_date(
+                    interval.get("valid_through"),
+                    f"P0a permission valid_through/{activity_id}/{side}/{index}",
+                )
+                _need(
+                    valid_from <= valid_through,
+                    f"P0a permission interval reversed: {activity_id}/{side}/{index}",
+                )
+                if valid_from <= planned_start and planned_end <= valid_through:
+                    covers_window = True
+            _need(
+                covers_window,
+                f"P0a planned calibration window outside permission validity: {activity_id}/{side}",
+            )
 
     sampling = freeze.get("sampling", {})
     floors = {
@@ -156,6 +252,9 @@ def validate_freeze(freeze: dict) -> dict:
 
     return {
         "context": ctx,
+        "permission_scope_receipt": permission,
+        "planned_calibration_start_date": planned_start.isoformat(),
+        "planned_calibration_end_date": planned_end.isoformat(),
         "floors": floors,
         "lower_quantile": lower_q,
         "seed": seed,
