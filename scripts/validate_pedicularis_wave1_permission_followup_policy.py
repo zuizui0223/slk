@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime
 from pathlib import Path
 
 SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1"
@@ -26,6 +27,16 @@ def _filled(value: object, label: str) -> str:
         f"unresolved {label}",
     )
     return text
+
+
+def _iso_datetime(value: object, label: str) -> datetime:
+    text = _filled(value, label)
+    try:
+        out = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO 8601 datetime") from exc
+    _need(out.tzinfo is not None, f"{label} must include timezone offset")
+    return out
 
 
 def _positive_int(value: object, label: str) -> int:
@@ -101,10 +112,13 @@ def validate(payload: dict) -> dict:
     for key in (
         "slk_source_commit",
         "freeze_commit",
-        "freeze_timestamp",
         "policy_rationale_reference",
     ):
         _filled(metadata.get(key), f"freeze_metadata.{key}")
+    freeze_timestamp = _iso_datetime(
+        metadata.get("freeze_timestamp"),
+        "freeze_metadata.freeze_timestamp",
+    )
 
     return {
         "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_RECEIPT_V1",
@@ -117,6 +131,7 @@ def validate(payload: dict) -> dict:
         "response_receipt_preempts_followup": True,
         "routing_response_preempts_same_route_followup": True,
         "freeze_commit": metadata["freeze_commit"],
+        "freeze_timestamp": freeze_timestamp.isoformat(),
         "policy_rationale_reference": metadata["policy_rationale_reference"],
         "claim_ceiling": (
             "ADMINISTRATIVE_FOLLOWUP_TIMING_ONLY_NO_PERMISSION_"
