@@ -14,6 +14,50 @@ assert spec.loader is not None
 spec.loader.exec_module(module)
 
 
+
+def _permission_receipt() -> dict:
+    validity = {
+        activity_id: {
+            "regulatory": [
+                {
+                    "response_id": "REG-001",
+                    "route_id": "TEST-REG",
+                    "response_reference": "REG-REF",
+                    "decision": "ALLOWED",
+                    "valid_from": "2027-05-01",
+                    "valid_through": "2027-09-30",
+                }
+            ],
+            "site": [
+                {
+                    "response_id": "SITE-001",
+                    "route_id": "TEST-SITE",
+                    "response_reference": "SITE-REF",
+                    "decision": "ALLOWED",
+                    "valid_from": "2027-05-01",
+                    "valid_through": "2027-09-30",
+                }
+            ],
+        }
+        for activity_id in "ABC"
+    }
+    return {
+        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
+        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
+        "candidate_id": "SHANGRILA_WUFENG",
+        "response_bundle_id": "test-permission-bundle",
+        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
+        "required_activity_matrix": {
+            activity_id: {"regulatory": "PASS", "site": "PASS"}
+            for activity_id in "ABC"
+        },
+        "required_activity_validity": validity,
+        "sampling_permission_reference": (
+            "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm"
+        ),
+    }
+
+
 def _source_records() -> list[dict]:
     fields = [
         "screen_effort.minimum_pollinator_observation_minutes_total",
@@ -44,12 +88,16 @@ def _freeze() -> dict:
         "status": "FROZEN_CANDIDATE",
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": "SHANGRILA_WUFENG",
             "candidate_site_id": "site1",
             "population_id": "pop1",
             "season_id": "2027",
             "screen_window_id": "screen1",
+            "planned_screen_start_date": "2027-07-10",
+            "planned_screen_end_date": "2027-07-15",
             "frozen_before_screen_outcomes": True,
         },
+        "permission_scope_receipt": _permission_receipt(),
         "screen_effort": {
             "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
             "minimum_pollinator_observation_minutes_total": 60,
@@ -120,10 +168,17 @@ def _receipt() -> dict:
         "status": "FILLED_SCREEN_DATA",
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": "SHANGRILA_WUFENG",
             "candidate_site_id": "site1",
             "population_id": "pop1",
             "season_id": "2027",
             "screen_window_id": "screen1",
+        },
+        "field_timing_audit": {
+            "capacity_census_dated": True,
+            "observed_date_min": "2027-07-10",
+            "observed_date_max": "2027-07-12",
+            "completed_dated_record_count": 74,
         },
         "physical_unit_audit": {
             "status": "P0_SCREEN_PLANT_TAGS_VALIDATED",
@@ -313,4 +368,19 @@ def test_pollinator_detail_aggregate_mismatch_is_rejected() -> None:
     receipt = _receipt()
     receipt["effort"]["pollinator_bout_details"][0]["legitimate_visits"] = 2
     with pytest.raises(ValueError, match="visits disagree"):
+        module.adjudicate(receipt, _freeze())
+
+
+
+def test_p0b_planned_interval_must_be_inside_permission_validity() -> None:
+    freeze = _freeze()
+    freeze["context"]["planned_screen_end_date"] = "2027-10-01"
+    with pytest.raises(ValueError, match="outside permission validity"):
+        module.validate_freeze(freeze)
+
+
+def test_p0b_observed_dates_must_be_inside_planned_interval() -> None:
+    receipt = _receipt()
+    receipt["field_timing_audit"]["observed_date_max"] = "2027-07-16"
+    with pytest.raises(ValueError, match="outside planned screen interval"):
         module.adjudicate(receipt, _freeze())
