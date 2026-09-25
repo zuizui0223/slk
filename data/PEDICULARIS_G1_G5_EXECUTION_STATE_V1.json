@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "ef3f320b81428e1a98b621e3b2f5a801353ce55c",
+  "source_main_commit_at_state_snapshot": "0a7403b73ed01de82c111f9564f7669f0b633baa",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_QUEUE_LOCATOR_BACKED_PACKET_WITH_AUDITABLE_RECOVERY_EVIDENCE_GATE_READY",
@@ -75,7 +75,12 @@
       "combined_route": "SECONDARY_TAXON_METHOD_MUST_BE_EXPLICIT",
       "same_context_receipt": "CANDIDATE_SITE_POPULATION_SEASON_AND_COLLECTION_DATE_REQUIRED",
       "prior_season_specimen": "CANNOT_SATISFY_FRESH_RECOVERY"
-    }
+    },
+    "permission_outreach_protocol": "docs/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_V1.md",
+    "permission_outreach_template": "data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv",
+    "permission_outreach_manager": "scripts/manage_pedicularis_wave1_permission_outreach.py",
+    "permission_outreach_status": "REGISTERED_TRACKER_READY_NO_OUTREACH_EXECUTED",
+    "permission_response_bundle_ready_rule": "SUBSTANTIVE_REGULATORY_AND_SITE_RESPONSE_REQUIRED_PER_CANDIDATE"
   },
   "stages": [
     {
