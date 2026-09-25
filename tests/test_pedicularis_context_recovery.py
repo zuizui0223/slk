@@ -558,11 +558,24 @@ def test_specimen_fields_are_rejected_for_photo_only_route() -> None:
         adj.adjudicate(obs, _freeze())
 
 
-def test_null_optional_text_does_not_count_as_filled() -> None:
+def test_null_optional_specimen_fields_do_not_become_literal_none_strings() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["combined_secondary_taxon_method"] = None
+    fresh["taxon_specimen_evidence_origin"] = None
+    fresh["taxonomic_material_authorization_reference"] = None
+    fresh["taxon_specimen_context_receipt"] = None
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["combined_secondary_taxon_method"] is None
+    assert out["fresh_verification"]["taxon_specimen_evidence_origin"] is None
+
+
+def test_confirmed_permission_with_null_scope_is_rejected_as_inconsistent() -> None:
     obs = _obs()
     obs["fresh_verification"]["sampling_permission_scope"] = None
-    out = adj.adjudicate(obs, _freeze())
-    assert out["status"] == "CONTEXT_RECOVERY_INCOMPLETE"
+    with pytest.raises(ValueError, match="wrong scope"):
+        adj.adjudicate(obs, _freeze())
 
 
 
