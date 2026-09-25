@@ -73,6 +73,20 @@ institutional site routing:
 
 The current route in the contact ledger uses the publicly published garden meeting contact. It is a way to reach the institution, not a pre-existing approval to conduct the recovery work.
 
+## Outreach tracking
+
+After generating inquiry drafts, actual sends and replies are tracked separately:
+
+```text
+docs/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_V1.md
+data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv
+scripts/manage_pedicularis_wave1_permission_outreach.py
+```
+
+A candidate becomes ready to build a permission-response draft only after a substantive reply has been received from both a regulatory route and a site-authorizing route. Routing-only replies cannot satisfy the site side.
+
+The response-draft compiler starts every A-F activity at `UNRESOLVED` and exposes activity-specific `valid_from`, `valid_through`, and `conditions` fields. It never interprets a returned message as permission.
+
 ## Inquiry packet generation
 
 Generate an unsent candidate-specific packet with:
