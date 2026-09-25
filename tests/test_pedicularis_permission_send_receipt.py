@@ -66,6 +66,7 @@ def _receipt(ready: dict, route_id: str = "SONGZANLIN_FORESTRY_REGULATOR") -> di
         "send_event_id": f"SEND-{route_id}-001",
         "sent_at": "2027-05-01T09:30:00+08:00",
         "send_channel": send_channel,
+        "sent_language": "BILINGUAL",
         "canonical_contact_snapshot": canonical_contact,
         "sent_to_contact": sent_to_contact,
         "sent_message_reference": f"LOCAL-SENT-{route_id}-001",
@@ -116,7 +117,7 @@ def test_ready_message_mutation_after_review_is_rejected() -> None:
     ready = _ready()
     receipt = _receipt(ready)
     ready["messages"][0]["body_en"] += "\nChanged after review."
-    with pytest.raises(ValueError, match="ready message content hash mismatch"):
+    with pytest.raises(ValueError, match="ready EN message content hash mismatch"):
         apply.apply_send_receipt(_rows(), ready, receipt)
 
 
@@ -185,6 +186,7 @@ def test_unreviewed_message_bundle_cannot_register_send() -> None:
         "send_event_id": "SEND-UNREVIEWED-001",
         "sent_at": "2027-05-01T09:30:00+08:00",
         "send_channel": "PHONE_SCRIPT",
+        "sent_language": "BILINGUAL",
         "canonical_contact_snapshot": message["public_contact"],
         "sent_to_contact": message["public_contact"],
         "sent_message_reference": "LOCAL-SENT-UNREVIEWED",
@@ -261,5 +263,50 @@ def test_send_receipt_template_exposes_hash_contact_and_manual_confirmation() ->
     )
     assert payload["status"] == "TEMPLATE_ONLY_NOT_DATA"
     assert payload["canonical_contact_snapshot"] == "REQUIRED_BEFORE_USE"
+    assert payload["sent_language"] == "REQUIRED_BEFORE_USE"
     assert payload["sent_content_sha256"] == "REQUIRED_BEFORE_USE"
     assert payload["manual_send_confirmed"] is False
+
+
+
+def test_chinese_only_send_uses_cn_hash() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    message = next(
+        m for m in ready["messages"]
+        if m["route_id"] == receipt["route_id"]
+    )
+    receipt["sent_language"] = "CN"
+    receipt["sent_content_sha256"] = message["message_content_sha256_cn"]
+    _, event = apply.apply_send_receipt(_rows(), ready, receipt)
+    assert event["sent_language"] == "CN"
+    assert event["message_content_sha256"] == message["message_content_sha256_cn"]
+
+
+def test_english_only_send_uses_en_hash() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    message = next(
+        m for m in ready["messages"]
+        if m["route_id"] == receipt["route_id"]
+    )
+    receipt["sent_language"] = "EN"
+    receipt["sent_content_sha256"] = message["message_content_sha256_en"]
+    _, event = apply.apply_send_receipt(_rows(), ready, receipt)
+    assert event["sent_language"] == "EN"
+
+
+def test_cn_send_cannot_cite_bilingual_hash() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    receipt["sent_language"] = "CN"
+    with pytest.raises(ValueError, match="content hash/message mismatch"):
+        apply.apply_send_receipt(_rows(), ready, receipt)
+
+
+def test_send_receipt_rejects_unregistered_language() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    receipt["sent_language"] = "JP"
+    with pytest.raises(ValueError, match="unregistered sent language"):
+        apply.apply_send_receipt(_rows(), ready, receipt)
