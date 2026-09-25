@@ -70,14 +70,19 @@ def _is_wave1(candidate_id: str) -> bool:
     )
 
 
-def _decision_map(response: dict, label: str) -> dict[str, str]:
+def _decision_map(
+    response: dict,
+    label: str,
+) -> tuple[dict[str, str], dict[str, dict]]:
     rows = response.get("activity_decisions")
     _need(isinstance(rows, list), f"{label} activity_decisions must be a list")
     ids = [str(row.get("activity_id", "")).strip() for row in rows]
     _need(len(ids) == len(set(ids)), f"{label} duplicate activity_id")
     _need(set(ids) == ALL_ACTIVITIES, f"{label} activity inventory must be A-F")
     out: dict[str, str] = {}
+    by_id: dict[str, dict] = {}
     for row in rows:
+        _need(isinstance(row, dict), f"{label} activity decision must be object")
         activity_id = str(row["activity_id"]).strip()
         decision = _filled(row.get("decision"), f"{label}/{activity_id}/decision")
         _need(
@@ -90,7 +95,8 @@ def _decision_map(response: dict, label: str) -> dict[str, str]:
                 f"{label}/{activity_id}/response_reference",
             )
         out[activity_id] = decision
-    return out
+        by_id[activity_id] = row
+    return out, by_id
 
 
 def adjudicate(payload: dict) -> dict:
@@ -138,7 +144,7 @@ def adjudicate(payload: dict) -> dict:
             response.get("response_reference"),
             f"response_reference/{response_id}",
         )
-        decisions = _decision_map(response, response_id)
+        decisions, decision_rows = _decision_map(response, response_id)
         route_type = route["route_type"].strip()
         if route_type == "REGULATORY_ROUTING":
             route_class = "REGULATORY"
@@ -160,42 +166,40 @@ def adjudicate(payload: dict) -> dict:
                 f"routing-only contact cannot authorize activities: {route_id}",
             )
         else:
-            positive_any = any(
-                decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
-                for decision in decisions.values()
-            )
-            valid_from = None
-            valid_through = None
-            if positive_any:
-                valid_from = _iso_date(
-                    response.get("valid_from"),
-                    f"valid_from/{response_id}",
-                )
-                valid_through = _iso_date(
-                    response.get("valid_through"),
-                    f"valid_through/{response_id}",
-                )
-                _need(
-                    valid_from <= valid_through,
-                    f"permission validity interval reversed: {response_id}",
-                )
-                _need(
-                    response_date <= valid_through,
-                    f"permission expires before response date: {response_id}",
-                )
-
             for activity_id, decision in decisions.items():
                 activity_by_class[route_class][activity_id].add(decision)
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}:
-                    assert valid_from is not None and valid_through is not None
+                    decision_row = decision_rows[activity_id]
+                    valid_from = _iso_date(
+                        decision_row.get("valid_from"),
+                        f"valid_from/{response_id}/{activity_id}",
+                    )
+                    valid_through = _iso_date(
+                        decision_row.get("valid_through"),
+                        f"valid_through/{response_id}/{activity_id}",
+                    )
+                    _need(
+                        valid_from <= valid_through,
+                        "permission validity interval reversed: "
+                        f"{response_id}/{activity_id}",
+                    )
+                    _need(
+                        response_date <= valid_through,
+                        "permission expires before response date: "
+                        f"{response_id}/{activity_id}",
+                    )
                     validity_by_class[route_class][activity_id].append(
                         {
                             "response_id": response_id,
                             "route_id": route_id,
-                            "response_reference": response_reference,
+                            "response_reference": _filled(
+                                decision_row.get("response_reference"),
+                                f"{response_id}/{activity_id}/response_reference",
+                            ),
                             "decision": decision,
                             "valid_from": valid_from.isoformat(),
                             "valid_through": valid_through.isoformat(),
+                            "conditions": decision_row.get("conditions"),
                         }
                     )
 
@@ -209,8 +213,24 @@ def adjudicate(payload: dict) -> dict:
                 "response_date": response_date.isoformat(),
                 "response_reference": response_reference,
                 "activity_decisions": decisions,
-                "valid_from": response.get("valid_from"),
-                "valid_through": response.get("valid_through"),
+                "activity_decision_details": {
+                    activity_id: {
+                        "decision": decisions[activity_id],
+                        "response_reference": decision_rows[activity_id].get(
+                            "response_reference"
+                        ),
+                        "valid_from": decision_rows[activity_id].get(
+                            "valid_from"
+                        ),
+                        "valid_through": decision_rows[activity_id].get(
+                            "valid_through"
+                        ),
+                        "conditions": decision_rows[activity_id].get(
+                            "conditions"
+                        ),
+                    }
+                    for activity_id in sorted(ALL_ACTIVITIES)
+                },
                 "conditions": response.get("conditions"),
             }
         )

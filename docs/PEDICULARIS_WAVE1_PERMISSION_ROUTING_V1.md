@@ -105,7 +105,7 @@ E. leaf/tissue sampling
 F. seed/fruit collection
 ```
 
-A response authorizing one class must not be generalized to another.
+A response authorizing one class must not be generalized to another. The validity window and conditions must also be recorded **per activity class**; a response-level date range cannot be copied onto activities whose authorization period differs.
 
 The recovery observation may set:
 

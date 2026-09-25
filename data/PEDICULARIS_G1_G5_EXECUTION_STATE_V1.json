@@ -75,7 +75,9 @@
       "combined_route": "SECONDARY_TAXON_METHOD_MUST_BE_EXPLICIT",
       "same_context_receipt": "CANDIDATE_SITE_POPULATION_SEASON_AND_COLLECTION_DATE_REQUIRED",
       "prior_season_specimen": "CANNOT_SATISFY_FRESH_RECOVERY"
-    }
+    },
+    "permission_validity_grain": "ACTIVITY_X_AUTHORITY_SIDE",
+    "response_level_validity_authoritative": false
   },
   "stages": [
     {

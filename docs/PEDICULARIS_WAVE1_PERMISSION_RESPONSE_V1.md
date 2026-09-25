@@ -60,21 +60,35 @@ For example, the Jiantang Town route for Wufeng cannot itself authorize A-C. Wuf
 
 ## Validity-window requirement
 
-A positive A-C response is not timeless. Every `ALLOWED` or `NO_PERMISSION_REQUIRED` response that contributes to the required scope must record:
+A positive activity decision is not timeless. Each A-F activity row is adjudicated separately. Every `ALLOWED` or `NO_PERMISSION_REQUIRED` activity decision must record:
 
 ```text
-response_date
+activity_id
+decision
+response_reference
 valid_from
-valid_through.
+valid_through
+conditions.
 ```
 
-The adjudicator validates ISO dates, rejects reversed intervals, and records the positive validity intervals separately for every:
+`response_date` remains response-level provenance, but a response-wide validity window does **not** substitute for activity-level dates.
+
+This matters because one authority may say, for example:
 
 ```text
-activity A-C
+A-C non-destructive work: valid through September
+D voucher collection:    valid only June 10-20.
+```
+
+The adjudicator validates ISO dates and records positive intervals separately for every:
+
+```text
+activity A-F
 x
 REGULATORY / SITE side.
 ```
+
+Only A-C define the default non-destructive scope. D-F are retained so later destructive routes cannot silently inherit A-C validity.
 
 The recovery gate then asks whether the **actual fresh-recovery date** falls inside at least one positive interval for every required cell.
 

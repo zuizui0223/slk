@@ -27,6 +27,11 @@ def test_songzanlin_permission_packet_is_unsent_and_activity_specific() -> None:
         x["permission_status"] == "UNKNOWN"
         for x in out["activity_questions"]
     )
+    assert all(x["valid_from"] is None for x in out["activity_questions"])
+    assert all(x["valid_through"] is None for x in out["activity_questions"])
+    assert out["response_requirements"][
+        "provide_activity_specific_validity_window_and_conditions"
+    ] is True
 
 
 def test_alpine_garden_packet_keeps_site_and_regulatory_routes_separate() -> None:

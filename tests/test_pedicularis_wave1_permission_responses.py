@@ -28,6 +28,17 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
             "response_reference": (
                 "RESP-REF" if default != "UNRESOLVED" else None
             ),
+            "valid_from": (
+                "2027-05-01"
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "valid_through": (
+                "2027-09-30"
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "conditions": None,
         }
         for activity_id in "ABCDEF"
     ]
@@ -40,6 +51,16 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
             row["response_reference"] = (
                 f"{prefix}-{row['activity_id']}"
                 if decision != "UNRESOLVED"
+                else None
+            )
+            row["valid_from"] = (
+                "2027-05-01"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["valid_through"] = (
+                "2027-09-30"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
 
@@ -62,8 +83,6 @@ def _songzanlin_bundle() -> dict:
                 "response_date": "2027-05-10",
                 "response_reference": "FORESTRY-EMAIL-001",
                 "activity_decisions": reg,
-                "valid_from": "2027-05-10",
-                "valid_through": "2027-09-30",
                 "conditions": "non-destructive scope only",
             },
             {
@@ -73,8 +92,6 @@ def _songzanlin_bundle() -> dict:
                 "response_date": "2027-05-12",
                 "response_reference": "SITE-LETTER-001",
                 "activity_decisions": site,
-                "valid_from": "2027-05-12",
-                "valid_through": "2027-09-30",
                 "conditions": "coordinate with site staff before entry",
             },
         ],
@@ -178,8 +195,6 @@ def test_wufeng_local_routing_contact_cannot_authorize_site_scope() -> None:
                 "response_date": "2027-05-10",
                 "response_reference": "FORESTRY-EMAIL-003",
                 "activity_decisions": reg,
-                "valid_from": "2027-05-10",
-                "valid_through": "2027-09-30",
             },
             {
                 "response_id": "LOCAL-001",
@@ -256,8 +271,6 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
                 "response_date": "2027-05-10",
                 "response_reference": "FORESTRY-EMAIL-010",
                 "activity_decisions": reg,
-                "valid_from": "2027-05-10",
-                "valid_through": "2027-09-30",
             },
             {
                 "response_id": "SITE-001",
@@ -266,8 +279,6 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
                 "response_date": "2027-05-11",
                 "response_reference": "FOREST-FARM-LETTER-001",
                 "activity_decisions": site,
-                "valid_from": "2027-05-11",
-                "valid_through": "2027-09-30",
             },
         ],
         "adjudication_metadata": {
@@ -282,26 +293,38 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
 
 
 
-def test_positive_required_scope_response_requires_validity_dates() -> None:
+def test_positive_required_scope_response_requires_activity_validity_dates() -> None:
     payload = _songzanlin_bundle()
-    payload["responses"][0]["valid_through"] = None
-    with pytest.raises(ValueError, match="valid_through/REG-001"):
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["valid_through"] = None
+    with pytest.raises(ValueError, match="valid_through/REG-001/A"):
         adj.adjudicate(payload)
 
 
-def test_permission_validity_interval_cannot_be_reversed() -> None:
+def test_activity_permission_validity_interval_cannot_be_reversed() -> None:
     payload = _songzanlin_bundle()
-    payload["responses"][0]["valid_from"] = "2027-10-01"
-    payload["responses"][0]["valid_through"] = "2027-09-30"
-    with pytest.raises(ValueError, match="validity interval reversed"):
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "B"
+    )
+    target["valid_from"] = "2027-10-01"
+    target["valid_through"] = "2027-09-30"
+    with pytest.raises(ValueError, match="validity interval reversed: REG-001/B"):
         adj.adjudicate(payload)
 
 
-def test_permission_cannot_expire_before_response_date() -> None:
+def test_activity_permission_cannot_expire_before_response_date() -> None:
     payload = _songzanlin_bundle()
-    payload["responses"][0]["valid_from"] = "2027-04-01"
-    payload["responses"][0]["valid_through"] = "2027-05-01"
-    with pytest.raises(ValueError, match="expires before response date"):
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "C"
+    )
+    target["valid_from"] = "2027-04-01"
+    target["valid_through"] = "2027-05-01"
+    with pytest.raises(ValueError, match="expires before response date: REG-001/C"):
         adj.adjudicate(payload)
 
 
@@ -315,6 +338,9 @@ def test_optional_D_permission_is_receipted_without_becoming_required_scope() ->
         )
         target["decision"] = "ALLOWED"
         target["response_reference"] = f"{prefix}-D"
+        target["valid_from"] = "2027-06-01"
+        target["valid_through"] = "2027-06-30"
+        target["conditions"] = "voucher-only June window"
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     assert out["required_activities"] == ["A", "B", "C"]
@@ -334,6 +360,46 @@ def test_optional_positive_D_permission_still_requires_validity_dates() -> None:
     )
     target["decision"] = "ALLOWED"
     target["response_reference"] = "REG-D"
-    payload["responses"][0]["valid_through"] = None
-    with pytest.raises(ValueError, match="valid_through/REG-001"):
+    target["valid_from"] = "2027-06-01"
+    target["valid_through"] = None
+    with pytest.raises(ValueError, match="valid_through/REG-001/D"):
+        adj.adjudicate(payload)
+
+
+
+def test_activity_specific_D_validity_can_be_narrower_than_A_C() -> None:
+    payload = _songzanlin_bundle()
+    for response, prefix in zip(payload["responses"], ("REGD", "SITED")):
+        d = next(
+            row for row in response["activity_decisions"]
+            if row["activity_id"] == "D"
+        )
+        d["decision"] = "ALLOWED"
+        d["response_reference"] = f"{prefix}-D"
+        d["valid_from"] = "2027-06-10"
+        d["valid_through"] = "2027-06-20"
+        d["conditions"] = "voucher only during June 10-20"
+    out = adj.adjudicate(payload)
+    assert out["required_activity_validity"]["A"]["regulatory"][0][
+        "valid_through"
+    ] == "2027-09-30"
+    assert out["all_activity_validity"]["D"]["regulatory"][0][
+        "valid_through"
+    ] == "2027-06-20"
+    assert out["all_activity_validity"]["D"]["regulatory"][0][
+        "conditions"
+    ] == "voucher only during June 10-20"
+
+
+def test_response_level_validity_does_not_substitute_for_activity_validity() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["valid_from"] = None
+    target["valid_through"] = None
+    payload["responses"][0]["valid_from"] = "2027-05-01"
+    payload["responses"][0]["valid_through"] = "2027-09-30"
+    with pytest.raises(ValueError, match="valid_from/REG-001/A"):
         adj.adjudicate(payload)

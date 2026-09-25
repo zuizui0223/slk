@@ -8,5 +8,29 @@
     "slk_source_commit": "REQUIRED_BEFORE_USE",
     "adjudication_commit": "REQUIRED_BEFORE_USE",
     "adjudication_timestamp": "REQUIRED_BEFORE_USE"
+  },
+  "activity_decision_contract": {
+    "activity_inventory": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "required_fields_for_each_activity": [
+      "activity_id",
+      "decision",
+      "response_reference",
+      "valid_from",
+      "valid_through",
+      "conditions"
+    ],
+    "validity_is_activity_specific": true,
+    "response_level_validity_does_not_substitute_for_activity_validity": true,
+    "positive_decisions_requiring_validity": [
+      "ALLOWED",
+      "NO_PERMISSION_REQUIRED"
+    ]
   }
 }
