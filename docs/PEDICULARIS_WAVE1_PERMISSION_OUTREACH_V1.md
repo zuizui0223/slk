@@ -29,7 +29,9 @@ Only the dedicated permission-response adjudicator can convert substantive respo
 ```text
 data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv
 scripts/manage_pedicularis_wave1_permission_outreach.py
+scripts/compile_pedicularis_outreach_to_permission_response_draft.py
 tests/test_pedicularis_wave1_permission_outreach.py
+tests/test_pedicularis_outreach_to_permission_response_draft.py
 ```
 
 Generate a fresh tracker from the current canonical contact routes with:
@@ -110,12 +112,38 @@ A `LOCAL_TERRITORIAL_ROUTING` response can redirect the inquiry but cannot satis
 
 This readiness status means only that there is enough returned material to build the structured response bundle. It does **not** mean the activity decisions are positive.
 
+## Response-bundle draft handoff
+
+Once a candidate has substantive regulatory and site-authorizing replies, compile an unresolved response-bundle starter with:
+
+```bash
+python scripts/compile_pedicularis_outreach_to_permission_response_draft.py \
+  PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER.csv \
+  --candidate-id <WAVE1_CANDIDATE_ID> \
+  --output PEDICULARIS_WAVE1_PERMISSION_RESPONSE_DRAFT.json
+```
+
+The draft pre-fills only the returned organizations, route ids, response dates/references and A-F activity inventory. Every A-F decision begins as:
+
+```text
+UNRESOLVED
+```
+
+and the bundle status remains:
+
+```text
+DRAFT_AWAITING_ACTIVITY_DECISIONS.
+```
+
+The compiler deliberately excludes routing-only contacts from the authorizing response list and cannot create an `ALLOWED` decision.
+
 ## Relationship to the permission gate
 
 ```text
 outreach ledger
 -> substantive response material
--> permission response bundle
+-> unresolved response bundle draft
+-> human extraction of A-F decisions / validity / conditions
 -> scripts/adjudicate_pedicularis_wave1_permission_responses.py
 -> permission scope receipt
 -> fresh context recovery.
