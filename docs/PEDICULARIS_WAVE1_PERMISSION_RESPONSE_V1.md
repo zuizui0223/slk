@@ -111,9 +111,22 @@ The activity definition reference must match the canonical registry:
 
 ```text
 data/PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json
+docs/PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.md
 ```
 
-for the same activity A-F. The review date must be on or after the authority/site response date and no later than the permission-bundle adjudication date. The reviewer and rationale are required so `compatible=true` cannot be a context-free checkbox.
+for the same activity A-F.
+
+Reference equality alone is not sufficient. Every positive review must also carry:
+
+```text
+registered_activity_definition_hash_algorithm = SHA256_CANONICAL_JSON_V1
+registered_activity_definition_sha256
+registered_activity_registry_sha256.
+```
+
+The adjudicator recomputes both hashes from the current canonical registry. If the activity wording changes after review, the old review no longer matches and fails closed.
+
+The review date must be on or after the authority/site response date and no later than the permission-bundle adjudication date. The reviewer and rationale are required so `compatible=true` cannot be a context-free checkbox.
 
 
 `conditions` must be explicit. If the authority/site states that there are no additional conditions, record:
