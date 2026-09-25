@@ -18,6 +18,23 @@ The clean fallback is therefore a small **independent natural-history calibratio
 
 This calibration is not P0 itself and is not a confirmatory biological experiment.
 
+## 1a. Permission validity before P0a execution
+
+A positive fresh-context recovery handoff carries the confirmed `RECOVERY_PLUS_P0A_NONDESTRUCTIVE` permission receipt into the P0a freeze.
+
+Before the P0a field packet can be generated, the final freeze must declare:
+
+```text
+candidate_id
+planned_calibration_start_date
+planned_calibration_end_date
+permission_scope_receipt.
+```
+
+The validator requires the candidate id to match the permission receipt and requires the **entire planned calibration interval** to be covered for activities A-C on both regulatory and site sides.
+
+A recovery-day permission that expires before calibration is not sufficient.
+
 ## 2. Universal firewall
 
 All calibration units are permanently:

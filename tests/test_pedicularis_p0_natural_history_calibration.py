@@ -28,21 +28,68 @@ assert spec3.loader is not None
 spec3.loader.exec_module(comp)
 
 
+def _permission_receipt() -> dict:
+    validity = {
+        activity_id: {
+            "regulatory": [
+                {
+                    "response_id": "REG-001",
+                    "route_id": "TEST-REG",
+                    "response_reference": "REG-REF",
+                    "decision": "ALLOWED",
+                    "valid_from": "2027-05-01",
+                    "valid_through": "2027-09-30",
+                }
+            ],
+            "site": [
+                {
+                    "response_id": "SITE-001",
+                    "route_id": "TEST-SITE",
+                    "response_reference": "SITE-REF",
+                    "decision": "ALLOWED",
+                    "valid_from": "2027-05-01",
+                    "valid_through": "2027-09-30",
+                }
+            ],
+        }
+        for activity_id in "ABC"
+    }
+    return {
+        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
+        "status": "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED",
+        "candidate_id": "SHANGRILA_WUFENG",
+        "response_bundle_id": "test-bundle",
+        "required_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+        "required_activity_matrix": {
+            activity_id: {"regulatory": "PASS", "site": "PASS"}
+            for activity_id in "ABC"
+        },
+        "required_activity_validity": validity,
+        "sampling_permission_reference": (
+            "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm"
+        ),
+    }
+
+
 def _freeze() -> dict:
     return {
         "schema_version": "SLK_PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_V1",
         "status": "FROZEN_CANDIDATE",
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": "SHANGRILA_WUFENG",
             "candidate_site_id": "site1",
             "population_id": "pop1",
             "season_id": "2027",
             "calibration_window_id": "cal1",
             "future_p0_screen_window_id": "screen1",
+            "planned_calibration_start_date": "2027-06-20",
+            "planned_calibration_end_date": "2027-07-05",
             "dataset_id": "PED_P0_NAT_HIST_CAL_V1",
             "frozen_before_calibration_outcomes": True,
             "p0_outcomes_opened": False,
         },
+        "permission_scope_receipt": _permission_receipt(),
         "sampling": {
             "minimum_pollinator_bouts": 10,
             "minimum_pollinator_minutes_total": 100,
@@ -260,3 +307,36 @@ def test_p0_calibration_rejects_same_physical_plant_hidden_by_two_ids() -> None:
     water[1]["physical_plant_tag"] = water[0]["physical_plant_tag"]
     with pytest.raises(ValueError, match="reused across assignment IDs"):
         sum_mod.summarize(rows, _freeze())
+
+
+
+def test_p0a_planned_window_must_be_inside_permission_validity() -> None:
+    freeze = _freeze()
+    freeze["context"]["planned_calibration_end_date"] = "2027-10-01"
+    with pytest.raises(ValueError, match="outside permission validity"):
+        sum_mod.validate_freeze(freeze)
+
+
+def test_p0a_permission_interval_cannot_be_reversed() -> None:
+    freeze = _freeze()
+    interval = freeze["permission_scope_receipt"][
+        "required_activity_validity"
+    ]["A"]["site"][0]
+    interval["valid_from"] = "2027-09-30"
+    interval["valid_through"] = "2027-05-01"
+    with pytest.raises(ValueError, match="interval reversed"):
+        sum_mod.validate_freeze(freeze)
+
+
+def test_p0a_freeze_reports_permission_covered_planned_dates() -> None:
+    out = sum_mod.validate_freeze(_freeze())
+    assert out["planned_calibration_start_date"] == "2027-06-20"
+    assert out["planned_calibration_end_date"] == "2027-07-05"
+
+
+
+def test_p0a_permission_candidate_must_match_freeze_candidate() -> None:
+    freeze = _freeze()
+    freeze["permission_scope_receipt"]["candidate_id"] = "OTHER_CANDIDATE"
+    with pytest.raises(ValueError, match="candidate mismatch"):
+        sum_mod.validate_freeze(freeze)

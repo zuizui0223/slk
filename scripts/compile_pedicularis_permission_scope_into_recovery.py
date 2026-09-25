@@ -35,6 +35,11 @@ def compile_permission(receipt: dict, observation: dict) -> dict:
     fresh["sampling_permission_status"] = "CONFIRMED"
     fresh["sampling_permission_scope"] = REQUIRED_SCOPE
     fresh["sampling_permission_reference"] = reference
+    validity = receipt.get("required_activity_validity")
+    _need(
+        isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
+        "permission validity inventory missing",
+    )
     out["permission_scope_receipt"] = {
         "schema_version": RECEIPT_SCHEMA,
         "status": CONFIRMED_STATUS,
@@ -42,6 +47,8 @@ def compile_permission(receipt: dict, observation: dict) -> dict:
         "response_bundle_id": receipt["response_bundle_id"],
         "required_scope": REQUIRED_SCOPE,
         "required_activity_matrix": receipt["required_activity_matrix"],
+        "required_activity_validity": copy.deepcopy(validity),
+        "sampling_permission_reference": reference,
     }
     return out
 

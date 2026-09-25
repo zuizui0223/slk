@@ -121,7 +121,35 @@ def _obs() -> dict:
                 "A": {"regulatory": "PASS", "site": "PASS"},
                 "B": {"regulatory": "PASS", "site": "PASS"},
                 "C": {"regulatory": "PASS", "site": "PASS"}
-            }
+            },
+            "required_activity_validity": {
+                activity_id: {
+                    "regulatory": [
+                        {
+                            "response_id": "REG-001",
+                            "route_id": "TEST-REG",
+                            "response_reference": "REG-REF",
+                            "decision": "ALLOWED",
+                            "valid_from": "2027-05-01",
+                            "valid_through": "2027-09-30",
+                        }
+                    ],
+                    "site": [
+                        {
+                            "response_id": "SITE-001",
+                            "route_id": "TEST-SITE",
+                            "response_reference": "SITE-REF",
+                            "decision": "ALLOWED",
+                            "valid_from": "2027-05-01",
+                            "valid_through": "2027-09-30",
+                        }
+                    ],
+                }
+                for activity_id in "ABC"
+            },
+            "sampling_permission_reference": (
+                "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
+            )
         },
         "prohibited_recovery_inferences": {
             "pollinator_signal_scored": False,
@@ -138,6 +166,7 @@ def test_positive_recovery_unlocks_only_p0_relevance_calibration() -> None:
     assert out["downstream_handoff"]["p0_relevance_calibration_authorized"] is True
     assert out["firewall"]["no_pollinator_predator_water_signal_claim"] is True
     assert out["firewall"]["no_p0_capacity_claim"] is True
+    assert out["fresh_verification"]["permission_valid_on_verification_date"] is True
 
 
 def test_historical_candidate_without_fresh_observations_is_incomplete() -> None:
@@ -177,11 +206,17 @@ def test_positive_recovery_compiles_context_into_p0_calibration_template() -> No
     template = json.loads(CAL_TEMPLATE.read_text())
     out = comp.compile_recovery(receipt, template)
     assert out["status"] == "CONTEXT_RECOVERY_COMPILED_AWAITING_P0_CALIBRATION_DESIGN"
+    assert out["context"]["candidate_id"] == "SHANGRILA_WUFENG"
     assert out["context"]["candidate_site_id"] == "site-wufeng"
     assert out["context"]["population_id"] == "pop-wufeng-2027"
     assert out["context"]["season_id"] == "2027"
     assert out["context"]["calibration_window_id"] == "p0-cal-2027-a"
     assert out["context"]["future_p0_screen_window_id"] == "p0-screen-2027-a"
+    assert out["context"]["planned_calibration_start_date"] == "REQUIRED_BEFORE_USE"
+    assert out["context"]["planned_calibration_end_date"] == "REQUIRED_BEFORE_USE"
+    assert out["permission_scope_receipt"]["required_scope"] == (
+        "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
+    )
     assert out["sampling"]["minimum_pollinator_bouts"] is None
     assert out["context"]["frozen_before_calibration_outcomes"] is False
 
@@ -341,4 +376,30 @@ def test_confirmed_permission_with_wrong_scope_is_rejected() -> None:
     obs = _obs()
     obs["fresh_verification"]["sampling_permission_scope"] = "ALL_FUTURE_SAMPLING"
     with pytest.raises(ValueError, match="wrong scope"):
+        adj.adjudicate(obs, _freeze())
+
+
+
+def test_recovery_date_outside_permission_validity_blocks_current_context() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["verification_date"] = "2027-10-01"
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_ACCESS_BLOCKED"
+    assert (
+        out["fresh_verification"]["permission_valid_on_verification_date"]
+        is False
+    )
+
+
+def test_sampling_permission_reference_must_match_embedded_receipt() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["sampling_permission_reference"] = "OTHER-PERMIT"
+    with pytest.raises(ValueError, match="reference/receipt mismatch"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_permission_validity_inventory_is_required() -> None:
+    obs = _obs()
+    obs["permission_scope_receipt"].pop("required_activity_validity")
+    with pytest.raises(ValueError, match="validity inventory"):
         adj.adjudicate(obs, _freeze())
