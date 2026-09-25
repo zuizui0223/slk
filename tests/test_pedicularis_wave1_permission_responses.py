@@ -120,7 +120,7 @@ def test_regulatory_and_site_pass_confirm_recovery_p0a_scope() -> None:
     for activity_id in "ABC":
         assert out["required_activity_validity"][activity_id]["regulatory"]
         assert out["required_activity_validity"][activity_id]["site"]
-    assert out["recovery_handoff"]["destructive_activities_D_to_F_required_for_recovery_p0a"] is False
+    assert out["recovery_handoff"]["destructive_activities_D_to_F_required_for_recovery_p0a_p0b"] is False
 
 
 def test_destructive_D_to_F_can_remain_unresolved_without_blocking_recovery_scope() -> None:
