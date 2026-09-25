@@ -20,7 +20,52 @@ assert spec2.loader is not None
 spec2.loader.exec_module(compiler)
 
 
+
+def _permission_receipt() -> dict:
+    validity = {
+        activity_id: {
+            "regulatory": [
+                {
+                    "response_id": "REG-001",
+                    "route_id": "TEST-REG",
+                    "response_reference": "REG-REF",
+                    "decision": "ALLOWED",
+                    "valid_from": "2027-05-01",
+                    "valid_through": "2027-09-30",
+                }
+            ],
+            "site": [
+                {
+                    "response_id": "SITE-001",
+                    "route_id": "TEST-SITE",
+                    "response_reference": "SITE-REF",
+                    "decision": "ALLOWED",
+                    "valid_from": "2027-05-01",
+                    "valid_through": "2027-09-30",
+                }
+            ],
+        }
+        for activity_id in "ABC"
+    }
+    return {
+        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
+        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
+        "candidate_id": "SHANGRILA_WUFENG",
+        "response_bundle_id": "test-permission-bundle",
+        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
+        "required_activity_matrix": {
+            activity_id: {"regulatory": "PASS", "site": "PASS"}
+            for activity_id in "ABC"
+        },
+        "required_activity_validity": validity,
+        "sampling_permission_reference": (
+            "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm"
+        ),
+    }
+
+
 CTX = {
+    "candidate_id": "SHANGRILA_WUFENG",
     "candidate_site_id": "site1",
     "population_id": "pop1",
     "season_id": "2027",
@@ -43,6 +88,7 @@ def _effort_freeze() -> dict:
             **CTX,
             "frozen_before_screen_outcomes": True,
         },
+        "permission_scope_receipt": _permission_receipt(),
         "physical_unit_firewall_handoff": {
             "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
             "require_nonempty_physical_plant_tag": True,
@@ -125,8 +171,11 @@ def _screen_template() -> dict:
         "context": {
             "system": "Pedicularis rex",
             **CTX,
+            "planned_screen_start_date": "REQUIRED_BEFORE_USE",
+            "planned_screen_end_date": "REQUIRED_BEFORE_USE",
             "frozen_before_screen_outcomes": False,
         },
+        "permission_scope_receipt": None,
         "screen_effort": {
             "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
             "minimum_pollinator_observation_minutes_total": None,
