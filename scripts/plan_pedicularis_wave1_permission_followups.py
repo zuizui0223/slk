@@ -67,6 +67,10 @@ def plan(
                 raise ValueError(
                     f"outreach date occurs after as_of_date: {route_id}"
                 )
+            if attempts > len(offsets):
+                raise ValueError(
+                    f"follow-up attempts exceed frozen policy schedule: {route_id}"
+                )
             if attempts > 0:
                 last_followup_day = _date(
                     row["last_followup_date"],
@@ -75,6 +79,13 @@ def plan(
                 if last_followup_day > as_of:
                     raise ValueError(
                         f"last follow-up occurs after as_of_date: {route_id}"
+                    )
+                earliest_allowed = outreach_day + timedelta(
+                    days=offsets[attempts - 1]
+                )
+                if last_followup_day < earliest_allowed:
+                    raise ValueError(
+                        f"last follow-up precedes frozen attempt offset: {route_id}"
                     )
 
             if response != "NO_RESPONSE":
