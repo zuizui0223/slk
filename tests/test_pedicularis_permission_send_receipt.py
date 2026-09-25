@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -11,6 +12,7 @@ RENDER = ROOT / "scripts" / "render_pedicularis_wave1_permission_messages.py"
 GUARD = ROOT / "scripts" / "validate_pedicularis_wave1_permission_messages_for_send.py"
 APPLY = ROOT / "scripts" / "apply_pedicularis_permission_send_receipt.py"
 LEDGER = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv"
+SEND_TEMPLATE = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json"
 
 spec = importlib.util.spec_from_file_location("ped_send_render", RENDER)
 render = importlib.util.module_from_spec(spec)
@@ -249,3 +251,15 @@ def test_descriptive_canonical_contact_can_use_extracted_phone_number() -> None:
     target = next(row for row in updated if row["route_id"] == route)
     assert target["outreach_status"] == "SENT_AWAITING_RESPONSE"
     assert event["sent_to_contact"] == "0887-8222611"
+
+
+
+def test_send_receipt_template_exposes_hash_contact_and_manual_confirmation() -> None:
+    payload = json.loads(SEND_TEMPLATE.read_text())
+    assert payload["schema_version"] == (
+        "SLK_PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_V1"
+    )
+    assert payload["status"] == "TEMPLATE_ONLY_NOT_DATA"
+    assert payload["canonical_contact_snapshot"] == "REQUIRED_BEFORE_USE"
+    assert payload["sent_content_sha256"] == "REQUIRED_BEFORE_USE"
+    assert payload["manual_send_confirmed"] is False
