@@ -121,7 +121,9 @@ python scripts/apply_pedicularis_permission_send_receipt.py \
   --event-output PEDICULARIS_WAVE1_PERMISSION_SEND_EVENT.json
 ```
 
-The manual-send guard assigns a canonical SHA-256 digest to each reviewed route message. The send receipt must cite exactly that digest and the same canonical public contact. A post-review body edit therefore cannot be registered as the reviewed message.
+The manual-send guard assigns a canonical SHA-256 digest to each reviewed route message. The send receipt must cite exactly that digest.
+
+The receipt also stores the complete `canonical_contact_snapshot` from the reviewed message. The actual `sent_to_contact` must be one registered contact option from that snapshot. For a multi-contact route, one specific email or phone may therefore be recorded without losing the original canonical contact record. A post-review body edit or an unregistered destination cannot be registered as the reviewed send event.
 
 A valid receipt also requires:
 
@@ -130,6 +132,8 @@ status = MANUAL_SEND_RECORDED
 manual_send_confirmed = true
 timezone-aware sent_at
 registered manual send channel
+canonical_contact_snapshot
+sent_to_contact
 sent_message_reference
 sender_identity_reference.
 ```
