@@ -160,14 +160,13 @@ def adjudicate(payload: dict) -> dict:
                 f"routing-only contact cannot authorize activities: {route_id}",
             )
         else:
-            positive_required = any(
-                activity_id in REQUIRED_ACTIVITIES
-                and decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
-                for activity_id, decision in decisions.items()
+            positive_any = any(
+                decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                for decision in decisions.values()
             )
             valid_from = None
             valid_through = None
-            if positive_required:
+            if positive_any:
                 valid_from = _iso_date(
                     response.get("valid_from"),
                     f"valid_from/{response_id}",
@@ -187,10 +186,7 @@ def adjudicate(payload: dict) -> dict:
 
             for activity_id, decision in decisions.items():
                 activity_by_class[route_class][activity_id].add(decision)
-                if (
-                    activity_id in REQUIRED_ACTIVITIES
-                    and decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
-                ):
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}:
                     assert valid_from is not None and valid_through is not None
                     validity_by_class[route_class][activity_id].append(
                         {
@@ -234,12 +230,27 @@ def adjudicate(payload: dict) -> dict:
             return "UNRESOLVED"
         raise ValueError("unreachable permission decision state")
 
-    required_matrix: dict[str, dict[str, str]] = {}
-    for activity_id in sorted(REQUIRED_ACTIVITIES):
-        required_matrix[activity_id] = {
+    all_activity_matrix: dict[str, dict[str, str]] = {}
+    for activity_id in sorted(ALL_ACTIVITIES):
+        all_activity_matrix[activity_id] = {
             "regulatory": _class_state("REGULATORY", activity_id),
             "site": _class_state("SITE", activity_id),
         }
+
+    required_matrix = {
+        activity_id: all_activity_matrix[activity_id]
+        for activity_id in sorted(REQUIRED_ACTIVITIES)
+    }
+
+    all_activity_validity = {
+        activity_id: {
+            "regulatory": validity_by_class["REGULATORY"].get(
+                activity_id, []
+            ),
+            "site": validity_by_class["SITE"].get(activity_id, []),
+        }
+        for activity_id in sorted(ALL_ACTIVITIES)
+    }
 
     required_activity_validity = {
         activity_id: {
@@ -279,6 +290,8 @@ def adjudicate(payload: dict) -> dict:
         "required_activities": sorted(REQUIRED_ACTIVITIES),
         "required_activity_matrix": required_matrix,
         "required_activity_validity": required_activity_validity,
+        "all_activity_matrix": all_activity_matrix,
+        "all_activity_validity": all_activity_validity,
         "responses": resolved,
         "recovery_handoff": {
             "sampling_permission_status": "CONFIRMED" if confirmed else "UNRESOLVED",
