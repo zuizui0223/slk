@@ -153,11 +153,13 @@ def _filled_rows(*, rare_predator: bool = False) -> list[dict[str, str]]:
     water_index = 0
     for row in rows:
         if row["record_type"] == "POLLINATOR_BOUT":
+            row["observation_date"] = "2027-06-25"
             row["observed_minutes"] = row["planned_minutes"]
             row["simultaneously_open_focal_flowers"] = "5"
             row["legitimate_pollinator_visits"] = "2"
         elif row["record_type"] == "PREDATOR_FLOWER":
             pred_index += 1
+            row["observation_date"] = "2027-06-26"
             row["plant_id"] = f"PP{pred_index:03d}"
             row["physical_plant_tag"] = f"PHY-P0CAL-PRED-{pred_index:03d}"
             row["flower_id"] = f"PF{pred_index:03d}"
@@ -167,6 +169,7 @@ def _filled_rows(*, rare_predator: bool = False) -> list[dict[str, str]]:
                 row["early_attack_or_oviposition_positive"] = "true" if pred_index <= 15 else "false"
         elif row["record_type"] == "WATER_PLANT":
             water_index += 1
+            row["observation_date"] = "2027-06-27"
             row["plant_id"] = f"WP{water_index:03d}"
             row["physical_plant_tag"] = f"PHY-P0CAL-WATER-{water_index:03d}"
             row["water_positive"] = "true" if water_index <= 15 else "false"
@@ -196,6 +199,7 @@ def test_generator_creates_disjoint_calibration_packet() -> None:
     assert all(r["p0_decision_eligible"] == "false" for r in rows)
     assert all(r["downstream_confirmatory_eligible"] == "false" for r in rows)
     assert all(r["observed_minutes"] == "" for r in rows if r["record_type"] == "POLLINATOR_BOUT")
+    assert all(r["observation_date"] == "" for r in rows)
     assert all(float(r["planned_minutes"]) > 0 for r in rows if r["record_type"] == "POLLINATOR_BOUT")
 
 
@@ -340,3 +344,34 @@ def test_p0a_permission_candidate_must_match_freeze_candidate() -> None:
     freeze["permission_scope_receipt"]["candidate_id"] = "OTHER_CANDIDATE"
     with pytest.raises(ValueError, match="candidate mismatch"):
         sum_mod.validate_freeze(freeze)
+
+
+
+def test_completed_p0a_row_outside_planned_window_is_rejected() -> None:
+    rows = _filled_rows()
+    target = next(r for r in rows if r["record_type"] == "POLLINATOR_BOUT")
+    target["observation_date"] = "2027-07-06"
+    with pytest.raises(ValueError, match="outside planned calibration window"):
+        sum_mod.summarize(rows, _freeze())
+
+
+def test_missing_p0a_observation_date_is_receipted_as_incomplete() -> None:
+    rows = _filled_rows()
+    target = next(r for r in rows if r["record_id"] == "CAL-WATER-020")
+    target["observation_date"] = ""
+    receipt = sum_mod.summarize(rows, _freeze())
+    assert receipt["status"] == "P0_RELEVANCE_FRESH_CALIBRATION_INCOMPLETE"
+    detail = next(
+        x
+        for x in receipt["completion_audit"]["incomplete_record_details"]
+        if x["record_id"] == "CAL-WATER-020"
+    )
+    assert "observation_date" in detail["detail"]
+
+
+def test_p0a_receipt_reports_observed_date_range() -> None:
+    receipt = sum_mod.summarize(_filled_rows(), _freeze())
+    audit = receipt["permission_scope_audit"]
+    assert audit["observed_date_min"] == "2027-06-25"
+    assert audit["observed_date_max"] == "2027-06-27"
+    assert audit["all_completed_rows_within_planned_window"] is True
