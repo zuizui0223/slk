@@ -61,7 +61,9 @@
     "review_rationale_required": true,
     "review_reference_required": true,
     "authority_condition_text_required": true,
-    "no_additional_conditions_sentinel": "NO_ADDITIONAL_CONDITIONS"
+    "no_additional_conditions_sentinel": "NO_ADDITIONAL_CONDITIONS",
+    "activity_definition_fingerprint_algorithm": "SHA256_CANONICAL_JSON_V1",
+    "activity_definition_fingerprint_required": true
   },
   "claim_ceiling": "ACTIVITY_DEFINITION_AND_CONDITION_REVIEW_FRAMEWORK_ONLY_NO_PERMISSION_GRANTED_NO_BIOLOGICAL_RESULT"
 }
