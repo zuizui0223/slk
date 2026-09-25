@@ -108,8 +108,8 @@ def _observation(candidate_id: str = "SONGZANLIN_EIA_2025") -> dict:
 
 def test_regulatory_and_site_pass_confirm_recovery_p0a_scope() -> None:
     out = adj.adjudicate(_songzanlin_bundle())
-    assert out["status"] == "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
-    assert out["required_scope"] == "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+    assert out["required_scope"] == "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
     assert out["required_activities"] == ["A", "B", "C"]
     for activity_id in "ABC":
         assert out["required_activity_matrix"][activity_id] == {
@@ -125,7 +125,7 @@ def test_regulatory_and_site_pass_confirm_recovery_p0a_scope() -> None:
 
 def test_destructive_D_to_F_can_remain_unresolved_without_blocking_recovery_scope() -> None:
     out = adj.adjudicate(_songzanlin_bundle())
-    assert out["status"] == "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     assert all(
         response["activity_decisions"][activity_id] == "UNRESOLVED"
         for response in out["responses"]
@@ -140,7 +140,7 @@ def test_site_prohibition_blocks_recovery_p0a_scope() -> None:
     target["decision"] = "PROHIBITED"
     target["response_reference"] = "SITE-BLOCK-B"
     out = adj.adjudicate(payload)
-    assert out["status"] == "RECOVERY_P0A_PERMISSION_SCOPE_BLOCKED"
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_BLOCKED"
     assert out["recovery_handoff"]["sampling_permission_status"] == "UNRESOLVED"
 
 
@@ -155,7 +155,7 @@ def test_conflicting_regulatory_responses_do_not_confirm_scope() -> None:
     _set_abc(conflict["activity_decisions"], "PROHIBITED", "REG2")
     payload["responses"].append(conflict)
     out = adj.adjudicate(payload)
-    assert out["status"] == "RECOVERY_P0A_PERMISSION_SCOPE_CONFLICTING"
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFLICTING"
 
 
 def test_wufeng_local_routing_contact_cannot_authorize_site_scope() -> None:
@@ -203,7 +203,7 @@ def test_confirmed_scope_compiles_into_recovery_observation() -> None:
     out = comp.compile_permission(receipt, _observation())
     fresh = out["fresh_verification"]
     assert fresh["sampling_permission_status"] == "CONFIRMED"
-    assert fresh["sampling_permission_scope"] == "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
+    assert fresh["sampling_permission_scope"] == "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
     assert fresh["sampling_permission_reference"].endswith("@perm123")
     assert out["permission_scope_receipt"]["candidate_id"] == "SONGZANLIN_EIA_2025"
     assert set(out["permission_scope_receipt"]["required_activity_validity"]) == {
@@ -218,7 +218,7 @@ def test_unconfirmed_scope_cannot_compile_into_recovery_observation() -> None:
     payload = _songzanlin_bundle()
     payload["responses"].pop()
     receipt = adj.adjudicate(payload)
-    assert receipt["status"] == "RECOVERY_P0A_PERMISSION_SCOPE_INCOMPLETE"
+    assert receipt["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_INCOMPLETE"
     with pytest.raises(ValueError, match="not confirmed"):
         comp.compile_permission(receipt, _observation())
 
@@ -269,7 +269,7 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
         },
     }
     out = adj.adjudicate(payload)
-    assert out["status"] == "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     assert out["candidate_id"] == "SHANGRILA_WUFENG"
 
 
