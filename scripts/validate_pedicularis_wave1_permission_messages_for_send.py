@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import json
 from pathlib import Path
 
@@ -23,6 +24,34 @@ def _filled(value: object, label: str) -> str:
         f"unfilled {label}",
     )
     return text
+
+
+def message_content_sha256(
+    message: dict,
+    *,
+    language: str = "BILINGUAL",
+) -> str:
+    if language not in {"CN", "EN", "BILINGUAL"}:
+        raise ValueError(f"unsupported message hash language: {language}")
+    payload = {
+        "route_id": _filled(message.get("route_id"), "route_id"),
+        "organization": _filled(message.get("organization"), "organization"),
+        "public_contact": _filled(message.get("public_contact"), "public_contact"),
+        "language": language,
+    }
+    if language in {"CN", "BILINGUAL"}:
+        payload["subject_cn"] = _filled(message.get("subject_cn"), "subject_cn")
+        payload["body_cn"] = _filled(message.get("body_cn"), "body_cn")
+    if language in {"EN", "BILINGUAL"}:
+        payload["subject_en"] = _filled(message.get("subject_en"), "subject_en")
+        payload["body_en"] = _filled(message.get("body_en"), "body_en")
+    canonical = json.dumps(
+        payload,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(canonical).hexdigest()
 
 
 def validate_and_prepare(payload: dict, *, human_review_approved: bool) -> dict:
@@ -61,6 +90,21 @@ def validate_and_prepare(payload: dict, *, human_review_approved: bool) -> dict:
         guard["human_review_required"] = True
         guard["human_review_approved"] = bool(human_review_approved)
         guard["automatic_send_allowed"] = False
+        message["message_content_sha256_cn"] = message_content_sha256(
+            message,
+            language="CN",
+        )
+        message["message_content_sha256_en"] = message_content_sha256(
+            message,
+            language="EN",
+        )
+        message["message_content_sha256_bilingual"] = message_content_sha256(
+            message,
+            language="BILINGUAL",
+        )
+        message["message_content_sha256"] = message[
+            "message_content_sha256_bilingual"
+        ]
         message["status"] = (
             "READY_FOR_MANUAL_SEND"
             if human_review_approved
