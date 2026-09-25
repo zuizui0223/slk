@@ -236,3 +236,16 @@ def test_phone_channel_rejects_non_phone_contact() -> None:
     receipt["sent_to_contact"] = "598226819@qq.com"
     with pytest.raises(ValueError, match="PHONE_SCRIPT send channel requires"):
         apply.apply_send_receipt(_rows(), ready, receipt)
+
+
+
+def test_descriptive_canonical_contact_can_use_extracted_phone_number() -> None:
+    ready = _ready("SHANGRILA_WUFENG")
+    route = "WUFENG_JIANTANG_FOREST_FARM"
+    receipt = _receipt(ready, route)
+    receipt["send_channel"] = "PHONE_SCRIPT"
+    receipt["sent_to_contact"] = "0887-8222611"
+    updated, event = apply.apply_send_receipt(_rows(), ready, receipt)
+    target = next(row for row in updated if row["route_id"] == route)
+    assert target["outreach_status"] == "SENT_AWAITING_RESPONSE"
+    assert event["sent_to_contact"] == "0887-8222611"
