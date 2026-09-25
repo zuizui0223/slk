@@ -147,6 +147,43 @@ def _obs() -> dict:
                 }
                 for activity_id in "ABC"
             },
+            "all_activity_matrix": {
+                activity_id: (
+                    {"regulatory": "PASS", "site": "PASS"}
+                    if activity_id in "ABC"
+                    else {"regulatory": "UNRESOLVED", "site": "UNRESOLVED"}
+                )
+                for activity_id in "ABCDEF"
+            },
+            "all_activity_validity": {
+                activity_id: (
+                    {
+                        "regulatory": [
+                            {
+                                "response_id": "REG-001",
+                                "route_id": "TEST-REG",
+                                "response_reference": "REG-REF",
+                                "decision": "ALLOWED",
+                                "valid_from": "2027-05-01",
+                                "valid_through": "2027-09-30",
+                            }
+                        ],
+                        "site": [
+                            {
+                                "response_id": "SITE-001",
+                                "route_id": "TEST-SITE",
+                                "response_reference": "SITE-REF",
+                                "decision": "ALLOWED",
+                                "valid_from": "2027-05-01",
+                                "valid_through": "2027-09-30",
+                            }
+                        ],
+                    }
+                    if activity_id in "ABC"
+                    else {"regulatory": [], "site": []}
+                )
+                for activity_id in "ABCDEF"
+            },
             "sampling_permission_reference": (
                 "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
             )
@@ -403,3 +440,101 @@ def test_permission_validity_inventory_is_required() -> None:
     obs["permission_scope_receipt"].pop("required_activity_validity")
     with pytest.raises(ValueError, match="validity inventory"):
         adj.adjudicate(obs, _freeze())
+
+
+
+def test_voucher_route_with_preexisting_authorized_specimen_needs_no_new_D_permission() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "SPECIMEN-HERB-001"
+    fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh["taxonomic_material_authorization_reference"] = "HERBARIUM-ACCESSION-001"
+    fresh.pop("taxon_diagnostic_checklist")
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["new_voucher_permission_valid_on_verification_date"] is None
+
+
+def test_new_field_voucher_route_requires_D_permission() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "NEW-VOUCHER-001"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh.pop("taxon_diagnostic_checklist")
+    with pytest.raises(ValueError, match="requires activity D"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_new_field_voucher_route_passes_with_D_permission_valid_on_recovery_date() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "NEW-VOUCHER-001"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh.pop("taxon_diagnostic_checklist")
+    receipt = obs["permission_scope_receipt"]
+    receipt["all_activity_matrix"]["D"] = {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    receipt["all_activity_validity"]["D"] = {
+        "regulatory": [
+            {
+                "response_id": "REG-D",
+                "route_id": "TEST-REG",
+                "response_reference": "REG-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-09-30",
+            }
+        ],
+        "site": [
+            {
+                "response_id": "SITE-D",
+                "route_id": "TEST-SITE",
+                "response_reference": "SITE-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-09-30",
+            }
+        ],
+    }
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["new_voucher_permission_valid_on_verification_date"] is True
+
+
+def test_combined_taxon_route_requires_explicit_secondary_method() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_verification_method"] = "COMBINED"
+    with pytest.raises(ValueError, match="requires a registered secondary method"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_combined_photo_plus_expert_route_remains_nondestructive() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "COMBINED"
+    fresh["combined_secondary_taxon_method"] = "EXPERT_CONFIRMATION"
+    fresh["taxon_evidence_reference"] = "PHOTO-PLUS-EXPERT-001"
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["taxon_specimen_evidence_origin"] is None
+
+
+def test_specimen_fields_are_rejected_for_photo_only_route() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_specimen_evidence_origin"] = (
+        "PREEXISTING_AUTHORIZED_SPECIMEN"
+    )
+    with pytest.raises(ValueError, match="require a voucher/specimen taxon route"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_null_optional_text_does_not_count_as_filled() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["sampling_permission_scope"] = None
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_INCOMPLETE"
