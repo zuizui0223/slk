@@ -10,7 +10,9 @@
     "future_p0_screen_window_id": "REQUIRED_BEFORE_USE",
     "dataset_id": "PED_P0_NAT_HIST_CAL_V1",
     "frozen_before_calibration_outcomes": false,
-    "p0_outcomes_opened": false
+    "p0_outcomes_opened": false,
+    "planned_calibration_start_date": "REQUIRED_BEFORE_USE",
+    "planned_calibration_end_date": "REQUIRED_BEFORE_USE"
   },
   "sampling": {
     "minimum_pollinator_bouts": null,
@@ -73,5 +75,6 @@
     "freeze_commit": "REQUIRED_BEFORE_USE",
     "freeze_timestamp": "REQUIRED_BEFORE_USE"
   },
-  "production_status": "PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_PROSPECTIVELY_FROZEN"
+  "production_status": "PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_PROSPECTIVELY_FROZEN",
+  "permission_scope_receipt": null
 }
