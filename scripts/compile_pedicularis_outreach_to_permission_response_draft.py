@@ -46,6 +46,10 @@ def _read(path: Path) -> list[dict[str, str]]:
 
 def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
     receipt = manager.validate(rows)
+    activity_receipts = {
+        activity_id: activity_receipt(activity_id)
+        for activity_id in ACTIVITIES
+    }
     progress = receipt["candidate_progress"].get(candidate_id)
     if progress is None:
         raise ValueError(f"candidate absent from WAVE1 outreach ledger: {candidate_id}")
@@ -89,18 +93,18 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
                         "conditions_compatible_with_registered_activity": None,
                         "conditions_review_reference": None,
                         "registered_activity_definition_reference": (
-                            activity_receipt(activity_id)[
+                            activity_receipts[activity_id][
                                 "definition_reference"
                             ]
                         ),
                         "registered_activity_definition_hash_algorithm": (
-                            activity_receipt(activity_id)["hash_algorithm"]
+                            activity_receipts[activity_id]["hash_algorithm"]
                         ),
                         "registered_activity_definition_sha256": (
-                            activity_receipt(activity_id)["definition_sha256"]
+                            activity_receipts[activity_id]["definition_sha256"]
                         ),
                         "registered_activity_registry_sha256": (
-                            activity_receipt(activity_id)["registry_sha256"]
+                            activity_receipts[activity_id]["registry_sha256"]
                         ),
                         "conditions_reviewed_by": None,
                         "conditions_review_date": None,
