@@ -216,3 +216,43 @@ def test_permission_scope_candidate_must_match_recovery_observation() -> None:
     receipt = adj.adjudicate(_songzanlin_bundle())
     with pytest.raises(ValueError, match="candidate mismatch"):
         comp.compile_permission(receipt, _observation("SHANGRILA_WUFENG"))
+
+
+
+def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
+    reg = _activities()
+    site = _activities()
+    _set_abc(reg, "ALLOWED", "REG")
+    _set_abc(site, "ALLOWED", "FOREST")
+    payload = {
+        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_RESPONSE_BUNDLE_V1",
+        "status": "FILLED_AUTHORITY_RESPONSES",
+        "candidate_id": "SHANGRILA_WUFENG",
+        "response_bundle_id": "wufeng-bundle-002",
+        "responses": [
+            {
+                "response_id": "REG-001",
+                "route_id": "WUFENG_FORESTRY_REGULATOR",
+                "responding_organization": "Shangri-La Municipal Forestry and Grassland Bureau",
+                "response_date": "2027-05-10",
+                "response_reference": "FORESTRY-EMAIL-010",
+                "activity_decisions": reg,
+            },
+            {
+                "response_id": "SITE-001",
+                "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+                "responding_organization": "Shangri-La State-owned Forest Farm, Jiantang Branch",
+                "response_date": "2027-05-11",
+                "response_reference": "FOREST-FARM-LETTER-001",
+                "activity_decisions": site,
+            },
+        ],
+        "adjudication_metadata": {
+            "slk_source_commit": "abc123",
+            "adjudication_commit": "perm789",
+            "adjudication_timestamp": "2027-05-12T00:00:00Z",
+        },
+    }
+    out = adj.adjudicate(payload)
+    assert out["status"] == "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+    assert out["candidate_id"] == "SHANGRILA_WUFENG"
