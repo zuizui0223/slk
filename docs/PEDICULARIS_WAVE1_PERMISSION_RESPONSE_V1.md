@@ -18,7 +18,7 @@ B  photography / morphology documentation
 C  non-destructive measurement
 ```
 
-Therefore the minimum permission scope required to unlock P0a is:
+Therefore the minimum permission scope required to unlock the recovery → P0a → P0b non-destructive path is:
 
 ```text
 RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE
