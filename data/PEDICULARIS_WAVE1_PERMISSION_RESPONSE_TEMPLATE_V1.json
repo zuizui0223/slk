@@ -30,7 +30,10 @@
       "registered_activity_definition_reference",
       "conditions_reviewed_by",
       "conditions_review_date",
-      "conditions_review_rationale"
+      "conditions_review_rationale",
+      "registered_activity_definition_hash_algorithm",
+      "registered_activity_definition_sha256",
+      "registered_activity_registry_sha256"
     ],
     "validity_is_activity_specific": true,
     "response_level_validity_does_not_substitute_for_activity_validity": true,
@@ -45,6 +48,8 @@
     "condition_review_activity_definition_schema": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1",
     "condition_review_reviewer_required": true,
     "condition_review_date_required": true,
-    "condition_review_rationale_required": true
+    "condition_review_rationale_required": true,
+    "activity_definition_fingerprint_required": true,
+    "activity_definition_fingerprint_algorithm": "SHA256_CANONICAL_JSON_V1"
   }
 }
