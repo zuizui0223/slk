@@ -117,6 +117,9 @@ def test_regulatory_and_site_pass_confirm_recovery_p0a_scope() -> None:
             "site": "PASS",
         }
     assert out["recovery_handoff"]["sampling_permission_status"] == "CONFIRMED"
+    for activity_id in "ABC":
+        assert out["required_activity_validity"][activity_id]["regulatory"]
+        assert out["required_activity_validity"][activity_id]["site"]
     assert out["recovery_handoff"]["destructive_activities_D_to_F_required_for_recovery_p0a"] is False
 
 
@@ -201,6 +204,12 @@ def test_confirmed_scope_compiles_into_recovery_observation() -> None:
     assert fresh["sampling_permission_scope"] == "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
     assert fresh["sampling_permission_reference"].endswith("@perm123")
     assert out["permission_scope_receipt"]["candidate_id"] == "SONGZANLIN_EIA_2025"
+    assert set(out["permission_scope_receipt"]["required_activity_validity"]) == {
+        "A", "B", "C"
+    }
+    assert out["permission_scope_receipt"]["sampling_permission_reference"].endswith(
+        "@perm123"
+    )
 
 
 def test_unconfirmed_scope_cannot_compile_into_recovery_observation() -> None:
@@ -237,6 +246,8 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
                 "response_date": "2027-05-10",
                 "response_reference": "FORESTRY-EMAIL-010",
                 "activity_decisions": reg,
+                "valid_from": "2027-05-10",
+                "valid_through": "2027-09-30",
             },
             {
                 "response_id": "SITE-001",
@@ -245,6 +256,8 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
                 "response_date": "2027-05-11",
                 "response_reference": "FOREST-FARM-LETTER-001",
                 "activity_decisions": site,
+                "valid_from": "2027-05-11",
+                "valid_through": "2027-09-30",
             },
         ],
         "adjudication_metadata": {
@@ -256,3 +269,26 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
     assert out["candidate_id"] == "SHANGRILA_WUFENG"
+
+
+
+def test_positive_required_scope_response_requires_validity_dates() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][0]["valid_through"] = None
+    with pytest.raises(ValueError, match="valid_through/REG-001"):
+        adj.adjudicate(payload)
+
+
+def test_permission_validity_interval_cannot_be_reversed() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][0]["valid_from"] = "2027-10-01"
+    payload["responses"][0]["valid_through"] = "2027-09-30"
+    with pytest.raises(ValueError, match="validity interval reversed"):
+        adj.adjudicate(payload)
+
+
+def test_permission_cannot_expire_before_response_date() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][0]["valid_through"] = "2027-05-01"
+    with pytest.raises(ValueError, match="expires before response date"):
+        adj.adjudicate(payload)
