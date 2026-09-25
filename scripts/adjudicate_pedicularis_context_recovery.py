@@ -455,7 +455,7 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
         "historical_anchor": cfg["historical_anchor"],
         "downstream_handoff": {
             "p0_relevance_calibration_authorized": ready,
-            "p0a_permission_scope_receipt": (
+            "non_destructive_permission_scope_receipt": (
                 permission_receipt if ready else None
             ),
             "p0_relevance_calibration_window_id": cfg["downstream_windows"]["p0_relevance_calibration_window_id"],
