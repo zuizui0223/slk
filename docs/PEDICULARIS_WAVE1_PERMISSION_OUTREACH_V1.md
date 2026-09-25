@@ -208,6 +208,12 @@ outreach ledger
 
 The outreach ledger never assigns `ALLOWED`, `PROHIBITED`, or `NO_PERMISSION_REQUIRED` to activities A-F. Those decisions belong only in the returned authority/site response bundle.
 
+## Local-file privacy
+
+Requester-completed message drafts, real outreach trackers and returned authority-response working files may contain personal contact information or correspondence. The repository therefore ignores the standard root-level generated filenames through `.gitignore`.
+
+Keep actual operational files local. Commit only canonical templates, code, tests and de-identified protocol updates unless there is a deliberate reason to publish a specific response artifact.
+
 ## Claim ceiling
 
 ```text
