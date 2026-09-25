@@ -50,3 +50,14 @@ def test_renderer_never_claims_permission_or_executes_contact() -> None:
         and message["send_guard"]["reply_contact_filled"] is False
         for message in out["messages"]
     )
+
+
+
+def test_chinese_message_uses_chinese_route_question_not_canonical_english() -> None:
+    out = mod.render("SONGZANLIN_EIA_2025")
+    regulatory = next(
+        message for message in out["messages"]
+        if message["route_type"] == "REGULATORY_ROUTING"
+    )
+    assert "请确认本项目拟开展的 A–F 各类活动" in regulatory["body_cn"]
+    assert "Which authority and permit" not in regulatory["body_cn"]
