@@ -104,7 +104,11 @@
       "review_date_required": true,
       "review_rationale_required": true,
       "review_date_window": "AUTHORITY_RESPONSE_DATE_TO_BUNDLE_ADJUDICATION_DATE",
-      "compatibility_judgment_source": "INTERNAL_PROJECT_REVIEW_NOT_AUTHORITY_STATEMENT"
+      "compatibility_judgment_source": "INTERNAL_PROJECT_REVIEW_NOT_AUTHORITY_STATEMENT",
+      "activity_definition_hash_algorithm": "SHA256_CANONICAL_JSON_V1",
+      "activity_definition_hash_required": true,
+      "activity_registry_hash_required": true,
+      "definition_drift_effect": "FAIL_CLOSED_REQUIRE_NEW_CONDITION_REVIEW"
     }
   },
   "stages": [
