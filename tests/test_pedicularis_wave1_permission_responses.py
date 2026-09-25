@@ -291,6 +291,7 @@ def test_permission_validity_interval_cannot_be_reversed() -> None:
 
 def test_permission_cannot_expire_before_response_date() -> None:
     payload = _songzanlin_bundle()
+    payload["responses"][0]["valid_from"] = "2027-04-01"
     payload["responses"][0]["valid_through"] = "2027-05-01"
     with pytest.raises(ValueError, match="expires before response date"):
         adj.adjudicate(payload)
