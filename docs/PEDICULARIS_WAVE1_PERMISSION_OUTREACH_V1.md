@@ -32,7 +32,10 @@ scripts/manage_pedicularis_wave1_permission_outreach.py
 scripts/compile_pedicularis_outreach_to_permission_response_draft.py
 scripts/render_pedicularis_wave1_permission_messages.py
 scripts/validate_pedicularis_wave1_permission_messages_for_send.py
+scripts/apply_pedicularis_permission_send_receipt.py
+data/PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json
 tests/test_pedicularis_wave1_permission_outreach.py
+tests/test_pedicularis_permission_send_receipt.py
 tests/test_pedicularis_wave1_permission_messages.py
 tests/test_pedicularis_wave1_permission_message_send_guard.py
 tests/test_pedicularis_outreach_to_permission_response_draft.py
@@ -96,6 +99,52 @@ automatic_send_allowed = false.
 ```
 
 The repository does not send the message.
+
+## Manual-send receipt and ledger transition
+
+A message marked `READY_FOR_MANUAL_SEND` is still not evidence that it was sent.
+
+After the human actually sends one route-specific message, record that event locally using:
+
+```text
+data/PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json
+```
+
+and apply it with:
+
+```bash
+python scripts/apply_pedicularis_permission_send_receipt.py \
+  PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER.csv \
+  PEDICULARIS_WAVE1_PERMISSION_MESSAGES_READY.json \
+  PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_FILLED.json \
+  --ledger-output PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_UPDATED.csv \
+  --event-output PEDICULARIS_WAVE1_PERMISSION_SEND_EVENT.json
+```
+
+The manual-send guard assigns a canonical SHA-256 digest to each reviewed route message. The send receipt must cite exactly that digest and the same canonical public contact. A post-review body edit therefore cannot be registered as the reviewed message.
+
+A valid receipt also requires:
+
+```text
+status = MANUAL_SEND_RECORDED
+manual_send_confirmed = true
+timezone-aware sent_at
+registered manual send channel
+sent_message_reference
+sender_identity_reference.
+```
+
+Only then may the route transition:
+
+```text
+NOT_SENT
+->
+SENT_AWAITING_RESPONSE.
+```
+
+The transition is one-way for that event: a route already registered as sent cannot be registered a second time with the same initial-state operation.
+
+The send event still proves only that a reviewed inquiry was manually sent. It proves neither delivery nor authority response nor permission.
 
 ## Outreach states
 
