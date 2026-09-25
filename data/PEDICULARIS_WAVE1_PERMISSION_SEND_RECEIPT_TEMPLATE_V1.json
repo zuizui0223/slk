@@ -12,5 +12,6 @@
   "manual_send_confirmed": false,
   "sender_identity_reference": "REQUIRED_BEFORE_USE",
   "notes": "",
-  "canonical_contact_snapshot": "REQUIRED_BEFORE_USE"
+  "canonical_contact_snapshot": "REQUIRED_BEFORE_USE",
+  "sent_language": "REQUIRED_BEFORE_USE"
 }
