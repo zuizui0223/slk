@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 from collections import defaultdict
+from datetime import date
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +38,14 @@ def _filled(value: object, label: str) -> str:
     out = str(value).strip()
     _need(bool(out) and "REQUIRED_BEFORE_USE" not in out, f"unresolved {label}")
     return out
+
+
+def _iso_date(value: object, label: str) -> date:
+    text = _filled(value, label)
+    try:
+        return date.fromisoformat(text)
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
 
 
 def _read(path: Path) -> list[dict[str, str]]:
@@ -103,6 +112,10 @@ def adjudicate(payload: dict) -> dict:
         "REGULATORY": defaultdict(set),
         "SITE": defaultdict(set),
     }
+    validity_by_class: dict[str, dict[str, list[dict[str, str]]]] = {
+        "REGULATORY": defaultdict(list),
+        "SITE": defaultdict(list),
+    }
 
     for response in responses:
         response_id = _filled(response.get("response_id"), "response_id")
@@ -117,7 +130,10 @@ def adjudicate(payload: dict) -> dict:
             organization == route["organization"].strip(),
             f"responding organization/route mismatch: {response_id}",
         )
-        _filled(response.get("response_date"), f"response_date/{response_id}")
+        response_date = _iso_date(
+            response.get("response_date"),
+            f"response_date/{response_id}",
+        )
         response_reference = _filled(
             response.get("response_reference"),
             f"response_reference/{response_id}",
@@ -144,8 +160,48 @@ def adjudicate(payload: dict) -> dict:
                 f"routing-only contact cannot authorize activities: {route_id}",
             )
         else:
+            positive_required = any(
+                activity_id in REQUIRED_ACTIVITIES
+                and decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                for activity_id, decision in decisions.items()
+            )
+            valid_from = None
+            valid_through = None
+            if positive_required:
+                valid_from = _iso_date(
+                    response.get("valid_from"),
+                    f"valid_from/{response_id}",
+                )
+                valid_through = _iso_date(
+                    response.get("valid_through"),
+                    f"valid_through/{response_id}",
+                )
+                _need(
+                    valid_from <= valid_through,
+                    f"permission validity interval reversed: {response_id}",
+                )
+                _need(
+                    response_date <= valid_through,
+                    f"permission expires before response date: {response_id}",
+                )
+
             for activity_id, decision in decisions.items():
                 activity_by_class[route_class][activity_id].add(decision)
+                if (
+                    activity_id in REQUIRED_ACTIVITIES
+                    and decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                ):
+                    assert valid_from is not None and valid_through is not None
+                    validity_by_class[route_class][activity_id].append(
+                        {
+                            "response_id": response_id,
+                            "route_id": route_id,
+                            "response_reference": response_reference,
+                            "decision": decision,
+                            "valid_from": valid_from.isoformat(),
+                            "valid_through": valid_through.isoformat(),
+                        }
+                    )
 
         resolved.append(
             {
@@ -154,7 +210,7 @@ def adjudicate(payload: dict) -> dict:
                 "route_type": route["route_type"].strip(),
                 "route_class": route_class,
                 "organization": organization,
-                "response_date": response["response_date"],
+                "response_date": response_date.isoformat(),
                 "response_reference": response_reference,
                 "activity_decisions": decisions,
                 "valid_from": response.get("valid_from"),
@@ -185,6 +241,16 @@ def adjudicate(payload: dict) -> dict:
             "site": _class_state("SITE", activity_id),
         }
 
+    required_activity_validity = {
+        activity_id: {
+            "regulatory": validity_by_class["REGULATORY"].get(
+                activity_id, []
+            ),
+            "site": validity_by_class["SITE"].get(activity_id, []),
+        }
+        for activity_id in sorted(REQUIRED_ACTIVITIES)
+    }
+
     states = {
         state
         for activity in required_matrix.values()
@@ -212,6 +278,7 @@ def adjudicate(payload: dict) -> dict:
         "required_scope": REQUIRED_SCOPE,
         "required_activities": sorted(REQUIRED_ACTIVITIES),
         "required_activity_matrix": required_matrix,
+        "required_activity_validity": required_activity_validity,
         "responses": resolved,
         "recovery_handoff": {
             "sampling_permission_status": "CONFIRMED" if confirmed else "UNRESOLVED",
@@ -221,6 +288,9 @@ def adjudicate(payload: dict) -> dict:
                 + metadata["adjudication_commit"]
                 if confirmed
                 else None
+            ),
+            "required_activity_validity": (
+                required_activity_validity if confirmed else None
             ),
             "destructive_activities_D_to_F_required_for_recovery_p0a": False,
         },
