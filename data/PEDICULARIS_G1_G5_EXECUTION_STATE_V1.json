@@ -77,7 +77,13 @@
       "prior_season_specimen": "CANNOT_SATISFY_FRESH_RECOVERY"
     },
     "permission_validity_grain": "ACTIVITY_X_AUTHORITY_SIDE",
-    "response_level_validity_authoritative": false
+    "response_level_validity_authoritative": false,
+    "permission_condition_rule": {
+      "grain": "ACTIVITY_X_AUTHORITY_SIDE",
+      "raw_positive_requires_condition_review": true,
+      "incompatible_condition_effect": "BLOCK_EFFECTIVE_SCOPE",
+      "raw_authority_decision_preserved": true
+    }
   },
   "stages": [
     {
