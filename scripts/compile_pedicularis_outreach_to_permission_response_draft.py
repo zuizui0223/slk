@@ -77,6 +77,8 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
                         "valid_from": None,
                         "valid_through": None,
                         "conditions": None,
+                        "conditions_compatible_with_registered_activity": None,
+                        "conditions_review_reference": None,
                     }
                     for activity_id, activity in ACTIVITIES.items()
                 ],
