@@ -254,6 +254,10 @@ def test_positive_recovery_compiles_context_into_p0_calibration_template() -> No
     assert out["permission_scope_receipt"]["required_scope"] == (
         "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
     )
+    assert out["permission_scope_receipt"]["all_activity_matrix"]["D"] == {
+        "regulatory": "UNRESOLVED",
+        "site": "UNRESOLVED",
+    }
     assert out["sampling"]["minimum_pollinator_bouts"] is None
     assert out["context"]["frozen_before_calibration_outcomes"] is False
 
