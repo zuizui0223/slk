@@ -80,7 +80,10 @@
     "permission_outreach_template": "data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv",
     "permission_outreach_manager": "scripts/manage_pedicularis_wave1_permission_outreach.py",
     "permission_outreach_status": "REGISTERED_TRACKER_READY_NO_OUTREACH_EXECUTED",
-    "permission_response_bundle_ready_rule": "SUBSTANTIVE_REGULATORY_AND_SITE_RESPONSE_REQUIRED_PER_CANDIDATE"
+    "permission_response_bundle_ready_rule": "SUBSTANTIVE_REGULATORY_AND_SITE_RESPONSE_REQUIRED_PER_CANDIDATE",
+    "permission_response_draft_compiler": "scripts/compile_pedicularis_outreach_to_permission_response_draft.py",
+    "permission_response_draft_status": "READY_AFTER_SUBSTANTIVE_REGULATORY_AND_SITE_REPLIES",
+    "permission_response_draft_activity_decisions": "ALL_A_TO_F_START_UNRESOLVED"
   },
   "stages": [
     {
