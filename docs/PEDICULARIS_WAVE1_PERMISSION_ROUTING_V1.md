@@ -85,7 +85,7 @@ scripts/manage_pedicularis_wave1_permission_outreach.py
 
 A candidate becomes ready to build a permission-response draft only after a substantive reply has been received from both a regulatory route and a site-authorizing route. Routing-only replies cannot satisfy the site side.
 
-The response-draft compiler starts every A-F activity at `UNRESOLVED` and exposes activity-specific `valid_from`, `valid_through`, and `conditions` fields. It never interprets a returned message as permission.
+The response-draft compiler starts every A-F activity at `UNRESOLVED` and exposes activity-specific `valid_from`, `valid_through`, `conditions`, `conditions_compatible_with_registered_activity`, and `conditions_review_reference` fields. It never interprets a returned message as permission and never performs the compatibility review automatically.
 
 ## Inquiry packet generation
 
