@@ -148,6 +148,18 @@ HUTIAOXIA_SHANGRILA
 
 These are **scouting locators only**. They do not prove that a current flowering population is present. In particular, the Songzanlin envelope represents the official project/evaluation area, not the position of an individual `P. rex` plant.
 
+## Permission routing
+
+For WAVE1, official contact routes are registered separately from permission outcomes:
+
+```text
+docs/PEDICULARIS_WAVE1_PERMISSION_ROUTING_V1.md
+data/PEDICULARIS_WAVE1_PERMISSION_CONTACT_ROUTES_V1.csv
+scripts/validate_pedicularis_wave1_permission_contacts.py
+```
+
+A contact route may identify whom to ask, but it cannot populate `sampling_permission_status=CONFIRMED`. Only an auditable permission/reference covering the needed activity can do that.
+
 ## Draft packet generation
 
 Use the canonical ledger-backed generator so source type, source reference and prior candidate status are copied rather than retyped:
