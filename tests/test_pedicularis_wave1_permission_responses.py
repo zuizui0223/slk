@@ -136,6 +136,31 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
             )
 
 
+def _fill_condition_review(
+    row: dict,
+    prefix: str,
+    *,
+    compatible: bool,
+    rationale: str | None = None,
+) -> None:
+    row["conditions_compatible_with_registered_activity"] = compatible
+    row["conditions_review_reference"] = f"{prefix}-COND-REVIEW"
+    row["registered_activity_definition_reference"] = (
+        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
+        + row["activity_id"]
+    )
+    row["conditions_reviewed_by"] = "TEST-REVIEWER"
+    row["conditions_review_date"] = "2027-05-13"
+    row["conditions_review_rationale"] = (
+        rationale
+        or (
+            "Authority conditions are compatible with the registered activity definition."
+            if compatible
+            else "Authority conditions conflict with the registered activity definition."
+        )
+    )
+
+
 def _songzanlin_bundle() -> dict:
     reg = _activities()
     site = _activities()
@@ -412,8 +437,7 @@ def test_optional_D_permission_is_receipted_without_becoming_required_scope() ->
         target["valid_from"] = "2027-06-01"
         target["valid_through"] = "2027-06-30"
         target["conditions"] = "voucher-only June window"
-        target["conditions_compatible_with_registered_activity"] = True
-        target["conditions_review_reference"] = f"{prefix}-D-COND-REVIEW"
+        _fill_condition_review(target, f"{prefix}-D", compatible=True)
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     assert out["required_activities"] == ["A", "B", "C"]
@@ -435,8 +459,8 @@ def test_optional_positive_D_permission_still_requires_validity_dates() -> None:
     target["response_reference"] = "REG-D"
     target["valid_from"] = "2027-06-01"
     target["valid_through"] = None
-    target["conditions_compatible_with_registered_activity"] = True
-    target["conditions_review_reference"] = "REG-D-COND-REVIEW"
+    target["conditions"] = "voucher-only June window"
+    _fill_condition_review(target, "REG-D", compatible=True)
     with pytest.raises(ValueError, match="valid_through/REG-001/D"):
         adj.adjudicate(payload)
 
@@ -454,8 +478,7 @@ def test_activity_specific_D_validity_can_be_narrower_than_A_C() -> None:
         d["valid_from"] = "2027-06-10"
         d["valid_through"] = "2027-06-20"
         d["conditions"] = "voucher only during June 10-20"
-        d["conditions_compatible_with_registered_activity"] = True
-        d["conditions_review_reference"] = f"{prefix}-D-COND-REVIEW"
+        _fill_condition_review(d, f"{prefix}-D", compatible=True)
     out = adj.adjudicate(payload)
     assert out["required_activity_validity"]["A"]["regulatory"][0][
         "valid_through"
@@ -540,8 +563,12 @@ def test_incompatible_optional_D_condition_does_not_block_default_A_C_scope() ->
         d["valid_from"] = "2027-06-01"
         d["valid_through"] = "2027-06-30"
         d["conditions"] = "voucher only outside the registered recovery area"
-        d["conditions_compatible_with_registered_activity"] = False
-        d["conditions_review_reference"] = f"{prefix}-D-BLOCK-REVIEW"
+        _fill_condition_review(
+            d,
+            f"{prefix}-D-BLOCK",
+            compatible=False,
+            rationale="Voucher condition excludes the registered recovery area.",
+        )
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     assert out["all_activity_matrix"]["D"] == {
