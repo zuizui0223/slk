@@ -197,6 +197,24 @@ def _obs() -> dict:
     }
 
 
+def _specimen_context(
+    *,
+    collection_date: str = "2027-06-15",
+    candidate_site_id: str = "site-wufeng",
+    population_id: str = "pop-wufeng-2027",
+    season_id: str = "2027",
+) -> dict:
+    return {
+        "schema_version": "SLK_PEDICULARIS_RECOVERY_SPECIMEN_CONTEXT_RECEIPT_V1",
+        "specimen_reference": "SPECIMEN-CTX-001",
+        "collection_date": collection_date,
+        "candidate_site_id": candidate_site_id,
+        "population_id": population_id,
+        "season_id": season_id,
+        "provenance_reference": "SPECIMEN-PROVENANCE-001",
+    }
+
+
 def test_positive_recovery_unlocks_only_p0_relevance_calibration() -> None:
     out = adj.adjudicate(_obs(), _freeze())
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
@@ -454,6 +472,7 @@ def test_voucher_route_with_preexisting_authorized_specimen_needs_no_new_D_permi
     fresh["taxon_evidence_reference"] = "SPECIMEN-HERB-001"
     fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
     fresh["taxonomic_material_authorization_reference"] = "HERBARIUM-ACCESSION-001"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
     fresh.pop("taxon_diagnostic_checklist")
     out = adj.adjudicate(obs, _freeze())
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
@@ -466,6 +485,7 @@ def test_new_field_voucher_route_requires_D_permission() -> None:
     fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
     fresh["taxon_evidence_reference"] = "NEW-VOUCHER-001"
     fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
     fresh.pop("taxon_diagnostic_checklist")
     with pytest.raises(ValueError, match="requires activity D"):
         adj.adjudicate(obs, _freeze())
@@ -477,6 +497,7 @@ def test_new_field_voucher_route_passes_with_D_permission_valid_on_recovery_date
     fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
     fresh["taxon_evidence_reference"] = "NEW-VOUCHER-001"
     fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
     fresh.pop("taxon_diagnostic_checklist")
     receipt = obs["permission_scope_receipt"]
     receipt["all_activity_matrix"]["D"] = {
@@ -551,6 +572,7 @@ def test_preexisting_specimen_route_requires_authorization_provenance() -> None:
     fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
     fresh["taxon_evidence_reference"] = "SPECIMEN-HERB-002"
     fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
     fresh.pop("taxon_diagnostic_checklist")
     with pytest.raises(ValueError, match="authorization/provenance reference missing"):
         adj.adjudicate(obs, _freeze())
@@ -562,5 +584,78 @@ def test_combined_photo_plus_new_voucher_requires_D_permission() -> None:
     fresh["taxon_verification_method"] = "COMBINED"
     fresh["combined_secondary_taxon_method"] = "VOUCHER_OR_SPECIMEN"
     fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
     with pytest.raises(ValueError, match="requires activity D"):
+        adj.adjudicate(obs, _freeze())
+
+
+
+def test_preexisting_specimen_from_prior_season_cannot_confirm_fresh_recovery() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "OLD-SPECIMEN-001"
+    fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh["taxonomic_material_authorization_reference"] = "HERBARIUM-ACCESSION-OLD"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context(
+        collection_date="2026-07-01",
+    )
+    fresh.pop("taxon_diagnostic_checklist")
+    with pytest.raises(ValueError, match="outside the registered recovery season"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_specimen_context_must_match_recovery_population() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "SPECIMEN-OTHER-POP"
+    fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh["taxonomic_material_authorization_reference"] = "HERBARIUM-ACCESSION-002"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context(
+        population_id="other-pop",
+    )
+    fresh.pop("taxon_diagnostic_checklist")
+    with pytest.raises(ValueError, match="population_id mismatch"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_new_field_voucher_collection_date_must_equal_recovery_date() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "NEW-VOUCHER-DATE"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context(
+        collection_date="2027-06-14",
+    )
+    fresh.pop("taxon_diagnostic_checklist")
+    receipt = obs["permission_scope_receipt"]
+    receipt["all_activity_matrix"]["D"] = {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    receipt["all_activity_validity"]["D"] = {
+        "regulatory": [
+            {
+                "response_id": "REG-D",
+                "route_id": "TEST-REG",
+                "response_reference": "REG-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-09-30",
+            }
+        ],
+        "site": [
+            {
+                "response_id": "SITE-D",
+                "route_id": "TEST-SITE",
+                "response_reference": "SITE-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-09-30",
+            }
+        ],
+    }
+    with pytest.raises(ValueError, match="must equal recovery verification date"):
         adj.adjudicate(obs, _freeze())
