@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "aa4142f1204f9e0cee1c3d3a7e006920f0c23687",
+  "source_main_commit_at_state_snapshot": "7a5795c1fbec753d6895fb535c287f76c38ecb69",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_QUEUE_LOCATOR_BACKED_PACKET_WITH_AUDITABLE_RECOVERY_EVIDENCE_GATE_READY",
@@ -60,7 +60,9 @@
     "permission_validity_policy": "REQUIRED_ACTIVITY_SPECIFIC_DATE_BOUNDED_A_C_REGULATORY_AND_SITE",
     "recovery_date_must_be_within_permission_validity": true,
     "p0a_planned_interval_must_be_fully_within_permission_validity": true,
-    "p0a_candidate_id_must_match_permission_receipt": true
+    "p0a_candidate_id_must_match_permission_receipt": true,
+    "p0a_completed_rows_require_observation_date": true,
+    "p0a_completed_rows_must_fall_within_frozen_planned_interval": true
   },
   "stages": [
     {

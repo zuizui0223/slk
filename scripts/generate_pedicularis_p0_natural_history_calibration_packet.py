@@ -15,6 +15,7 @@ FIELDS = [
     "season_id",
     "calibration_window_id",
     "record_id",
+    "observation_date",
     "plant_id",
     "physical_plant_tag",
     "flower_id",
@@ -74,7 +75,7 @@ def generate(freeze: dict) -> list[dict[str, str]]:
                 "record_type": "POLLINATOR_BOUT",
                 "record_id": f"CAL-POLL-{i:03d}",
                 "planned_minutes": f"{minutes_each:.6f}",
-                "notes": "Enter observed_minutes only after completing the bout; also record simultaneously open focal flowers and legitimate visits.",
+                "notes": "Enter observation_date and observed_minutes only after completing the bout; also record simultaneously open focal flowers and legitimate visits.",
             }
         )
         rows.append(row)
@@ -86,7 +87,7 @@ def generate(freeze: dict) -> list[dict[str, str]]:
             {
                 "record_type": "PREDATOR_FLOWER",
                 "record_id": f"CAL-PRED-{i:03d}",
-                "notes": "Use the exact early attack / oviposition-positive definition intended for P0.",
+                "notes": "Record observation_date and use the exact early attack / oviposition-positive definition intended for P0.",
             }
         )
         rows.append(row)
@@ -98,7 +99,7 @@ def generate(freeze: dict) -> list[dict[str, str]]:
             {
                 "record_type": "WATER_PLANT",
                 "record_id": f"CAL-WATER-{i:03d}",
-                "notes": "Score water-positive state under the frozen calibration timing/weather definition.",
+                "notes": "Record observation_date and score water-positive state under the frozen calibration timing/weather definition.",
             }
         )
         rows.append(row)

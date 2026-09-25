@@ -206,6 +206,9 @@ python scripts/generate_pedicularis_p0_natural_history_calibration_packet.py \
   --output PEDICULARIS_P0_NAT_HIST_CAL_FIELD_V1.csv
 ```
 
+
+Every completed pollinator, predator and water-state row records `observation_date`. The summarizer requires each completed row to fall inside the prospectively frozen `planned_calibration_start_date ... planned_calibration_end_date` interval. A row collected outside that interval fails closed even if the permission receipt had been valid when the freeze was written.
+
 The generated pollinator rows distinguish:
 
 ```text
