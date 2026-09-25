@@ -24,13 +24,17 @@
       "response_reference",
       "valid_from",
       "valid_through",
-      "conditions"
+      "conditions",
+      "conditions_compatible_with_registered_activity",
+      "conditions_review_reference"
     ],
     "validity_is_activity_specific": true,
     "response_level_validity_does_not_substitute_for_activity_validity": true,
     "positive_decisions_requiring_validity": [
       "ALLOWED",
       "NO_PERMISSION_REQUIRED"
-    ]
+    ],
+    "positive_decisions_require_condition_compatibility_review": true,
+    "incompatible_conditions_block_effective_scope": true
   }
 }
