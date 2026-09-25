@@ -35,6 +35,8 @@
       "NO_PERMISSION_REQUIRED"
     ],
     "positive_decisions_require_condition_compatibility_review": true,
-    "incompatible_conditions_block_effective_scope": true
+    "incompatible_conditions_block_effective_scope": true,
+    "no_additional_conditions_sentinel": "NO_ADDITIONAL_CONDITIONS",
+    "blank_conditions_for_positive_decision_allowed": false
   }
 }
