@@ -80,6 +80,10 @@ def validate(payload: dict) -> dict:
         "escalation review must occur after the last follow-up offset",
     )
     _need(
+        policy.get("frozen_before_first_send") is True,
+        "follow-up policy was not frozen before first send",
+    )
+    _need(
         policy.get("automatic_close_allowed") is False,
         "automatic closure after no response is forbidden",
     )
@@ -108,6 +112,7 @@ def validate(payload: dict) -> dict:
         "followup_offsets_days": offsets,
         "followup_attempt_count": len(offsets),
         "escalation_review_after_days": escalation,
+        "frozen_before_first_send": True,
         "automatic_close_allowed": False,
         "response_receipt_preempts_followup": True,
         "routing_response_preempts_same_route_followup": True,
