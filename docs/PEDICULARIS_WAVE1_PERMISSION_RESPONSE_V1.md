@@ -21,7 +21,7 @@ C  non-destructive measurement
 Therefore the minimum permission scope required to unlock P0a is:
 
 ```text
-RECOVERY_PLUS_P0A_NONDESTRUCTIVE
+RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE
 ```
 
 The following activities are deliberately outside this minimum gate:
@@ -91,10 +91,10 @@ An expired permission cannot be rescued by retaining the old receipt.
 ## Response statuses
 
 ```text
-RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED
-RECOVERY_P0A_PERMISSION_SCOPE_INCOMPLETE
-RECOVERY_P0A_PERMISSION_SCOPE_BLOCKED
-RECOVERY_P0A_PERMISSION_SCOPE_CONFLICTING
+RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED
+RECOVERY_P0A_P0B_PERMISSION_SCOPE_INCOMPLETE
+RECOVERY_P0A_P0B_PERMISSION_SCOPE_BLOCKED
+RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFLICTING
 ```
 
 Rules:
@@ -131,7 +131,7 @@ Only a confirmed permission-scope receipt may populate:
 
 ```text
 sampling_permission_status = CONFIRMED
-sampling_permission_scope  = RECOVERY_PLUS_P0A_NONDESTRUCTIVE
+sampling_permission_scope  = RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE
 sampling_permission_reference
 permission_scope_receipt.
 ```
@@ -151,7 +151,7 @@ A manually typed `sampling_permission_status=CONFIRMED` without the receipt fail
 ## Claim ceiling
 
 ```text
-RECOVERY_PLUS_P0A_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY
+RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY
 NO_D_TO_F_PERMISSION_INFERENCE
 NO_FRESH_CONTEXT_RESULT
 NO_P0_SIGNAL
