@@ -26,7 +26,7 @@ def _filled(value: object, label: str) -> str:
     return text
 
 
-def _message_content_sha256(message: dict) -> str:
+def message_content_sha256(message: dict) -> str:
     payload = {
         "route_id": _filled(message.get("route_id"), "route_id"),
         "organization": _filled(message.get("organization"), "organization"),
@@ -81,7 +81,7 @@ def validate_and_prepare(payload: dict, *, human_review_approved: bool) -> dict:
         guard["human_review_required"] = True
         guard["human_review_approved"] = bool(human_review_approved)
         guard["automatic_send_allowed"] = False
-        message["message_content_sha256"] = _message_content_sha256(
+        message["message_content_sha256"] = message_content_sha256(
             message
         )
         message["status"] = (
