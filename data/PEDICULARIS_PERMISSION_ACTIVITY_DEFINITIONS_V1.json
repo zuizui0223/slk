@@ -1,0 +1,67 @@
+{
+  "schema_version": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1",
+  "status": "REGISTERED_ACTIVITY_DEFINITIONS",
+  "activities": {
+    "A": {
+      "activity_id": "A",
+      "label": "VISUAL_OBSERVATION",
+      "definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+      "registered_definition": "Visual observation of plants, habitat, and naturally occurring interactions without touching, manipulating, measuring, marking, or collecting plant material.",
+      "destructive": false,
+      "required_for_default_recovery_p0_scope": true
+    },
+    "B": {
+      "activity_id": "B",
+      "label": "PHOTOGRAPHY_MORPHOLOGY_DOCUMENTATION",
+      "definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+      "registered_definition": "Photography of whole plants, diagnostic leaf-whorl characters, petiole/bract bases, flowers, habitat, and other morphology without removing plant material.",
+      "destructive": false,
+      "required_for_default_recovery_p0_scope": true
+    },
+    "C": {
+      "activity_id": "C",
+      "label": "NON_DESTRUCTIVE_MEASUREMENT",
+      "definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+      "registered_definition": "Non-destructive measurements and natural-history observations, including focal-flower timing, flower counts, morphology measurements that do not remove tissue, visitation observation, early predator/oviposition evidence, and water-state assessment.",
+      "destructive": false,
+      "required_for_default_recovery_p0_scope": true
+    },
+    "D": {
+      "activity_id": "D",
+      "label": "VOUCHER_SPECIMEN_COLLECTION",
+      "definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#D",
+      "registered_definition": "Collection of a limited voucher specimen for taxonomic documentation, only when separately authorized.",
+      "destructive": true,
+      "required_for_default_recovery_p0_scope": false
+    },
+    "E": {
+      "activity_id": "E",
+      "label": "LEAF_OR_TISSUE_SAMPLING",
+      "definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#E",
+      "registered_definition": "Collection of a limited amount of leaf or other plant tissue for laboratory or genetic analysis, only when separately authorized.",
+      "destructive": true,
+      "required_for_default_recovery_p0_scope": false
+    },
+    "F": {
+      "activity_id": "F",
+      "label": "SEED_OR_FRUIT_COLLECTION",
+      "definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#F",
+      "registered_definition": "Collection of a limited amount of seed or fruit material, only when separately authorized.",
+      "destructive": true,
+      "required_for_default_recovery_p0_scope": false
+    }
+  },
+  "review_policy": {
+    "positive_decisions_requiring_condition_review": [
+      "ALLOWED",
+      "NO_PERMISSION_REQUIRED"
+    ],
+    "reviewer_must_be_identified": true,
+    "review_date_required": true,
+    "review_rationale_required": true,
+    "review_reference_required": true,
+    "authority_condition_text_required": true,
+    "no_additional_conditions_sentinel": "NO_ADDITIONAL_CONDITIONS"
+  },
+  "claim_ceiling": "ACTIVITY_DEFINITION_AND_CONDITION_REVIEW_FRAMEWORK_ONLY_NO_PERMISSION_GRANTED_NO_BIOLOGICAL_RESULT"
+}
