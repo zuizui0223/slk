@@ -162,10 +162,21 @@ def validate(rows: list[dict[str, str]]) -> dict:
             if row["route_type"].strip()
             in {"SITE_MANAGEMENT_ROUTING", "INSTITUTIONAL_SITE_ROUTING"}
         ]
+        routing_destinations = [
+            {
+                "source_route_id": row["route_id"].strip(),
+                "organization": row["routed_to_organization"].strip(),
+                "contact": row["routed_to_contact"].strip(),
+            }
+            for row in candidate_rows
+            if row["response_status"].strip() == "ROUTING_RESPONSE_ONLY"
+        ]
         candidate_progress[candidate_id] = {
             "registered_routes": len(candidate_rows),
             "regulatory_routes": len(regulatory),
             "site_authorizing_routes": len(site),
+            "routing_destinations_pending_canonical_registration": routing_destinations,
+            "canonical_route_update_required": bool(routing_destinations),
             "substantive_regulatory_response_received": any(
                 row["response_status"].strip() == "SUBSTANTIVE_RESPONSE_RECEIVED"
                 for row in regulatory
