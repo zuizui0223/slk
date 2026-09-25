@@ -20,6 +20,17 @@ assert spec2.loader is not None
 spec2.loader.exec_module(comp)
 
 
+def _definition_receipt(activity_id: str) -> dict[str, str]:
+    registry = adj.load_activity_definition_registry()
+    activity = registry["activities"][activity_id]
+    return {
+        "reference": activity["definition_reference"],
+        "algorithm": adj.ACTIVITY_HASH_ALGORITHM,
+        "sha256": adj.activity_definition_sha256(activity),
+        "registry_sha256": adj.activity_registry_sha256(registry),
+    }
+
+
 def _activities(default: str = "UNRESOLVED") -> list[dict]:
     return [
         {
@@ -54,8 +65,22 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
                 else None
             ),
             "registered_activity_definition_reference": (
-                "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
-                + activity_id
+                _definition_receipt(activity_id)["reference"]
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "registered_activity_definition_hash_algorithm": (
+                _definition_receipt(activity_id)["algorithm"]
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "registered_activity_definition_sha256": (
+                _definition_receipt(activity_id)["sha256"]
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "registered_activity_registry_sha256": (
+                _definition_receipt(activity_id)["registry_sha256"]
                 if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             ),
@@ -114,8 +139,22 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
                 else None
             )
             row["registered_activity_definition_reference"] = (
-                "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
-                + row["activity_id"]
+                _definition_receipt(row["activity_id"])["reference"]
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["registered_activity_definition_hash_algorithm"] = (
+                _definition_receipt(row["activity_id"])["algorithm"]
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["registered_activity_definition_sha256"] = (
+                _definition_receipt(row["activity_id"])["sha256"]
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["registered_activity_registry_sha256"] = (
+                _definition_receipt(row["activity_id"])["registry_sha256"]
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
@@ -145,10 +184,18 @@ def _fill_condition_review(
 ) -> None:
     row["conditions_compatible_with_registered_activity"] = compatible
     row["conditions_review_reference"] = f"{prefix}-COND-REVIEW"
-    row["registered_activity_definition_reference"] = (
-        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
-        + row["activity_id"]
-    )
+    row["registered_activity_definition_reference"] = _definition_receipt(
+        row["activity_id"]
+    )["reference"]
+    row["registered_activity_definition_hash_algorithm"] = _definition_receipt(
+        row["activity_id"]
+    )["algorithm"]
+    row["registered_activity_definition_sha256"] = _definition_receipt(
+        row["activity_id"]
+    )["sha256"]
+    row["registered_activity_registry_sha256"] = _definition_receipt(
+        row["activity_id"]
+    )["registry_sha256"]
     row["conditions_reviewed_by"] = "TEST-REVIEWER"
     row["conditions_review_date"] = "2027-05-13"
     row["conditions_review_rationale"] = (
@@ -684,9 +731,52 @@ def test_confirmed_receipt_preserves_condition_review_audit_metadata() -> None:
     assert interval["registered_activity_definition_reference"] == (
         "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A"
     )
+    assert interval["registered_activity_definition_hash_algorithm"] == (
+        "SHA256_CANONICAL_JSON_V1"
+    )
+    assert interval["registered_activity_definition_sha256"] == (
+        _definition_receipt("A")["sha256"]
+    )
+    assert interval["registered_activity_registry_sha256"] == (
+        _definition_receipt("A")["registry_sha256"]
+    )
     assert interval["conditions_reviewed_by"] == "TEST-REVIEWER"
     assert interval["conditions_review_date"] == "2027-05-12"
     assert interval["conditions_review_rationale"]
     assert out["activity_definition_schema"] == (
         "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
     )
+
+
+
+def test_condition_review_rejects_activity_definition_hash_mismatch() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["registered_activity_definition_sha256"] = "0" * 64
+    with pytest.raises(ValueError, match="activity-definition hash mismatch"):
+        adj.adjudicate(payload)
+
+
+def test_condition_review_rejects_registry_hash_mismatch() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "C"
+    )
+    target["registered_activity_registry_sha256"] = "f" * 64
+    with pytest.raises(ValueError, match="registry hash mismatch"):
+        adj.adjudicate(payload)
+
+
+def test_condition_review_rejects_wrong_hash_algorithm() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "B"
+    )
+    target["registered_activity_definition_hash_algorithm"] = "SHA1"
+    with pytest.raises(ValueError, match="wrong activity-definition hash algorithm"):
+        adj.adjudicate(payload)
