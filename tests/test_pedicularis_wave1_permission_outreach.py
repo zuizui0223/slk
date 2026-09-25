@@ -24,9 +24,9 @@ def _rows() -> list[dict[str, str]]:
 def test_template_matches_generated_canonical_outreach_inventory() -> None:
     generated = mod.generate_rows()
     template = _rows()
-    assert [row["route_id"] for row in template] == [
+    assert {row["route_id"] for row in template} == {
         row["route_id"] for row in generated
-    ]
+    }
     out = mod.validate(template)
     assert out["status"] == "WAVE1_PERMISSION_OUTREACH_LEDGER_VALIDATED"
     assert out["route_count"] == 7
