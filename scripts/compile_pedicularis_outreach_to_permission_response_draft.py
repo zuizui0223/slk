@@ -114,7 +114,9 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
         "next_action": (
             "Read each returned authority/site response; set A-F decisions separately; "
             "fill activity-level response references, validity dates and conditions; "
-            "then set status=FILLED_AUTHORITY_RESPONSES before adjudication."
+            "review whether each positive condition is compatible with the registered "
+            "activity and record the review reference; then set "
+            "status=FILLED_AUTHORITY_RESPONSES before adjudication."
         ),
         "claim_ceiling": (
             "RESPONSE_BUNDLE_DRAFT_ONLY_NO_ACTIVITY_DECISION_"
