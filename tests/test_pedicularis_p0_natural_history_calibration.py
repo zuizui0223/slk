@@ -77,6 +77,7 @@ def _freeze() -> dict:
         "status": "FROZEN_CANDIDATE",
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": "SHANGRILA_WUFENG",
             "candidate_site_id": "site1",
             "population_id": "pop1",
             "season_id": "2027",
@@ -331,3 +332,11 @@ def test_p0a_freeze_reports_permission_covered_planned_dates() -> None:
     out = sum_mod.validate_freeze(_freeze())
     assert out["planned_calibration_start_date"] == "2027-06-20"
     assert out["planned_calibration_end_date"] == "2027-07-05"
+
+
+
+def test_p0a_permission_candidate_must_match_freeze_candidate() -> None:
+    freeze = _freeze()
+    freeze["permission_scope_receipt"]["candidate_id"] = "OTHER_CANDIDATE"
+    with pytest.raises(ValueError, match="candidate mismatch"):
+        sum_mod.validate_freeze(freeze)
