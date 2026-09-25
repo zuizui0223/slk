@@ -4,6 +4,7 @@ import argparse
 import csv
 import importlib.util
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -45,12 +46,22 @@ def _filled(value: object, label: str) -> str:
 
 
 def _allowed_specific_contacts(canonical: str) -> set[str]:
-    parts = {
+    options = {
         part.strip()
         for part in canonical.split(";")
         if part.strip()
     }
-    return parts or {canonical.strip()}
+    options.add(canonical.strip())
+    options.update(
+        re.findall(
+            r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}",
+            canonical,
+        )
+    )
+    options.update(
+        re.findall(r"(?<!\d)(?:\+?\d[\d -]{5,}\d)(?!\d)", canonical)
+    )
+    return {option.strip() for option in options if option.strip()}
 
 
 def _validate_channel_contact(channel: str, contact: str) -> None:
