@@ -501,3 +501,22 @@ def test_incompatible_optional_D_condition_does_not_block_default_A_C_scope() ->
         "regulatory": [],
         "site": [],
     }
+
+
+
+def test_null_top_level_permission_response_reference_is_rejected() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][0]["response_reference"] = None
+    with pytest.raises(ValueError, match="response_reference/REG-001"):
+        adj.adjudicate(payload)
+
+
+def test_null_activity_response_reference_is_rejected() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["response_reference"] = None
+    with pytest.raises(ValueError, match="REG-001/A/response_reference"):
+        adj.adjudicate(payload)
