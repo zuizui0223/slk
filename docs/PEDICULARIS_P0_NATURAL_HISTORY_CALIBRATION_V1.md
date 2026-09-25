@@ -20,7 +20,7 @@ This calibration is not P0 itself and is not a confirmatory biological experimen
 
 ## 1a. Permission validity before P0a execution
 
-A positive fresh-context recovery handoff carries the confirmed `RECOVERY_PLUS_P0A_NONDESTRUCTIVE` permission receipt into the P0a freeze.
+A positive fresh-context recovery handoff carries the confirmed `RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE` permission receipt into the P0a freeze.
 
 Before the P0a field packet can be generated, the final freeze must declare:
 
