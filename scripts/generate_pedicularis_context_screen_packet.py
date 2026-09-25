@@ -8,11 +8,13 @@ from pathlib import Path
 
 FIELDS = [
     "record_type",
+    "candidate_id",
     "candidate_site_id",
     "population_id",
     "season_id",
     "screen_window_id",
     "record_id",
+    "observation_date",
     "plant_id",
     "physical_plant_tag",
     "flower_id",
@@ -56,6 +58,7 @@ def generate(freeze: dict) -> list[dict[str, str]]:
     rows: list[dict[str, str]] = []
 
     common = {
+        "candidate_id": ctx["candidate_id"],
         "candidate_site_id": ctx["candidate_site_id"],
         "population_id": ctx["population_id"],
         "season_id": ctx["season_id"],
@@ -71,7 +74,7 @@ def generate(freeze: dict) -> list[dict[str, str]]:
         "record_id": "CENSUS-001",
         "notes": (
             "Count independent flowering plants until the frozen capacity requirement is reached; "
-            "if it is not reached, exhaust the focal population and set population_census_exhausted=true."
+            "if it is not reached, exhaust the focal population and set population_census_exhausted=true. Record observation_date."
         ),
     })
     rows.append(census)
@@ -88,7 +91,7 @@ def generate(freeze: dict) -> list[dict[str, str]]:
                 "record_id": f"POLL-{i:03d}",
                 "planned_observation_minutes": f"{minutes_each:.6f}",
                 "notes": (
-                    "Record observed minutes, legitimate visits, and the number of simultaneously open focal P. rex flowers exposed during the bout. "
+                    "Record observation_date, observed minutes, legitimate visits, and the number of simultaneously open focal P. rex flowers exposed during the bout. "
                     "Pollinator detection is adjudicated on cumulative flower-minutes as well as temporal coverage."
                 ),
             }
