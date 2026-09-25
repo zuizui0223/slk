@@ -464,6 +464,21 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "dataset_id": DATASET_ID,
             "p0_outcomes_opened": False,
         },
+        "permission_scope_audit": {
+            "status": "P0A_PERMISSION_VALIDITY_CONFIRMED_FOR_PLANNED_WINDOW",
+            "required_scope": cfg["permission_scope_receipt"]["required_scope"],
+            "sampling_permission_reference": cfg["permission_scope_receipt"].get(
+                "sampling_permission_reference"
+            ),
+            "planned_calibration_start_date": cfg[
+                "planned_calibration_start_date"
+            ],
+            "planned_calibration_end_date": cfg[
+                "planned_calibration_end_date"
+            ],
+            "required_activities": ["A", "B", "C"],
+            "planned_window_fully_covered": True,
+        },
         "physical_unit_registry_handoff": {
             "status": "P0_CALIBRATION_PLANT_TAGS_VALIDATED",
             "assignment_to_physical_tag": physical_mapping,
