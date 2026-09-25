@@ -56,6 +56,38 @@ A `LOCAL_TERRITORIAL_ROUTING` contact is routing-only. It may identify the actua
 
 For example, the Jiantang Town route for Wufeng cannot itself authorize A-C. Wufeng remains incomplete until an actual site-management route is registered and responds.
 
+## Validity-window requirement
+
+A positive A-C response is not timeless. Every `ALLOWED` or `NO_PERMISSION_REQUIRED` response that contributes to the required scope must record:
+
+```text
+response_date
+valid_from
+valid_through.
+```
+
+The adjudicator validates ISO dates, rejects reversed intervals, and records the positive validity intervals separately for every:
+
+```text
+activity A-C
+x
+REGULATORY / SITE side.
+```
+
+The recovery gate then asks whether the **actual fresh-recovery date** falls inside at least one positive interval for every required cell.
+
+The P0a freeze independently asks whether the **entire planned natural-history calibration date interval** is covered by at least one positive interval for every required cell.
+
+Thus:
+
+```text
+permission scope confirmed
+!=
+permission valid forever.
+```
+
+An expired permission cannot be rescued by retaining the old receipt.
+
 ## Response statuses
 
 ```text
