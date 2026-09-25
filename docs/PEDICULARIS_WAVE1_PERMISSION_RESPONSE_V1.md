@@ -90,6 +90,41 @@ REGULATORY / SITE side.
 
 Only A-C define the default non-destructive scope. D-F are retained so later destructive routes cannot silently inherit A-C validity.
 
+
+## Condition-compatibility review
+
+An authority can return a formally positive decision whose conditions make the registered field activity impossible. Therefore raw authorization and effective project scope are separated.
+
+Every positive activity row must also record:
+
+```text
+conditions
+conditions_compatible_with_registered_activity
+conditions_review_reference.
+```
+
+If `conditions_compatible_with_registered_activity = true`, the positive decision may contribute a validity interval to that authority side.
+
+If it is `false`, the raw authority decision remains visible as `ALLOWED` or `NO_PERMISSION_REQUIRED`, but the **effective scope decision is BLOCKED** for the registered protocol. The receipt does not silently reinterpret restrictive conditions as permission.
+
+For example:
+
+```text
+raw decision:
+    C = ALLOWED
+
+condition:
+    no touching or measuring flowers
+
+registered C activity:
+    non-destructive floral measurement
+
+effective project scope:
+    C = BLOCKED.
+```
+
+Condition review is performed activity-by-activity. An incompatible D voucher condition does not by itself block the default A-C path, but it prevents D from being used for a new-voucher taxon route.
+
 The recovery gate then asks whether the **actual fresh-recovery date** falls inside at least one positive interval for every required cell.
 
 The P0a freeze independently asks whether the **entire planned natural-history calibration date interval** is covered by at least one positive interval for every required cell.
