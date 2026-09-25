@@ -431,6 +431,12 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             == fctx["season_id"],
             "specimen context receipt season_id mismatch",
         )
+        season_text = str(fctx["season_id"]).strip()
+        if len(season_text) == 4 and season_text.isdigit():
+            _need(
+                specimen_date.year == int(season_text),
+                "specimen collection date is outside the registered recovery season",
+            )
         _need(
             verification_day is not None and specimen_date <= verification_day,
             "specimen collection date cannot follow recovery verification date",
