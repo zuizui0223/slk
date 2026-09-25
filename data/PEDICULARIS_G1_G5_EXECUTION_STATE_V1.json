@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "d08ef0f2a560493830865810f8b3a7ce651b4102",
+  "source_main_commit_at_state_snapshot": "9086cc2a1c39889a9a4a0dd033cbf02b8032c371",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_QUEUE_LOCATOR_BACKED_PACKET_WITH_AUDITABLE_RECOVERY_EVIDENCE_GATE_READY",
@@ -46,7 +46,17 @@
     "permission_status": "UNRESOLVED_FOR_ALL_WAVE1",
     "permission_contact_status": "OFFICIAL_CONTACT_ROUTES_IDENTIFIED",
     "permission_inquiry_generator": "scripts/generate_pedicularis_wave1_permission_inquiry.py",
-    "permission_inquiry_status": "DRAFT_GENERATION_READY_NOT_SENT"
+    "permission_inquiry_status": "DRAFT_GENERATION_READY_NOT_SENT",
+    "permission_response_template": "data/PEDICULARIS_WAVE1_PERMISSION_RESPONSE_TEMPLATE_V1.json",
+    "permission_response_adjudicator": "scripts/adjudicate_pedicularis_wave1_permission_responses.py",
+    "permission_scope_compiler": "scripts/compile_pedicularis_permission_scope_into_recovery.py",
+    "minimum_permission_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+    "minimum_permission_activities": [
+      "A_VISUAL_OBSERVATION",
+      "B_PHOTOGRAPHY_MORPHOLOGY_DOCUMENTATION",
+      "C_NON_DESTRUCTIVE_MEASUREMENT"
+    ],
+    "destructive_D_to_F_required_for_p0a": false
   },
   "stages": [
     {
