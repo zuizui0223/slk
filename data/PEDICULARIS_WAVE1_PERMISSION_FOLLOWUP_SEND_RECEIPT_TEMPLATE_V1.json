@@ -1,0 +1,18 @@
+{
+  "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_SEND_RECEIPT_V1",
+  "status": "TEMPLATE_ONLY_NOT_DATA",
+  "candidate_id": "REQUIRED_BEFORE_USE",
+  "route_id": "REQUIRED_BEFORE_USE",
+  "followup_number": null,
+  "send_event_id": "REQUIRED_BEFORE_USE",
+  "sent_at": "REQUIRED_BEFORE_USE",
+  "send_channel": "REQUIRED_BEFORE_USE",
+  "sent_language": "REQUIRED_BEFORE_USE",
+  "canonical_contact_snapshot": "REQUIRED_BEFORE_USE",
+  "sent_to_contact": "REQUIRED_BEFORE_USE",
+  "sent_message_reference": "REQUIRED_BEFORE_USE",
+  "sent_content_sha256": "REQUIRED_BEFORE_USE",
+  "manual_send_confirmed": false,
+  "sender_identity_reference": "REQUIRED_BEFORE_USE",
+  "notes": ""
+}
