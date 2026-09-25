@@ -7,7 +7,8 @@
     "escalation_review_after_days": null,
     "automatic_close_allowed": false,
     "response_receipt_preempts_followup": true,
-    "routing_response_preempts_same_route_followup": true
+    "routing_response_preempts_same_route_followup": true,
+    "frozen_before_first_send": false
   },
   "freeze_metadata": {
     "slk_source_commit": "REQUIRED_BEFORE_USE",
