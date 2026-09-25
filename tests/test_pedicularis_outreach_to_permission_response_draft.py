@@ -62,6 +62,8 @@ def test_ready_candidate_compiles_unresolved_activity_decision_draft() -> None:
             x["valid_from"] is None
             and x["valid_through"] is None
             and x["conditions"] is None
+            and x["conditions_compatible_with_registered_activity"] is None
+            and x["conditions_review_reference"] is None
             for x in response["activity_decisions"]
         )
         assert "valid_from" not in response
@@ -116,4 +118,6 @@ def test_response_draft_matches_activity_specific_validity_contract() -> None:
                 "valid_from",
                 "valid_through",
                 "conditions",
+                "conditions_compatible_with_registered_activity",
+                "conditions_review_reference",
             }

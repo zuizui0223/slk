@@ -85,7 +85,7 @@ scripts/manage_pedicularis_wave1_permission_outreach.py
 
 A candidate becomes ready to build a permission-response draft only after a substantive reply has been received from both a regulatory route and a site-authorizing route. Routing-only replies cannot satisfy the site side.
 
-The response-draft compiler starts every A-F activity at `UNRESOLVED` and exposes activity-specific `valid_from`, `valid_through`, and `conditions` fields. It never interprets a returned message as permission.
+The response-draft compiler starts every A-F activity at `UNRESOLVED` and exposes activity-specific `valid_from`, `valid_through`, `conditions`, `conditions_compatible_with_registered_activity`, and `conditions_review_reference` fields. It never interprets a returned message as permission and never performs the compatibility review automatically.
 
 ## Inquiry packet generation
 
@@ -120,6 +120,9 @@ F. seed/fruit collection
 ```
 
 A response authorizing one class must not be generalized to another. The validity window and conditions must also be recorded **per activity class**; a response-level date range cannot be copied onto activities whose authorization period differs.
+
+
+For every positive activity response, the project must also review whether the stated conditions are compatible with the exact registered procedure. Record the compatibility judgment and its review reference. If no additional conditions are stated, record `NO_ADDITIONAL_CONDITIONS`; a blank conditions field is not a positive permission record. A raw `ALLOWED` or `NO_PERMISSION_REQUIRED` response with incompatible conditions cannot count as a usable PASS.
 
 The recovery observation may set:
 

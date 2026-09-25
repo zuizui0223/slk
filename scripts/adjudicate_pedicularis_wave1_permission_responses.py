@@ -35,9 +35,26 @@ def _need(ok: bool, message: str) -> None:
 
 
 def _filled(value: object, label: str) -> str:
+    _need(value is not None, f"unresolved {label}")
     out = str(value).strip()
-    _need(bool(out) and "REQUIRED_BEFORE_USE" not in out, f"unresolved {label}")
+    _need(
+        bool(out)
+        and out.lower() not in {"none", "null"}
+        and "REQUIRED_BEFORE_USE" not in out,
+        f"unresolved {label}",
+    )
     return out
+
+
+def _required_bool(value: object, label: str) -> bool:
+    if isinstance(value, bool):
+        return value
+    text = str(value).strip().lower()
+    _need(
+        text in {"true", "false", "1", "0", "yes", "no"},
+        f"{label} must be boolean-like",
+    )
+    return text in {"true", "1", "yes"}
 
 
 def _iso_date(value: object, label: str) -> date:
@@ -166,10 +183,11 @@ def adjudicate(payload: dict) -> dict:
                 f"routing-only contact cannot authorize activities: {route_id}",
             )
         else:
+            effective_decisions: dict[str, str] = {}
             for activity_id, decision in decisions.items():
-                activity_by_class[route_class][activity_id].add(decision)
+                decision_row = decision_rows[activity_id]
+                effective_decision = decision
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}:
-                    decision_row = decision_rows[activity_id]
                     valid_from = _iso_date(
                         decision_row.get("valid_from"),
                         f"valid_from/{response_id}/{activity_id}",
@@ -188,20 +206,45 @@ def adjudicate(payload: dict) -> dict:
                         "permission expires before response date: "
                         f"{response_id}/{activity_id}",
                     )
-                    validity_by_class[route_class][activity_id].append(
-                        {
-                            "response_id": response_id,
-                            "route_id": route_id,
-                            "response_reference": _filled(
-                                decision_row.get("response_reference"),
-                                f"{response_id}/{activity_id}/response_reference",
-                            ),
-                            "decision": decision,
-                            "valid_from": valid_from.isoformat(),
-                            "valid_through": valid_through.isoformat(),
-                            "conditions": decision_row.get("conditions"),
-                        }
+                    conditions = _filled(
+                        decision_row.get("conditions"),
+                        f"conditions/{response_id}/{activity_id}",
                     )
+                    compatible = _required_bool(
+                        decision_row.get(
+                            "conditions_compatible_with_registered_activity"
+                        ),
+                        "conditions_compatible_with_registered_activity/"
+                        f"{response_id}/{activity_id}",
+                    )
+                    review_reference = _filled(
+                        decision_row.get("conditions_review_reference"),
+                        f"conditions_review_reference/{response_id}/{activity_id}",
+                    )
+                    if compatible:
+                        validity_by_class[route_class][activity_id].append(
+                            {
+                                "response_id": response_id,
+                                "route_id": route_id,
+                                "response_reference": _filled(
+                                    decision_row.get("response_reference"),
+                                    f"{response_id}/{activity_id}/response_reference",
+                                ),
+                                "decision": decision,
+                                "valid_from": valid_from.isoformat(),
+                                "valid_through": valid_through.isoformat(),
+                                "conditions": conditions,
+                                "conditions_compatible_with_registered_activity": True,
+                                "conditions_review_reference": review_reference,
+                            }
+                        )
+                    else:
+                        effective_decision = "PROHIBITED"
+
+                effective_decisions[activity_id] = effective_decision
+                activity_by_class[route_class][activity_id].add(
+                    effective_decision
+                )
 
         resolved.append(
             {
@@ -213,6 +256,11 @@ def adjudicate(payload: dict) -> dict:
                 "response_date": response_date.isoformat(),
                 "response_reference": response_reference,
                 "activity_decisions": decisions,
+                "effective_scope_decisions": (
+                    effective_decisions
+                    if route_class != "ROUTING_ONLY"
+                    else decisions
+                ),
                 "activity_decision_details": {
                     activity_id: {
                         "decision": decisions[activity_id],
@@ -228,6 +276,14 @@ def adjudicate(payload: dict) -> dict:
                         "conditions": decision_rows[activity_id].get(
                             "conditions"
                         ),
+                        "conditions_compatible_with_registered_activity": (
+                            decision_rows[activity_id].get(
+                                "conditions_compatible_with_registered_activity"
+                            )
+                        ),
+                        "conditions_review_reference": decision_rows[
+                            activity_id
+                        ].get("conditions_review_reference"),
                     }
                     for activity_id in sorted(ALL_ACTIVITIES)
                 },
