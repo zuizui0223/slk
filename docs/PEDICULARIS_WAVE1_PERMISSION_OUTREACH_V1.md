@@ -132,6 +132,7 @@ status = MANUAL_SEND_RECORDED
 manual_send_confirmed = true
 timezone-aware sent_at
 registered manual send channel
+sent_language
 canonical_contact_snapshot
 sent_to_contact
 sent_message_reference
