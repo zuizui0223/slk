@@ -6,12 +6,18 @@ import importlib.util
 import json
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_permission_activity_definitions import (
+        activity_receipt,
+    )
+except ImportError:
+    from pedicularis_permission_activity_definitions import (
+        activity_receipt,
+    )
+
 ROOT = Path(__file__).resolve().parents[1]
 MANAGER_PATH = ROOT / "scripts" / "manage_pedicularis_wave1_permission_outreach.py"
 ROUTES = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_CONTACT_ROUTES_V1.csv"
-ACTIVITY_DEFINITIONS = (
-    ROOT / "data" / "PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json"
-)
 
 _spec = importlib.util.spec_from_file_location("ped_wave1_outreach_manager", MANAGER_PATH)
 manager = importlib.util.module_from_spec(_spec)
@@ -38,17 +44,8 @@ def _read(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def _activity_definitions() -> dict[str, dict]:
-    payload = json.loads(ACTIVITY_DEFINITIONS.read_text(encoding="utf-8"))
-    activities = payload.get("activities")
-    if not isinstance(activities, dict) or set(activities) != set(ACTIVITIES):
-        raise ValueError("permission activity-definition inventory changed")
-    return activities
-
-
 def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
     receipt = manager.validate(rows)
-    activity_definitions = _activity_definitions()
     progress = receipt["candidate_progress"].get(candidate_id)
     if progress is None:
         raise ValueError(f"candidate absent from WAVE1 outreach ledger: {candidate_id}")
@@ -92,9 +89,18 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
                         "conditions_compatible_with_registered_activity": None,
                         "conditions_review_reference": None,
                         "registered_activity_definition_reference": (
-                            activity_definitions[activity_id][
+                            activity_receipt(activity_id)[
                                 "definition_reference"
                             ]
+                        ),
+                        "registered_activity_definition_hash_algorithm": (
+                            activity_receipt(activity_id)["hash_algorithm"]
+                        ),
+                        "registered_activity_definition_sha256": (
+                            activity_receipt(activity_id)["definition_sha256"]
+                        ),
+                        "registered_activity_registry_sha256": (
+                            activity_receipt(activity_id)["registry_sha256"]
                         ),
                         "conditions_reviewed_by": None,
                         "conditions_review_date": None,
