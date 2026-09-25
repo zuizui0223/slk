@@ -37,7 +37,8 @@
     "sampling_permission_scope": "REQUIRED_BEFORE_USE",
     "combined_secondary_taxon_method": null,
     "taxon_specimen_evidence_origin": null,
-    "taxonomic_material_authorization_reference": null
+    "taxonomic_material_authorization_reference": null,
+    "taxon_specimen_context_receipt": null
   },
   "prohibited_recovery_inferences": {
     "pollinator_signal_scored": false,
