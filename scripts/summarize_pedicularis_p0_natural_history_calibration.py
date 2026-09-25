@@ -524,6 +524,7 @@ def summarize(rows: list[dict[str, str]], freeze: dict) -> dict:
             "dataset_id": DATASET_ID,
             "p0_outcomes_opened": False,
         },
+        "permission_scope_receipt": cfg["permission_scope_receipt"],
         "permission_scope_audit": {
             "status": "P0A_PERMISSION_VALIDITY_CONFIRMED_FOR_PLANNED_WINDOW",
             "required_scope": cfg["permission_scope_receipt"]["required_scope"],
