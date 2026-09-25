@@ -7,7 +7,10 @@
     "population_id": "REQUIRED_BEFORE_USE",
     "season_id": "REQUIRED_BEFORE_USE",
     "screen_window_id": "REQUIRED_BEFORE_USE",
-    "frozen_before_screen_outcomes": false
+    "frozen_before_screen_outcomes": false,
+    "candidate_id": "REQUIRED_BEFORE_USE",
+    "planned_screen_start_date": "REQUIRED_BEFORE_USE",
+    "planned_screen_end_date": "REQUIRED_BEFORE_USE"
   },
   "screen_effort": {
     "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
@@ -79,5 +82,6 @@
     ],
     "prior_tag_set_sha256": "REQUIRED_BEFORE_USE",
     "frozen_before_outcomes": false
-  }
+  },
+  "permission_scope_receipt": null
 }
