@@ -31,8 +31,10 @@ data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv
 scripts/manage_pedicularis_wave1_permission_outreach.py
 scripts/compile_pedicularis_outreach_to_permission_response_draft.py
 scripts/render_pedicularis_wave1_permission_messages.py
+scripts/validate_pedicularis_wave1_permission_messages_for_send.py
 tests/test_pedicularis_wave1_permission_outreach.py
 tests/test_pedicularis_wave1_permission_messages.py
+tests/test_pedicularis_wave1_permission_message_send_guard.py
 tests/test_pedicularis_outreach_to_permission_response_draft.py
 ```
 
@@ -71,6 +73,29 @@ human_review_required = true.
 ```
 
 Requester identity, institution and reply address remain `REQUIRED_BEFORE_SEND`. The message asks for A-F decisions separately and asks for activity-specific validity dates and conditions. Scouting coordinates are explicitly described as historical/project locators rather than current plant positions.
+
+## Manual-send guard
+
+Rendered messages are still drafts. Before manual sending, validate a requester-completed draft with:
+
+```bash
+python scripts/validate_pedicularis_wave1_permission_messages_for_send.py \
+  PEDICULARIS_WAVE1_PERMISSION_MESSAGE_DRAFTS.json \
+  --human-review-approved \
+  --output PEDICULARIS_WAVE1_PERMISSION_MESSAGES_READY.json
+```
+
+The guard refuses any message that still contains `REQUIRED_BEFORE_SEND` placeholders. Without explicit human-review approval the status stays `DRAFT_NOT_SENT`.
+
+Even after approval, the only promotable state is:
+
+```text
+READY_FOR_MANUAL_SEND
+manual_send_only = true
+automatic_send_allowed = false.
+```
+
+The repository does not send the message.
 
 ## Outreach states
 
