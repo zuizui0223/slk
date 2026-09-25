@@ -11,6 +11,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 GUARD_PATH = ROOT / "scripts" / "validate_pedicularis_wave1_permission_messages_for_send.py"
 MANAGER_PATH = ROOT / "scripts" / "manage_pedicularis_wave1_permission_outreach.py"
+FOLLOWUP_POLICY_VALIDATOR_PATH = (
+    ROOT / "scripts" / "validate_pedicularis_wave1_permission_followup_policy.py"
+)
 
 _spec_guard = importlib.util.spec_from_file_location("ped_message_guard", GUARD_PATH)
 guard = importlib.util.module_from_spec(_spec_guard)
@@ -21,6 +24,14 @@ _spec_manager = importlib.util.spec_from_file_location("ped_outreach_manager", M
 manager = importlib.util.module_from_spec(_spec_manager)
 assert _spec_manager.loader is not None
 _spec_manager.loader.exec_module(manager)
+
+_spec_policy = importlib.util.spec_from_file_location(
+    "ped_followup_policy_validator",
+    FOLLOWUP_POLICY_VALIDATOR_PATH,
+)
+followup_policy_validator = importlib.util.module_from_spec(_spec_policy)
+assert _spec_policy.loader is not None
+_spec_policy.loader.exec_module(followup_policy_validator)
 
 SEND_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_V1"
 READY_MESSAGES_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_MESSAGE_DRAFTS_V1"
@@ -165,6 +176,7 @@ def apply_send_receipt(
     rows: list[dict[str, str]],
     ready_messages: dict,
     send_receipt: dict,
+    followup_policy_payload: dict,
 ) -> tuple[list[dict[str, str]], dict]:
     _need(
         send_receipt.get("schema_version") == SEND_RECEIPT_SCHEMA,
@@ -178,6 +190,16 @@ def apply_send_receipt(
     route_id = _filled(send_receipt.get("route_id"), "route_id")
     send_event_id = _filled(send_receipt.get("send_event_id"), "send_event_id")
     sent_at = _sent_at(send_receipt.get("sent_at"))
+    followup_policy = followup_policy_validator.validate(
+        followup_policy_payload
+    )
+    policy_frozen_at = datetime.fromisoformat(
+        followup_policy["freeze_timestamp"]
+    )
+    _need(
+        policy_frozen_at <= sent_at,
+        "follow-up policy freeze timestamp occurs after manual send",
+    )
     send_channel = _filled(send_receipt.get("send_channel"), "send_channel")
     _need(
         send_channel in ALLOWED_CHANNELS,
@@ -302,6 +324,16 @@ def apply_send_receipt(
         "outreach_status_after": "SENT_AWAITING_RESPONSE",
         "automatic_send_used": False,
         "manager_receipt_status": manager_receipt["status"],
+        "followup_policy_freeze_commit": followup_policy["freeze_commit"],
+        "followup_policy_freeze_timestamp": followup_policy[
+            "freeze_timestamp"
+        ],
+        "followup_policy_offsets_days": followup_policy[
+            "followup_offsets_days"
+        ],
+        "followup_escalation_review_after_days": followup_policy[
+            "escalation_review_after_days"
+        ],
         "claim_ceiling": (
             "MANUAL_SEND_EVENT_ONLY_NO_RESPONSE_NO_PERMISSION_GRANTED_"
             "NO_FRESH_CONTEXT_NO_P0_SIGNAL"
@@ -317,6 +349,7 @@ def main() -> None:
     parser.add_argument("outreach_ledger_csv", type=Path)
     parser.add_argument("ready_messages_json", type=Path)
     parser.add_argument("send_receipt_json", type=Path)
+    parser.add_argument("followup_policy_json", type=Path)
     parser.add_argument("--ledger-output", required=True, type=Path)
     parser.add_argument("--event-output", required=True, type=Path)
     args = parser.parse_args()
@@ -324,7 +357,15 @@ def main() -> None:
     rows = _read_csv(args.outreach_ledger_csv)
     ready = json.loads(args.ready_messages_json.read_text(encoding="utf-8"))
     send_receipt = json.loads(args.send_receipt_json.read_text(encoding="utf-8"))
-    updated, event = apply_send_receipt(rows, ready, send_receipt)
+    followup_policy = json.loads(
+        args.followup_policy_json.read_text(encoding="utf-8")
+    )
+    updated, event = apply_send_receipt(
+        rows,
+        ready,
+        send_receipt,
+        followup_policy,
+    )
 
     fieldnames = list(updated[0].keys())
     with args.ledger_output.open("w", newline="", encoding="utf-8") as handle:

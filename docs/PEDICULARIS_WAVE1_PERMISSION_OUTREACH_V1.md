@@ -34,6 +34,9 @@ scripts/render_pedicularis_wave1_permission_messages.py
 scripts/validate_pedicularis_wave1_permission_messages_for_send.py
 scripts/apply_pedicularis_permission_send_receipt.py
 data/PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json
+data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_TEMPLATE_V1.json
+scripts/validate_pedicularis_wave1_permission_followup_policy.py
+scripts/plan_pedicularis_wave1_permission_followups.py
 tests/test_pedicularis_wave1_permission_outreach.py
 tests/test_pedicularis_permission_send_receipt.py
 tests/test_pedicularis_wave1_permission_messages.py
@@ -117,6 +120,7 @@ python scripts/apply_pedicularis_permission_send_receipt.py \
   PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER.csv \
   PEDICULARIS_WAVE1_PERMISSION_MESSAGES_READY.json \
   PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_FILLED.json \
+  PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_FROZEN.json \
   --ledger-output PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_UPDATED.csv \
   --event-output PEDICULARIS_WAVE1_PERMISSION_SEND_EVENT.json
 ```
@@ -150,6 +154,19 @@ SENT_AWAITING_RESPONSE.
 The transition is one-way for that event: a route already registered as sent cannot be registered a second time with the same initial-state operation.
 
 The send event still proves only that a reviewed inquiry was manually sent. It proves neither delivery nor authority response nor permission.
+
+## Prospective no-response follow-up policy
+
+Before the first actual WAVE1 inquiry is manually sent, freeze the administrative follow-up schedule defined in:
+
+```text
+docs/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_V1.md
+data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_TEMPLATE_V1.json
+```
+
+The initial send receipt refuses a policy frozen after the send timestamp. Follow-up offsets remain finite and prospectively fixed, any received response preempts same-route follow-up, and silence can never trigger automatic closure.
+
+The outreach ledger records completed follow-up count and last follow-up evidence; the separate planner computes whether the next action is wait, follow-up due, or escalation review.
 
 ## Outreach states
 

@@ -1,0 +1,21 @@
+{
+  "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1",
+  "status": "TEMPLATE_ONLY_NOT_FROZEN",
+  "policy": {
+    "calendar_basis": "CALENDAR_DAYS",
+    "followup_offsets_days": [],
+    "escalation_review_after_days": null,
+    "automatic_close_allowed": false,
+    "response_receipt_preempts_followup": true,
+    "routing_response_preempts_same_route_followup": true,
+    "frozen_before_first_send": false
+  },
+  "freeze_metadata": {
+    "slk_source_commit": "REQUIRED_BEFORE_USE",
+    "freeze_commit": "REQUIRED_BEFORE_USE",
+    "freeze_timestamp": "REQUIRED_BEFORE_USE",
+    "policy_rationale_reference": "REQUIRED_BEFORE_USE"
+  },
+  "production_status": "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_PROSPECTIVE_TEMPLATE",
+  "claim_ceiling": "ADMINISTRATIVE_FOLLOWUP_TIMING_ONLY_NO_PERMISSION_NO_BIOLOGICAL_RESULT"
+}
