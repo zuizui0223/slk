@@ -119,6 +119,8 @@ def build(candidate_id: str) -> dict:
                 "valid_from": None,
                 "valid_through": None,
                 "conditions": None,
+                "conditions_compatible_with_registered_activity": None,
+                "conditions_review_reference": None,
             }
             for activity_id, activity in ACTIVITIES
         ],
@@ -130,6 +132,7 @@ def build(candidate_id: str) -> dict:
             "state_prohibited_activities_separately": True,
             "provide_written_permission_or_response_reference": True,
             "provide_activity_specific_validity_window_and_conditions": True,
+            "review_conditions_against_registered_activity": True,
         },
         "promotion_rule": (
             "This draft cannot set sampling_permission_status=CONFIRMED. "
