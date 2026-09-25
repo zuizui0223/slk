@@ -38,7 +38,11 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
                 if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             ),
-            "conditions": None,
+            "conditions": (
+                "NO_ADDITIONAL_CONDITIONS"
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
             "conditions_compatible_with_registered_activity": (
                 True
                 if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
@@ -70,6 +74,11 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
             )
             row["valid_through"] = (
                 "2027-09-30"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions"] = (
+                "NO_ADDITIONAL_CONDITIONS"
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
@@ -520,3 +529,23 @@ def test_null_activity_response_reference_is_rejected() -> None:
     target["response_reference"] = None
     with pytest.raises(ValueError, match="REG-001/A/response_reference"):
         adj.adjudicate(payload)
+
+
+
+def test_positive_activity_requires_explicit_conditions_text() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["conditions"] = None
+    with pytest.raises(ValueError, match="conditions/REG-001/A"):
+        adj.adjudicate(payload)
+
+
+def test_no_additional_conditions_sentinel_is_explicitly_accepted() -> None:
+    out = adj.adjudicate(_songzanlin_bundle())
+    reg = next(row for row in out["responses"] if row["route_class"] == "REGULATORY")
+    assert reg["activity_decision_details"]["A"]["conditions"] == (
+        "NO_ADDITIONAL_CONDITIONS"
+    )
