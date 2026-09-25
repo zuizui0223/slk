@@ -88,7 +88,8 @@
     "permission_response_draft_activity_decisions": "ALL_A_TO_F_START_UNRESOLVED_WITH_ACTIVITY_SPECIFIC_VALIDITY_FIELDS",
     "permission_message_renderer": "scripts/render_pedicularis_wave1_permission_messages.py",
     "permission_message_status": "BILINGUAL_DRAFT_RENDERING_READY_NOT_SENT",
-    "permission_message_send_guard": "HUMAN_REVIEW_AND_REQUESTER_FIELDS_REQUIRED_AUTOMATIC_SEND_FALSE"
+    "permission_message_send_guard": "scripts/validate_pedicularis_wave1_permission_messages_for_send.py",
+    "permission_message_send_policy": "MANUAL_SEND_ONLY_REQUESTER_FIELDS_AND_HUMAN_REVIEW_REQUIRED_AUTOMATIC_SEND_FALSE"
   },
   "stages": [
     {
