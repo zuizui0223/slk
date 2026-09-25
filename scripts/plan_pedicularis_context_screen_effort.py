@@ -28,6 +28,9 @@ EXPECTED_QUALIFICATION = {
 CAPACITY_RULE = "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION"
 BASE_CALIBRATION_PLANTS = 84
 POLLINATOR_RATE_UNIT = "LEGITIMATE_VISITS_PER_FLOWER_MINUTE"
+PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
+PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 
 
 def _need(ok: bool, message: str) -> None:
@@ -106,9 +109,49 @@ def plan(freeze: dict) -> dict:
 
     ctx = freeze.get("context", {})
     _need(ctx.get("system") == "Pedicularis rex", "wrong system")
-    for key in ("candidate_site_id", "population_id", "season_id", "screen_window_id"):
+    for key in ("candidate_id", "candidate_site_id", "population_id", "season_id", "screen_window_id"):
         _filled(ctx.get(key), f"context.{key}")
     _need(ctx.get("frozen_before_screen_outcomes") is True, "P0 effort inputs were not frozen before screen outcomes")
+
+    permission = freeze.get("permission_scope_receipt")
+    _need(
+        isinstance(permission, dict),
+        "P0b effort permission scope receipt missing",
+    )
+    _need(
+        permission.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
+        "wrong P0b effort permission receipt schema",
+    )
+    _need(
+        permission.get("status") == PERMISSION_RECEIPT_STATUS,
+        "P0b effort permission scope is not confirmed",
+    )
+    _need(
+        permission.get("candidate_id") == ctx["candidate_id"],
+        "P0b effort permission candidate mismatch",
+    )
+    _need(
+        permission.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
+        "P0b effort permission scope changed",
+    )
+    matrix = permission.get("required_activity_matrix")
+    validity = permission.get("required_activity_validity")
+    _need(
+        isinstance(matrix, dict) and set(matrix) == {"A", "B", "C"},
+        "P0b effort permission activity matrix changed",
+    )
+    _need(
+        isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
+        "P0b effort permission validity inventory changed",
+    )
+    for activity_id in ("A", "B", "C"):
+        cell = matrix[activity_id]
+        _need(
+            isinstance(cell, dict)
+            and cell.get("regulatory") == "PASS"
+            and cell.get("site") == "PASS",
+            f"P0b effort permission scope not passed for activity {activity_id}",
+        )
 
     policy = freeze.get("source_policy", {})
     allowed = set(policy.get("allowed_relevance_sources", []))
@@ -234,6 +277,7 @@ def plan(freeze: dict) -> dict:
         "status": "P0_SIGNAL_DETECTION_EFFORT_PROSPECTIVELY_PLANNED",
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": ctx["candidate_id"],
             "candidate_site_id": ctx["candidate_site_id"],
             "population_id": ctx["population_id"],
             "season_id": ctx["season_id"],
@@ -275,6 +319,7 @@ def plan(freeze: dict) -> dict:
             "census_rule": CAPACITY_RULE,
             "source": capacity_source,
         },
+        "permission_scope_receipt": permission,
         "physical_unit_firewall_handoff": (
             {
                 "schema_version": "SLK_PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1",
