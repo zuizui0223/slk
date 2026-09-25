@@ -13,7 +13,7 @@ QUEUE = ROOT / "data" / "PEDICULARIS_CONTEXT_RECOVERY_QUEUE_V1.csv"
 
 SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_RESPONSE_BUNDLE_V1"
 READY_STATUS = "FILLED_AUTHORITY_RESPONSES"
-REQUIRED_SCOPE = "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
+REQUIRED_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 REQUIRED_ACTIVITIES = {"A", "B", "C"}
 ALL_ACTIVITIES = {"A", "B", "C", "D", "E", "F"}
 ALLOWED_DECISIONS = {
@@ -257,19 +257,19 @@ def adjudicate(payload: dict) -> dict:
         for state in activity.values()
     }
     if "CONFLICT" in states:
-        status = "RECOVERY_P0A_PERMISSION_SCOPE_CONFLICTING"
+        status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFLICTING"
     elif "BLOCKED" in states:
-        status = "RECOVERY_P0A_PERMISSION_SCOPE_BLOCKED"
+        status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_BLOCKED"
     elif states == {"PASS"}:
-        status = "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+        status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     else:
-        status = "RECOVERY_P0A_PERMISSION_SCOPE_INCOMPLETE"
+        status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_INCOMPLETE"
 
     metadata = payload.get("adjudication_metadata", {})
     for key in ("slk_source_commit", "adjudication_commit", "adjudication_timestamp"):
         _filled(metadata.get(key), f"adjudication_metadata.{key}")
 
-    confirmed = status == "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+    confirmed = status == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     return {
         "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
         "status": status,
@@ -295,7 +295,7 @@ def adjudicate(payload: dict) -> dict:
             "destructive_activities_D_to_F_required_for_recovery_p0a": False,
         },
         "claim_ceiling": (
-            "RECOVERY_PLUS_P0A_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY_"
+            "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY_"
             "NO_D_TO_F_PERMISSION_INFERENCE_NO_FRESH_CONTEXT_NO_G1_G5_RESULT"
         ),
     }
