@@ -46,7 +46,7 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     sctx = screen.get("context", {})
     pctx = plan.get("context", {})
     _need(sctx.get("system") == "Pedicularis rex", "wrong P0 screen system")
-    for key in ("candidate_site_id", "population_id", "season_id", "screen_window_id"):
+    for key in ("candidate_id", "candidate_site_id", "population_id", "season_id", "screen_window_id"):
         _filled(sctx.get(key), f"screen.context.{key}")
         _need(sctx.get(key) == pctx.get(key), f"screen/effort-plan context mismatch: {key}")
     _need(sctx.get("frozen_before_screen_outcomes") is False, "effort must be compiled before final P0 freeze")
@@ -62,6 +62,16 @@ def compile_effort(screen: dict, plan: dict) -> dict:
     _need(water.get("minimum_positive_plants_for_signal") == 1, "v1 water-state presence threshold must be one detection")
 
     out = copy.deepcopy(screen)
+    permission = plan.get("permission_scope_receipt")
+    _need(
+        isinstance(permission, dict),
+        "P0b effort plan permission scope receipt missing",
+    )
+    _need(
+        permission.get("candidate_id") == sctx["candidate_id"],
+        "P0b screen permission candidate mismatch",
+    )
+    out["permission_scope_receipt"] = copy.deepcopy(permission)
     raw_handoff = plan.get("physical_unit_firewall_handoff")
     if raw_handoff is None:
         template_firewall = screen.get("physical_unit_firewall")

@@ -40,7 +40,7 @@ def compile_relevance(effort: dict, qualification: dict) -> dict:
 
     ectx = effort.get("context", {})
     qctx = receipt.get("context", {})
-    for key in ("system", "candidate_site_id", "population_id", "season_id", "screen_window_id"):
+    for key in ("system", "candidate_id", "candidate_site_id", "population_id", "season_id", "screen_window_id"):
         _need(ectx.get(key) == qctx.get(key), f"effort/qualification context mismatch: {key}")
     _need(ectx.get("frozen_before_screen_outcomes") is False, "relevance must be compiled before final effort freeze")
 
@@ -50,6 +50,9 @@ def compile_relevance(effort: dict, qualification: dict) -> dict:
     water = rows["P0_WATER_POSITIVE_PREVALENCE"]
 
     out = copy.deepcopy(effort)
+    out["permission_scope_receipt"] = copy.deepcopy(
+        receipt.get("permission_scope_receipt")
+    )
     out["physical_unit_firewall_handoff"] = copy.deepcopy(
         receipt.get("physical_unit_firewall_handoff")
     )

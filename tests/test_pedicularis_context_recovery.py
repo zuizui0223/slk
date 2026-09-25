@@ -105,7 +105,7 @@ def _obs() -> dict:
             "site_access_confirmed": True,
             "access_evidence_reference": "FIELD_ACCESS_LOG_001",
             "sampling_permission_status": "CONFIRMED",
-            "sampling_permission_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+            "sampling_permission_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
             "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123",
             "same_season_revisit_feasible": True,
             "revisit_plan_reference": "REVISIT_PLAN_001",
@@ -113,10 +113,10 @@ def _obs() -> dict:
         },
         "permission_scope_receipt": {
             "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
-            "status": "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED",
+            "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
             "candidate_id": "SHANGRILA_WUFENG",
             "response_bundle_id": "bundle-001",
-            "required_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+            "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
             "required_activity_matrix": {
                 "A": {"regulatory": "PASS", "site": "PASS"},
                 "B": {"regulatory": "PASS", "site": "PASS"},
@@ -147,6 +147,43 @@ def _obs() -> dict:
                 }
                 for activity_id in "ABC"
             },
+            "all_activity_matrix": {
+                activity_id: (
+                    {"regulatory": "PASS", "site": "PASS"}
+                    if activity_id in "ABC"
+                    else {"regulatory": "UNRESOLVED", "site": "UNRESOLVED"}
+                )
+                for activity_id in "ABCDEF"
+            },
+            "all_activity_validity": {
+                activity_id: (
+                    {
+                        "regulatory": [
+                            {
+                                "response_id": "REG-001",
+                                "route_id": "TEST-REG",
+                                "response_reference": "REG-REF",
+                                "decision": "ALLOWED",
+                                "valid_from": "2027-05-01",
+                                "valid_through": "2027-09-30",
+                            }
+                        ],
+                        "site": [
+                            {
+                                "response_id": "SITE-001",
+                                "route_id": "TEST-SITE",
+                                "response_reference": "SITE-REF",
+                                "decision": "ALLOWED",
+                                "valid_from": "2027-05-01",
+                                "valid_through": "2027-09-30",
+                            }
+                        ],
+                    }
+                    if activity_id in "ABC"
+                    else {"regulatory": [], "site": []}
+                )
+                for activity_id in "ABCDEF"
+            },
             "sampling_permission_reference": (
                 "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
             )
@@ -157,6 +194,24 @@ def _obs() -> dict:
             "water_state_signal_scored": False,
             "p0_capacity_pass_scored": False,
         },
+    }
+
+
+def _specimen_context(
+    *,
+    collection_date: str = "2027-06-15",
+    candidate_site_id: str = "site-wufeng",
+    population_id: str = "pop-wufeng-2027",
+    season_id: str = "2027",
+) -> dict:
+    return {
+        "schema_version": "SLK_PEDICULARIS_RECOVERY_SPECIMEN_CONTEXT_RECEIPT_V1",
+        "specimen_reference": "SPECIMEN-CTX-001",
+        "collection_date": collection_date,
+        "candidate_site_id": candidate_site_id,
+        "population_id": population_id,
+        "season_id": season_id,
+        "provenance_reference": "SPECIMEN-PROVENANCE-001",
     }
 
 
@@ -215,8 +270,12 @@ def test_positive_recovery_compiles_context_into_p0_calibration_template() -> No
     assert out["context"]["planned_calibration_start_date"] == "REQUIRED_BEFORE_USE"
     assert out["context"]["planned_calibration_end_date"] == "REQUIRED_BEFORE_USE"
     assert out["permission_scope_receipt"]["required_scope"] == (
-        "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
+        "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
     )
+    assert out["permission_scope_receipt"]["all_activity_matrix"]["D"] == {
+        "regulatory": "UNRESOLVED",
+        "site": "UNRESOLVED",
+    }
     assert out["sampling"]["minimum_pollinator_bouts"] is None
     assert out["context"]["frozen_before_calibration_outcomes"] is False
 
@@ -402,4 +461,254 @@ def test_permission_validity_inventory_is_required() -> None:
     obs = _obs()
     obs["permission_scope_receipt"].pop("required_activity_validity")
     with pytest.raises(ValueError, match="validity inventory"):
+        adj.adjudicate(obs, _freeze())
+
+
+
+def test_voucher_route_with_preexisting_authorized_specimen_needs_no_new_D_permission() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "SPECIMEN-HERB-001"
+    fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh["taxonomic_material_authorization_reference"] = "HERBARIUM-ACCESSION-001"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
+    fresh.pop("taxon_diagnostic_checklist")
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["new_voucher_permission_valid_on_verification_date"] is None
+
+
+def test_new_field_voucher_route_requires_D_permission() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "NEW-VOUCHER-001"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
+    fresh.pop("taxon_diagnostic_checklist")
+    with pytest.raises(ValueError, match="requires activity D"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_new_field_voucher_route_passes_with_D_permission_valid_on_recovery_date() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "NEW-VOUCHER-001"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
+    fresh.pop("taxon_diagnostic_checklist")
+    receipt = obs["permission_scope_receipt"]
+    receipt["all_activity_matrix"]["D"] = {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    receipt["all_activity_validity"]["D"] = {
+        "regulatory": [
+            {
+                "response_id": "REG-D",
+                "route_id": "TEST-REG",
+                "response_reference": "REG-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-09-30",
+            }
+        ],
+        "site": [
+            {
+                "response_id": "SITE-D",
+                "route_id": "TEST-SITE",
+                "response_reference": "SITE-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-09-30",
+            }
+        ],
+    }
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["new_voucher_permission_valid_on_verification_date"] is True
+
+
+def test_combined_taxon_route_requires_explicit_secondary_method() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_verification_method"] = "COMBINED"
+    with pytest.raises(ValueError, match="requires a registered secondary method"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_combined_photo_plus_expert_route_remains_nondestructive() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "COMBINED"
+    fresh["combined_secondary_taxon_method"] = "EXPERT_CONFIRMATION"
+    fresh["taxon_evidence_reference"] = "PHOTO-PLUS-EXPERT-001"
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["taxon_specimen_evidence_origin"] is None
+
+
+def test_specimen_fields_are_rejected_for_photo_only_route() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["taxon_specimen_evidence_origin"] = (
+        "PREEXISTING_AUTHORIZED_SPECIMEN"
+    )
+    with pytest.raises(ValueError, match="require a voucher/specimen taxon route"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_null_optional_specimen_fields_do_not_become_literal_none_strings() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["combined_secondary_taxon_method"] = None
+    fresh["taxon_specimen_evidence_origin"] = None
+    fresh["taxonomic_material_authorization_reference"] = None
+    fresh["taxon_specimen_context_receipt"] = None
+    out = adj.adjudicate(obs, _freeze())
+    assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
+    assert out["fresh_verification"]["combined_secondary_taxon_method"] is None
+    assert out["fresh_verification"]["taxon_specimen_evidence_origin"] is None
+
+
+def test_confirmed_permission_with_null_scope_is_rejected_as_inconsistent() -> None:
+    obs = _obs()
+    obs["fresh_verification"]["sampling_permission_scope"] = None
+    with pytest.raises(ValueError, match="wrong scope"):
+        adj.adjudicate(obs, _freeze())
+
+
+
+def test_preexisting_specimen_route_requires_authorization_provenance() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "SPECIMEN-HERB-002"
+    fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
+    fresh.pop("taxon_diagnostic_checklist")
+    with pytest.raises(ValueError, match="authorization/provenance reference missing"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_combined_photo_plus_new_voucher_requires_D_permission() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "COMBINED"
+    fresh["combined_secondary_taxon_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
+    with pytest.raises(ValueError, match="requires activity D"):
+        adj.adjudicate(obs, _freeze())
+
+
+
+def test_preexisting_specimen_from_prior_season_cannot_confirm_fresh_recovery() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "OLD-SPECIMEN-001"
+    fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh["taxonomic_material_authorization_reference"] = "HERBARIUM-ACCESSION-OLD"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context(
+        collection_date="2026-07-01",
+    )
+    fresh.pop("taxon_diagnostic_checklist")
+    with pytest.raises(ValueError, match="outside the registered recovery season"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_specimen_context_must_match_recovery_population() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "SPECIMEN-OTHER-POP"
+    fresh["taxon_specimen_evidence_origin"] = "PREEXISTING_AUTHORIZED_SPECIMEN"
+    fresh["taxonomic_material_authorization_reference"] = "HERBARIUM-ACCESSION-002"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context(
+        population_id="other-pop",
+    )
+    fresh.pop("taxon_diagnostic_checklist")
+    with pytest.raises(ValueError, match="population_id mismatch"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_new_field_voucher_collection_date_must_equal_recovery_date() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "NEW-VOUCHER-DATE"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context(
+        collection_date="2027-06-14",
+    )
+    fresh.pop("taxon_diagnostic_checklist")
+    receipt = obs["permission_scope_receipt"]
+    receipt["all_activity_matrix"]["D"] = {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    receipt["all_activity_validity"]["D"] = {
+        "regulatory": [
+            {
+                "response_id": "REG-D",
+                "route_id": "TEST-REG",
+                "response_reference": "REG-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-09-30",
+            }
+        ],
+        "site": [
+            {
+                "response_id": "SITE-D",
+                "route_id": "TEST-SITE",
+                "response_reference": "SITE-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-09-30",
+            }
+        ],
+    }
+    with pytest.raises(ValueError, match="must equal recovery verification date"):
+        adj.adjudicate(obs, _freeze())
+
+
+
+def test_new_field_voucher_rejects_expired_D_permission_even_when_A_C_are_valid() -> None:
+    obs = _obs()
+    fresh = obs["fresh_verification"]
+    fresh["taxon_verification_method"] = "VOUCHER_OR_SPECIMEN"
+    fresh["taxon_evidence_reference"] = "NEW-VOUCHER-EXPIRED-D"
+    fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
+    fresh["taxon_specimen_context_receipt"] = _specimen_context()
+    fresh.pop("taxon_diagnostic_checklist")
+    receipt = obs["permission_scope_receipt"]
+    receipt["all_activity_matrix"]["D"] = {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    receipt["all_activity_validity"]["D"] = {
+        "regulatory": [
+            {
+                "response_id": "REG-D",
+                "route_id": "TEST-REG",
+                "response_reference": "REG-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-06-01",
+            }
+        ],
+        "site": [
+            {
+                "response_id": "SITE-D",
+                "route_id": "TEST-SITE",
+                "response_reference": "SITE-D-REF",
+                "decision": "ALLOWED",
+                "valid_from": "2027-05-01",
+                "valid_through": "2027-06-01",
+            }
+        ],
+    }
+    with pytest.raises(ValueError, match="requires activity D"):
         adj.adjudicate(obs, _freeze())

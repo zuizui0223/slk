@@ -61,6 +61,9 @@ docs/PEDICULARIS_REX_RECOVERY_TAXON_CHECKLIST_V1.md
 
 and requires photo documentation of the registered Flora of China key characters. Flower color is not a required diagnostic because it varies among `P. rex` infraspecific taxa.
 
+
+The taxon route cannot silently enlarge the permission scope. A pre-existing authorized specimen may support `VOUCHER_OR_SPECIMEN` only when its lawful provenance **and same candidate-site / population / season context** are receipted. An older specimen from another season cannot substitute for fresh recovery. Collecting a new voucher during recovery requires activity-D authorization from both regulatory and site sides, valid on the recovery date, and its collection date must equal the recovery verification date. `COMBINED` must state whether its secondary route is expert confirmation or voucher/specimen.
+
 A boolean `taxon_identity_confirmed=true` without its evidence reference is incomplete, not a pass. The same rule applies to flowering presence, access, permission and revisit feasibility.
 
 
@@ -68,7 +71,7 @@ Permission is additionally scope-bound. A positive recovery observation must car
 
 ```text
 sampling_permission_status = CONFIRMED
-sampling_permission_scope  = RECOVERY_PLUS_P0A_NONDESTRUCTIVE
+sampling_permission_scope  = RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE
 permission_scope_receipt    = confirmed WAVE1 permission-scope receipt.
 ```
 

@@ -13,7 +13,7 @@ QUEUE = ROOT / "data" / "PEDICULARIS_CONTEXT_RECOVERY_QUEUE_V1.csv"
 
 SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_RESPONSE_BUNDLE_V1"
 READY_STATUS = "FILLED_AUTHORITY_RESPONSES"
-REQUIRED_SCOPE = "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
+REQUIRED_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 REQUIRED_ACTIVITIES = {"A", "B", "C"}
 ALL_ACTIVITIES = {"A", "B", "C", "D", "E", "F"}
 ALLOWED_DECISIONS = {
@@ -160,14 +160,13 @@ def adjudicate(payload: dict) -> dict:
                 f"routing-only contact cannot authorize activities: {route_id}",
             )
         else:
-            positive_required = any(
-                activity_id in REQUIRED_ACTIVITIES
-                and decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
-                for activity_id, decision in decisions.items()
+            positive_any = any(
+                decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                for decision in decisions.values()
             )
             valid_from = None
             valid_through = None
-            if positive_required:
+            if positive_any:
                 valid_from = _iso_date(
                     response.get("valid_from"),
                     f"valid_from/{response_id}",
@@ -187,10 +186,7 @@ def adjudicate(payload: dict) -> dict:
 
             for activity_id, decision in decisions.items():
                 activity_by_class[route_class][activity_id].add(decision)
-                if (
-                    activity_id in REQUIRED_ACTIVITIES
-                    and decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
-                ):
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}:
                     assert valid_from is not None and valid_through is not None
                     validity_by_class[route_class][activity_id].append(
                         {
@@ -234,12 +230,27 @@ def adjudicate(payload: dict) -> dict:
             return "UNRESOLVED"
         raise ValueError("unreachable permission decision state")
 
-    required_matrix: dict[str, dict[str, str]] = {}
-    for activity_id in sorted(REQUIRED_ACTIVITIES):
-        required_matrix[activity_id] = {
+    all_activity_matrix: dict[str, dict[str, str]] = {}
+    for activity_id in sorted(ALL_ACTIVITIES):
+        all_activity_matrix[activity_id] = {
             "regulatory": _class_state("REGULATORY", activity_id),
             "site": _class_state("SITE", activity_id),
         }
+
+    required_matrix = {
+        activity_id: all_activity_matrix[activity_id]
+        for activity_id in sorted(REQUIRED_ACTIVITIES)
+    }
+
+    all_activity_validity = {
+        activity_id: {
+            "regulatory": validity_by_class["REGULATORY"].get(
+                activity_id, []
+            ),
+            "site": validity_by_class["SITE"].get(activity_id, []),
+        }
+        for activity_id in sorted(ALL_ACTIVITIES)
+    }
 
     required_activity_validity = {
         activity_id: {
@@ -257,19 +268,19 @@ def adjudicate(payload: dict) -> dict:
         for state in activity.values()
     }
     if "CONFLICT" in states:
-        status = "RECOVERY_P0A_PERMISSION_SCOPE_CONFLICTING"
+        status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFLICTING"
     elif "BLOCKED" in states:
-        status = "RECOVERY_P0A_PERMISSION_SCOPE_BLOCKED"
+        status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_BLOCKED"
     elif states == {"PASS"}:
-        status = "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+        status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     else:
-        status = "RECOVERY_P0A_PERMISSION_SCOPE_INCOMPLETE"
+        status = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_INCOMPLETE"
 
     metadata = payload.get("adjudication_metadata", {})
     for key in ("slk_source_commit", "adjudication_commit", "adjudication_timestamp"):
         _filled(metadata.get(key), f"adjudication_metadata.{key}")
 
-    confirmed = status == "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+    confirmed = status == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     return {
         "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
         "status": status,
@@ -279,6 +290,8 @@ def adjudicate(payload: dict) -> dict:
         "required_activities": sorted(REQUIRED_ACTIVITIES),
         "required_activity_matrix": required_matrix,
         "required_activity_validity": required_activity_validity,
+        "all_activity_matrix": all_activity_matrix,
+        "all_activity_validity": all_activity_validity,
         "responses": resolved,
         "recovery_handoff": {
             "sampling_permission_status": "CONFIRMED" if confirmed else "UNRESOLVED",
@@ -292,10 +305,10 @@ def adjudicate(payload: dict) -> dict:
             "required_activity_validity": (
                 required_activity_validity if confirmed else None
             ),
-            "destructive_activities_D_to_F_required_for_recovery_p0a": False,
+            "destructive_activities_D_to_F_required_for_recovery_p0a_p0b": False,
         },
         "claim_ceiling": (
-            "RECOVERY_PLUS_P0A_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY_"
+            "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY_"
             "NO_D_TO_F_PERMISSION_INFERENCE_NO_FRESH_CONTEXT_NO_G1_G5_RESULT"
         ),
     }

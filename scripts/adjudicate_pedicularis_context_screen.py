@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+from datetime import date
 from pathlib import Path
 
 try:
@@ -24,6 +25,9 @@ RECEIPT_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_RECEIPT_V1"
 PRODUCTION_STATUS = "PEDICULARIS_CONTEXT_SCREEN_PROSPECTIVELY_FROZEN"
 BASE_CALIBRATION_PLANTS = 84
 CAPACITY_CENSUS_RULE = "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION"
+PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
+PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 ALLOWED_SOURCE_TYPES = {
     "DOWNSTREAM_DESIGN_REQUIREMENT",
     "INDEPENDENT_NATURAL_HISTORY_CALIBRATION",
@@ -53,6 +57,14 @@ def _filled(value: object, label: str) -> str:
     out = str(value).strip()
     _need(bool(out) and "REQUIRED_BEFORE_USE" not in out, f"unfrozen {label}")
     return out
+
+
+def _iso_date(value: object, label: str) -> date:
+    text = _filled(value, label)
+    try:
+        return date.fromisoformat(text)
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
 
 
 def _finite(value: object, label: str, *, minimum: float | None = None) -> float:
@@ -103,9 +115,96 @@ def validate_freeze(freeze: dict) -> dict:
 
     ctx = freeze.get("context", {})
     _need(ctx.get("system") == "Pedicularis rex", "wrong system")
-    for key in ("candidate_site_id", "population_id", "season_id", "screen_window_id"):
+    for key in ("candidate_id", "candidate_site_id", "population_id", "season_id", "screen_window_id"):
         _filled(ctx.get(key), f"context.{key}")
+    planned_start = _iso_date(
+        ctx.get("planned_screen_start_date"),
+        "context.planned_screen_start_date",
+    )
+    planned_end = _iso_date(
+        ctx.get("planned_screen_end_date"),
+        "context.planned_screen_end_date",
+    )
+    _need(planned_start <= planned_end, "planned P0b screen interval reversed")
     _need(ctx.get("frozen_before_screen_outcomes") is True, "context screen was not frozen before outcomes")
+
+    permission = freeze.get("permission_scope_receipt")
+    _need(
+        isinstance(permission, dict),
+        "P0b permission scope receipt missing",
+    )
+    _need(
+        permission.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
+        "wrong P0b permission scope receipt schema",
+    )
+    _need(
+        permission.get("status") == PERMISSION_RECEIPT_STATUS,
+        "P0b permission scope is not confirmed",
+    )
+    _need(
+        permission.get("candidate_id") == ctx["candidate_id"],
+        "P0b permission scope receipt candidate mismatch",
+    )
+    _need(
+        permission.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
+        "P0b permission scope changed",
+    )
+    permission_matrix = permission.get("required_activity_matrix")
+    permission_validity = permission.get("required_activity_validity")
+    _need(
+        isinstance(permission_matrix, dict)
+        and set(permission_matrix) == {"A", "B", "C"},
+        "P0b permission activity matrix changed",
+    )
+    _need(
+        isinstance(permission_validity, dict)
+        and set(permission_validity) == {"A", "B", "C"},
+        "P0b permission validity inventory changed",
+    )
+    for activity_id in ("A", "B", "C"):
+        cell = permission_matrix[activity_id]
+        _need(
+            isinstance(cell, dict)
+            and cell.get("regulatory") == "PASS"
+            and cell.get("site") == "PASS",
+            f"P0b permission scope not passed for activity {activity_id}",
+        )
+        validity_cell = permission_validity[activity_id]
+        _need(
+            isinstance(validity_cell, dict)
+            and set(validity_cell) == {"regulatory", "site"},
+            f"P0b permission validity cell changed: {activity_id}",
+        )
+        for side in ("regulatory", "site"):
+            intervals = validity_cell[side]
+            _need(
+                isinstance(intervals, list) and intervals,
+                f"P0b permission validity missing: {activity_id}/{side}",
+            )
+            covers_window = False
+            for index, interval in enumerate(intervals):
+                _need(
+                    isinstance(interval, dict),
+                    f"P0b permission interval must be object: {activity_id}/{side}/{index}",
+                )
+                valid_from = _iso_date(
+                    interval.get("valid_from"),
+                    f"P0b permission valid_from/{activity_id}/{side}/{index}",
+                )
+                valid_through = _iso_date(
+                    interval.get("valid_through"),
+                    f"P0b permission valid_through/{activity_id}/{side}/{index}",
+                )
+                _need(
+                    valid_from <= valid_through,
+                    f"P0b permission interval reversed: {activity_id}/{side}/{index}",
+                )
+                if valid_from <= planned_start and planned_end <= valid_through:
+                    covers_window = True
+            _need(
+                covers_window,
+                f"P0b planned screen interval outside permission validity: {activity_id}/{side}",
+            )
 
     effort = freeze.get("screen_effort", {})
     _need(effort.get("capacity_census_rule") == CAPACITY_CENSUS_RULE, "capacity census rule changed")
@@ -217,6 +316,9 @@ def validate_freeze(freeze: dict) -> dict:
             "minimum_flowering_plants_for_calibration_with_reserve": capacity_required,
         },
         "capacity_margin_fraction": capacity_margin,
+        "permission_scope_receipt": permission,
+        "planned_screen_start_date": planned_start.isoformat(),
+        "planned_screen_end_date": planned_end.isoformat(),
         "physical_unit_firewall": physical_firewall,
         "freeze_commit": metadata["freeze_commit"],
     }
@@ -232,8 +334,27 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
 
     rctx = receipt.get("context", {})
     fctx = cfg["context"]
-    for key in ("system", "candidate_site_id", "population_id", "season_id", "screen_window_id"):
+    for key in ("system", "candidate_id", "candidate_site_id", "population_id", "season_id", "screen_window_id"):
         _need(rctx.get(key) == fctx.get(key), f"receipt/freeze context mismatch: {key}")
+
+    timing = receipt.get("field_timing_audit")
+    _need(isinstance(timing, dict), "P0b field timing audit missing")
+    capacity_census_dated = timing.get("capacity_census_dated") is True
+    observed_min = _iso_date(
+        timing.get("observed_date_min"),
+        "P0b observed_date_min",
+    )
+    observed_max = _iso_date(
+        timing.get("observed_date_max"),
+        "P0b observed_date_max",
+    )
+    _need(observed_min <= observed_max, "P0b observed date range reversed")
+    planned_start = date.fromisoformat(cfg["planned_screen_start_date"])
+    planned_end = date.fromisoformat(cfg["planned_screen_end_date"])
+    _need(
+        planned_start <= observed_min and observed_max <= planned_end,
+        "P0b completed observations outside planned screen interval",
+    )
 
     physical_audit = receipt.get("physical_unit_audit", {})
     _need(
@@ -475,11 +596,13 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
 
     capacity_required = th["minimum_flowering_plants_for_calibration_with_reserve"]
     capacity_pass = census >= capacity_required
-    capacity_resolved = capacity_pass or census_exhausted is True
+    capacity_count_resolved = capacity_pass or census_exhausted is True
+    capacity_resolved = capacity_count_resolved and capacity_census_dated
 
     effort_checks = {
         **signal_effort_checks,
         "capacity_census_resolved": capacity_resolved,
+        "capacity_census_dated": capacity_census_dated,
     }
     effort_complete = signal_effort_complete and capacity_resolved
 
@@ -520,10 +643,21 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
         "status": status,
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": fctx["candidate_id"],
             "candidate_site_id": fctx["candidate_site_id"],
             "population_id": fctx["population_id"],
             "season_id": fctx["season_id"],
             "screen_window_id": fctx["screen_window_id"],
+        },
+        "permission_scope_audit": {
+            "status": "P0B_PERMISSION_VALIDITY_CONFIRMED_FOR_PLANNED_AND_OBSERVED_WINDOW",
+            "required_scope": cfg["permission_scope_receipt"]["required_scope"],
+            "planned_screen_start_date": cfg["planned_screen_start_date"],
+            "planned_screen_end_date": cfg["planned_screen_end_date"],
+            "observed_date_min": observed_min.isoformat(),
+            "observed_date_max": observed_max.isoformat(),
+            "planned_window_fully_covered": True,
+            "completed_observations_within_planned_window": True,
         },
         "physical_unit_firewall": {
             "status": "P0_SCREEN_PHYSICAL_TAGS_DISJOINT_FROM_PRIOR",
@@ -580,7 +714,11 @@ def adjudicate(receipt: dict, freeze: dict) -> dict:
             "calibration_unlocked": calibration_unlocked,
             "relocation_recommended": relocation_recommended,
             "low_signal_is_biological_negative": False,
-            "continue_capacity_census": signal_effort_complete and not failed and not capacity_resolved,
+            "continue_capacity_census": (
+                signal_effort_complete
+                and not failed
+                and not capacity_count_resolved
+            ),
         },
         "packet_completion_audit": packet_completion,
         "missingness_sensitivity_required": (

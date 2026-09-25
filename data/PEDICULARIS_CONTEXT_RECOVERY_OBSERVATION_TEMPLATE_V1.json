@@ -34,7 +34,11 @@
       "cupular_base_photo_reference": "REQUIRED_BEFORE_USE",
       "flower_color_used_as_required_diagnostic": false
     },
-    "sampling_permission_scope": "REQUIRED_BEFORE_USE"
+    "sampling_permission_scope": "REQUIRED_BEFORE_USE",
+    "combined_secondary_taxon_method": null,
+    "taxon_specimen_evidence_origin": null,
+    "taxonomic_material_authorization_reference": null,
+    "taxon_specimen_context_receipt": null
   },
   "prohibited_recovery_inferences": {
     "pollinator_signal_scored": false,

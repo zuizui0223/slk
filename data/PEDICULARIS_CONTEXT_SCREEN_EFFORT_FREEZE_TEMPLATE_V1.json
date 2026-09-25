@@ -7,7 +7,8 @@
     "population_id": "REQUIRED_BEFORE_USE",
     "season_id": "REQUIRED_BEFORE_USE",
     "screen_window_id": "REQUIRED_BEFORE_USE",
-    "frozen_before_screen_outcomes": false
+    "frozen_before_screen_outcomes": false,
+    "candidate_id": "REQUIRED_BEFORE_USE"
   },
   "pollinator_detection": {
     "minimum_relevant_visit_rate_per_flower_min": null,
@@ -83,5 +84,6 @@
     "freeze_timestamp": "REQUIRED_BEFORE_USE"
   },
   "production_status": "PEDICULARIS_CONTEXT_SCREEN_EFFORT_PROSPECTIVELY_FROZEN",
-  "physical_unit_firewall_handoff": null
+  "physical_unit_firewall_handoff": null,
+  "permission_scope_receipt": null
 }

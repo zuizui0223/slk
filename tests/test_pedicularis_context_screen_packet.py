@@ -26,6 +26,50 @@ assert spec3.loader is not None
 spec3.loader.exec_module(adj)
 
 
+
+def _permission_receipt() -> dict:
+    validity = {
+        activity_id: {
+            "regulatory": [
+                {
+                    "response_id": "REG-001",
+                    "route_id": "TEST-REG",
+                    "response_reference": "REG-REF",
+                    "decision": "ALLOWED",
+                    "valid_from": "2027-05-01",
+                    "valid_through": "2027-09-30",
+                }
+            ],
+            "site": [
+                {
+                    "response_id": "SITE-001",
+                    "route_id": "TEST-SITE",
+                    "response_reference": "SITE-REF",
+                    "decision": "ALLOWED",
+                    "valid_from": "2027-05-01",
+                    "valid_through": "2027-09-30",
+                }
+            ],
+        }
+        for activity_id in "ABC"
+    }
+    return {
+        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
+        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
+        "candidate_id": "SHANGRILA_WUFENG",
+        "response_bundle_id": "test-permission-bundle",
+        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
+        "required_activity_matrix": {
+            activity_id: {"regulatory": "PASS", "site": "PASS"}
+            for activity_id in "ABC"
+        },
+        "required_activity_validity": validity,
+        "sampling_permission_reference": (
+            "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm"
+        ),
+    }
+
+
 def _freeze() -> dict:
     required_fields = [
         "screen_effort.minimum_pollinator_observation_minutes_total",
@@ -44,12 +88,16 @@ def _freeze() -> dict:
         "status": "FROZEN_CANDIDATE",
         "context": {
             "system": "Pedicularis rex",
+            "candidate_id": "SHANGRILA_WUFENG",
             "candidate_site_id": "site1",
             "population_id": "pop1",
             "season_id": "2027",
             "screen_window_id": "screen1",
+            "planned_screen_start_date": "2027-07-10",
+            "planned_screen_end_date": "2027-07-15",
             "frozen_before_screen_outcomes": True,
         },
+        "permission_scope_receipt": _permission_receipt(),
         "screen_effort": {
             "capacity_census_rule": "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION",
             "minimum_pollinator_observation_minutes_total": 60,
@@ -125,6 +173,7 @@ def _freeze() -> dict:
 def _completed_rows() -> list[dict[str, str]]:
     rows = gen.generate(_freeze())
     for row in rows:
+        row["observation_date"] = "2027-07-10"
         if row["record_type"] == "CENSUS":
             row["flowering_plants_censused"] = "120"
             row["population_census_exhausted"] = "false"
@@ -152,6 +201,7 @@ def test_generator_expands_registered_screen_effort() -> None:
     assert sum(r["record_type"] == "WATER_PLANT" for r in rows) == 20
     assert all(r["screen_only"] == "true" for r in rows)
     assert all(r["confirmatory_eligible"] == "false" for r in rows)
+    assert all(r["observation_date"] == "" for r in rows)
     assert "physical_plant_tag" in rows[0]
     census = next(r for r in rows if r["record_type"] == "CENSUS")
     assert "exhaust the focal population" in census["notes"]
@@ -174,6 +224,8 @@ def test_completed_packet_summarizes_registered_effort_and_signals() -> None:
     assert receipt["observations"]["predator_attacked_flowers"] == 1
     assert receipt["observations"]["water_positive_plants"] == 20
     assert receipt["physical_unit_audit"]["current_physical_plant_count"] == 50
+    assert receipt["field_timing_audit"]["observed_date_min"] == "2027-07-10"
+    assert receipt["field_timing_audit"]["observed_date_max"] == "2027-07-10"
 
 
 def test_packet_summary_and_adjudicator_unlock_calibration_end_to_end() -> None:
@@ -341,3 +393,26 @@ def test_screen_exports_union_firewall_for_downstream_calibration() -> None:
     assert block["prior_tag_set_sha256"] == adj.canonical_tag_hash(
         block["prior_physical_plant_tags_forbidden"]
     )
+
+
+
+def test_completed_p0b_row_outside_planned_interval_is_rejected_at_adjudication() -> None:
+    rows = _completed_rows()
+    target = next(r for r in rows if r["record_id"] == "POLL-001")
+    target["observation_date"] = "2027-07-16"
+    receipt = sum_mod.summarize(rows)
+    with pytest.raises(ValueError, match="outside planned screen interval"):
+        adj.adjudicate(receipt, _freeze())
+
+
+def test_missing_p0b_observation_date_makes_registered_row_incomplete() -> None:
+    rows = _completed_rows()
+    target = next(r for r in rows if r["record_id"] == "POLL-006")
+    target["observation_date"] = ""
+    receipt = sum_mod.summarize(rows)
+    detail = next(
+        x
+        for x in receipt["packet_completion"]["incomplete_record_details"]
+        if x["record_id"] == "POLL-006"
+    )
+    assert "observation_date" in detail["detail"]

@@ -16,9 +16,12 @@ ALLOWED_PRIOR_STATUSES = {
     "RECENT_ASSESSMENT_OCCURRENCE_ONLY",
 }
 ALLOWED_PERMISSION = {"CONFIRMED"}
-REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_NONDESTRUCTIVE"
+REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
-PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED"
+PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+SPECIMEN_CONTEXT_RECEIPT_SCHEMA = (
+    "SLK_PEDICULARIS_RECOVERY_SPECIMEN_CONTEXT_RECEIPT_V1"
+)
 ALLOWED_TAXON_VERIFICATION_METHODS = {
     "FIELD_MORPHOLOGY_PHOTO",
     "VOUCHER_OR_SPECIMEN",
@@ -26,6 +29,14 @@ ALLOWED_TAXON_VERIFICATION_METHODS = {
     "COMBINED",
 }
 FIELD_MORPHOLOGY_METHODS = {"FIELD_MORPHOLOGY_PHOTO", "COMBINED"}
+ALLOWED_COMBINED_SECONDARY_METHODS = {
+    "EXPERT_CONFIRMATION",
+    "VOUCHER_OR_SPECIMEN",
+}
+ALLOWED_SPECIMEN_EVIDENCE_ORIGINS = {
+    "PREEXISTING_AUTHORIZED_SPECIMEN",
+    "NEW_FIELD_VOUCHER",
+}
 TAXON_KEY_SOURCE = "FLORA_OF_CHINA_PEDICULARIS_SERIES_REGES_KEY"
 CANDIDATE_LEDGER_PATH = (
     Path(__file__).resolve().parents[1]
@@ -46,6 +57,8 @@ def _filled(value: object, label: str) -> str:
 
 
 def _optional_text(value: object) -> str | None:
+    if value is None:
+        return None
     text = str(value).strip()
     if not text or "REQUIRED_BEFORE_USE" in text:
         return None
@@ -82,6 +95,45 @@ def _optional_nonnegative_int(value: object, label: str) -> int | None:
         raise ValueError(f"{label} must be an integer") from exc
     _need(math.isfinite(out) and out >= 0 and out.is_integer(), f"{label} must be a nonnegative integer")
     return int(out)
+
+
+def _permission_activity_valid_on_day(
+    receipt: dict,
+    activity_id: str,
+    day: date,
+) -> bool:
+    matrix = receipt.get("all_activity_matrix")
+    validity = receipt.get("all_activity_validity")
+    _need(
+        isinstance(matrix, dict) and set(matrix) == set("ABCDEF"),
+        "all-activity permission matrix changed",
+    )
+    _need(
+        isinstance(validity, dict) and set(validity) == set("ABCDEF"),
+        "all-activity permission validity changed",
+    )
+    cell = matrix[activity_id]
+    if not (
+        isinstance(cell, dict)
+        and cell.get("regulatory") == "PASS"
+        and cell.get("site") == "PASS"
+    ):
+        return False
+    validity_cell = validity[activity_id]
+    _need(
+        isinstance(validity_cell, dict)
+        and set(validity_cell) == {"regulatory", "site"},
+        f"all-activity permission validity cell changed: {activity_id}",
+    )
+    return all(
+        any(
+            date.fromisoformat(interval["valid_from"])
+            <= day
+            <= date.fromisoformat(interval["valid_through"])
+            for interval in validity_cell[side]
+        )
+        for side in ("regulatory", "site")
+    )
 
 
 def _candidate_ledger_row(candidate_id: str) -> dict[str, str]:
@@ -275,6 +327,16 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
                         start is not None and end is not None and start <= end,
                         f"invalid permission validity interval: {activity_id}/{side}/{index}",
                     )
+        all_matrix = permission_receipt.get("all_activity_matrix")
+        all_validity = permission_receipt.get("all_activity_validity")
+        _need(
+            isinstance(all_matrix, dict) and set(all_matrix) == set("ABCDEF"),
+            "all-activity permission matrix changed",
+        )
+        _need(
+            isinstance(all_validity, dict) and set(all_validity) == set("ABCDEF"),
+            "all-activity permission validity changed",
+        )
         permission_receipt_valid = True
 
     permission_valid_on_verification_date: bool | None = None
@@ -297,6 +359,133 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             taxon_method in ALLOWED_TAXON_VERIFICATION_METHODS,
             "unregistered taxon verification method",
         )
+
+    combined_secondary = _optional_text(
+        fresh.get("combined_secondary_taxon_method")
+    )
+    if taxon_method == "COMBINED":
+        _need(
+            combined_secondary in ALLOWED_COMBINED_SECONDARY_METHODS,
+            "COMBINED taxon verification requires a registered secondary method",
+        )
+    else:
+        _need(
+            combined_secondary is None,
+            "combined secondary taxon method is only allowed with COMBINED",
+        )
+
+    specimen_route_used = (
+        taxon_method == "VOUCHER_OR_SPECIMEN"
+        or (
+            taxon_method == "COMBINED"
+            and combined_secondary == "VOUCHER_OR_SPECIMEN"
+        )
+    )
+    specimen_origin = _optional_text(
+        fresh.get("taxon_specimen_evidence_origin")
+    )
+    specimen_authorization_reference = _optional_text(
+        fresh.get("taxonomic_material_authorization_reference")
+    )
+    specimen_context_receipt = fresh.get("taxon_specimen_context_receipt")
+    validated_specimen_context = None
+    new_voucher_permission_valid: bool | None = None
+    if specimen_route_used:
+        _need(
+            specimen_origin in ALLOWED_SPECIMEN_EVIDENCE_ORIGINS,
+            "voucher/specimen taxon route requires registered evidence origin",
+        )
+        _need(
+            isinstance(specimen_context_receipt, dict),
+            "voucher/specimen taxon route requires specimen context receipt",
+        )
+        _need(
+            specimen_context_receipt.get("schema_version")
+            == SPECIMEN_CONTEXT_RECEIPT_SCHEMA,
+            "wrong specimen context receipt schema",
+        )
+        specimen_reference = _filled(
+            specimen_context_receipt.get("specimen_reference"),
+            "specimen_context_receipt.specimen_reference",
+        )
+        specimen_date = _optional_iso_date(
+            specimen_context_receipt.get("collection_date"),
+            "specimen_context_receipt.collection_date",
+        )
+        _need(
+            specimen_date is not None,
+            "specimen context receipt collection date missing",
+        )
+        _need(
+            specimen_context_receipt.get("candidate_site_id")
+            == fctx["candidate_site_id"],
+            "specimen context receipt candidate_site_id mismatch",
+        )
+        _need(
+            specimen_context_receipt.get("population_id")
+            == fctx["population_id"],
+            "specimen context receipt population_id mismatch",
+        )
+        _need(
+            specimen_context_receipt.get("season_id")
+            == fctx["season_id"],
+            "specimen context receipt season_id mismatch",
+        )
+        season_text = str(fctx["season_id"]).strip()
+        if len(season_text) == 4 and season_text.isdigit():
+            _need(
+                specimen_date.year == int(season_text),
+                "specimen collection date is outside the registered recovery season",
+            )
+        _need(
+            verification_day is not None and specimen_date <= verification_day,
+            "specimen collection date cannot follow recovery verification date",
+        )
+        provenance_reference = _filled(
+            specimen_context_receipt.get("provenance_reference"),
+            "specimen_context_receipt.provenance_reference",
+        )
+        validated_specimen_context = {
+            "schema_version": SPECIMEN_CONTEXT_RECEIPT_SCHEMA,
+            "specimen_reference": specimen_reference,
+            "collection_date": specimen_date.isoformat(),
+            "candidate_site_id": fctx["candidate_site_id"],
+            "population_id": fctx["population_id"],
+            "season_id": fctx["season_id"],
+            "provenance_reference": provenance_reference,
+        }
+
+        if specimen_origin == "PREEXISTING_AUTHORIZED_SPECIMEN":
+            _need(
+                specimen_authorization_reference is not None,
+                "preexisting specimen authorization/provenance reference missing",
+            )
+        else:
+            _need(
+                permission_receipt_valid and verification_day is not None,
+                "new field voucher requires a valid permission receipt and date",
+            )
+            _need(
+                specimen_date == verification_day,
+                "new field voucher collection date must equal recovery verification date",
+            )
+            new_voucher_permission_valid = _permission_activity_valid_on_day(
+                permission_receipt,
+                "D",
+                verification_day,
+            )
+            _need(
+                new_voucher_permission_valid,
+                "new field voucher requires activity D regulatory and site permission valid on recovery date",
+            )
+    else:
+        _need(
+            specimen_origin is None
+            and specimen_authorization_reference is None
+            and specimen_context_receipt is None,
+            "specimen evidence fields require a voucher/specimen taxon route",
+        )
+
     diagnostic_checklist = None
     if taxon_method in FIELD_MORPHOLOGY_METHODS:
         raw_diag = fresh.get("taxon_diagnostic_checklist")
@@ -389,6 +578,10 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
         and permission_scope is not None
         and revisit is not None
         and taxon_method is not None
+        and (
+            not specimen_route_used
+            or specimen_origin is not None
+        )
         and all(value is not None for value in evidence.values())
         and (
             taxon_method not in FIELD_MORPHOLOGY_METHODS
@@ -433,7 +626,16 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             "verification_source_reference": source_reference or None,
             "taxon_identity_confirmed": taxon,
             "taxon_verification_method": taxon_method,
+            "combined_secondary_taxon_method": combined_secondary,
             "taxon_evidence_reference": evidence["taxon"],
+            "taxon_specimen_evidence_origin": specimen_origin,
+            "taxonomic_material_authorization_reference": (
+                specimen_authorization_reference
+            ),
+            "taxon_specimen_context_receipt": validated_specimen_context,
+            "new_voucher_permission_valid_on_verification_date": (
+                new_voucher_permission_valid
+            ),
             "taxon_diagnostic_checklist": diagnostic_checklist,
             "flowering_population_present": flowering,
             "flowering_population_evidence_reference": evidence[
@@ -455,7 +657,7 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
         "historical_anchor": cfg["historical_anchor"],
         "downstream_handoff": {
             "p0_relevance_calibration_authorized": ready,
-            "p0a_permission_scope_receipt": (
+            "non_destructive_permission_scope_receipt": (
                 permission_receipt if ready else None
             ),
             "p0_relevance_calibration_window_id": cfg["downstream_windows"]["p0_relevance_calibration_window_id"],

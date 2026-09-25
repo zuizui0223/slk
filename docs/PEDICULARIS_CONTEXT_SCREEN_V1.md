@@ -98,6 +98,37 @@ External values require endpoint, unit/denominator and focal-context transport t
 
 For plant/flower-based predator and water units this disjointness is executable: fresh calibration emits a permanent-tag firewall, the final P0 freeze hash-locks it, and the screen adjudicator rejects any reused `physical_plant_tag`. Pollinator disjointness is temporal at the registered bout level.
 
+## 4a. Permission scope and field dates
+
+The WAVE1 non-destructive permission contract covers:
+
+```text
+RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE
+```
+
+with required activities:
+
+```text
+A visual observation
+B photography / morphology documentation
+C non-destructive measurement.
+```
+
+The confirmed permission-scope receipt is carried automatically from recovery through P0a source qualification and effort planning into the final P0b freeze. The final freeze must declare:
+
+```text
+candidate_id
+planned_screen_start_date
+planned_screen_end_date
+permission_scope_receipt.
+```
+
+The entire planned screen interval must lie inside at least one positive regulatory and site validity interval for every A-C activity.
+
+Every completed P0b field row, including the capacity census, records `observation_date`. The packet receipt records the completed-date range, and final adjudication requires that range to lie inside the prospectively frozen screen interval.
+
+Thus neither a valid P0a permission nor a once-valid P0b permission can be reused after expiry.
+
 ## 5. Pollinator exposure uses flower-minutes
 
 Sun & Huang (2015) estimated `P. rex` visitation using 30-min plot censuses and normalized flower visits by the number of simultaneously open flowers. Therefore the P0 exposure unit is:

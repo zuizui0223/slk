@@ -6,7 +6,8 @@
     "candidate_site_id": "REQUIRED_BEFORE_USE",
     "population_id": "REQUIRED_BEFORE_USE",
     "season_id": "REQUIRED_BEFORE_USE",
-    "screen_window_id": "REQUIRED_BEFORE_USE"
+    "screen_window_id": "REQUIRED_BEFORE_USE",
+    "candidate_id": "REQUIRED_BEFORE_USE"
   },
   "effort": {
     "independent_flowering_plants_censused": null,
@@ -58,5 +59,11 @@
     "current_physical_plant_tags": [],
     "current_tag_set_sha256": null,
     "scope_note": "Permanent tags apply to predator/water plant-based units; pollinator bouts remain temporal units."
+  },
+  "field_timing_audit": {
+    "capacity_census_dated": null,
+    "observed_date_min": null,
+    "observed_date_max": null,
+    "completed_dated_record_count": null
   }
 }

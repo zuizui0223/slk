@@ -56,10 +56,10 @@ def _permission_receipt() -> dict:
     }
     return {
         "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
-        "status": "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED",
+        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
         "candidate_id": "SHANGRILA_WUFENG",
         "response_bundle_id": "test-bundle",
-        "required_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
         "required_activity_matrix": {
             activity_id: {"regulatory": "PASS", "site": "PASS"}
             for activity_id in "ABC"
@@ -180,6 +180,7 @@ def _qual_template() -> dict:
     payload = json.loads(QUAL_TEMPLATE.read_text())
     payload["context"].update(
         {
+            "candidate_id": "SHANGRILA_WUFENG",
             "candidate_site_id": "site1",
             "population_id": "pop1",
             "season_id": "2027",

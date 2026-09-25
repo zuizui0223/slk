@@ -18,10 +18,10 @@ B  photography / morphology documentation
 C  non-destructive measurement
 ```
 
-Therefore the minimum permission scope required to unlock P0a is:
+Therefore the minimum permission scope required to unlock the recovery → P0a → P0b non-destructive path is:
 
 ```text
-RECOVERY_PLUS_P0A_NONDESTRUCTIVE
+RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE
 ```
 
 The following activities are deliberately outside this minimum gate:
@@ -32,7 +32,9 @@ E  leaf / tissue sampling
 F  seed / fruit collection
 ```
 
-D-F may remain unresolved or prohibited without blocking P-1/P0a. They require separate authorization if later used.
+D-F may remain unresolved or prohibited without blocking the default non-destructive P-1/P0a/P0b path. They require separate authorization if later used.
+
+There is one explicit conditional exception: if the fresh taxon-identification route uses a **new field voucher**, activity D becomes required for that recovery record. The permission receipt therefore preserves A-F decisions and validity intervals even though only A-C define the default scope. A positive D response must also carry `valid_from` / `valid_through`; the recovery gate checks D on the actual voucher/recovery date.
 
 ## Two-sided permission requirement
 
@@ -91,10 +93,10 @@ An expired permission cannot be rescued by retaining the old receipt.
 ## Response statuses
 
 ```text
-RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED
-RECOVERY_P0A_PERMISSION_SCOPE_INCOMPLETE
-RECOVERY_P0A_PERMISSION_SCOPE_BLOCKED
-RECOVERY_P0A_PERMISSION_SCOPE_CONFLICTING
+RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED
+RECOVERY_P0A_P0B_PERMISSION_SCOPE_INCOMPLETE
+RECOVERY_P0A_P0B_PERMISSION_SCOPE_BLOCKED
+RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFLICTING
 ```
 
 Rules:
@@ -131,7 +133,7 @@ Only a confirmed permission-scope receipt may populate:
 
 ```text
 sampling_permission_status = CONFIRMED
-sampling_permission_scope  = RECOVERY_PLUS_P0A_NONDESTRUCTIVE
+sampling_permission_scope  = RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE
 sampling_permission_reference
 permission_scope_receipt.
 ```
@@ -151,7 +153,7 @@ A manually typed `sampling_permission_status=CONFIRMED` without the receipt fail
 ## Claim ceiling
 
 ```text
-RECOVERY_PLUS_P0A_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY
+RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE_PERMISSION_SCOPE_ONLY
 NO_D_TO_F_PERMISSION_INFERENCE
 NO_FRESH_CONTEXT_RESULT
 NO_P0_SIGNAL
