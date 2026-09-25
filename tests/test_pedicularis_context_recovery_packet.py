@@ -87,10 +87,10 @@ def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
     obs["status"] = "FRESH_CONTEXT_RECOVERY_DATA"
     obs["permission_scope_receipt"] = {
         "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
-        "status": "RECOVERY_P0A_PERMISSION_SCOPE_CONFIRMED",
+        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
         "candidate_id": "SHANGRILA_WUFENG",
         "response_bundle_id": "bundle-001",
-        "required_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
         "required_activity_matrix": {
             "A": {"regulatory": "PASS", "site": "PASS"},
             "B": {"regulatory": "PASS", "site": "PASS"},
@@ -147,7 +147,7 @@ def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
             "site_access_confirmed": True,
             "access_evidence_reference": "FIELD_ACCESS_LOG_001",
             "sampling_permission_status": "CONFIRMED",
-            "sampling_permission_scope": "RECOVERY_PLUS_P0A_NONDESTRUCTIVE",
+            "sampling_permission_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
             "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123",
             "same_season_revisit_feasible": True,
             "revisit_plan_reference": "REVISIT_PLAN_001",
