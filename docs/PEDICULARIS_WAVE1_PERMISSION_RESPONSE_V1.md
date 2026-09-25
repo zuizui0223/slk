@@ -100,8 +100,20 @@ Every positive activity row must also record:
 ```text
 conditions
 conditions_compatible_with_registered_activity
-conditions_review_reference.
+conditions_review_reference
+registered_activity_definition_reference
+conditions_reviewed_by
+conditions_review_date
+conditions_review_rationale.
 ```
+
+The activity definition reference must match the canonical registry:
+
+```text
+data/PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json
+```
+
+for the same activity A-F. The review date must be on or after the authority/site response date and no later than the permission-bundle adjudication date. The reviewer and rationale are required so `compatible=true` cannot be a context-free checkbox.
 
 
 `conditions` must be explicit. If the authority/site states that there are no additional conditions, record:
@@ -179,6 +191,7 @@ Conflicting responses are not resolved by choosing the more convenient answer.
 ## Canonical files
 
 ```text
+data/PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json
 data/PEDICULARIS_WAVE1_PERMISSION_RESPONSE_TEMPLATE_V1.json
 scripts/adjudicate_pedicularis_wave1_permission_responses.py
 scripts/compile_pedicularis_permission_scope_into_recovery.py

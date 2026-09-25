@@ -194,6 +194,9 @@ DRAFT_AWAITING_ACTIVITY_DECISIONS.
 
 The compiler deliberately excludes routing-only contacts from the authorizing response list and cannot create an `ALLOWED` decision.
 
+
+For each A-F row, the draft pre-fills the canonical `registered_activity_definition_reference`. Internal review fields for reviewer, review date, rationale and review reference begin unresolved. They are completed only after the returned condition text is read; the authority-facing inquiry itself does not ask the authority to make the project's compatibility judgment.
+
 ## Relationship to the permission gate
 
 ```text

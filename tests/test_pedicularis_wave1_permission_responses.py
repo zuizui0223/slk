@@ -53,6 +53,27 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
                 if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             ),
+            "registered_activity_definition_reference": (
+                "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
+                + activity_id
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "conditions_reviewed_by": (
+                "TEST-REVIEWER"
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "conditions_review_date": (
+                "2027-05-12"
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
+            "conditions_review_rationale": (
+                "Authority condition is compatible with the registered activity definition."
+                if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            ),
         }
         for activity_id in "ABCDEF"
     ]
@@ -92,6 +113,52 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
+            row["registered_activity_definition_reference"] = (
+                "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
+                + row["activity_id"]
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions_reviewed_by"] = (
+                "TEST-REVIEWER"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions_review_date"] = (
+                "2027-05-12"
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+            row["conditions_review_rationale"] = (
+                "Authority condition is compatible with the registered activity definition."
+                if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
+                else None
+            )
+
+
+def _fill_condition_review(
+    row: dict,
+    prefix: str,
+    *,
+    compatible: bool,
+    rationale: str | None = None,
+) -> None:
+    row["conditions_compatible_with_registered_activity"] = compatible
+    row["conditions_review_reference"] = f"{prefix}-COND-REVIEW"
+    row["registered_activity_definition_reference"] = (
+        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
+        + row["activity_id"]
+    )
+    row["conditions_reviewed_by"] = "TEST-REVIEWER"
+    row["conditions_review_date"] = "2027-05-13"
+    row["conditions_review_rationale"] = (
+        rationale
+        or (
+            "Authority conditions are compatible with the registered activity definition."
+            if compatible
+            else "Authority conditions conflict with the registered activity definition."
+        )
+    )
 
 
 def _songzanlin_bundle() -> dict:
@@ -370,8 +437,7 @@ def test_optional_D_permission_is_receipted_without_becoming_required_scope() ->
         target["valid_from"] = "2027-06-01"
         target["valid_through"] = "2027-06-30"
         target["conditions"] = "voucher-only June window"
-        target["conditions_compatible_with_registered_activity"] = True
-        target["conditions_review_reference"] = f"{prefix}-D-COND-REVIEW"
+        _fill_condition_review(target, f"{prefix}-D", compatible=True)
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     assert out["required_activities"] == ["A", "B", "C"]
@@ -393,8 +459,8 @@ def test_optional_positive_D_permission_still_requires_validity_dates() -> None:
     target["response_reference"] = "REG-D"
     target["valid_from"] = "2027-06-01"
     target["valid_through"] = None
-    target["conditions_compatible_with_registered_activity"] = True
-    target["conditions_review_reference"] = "REG-D-COND-REVIEW"
+    target["conditions"] = "voucher-only June window"
+    _fill_condition_review(target, "REG-D", compatible=True)
     with pytest.raises(ValueError, match="valid_through/REG-001/D"):
         adj.adjudicate(payload)
 
@@ -412,8 +478,7 @@ def test_activity_specific_D_validity_can_be_narrower_than_A_C() -> None:
         d["valid_from"] = "2027-06-10"
         d["valid_through"] = "2027-06-20"
         d["conditions"] = "voucher only during June 10-20"
-        d["conditions_compatible_with_registered_activity"] = True
-        d["conditions_review_reference"] = f"{prefix}-D-COND-REVIEW"
+        _fill_condition_review(d, f"{prefix}-D", compatible=True)
     out = adj.adjudicate(payload)
     assert out["required_activity_validity"]["A"]["regulatory"][0][
         "valid_through"
@@ -498,8 +563,12 @@ def test_incompatible_optional_D_condition_does_not_block_default_A_C_scope() ->
         d["valid_from"] = "2027-06-01"
         d["valid_through"] = "2027-06-30"
         d["conditions"] = "voucher only outside the registered recovery area"
-        d["conditions_compatible_with_registered_activity"] = False
-        d["conditions_review_reference"] = f"{prefix}-D-BLOCK-REVIEW"
+        _fill_condition_review(
+            d,
+            f"{prefix}-D-BLOCK",
+            compatible=False,
+            rationale="Voucher condition excludes the registered recovery area.",
+        )
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     assert out["all_activity_matrix"]["D"] == {
@@ -548,4 +617,76 @@ def test_no_additional_conditions_sentinel_is_explicitly_accepted() -> None:
     reg = next(row for row in out["responses"] if row["route_class"] == "REGULATORY")
     assert reg["activity_decision_details"]["A"]["conditions"] == (
         "NO_ADDITIONAL_CONDITIONS"
+    )
+
+
+
+def test_positive_activity_requires_registered_activity_definition_reference() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["registered_activity_definition_reference"] = (
+        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B"
+    )
+    with pytest.raises(ValueError, match="wrong registered activity definition"):
+        adj.adjudicate(payload)
+
+
+def test_positive_activity_requires_condition_reviewer() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["conditions_reviewed_by"] = None
+    with pytest.raises(ValueError, match="conditions_reviewed_by/REG-001/A"):
+        adj.adjudicate(payload)
+
+
+def test_condition_review_date_cannot_precede_authority_response() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "B"
+    )
+    target["conditions_review_date"] = "2027-05-11"
+    with pytest.raises(ValueError, match="must fall between response and adjudication"):
+        adj.adjudicate(payload)
+
+
+def test_condition_review_date_cannot_follow_adjudication() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "C"
+    )
+    target["conditions_review_date"] = "2027-05-14"
+    with pytest.raises(ValueError, match="must fall between response and adjudication"):
+        adj.adjudicate(payload)
+
+
+def test_positive_activity_requires_condition_review_rationale() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["conditions_review_rationale"] = None
+    with pytest.raises(ValueError, match="conditions_review_rationale/SITE-001/A"):
+        adj.adjudicate(payload)
+
+
+def test_confirmed_receipt_preserves_condition_review_audit_metadata() -> None:
+    out = adj.adjudicate(_songzanlin_bundle())
+    interval = out["required_activity_validity"]["A"]["regulatory"][0]
+    assert interval["registered_activity_definition_reference"] == (
+        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A"
+    )
+    assert interval["conditions_reviewed_by"] == "TEST-REVIEWER"
+    assert interval["conditions_review_date"] == "2027-05-12"
+    assert interval["conditions_review_rationale"]
+    assert out["activity_definition_schema"] == (
+        "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
     )
