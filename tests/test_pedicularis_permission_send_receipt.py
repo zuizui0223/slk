@@ -13,6 +13,7 @@ GUARD = ROOT / "scripts" / "validate_pedicularis_wave1_permission_messages_for_s
 APPLY = ROOT / "scripts" / "apply_pedicularis_permission_send_receipt.py"
 LEDGER = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv"
 SEND_TEMPLATE = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json"
+FOLLOWUP_TEMPLATE = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_TEMPLATE_V1.json"
 
 spec = importlib.util.spec_from_file_location("ped_send_render", RENDER)
 render = importlib.util.module_from_spec(spec)
@@ -52,6 +53,42 @@ def _ready(candidate_id: str = "SONGZANLIN_EIA_2025") -> dict:
     )
 
 
+def _followup_policy() -> dict:
+    payload = json.loads(FOLLOWUP_TEMPLATE.read_text())
+    payload["status"] = "FROZEN_POLICY"
+    payload["production_status"] = (
+        "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_PROSPECTIVELY_FROZEN"
+    )
+    payload["policy"].update(
+        {
+            "followup_offsets_days": [7, 14],
+            "escalation_review_after_days": 21,
+            "frozen_before_first_send": True,
+        }
+    )
+    payload["freeze_metadata"] = {
+        "slk_source_commit": "abc123",
+        "freeze_commit": "followup-freeze-001",
+        "freeze_timestamp": "2027-04-20T00:00:00+08:00",
+        "policy_rationale_reference": "ADMIN-POLICY-001",
+    }
+    return payload
+
+
+def _apply_send(
+    rows: list[dict[str, str]],
+    ready: dict,
+    receipt: dict,
+    policy: dict | None = None,
+):
+    return apply.apply_send_receipt(
+        rows,
+        ready,
+        receipt,
+        policy or _followup_policy(),
+    )
+
+
 def _receipt(ready: dict, route_id: str = "SONGZANLIN_FORESTRY_REGULATOR") -> dict:
     message = next(m for m in ready["messages"] if m["route_id"] == route_id)
     canonical_contact = message["public_contact"]
@@ -80,7 +117,7 @@ def _receipt(ready: dict, route_id: str = "SONGZANLIN_FORESTRY_REGULATOR") -> di
 def test_valid_send_receipt_moves_only_target_route_to_awaiting_response() -> None:
     rows = _rows()
     ready = _ready()
-    updated, event = apply.apply_send_receipt(
+    updated, event = _apply_send(
         rows,
         ready,
         _receipt(ready),
@@ -110,7 +147,7 @@ def test_send_receipt_rejects_content_hash_mismatch() -> None:
     receipt = _receipt(ready)
     receipt["sent_content_sha256"] = "0" * 64
     with pytest.raises(ValueError, match="content hash/message mismatch"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_ready_message_mutation_after_review_is_rejected() -> None:
@@ -118,7 +155,7 @@ def test_ready_message_mutation_after_review_is_rejected() -> None:
     receipt = _receipt(ready)
     ready["messages"][0]["body_en"] += "\nChanged after review."
     with pytest.raises(ValueError, match="ready EN message content hash mismatch"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_send_receipt_contact_must_match_reviewed_message() -> None:
@@ -126,7 +163,7 @@ def test_send_receipt_contact_must_match_reviewed_message() -> None:
     receipt = _receipt(ready)
     receipt["sent_to_contact"] = "DIFFERENT_CONTACT"
     with pytest.raises(ValueError, match="not a registered canonical contact option"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_send_receipt_requires_timezone_aware_sent_at() -> None:
@@ -134,7 +171,7 @@ def test_send_receipt_requires_timezone_aware_sent_at() -> None:
     receipt = _receipt(ready)
     receipt["sent_at"] = "2027-05-01T09:30:00"
     with pytest.raises(ValueError, match="timezone offset"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_send_receipt_requires_manual_confirmation() -> None:
@@ -142,15 +179,15 @@ def test_send_receipt_requires_manual_confirmation() -> None:
     receipt = _receipt(ready)
     receipt["manual_send_confirmed"] = False
     with pytest.raises(ValueError, match="manual_send_confirmed"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_same_route_cannot_be_registered_as_sent_twice() -> None:
     ready = _ready()
     receipt = _receipt(ready)
-    updated, _ = apply.apply_send_receipt(_rows(), ready, receipt)
+    updated, _ = _apply_send(_rows(), ready, receipt)
     with pytest.raises(ValueError, match="not in NOT_SENT state"):
-        apply.apply_send_receipt(updated, ready, receipt)
+        _apply_send(updated, ready, receipt)
 
 
 def test_send_receipt_candidate_must_match_message_bundle() -> None:
@@ -158,7 +195,7 @@ def test_send_receipt_candidate_must_match_message_bundle() -> None:
     receipt = _receipt(ready)
     receipt["candidate_id"] = "SHANGRILA_WUFENG"
     with pytest.raises(ValueError, match="candidate/message mismatch"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_unreviewed_message_bundle_cannot_register_send() -> None:
@@ -196,7 +233,7 @@ def test_unreviewed_message_bundle_cannot_register_send() -> None:
         "notes": "",
     }
     with pytest.raises(ValueError, match="not ready for manual send"):
-        apply.apply_send_receipt(_rows(), unreviewed, receipt)
+        _apply_send(_rows(), unreviewed, receipt)
 
 
 
@@ -205,7 +242,7 @@ def test_send_receipt_canonical_contact_snapshot_must_match_reviewed_message() -
     receipt = _receipt(ready)
     receipt["canonical_contact_snapshot"] = "OTHER_CANONICAL_CONTACT"
     with pytest.raises(ValueError, match="canonical contact/message mismatch"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_multi_contact_route_can_use_one_registered_email_option() -> None:
@@ -214,7 +251,7 @@ def test_multi_contact_route_can_use_one_registered_email_option() -> None:
     receipt = _receipt(ready, route)
     assert receipt["send_channel"] == "EMAIL"
     assert "@" in receipt["sent_to_contact"]
-    updated, event = apply.apply_send_receipt(_rows(), ready, receipt)
+    updated, event = _apply_send(_rows(), ready, receipt)
     target = next(row for row in updated if row["route_id"] == route)
     assert target["outreach_status"] == "SENT_AWAITING_RESPONSE"
     assert event["canonical_contact_snapshot"] == (
@@ -229,7 +266,7 @@ def test_email_channel_rejects_phone_contact() -> None:
     receipt = _receipt(ready)
     receipt["send_channel"] = "EMAIL"
     with pytest.raises(ValueError, match="EMAIL send channel requires"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_phone_channel_rejects_non_phone_contact() -> None:
@@ -239,7 +276,7 @@ def test_phone_channel_rejects_non_phone_contact() -> None:
     receipt["send_channel"] = "PHONE_SCRIPT"
     receipt["sent_to_contact"] = "598226819@qq.com"
     with pytest.raises(ValueError, match="PHONE_SCRIPT send channel requires"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 
@@ -249,7 +286,7 @@ def test_descriptive_canonical_contact_can_use_extracted_phone_number() -> None:
     receipt = _receipt(ready, route)
     receipt["send_channel"] = "PHONE_SCRIPT"
     receipt["sent_to_contact"] = "0887-8222611"
-    updated, event = apply.apply_send_receipt(_rows(), ready, receipt)
+    updated, event = _apply_send(_rows(), ready, receipt)
     target = next(row for row in updated if row["route_id"] == route)
     assert target["outreach_status"] == "SENT_AWAITING_RESPONSE"
     assert event["sent_to_contact"] == "0887-8222611"
@@ -278,7 +315,7 @@ def test_chinese_only_send_uses_cn_hash() -> None:
     )
     receipt["sent_language"] = "CN"
     receipt["sent_content_sha256"] = message["message_content_sha256_cn"]
-    _, event = apply.apply_send_receipt(_rows(), ready, receipt)
+    _, event = _apply_send(_rows(), ready, receipt)
     assert event["sent_language"] == "CN"
     assert event["message_content_sha256"] == message["message_content_sha256_cn"]
 
@@ -292,7 +329,7 @@ def test_english_only_send_uses_en_hash() -> None:
     )
     receipt["sent_language"] = "EN"
     receipt["sent_content_sha256"] = message["message_content_sha256_en"]
-    _, event = apply.apply_send_receipt(_rows(), ready, receipt)
+    _, event = _apply_send(_rows(), ready, receipt)
     assert event["sent_language"] == "EN"
 
 
@@ -301,7 +338,7 @@ def test_cn_send_cannot_cite_bilingual_hash() -> None:
     receipt = _receipt(ready)
     receipt["sent_language"] = "CN"
     with pytest.raises(ValueError, match="content hash/message mismatch"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
 
 
 def test_send_receipt_rejects_unregistered_language() -> None:
@@ -309,4 +346,33 @@ def test_send_receipt_rejects_unregistered_language() -> None:
     receipt = _receipt(ready)
     receipt["sent_language"] = "JP"
     with pytest.raises(ValueError, match="unregistered sent language"):
-        apply.apply_send_receipt(_rows(), ready, receipt)
+        _apply_send(_rows(), ready, receipt)
+
+
+
+def test_initial_send_requires_frozen_followup_policy() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    policy = json.loads(FOLLOWUP_TEMPLATE.read_text())
+    with pytest.raises(ValueError, match="must be FROZEN_POLICY"):
+        _apply_send(_rows(), ready, receipt, policy)
+
+
+def test_followup_policy_must_be_frozen_before_manual_send_timestamp() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    policy = _followup_policy()
+    policy["freeze_metadata"]["freeze_timestamp"] = (
+        "2027-05-01T10:00:00+08:00"
+    )
+    with pytest.raises(ValueError, match="occurs after manual send"):
+        _apply_send(_rows(), ready, receipt, policy)
+
+
+def test_send_event_receipts_frozen_followup_schedule() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    _, event = _apply_send(_rows(), ready, receipt)
+    assert event["followup_policy_freeze_commit"] == "followup-freeze-001"
+    assert event["followup_policy_offsets_days"] == [7, 14]
+    assert event["followup_escalation_review_after_days"] == 21
