@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 import math
+from datetime import date
 from pathlib import Path
 
 FREEZE_SCHEMA = "SLK_PEDICULARIS_CONTEXT_RECOVERY_FREEZE_V1"
@@ -49,6 +50,16 @@ def _optional_text(value: object) -> str | None:
     if not text or "REQUIRED_BEFORE_USE" in text:
         return None
     return text
+
+
+def _optional_iso_date(value: object, label: str) -> date | None:
+    text = str(value).strip()
+    if not text or "REQUIRED_BEFORE_USE" in text:
+        return None
+    try:
+        return date.fromisoformat(text)
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
 
 
 def _optional_bool(value: object, label: str) -> bool | None:
@@ -177,6 +188,10 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
 
     fresh = observation.get("fresh_verification", {})
     verification_date = str(fresh.get("verification_date", "")).strip()
+    verification_day = _optional_iso_date(
+        fresh.get("verification_date"),
+        "verification_date",
+    )
     source_reference = str(fresh.get("verification_source_reference", "")).strip()
     taxon = _optional_bool(fresh.get("taxon_identity_confirmed"), "taxon_identity_confirmed")
     flowering = _optional_bool(fresh.get("flowering_population_present"), "flowering_population_present")
@@ -218,6 +233,11 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             isinstance(matrix, dict) and set(matrix) == {"A", "B", "C"},
             "recovery permission scope receipt activity matrix changed",
         )
+        validity = permission_receipt.get("required_activity_validity")
+        _need(
+            isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
+            "recovery permission validity inventory changed",
+        )
         for activity_id in ("A", "B", "C"):
             cell = matrix[activity_id]
             _need(
@@ -226,7 +246,50 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
                 and cell.get("site") == "PASS",
                 f"recovery permission scope not passed for activity {activity_id}",
             )
+            validity_cell = validity[activity_id]
+            _need(
+                isinstance(validity_cell, dict)
+                and set(validity_cell) == {"regulatory", "site"},
+                f"recovery permission validity cell changed for activity {activity_id}",
+            )
+            for side in ("regulatory", "site"):
+                intervals = validity_cell[side]
+                _need(
+                    isinstance(intervals, list) and intervals,
+                    f"recovery permission validity missing for activity {activity_id}/{side}",
+                )
+                for index, interval in enumerate(intervals):
+                    _need(
+                        isinstance(interval, dict),
+                        f"permission validity interval must be object: {activity_id}/{side}/{index}",
+                    )
+                    start = _optional_iso_date(
+                        interval.get("valid_from"),
+                        f"permission valid_from/{activity_id}/{side}/{index}",
+                    )
+                    end = _optional_iso_date(
+                        interval.get("valid_through"),
+                        f"permission valid_through/{activity_id}/{side}/{index}",
+                    )
+                    _need(
+                        start is not None and end is not None and start <= end,
+                        f"invalid permission validity interval: {activity_id}/{side}/{index}",
+                    )
         permission_receipt_valid = True
+
+    permission_valid_on_verification_date: bool | None = None
+    if permission_receipt_valid and verification_day is not None:
+        validity = permission_receipt["required_activity_validity"]
+        permission_valid_on_verification_date = all(
+            any(
+                date.fromisoformat(interval["valid_from"])
+                <= verification_day
+                <= date.fromisoformat(interval["valid_through"])
+                for interval in validity[activity_id][side]
+            )
+            for activity_id in ("A", "B", "C")
+            for side in ("regulatory", "site")
+        )
 
     taxon_method = _optional_text(fresh.get("taxon_verification_method"))
     if taxon_method is not None:
@@ -287,6 +350,20 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
                     "flower color cannot be a required P. rex diagnostic",
                 )
 
+    if permission_receipt_valid:
+        receipt_reference = _optional_text(
+            permission_receipt.get("sampling_permission_reference")
+        )
+        _need(
+            receipt_reference is not None,
+            "permission scope receipt reference missing",
+        )
+        _need(
+            _optional_text(fresh.get("sampling_permission_reference"))
+            == receipt_reference,
+            "sampling permission reference/receipt mismatch",
+        )
+
     evidence = {
         "taxon": _optional_text(fresh.get("taxon_evidence_reference")),
         "flowering_population": _optional_text(
@@ -328,7 +405,11 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
         status = "CONTEXT_RECOVERY_NO_FLOWERING_POPULATION"
     else:
         _need(plants_seen >= 1, "flowering population requires at least one independent flowering plant seen")
-        if not access or permission_raw not in ALLOWED_PERMISSION:
+        if (
+            not access
+            or permission_raw not in ALLOWED_PERMISSION
+            or permission_valid_on_verification_date is not True
+        ):
             status = "CONTEXT_RECOVERY_ACCESS_BLOCKED"
         elif not revisit:
             status = "CONTEXT_RECOVERY_CURRENT_SEASON_NOT_FEASIBLE"
@@ -365,12 +446,18 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             "sampling_permission_scope": permission_scope,
             "sampling_permission_reference": evidence["sampling_permission"],
             "permission_scope_receipt_validated": permission_receipt_valid,
+            "permission_valid_on_verification_date": (
+                permission_valid_on_verification_date
+            ),
             "same_season_revisit_feasible": revisit,
             "revisit_plan_reference": evidence["revisit_plan"],
         },
         "historical_anchor": cfg["historical_anchor"],
         "downstream_handoff": {
             "p0_relevance_calibration_authorized": ready,
+            "p0a_permission_scope_receipt": (
+                permission_receipt if ready else None
+            ),
             "p0_relevance_calibration_window_id": cfg["downstream_windows"]["p0_relevance_calibration_window_id"],
             "p0_screen_window_id": cfg["downstream_windows"]["p0_screen_window_id"],
         },
