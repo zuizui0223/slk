@@ -20,6 +20,41 @@ assert spec2.loader is not None
 spec2.loader.exec_module(comp)
 
 
+def _decision_audit(
+    activity_id: str,
+    *,
+    resolved: bool,
+    prefix: str = "TEST",
+) -> dict:
+    return {
+        "decision_evidence_locator": (
+            f"BODY:paragraph-{activity_id}"
+            if resolved
+            else None
+        ),
+        "decision_extracted_by": (
+            "TEST-EXTRACTOR"
+            if resolved
+            else None
+        ),
+        "decision_extraction_date": (
+            "2027-05-12"
+            if resolved
+            else None
+        ),
+        "decision_extraction_reference": (
+            f"{prefix}-EXTRACT-{activity_id}"
+            if resolved
+            else None
+        ),
+        "decision_extraction_rationale": (
+            "Decision category was extracted from the cited response passage."
+            if resolved
+            else None
+        ),
+    }
+
+
 def _activities(default: str = "UNRESOLVED") -> list[dict]:
     return [
         {
@@ -74,6 +109,10 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
                 if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             ),
+            **_decision_audit(
+                activity_id,
+                resolved=default != "UNRESOLVED",
+            ),
         }
         for activity_id in "ABCDEF"
     ]
@@ -87,6 +126,13 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
                 f"{prefix}-{row['activity_id']}"
                 if decision != "UNRESOLVED"
                 else None
+            )
+            row.update(
+                _decision_audit(
+                    row["activity_id"],
+                    resolved=decision != "UNRESOLVED",
+                    prefix=prefix,
+                )
             )
             row["valid_from"] = (
                 "2027-05-01"
@@ -134,6 +180,16 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
+
+
+def _fill_decision_audit(row: dict, prefix: str) -> None:
+    row.update(
+        _decision_audit(
+            row["activity_id"],
+            resolved=True,
+            prefix=prefix,
+        )
+    )
 
 
 def _fill_condition_review(
