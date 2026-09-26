@@ -291,11 +291,14 @@ def test_p0a_planned_window_must_be_inside_permission_validity() -> None:
 
 def test_p0a_permission_interval_cannot_be_reversed() -> None:
     freeze = _freeze()
-    interval = freeze["permission_scope_receipt"][
-        "required_activity_validity"
-    ]["A"]["site"][0]
-    interval["valid_from"] = "2027-09-30"
-    interval["valid_through"] = "2027-05-01"
+    site_response = next(
+        response
+        for response in freeze["permission_scope_receipt"]["responses"]
+        if response["route_class"] == "SITE"
+    )
+    detail = site_response["activity_decision_details"]["A"]
+    detail["valid_from"] = "2027-09-30"
+    detail["valid_through"] = "2027-05-01"
     with pytest.raises(ValueError, match="interval reversed"):
         sum_mod.validate_freeze(freeze)
 
