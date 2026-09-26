@@ -269,9 +269,37 @@ data/PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json
 data/PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_TEMPLATE_V1.json
 data/PEDICULARIS_WAVE1_PERMISSION_RESPONSE_TEMPLATE_V1.json
 scripts/adjudicate_pedicularis_wave1_permission_responses.py
+scripts/pedicularis_permission_scope.py
 scripts/compile_pedicularis_permission_scope_into_recovery.py
 tests/test_pedicularis_wave1_permission_responses.py
 ```
+
+## Confirmed scope receipt provenance
+
+A confirmed permission scope receipt retains the full adjudication provenance:
+
+```text
+adjudication_metadata
+responses
+    -> source incoming-response event/hash
+    -> activity decision details
+    -> decision evidence extraction
+    -> condition-compatibility review
+required/all activity matrices
+required/all activity validity.
+```
+
+The shared validator is:
+
+```text
+scripts/pedicularis_permission_scope.py
+```
+
+Before the scope is compiled into fresh recovery, the validator rechecks the confirmed status, candidate, A-C PASS matrix, all required validity intervals, adjudication metadata, unique incoming-response events, decision-evidence audit, condition review, and interval-to-source-response links.
+
+The compiler then embeds the **full validated scope receipt** in the recovery observation. It does not replace it with a matrix/date-only summary.
+
+The fresh context-recovery adjudicator runs the same validator again before accepting `sampling_permission_status=CONFIRMED`.
 
 ## Recovery handoff
 
