@@ -4,7 +4,7 @@ import argparse
 import csv
 import json
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -90,6 +90,23 @@ def _activity_definitions() -> dict[str, dict]:
         "permission activity-definition inventory changed",
     )
     return activities
+
+
+def _iso_datetime(value: object, label: str) -> datetime:
+    text = _filled(value, label)
+    try:
+        out = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO 8601 datetime") from exc
+    _need(out.tzinfo is not None, f"{label} must include timezone offset")
+    return out
+
+
+def _is_sha256(value: str) -> bool:
+    return (
+        len(value) == 64
+        and all(ch in "0123456789abcdef" for ch in value.lower())
+    )
 
 
 def _read(path: Path) -> list[dict[str, str]]:
@@ -195,6 +212,47 @@ def adjudicate(payload: dict) -> dict:
         response_reference = _filled(
             response.get("response_reference"),
             f"response_reference/{response_id}",
+        )
+        source_response_event_id = _filled(
+            response.get("source_response_event_id"),
+            f"source_response_event_id/{response_id}",
+        )
+        source_received_at = _iso_datetime(
+            response.get("source_response_received_at"),
+            f"source_response_received_at/{response_id}",
+        )
+        _need(
+            source_received_at.date() == response_date,
+            f"source response received date mismatch: {response_id}",
+        )
+        source_receive_channel = _filled(
+            response.get("source_response_receive_channel"),
+            f"source_response_receive_channel/{response_id}",
+        )
+        _need(
+            source_receive_channel in {
+                "EMAIL",
+                "WEB_PORTAL",
+                "LETTER",
+                "PHONE_CALL",
+                "IN_PERSON",
+            },
+            f"unregistered source response channel: {response_id}",
+        )
+        source_content_hash = _filled(
+            response.get("source_response_content_sha256"),
+            f"source_response_content_sha256/{response_id}",
+        )
+        _need(
+            _is_sha256(source_content_hash),
+            f"source response content hash must be sha256: {response_id}",
+        )
+        source_classification_review_reference = _filled(
+            response.get(
+                "source_response_classification_review_reference"
+            ),
+            "source_response_classification_review_reference/"
+            f"{response_id}",
         )
         decisions, decision_rows = _decision_map(response, response_id)
         route_type = route["route_type"].strip()
@@ -325,6 +383,13 @@ def adjudicate(payload: dict) -> dict:
                 "organization": organization,
                 "response_date": response_date.isoformat(),
                 "response_reference": response_reference,
+                "source_response_event_id": source_response_event_id,
+                "source_response_received_at": source_received_at.isoformat(),
+                "source_response_receive_channel": source_receive_channel,
+                "source_response_content_sha256": source_content_hash,
+                "source_response_classification_review_reference": (
+                    source_classification_review_reference
+                ),
                 "activity_decisions": decisions,
                 "effective_scope_decisions": (
                     effective_decisions
