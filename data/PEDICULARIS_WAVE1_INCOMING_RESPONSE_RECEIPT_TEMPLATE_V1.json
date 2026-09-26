@@ -13,7 +13,7 @@
   "response_subject": "",
   "response_capture_text": "REQUIRED_BEFORE_USE",
   "attachment_references": [],
-  "response_content_sha256": "REQUIRED_BEFORE_USE",
+  "response_content_sha256": null,
   "classification": {
     "response_status": "REQUIRED_BEFORE_USE",
     "reviewed_by": "REQUIRED_BEFORE_USE",
