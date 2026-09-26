@@ -144,7 +144,27 @@
       "extraction_reference_required": true,
       "extraction_rationale_required": true,
       "extraction_date_window": "AUTHORITY_RESPONSE_DATE_TO_BUNDLE_ADJUDICATION_DATE",
-      "unresolved_decisions_require_extraction_audit": false
+      "unresolved_decisions_require_extraction_audit": false,
+      "channel_locator_mapping": {
+        "EMAIL": [
+          "BODY:",
+          "ATTACHMENT:"
+        ],
+        "WEB_PORTAL": [
+          "BODY:",
+          "ATTACHMENT:"
+        ],
+        "LETTER": [
+          "BODY:",
+          "ATTACHMENT:"
+        ],
+        "PHONE_CALL": [
+          "CALL_NOTE:"
+        ],
+        "IN_PERSON": [
+          "IN_PERSON_NOTE:"
+        ]
+      }
     }
   },
   "stages": [
