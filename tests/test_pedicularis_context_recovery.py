@@ -15,6 +15,10 @@ PERMISSION_FIXTURE = (
     ROOT / "tests" / "fixtures"
     / "pedicularis_permission_scope_confirmed_v1.json"
 )
+SONGZANLIN_PERMISSION_FIXTURE = (
+    ROOT / "tests" / "fixtures"
+    / "pedicularis_permission_scope_songzanlin_confirmed_v1.json"
+)
 
 spec = importlib.util.spec_from_file_location("ped_context_recovery", ADJ)
 adj = importlib.util.module_from_spec(spec)
@@ -78,6 +82,12 @@ def _freeze() -> dict:
 
 def _permission_receipt() -> dict:
     return json.loads(PERMISSION_FIXTURE.read_text(encoding="utf-8"))
+
+
+def _songzanlin_permission_receipt() -> dict:
+    return json.loads(
+        SONGZANLIN_PERMISSION_FIXTURE.read_text(encoding="utf-8")
+    )
 
 
 def _obs() -> dict:
@@ -355,7 +365,11 @@ def test_recent_assessment_candidate_can_enter_fresh_recovery_gate() -> None:
             "recovery_window_id": "recovery-songzanlin-2027",
         }
     )
-    obs["permission_scope_receipt"]["candidate_id"] = "SONGZANLIN_EIA_2025"
+    obs["permission_scope_receipt"] = _songzanlin_permission_receipt()
+    obs["fresh_verification"]["sampling_permission_reference"] = (
+        "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@"
+        "testperm-songzanlin"
+    )
     out = adj.adjudicate(obs, freeze)
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
     assert out["historical_anchor"]["candidate_status_before_recovery"] == (
