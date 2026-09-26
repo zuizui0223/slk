@@ -312,6 +312,11 @@ def test_regulatory_and_site_pass_confirm_recovery_p0a_scope() -> None:
             "site": "PASS",
         }
     assert out["recovery_handoff"]["sampling_permission_status"] == "CONFIRMED"
+    assert out["adjudication_metadata"] == {
+        "slk_source_commit": "abc123",
+        "adjudication_commit": "perm123",
+        "adjudication_timestamp": "2027-05-13T00:00:00Z",
+    }
     assert set(out["all_activity_matrix"]) == set("ABCDEF")
     assert set(out["all_activity_validity"]) == set("ABCDEF")
     for activity_id in "ABC":
@@ -429,6 +434,16 @@ def test_confirmed_scope_compiles_into_recovery_observation() -> None:
     assert set(out["permission_scope_receipt"]["all_activity_validity"]) == set(
         "ABCDEF"
     )
+    assert out["permission_scope_receipt"]["adjudication_metadata"][
+        "adjudication_commit"
+    ] == "perm123"
+    assert len(out["permission_scope_receipt"]["responses"]) == 2
+    assert out["permission_scope_receipt"]["responses"][0][
+        "source_response_event_id"
+    ].startswith("FORESTRY-EVENT")
+    assert out["permission_scope_receipt"]["responses"][0][
+        "activity_decision_details"
+    ]["A"]["decision_evidence_locator"] == "BODY:paragraph-A"
 
 
 def test_unconfirmed_scope_cannot_compile_into_recovery_observation() -> None:
@@ -993,3 +1008,20 @@ def test_phone_response_accepts_call_note_decision_evidence() -> None:
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
     details = out["responses"][0]["activity_decision_details"]["A"]
     assert details["decision_evidence_locator"].startswith("CALL_NOTE:")
+
+
+
+def test_compile_permission_rejects_scope_receipt_with_removed_response_provenance() -> None:
+    receipt = adj.adjudicate(_songzanlin_bundle())
+    receipt["responses"][0].pop("source_response_event_id")
+    with pytest.raises(ValueError, match="source_response_event_id"):
+        comp.compile_permission(receipt, _observation())
+
+
+def test_compile_permission_rejects_scope_receipt_with_removed_decision_evidence() -> None:
+    receipt = adj.adjudicate(_songzanlin_bundle())
+    receipt["required_activity_validity"]["A"]["regulatory"][0].pop(
+        "decision_evidence_locator"
+    )
+    with pytest.raises(ValueError, match="decision_evidence_locator"):
+        comp.compile_permission(receipt, _observation())
