@@ -32,6 +32,13 @@ DECISION_EVIDENCE_PREFIXES = (
     "CALL_NOTE:",
     "IN_PERSON_NOTE:",
 )
+DECISION_EVIDENCE_PREFIXES_BY_CHANNEL = {
+    "EMAIL": ("BODY:", "ATTACHMENT:"),
+    "WEB_PORTAL": ("BODY:", "ATTACHMENT:"),
+    "LETTER": ("BODY:", "ATTACHMENT:"),
+    "PHONE_CALL": ("CALL_NOTE:",),
+    "IN_PERSON": ("IN_PERSON_NOTE:",),
+}
 SITE_AUTHORIZING_ROUTE_TYPES = {
     "SITE_MANAGEMENT_ROUTING",
     "INSTITUTIONAL_SITE_ROUTING",
@@ -295,6 +302,21 @@ def adjudicate(payload: dict) -> dict:
         extraction_dates: dict[str, date | None] = {}
         for activity_id, decision in decisions.items():
             if decision in RESOLVED_DECISIONS:
+                locator = _filled(
+                    decision_rows[activity_id].get(
+                        "decision_evidence_locator"
+                    ),
+                    f"{response_id}/{activity_id}/decision_evidence_locator",
+                )
+                _need(
+                    locator.startswith(
+                        DECISION_EVIDENCE_PREFIXES_BY_CHANNEL[
+                            source_receive_channel
+                        ]
+                    ),
+                    "decision evidence locator/channel mismatch: "
+                    f"{response_id}/{activity_id}/{source_receive_channel}",
+                )
                 extraction_date = _iso_date(
                     decision_rows[activity_id].get("decision_extraction_date"),
                     f"decision_extraction_date/{response_id}/{activity_id}",
