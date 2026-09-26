@@ -28,7 +28,14 @@ def _mark_response(rows: list[dict[str, str]], route_id: str) -> None:
     row["outreach_reference"] = f"OUT-{route_id}"
     row["response_status"] = "SUBSTANTIVE_RESPONSE_RECEIVED"
     row["response_date"] = "2027-05-05"
+    row["response_received_at"] = "2027-05-05T09:00:00+08:00"
     row["response_reference"] = f"RESP-{route_id}"
+    row["response_event_id"] = f"EVENT-{route_id}"
+    row["response_receive_channel"] = "EMAIL"
+    row["response_content_sha256"] = "b" * 64
+    row["response_classification_review_reference"] = (
+        f"CLASS-REVIEW-{route_id}"
+    )
 
 
 def test_response_draft_requires_both_regulatory_and_site_substantive_reply() -> None:
@@ -85,7 +92,12 @@ def test_routing_only_reply_is_not_copied_as_authorizing_response() -> None:
             "outreach_reference": "OUT-LOCAL",
             "response_status": "ROUTING_RESPONSE_ONLY",
             "response_date": "2027-05-02",
+            "response_received_at": "2027-05-02T09:00:00+08:00",
             "response_reference": "RESP-LOCAL",
+            "response_event_id": "EVENT-LOCAL",
+            "response_receive_channel": "EMAIL",
+            "response_content_sha256": "c" * 64,
+            "response_classification_review_reference": "CLASS-REVIEW-LOCAL",
             "routed_to_organization": "Shangri-La State-owned Forest Farm, Jiantang Branch",
             "routed_to_contact": "via forestry bureau",
         }
