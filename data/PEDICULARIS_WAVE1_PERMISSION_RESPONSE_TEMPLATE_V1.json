@@ -30,7 +30,9 @@
       "registered_activity_definition_reference",
       "conditions_reviewed_by",
       "conditions_review_date",
-      "conditions_review_rationale"
+      "conditions_review_rationale",
+      "decision_evidence_locator",
+      "conditions_evidence_locator"
     ],
     "validity_is_activity_specific": true,
     "response_level_validity_does_not_substitute_for_activity_validity": true,
@@ -45,7 +47,9 @@
     "condition_review_activity_definition_schema": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1",
     "condition_review_reviewer_required": true,
     "condition_review_date_required": true,
-    "condition_review_rationale_required": true
+    "condition_review_rationale_required": true,
+    "non_unresolved_decisions_require_evidence_locator": true,
+    "positive_decisions_require_conditions_evidence_locator": true
   },
   "response_provenance_contract": {
     "required_fields": [
