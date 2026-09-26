@@ -6,6 +6,15 @@ import importlib.util
 import json
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
+except ImportError:
+    from pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
+
 
 QUAL_SCHEMA = "SLK_PEDICULARIS_P0_RELEVANCE_QUALIFICATION_V1"
 EFFORT_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_EFFORT_FREEZE_V1"
@@ -57,7 +66,7 @@ def compile_relevance(effort: dict, qualification: dict) -> dict:
     )
     validate_confirmed_permission_scope(
         permission,
-        expected_candidate_id=context["candidate_id"],
+        expected_candidate_id=qctx["candidate_id"],
     )
     out["permission_scope_receipt"] = copy.deepcopy(permission)
     out["physical_unit_firewall_handoff"] = copy.deepcopy(
