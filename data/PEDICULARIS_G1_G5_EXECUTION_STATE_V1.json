@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "4206f92d40b3413cb412aad94aa451d0bd961632",
+  "source_main_commit_at_state_snapshot": "0f632f7cfce12f04cb2106c24753ca976f30d677",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_QUEUE_LOCATOR_BACKED_PACKET_WITH_AUDITABLE_RECOVERY_EVIDENCE_GATE_READY",
@@ -180,7 +180,16 @@
       "ACTIVITY_DECISION_EVIDENCE",
       "CONDITION_COMPATIBILITY_REVIEW",
       "ACTIVITY_VALIDITY"
-    ]
+    ],
+    "permission_outreach_readiness_auditor": "scripts/audit_pedicularis_wave1_outreach_readiness.py",
+    "permission_outreach_readiness_protocol": "docs/PEDICULARIS_WAVE1_OUTREACH_READINESS_V1.md",
+    "permission_outreach_readiness_status": "CANONICAL_STATE_BLOCKED_ADMINISTRATIVELY_BEFORE_FIRST_SEND",
+    "permission_outreach_current_blockers": [
+      "PRODUCTION_FOLLOWUP_POLICY_NOT_FROZEN",
+      "REQUESTER_FILLED_HUMAN_REVIEWED_MESSAGES_NOT_PROVIDED"
+    ],
+    "permission_outreach_current_next_action": "FREEZE_FOLLOWUP_POLICY_BEFORE_FIRST_SEND",
+    "permission_outreach_blocker_is_biological_failure": false
   },
   "stages": [
     {
