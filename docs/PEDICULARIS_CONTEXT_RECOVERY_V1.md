@@ -77,6 +77,17 @@ permission_scope_receipt    = confirmed WAVE1 permission-scope receipt.
 
 The receipt must show A-C (observation, morphology photography and non-destructive measurement) passing on both regulatory and site sides. D-F destructive activities are not inferred from this receipt.
 
+
+The embedded receipt is the **full adjudicated permission receipt**, not a matrix/date-only summary. It retains adjudication metadata, audited incoming-response events and content hashes, activity-decision evidence extraction, condition reviews, and all activity validity intervals.
+
+Recovery revalidates that receipt with:
+
+```text
+scripts/pedicularis_permission_scope.py
+```
+
+before treating permission as confirmed. Removing source-response provenance, decision evidence, condition-review metadata, or interval/source cross-links makes the recovery packet invalid.
+
 ## What recovery does not ask
 
 Recovery must not score or infer:
