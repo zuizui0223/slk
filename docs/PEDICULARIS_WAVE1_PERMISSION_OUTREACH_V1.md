@@ -28,7 +28,9 @@ Only the dedicated permission-response adjudicator can convert substantive respo
 
 ```text
 data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv
+data/PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_TEMPLATE_V1.json
 scripts/manage_pedicularis_wave1_permission_outreach.py
+scripts/apply_pedicularis_permission_response_receipt.py
 scripts/compile_pedicularis_outreach_to_permission_response_draft.py
 scripts/render_pedicularis_wave1_permission_messages.py
 scripts/validate_pedicularis_wave1_permission_messages_for_send.py
@@ -41,6 +43,7 @@ tests/test_pedicularis_wave1_permission_outreach.py
 tests/test_pedicularis_permission_send_receipt.py
 tests/test_pedicularis_wave1_permission_messages.py
 tests/test_pedicularis_wave1_permission_message_send_guard.py
+tests/test_pedicularis_permission_response_receipt.py
 tests/test_pedicularis_outreach_to_permission_response_draft.py
 ```
 
