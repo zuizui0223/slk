@@ -323,7 +323,9 @@ DRAFT_AWAITING_ACTIVITY_DECISIONS.
 The compiler deliberately excludes routing-only contacts from the authorizing response list and cannot create an `ALLOWED` decision.
 
 
-For each A-F row, the draft pre-fills the canonical `registered_activity_definition_reference`. Internal review fields for reviewer, review date, rationale and review reference begin unresolved. They are completed only after the returned condition text is read; the authority-facing inquiry itself does not ask the authority to make the project's compatibility judgment.
+For each A-F row, the draft pre-fills the canonical `registered_activity_definition_reference`. Decision-extraction fields (`decision_evidence_locator`, extractor, extraction date/reference/rationale) and internal condition-review fields begin unresolved.
+
+When a human converts a returned response into `ALLOWED`, `NO_PERMISSION_REQUIRED`, or `PROHIBITED`, the specific source passage/material must be cited before adjudication. Condition compatibility is a second internal review layered on top of that extracted decision. The authority-facing inquiry itself does not ask the authority to make either internal project judgment.
 
 ## Relationship to the permission gate
 

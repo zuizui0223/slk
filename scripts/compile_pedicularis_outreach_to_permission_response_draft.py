@@ -99,6 +99,11 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
                         "activity": activity,
                         "decision": "UNRESOLVED",
                         "response_reference": None,
+                        "decision_evidence_locator": None,
+                        "decision_extracted_by": None,
+                        "decision_extraction_date": None,
+                        "decision_extraction_reference": None,
+                        "decision_extraction_rationale": None,
                         "valid_from": None,
                         "valid_through": None,
                         "conditions": None,
@@ -146,7 +151,9 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
         },
         "next_action": (
             "Read each returned authority/site response; set A-F decisions separately; "
-            "fill activity-level response references, validity dates and conditions; "
+            "for every resolved decision record the evidence locator, extractor, extraction "
+            "date/reference/rationale; fill activity-level response references, validity "
+            "dates and conditions; "
             "review whether each positive condition is compatible with the canonical "
             "registered activity definition; record reviewer, review date, rationale, "
             "and review reference; then set "

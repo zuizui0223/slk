@@ -20,6 +20,41 @@ assert spec2.loader is not None
 spec2.loader.exec_module(comp)
 
 
+def _decision_audit(
+    activity_id: str,
+    *,
+    resolved: bool,
+    prefix: str = "TEST",
+) -> dict:
+    return {
+        "decision_evidence_locator": (
+            f"BODY:paragraph-{activity_id}"
+            if resolved
+            else None
+        ),
+        "decision_extracted_by": (
+            "TEST-EXTRACTOR"
+            if resolved
+            else None
+        ),
+        "decision_extraction_date": (
+            "2027-05-12"
+            if resolved
+            else None
+        ),
+        "decision_extraction_reference": (
+            f"{prefix}-EXTRACT-{activity_id}"
+            if resolved
+            else None
+        ),
+        "decision_extraction_rationale": (
+            "Decision category was extracted from the cited response passage."
+            if resolved
+            else None
+        ),
+    }
+
+
 def _activities(default: str = "UNRESOLVED") -> list[dict]:
     return [
         {
@@ -74,6 +109,10 @@ def _activities(default: str = "UNRESOLVED") -> list[dict]:
                 if default in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             ),
+            **_decision_audit(
+                activity_id,
+                resolved=default != "UNRESOLVED",
+            ),
         }
         for activity_id in "ABCDEF"
     ]
@@ -87,6 +126,13 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
                 f"{prefix}-{row['activity_id']}"
                 if decision != "UNRESOLVED"
                 else None
+            )
+            row.update(
+                _decision_audit(
+                    row["activity_id"],
+                    resolved=decision != "UNRESOLVED",
+                    prefix=prefix,
+                )
             )
             row["valid_from"] = (
                 "2027-05-01"
@@ -134,6 +180,16 @@ def _set_abc(rows: list[dict], decision: str, prefix: str) -> None:
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}
                 else None
             )
+
+
+def _fill_decision_audit(row: dict, prefix: str) -> None:
+    row.update(
+        _decision_audit(
+            row["activity_id"],
+            resolved=True,
+            prefix=prefix,
+        )
+    )
 
 
 def _fill_condition_review(
@@ -280,6 +336,7 @@ def test_site_prohibition_blocks_recovery_p0a_scope() -> None:
     target = next(x for x in site if x["activity_id"] == "B")
     target["decision"] = "PROHIBITED"
     target["response_reference"] = "SITE-BLOCK-B"
+    _fill_decision_audit(target, "SITE-BLOCK-B")
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_BLOCKED"
     assert out["recovery_handoff"]["sampling_permission_status"] == "UNRESOLVED"
@@ -485,6 +542,7 @@ def test_optional_D_permission_is_receipted_without_becoming_required_scope() ->
         )
         target["decision"] = "ALLOWED"
         target["response_reference"] = f"{prefix}-D"
+        _fill_decision_audit(target, f"{prefix}-D")
         target["valid_from"] = "2027-06-01"
         target["valid_through"] = "2027-06-30"
         target["conditions"] = "voucher-only June window"
@@ -508,6 +566,7 @@ def test_optional_positive_D_permission_still_requires_validity_dates() -> None:
     )
     target["decision"] = "ALLOWED"
     target["response_reference"] = "REG-D"
+    _fill_decision_audit(target, "REG-D")
     target["valid_from"] = "2027-06-01"
     target["valid_through"] = None
     target["conditions"] = "voucher-only June window"
@@ -526,6 +585,7 @@ def test_activity_specific_D_validity_can_be_narrower_than_A_C() -> None:
         )
         d["decision"] = "ALLOWED"
         d["response_reference"] = f"{prefix}-D"
+        _fill_decision_audit(d, f"{prefix}-D")
         d["valid_from"] = "2027-06-10"
         d["valid_through"] = "2027-06-20"
         d["conditions"] = "voucher only during June 10-20"
@@ -611,6 +671,7 @@ def test_incompatible_optional_D_condition_does_not_block_default_A_C_scope() ->
         )
         d["decision"] = "ALLOWED"
         d["response_reference"] = f"{prefix}-D"
+        _fill_decision_audit(d, f"{prefix}-D")
         d["valid_from"] = "2027-06-01"
         d["valid_through"] = "2027-06-30"
         d["conditions"] = "voucher only outside the registered recovery area"
@@ -779,3 +840,156 @@ def test_permission_receipt_preserves_incoming_response_provenance() -> None:
     assert response["source_response_classification_review_reference"].startswith(
         "FORESTRY-CLASS-REVIEW"
     )
+
+
+
+def test_resolved_activity_requires_decision_evidence_locator() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["decision_evidence_locator"] = None
+    with pytest.raises(ValueError, match="decision_evidence_locator"):
+        adj.adjudicate(payload)
+
+
+def test_decision_evidence_locator_requires_registered_source_prefix() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["decision_evidence_locator"] = "VAGUE:somewhere"
+    with pytest.raises(ValueError, match="unregistered prefix"):
+        adj.adjudicate(payload)
+
+
+def test_resolved_activity_requires_decision_extractor() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "B"
+    )
+    target["decision_extracted_by"] = None
+    with pytest.raises(ValueError, match="decision_extracted_by"):
+        adj.adjudicate(payload)
+
+
+def test_decision_extraction_date_cannot_precede_response() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["decision_extraction_date"] = "2027-05-11"
+    with pytest.raises(ValueError, match="decision extraction date must fall"):
+        adj.adjudicate(payload)
+
+
+def test_decision_extraction_date_cannot_follow_bundle_adjudication() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["decision_extraction_date"] = "2027-05-14"
+    with pytest.raises(ValueError, match="decision extraction date must fall"):
+        adj.adjudicate(payload)
+
+
+def test_confirmed_receipt_preserves_activity_decision_extraction_audit() -> None:
+    out = adj.adjudicate(_songzanlin_bundle())
+    details = out["responses"][0]["activity_decision_details"]["A"]
+    assert details["decision_evidence_locator"] == "BODY:paragraph-A"
+    assert details["decision_extracted_by"] == "TEST-EXTRACTOR"
+    assert details["decision_extraction_date"] == "2027-05-12"
+    assert details["decision_extraction_reference"] == "REG-EXTRACT-A"
+    assert details["decision_extraction_rationale"]
+
+    interval = out["required_activity_validity"]["A"]["regulatory"][0]
+    assert interval["decision_evidence_locator"] == "BODY:paragraph-A"
+    assert interval["decision_extraction_reference"] == "REG-EXTRACT-A"
+
+
+
+def test_routing_only_prohibition_still_requires_valid_extraction_date() -> None:
+    payload = _songzanlin_bundle()
+    response = payload["responses"][0]
+    response["route_id"] = "SONGZANLIN_FORESTRY_REGULATOR"
+    # Use a normal authorizing route to build a resolved row, then verify the
+    # extraction-date audit itself is route-class independent via a Wufeng
+    # routing-only bundle.
+    reg = _activities()
+    local = _activities()
+    _set_abc(reg, "ALLOWED", "REG")
+    target = next(row for row in local if row["activity_id"] == "A")
+    target["decision"] = "PROHIBITED"
+    target["response_reference"] = "LOCAL-A-PROHIBIT"
+    _fill_decision_audit(target, "LOCAL-A-PROHIBIT")
+    target["decision_extraction_date"] = "2027-05-09"
+
+    bundle = {
+        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_RESPONSE_BUNDLE_V1",
+        "status": "FILLED_AUTHORITY_RESPONSES",
+        "candidate_id": "SHANGRILA_WUFENG",
+        "response_bundle_id": "wufeng-routing-prohibit",
+        "responses": [
+            {
+                "response_id": "REG-001",
+                "route_id": "WUFENG_FORESTRY_REGULATOR",
+                "responding_organization": "Shangri-La Municipal Forestry and Grassland Bureau",
+                "response_date": "2027-05-10",
+                "response_reference": "REG-RESP",
+                **_source_response_provenance(
+                    "REG-001",
+                    "2027-05-10",
+                    "REG",
+                ),
+                "activity_decisions": reg,
+            },
+            {
+                "response_id": "LOCAL-001",
+                "route_id": "WUFENG_LOCAL_ROUTING",
+                "responding_organization": "Jiantang Town People's Government",
+                "response_date": "2027-05-10",
+                "response_reference": "LOCAL-RESP",
+                **_source_response_provenance(
+                    "LOCAL-001",
+                    "2027-05-10",
+                    "LOCAL",
+                ),
+                "activity_decisions": local,
+            },
+        ],
+        "adjudication_metadata": {
+            "slk_source_commit": "abc123",
+            "adjudication_commit": "decision-audit-1",
+            "adjudication_timestamp": "2027-05-12T00:00:00Z",
+        },
+    }
+    with pytest.raises(ValueError, match="decision extraction date must fall"):
+        adj.adjudicate(bundle)
+
+
+
+def test_phone_response_requires_call_note_decision_evidence() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][0]["source_response_receive_channel"] = "PHONE_CALL"
+    with pytest.raises(ValueError, match="locator/channel mismatch"):
+        adj.adjudicate(payload)
+
+
+def test_phone_response_accepts_call_note_decision_evidence() -> None:
+    payload = _songzanlin_bundle()
+    response = payload["responses"][0]
+    response["source_response_receive_channel"] = "PHONE_CALL"
+    for row in response["activity_decisions"]:
+        if row["decision"] != "UNRESOLVED":
+            row["decision_evidence_locator"] = (
+                "CALL_NOTE:activity-" + row["activity_id"]
+            )
+    out = adj.adjudicate(payload)
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+    details = out["responses"][0]["activity_decision_details"]["A"]
+    assert details["decision_evidence_locator"].startswith("CALL_NOTE:")

@@ -25,6 +25,20 @@ ALLOWED_DECISIONS = {
     "PROHIBITED",
     "UNRESOLVED",
 }
+RESOLVED_DECISIONS = {"ALLOWED", "NO_PERMISSION_REQUIRED", "PROHIBITED"}
+DECISION_EVIDENCE_PREFIXES = (
+    "BODY:",
+    "ATTACHMENT:",
+    "CALL_NOTE:",
+    "IN_PERSON_NOTE:",
+)
+DECISION_EVIDENCE_PREFIXES_BY_CHANNEL = {
+    "EMAIL": ("BODY:", "ATTACHMENT:"),
+    "WEB_PORTAL": ("BODY:", "ATTACHMENT:"),
+    "LETTER": ("BODY:", "ATTACHMENT:"),
+    "PHONE_CALL": ("CALL_NOTE:",),
+    "IN_PERSON": ("IN_PERSON_NOTE:",),
+}
 SITE_AUTHORIZING_ROUTE_TYPES = {
     "SITE_MANAGEMENT_ROUTING",
     "INSTITUTIONAL_SITE_ROUTING",
@@ -150,10 +164,30 @@ def _decision_map(
             decision in ALLOWED_DECISIONS,
             f"{label}/{activity_id} unregistered decision: {decision}",
         )
-        if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED", "PROHIBITED"}:
+        if decision in RESOLVED_DECISIONS:
             _filled(
                 row.get("response_reference"),
                 f"{label}/{activity_id}/response_reference",
+            )
+            locator = _filled(
+                row.get("decision_evidence_locator"),
+                f"{label}/{activity_id}/decision_evidence_locator",
+            )
+            _need(
+                locator.startswith(DECISION_EVIDENCE_PREFIXES),
+                f"{label}/{activity_id} decision evidence locator has unregistered prefix",
+            )
+            _filled(
+                row.get("decision_extracted_by"),
+                f"{label}/{activity_id}/decision_extracted_by",
+            )
+            _filled(
+                row.get("decision_extraction_reference"),
+                f"{label}/{activity_id}/decision_extraction_reference",
+            )
+            _filled(
+                row.get("decision_extraction_rationale"),
+                f"{label}/{activity_id}/decision_extraction_rationale",
             )
         out[activity_id] = decision
         by_id[activity_id] = row
@@ -265,6 +299,37 @@ def adjudicate(payload: dict) -> dict:
             f"{response_id}",
         )
         decisions, decision_rows = _decision_map(response, response_id)
+        extraction_dates: dict[str, date | None] = {}
+        for activity_id, decision in decisions.items():
+            if decision in RESOLVED_DECISIONS:
+                locator = _filled(
+                    decision_rows[activity_id].get(
+                        "decision_evidence_locator"
+                    ),
+                    f"{response_id}/{activity_id}/decision_evidence_locator",
+                )
+                _need(
+                    locator.startswith(
+                        DECISION_EVIDENCE_PREFIXES_BY_CHANNEL[
+                            source_receive_channel
+                        ]
+                    ),
+                    "decision evidence locator/channel mismatch: "
+                    f"{response_id}/{activity_id}/{source_receive_channel}",
+                )
+                extraction_date = _iso_date(
+                    decision_rows[activity_id].get("decision_extraction_date"),
+                    f"decision_extraction_date/{response_id}/{activity_id}",
+                )
+                _need(
+                    response_date <= extraction_date <= adjudication_day,
+                    "decision extraction date must fall between response and adjudication: "
+                    f"{response_id}/{activity_id}",
+                )
+                extraction_dates[activity_id] = extraction_date
+            else:
+                extraction_dates[activity_id] = None
+
         route_type = route["route_type"].strip()
         if route_type == "REGULATORY_ROUTING":
             route_class = "REGULATORY"
@@ -289,6 +354,7 @@ def adjudicate(payload: dict) -> dict:
             effective_decisions: dict[str, str] = {}
             for activity_id, decision in decisions.items():
                 decision_row = decision_rows[activity_id]
+                extraction_date = extraction_dates[activity_id]
                 effective_decision = decision
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}:
                     valid_from = _iso_date(
@@ -362,6 +428,23 @@ def adjudicate(payload: dict) -> dict:
                                     decision_row.get("response_reference"),
                                     f"{response_id}/{activity_id}/response_reference",
                                 ),
+                                "decision_evidence_locator": _filled(
+                                    decision_row.get("decision_evidence_locator"),
+                                    f"{response_id}/{activity_id}/decision_evidence_locator",
+                                ),
+                                "decision_extracted_by": _filled(
+                                    decision_row.get("decision_extracted_by"),
+                                    f"{response_id}/{activity_id}/decision_extracted_by",
+                                ),
+                                "decision_extraction_date": extraction_date.isoformat(),
+                                "decision_extraction_reference": _filled(
+                                    decision_row.get("decision_extraction_reference"),
+                                    f"{response_id}/{activity_id}/decision_extraction_reference",
+                                ),
+                                "decision_extraction_rationale": _filled(
+                                    decision_row.get("decision_extraction_rationale"),
+                                    f"{response_id}/{activity_id}/decision_extraction_rationale",
+                                ),
                                 "decision": decision,
                                 "valid_from": valid_from.isoformat(),
                                 "valid_through": valid_through.isoformat(),
@@ -412,6 +495,21 @@ def adjudicate(payload: dict) -> dict:
                         "response_reference": decision_rows[activity_id].get(
                             "response_reference"
                         ),
+                        "decision_evidence_locator": decision_rows[
+                            activity_id
+                        ].get("decision_evidence_locator"),
+                        "decision_extracted_by": decision_rows[
+                            activity_id
+                        ].get("decision_extracted_by"),
+                        "decision_extraction_date": decision_rows[
+                            activity_id
+                        ].get("decision_extraction_date"),
+                        "decision_extraction_reference": decision_rows[
+                            activity_id
+                        ].get("decision_extraction_reference"),
+                        "decision_extraction_rationale": decision_rows[
+                            activity_id
+                        ].get("decision_extraction_rationale"),
                         "valid_from": decision_rows[activity_id].get(
                             "valid_from"
                         ),
