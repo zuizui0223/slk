@@ -96,9 +96,30 @@ def _candidate_ready_messages(payload: dict) -> tuple[str, dict[str, dict]]:
             guard.get("automatic_send_allowed") is False,
             f"route automatic send must remain disabled: {route_id}",
         )
-        digest = message_content_sha256(message)
+        digests = {
+            "CN": message_content_sha256(message, language="CN"),
+            "EN": message_content_sha256(message, language="EN"),
+            "BILINGUAL": message_content_sha256(
+                message,
+                language="BILINGUAL",
+            ),
+        }
         _need(
-            message.get("message_content_sha256") == digest,
+            message.get("message_content_sha256_cn") == digests["CN"],
+            f"route reviewed-message CN hash mismatch: {route_id}",
+        )
+        _need(
+            message.get("message_content_sha256_en") == digests["EN"],
+            f"route reviewed-message EN hash mismatch: {route_id}",
+        )
+        _need(
+            message.get("message_content_sha256_bilingual")
+            == digests["BILINGUAL"],
+            f"route reviewed-message bilingual hash mismatch: {route_id}",
+        )
+        _need(
+            message.get("message_content_sha256")
+            == digests["BILINGUAL"],
             f"route reviewed-message hash mismatch: {route_id}",
         )
         by_route[route_id] = message
