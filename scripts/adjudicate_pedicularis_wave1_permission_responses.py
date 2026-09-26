@@ -292,6 +292,22 @@ def adjudicate(payload: dict) -> dict:
             f"{response_id}",
         )
         decisions, decision_rows = _decision_map(response, response_id)
+        extraction_dates: dict[str, date | None] = {}
+        for activity_id, decision in decisions.items():
+            if decision in RESOLVED_DECISIONS:
+                extraction_date = _iso_date(
+                    decision_rows[activity_id].get("decision_extraction_date"),
+                    f"decision_extraction_date/{response_id}/{activity_id}",
+                )
+                _need(
+                    response_date <= extraction_date <= adjudication_day,
+                    "decision extraction date must fall between response and adjudication: "
+                    f"{response_id}/{activity_id}",
+                )
+                extraction_dates[activity_id] = extraction_date
+            else:
+                extraction_dates[activity_id] = None
+
         route_type = route["route_type"].strip()
         if route_type == "REGULATORY_ROUTING":
             route_class = "REGULATORY"
@@ -316,18 +332,7 @@ def adjudicate(payload: dict) -> dict:
             effective_decisions: dict[str, str] = {}
             for activity_id, decision in decisions.items():
                 decision_row = decision_rows[activity_id]
-                if decision in RESOLVED_DECISIONS:
-                    extraction_date = _iso_date(
-                        decision_row.get("decision_extraction_date"),
-                        f"decision_extraction_date/{response_id}/{activity_id}",
-                    )
-                    _need(
-                        response_date <= extraction_date <= adjudication_day,
-                        "decision extraction date must fall between response and adjudication: "
-                        f"{response_id}/{activity_id}",
-                    )
-                else:
-                    extraction_date = None
+                extraction_date = extraction_dates[activity_id]
                 effective_decision = decision
                 if decision in {"ALLOWED", "NO_PERMISSION_REQUIRED"}:
                     valid_from = _iso_date(
