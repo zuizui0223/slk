@@ -6,8 +6,14 @@ import math
 from pathlib import Path
 
 try:
+    from scripts.pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
     from scripts.pedicularis_physical_units import validate_firewall_block
 except ImportError:
+    from pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
     from pedicularis_physical_units import validate_firewall_block
 
 
@@ -28,9 +34,6 @@ EXPECTED_QUALIFICATION = {
 CAPACITY_RULE = "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION"
 BASE_CALIBRATION_PLANTS = 84
 POLLINATOR_RATE_UNIT = "LEGITIMATE_VISITS_PER_FLOWER_MINUTE"
-PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
-PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
-REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 
 
 def _need(ok: bool, message: str) -> None:
@@ -118,40 +121,10 @@ def plan(freeze: dict) -> dict:
         isinstance(permission, dict),
         "P0b effort permission scope receipt missing",
     )
-    _need(
-        permission.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
-        "wrong P0b effort permission receipt schema",
+    validate_confirmed_permission_scope(
+        permission,
+        expected_candidate_id=ctx["candidate_id"],
     )
-    _need(
-        permission.get("status") == PERMISSION_RECEIPT_STATUS,
-        "P0b effort permission scope is not confirmed",
-    )
-    _need(
-        permission.get("candidate_id") == ctx["candidate_id"],
-        "P0b effort permission candidate mismatch",
-    )
-    _need(
-        permission.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
-        "P0b effort permission scope changed",
-    )
-    matrix = permission.get("required_activity_matrix")
-    validity = permission.get("required_activity_validity")
-    _need(
-        isinstance(matrix, dict) and set(matrix) == {"A", "B", "C"},
-        "P0b effort permission activity matrix changed",
-    )
-    _need(
-        isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
-        "P0b effort permission validity inventory changed",
-    )
-    for activity_id in ("A", "B", "C"):
-        cell = matrix[activity_id]
-        _need(
-            isinstance(cell, dict)
-            and cell.get("regulatory") == "PASS"
-            and cell.get("site") == "PASS",
-            f"P0b effort permission scope not passed for activity {activity_id}",
-        )
 
     policy = freeze.get("source_policy", {})
     allowed = set(policy.get("allowed_relevance_sources", []))
