@@ -91,6 +91,48 @@ REGULATORY / SITE side.
 Only A-C define the default non-destructive scope. D-F are retained so later destructive routes cannot silently inherit A-C validity.
 
 
+## Activity-decision evidence extraction
+
+A resolved activity decision cannot be justified only by citing the response as a whole. For every:
+
+```text
+ALLOWED
+NO_PERMISSION_REQUIRED
+PROHIBITED
+```
+
+activity row, the bundle must also record:
+
+```text
+decision_evidence_locator
+decision_extracted_by
+decision_extraction_date
+decision_extraction_reference
+decision_extraction_rationale.
+```
+
+The evidence locator must identify where the decision came from inside the audited source response. Registered prefixes are:
+
+```text
+BODY:
+ATTACHMENT:
+CALL_NOTE:
+IN_PERSON_NOTE:
+```
+
+Examples:
+
+```text
+BODY:paragraph-4
+ATTACHMENT:permit-letter.pdf#p2-item-C
+CALL_NOTE:lines-18-24
+IN_PERSON_NOTE:section-3.
+```
+
+The extraction date must fall on or after the authority/site response date and no later than permission-bundle adjudication. The source response hash remains the immutable parent provenance; the evidence locator identifies the specific passage/material used for the activity-level interpretation.
+
+`UNRESOLVED` rows do not require decision-extraction metadata because no substantive activity decision has been made.
+
 ## Condition-compatibility review
 
 An authority can return a formally positive decision whose conditions make the registered field activity impossible. Therefore raw authorization and effective project scope are separated.
