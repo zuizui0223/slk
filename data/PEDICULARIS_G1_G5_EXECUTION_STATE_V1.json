@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "4d9b7ad32f91a3188b6db3cb16421c19fd839d52",
+  "source_main_commit_at_state_snapshot": "2045dd162c3b4848a1af063d328f87cb9f642f00",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_QUEUE_LOCATOR_BACKED_PACKET_WITH_AUDITABLE_RECOVERY_EVIDENCE_GATE_READY",
@@ -126,7 +126,26 @@
     "permission_incoming_response_applier": "scripts/apply_pedicularis_permission_response_receipt.py",
     "permission_incoming_response_policy": "TIMEZONE_RECEIPT_CONTENT_HASH_HUMAN_CLASSIFICATION_REVIEW_REQUIRED",
     "permission_response_provenance_policy": "PERMISSION_BUNDLE_REQUIRES_UNIQUE_AUDITED_INCOMING_RESPONSE_EVENT_PER_RESPONSE",
-    "permission_followup_preemption_violation_policy": "RETAIN_RESPONSE_FLAG_PROTOCOL_DEVIATION_REQUIRE_REVIEW"
+    "permission_followup_preemption_violation_policy": "RETAIN_RESPONSE_FLAG_PROTOCOL_DEVIATION_REQUIRE_REVIEW",
+    "permission_activity_decision_evidence_policy": {
+      "resolved_decisions": [
+        "ALLOWED",
+        "NO_PERMISSION_REQUIRED",
+        "PROHIBITED"
+      ],
+      "evidence_locator_prefixes": [
+        "BODY:",
+        "ATTACHMENT:",
+        "CALL_NOTE:",
+        "IN_PERSON_NOTE:"
+      ],
+      "extractor_required": true,
+      "extraction_date_required": true,
+      "extraction_reference_required": true,
+      "extraction_rationale_required": true,
+      "extraction_date_window": "AUTHORITY_RESPONSE_DATE_TO_BUNDLE_ADJUDICATION_DATE",
+      "unresolved_decisions_require_extraction_audit": false
+    }
   },
   "stages": [
     {
