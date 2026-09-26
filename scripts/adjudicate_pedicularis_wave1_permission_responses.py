@@ -155,6 +155,10 @@ def _decision_map(
                 row.get("response_reference"),
                 f"{label}/{activity_id}/response_reference",
             )
+            _filled(
+                row.get("decision_evidence_locator"),
+                f"{label}/{activity_id}/decision_evidence_locator",
+            )
         out[activity_id] = decision
         by_id[activity_id] = row
     return out, by_id
@@ -313,6 +317,10 @@ def adjudicate(payload: dict) -> dict:
                         decision_row.get("conditions"),
                         f"conditions/{response_id}/{activity_id}",
                     )
+                    conditions_evidence_locator = _filled(
+                        decision_row.get("conditions_evidence_locator"),
+                        f"conditions_evidence_locator/{response_id}/{activity_id}",
+                    )
                     compatible = _required_bool(
                         decision_row.get(
                             "conditions_compatible_with_registered_activity"
@@ -366,6 +374,13 @@ def adjudicate(payload: dict) -> dict:
                                 "valid_from": valid_from.isoformat(),
                                 "valid_through": valid_through.isoformat(),
                                 "conditions": conditions,
+                                "decision_evidence_locator": _filled(
+                                    decision_row.get("decision_evidence_locator"),
+                                    f"{response_id}/{activity_id}/decision_evidence_locator",
+                                ),
+                                "conditions_evidence_locator": (
+                                    conditions_evidence_locator
+                                ),
                                 "conditions_compatible_with_registered_activity": True,
                                 "conditions_review_reference": review_reference,
                                 "registered_activity_definition_reference": (
@@ -421,6 +436,12 @@ def adjudicate(payload: dict) -> dict:
                         "conditions": decision_rows[activity_id].get(
                             "conditions"
                         ),
+                        "decision_evidence_locator": decision_rows[
+                            activity_id
+                        ].get("decision_evidence_locator"),
+                        "conditions_evidence_locator": decision_rows[
+                            activity_id
+                        ].get("conditions_evidence_locator"),
                         "conditions_compatible_with_registered_activity": (
                             decision_rows[activity_id].get(
                                 "conditions_compatible_with_registered_activity"
