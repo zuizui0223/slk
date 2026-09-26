@@ -12,7 +12,6 @@
   "response_reference": "REQUIRED_BEFORE_USE",
   "response_subject": "",
   "response_capture_text": "REQUIRED_BEFORE_USE",
-  "attachment_references": [],
   "response_content_sha256": null,
   "classification": {
     "response_status": "REQUIRED_BEFORE_USE",
@@ -25,5 +24,6 @@
     "organization": "",
     "contact": ""
   },
-  "notes": ""
+  "notes": "",
+  "attachments": []
 }
