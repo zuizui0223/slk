@@ -622,6 +622,11 @@ def adjudicate(payload: dict) -> dict:
         "activity_definition_schema": (
             "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
         ),
+        "adjudication_metadata": {
+            "slk_source_commit": metadata["slk_source_commit"],
+            "adjudication_commit": metadata["adjudication_commit"],
+            "adjudication_timestamp": metadata["adjudication_timestamp"],
+        },
         "responses": resolved,
         "recovery_handoff": {
             "sampling_permission_status": "CONFIRMED" if confirmed else "UNRESOLVED",

@@ -11,6 +11,14 @@ ROOT = Path(__file__).resolve().parents[1]
 ADJ = ROOT / "scripts" / "adjudicate_pedicularis_context_recovery.py"
 COMP = ROOT / "scripts" / "compile_pedicularis_context_recovery_to_p0_calibration.py"
 CAL_TEMPLATE = ROOT / "data" / "PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_TEMPLATE_V1.json"
+PERMISSION_FIXTURE = (
+    ROOT / "tests" / "fixtures"
+    / "pedicularis_permission_scope_confirmed_v1.json"
+)
+SONGZANLIN_PERMISSION_FIXTURE = (
+    ROOT / "tests" / "fixtures"
+    / "pedicularis_permission_scope_songzanlin_confirmed_v1.json"
+)
 
 spec = importlib.util.spec_from_file_location("ped_context_recovery", ADJ)
 adj = importlib.util.module_from_spec(spec)
@@ -72,6 +80,16 @@ def _freeze() -> dict:
     }
 
 
+def _permission_receipt() -> dict:
+    return json.loads(PERMISSION_FIXTURE.read_text(encoding="utf-8"))
+
+
+def _songzanlin_permission_receipt() -> dict:
+    return json.loads(
+        SONGZANLIN_PERMISSION_FIXTURE.read_text(encoding="utf-8")
+    )
+
+
 def _obs() -> dict:
     return {
         "schema_version": "SLK_PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_V1",
@@ -106,88 +124,12 @@ def _obs() -> dict:
             "access_evidence_reference": "FIELD_ACCESS_LOG_001",
             "sampling_permission_status": "CONFIRMED",
             "sampling_permission_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
-            "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123",
+            "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm",
             "same_season_revisit_feasible": True,
             "revisit_plan_reference": "REVISIT_PLAN_001",
             "notes": "fresh context only",
         },
-        "permission_scope_receipt": {
-            "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
-            "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
-            "candidate_id": "SHANGRILA_WUFENG",
-            "response_bundle_id": "bundle-001",
-            "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
-            "required_activity_matrix": {
-                "A": {"regulatory": "PASS", "site": "PASS"},
-                "B": {"regulatory": "PASS", "site": "PASS"},
-                "C": {"regulatory": "PASS", "site": "PASS"}
-            },
-            "required_activity_validity": {
-                activity_id: {
-                    "regulatory": [
-                        {
-                            "response_id": "REG-001",
-                            "route_id": "TEST-REG",
-                            "response_reference": "REG-REF",
-                            "decision": "ALLOWED",
-                            "valid_from": "2027-05-01",
-                            "valid_through": "2027-09-30",
-                        }
-                    ],
-                    "site": [
-                        {
-                            "response_id": "SITE-001",
-                            "route_id": "TEST-SITE",
-                            "response_reference": "SITE-REF",
-                            "decision": "ALLOWED",
-                            "valid_from": "2027-05-01",
-                            "valid_through": "2027-09-30",
-                        }
-                    ],
-                }
-                for activity_id in "ABC"
-            },
-            "all_activity_matrix": {
-                activity_id: (
-                    {"regulatory": "PASS", "site": "PASS"}
-                    if activity_id in "ABC"
-                    else {"regulatory": "UNRESOLVED", "site": "UNRESOLVED"}
-                )
-                for activity_id in "ABCDEF"
-            },
-            "all_activity_validity": {
-                activity_id: (
-                    {
-                        "regulatory": [
-                            {
-                                "response_id": "REG-001",
-                                "route_id": "TEST-REG",
-                                "response_reference": "REG-REF",
-                                "decision": "ALLOWED",
-                                "valid_from": "2027-05-01",
-                                "valid_through": "2027-09-30",
-                            }
-                        ],
-                        "site": [
-                            {
-                                "response_id": "SITE-001",
-                                "route_id": "TEST-SITE",
-                                "response_reference": "SITE-REF",
-                                "decision": "ALLOWED",
-                                "valid_from": "2027-05-01",
-                                "valid_through": "2027-09-30",
-                            }
-                        ],
-                    }
-                    if activity_id in "ABC"
-                    else {"regulatory": [], "site": []}
-                )
-                for activity_id in "ABCDEF"
-            },
-            "sampling_permission_reference": (
-                "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
-            )
-        },
+        "permission_scope_receipt": _permission_receipt(),
         "prohibited_recovery_inferences": {
             "pollinator_signal_scored": False,
             "predator_signal_scored": False,
@@ -195,6 +137,90 @@ def _obs() -> dict:
             "p0_capacity_pass_scored": False,
         },
     }
+
+
+def _allow_activity_d(
+    receipt: dict,
+    *,
+    valid_through: str = "2027-09-30",
+) -> None:
+    receipt["all_activity_matrix"]["D"] = {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    receipt["all_activity_validity"]["D"] = {
+        "regulatory": [],
+        "site": [],
+    }
+    for response in receipt["responses"]:
+        if response["route_class"] not in {"REGULATORY", "SITE"}:
+            continue
+        prefix = "REG-D" if response["route_class"] == "REGULATORY" else "SITE-D"
+        response["activity_decisions"]["D"] = "ALLOWED"
+        response["effective_scope_decisions"]["D"] = "ALLOWED"
+        detail = response["activity_decision_details"]["D"]
+        detail.update(
+            {
+                "decision": "ALLOWED",
+                "response_reference": f"{prefix}-REF",
+                "decision_evidence_locator": "BODY:paragraph-D",
+                "decision_extracted_by": "TEST-EXTRACTOR",
+                "decision_extraction_date": "2027-05-12",
+                "decision_extraction_reference": f"{prefix}-EXTRACT",
+                "decision_extraction_rationale": (
+                    "Voucher permission was extracted from the cited response passage."
+                ),
+                "valid_from": "2027-05-01",
+                "valid_through": valid_through,
+                "conditions": "NO_ADDITIONAL_CONDITIONS",
+                "conditions_compatible_with_registered_activity": True,
+                "conditions_review_reference": f"{prefix}-COND-REVIEW",
+                "registered_activity_definition_reference": (
+                    "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#D"
+                ),
+                "conditions_reviewed_by": "TEST-REVIEWER",
+                "conditions_review_date": "2027-05-12",
+                "conditions_review_rationale": (
+                    "Voucher condition is compatible with the registered D activity."
+                ),
+            }
+        )
+        interval = {
+            "response_id": response["response_id"],
+            "route_id": response["route_id"],
+            "response_reference": detail["response_reference"],
+            "decision_evidence_locator": detail["decision_evidence_locator"],
+            "decision_extracted_by": detail["decision_extracted_by"],
+            "decision_extraction_date": detail["decision_extraction_date"],
+            "decision_extraction_reference": detail[
+                "decision_extraction_reference"
+            ],
+            "decision_extraction_rationale": detail[
+                "decision_extraction_rationale"
+            ],
+            "decision": "ALLOWED",
+            "valid_from": detail["valid_from"],
+            "valid_through": detail["valid_through"],
+            "conditions": detail["conditions"],
+            "conditions_compatible_with_registered_activity": True,
+            "conditions_review_reference": detail[
+                "conditions_review_reference"
+            ],
+            "registered_activity_definition_reference": detail[
+                "registered_activity_definition_reference"
+            ],
+            "conditions_reviewed_by": detail["conditions_reviewed_by"],
+            "conditions_review_date": detail["conditions_review_date"],
+            "conditions_review_rationale": detail[
+                "conditions_review_rationale"
+            ],
+        }
+        side = (
+            "regulatory"
+            if response["route_class"] == "REGULATORY"
+            else "site"
+        )
+        receipt["all_activity_validity"]["D"][side].append(interval)
 
 
 def _specimen_context(
@@ -339,7 +365,11 @@ def test_recent_assessment_candidate_can_enter_fresh_recovery_gate() -> None:
             "recovery_window_id": "recovery-songzanlin-2027",
         }
     )
-    obs["permission_scope_receipt"]["candidate_id"] = "SONGZANLIN_EIA_2025"
+    obs["permission_scope_receipt"] = _songzanlin_permission_receipt()
+    obs["fresh_verification"]["sampling_permission_reference"] = (
+        "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@"
+        "testperm-songzanlin"
+    )
     out = adj.adjudicate(obs, freeze)
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
     assert out["historical_anchor"]["candidate_status_before_recovery"] == (
@@ -370,7 +400,7 @@ def test_positive_receipt_preserves_recovery_evidence_references() -> None:
     assert fresh["flowering_population_evidence_reference"] == "PHOTO_SET_FLOWERING_001"
     assert fresh["access_evidence_reference"] == "FIELD_ACCESS_LOG_001"
     assert fresh["sampling_permission_reference"] == (
-        "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
+        "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm"
     )
     assert fresh["revisit_plan_reference"] == "REVISIT_PLAN_001"
 
@@ -499,33 +529,7 @@ def test_new_field_voucher_route_passes_with_D_permission_valid_on_recovery_date
     fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
     fresh["taxon_specimen_context_receipt"] = _specimen_context()
     fresh.pop("taxon_diagnostic_checklist")
-    receipt = obs["permission_scope_receipt"]
-    receipt["all_activity_matrix"]["D"] = {
-        "regulatory": "PASS",
-        "site": "PASS",
-    }
-    receipt["all_activity_validity"]["D"] = {
-        "regulatory": [
-            {
-                "response_id": "REG-D",
-                "route_id": "TEST-REG",
-                "response_reference": "REG-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-09-30",
-            }
-        ],
-        "site": [
-            {
-                "response_id": "SITE-D",
-                "route_id": "TEST-SITE",
-                "response_reference": "SITE-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-09-30",
-            }
-        ],
-    }
+    _allow_activity_d(obs["permission_scope_receipt"])
     out = adj.adjudicate(obs, _freeze())
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
     assert out["fresh_verification"]["new_voucher_permission_valid_on_verification_date"] is True
@@ -643,33 +647,7 @@ def test_new_field_voucher_collection_date_must_equal_recovery_date() -> None:
         collection_date="2027-06-14",
     )
     fresh.pop("taxon_diagnostic_checklist")
-    receipt = obs["permission_scope_receipt"]
-    receipt["all_activity_matrix"]["D"] = {
-        "regulatory": "PASS",
-        "site": "PASS",
-    }
-    receipt["all_activity_validity"]["D"] = {
-        "regulatory": [
-            {
-                "response_id": "REG-D",
-                "route_id": "TEST-REG",
-                "response_reference": "REG-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-09-30",
-            }
-        ],
-        "site": [
-            {
-                "response_id": "SITE-D",
-                "route_id": "TEST-SITE",
-                "response_reference": "SITE-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-09-30",
-            }
-        ],
-    }
+    _allow_activity_d(obs["permission_scope_receipt"])
     with pytest.raises(ValueError, match="must equal recovery verification date"):
         adj.adjudicate(obs, _freeze())
 
@@ -683,32 +661,9 @@ def test_new_field_voucher_rejects_expired_D_permission_even_when_A_C_are_valid(
     fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
     fresh["taxon_specimen_context_receipt"] = _specimen_context()
     fresh.pop("taxon_diagnostic_checklist")
-    receipt = obs["permission_scope_receipt"]
-    receipt["all_activity_matrix"]["D"] = {
-        "regulatory": "PASS",
-        "site": "PASS",
-    }
-    receipt["all_activity_validity"]["D"] = {
-        "regulatory": [
-            {
-                "response_id": "REG-D",
-                "route_id": "TEST-REG",
-                "response_reference": "REG-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-06-01",
-            }
-        ],
-        "site": [
-            {
-                "response_id": "SITE-D",
-                "route_id": "TEST-SITE",
-                "response_reference": "SITE-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-06-01",
-            }
-        ],
-    }
+    _allow_activity_d(
+        obs["permission_scope_receipt"],
+        valid_through="2027-06-01",
+    )
     with pytest.raises(ValueError, match="requires activity D"):
         adj.adjudicate(obs, _freeze())

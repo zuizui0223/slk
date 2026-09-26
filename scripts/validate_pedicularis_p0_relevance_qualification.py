@@ -6,15 +6,18 @@ import math
 from pathlib import Path
 
 try:
+    from scripts.pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
     from scripts.pedicularis_physical_units import validate_firewall_block
 except ImportError:
+    from pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
     from pedicularis_physical_units import validate_firewall_block
 
 
 SCHEMA = "SLK_PEDICULARIS_P0_RELEVANCE_QUALIFICATION_V1"
-PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
-PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
-REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 REQUIRED_IDS = {
     "P0_POLLINATOR_MIN_RATE",
     "P0_PREDATOR_MIN_PREVALENCE",
@@ -70,53 +73,10 @@ def validate(payload: dict) -> dict:
         isinstance(permission, dict),
         "P0 qualification permission scope receipt missing",
     )
-    _need(
-        permission.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
-        "wrong P0 qualification permission receipt schema",
+    validate_confirmed_permission_scope(
+        permission,
+        expected_candidate_id=ctx["candidate_id"],
     )
-    _need(
-        permission.get("status") == PERMISSION_RECEIPT_STATUS,
-        "P0 qualification permission scope is not confirmed",
-    )
-    _need(
-        permission.get("candidate_id") == ctx["candidate_id"],
-        "P0 qualification permission candidate mismatch",
-    )
-    _need(
-        permission.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
-        "P0 qualification permission scope changed",
-    )
-    permission_matrix = permission.get("required_activity_matrix")
-    permission_validity = permission.get("required_activity_validity")
-    _need(
-        isinstance(permission_matrix, dict)
-        and set(permission_matrix) == {"A", "B", "C"},
-        "P0 qualification permission activity matrix changed",
-    )
-    _need(
-        isinstance(permission_validity, dict)
-        and set(permission_validity) == {"A", "B", "C"},
-        "P0 qualification permission validity inventory changed",
-    )
-    for activity_id in ("A", "B", "C"):
-        cell = permission_matrix[activity_id]
-        _need(
-            isinstance(cell, dict)
-            and cell.get("regulatory") == "PASS"
-            and cell.get("site") == "PASS",
-            f"P0 qualification permission scope not passed for activity {activity_id}",
-        )
-        validity_cell = permission_validity[activity_id]
-        _need(
-            isinstance(validity_cell, dict)
-            and set(validity_cell) == {"regulatory", "site"}
-            and all(
-                isinstance(validity_cell[side], list)
-                and bool(validity_cell[side])
-                for side in ("regulatory", "site")
-            ),
-            f"P0 qualification permission validity missing for activity {activity_id}",
-        )
 
     _need(set(payload.get("allowed_routes", [])) == set(ROUTES), "allowed qualification routes changed")
     firewall = payload.get("firewall", {})

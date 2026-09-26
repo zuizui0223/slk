@@ -28,47 +28,14 @@ assert spec3.loader is not None
 spec3.loader.exec_module(comp)
 
 
+PERMISSION_FIXTURE = (
+    ROOT / "tests" / "fixtures"
+    / "pedicularis_permission_scope_confirmed_v1.json"
+)
+
+
 def _permission_receipt() -> dict:
-    validity = {
-        activity_id: {
-            "regulatory": [
-                {
-                    "response_id": "REG-001",
-                    "route_id": "TEST-REG",
-                    "response_reference": "REG-REF",
-                    "decision": "ALLOWED",
-                    "valid_from": "2027-05-01",
-                    "valid_through": "2027-09-30",
-                }
-            ],
-            "site": [
-                {
-                    "response_id": "SITE-001",
-                    "route_id": "TEST-SITE",
-                    "response_reference": "SITE-REF",
-                    "decision": "ALLOWED",
-                    "valid_from": "2027-05-01",
-                    "valid_through": "2027-09-30",
-                }
-            ],
-        }
-        for activity_id in "ABC"
-    }
-    return {
-        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
-        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
-        "candidate_id": "SHANGRILA_WUFENG",
-        "response_bundle_id": "test-bundle",
-        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
-        "required_activity_matrix": {
-            activity_id: {"regulatory": "PASS", "site": "PASS"}
-            for activity_id in "ABC"
-        },
-        "required_activity_validity": validity,
-        "sampling_permission_reference": (
-            "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm"
-        ),
-    }
+    return json.loads(PERMISSION_FIXTURE.read_text(encoding="utf-8"))
 
 
 def _freeze() -> dict:
@@ -324,11 +291,14 @@ def test_p0a_planned_window_must_be_inside_permission_validity() -> None:
 
 def test_p0a_permission_interval_cannot_be_reversed() -> None:
     freeze = _freeze()
-    interval = freeze["permission_scope_receipt"][
-        "required_activity_validity"
-    ]["A"]["site"][0]
-    interval["valid_from"] = "2027-09-30"
-    interval["valid_through"] = "2027-05-01"
+    site_response = next(
+        response
+        for response in freeze["permission_scope_receipt"]["responses"]
+        if response["route_class"] == "SITE"
+    )
+    detail = site_response["activity_decision_details"]["A"]
+    detail["valid_from"] = "2027-09-30"
+    detail["valid_through"] = "2027-05-01"
     with pytest.raises(ValueError, match="interval reversed"):
         sum_mod.validate_freeze(freeze)
 

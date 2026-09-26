@@ -24,47 +24,14 @@ import json
 
 
 
+PERMISSION_FIXTURE = (
+    ROOT / "tests" / "fixtures"
+    / "pedicularis_permission_scope_confirmed_v1.json"
+)
+
+
 def _permission_receipt() -> dict:
-    validity = {
-        activity_id: {
-            "regulatory": [
-                {
-                    "response_id": "REG-001",
-                    "route_id": "TEST-REG",
-                    "response_reference": "REG-REF",
-                    "decision": "ALLOWED",
-                    "valid_from": "2027-05-01",
-                    "valid_through": "2027-09-30",
-                }
-            ],
-            "site": [
-                {
-                    "response_id": "SITE-001",
-                    "route_id": "TEST-SITE",
-                    "response_reference": "SITE-REF",
-                    "decision": "ALLOWED",
-                    "valid_from": "2027-05-01",
-                    "valid_through": "2027-09-30",
-                }
-            ],
-        }
-        for activity_id in "ABC"
-    }
-    return {
-        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
-        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
-        "candidate_id": "SHANGRILA_WUFENG",
-        "response_bundle_id": "test-permission-bundle",
-        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
-        "required_activity_matrix": {
-            activity_id: {"regulatory": "PASS", "site": "PASS"}
-            for activity_id in "ABC"
-        },
-        "required_activity_validity": validity,
-        "sampling_permission_reference": (
-            "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm"
-        ),
-    }
+    return json.loads(PERMISSION_FIXTURE.read_text(encoding="utf-8"))
 
 
 def _row(input_id: str, value: float) -> dict:
