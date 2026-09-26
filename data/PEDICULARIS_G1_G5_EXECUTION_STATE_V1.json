@@ -4,7 +4,7 @@
   "design_status": "PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED",
   "design_detail": "PEDICULARIS_G1_G5_END_TO_END_WITH_P0_ENTRY_AND_PHYSICAL_FIREWALL_CHAIN_REGISTERED",
   "biological_chain_status": "PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN",
-  "source_main_commit_at_state_snapshot": "2045dd162c3b4848a1af063d328f87cb9f642f00",
+  "source_main_commit_at_state_snapshot": "4206f92d40b3413cb412aad94aa451d0bd961632",
   "current_execution_bottleneck": {
     "stage_id": "P0_CONTEXT_RECOVERY",
     "design_status": "REGISTERED_LEDGER_QUEUE_LOCATOR_BACKED_PACKET_WITH_AUDITABLE_RECOVERY_EVIDENCE_GATE_READY",
@@ -165,7 +165,22 @@
           "IN_PERSON_NOTE:"
         ]
       }
-    }
+    },
+    "permission_scope_full_provenance_validator": "scripts/pedicularis_permission_scope.py",
+    "permission_scope_handoff_policy": "FULL_ADJUDICATED_RECEIPT_PRESERVED_NOT_MATRIX_DATE_SUMMARY",
+    "permission_scope_revalidation_points": [
+      "PERMISSION_TO_RECOVERY_COMPILER",
+      "P0_CONTEXT_RECOVERY_ADJUDICATOR"
+    ],
+    "permission_scope_required_provenance": [
+      "ADJUDICATION_METADATA",
+      "UNIQUE_INCOMING_RESPONSE_EVENTS",
+      "SOURCE_RESPONSE_CONTENT_HASHES",
+      "ACTIVITY_DECISION_EVIDENCE",
+      "CONDITION_REVIEWS",
+      "ACTIVITY_VALIDITY_INTERVALS",
+      "INTERVAL_TO_SOURCE_RESPONSE_CROSS_LINKS"
+    ]
   },
   "stages": [
     {
