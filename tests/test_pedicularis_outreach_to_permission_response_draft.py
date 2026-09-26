@@ -75,7 +75,12 @@ def test_ready_candidate_compiles_unresolved_activity_decision_draft() -> None:
             for x in response["activity_decisions"]
         )
         assert all(
-            x["valid_from"] is None
+            x["decision_evidence_locator"] is None
+            and x["decision_extracted_by"] is None
+            and x["decision_extraction_date"] is None
+            and x["decision_extraction_reference"] is None
+            and x["decision_extraction_rationale"] is None
+            and x["valid_from"] is None
             and x["valid_through"] is None
             and x["conditions"] is None
             and x["conditions_compatible_with_registered_activity"] is None
@@ -139,6 +144,11 @@ def test_response_draft_matches_activity_specific_validity_contract() -> None:
                 "activity",
                 "decision",
                 "response_reference",
+                "decision_evidence_locator",
+                "decision_extracted_by",
+                "decision_extraction_date",
+                "decision_extraction_reference",
+                "decision_extraction_rationale",
                 "valid_from",
                 "valid_through",
                 "conditions",
