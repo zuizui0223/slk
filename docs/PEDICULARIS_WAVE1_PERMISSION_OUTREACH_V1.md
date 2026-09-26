@@ -187,6 +187,60 @@ outreach_reference.
 
 A `NOT_SENT` row is forbidden from carrying response evidence.
 
+## Incoming response receipt
+
+A returned email, letter, phone call or in-person reply must not be represented by manually editing only `response_status`.
+
+Capture the reply locally with:
+
+```text
+data/PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_TEMPLATE_V1.json
+```
+
+and apply it with:
+
+```bash
+python scripts/apply_pedicularis_permission_response_receipt.py \
+  PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER.csv \
+  PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_FILLED.json \
+  --ledger-output PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_UPDATED.csv \
+  --event-output PEDICULARIS_WAVE1_INCOMING_RESPONSE_EVENT.json
+```
+
+The local receipt captures:
+
+```text
+received_at
+recorded_at
+receive channel
+responding organization/contact
+response reference
+subject
+response text or call transcript/notes
+attachment references
+human-reviewed response classification.
+```
+
+The script computes a canonical SHA-256 digest from the captured reply content and records the digest, event id, timezone-aware receipt time, channel and classification-review reference in the outreach ledger.
+
+Allowed reply classifications at this stage are:
+
+```text
+ROUTING_RESPONSE_ONLY
+SUBSTANTIVE_RESPONSE_RECEIVED.
+```
+
+A routing-only reply must name the new destination and cannot satisfy the regulatory/site authorization requirement. A substantive reply is accepted only on a canonical regulatory or site-authorizing route.
+
+If a reply was already received before a later follow-up was sent, the response is retained but the event is flagged:
+
+```text
+followup_preemption_violation = true
+protocol_deviation_requires_review = true.
+```
+
+The raw reply/transcript and real response event remain local and gitignored. The canonical repository retains only templates, code, tests and de-identified protocol/state.
+
 ## Response states
 
 ```text
