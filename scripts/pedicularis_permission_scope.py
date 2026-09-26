@@ -561,10 +561,19 @@ def validate_confirmed_permission_scope(
 
     all_matrix = receipt.get("all_activity_matrix")
     _need(
+        isinstance(all_matrix, dict) and set(all_matrix) == ALL_ACTIVITIES,
+        "all-activity permission matrix inventory changed",
+    )
+    _need(
         all_matrix == recomputed_matrix,
         "all-activity permission matrix does not match response audit trail",
     )
     required_matrix = receipt.get("required_activity_matrix")
+    _need(
+        isinstance(required_matrix, dict)
+        and set(required_matrix) == REQUIRED_ACTIVITIES,
+        "required permission matrix inventory changed",
+    )
     expected_required_matrix = {
         activity_id: recomputed_matrix[activity_id]
         for activity_id in sorted(REQUIRED_ACTIVITIES)
@@ -584,10 +593,19 @@ def validate_confirmed_permission_scope(
 
     all_validity = receipt.get("all_activity_validity")
     _need(
+        isinstance(all_validity, dict) and set(all_validity) == ALL_ACTIVITIES,
+        "all-activity permission validity inventory changed",
+    )
+    _need(
         all_validity == expected_validity,
         "all-activity permission validity does not match response audit trail",
     )
     required_validity = receipt.get("required_activity_validity")
+    _need(
+        isinstance(required_validity, dict)
+        and set(required_validity) == REQUIRED_ACTIVITIES,
+        "required permission validity inventory changed",
+    )
     expected_required_validity = {
         activity_id: expected_validity[activity_id]
         for activity_id in sorted(REQUIRED_ACTIVITIES)
