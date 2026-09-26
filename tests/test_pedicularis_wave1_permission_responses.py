@@ -909,3 +909,63 @@ def test_confirmed_receipt_preserves_activity_decision_extraction_audit() -> Non
     interval = out["required_activity_validity"]["A"]["regulatory"][0]
     assert interval["decision_evidence_locator"] == "BODY:paragraph-A"
     assert interval["decision_extraction_reference"] == "REG-EXTRACT-A"
+
+
+
+def test_routing_only_prohibition_still_requires_valid_extraction_date() -> None:
+    payload = _songzanlin_bundle()
+    response = payload["responses"][0]
+    response["route_id"] = "SONGZANLIN_FORESTRY_REGULATOR"
+    # Use a normal authorizing route to build a resolved row, then verify the
+    # extraction-date audit itself is route-class independent via a Wufeng
+    # routing-only bundle.
+    reg = _activities()
+    local = _activities()
+    _set_abc(reg, "ALLOWED", "REG")
+    target = next(row for row in local if row["activity_id"] == "A")
+    target["decision"] = "PROHIBITED"
+    target["response_reference"] = "LOCAL-A-PROHIBIT"
+    _fill_decision_audit(target, "LOCAL-A-PROHIBIT")
+    target["decision_extraction_date"] = "2027-05-09"
+
+    bundle = {
+        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_RESPONSE_BUNDLE_V1",
+        "status": "FILLED_AUTHORITY_RESPONSES",
+        "candidate_id": "SHANGRILA_WUFENG",
+        "response_bundle_id": "wufeng-routing-prohibit",
+        "responses": [
+            {
+                "response_id": "REG-001",
+                "route_id": "WUFENG_FORESTRY_REGULATOR",
+                "responding_organization": "Shangri-La Municipal Forestry and Grassland Bureau",
+                "response_date": "2027-05-10",
+                "response_reference": "REG-RESP",
+                **_source_response_provenance(
+                    "REG-001",
+                    "2027-05-10",
+                    "REG",
+                ),
+                "activity_decisions": reg,
+            },
+            {
+                "response_id": "LOCAL-001",
+                "route_id": "WUFENG_LOCAL_ROUTING",
+                "responding_organization": "Jiantang Town People's Government",
+                "response_date": "2027-05-10",
+                "response_reference": "LOCAL-RESP",
+                **_source_response_provenance(
+                    "LOCAL-001",
+                    "2027-05-10",
+                    "LOCAL",
+                ),
+                "activity_decisions": local,
+            },
+        ],
+        "adjudication_metadata": {
+            "slk_source_commit": "abc123",
+            "adjudication_commit": "decision-audit-1",
+            "adjudication_timestamp": "2027-05-12T00:00:00Z",
+        },
+    }
+    with pytest.raises(ValueError, match="decision extraction date must fall"):
+        adj.adjudicate(bundle)
