@@ -183,6 +183,7 @@ def adjudicate(payload: dict) -> dict:
     _need(all(response_ids) and len(response_ids) == len(set(response_ids)), "response_id must be non-empty and unique")
 
     resolved: list[dict] = []
+    seen_source_response_event_ids: set[str] = set()
     activity_by_class: dict[str, dict[str, set[str]]] = {
         "REGULATORY": defaultdict(set),
         "SITE": defaultdict(set),
@@ -217,6 +218,11 @@ def adjudicate(payload: dict) -> dict:
             response.get("source_response_event_id"),
             f"source_response_event_id/{response_id}",
         )
+        _need(
+            source_response_event_id not in seen_source_response_event_ids,
+            f"duplicate source response event id: {source_response_event_id}",
+        )
+        seen_source_response_event_ids.add(source_response_event_id)
         source_received_at = _iso_datetime(
             response.get("source_response_received_at"),
             f"source_response_received_at/{response_id}",
@@ -224,6 +230,10 @@ def adjudicate(payload: dict) -> dict:
         _need(
             source_received_at.date() == response_date,
             f"source response received date mismatch: {response_id}",
+        )
+        _need(
+            source_received_at.date() <= adjudication_day,
+            f"source response received after bundle adjudication: {response_id}",
         )
         source_receive_channel = _filled(
             response.get("source_response_receive_channel"),
