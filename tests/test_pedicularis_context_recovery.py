@@ -780,3 +780,44 @@ def test_new_field_voucher_rejects_expired_D_permission_even_when_A_C_are_valid(
     }
     with pytest.raises(ValueError, match="requires activity D"):
         adj.adjudicate(obs, _freeze())
+
+
+
+def test_recovery_rejects_permission_receipt_missing_response_provenance() -> None:
+    obs = _obs()
+    obs["permission_scope_receipt"]["responses"][0].pop(
+        "source_response_event_id"
+    )
+    with pytest.raises(ValueError, match="source_response_event_id"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_recovery_rejects_permission_receipt_missing_decision_evidence() -> None:
+    obs = _obs()
+    obs["permission_scope_receipt"]["required_activity_validity"]["A"][
+        "regulatory"
+    ][0].pop("decision_extraction_reference")
+    with pytest.raises(ValueError, match="decision_extraction_reference"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_recovery_rejects_permission_receipt_missing_adjudication_metadata() -> None:
+    obs = _obs()
+    obs["permission_scope_receipt"].pop("adjudication_metadata")
+    with pytest.raises(ValueError, match="adjudication metadata missing"):
+        adj.adjudicate(obs, _freeze())
+
+
+def test_positive_recovery_handoff_preserves_full_permission_provenance() -> None:
+    out = adj.adjudicate(_obs(), _freeze())
+    receipt = out["downstream_handoff"][
+        "non_destructive_permission_scope_receipt"
+    ]
+    assert receipt["adjudication_metadata"]["adjudication_commit"] == "perm123"
+    assert len(receipt["responses"]) == 2
+    assert receipt["responses"][0]["source_response_event_id"] == (
+        "REG-EVENT-001"
+    )
+    assert receipt["required_activity_validity"]["A"]["regulatory"][0][
+        "decision_evidence_locator"
+    ] == "BODY:paragraph-A"
