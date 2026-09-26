@@ -10,12 +10,20 @@ from datetime import date
 from pathlib import Path
 
 try:
+    from scripts.pedicularis_permission_scope import (
+        activities_cover_window,
+        validate_confirmed_permission_scope,
+    )
     from scripts.pedicularis_physical_units import (
         FIREWALL_SCHEMA,
         canonical_tag_hash,
         validate_physical_plant_mapping,
     )
 except ImportError:
+    from pedicularis_permission_scope import (
+        activities_cover_window,
+        validate_confirmed_permission_scope,
+    )
     from pedicularis_physical_units import (
         FIREWALL_SCHEMA,
         canonical_tag_hash,
@@ -26,9 +34,6 @@ except ImportError:
 SCHEMA = "SLK_PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_V1"
 PRODUCTION_STATUS = "PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_PROSPECTIVELY_FROZEN"
 DATASET_ID = "PED_P0_NAT_HIST_CAL_V1"
-PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
-PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
-REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 ENDPOINTS = {
     "pollinator": "LEGITIMATE_VISITS_PER_FLOWER_MINUTE",
     "predator": "EARLY_ATTACK_OR_OVIPOSITION_POSITIVE_FLOWERS_PER_SCREENED_FLOWERS",
@@ -132,76 +137,18 @@ def validate_freeze(freeze: dict) -> dict:
         isinstance(permission, dict),
         "P0a permission scope receipt missing",
     )
-    _need(
-        permission.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
-        "wrong P0a permission scope receipt schema",
+    validated_permission = validate_confirmed_permission_scope(
+        permission,
+        expected_candidate_id=ctx["candidate_id"],
     )
     _need(
-        permission.get("status") == PERMISSION_RECEIPT_STATUS,
-        "P0a permission scope receipt is not confirmed",
+        activities_cover_window(
+            validated_permission,
+            planned_start,
+            planned_end,
+        ),
+        "P0a planned calibration window outside permission validity",
     )
-    _need(
-        permission.get("candidate_id") == ctx["candidate_id"],
-        "P0a permission scope receipt candidate mismatch",
-    )
-    _need(
-        permission.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
-        "P0a permission scope changed",
-    )
-    matrix = permission.get("required_activity_matrix")
-    validity = permission.get("required_activity_validity")
-    _need(
-        isinstance(matrix, dict) and set(matrix) == {"A", "B", "C"},
-        "P0a permission activity matrix changed",
-    )
-    _need(
-        isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
-        "P0a permission validity inventory changed",
-    )
-    for activity_id in ("A", "B", "C"):
-        cell = matrix[activity_id]
-        _need(
-            isinstance(cell, dict)
-            and cell.get("regulatory") == "PASS"
-            and cell.get("site") == "PASS",
-            f"P0a permission scope not passed for activity {activity_id}",
-        )
-        validity_cell = validity[activity_id]
-        _need(
-            isinstance(validity_cell, dict)
-            and set(validity_cell) == {"regulatory", "site"},
-            f"P0a permission validity cell changed: {activity_id}",
-        )
-        for side in ("regulatory", "site"):
-            intervals = validity_cell[side]
-            _need(
-                isinstance(intervals, list) and intervals,
-                f"P0a permission validity missing: {activity_id}/{side}",
-            )
-            covers_window = False
-            for index, interval in enumerate(intervals):
-                _need(
-                    isinstance(interval, dict),
-                    f"P0a permission interval must be object: {activity_id}/{side}/{index}",
-                )
-                valid_from = _iso_date(
-                    interval.get("valid_from"),
-                    f"P0a permission valid_from/{activity_id}/{side}/{index}",
-                )
-                valid_through = _iso_date(
-                    interval.get("valid_through"),
-                    f"P0a permission valid_through/{activity_id}/{side}/{index}",
-                )
-                _need(
-                    valid_from <= valid_through,
-                    f"P0a permission interval reversed: {activity_id}/{side}/{index}",
-                )
-                if valid_from <= planned_start and planned_end <= valid_through:
-                    covers_window = True
-            _need(
-                covers_window,
-                f"P0a planned calibration window outside permission validity: {activity_id}/{side}",
-            )
 
     sampling = freeze.get("sampling", {})
     floors = {
