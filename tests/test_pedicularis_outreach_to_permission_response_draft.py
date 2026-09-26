@@ -58,6 +58,15 @@ def test_ready_candidate_compiles_unresolved_activity_decision_draft() -> None:
         "SONGZANLIN_SITE_MANAGEMENT",
     }
     for response in out["responses"]:
+        assert response["source_response_event_id"].startswith("EVENT-")
+        assert response["source_response_received_at"] == (
+            "2027-05-05T09:00:00+08:00"
+        )
+        assert response["source_response_receive_channel"] == "EMAIL"
+        assert len(response["source_response_content_sha256"]) == 64
+        assert response[
+            "source_response_classification_review_reference"
+        ].startswith("CLASS-REVIEW-")
         assert [x["activity_id"] for x in response["activity_decisions"]] == list(
             "ABCDEF"
         )
