@@ -273,6 +273,36 @@ scripts/compile_pedicularis_permission_scope_into_recovery.py
 tests/test_pedicularis_wave1_permission_responses.py
 ```
 
+## Downstream receipt-integrity firewall
+
+A confirmed permission scope is not reduced to a bare A-C PASS matrix when it moves downstream.
+
+The canonical validator is:
+
+```text
+scripts/pedicularis_permission_scope.py
+```
+
+At every permission handoff it rechecks the confirmed receipt from its underlying `responses`:
+
+```text
+canonical route id / organization / route class
+incoming-response event id / timestamp / channel / SHA-256
+activity A-F raw decision
+activity-level decision evidence locator and extraction audit
+condition-compatibility review against the canonical activity definition
+effective activity decision
+regulatory/site A-F matrix
+activity-specific validity intervals
+recovery handoff reference.
+```
+
+The validator recomputes the A-F matrix and validity intervals from the response audit trail and requires the stored summaries to match exactly.
+
+Therefore deleting `responses`, altering a validity date only in the summary, changing an evidence locator, or stripping condition-review metadata causes every downstream stage to fail closed.
+
+The full permission receipt is carried through P-1, P0a relevance calibration, relevance qualification, P0b effort planning, and the final P0b freeze. Date-specific gates then apply the same validated receipt to the actual recovery day or planned P0a/P0b interval.
+
 ## Recovery handoff
 
 Only a confirmed permission-scope receipt may populate:
