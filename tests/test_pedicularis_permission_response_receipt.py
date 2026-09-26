@@ -65,7 +65,7 @@ def _receipt(
         "response_reference": f"LOCAL-RESPONSE-{route_id}-001",
         "response_subject": "Re: research permission inquiry",
         "response_capture_text": "Captured authority response text for audit.",
-        "attachment_references": [],
+        "attachments": [],
         "response_content_sha256": None,
         "classification": {
             "response_status": status,
@@ -246,4 +246,81 @@ def test_incoming_response_template_keeps_content_hash_unset_until_capture() -> 
     )
     assert payload["status"] == "TEMPLATE_ONLY_NOT_DATA"
     assert payload["response_content_sha256"] is None
+    assert payload["attachments"] == []
     assert payload["classification"]["response_status"] == "REQUIRED_BEFORE_USE"
+
+
+
+def test_attachment_hash_contributes_to_response_content_hash() -> None:
+    route = "SONGZANLIN_FORESTRY_REGULATOR"
+    rows = _sent_rows(route)
+    receipt = _receipt(rows, route)
+    receipt["attachments"] = [
+        {
+            "reference": "ATT-001",
+            "sha256": "1" * 64,
+            "media_type": "application/pdf",
+            "file_name": "authority-letter.pdf",
+        }
+    ]
+    first = mod.response_content_sha256(receipt)
+    receipt["attachments"][0]["sha256"] = "2" * 64
+    second = mod.response_content_sha256(receipt)
+    assert first != second
+
+
+def test_attachment_hash_must_be_sha256() -> None:
+    route = "SONGZANLIN_FORESTRY_REGULATOR"
+    rows = _sent_rows(route)
+    receipt = _receipt(rows, route)
+    receipt["attachments"] = [
+        {
+            "reference": "ATT-001",
+            "sha256": "bad",
+            "media_type": "application/pdf",
+            "file_name": "authority-letter.pdf",
+        }
+    ]
+    with pytest.raises(ValueError, match="attachments/0/sha256 must be sha256"):
+        mod.response_content_sha256(receipt)
+
+
+def test_attachment_references_must_be_unique() -> None:
+    route = "SONGZANLIN_FORESTRY_REGULATOR"
+    rows = _sent_rows(route)
+    receipt = _receipt(rows, route)
+    receipt["attachments"] = [
+        {
+            "reference": "ATT-001",
+            "sha256": "1" * 64,
+            "media_type": "application/pdf",
+            "file_name": "a.pdf",
+        },
+        {
+            "reference": "ATT-001",
+            "sha256": "2" * 64,
+            "media_type": "application/pdf",
+            "file_name": "b.pdf",
+        },
+    ]
+    with pytest.raises(ValueError, match="duplicate attachment reference"):
+        mod.response_content_sha256(receipt)
+
+
+def test_response_event_preserves_attachment_hash_manifest() -> None:
+    route = "SONGZANLIN_FORESTRY_REGULATOR"
+    rows = _sent_rows(route)
+    receipt = _receipt(rows, route)
+    receipt["attachments"] = [
+        {
+            "reference": "ATT-001",
+            "sha256": "3" * 64,
+            "media_type": "application/pdf",
+            "file_name": "authority-letter.pdf",
+        }
+    ]
+    _, event = mod.apply_response_receipt(rows, receipt)
+    assert event["attachment_count"] == 1
+    assert event["attachment_hashes"] == [
+        {"reference": "ATT-001", "sha256": "3" * 64}
+    ]
