@@ -72,6 +72,143 @@ def test_unknown_candidate_is_rejected() -> None:
         )
 
 
+def _permission_interval(activity_id: str, side: str) -> dict:
+    prefix = "REG" if side == "regulatory" else "SITE"
+    return {
+        "response_id": f"{prefix}-001",
+        "route_id": f"TEST-{prefix}",
+        "response_reference": f"{prefix}-{activity_id}",
+        "decision_evidence_locator": f"BODY:paragraph-{activity_id}",
+        "decision_extracted_by": "PACKET-TEST-EXTRACTOR",
+        "decision_extraction_date": "2027-05-12",
+        "decision_extraction_reference": f"{prefix}-EXTRACT-{activity_id}",
+        "decision_extraction_rationale": "Extracted from response passage.",
+        "decision": "ALLOWED",
+        "valid_from": "2027-05-01",
+        "valid_through": "2027-09-30",
+        "conditions": "NO_ADDITIONAL_CONDITIONS",
+        "conditions_compatible_with_registered_activity": True,
+        "conditions_review_reference": f"{prefix}-COND-{activity_id}",
+        "registered_activity_definition_reference": (
+            "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#"
+            + activity_id
+        ),
+        "conditions_reviewed_by": "PACKET-TEST-REVIEWER",
+        "conditions_review_date": "2027-05-12",
+        "conditions_review_rationale": "Compatible with registered activity.",
+    }
+
+
+def _permission_receipt() -> dict:
+    required_validity = {
+        activity_id: {
+            side: [_permission_interval(activity_id, side)]
+            for side in ("regulatory", "site")
+        }
+        for activity_id in "ABC"
+    }
+    def details(side: str) -> dict:
+        return {
+            activity_id: (
+                dict(_permission_interval(activity_id, side))
+                if activity_id in "ABC"
+                else {
+                    "decision": "UNRESOLVED",
+                    "response_reference": None,
+                    "decision_evidence_locator": None,
+                    "decision_extracted_by": None,
+                    "decision_extraction_date": None,
+                    "decision_extraction_reference": None,
+                    "decision_extraction_rationale": None,
+                    "valid_from": None,
+                    "valid_through": None,
+                    "conditions": None,
+                    "conditions_compatible_with_registered_activity": None,
+                    "conditions_review_reference": None,
+                    "registered_activity_definition_reference": None,
+                    "conditions_reviewed_by": None,
+                    "conditions_review_date": None,
+                    "conditions_review_rationale": None,
+                }
+            )
+            for activity_id in "ABCDEF"
+        }
+    all_validity = {
+        activity_id: (
+            {
+                side: [_permission_interval(activity_id, side)]
+                for side in ("regulatory", "site")
+            }
+            if activity_id in "ABC"
+            else {"regulatory": [], "site": []}
+        )
+        for activity_id in "ABCDEF"
+    }
+    reference = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
+    return {
+        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
+        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
+        "candidate_id": "SHANGRILA_WUFENG",
+        "response_bundle_id": "bundle-001",
+        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
+        "required_activities": ["A", "B", "C"],
+        "required_activity_matrix": {
+            activity_id: {"regulatory": "PASS", "site": "PASS"}
+            for activity_id in "ABC"
+        },
+        "required_activity_validity": required_validity,
+        "all_activity_matrix": {
+            activity_id: (
+                {"regulatory": "PASS", "site": "PASS"}
+                if activity_id in "ABC"
+                else {"regulatory": "UNRESOLVED", "site": "UNRESOLVED"}
+            )
+            for activity_id in "ABCDEF"
+        },
+        "all_activity_validity": all_validity,
+        "activity_definition_schema": (
+            "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
+        ),
+        "adjudication_metadata": {
+            "slk_source_commit": "abc123",
+            "adjudication_commit": "perm123",
+            "adjudication_timestamp": "2027-05-12T12:00:00+08:00",
+        },
+        "responses": [
+            {
+                "response_id": "REG-001",
+                "source_response_event_id": "REG-EVENT-001",
+                "source_response_received_at": "2027-05-10T09:00:00+08:00",
+                "source_response_receive_channel": "EMAIL",
+                "source_response_content_sha256": "a" * 64,
+                "source_response_classification_review_reference": "REG-CLASS",
+                "response_date": "2027-05-10",
+                "activity_decision_details": details("regulatory"),
+            },
+            {
+                "response_id": "SITE-001",
+                "source_response_event_id": "SITE-EVENT-001",
+                "source_response_received_at": "2027-05-11T09:00:00+08:00",
+                "source_response_receive_channel": "EMAIL",
+                "source_response_content_sha256": "b" * 64,
+                "source_response_classification_review_reference": "SITE-CLASS",
+                "response_date": "2027-05-11",
+                "activity_decision_details": details("site"),
+            },
+        ],
+        "recovery_handoff": {
+            "sampling_permission_status": "CONFIRMED",
+            "sampling_permission_scope": (
+                "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
+            ),
+            "sampling_permission_reference": reference,
+            "required_activity_validity": required_validity,
+            "destructive_activities_D_to_F_required_for_recovery_p0a_p0b": False,
+        },
+        "sampling_permission_reference": reference,
+    }
+
+
 def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
     packet = _packet()
     freeze = packet["freeze_draft"]
@@ -85,83 +222,7 @@ def test_frozen_generated_packet_flows_into_recovery_adjudicator() -> None:
 
     obs = packet["observation_template"]
     obs["status"] = "FRESH_CONTEXT_RECOVERY_DATA"
-    obs["permission_scope_receipt"] = {
-        "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
-        "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
-        "candidate_id": "SHANGRILA_WUFENG",
-        "response_bundle_id": "bundle-001",
-        "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
-        "required_activity_matrix": {
-            "A": {"regulatory": "PASS", "site": "PASS"},
-            "B": {"regulatory": "PASS", "site": "PASS"},
-            "C": {"regulatory": "PASS", "site": "PASS"}
-        },
-        "required_activity_validity": {
-            activity_id: {
-                "regulatory": [
-                    {
-                        "response_id": "REG-001",
-                        "route_id": "TEST-REG",
-                        "response_reference": "REG-REF",
-                        "decision": "ALLOWED",
-                        "valid_from": "2027-05-01",
-                        "valid_through": "2027-09-30",
-                    }
-                ],
-                "site": [
-                    {
-                        "response_id": "SITE-001",
-                        "route_id": "TEST-SITE",
-                        "response_reference": "SITE-REF",
-                        "decision": "ALLOWED",
-                        "valid_from": "2027-05-01",
-                        "valid_through": "2027-09-30",
-                    }
-                ],
-            }
-            for activity_id in "ABC"
-        },
-        "all_activity_matrix": {
-            activity_id: (
-                {"regulatory": "PASS", "site": "PASS"}
-                if activity_id in "ABC"
-                else {"regulatory": "UNRESOLVED", "site": "UNRESOLVED"}
-            )
-            for activity_id in "ABCDEF"
-        },
-        "all_activity_validity": {
-            activity_id: (
-                {
-                    "regulatory": [
-                        {
-                            "response_id": "REG-001",
-                            "route_id": "TEST-REG",
-                            "response_reference": "REG-REF",
-                            "decision": "ALLOWED",
-                            "valid_from": "2027-05-01",
-                            "valid_through": "2027-09-30",
-                        }
-                    ],
-                    "site": [
-                        {
-                            "response_id": "SITE-001",
-                            "route_id": "TEST-SITE",
-                            "response_reference": "SITE-REF",
-                            "decision": "ALLOWED",
-                            "valid_from": "2027-05-01",
-                            "valid_through": "2027-09-30",
-                        }
-                    ],
-                }
-                if activity_id in "ABC"
-                else {"regulatory": [], "site": []}
-            )
-            for activity_id in "ABCDEF"
-        },
-        "sampling_permission_reference": (
-            "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
-        )
-    }
+    obs["permission_scope_receipt"] = _permission_receipt()
     obs["fresh_verification"].update(
         {
             "verification_date": "2027-06-15",
