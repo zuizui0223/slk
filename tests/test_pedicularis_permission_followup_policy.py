@@ -169,7 +169,12 @@ def test_any_recorded_response_preempts_same_route_followup() -> None:
     row["outreach_status"] = "RESPONSE_RECEIVED"
     row["response_status"] = "SUBSTANTIVE_RESPONSE_RECEIVED"
     row["response_date"] = "2027-05-06"
+    row["response_received_at"] = "2027-05-06T09:00:00+08:00"
     row["response_reference"] = "RESPONSE-001"
+    row["response_event_id"] = "RESPONSE-EVENT-001"
+    row["response_receive_channel"] = "EMAIL"
+    row["response_content_sha256"] = "e" * 64
+    row["response_classification_review_reference"] = "CLASS-REVIEW-001"
     out = planner.plan(rows, _policy(), as_of_date="2027-05-20")
     route = next(
         r for r in out["routes"]

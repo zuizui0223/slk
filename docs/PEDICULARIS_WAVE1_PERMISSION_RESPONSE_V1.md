@@ -160,6 +160,22 @@ permission valid forever.
 
 An expired permission cannot be rescued by retaining the old receipt.
 
+## Incoming-response provenance requirement
+
+Every authority/site response used in a permission bundle must originate from an audited incoming-response event. Each response therefore carries:
+
+```text
+source_response_event_id
+source_response_received_at
+source_response_receive_channel
+source_response_content_sha256
+source_response_classification_review_reference.
+```
+
+The source receipt date must equal the response date, the content hash must be SHA-256, and a single incoming-response event cannot be reused as two distinct authority/site responses in the same bundle.
+
+The outreach-to-response compiler copies these fields automatically from the validated outreach ledger. A hand-written `FILLED_AUTHORITY_RESPONSES` bundle that omits the source event provenance fails closed.
+
 ## Response statuses
 
 ```text
@@ -192,6 +208,7 @@ Conflicting responses are not resolved by choosing the more convenient answer.
 
 ```text
 data/PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json
+data/PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_TEMPLATE_V1.json
 data/PEDICULARIS_WAVE1_PERMISSION_RESPONSE_TEMPLATE_V1.json
 scripts/adjudicate_pedicularis_wave1_permission_responses.py
 scripts/compile_pedicularis_permission_scope_into_recovery.py

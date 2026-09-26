@@ -4,7 +4,7 @@ import argparse
 import csv
 import json
 from collections import Counter, defaultdict
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +17,13 @@ OUTREACH_STATUSES = {
     "ROUTED_TO_ANOTHER_AUTHORITY",
     "RESPONSE_RECEIVED",
     "CLOSED_NO_ACTION",
+}
+RESPONSE_RECEIVE_CHANNELS = {
+    "EMAIL",
+    "WEB_PORTAL",
+    "LETTER",
+    "PHONE_CALL",
+    "IN_PERSON",
 }
 RESPONSE_STATUSES = {
     "NO_RESPONSE",
@@ -44,6 +51,23 @@ def _iso_date(value: object, label: str) -> date:
         return date.fromisoformat(text)
     except ValueError as exc:
         raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
+
+
+def _iso_datetime(value: object, label: str) -> datetime:
+    text = str(value).strip()
+    try:
+        out = datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError as exc:
+        raise ValueError(f"{label} must be ISO 8601 datetime") from exc
+    if out.tzinfo is None:
+        raise ValueError(f"{label} must include timezone offset")
+    return out
+
+
+def _is_sha256(value: str) -> bool:
+    if len(value) != 64:
+        return False
+    return all(ch in "0123456789abcdef" for ch in value.lower())
 
 
 def _read(path: Path) -> list[dict[str, str]]:
@@ -78,7 +102,12 @@ def generate_rows() -> list[dict[str, str]]:
                 "last_followup_reference": "",
                 "response_status": "NO_RESPONSE",
                 "response_date": "",
+                "response_received_at": "",
                 "response_reference": "",
+                "response_event_id": "",
+                "response_receive_channel": "",
+                "response_content_sha256": "",
+                "response_classification_review_reference": "",
                 "routed_to_organization": "",
                 "routed_to_contact": "",
                 "next_action": "SEND_REGISTERED_PERMISSION_INQUIRY",
@@ -139,7 +168,20 @@ def validate(rows: list[dict[str, str]]) -> dict:
         outreach_date = str(row.get("outreach_date", "")).strip()
         outreach_ref = str(row.get("outreach_reference", "")).strip()
         response_date = str(row.get("response_date", "")).strip()
+        response_received_at = str(
+            row.get("response_received_at", "")
+        ).strip()
         response_ref = str(row.get("response_reference", "")).strip()
+        response_event_id = str(row.get("response_event_id", "")).strip()
+        response_channel = str(
+            row.get("response_receive_channel", "")
+        ).strip()
+        response_hash = str(
+            row.get("response_content_sha256", "")
+        ).strip()
+        response_review_ref = str(
+            row.get("response_classification_review_reference", "")
+        ).strip()
         followup_attempts = _nonnegative_int(
             row.get("followup_attempts_completed", ""),
             f"followup_attempts_completed/{route_id}",
@@ -195,11 +237,60 @@ def validate(rows: list[dict[str, str]]) -> dict:
                 )
 
         if response == "NO_RESPONSE":
-            if response_date or response_ref:
-                raise ValueError(f"NO_RESPONSE route carries response evidence: {route_id}")
+            if any(
+                (
+                    response_date,
+                    response_received_at,
+                    response_ref,
+                    response_event_id,
+                    response_channel,
+                    response_hash,
+                    response_review_ref,
+                )
+            ):
+                raise ValueError(
+                    f"NO_RESPONSE route carries response evidence: {route_id}"
+                )
         else:
-            if not response_date or not response_ref:
-                raise ValueError(f"response status lacks date/reference: {route_id}")
+            if not all(
+                (
+                    response_date,
+                    response_received_at,
+                    response_ref,
+                    response_event_id,
+                    response_channel,
+                    response_hash,
+                    response_review_ref,
+                )
+            ):
+                raise ValueError(
+                    f"response status lacks audited response evidence: {route_id}"
+                )
+            received = _iso_datetime(
+                response_received_at,
+                f"response_received_at/{route_id}",
+            )
+            if received.date().isoformat() != response_date:
+                raise ValueError(
+                    f"response_date/received_at mismatch: {route_id}"
+                )
+            if response_channel not in RESPONSE_RECEIVE_CHANNELS:
+                raise ValueError(
+                    f"unregistered response receive channel: {route_id}/{response_channel}"
+                )
+            if not _is_sha256(response_hash):
+                raise ValueError(
+                    f"response content hash must be sha256: {route_id}"
+                )
+            if outreach_date:
+                first_send_day = _iso_date(
+                    outreach_date,
+                    f"outreach_date/{route_id}",
+                )
+                if received.date() < first_send_day:
+                    raise ValueError(
+                        f"response received before initial outreach: {route_id}"
+                    )
 
         if response == "ROUTING_RESPONSE_ONLY":
             if (

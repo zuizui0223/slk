@@ -21,6 +21,24 @@ def _rows() -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def _mark_audited_response(
+    row: dict[str, str],
+    *,
+    status: str,
+    response_date: str,
+    prefix: str,
+    channel: str = "EMAIL",
+) -> None:
+    row["response_status"] = status
+    row["response_date"] = response_date
+    row["response_received_at"] = response_date + "T09:00:00+08:00"
+    row["response_reference"] = f"{prefix}-REF"
+    row["response_event_id"] = f"{prefix}-EVENT"
+    row["response_receive_channel"] = channel
+    row["response_content_sha256"] = "a" * 64
+    row["response_classification_review_reference"] = f"{prefix}-CLASS-REVIEW"
+
+
 def test_template_matches_generated_canonical_outreach_inventory() -> None:
     generated = mod.generate_rows()
     template = _rows()
@@ -62,9 +80,12 @@ def test_routing_only_response_requires_destination() -> None:
     target["outreach_status"] = "ROUTED_TO_ANOTHER_AUTHORITY"
     target["outreach_date"] = "2027-05-01"
     target["outreach_reference"] = "EMAIL-WUFENG-LOCAL-001"
-    target["response_status"] = "ROUTING_RESPONSE_ONLY"
-    target["response_date"] = "2027-05-02"
-    target["response_reference"] = "EMAIL-WUFENG-LOCAL-RESP-001"
+    _mark_audited_response(
+        target,
+        status="ROUTING_RESPONSE_ONLY",
+        response_date="2027-05-02",
+        prefix="EMAIL-WUFENG-LOCAL-RESP-001",
+    )
     with pytest.raises(ValueError, match="routing response lacks destination"):
         mod.validate(rows)
 
@@ -76,9 +97,12 @@ def test_candidate_ready_requires_substantive_regulatory_and_site_response() -> 
         target["outreach_status"] = "RESPONSE_RECEIVED"
         target["outreach_date"] = "2027-05-01"
         target["outreach_reference"] = f"OUT-{route_id}"
-        target["response_status"] = "SUBSTANTIVE_RESPONSE_RECEIVED"
-        target["response_date"] = "2027-05-05"
-        target["response_reference"] = f"RESP-{route_id}"
+        _mark_audited_response(
+            target,
+            status="SUBSTANTIVE_RESPONSE_RECEIVED",
+            response_date="2027-05-05",
+            prefix=f"RESP-{route_id}",
+        )
     out = mod.validate(rows)
     assert out["candidate_progress"]["SONGZANLIN_EIA_2025"][
         "ready_to_build_permission_response_bundle"
@@ -96,10 +120,13 @@ def test_local_routing_response_does_not_substitute_for_wufeng_site_authority() 
             "outreach_status": "RESPONSE_RECEIVED",
             "outreach_date": "2027-05-01",
             "outreach_reference": "OUT-REG",
-            "response_status": "SUBSTANTIVE_RESPONSE_RECEIVED",
-            "response_date": "2027-05-02",
-            "response_reference": "RESP-REG",
         }
+    )
+    _mark_audited_response(
+        reg,
+        status="SUBSTANTIVE_RESPONSE_RECEIVED",
+        response_date="2027-05-02",
+        prefix="RESP-REG",
     )
     local = next(r for r in rows if r["route_id"] == "WUFENG_LOCAL_ROUTING")
     local.update(
@@ -107,12 +134,15 @@ def test_local_routing_response_does_not_substitute_for_wufeng_site_authority() 
             "outreach_status": "ROUTED_TO_ANOTHER_AUTHORITY",
             "outreach_date": "2027-05-01",
             "outreach_reference": "OUT-LOCAL",
-            "response_status": "ROUTING_RESPONSE_ONLY",
-            "response_date": "2027-05-02",
-            "response_reference": "RESP-LOCAL",
             "routed_to_organization": "Shangri-La State-owned Forest Farm, Jiantang Branch",
             "routed_to_contact": "via forestry bureau",
         }
+    )
+    _mark_audited_response(
+        local,
+        status="ROUTING_RESPONSE_ONLY",
+        response_date="2027-05-02",
+        prefix="RESP-LOCAL",
     )
     out = mod.validate(rows)
     assert out["candidate_progress"]["SHANGRILA_WUFENG"][
@@ -200,3 +230,51 @@ def test_valid_followup_attempt_is_counted_in_outreach_receipt() -> None:
     assert out["candidate_progress"][candidate][
         "followup_attempts_completed"
     ] == 1
+
+
+
+def test_response_status_requires_audited_response_provenance() -> None:
+    rows = _rows()
+    row = rows[0]
+    row["outreach_status"] = "RESPONSE_RECEIVED"
+    row["outreach_date"] = "2027-05-01"
+    row["outreach_reference"] = "SEND-001"
+    row["response_status"] = "SUBSTANTIVE_RESPONSE_RECEIVED"
+    row["response_date"] = "2027-05-02"
+    row["response_reference"] = "RESP-001"
+    with pytest.raises(ValueError, match="lacks audited response evidence"):
+        mod.validate(rows)
+
+
+def test_response_received_at_date_must_match_response_date() -> None:
+    rows = _rows()
+    row = rows[0]
+    row["outreach_status"] = "RESPONSE_RECEIVED"
+    row["outreach_date"] = "2027-05-01"
+    row["outreach_reference"] = "SEND-001"
+    _mark_audited_response(
+        row,
+        status="SUBSTANTIVE_RESPONSE_RECEIVED",
+        response_date="2027-05-02",
+        prefix="RESP-001",
+    )
+    row["response_received_at"] = "2027-05-03T09:00:00+08:00"
+    with pytest.raises(ValueError, match="response_date/received_at mismatch"):
+        mod.validate(rows)
+
+
+def test_response_content_hash_must_be_sha256() -> None:
+    rows = _rows()
+    row = rows[0]
+    row["outreach_status"] = "RESPONSE_RECEIVED"
+    row["outreach_date"] = "2027-05-01"
+    row["outreach_reference"] = "SEND-001"
+    _mark_audited_response(
+        row,
+        status="SUBSTANTIVE_RESPONSE_RECEIVED",
+        response_date="2027-05-02",
+        prefix="RESP-001",
+    )
+    row["response_content_sha256"] = "not-a-hash"
+    with pytest.raises(ValueError, match="must be sha256"):
+        mod.validate(rows)

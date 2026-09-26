@@ -161,6 +161,22 @@ def _fill_condition_review(
     )
 
 
+def _source_response_provenance(
+    response_id: str,
+    response_date: str,
+    prefix: str,
+) -> dict:
+    return {
+        "source_response_event_id": f"{prefix}-EVENT-{response_id}",
+        "source_response_received_at": response_date + "T09:00:00+08:00",
+        "source_response_receive_channel": "EMAIL",
+        "source_response_content_sha256": "d" * 64,
+        "source_response_classification_review_reference": (
+            f"{prefix}-CLASS-REVIEW-{response_id}"
+        ),
+    }
+
+
 def _songzanlin_bundle() -> dict:
     reg = _activities()
     site = _activities()
@@ -178,6 +194,11 @@ def _songzanlin_bundle() -> dict:
                 "responding_organization": "Shangri-La Municipal Forestry and Grassland Bureau",
                 "response_date": "2027-05-10",
                 "response_reference": "FORESTRY-EMAIL-001",
+                **_source_response_provenance(
+                    "REG-001",
+                    "2027-05-10",
+                    "FORESTRY",
+                ),
                 "activity_decisions": reg,
                 "conditions": "non-destructive scope only",
             },
@@ -187,6 +208,11 @@ def _songzanlin_bundle() -> dict:
                 "responding_organization": "Shangri-La Songzanlin Monastery Management Bureau",
                 "response_date": "2027-05-12",
                 "response_reference": "SITE-LETTER-001",
+                **_source_response_provenance(
+                    "SITE-001",
+                    "2027-05-12",
+                    "SITE",
+                ),
                 "activity_decisions": site,
                 "conditions": "coordinate with site staff before entry",
             },
@@ -265,6 +291,11 @@ def test_conflicting_regulatory_responses_do_not_confirm_scope() -> None:
         **payload["responses"][0],
         "response_id": "REG-002",
         "response_reference": "FORESTRY-EMAIL-002",
+        **_source_response_provenance(
+            "REG-002",
+            "2027-05-10",
+            "FORESTRY2",
+        ),
         "activity_decisions": _activities(),
     }
     _set_abc(conflict["activity_decisions"], "PROHIBITED", "REG2")
@@ -290,6 +321,11 @@ def test_wufeng_local_routing_contact_cannot_authorize_site_scope() -> None:
                 "responding_organization": "Shangri-La Municipal Forestry and Grassland Bureau",
                 "response_date": "2027-05-10",
                 "response_reference": "FORESTRY-EMAIL-003",
+                **_source_response_provenance(
+                    "REG-001",
+                    "2027-05-10",
+                    "WUFENG-REG",
+                ),
                 "activity_decisions": reg,
             },
             {
@@ -298,6 +334,11 @@ def test_wufeng_local_routing_contact_cannot_authorize_site_scope() -> None:
                 "responding_organization": "Jiantang Town People's Government",
                 "response_date": "2027-05-10",
                 "response_reference": "LOCAL-EMAIL-001",
+                **_source_response_provenance(
+                    "LOCAL-001",
+                    "2027-05-10",
+                    "WUFENG-LOCAL",
+                ),
                 "activity_decisions": local,
             },
         ],
@@ -366,6 +407,11 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
                 "responding_organization": "Shangri-La Municipal Forestry and Grassland Bureau",
                 "response_date": "2027-05-10",
                 "response_reference": "FORESTRY-EMAIL-010",
+                **_source_response_provenance(
+                    "REG-001",
+                    "2027-05-10",
+                    "WUFENG-REG2",
+                ),
                 "activity_decisions": reg,
             },
             {
@@ -374,6 +420,11 @@ def test_wufeng_forest_farm_site_response_can_complete_site_side() -> None:
                 "responding_organization": "Shangri-La State-owned Forest Farm, Jiantang Branch",
                 "response_date": "2027-05-11",
                 "response_reference": "FOREST-FARM-LETTER-001",
+                **_source_response_provenance(
+                    "SITE-001",
+                    "2027-05-11",
+                    "WUFENG-SITE",
+                ),
                 "activity_decisions": site,
             },
         ],
@@ -689,4 +740,42 @@ def test_confirmed_receipt_preserves_condition_review_audit_metadata() -> None:
     assert interval["conditions_review_rationale"]
     assert out["activity_definition_schema"] == (
         "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1"
+    )
+
+
+
+def test_permission_bundle_requires_incoming_response_provenance() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][0].pop("source_response_event_id")
+    with pytest.raises(ValueError, match="source_response_event_id/REG-001"):
+        adj.adjudicate(payload)
+
+
+def test_permission_bundle_rejects_duplicate_source_response_event() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][1]["source_response_event_id"] = payload[
+        "responses"
+    ][0]["source_response_event_id"]
+    with pytest.raises(ValueError, match="duplicate source response event id"):
+        adj.adjudicate(payload)
+
+
+def test_permission_bundle_rejects_non_sha_source_response_hash() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][0]["source_response_content_sha256"] = "bad"
+    with pytest.raises(ValueError, match="content hash must be sha256"):
+        adj.adjudicate(payload)
+
+
+def test_permission_receipt_preserves_incoming_response_provenance() -> None:
+    out = adj.adjudicate(_songzanlin_bundle())
+    response = out["responses"][0]
+    assert response["source_response_event_id"].startswith("FORESTRY-EVENT")
+    assert response["source_response_received_at"] == (
+        "2027-05-10T09:00:00+08:00"
+    )
+    assert response["source_response_receive_channel"] == "EMAIL"
+    assert len(response["source_response_content_sha256"]) == 64
+    assert response["source_response_classification_review_reference"].startswith(
+        "FORESTRY-CLASS-REVIEW"
     )
