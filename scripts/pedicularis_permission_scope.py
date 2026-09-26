@@ -71,6 +71,7 @@ def _validate_interval(
     side: str,
     index: int,
     adjudication_day: date,
+    response_context: dict[str, dict],
 ) -> None:
     prefix = f"{activity_id}/{side}/{index}"
     _need(isinstance(interval, dict), f"permission interval must be object: {prefix}")
@@ -82,9 +83,21 @@ def _validate_interval(
     start = _iso_date(interval.get("valid_from"), f"{prefix}/valid_from")
     end = _iso_date(interval.get("valid_through"), f"{prefix}/valid_through")
     _need(start <= end, f"permission interval reversed: {prefix}")
-    _filled(interval.get("response_id"), f"{prefix}/response_id")
-    _filled(interval.get("route_id"), f"{prefix}/route_id")
+    response_id = _filled(
+        interval.get("response_id"),
+        f"{prefix}/response_id",
+    )
+    route_id = _filled(interval.get("route_id"), f"{prefix}/route_id")
     _filled(interval.get("response_reference"), f"{prefix}/response_reference")
+    _need(
+        response_id in response_context,
+        f"permission interval references unknown response: {prefix}/{response_id}",
+    )
+    source = response_context[response_id]
+    _need(
+        route_id == source["route_id"],
+        f"permission interval route/response mismatch: {prefix}",
+    )
 
     locator = _filled(
         interval.get("decision_evidence_locator"),
@@ -96,8 +109,14 @@ def _validate_interval(
         f"{prefix}/decision_extraction_date",
     )
     _need(
-        extraction_day <= adjudication_day,
-        f"decision extraction occurs after adjudication: {prefix}",
+        source["response_date"] <= extraction_day <= adjudication_day,
+        f"decision extraction outside response/adjudication window: {prefix}",
+    )
+    _need(
+        locator.startswith(
+            EVIDENCE_PREFIXES_BY_CHANNEL[source["channel"]]
+        ),
+        f"permission interval locator/channel mismatch: {prefix}",
     )
     _filled(
         interval.get("decision_extraction_reference"),
@@ -132,16 +151,12 @@ def _validate_interval(
         f"{prefix}/conditions_review_date",
     )
     _need(
-        review_day <= adjudication_day,
-        f"condition review occurs after adjudication: {prefix}",
+        source["response_date"] <= review_day <= adjudication_day,
+        f"condition review outside response/adjudication window: {prefix}",
     )
     _filled(
         interval.get("conditions_review_rationale"),
         f"{prefix}/conditions_review_rationale",
-    )
-    _need(
-        locator.startswith(("BODY:", "ATTACHMENT:", "CALL_NOTE:", "IN_PERSON_NOTE:")),
-        f"permission interval decision evidence locator prefix invalid: {prefix}",
     )
 
 
@@ -150,8 +165,12 @@ def _validate_response(
     *,
     adjudication_day: date,
     seen_event_ids: set[str],
-) -> None:
+) -> dict:
     response_id = _filled(response.get("response_id"), "response.response_id")
+    route_id = _filled(
+        response.get("route_id"),
+        f"route_id/{response_id}",
+    )
     response_date = _iso_date(
         response.get("response_date"),
         f"response_date/{response_id}",
@@ -274,6 +293,13 @@ def _validate_response(
                 f"{response_id}/{activity_id}/conditions_review_rationale",
             )
 
+    return {
+        "response_id": response_id,
+        "route_id": route_id,
+        "response_date": response_date,
+        "channel": channel,
+    }
+
 
 def validate_confirmed_scope_receipt(
     receipt: dict,
@@ -303,6 +329,22 @@ def validate_confirmed_scope_receipt(
         "permission adjudication timestamp",
     )
     adjudication_day = adjudicated_at.date()
+
+    responses = receipt.get("responses")
+    _need(isinstance(responses, list) and responses, "permission response provenance missing")
+    seen_event_ids: set[str] = set()
+    response_context: dict[str, dict] = {}
+    for response in responses:
+        source = _validate_response(
+            response,
+            adjudication_day=adjudication_day,
+            seen_event_ids=seen_event_ids,
+        )
+        _need(
+            source["response_id"] not in response_context,
+            f"duplicate response id: {source['response_id']}",
+        )
+        response_context[source["response_id"]] = source
 
     matrix = receipt.get("required_activity_matrix")
     validity = receipt.get("required_activity_validity")
@@ -341,6 +383,7 @@ def validate_confirmed_scope_receipt(
                     side=side,
                     index=index,
                     adjudication_day=adjudication_day,
+                    response_context=response_context,
                 )
 
     all_matrix = receipt.get("all_activity_matrix")
@@ -353,16 +396,6 @@ def validate_confirmed_scope_receipt(
         isinstance(all_validity, dict) and set(all_validity) == ALL_ACTIVITIES,
         "all-activity permission validity changed",
     )
-
-    responses = receipt.get("responses")
-    _need(isinstance(responses, list) and responses, "permission response provenance missing")
-    seen_event_ids: set[str] = set()
-    for response in responses:
-        _validate_response(
-            response,
-            adjudication_day=adjudication_day,
-            seen_event_ids=seen_event_ids,
-        )
 
     handoff = receipt.get("recovery_handoff")
     _need(isinstance(handoff, dict), "permission recovery handoff missing")
