@@ -671,6 +671,7 @@ def test_incompatible_optional_D_condition_does_not_block_default_A_C_scope() ->
         )
         d["decision"] = "ALLOWED"
         d["response_reference"] = f"{prefix}-D"
+        _fill_decision_audit(d, f"{prefix}-D")
         d["valid_from"] = "2027-06-01"
         d["valid_through"] = "2027-06-30"
         d["conditions"] = "voucher only outside the registered recovery area"
