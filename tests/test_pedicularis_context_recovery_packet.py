@@ -177,6 +177,7 @@ def _permission_receipt() -> dict:
         "responses": [
             {
                 "response_id": "REG-001",
+                "route_id": "TEST-REG",
                 "source_response_event_id": "REG-EVENT-001",
                 "source_response_received_at": "2027-05-10T09:00:00+08:00",
                 "source_response_receive_channel": "EMAIL",
@@ -187,6 +188,7 @@ def _permission_receipt() -> dict:
             },
             {
                 "response_id": "SITE-001",
+                "route_id": "TEST-SITE",
                 "source_response_event_id": "SITE-EVENT-001",
                 "source_response_received_at": "2027-05-11T09:00:00+08:00",
                 "source_response_receive_channel": "EMAIL",
