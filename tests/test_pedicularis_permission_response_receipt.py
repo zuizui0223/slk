@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -9,6 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts" / "apply_pedicularis_permission_response_receipt.py"
 LEDGER = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv"
+RESPONSE_TEMPLATE = ROOT / "data" / "PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_TEMPLATE_V1.json"
 
 spec = importlib.util.spec_from_file_location("ped_response_receipt", SCRIPT)
 mod = importlib.util.module_from_spec(spec)
@@ -234,3 +236,14 @@ def test_followup_after_already_received_reply_is_flagged_as_protocol_deviation(
     _, event = mod.apply_response_receipt(rows, receipt)
     assert event["followup_preemption_violation"] is True
     assert event["protocol_deviation_requires_review"] is True
+
+
+
+def test_incoming_response_template_keeps_content_hash_unset_until_capture() -> None:
+    payload = json.loads(RESPONSE_TEMPLATE.read_text())
+    assert payload["schema_version"] == (
+        "SLK_PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_V1"
+    )
+    assert payload["status"] == "TEMPLATE_ONLY_NOT_DATA"
+    assert payload["response_content_sha256"] is None
+    assert payload["classification"]["response_status"] == "REQUIRED_BEFORE_USE"
