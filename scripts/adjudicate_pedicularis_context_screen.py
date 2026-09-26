@@ -7,12 +7,20 @@ from datetime import date
 from pathlib import Path
 
 try:
+    from scripts.pedicularis_permission_scope import (
+        activities_cover_window,
+        validate_confirmed_permission_scope,
+    )
     from scripts.pedicularis_physical_units import (
         FIREWALL_SCHEMA,
         canonical_tag_hash,
         validate_firewall_block,
     )
 except ImportError:
+    from pedicularis_permission_scope import (
+        activities_cover_window,
+        validate_confirmed_permission_scope,
+    )
     from pedicularis_physical_units import (
         FIREWALL_SCHEMA,
         canonical_tag_hash,
@@ -25,9 +33,6 @@ RECEIPT_SCHEMA = "SLK_PEDICULARIS_CONTEXT_SCREEN_RECEIPT_V1"
 PRODUCTION_STATUS = "PEDICULARIS_CONTEXT_SCREEN_PROSPECTIVELY_FROZEN"
 BASE_CALIBRATION_PLANTS = 84
 CAPACITY_CENSUS_RULE = "STOP_AT_REQUIRED_CAPACITY_OR_EXHAUST_FOCAL_POPULATION"
-PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
-PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
-REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
 ALLOWED_SOURCE_TYPES = {
     "DOWNSTREAM_DESIGN_REQUIREMENT",
     "INDEPENDENT_NATURAL_HISTORY_CALIBRATION",
@@ -133,78 +138,18 @@ def validate_freeze(freeze: dict) -> dict:
         isinstance(permission, dict),
         "P0b permission scope receipt missing",
     )
-    _need(
-        permission.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
-        "wrong P0b permission scope receipt schema",
+    validated_permission = validate_confirmed_permission_scope(
+        permission,
+        expected_candidate_id=ctx["candidate_id"],
     )
     _need(
-        permission.get("status") == PERMISSION_RECEIPT_STATUS,
-        "P0b permission scope is not confirmed",
+        activities_cover_window(
+            validated_permission,
+            planned_start,
+            planned_end,
+        ),
+        "P0b planned screen interval outside permission validity",
     )
-    _need(
-        permission.get("candidate_id") == ctx["candidate_id"],
-        "P0b permission scope receipt candidate mismatch",
-    )
-    _need(
-        permission.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
-        "P0b permission scope changed",
-    )
-    permission_matrix = permission.get("required_activity_matrix")
-    permission_validity = permission.get("required_activity_validity")
-    _need(
-        isinstance(permission_matrix, dict)
-        and set(permission_matrix) == {"A", "B", "C"},
-        "P0b permission activity matrix changed",
-    )
-    _need(
-        isinstance(permission_validity, dict)
-        and set(permission_validity) == {"A", "B", "C"},
-        "P0b permission validity inventory changed",
-    )
-    for activity_id in ("A", "B", "C"):
-        cell = permission_matrix[activity_id]
-        _need(
-            isinstance(cell, dict)
-            and cell.get("regulatory") == "PASS"
-            and cell.get("site") == "PASS",
-            f"P0b permission scope not passed for activity {activity_id}",
-        )
-        validity_cell = permission_validity[activity_id]
-        _need(
-            isinstance(validity_cell, dict)
-            and set(validity_cell) == {"regulatory", "site"},
-            f"P0b permission validity cell changed: {activity_id}",
-        )
-        for side in ("regulatory", "site"):
-            intervals = validity_cell[side]
-            _need(
-                isinstance(intervals, list) and intervals,
-                f"P0b permission validity missing: {activity_id}/{side}",
-            )
-            covers_window = False
-            for index, interval in enumerate(intervals):
-                _need(
-                    isinstance(interval, dict),
-                    f"P0b permission interval must be object: {activity_id}/{side}/{index}",
-                )
-                valid_from = _iso_date(
-                    interval.get("valid_from"),
-                    f"P0b permission valid_from/{activity_id}/{side}/{index}",
-                )
-                valid_through = _iso_date(
-                    interval.get("valid_through"),
-                    f"P0b permission valid_through/{activity_id}/{side}/{index}",
-                )
-                _need(
-                    valid_from <= valid_through,
-                    f"P0b permission interval reversed: {activity_id}/{side}/{index}",
-                )
-                if valid_from <= planned_start and planned_end <= valid_through:
-                    covers_window = True
-            _need(
-                covers_window,
-                f"P0b planned screen interval outside permission validity: {activity_id}/{side}",
-            )
 
     effort = freeze.get("screen_effort", {})
     _need(effort.get("capacity_census_rule") == CAPACITY_CENSUS_RULE, "capacity census rule changed")
