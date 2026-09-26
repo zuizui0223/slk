@@ -7,6 +7,15 @@ import math
 from datetime import date
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_permission_scope import (
+        validate_confirmed_scope_receipt,
+    )
+except ImportError:
+    from pedicularis_permission_scope import (
+        validate_confirmed_scope_receipt,
+    )
+
 FREEZE_SCHEMA = "SLK_PEDICULARIS_CONTEXT_RECOVERY_FREEZE_V1"
 OBS_SCHEMA = "SLK_PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_V1"
 PRODUCTION_STATUS = "PEDICULARIS_CONTEXT_RECOVERY_PROSPECTIVELY_FROZEN"
@@ -264,78 +273,14 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             isinstance(permission_receipt, dict),
             "confirmed recovery permission scope receipt missing",
         )
-        _need(
-            permission_receipt.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
-            "wrong recovery permission scope receipt schema",
+        validated_permission = validate_confirmed_scope_receipt(
+            permission_receipt,
+            expected_candidate_id=fctx["candidate_id"],
         )
         _need(
-            permission_receipt.get("status") == PERMISSION_RECEIPT_STATUS,
-            "recovery permission scope receipt is not confirmed",
-        )
-        _need(
-            permission_receipt.get("candidate_id") == fctx["candidate_id"],
-            "recovery permission scope receipt candidate mismatch",
-        )
-        _need(
-            permission_receipt.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
-            "recovery permission scope receipt scope changed",
-        )
-        matrix = permission_receipt.get("required_activity_matrix")
-        _need(
-            isinstance(matrix, dict) and set(matrix) == {"A", "B", "C"},
-            "recovery permission scope receipt activity matrix changed",
-        )
-        validity = permission_receipt.get("required_activity_validity")
-        _need(
-            isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
-            "recovery permission validity inventory changed",
-        )
-        for activity_id in ("A", "B", "C"):
-            cell = matrix[activity_id]
-            _need(
-                isinstance(cell, dict)
-                and cell.get("regulatory") == "PASS"
-                and cell.get("site") == "PASS",
-                f"recovery permission scope not passed for activity {activity_id}",
-            )
-            validity_cell = validity[activity_id]
-            _need(
-                isinstance(validity_cell, dict)
-                and set(validity_cell) == {"regulatory", "site"},
-                f"recovery permission validity cell changed for activity {activity_id}",
-            )
-            for side in ("regulatory", "site"):
-                intervals = validity_cell[side]
-                _need(
-                    isinstance(intervals, list) and intervals,
-                    f"recovery permission validity missing for activity {activity_id}/{side}",
-                )
-                for index, interval in enumerate(intervals):
-                    _need(
-                        isinstance(interval, dict),
-                        f"permission validity interval must be object: {activity_id}/{side}/{index}",
-                    )
-                    start = _optional_iso_date(
-                        interval.get("valid_from"),
-                        f"permission valid_from/{activity_id}/{side}/{index}",
-                    )
-                    end = _optional_iso_date(
-                        interval.get("valid_through"),
-                        f"permission valid_through/{activity_id}/{side}/{index}",
-                    )
-                    _need(
-                        start is not None and end is not None and start <= end,
-                        f"invalid permission validity interval: {activity_id}/{side}/{index}",
-                    )
-        all_matrix = permission_receipt.get("all_activity_matrix")
-        all_validity = permission_receipt.get("all_activity_validity")
-        _need(
-            isinstance(all_matrix, dict) and set(all_matrix) == set("ABCDEF"),
-            "all-activity permission matrix changed",
-        )
-        _need(
-            isinstance(all_validity, dict) and set(all_validity) == set("ABCDEF"),
-            "all-activity permission validity changed",
+            _optional_text(fresh.get("sampling_permission_reference"))
+            == validated_permission["sampling_permission_reference"],
+            "sampling permission reference/receipt mismatch",
         )
         permission_receipt_valid = True
 
@@ -538,20 +483,6 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
                     color_required is False,
                     "flower color cannot be a required P. rex diagnostic",
                 )
-
-    if permission_receipt_valid:
-        receipt_reference = _optional_text(
-            permission_receipt.get("sampling_permission_reference")
-        )
-        _need(
-            receipt_reference is not None,
-            "permission scope receipt reference missing",
-        )
-        _need(
-            _optional_text(fresh.get("sampling_permission_reference"))
-            == receipt_reference,
-            "sampling permission reference/receipt mismatch",
-        )
 
     evidence = {
         "taxon": _optional_text(fresh.get("taxon_evidence_reference")),
