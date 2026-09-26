@@ -839,3 +839,73 @@ def test_permission_receipt_preserves_incoming_response_provenance() -> None:
     assert response["source_response_classification_review_reference"].startswith(
         "FORESTRY-CLASS-REVIEW"
     )
+
+
+
+def test_resolved_activity_requires_decision_evidence_locator() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["decision_evidence_locator"] = None
+    with pytest.raises(ValueError, match="decision_evidence_locator"):
+        adj.adjudicate(payload)
+
+
+def test_decision_evidence_locator_requires_registered_source_prefix() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["decision_evidence_locator"] = "VAGUE:somewhere"
+    with pytest.raises(ValueError, match="unregistered prefix"):
+        adj.adjudicate(payload)
+
+
+def test_resolved_activity_requires_decision_extractor() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "B"
+    )
+    target["decision_extracted_by"] = None
+    with pytest.raises(ValueError, match="decision_extracted_by"):
+        adj.adjudicate(payload)
+
+
+def test_decision_extraction_date_cannot_precede_response() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][1]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["decision_extraction_date"] = "2027-05-11"
+    with pytest.raises(ValueError, match="decision extraction date must fall"):
+        adj.adjudicate(payload)
+
+
+def test_decision_extraction_date_cannot_follow_bundle_adjudication() -> None:
+    payload = _songzanlin_bundle()
+    target = next(
+        row for row in payload["responses"][0]["activity_decisions"]
+        if row["activity_id"] == "A"
+    )
+    target["decision_extraction_date"] = "2027-05-14"
+    with pytest.raises(ValueError, match="decision extraction date must fall"):
+        adj.adjudicate(payload)
+
+
+def test_confirmed_receipt_preserves_activity_decision_extraction_audit() -> None:
+    out = adj.adjudicate(_songzanlin_bundle())
+    details = out["responses"][0]["activity_decision_details"]["A"]
+    assert details["decision_evidence_locator"] == "BODY:paragraph-A"
+    assert details["decision_extracted_by"] == "TEST-EXTRACTOR"
+    assert details["decision_extraction_date"] == "2027-05-12"
+    assert details["decision_extraction_reference"] == "REG-EXTRACT-A"
+    assert details["decision_extraction_rationale"]
+
+    interval = out["required_activity_validity"]["A"]["regulatory"][0]
+    assert interval["decision_evidence_locator"] == "BODY:paragraph-A"
+    assert interval["decision_extraction_reference"] == "REG-EXTRACT-A"
