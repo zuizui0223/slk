@@ -129,6 +129,90 @@ def _obs() -> dict:
     }
 
 
+def _allow_activity_d(
+    receipt: dict,
+    *,
+    valid_through: str = "2027-09-30",
+) -> None:
+    receipt["all_activity_matrix"]["D"] = {
+        "regulatory": "PASS",
+        "site": "PASS",
+    }
+    receipt["all_activity_validity"]["D"] = {
+        "regulatory": [],
+        "site": [],
+    }
+    for response in receipt["responses"]:
+        if response["route_class"] not in {"REGULATORY", "SITE"}:
+            continue
+        prefix = "REG-D" if response["route_class"] == "REGULATORY" else "SITE-D"
+        response["activity_decisions"]["D"] = "ALLOWED"
+        response["effective_scope_decisions"]["D"] = "ALLOWED"
+        detail = response["activity_decision_details"]["D"]
+        detail.update(
+            {
+                "decision": "ALLOWED",
+                "response_reference": f"{prefix}-REF",
+                "decision_evidence_locator": "BODY:paragraph-D",
+                "decision_extracted_by": "TEST-EXTRACTOR",
+                "decision_extraction_date": "2027-05-12",
+                "decision_extraction_reference": f"{prefix}-EXTRACT",
+                "decision_extraction_rationale": (
+                    "Voucher permission was extracted from the cited response passage."
+                ),
+                "valid_from": "2027-05-01",
+                "valid_through": valid_through,
+                "conditions": "NO_ADDITIONAL_CONDITIONS",
+                "conditions_compatible_with_registered_activity": True,
+                "conditions_review_reference": f"{prefix}-COND-REVIEW",
+                "registered_activity_definition_reference": (
+                    "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#D"
+                ),
+                "conditions_reviewed_by": "TEST-REVIEWER",
+                "conditions_review_date": "2027-05-12",
+                "conditions_review_rationale": (
+                    "Voucher condition is compatible with the registered D activity."
+                ),
+            }
+        )
+        interval = {
+            "response_id": response["response_id"],
+            "route_id": response["route_id"],
+            "response_reference": detail["response_reference"],
+            "decision_evidence_locator": detail["decision_evidence_locator"],
+            "decision_extracted_by": detail["decision_extracted_by"],
+            "decision_extraction_date": detail["decision_extraction_date"],
+            "decision_extraction_reference": detail[
+                "decision_extraction_reference"
+            ],
+            "decision_extraction_rationale": detail[
+                "decision_extraction_rationale"
+            ],
+            "decision": "ALLOWED",
+            "valid_from": detail["valid_from"],
+            "valid_through": detail["valid_through"],
+            "conditions": detail["conditions"],
+            "conditions_compatible_with_registered_activity": True,
+            "conditions_review_reference": detail[
+                "conditions_review_reference"
+            ],
+            "registered_activity_definition_reference": detail[
+                "registered_activity_definition_reference"
+            ],
+            "conditions_reviewed_by": detail["conditions_reviewed_by"],
+            "conditions_review_date": detail["conditions_review_date"],
+            "conditions_review_rationale": detail[
+                "conditions_review_rationale"
+            ],
+        }
+        side = (
+            "regulatory"
+            if response["route_class"] == "REGULATORY"
+            else "site"
+        )
+        receipt["all_activity_validity"]["D"][side].append(interval)
+
+
 def _specimen_context(
     *,
     collection_date: str = "2027-06-15",
@@ -431,33 +515,7 @@ def test_new_field_voucher_route_passes_with_D_permission_valid_on_recovery_date
     fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
     fresh["taxon_specimen_context_receipt"] = _specimen_context()
     fresh.pop("taxon_diagnostic_checklist")
-    receipt = obs["permission_scope_receipt"]
-    receipt["all_activity_matrix"]["D"] = {
-        "regulatory": "PASS",
-        "site": "PASS",
-    }
-    receipt["all_activity_validity"]["D"] = {
-        "regulatory": [
-            {
-                "response_id": "REG-D",
-                "route_id": "TEST-REG",
-                "response_reference": "REG-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-09-30",
-            }
-        ],
-        "site": [
-            {
-                "response_id": "SITE-D",
-                "route_id": "TEST-SITE",
-                "response_reference": "SITE-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-09-30",
-            }
-        ],
-    }
+    _allow_activity_d(obs["permission_scope_receipt"])
     out = adj.adjudicate(obs, _freeze())
     assert out["status"] == "CONTEXT_RECOVERY_READY_FOR_P0_RELEVANCE_CALIBRATION"
     assert out["fresh_verification"]["new_voucher_permission_valid_on_verification_date"] is True
@@ -575,33 +633,7 @@ def test_new_field_voucher_collection_date_must_equal_recovery_date() -> None:
         collection_date="2027-06-14",
     )
     fresh.pop("taxon_diagnostic_checklist")
-    receipt = obs["permission_scope_receipt"]
-    receipt["all_activity_matrix"]["D"] = {
-        "regulatory": "PASS",
-        "site": "PASS",
-    }
-    receipt["all_activity_validity"]["D"] = {
-        "regulatory": [
-            {
-                "response_id": "REG-D",
-                "route_id": "TEST-REG",
-                "response_reference": "REG-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-09-30",
-            }
-        ],
-        "site": [
-            {
-                "response_id": "SITE-D",
-                "route_id": "TEST-SITE",
-                "response_reference": "SITE-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-09-30",
-            }
-        ],
-    }
+    _allow_activity_d(obs["permission_scope_receipt"])
     with pytest.raises(ValueError, match="must equal recovery verification date"):
         adj.adjudicate(obs, _freeze())
 
@@ -615,32 +647,9 @@ def test_new_field_voucher_rejects_expired_D_permission_even_when_A_C_are_valid(
     fresh["taxon_specimen_evidence_origin"] = "NEW_FIELD_VOUCHER"
     fresh["taxon_specimen_context_receipt"] = _specimen_context()
     fresh.pop("taxon_diagnostic_checklist")
-    receipt = obs["permission_scope_receipt"]
-    receipt["all_activity_matrix"]["D"] = {
-        "regulatory": "PASS",
-        "site": "PASS",
-    }
-    receipt["all_activity_validity"]["D"] = {
-        "regulatory": [
-            {
-                "response_id": "REG-D",
-                "route_id": "TEST-REG",
-                "response_reference": "REG-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-06-01",
-            }
-        ],
-        "site": [
-            {
-                "response_id": "SITE-D",
-                "route_id": "TEST-SITE",
-                "response_reference": "SITE-D-REF",
-                "decision": "ALLOWED",
-                "valid_from": "2027-05-01",
-                "valid_through": "2027-06-01",
-            }
-        ],
-    }
+    _allow_activity_d(
+        obs["permission_scope_receipt"],
+        valid_through="2027-06-01",
+    )
     with pytest.raises(ValueError, match="requires activity D"):
         adj.adjudicate(obs, _freeze())
