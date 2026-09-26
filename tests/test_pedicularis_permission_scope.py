@@ -93,3 +93,31 @@ def test_scope_receipt_rejects_mutated_activity_definition() -> None:
     ] = "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B"
     with pytest.raises(ValueError, match="activity definition mismatch"):
         scope.validate_confirmed_scope_receipt(receipt)
+
+
+
+def test_scope_receipt_interval_route_must_match_source_response() -> None:
+    receipt = _receipt()
+    receipt["required_activity_validity"]["A"]["regulatory"][0][
+        "route_id"
+    ] = "OTHER-ROUTE"
+    with pytest.raises(ValueError, match="route/response mismatch"):
+        scope.validate_confirmed_scope_receipt(receipt)
+
+
+def test_scope_receipt_interval_extraction_cannot_predate_source_response() -> None:
+    receipt = _receipt()
+    receipt["required_activity_validity"]["A"]["regulatory"][0][
+        "decision_extraction_date"
+    ] = "2027-05-09"
+    with pytest.raises(ValueError, match="outside response/adjudication window"):
+        scope.validate_confirmed_scope_receipt(receipt)
+
+
+def test_scope_receipt_interval_locator_must_match_source_channel() -> None:
+    receipt = _receipt()
+    receipt["required_activity_validity"]["A"]["regulatory"][0][
+        "decision_evidence_locator"
+    ] = "CALL_NOTE:line-1"
+    with pytest.raises(ValueError, match="locator/channel mismatch"):
+        scope.validate_confirmed_scope_receipt(receipt)
