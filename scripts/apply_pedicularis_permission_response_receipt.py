@@ -414,6 +414,7 @@ def apply_response_receipt(
         "outreach_status_after": outreach_status_after,
         "next_action_after": updated_target["next_action"],
         "followup_preemption_violation": followup_preemption_violation,
+        "protocol_deviation_requires_review": followup_preemption_violation,
         "candidate_ready_to_build_permission_response_bundle": progress[
             "ready_to_build_permission_response_bundle"
         ],
