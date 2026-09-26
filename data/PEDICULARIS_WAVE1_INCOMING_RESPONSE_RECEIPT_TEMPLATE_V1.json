@@ -1,0 +1,29 @@
+{
+  "schema_version": "SLK_PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_V1",
+  "status": "TEMPLATE_ONLY_NOT_DATA",
+  "candidate_id": "REQUIRED_BEFORE_USE",
+  "route_id": "REQUIRED_BEFORE_USE",
+  "response_event_id": "REQUIRED_BEFORE_USE",
+  "received_at": "REQUIRED_BEFORE_USE",
+  "recorded_at": "REQUIRED_BEFORE_USE",
+  "receive_channel": "REQUIRED_BEFORE_USE",
+  "responding_organization": "REQUIRED_BEFORE_USE",
+  "responding_contact": "REQUIRED_BEFORE_USE",
+  "response_reference": "REQUIRED_BEFORE_USE",
+  "response_subject": "",
+  "response_capture_text": "REQUIRED_BEFORE_USE",
+  "attachment_references": [],
+  "response_content_sha256": "REQUIRED_BEFORE_USE",
+  "classification": {
+    "response_status": "REQUIRED_BEFORE_USE",
+    "reviewed_by": "REQUIRED_BEFORE_USE",
+    "review_date": "REQUIRED_BEFORE_USE",
+    "review_reference": "REQUIRED_BEFORE_USE",
+    "rationale": "REQUIRED_BEFORE_USE"
+  },
+  "routing_destination": {
+    "organization": "",
+    "contact": ""
+  },
+  "notes": ""
+}
