@@ -347,6 +347,17 @@ Requester-completed message drafts, real outreach trackers and returned authorit
 
 Keep actual operational files local. Commit only canonical templates, code, tests and de-identified protocol updates unless there is a deliberate reason to publish a specific response artifact.
 
+## Consolidated readiness audit
+
+To summarize the already-registered outreach contracts without creating a new gate, use:
+
+```text
+scripts/audit_pedicularis_wave1_outreach_readiness.py
+docs/PEDICULARIS_WAVE1_OUTREACH_READINESS_V1.md
+```
+
+It reports administrative blockers per route, revalidates frozen follow-up policy and all CN/EN/bilingual reviewed-message hashes when those local working files are supplied, and never sends anything.
+
 ## Claim ceiling
 
 ```text
