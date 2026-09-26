@@ -50,9 +50,16 @@ def compile_relevance(effort: dict, qualification: dict) -> dict:
     water = rows["P0_WATER_POSITIVE_PREVALENCE"]
 
     out = copy.deepcopy(effort)
-    out["permission_scope_receipt"] = copy.deepcopy(
-        receipt.get("permission_scope_receipt")
+    permission = receipt.get("permission_scope_receipt")
+    _need(
+        isinstance(permission, dict),
+        "qualified relevance permission scope receipt missing",
     )
+    validate_confirmed_permission_scope(
+        permission,
+        expected_candidate_id=context["candidate_id"],
+    )
+    out["permission_scope_receipt"] = copy.deepcopy(permission)
     out["physical_unit_firewall_handoff"] = copy.deepcopy(
         receipt.get("physical_unit_firewall_handoff")
     )
