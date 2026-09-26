@@ -336,6 +336,7 @@ def test_site_prohibition_blocks_recovery_p0a_scope() -> None:
     target = next(x for x in site if x["activity_id"] == "B")
     target["decision"] = "PROHIBITED"
     target["response_reference"] = "SITE-BLOCK-B"
+    _fill_decision_audit(target, "SITE-BLOCK-B")
     out = adj.adjudicate(payload)
     assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_BLOCKED"
     assert out["recovery_handoff"]["sampling_permission_status"] == "UNRESOLVED"
@@ -541,6 +542,7 @@ def test_optional_D_permission_is_receipted_without_becoming_required_scope() ->
         )
         target["decision"] = "ALLOWED"
         target["response_reference"] = f"{prefix}-D"
+        _fill_decision_audit(target, f"{prefix}-D")
         target["valid_from"] = "2027-06-01"
         target["valid_through"] = "2027-06-30"
         target["conditions"] = "voucher-only June window"
@@ -564,6 +566,7 @@ def test_optional_positive_D_permission_still_requires_validity_dates() -> None:
     )
     target["decision"] = "ALLOWED"
     target["response_reference"] = "REG-D"
+    _fill_decision_audit(target, "REG-D")
     target["valid_from"] = "2027-06-01"
     target["valid_through"] = None
     target["conditions"] = "voucher-only June window"
@@ -582,6 +585,7 @@ def test_activity_specific_D_validity_can_be_narrower_than_A_C() -> None:
         )
         d["decision"] = "ALLOWED"
         d["response_reference"] = f"{prefix}-D"
+        _fill_decision_audit(d, f"{prefix}-D")
         d["valid_from"] = "2027-06-10"
         d["valid_through"] = "2027-06-20"
         d["conditions"] = "voucher only during June 10-20"
