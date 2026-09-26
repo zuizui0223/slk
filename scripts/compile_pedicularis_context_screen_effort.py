@@ -6,6 +6,15 @@ import json
 from pathlib import Path
 
 try:
+    from scripts.pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
+except ImportError:
+    from pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
+
+try:
     from scripts.pedicularis_physical_units import (
         FIREWALL_SCHEMA,
         canonical_tag_hash,
@@ -67,9 +76,9 @@ def compile_effort(screen: dict, plan: dict) -> dict:
         isinstance(permission, dict),
         "P0b effort plan permission scope receipt missing",
     )
-    _need(
-        permission.get("candidate_id") == sctx["candidate_id"],
-        "P0b screen permission candidate mismatch",
+    validate_confirmed_permission_scope(
+        permission,
+        expected_candidate_id=sctx["candidate_id"],
     )
     out["permission_scope_receipt"] = copy.deepcopy(permission)
     raw_handoff = plan.get("physical_unit_firewall_handoff")
