@@ -129,6 +129,22 @@ CALL_NOTE:lines-18-24
 IN_PERSON_NOTE:section-3.
 ```
 
+
+The locator prefix must match the incoming-response channel:
+
+```text
+EMAIL / WEB_PORTAL / LETTER
+    -> BODY: or ATTACHMENT:
+
+PHONE_CALL
+    -> CALL_NOTE:
+
+IN_PERSON
+    -> IN_PERSON_NOTE:
+```
+
+Thus a phone response cannot be cited as a document paragraph unless the relevant written material was separately captured as a document response event.
+
 The extraction date must fall on or after the authority/site response date and no later than permission-bundle adjudication. The source response hash remains the immutable parent provenance; the evidence locator identifies the specific passage/material used for the activity-level interpretation.
 
 `UNRESOLVED` rows do not require decision-extraction metadata because no substantive activity decision has been made.
