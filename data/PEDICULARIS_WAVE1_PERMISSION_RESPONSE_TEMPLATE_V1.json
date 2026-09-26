@@ -46,5 +46,17 @@
     "condition_review_reviewer_required": true,
     "condition_review_date_required": true,
     "condition_review_rationale_required": true
+  },
+  "response_provenance_contract": {
+    "required_fields": [
+      "source_response_event_id",
+      "source_response_received_at",
+      "source_response_receive_channel",
+      "source_response_content_sha256",
+      "source_response_classification_review_reference"
+    ],
+    "source_response_received_at_must_match_response_date": true,
+    "source_response_content_hash_must_be_sha256": true,
+    "response_bundle_must_derive_from_audited_incoming_response": true
   }
 }
