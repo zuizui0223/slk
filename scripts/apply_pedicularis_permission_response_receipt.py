@@ -80,6 +80,13 @@ def _iso_date(value: object, label: str) -> date:
         raise ValueError(f"{label} must be ISO YYYY-MM-DD") from exc
 
 
+def _is_sha256(value: str) -> bool:
+    return (
+        len(value) == 64
+        and all(ch in "0123456789abcdef" for ch in value.lower())
+    )
+
+
 def _read_csv(path: Path) -> list[dict[str, str]]:
     with path.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
@@ -96,15 +103,46 @@ def _canonical_routes() -> dict[str, dict[str, str]]:
 
 
 def response_content_sha256(receipt: dict) -> str:
-    attachments = receipt.get("attachment_references")
+    attachments = receipt.get("attachments")
     _need(
         isinstance(attachments, list),
-        "attachment_references must be a list",
+        "attachments must be a list",
     )
     normalized_attachments = []
-    for index, ref in enumerate(attachments):
+    seen_attachment_refs: set[str] = set()
+    for index, attachment in enumerate(attachments):
+        _need(
+            isinstance(attachment, dict),
+            f"attachments/{index} must be an object",
+        )
+        reference = _filled(
+            attachment.get("reference"),
+            f"attachments/{index}/reference",
+        )
+        _need(
+            reference not in seen_attachment_refs,
+            f"duplicate attachment reference: {reference}",
+        )
+        seen_attachment_refs.add(reference)
+        sha256 = _filled(
+            attachment.get("sha256"),
+            f"attachments/{index}/sha256",
+        )
+        _need(
+            _is_sha256(sha256),
+            f"attachments/{index}/sha256 must be sha256",
+        )
         normalized_attachments.append(
-            _filled(ref, f"attachment_references/{index}")
+            {
+                "reference": reference,
+                "sha256": sha256.lower(),
+                "media_type": _optional_text(
+                    attachment.get("media_type")
+                ),
+                "file_name": _optional_text(
+                    attachment.get("file_name")
+                ),
+            }
         )
 
     payload = {
@@ -129,7 +167,7 @@ def response_content_sha256(receipt: dict) -> str:
             receipt.get("response_capture_text"),
             "response_capture_text",
         ),
-        "attachment_references": normalized_attachments,
+        "attachments": normalized_attachments,
     }
     canonical = json.dumps(
         payload,
@@ -401,6 +439,14 @@ def apply_response_receipt(
         "responding_contact": responding_contact,
         "response_reference": response_reference,
         "response_content_sha256": response_hash,
+        "attachment_count": len(response_receipt.get("attachments", [])),
+        "attachment_hashes": [
+            {
+                "reference": attachment["reference"],
+                "sha256": attachment["sha256"].lower(),
+            }
+            for attachment in response_receipt.get("attachments", [])
+        ],
         "response_status": response_status,
         "classification": classification,
         "routing_destination": (
