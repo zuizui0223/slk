@@ -141,7 +141,10 @@ def test_all_wave1_routes_can_become_manual_send_ready_without_automatic_send() 
 def test_tampered_reviewed_message_hash_is_rejected() -> None:
     ready = _ready_messages("SONGZANLIN_EIA_2025")
     ready["messages"][0]["body_en"] += "\nChanged after review."
-    with pytest.raises(ValueError, match="reviewed-message hash mismatch"):
+    with pytest.raises(
+        ValueError,
+        match=r"reviewed-message (?:CN|EN|bilingual )?hash mismatch",
+    ):
         audit_mod.audit(
             _rows(),
             followup_policy=_policy(),
