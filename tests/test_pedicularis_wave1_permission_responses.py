@@ -970,3 +970,26 @@ def test_routing_only_prohibition_still_requires_valid_extraction_date() -> None
     }
     with pytest.raises(ValueError, match="decision extraction date must fall"):
         adj.adjudicate(bundle)
+
+
+
+def test_phone_response_requires_call_note_decision_evidence() -> None:
+    payload = _songzanlin_bundle()
+    payload["responses"][0]["source_response_receive_channel"] = "PHONE_CALL"
+    with pytest.raises(ValueError, match="locator/channel mismatch"):
+        adj.adjudicate(payload)
+
+
+def test_phone_response_accepts_call_note_decision_evidence() -> None:
+    payload = _songzanlin_bundle()
+    response = payload["responses"][0]
+    response["source_response_receive_channel"] = "PHONE_CALL"
+    for row in response["activity_decisions"]:
+        if row["decision"] != "UNRESOLVED":
+            row["decision_evidence_locator"] = (
+                "CALL_NOTE:activity-" + row["activity_id"]
+            )
+    out = adj.adjudicate(payload)
+    assert out["status"] == "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+    details = out["responses"][0]["activity_decision_details"]["A"]
+    assert details["decision_evidence_locator"].startswith("CALL_NOTE:")
