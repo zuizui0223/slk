@@ -11,6 +11,10 @@ ROOT = Path(__file__).resolve().parents[1]
 ADJ = ROOT / "scripts" / "adjudicate_pedicularis_context_recovery.py"
 COMP = ROOT / "scripts" / "compile_pedicularis_context_recovery_to_p0_calibration.py"
 CAL_TEMPLATE = ROOT / "data" / "PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_FREEZE_TEMPLATE_V1.json"
+PERMISSION_FIXTURE = (
+    ROOT / "tests" / "fixtures"
+    / "pedicularis_permission_scope_confirmed_v1.json"
+)
 
 spec = importlib.util.spec_from_file_location("ped_context_recovery", ADJ)
 adj = importlib.util.module_from_spec(spec)
@@ -72,6 +76,10 @@ def _freeze() -> dict:
     }
 
 
+def _permission_receipt() -> dict:
+    return json.loads(PERMISSION_FIXTURE.read_text(encoding="utf-8"))
+
+
 def _obs() -> dict:
     return {
         "schema_version": "SLK_PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_V1",
@@ -106,88 +114,12 @@ def _obs() -> dict:
             "access_evidence_reference": "FIELD_ACCESS_LOG_001",
             "sampling_permission_status": "CONFIRMED",
             "sampling_permission_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
-            "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123",
+            "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm",
             "same_season_revisit_feasible": True,
             "revisit_plan_reference": "REVISIT_PLAN_001",
             "notes": "fresh context only",
         },
-        "permission_scope_receipt": {
-            "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
-            "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
-            "candidate_id": "SHANGRILA_WUFENG",
-            "response_bundle_id": "bundle-001",
-            "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
-            "required_activity_matrix": {
-                "A": {"regulatory": "PASS", "site": "PASS"},
-                "B": {"regulatory": "PASS", "site": "PASS"},
-                "C": {"regulatory": "PASS", "site": "PASS"}
-            },
-            "required_activity_validity": {
-                activity_id: {
-                    "regulatory": [
-                        {
-                            "response_id": "REG-001",
-                            "route_id": "TEST-REG",
-                            "response_reference": "REG-REF",
-                            "decision": "ALLOWED",
-                            "valid_from": "2027-05-01",
-                            "valid_through": "2027-09-30",
-                        }
-                    ],
-                    "site": [
-                        {
-                            "response_id": "SITE-001",
-                            "route_id": "TEST-SITE",
-                            "response_reference": "SITE-REF",
-                            "decision": "ALLOWED",
-                            "valid_from": "2027-05-01",
-                            "valid_through": "2027-09-30",
-                        }
-                    ],
-                }
-                for activity_id in "ABC"
-            },
-            "all_activity_matrix": {
-                activity_id: (
-                    {"regulatory": "PASS", "site": "PASS"}
-                    if activity_id in "ABC"
-                    else {"regulatory": "UNRESOLVED", "site": "UNRESOLVED"}
-                )
-                for activity_id in "ABCDEF"
-            },
-            "all_activity_validity": {
-                activity_id: (
-                    {
-                        "regulatory": [
-                            {
-                                "response_id": "REG-001",
-                                "route_id": "TEST-REG",
-                                "response_reference": "REG-REF",
-                                "decision": "ALLOWED",
-                                "valid_from": "2027-05-01",
-                                "valid_through": "2027-09-30",
-                            }
-                        ],
-                        "site": [
-                            {
-                                "response_id": "SITE-001",
-                                "route_id": "TEST-SITE",
-                                "response_reference": "SITE-REF",
-                                "decision": "ALLOWED",
-                                "valid_from": "2027-05-01",
-                                "valid_through": "2027-09-30",
-                            }
-                        ],
-                    }
-                    if activity_id in "ABC"
-                    else {"regulatory": [], "site": []}
-                )
-                for activity_id in "ABCDEF"
-            },
-            "sampling_permission_reference": (
-                "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
-            )
-        },
+        "permission_scope_receipt": _permission_receipt(),
         "prohibited_recovery_inferences": {
             "pollinator_signal_scored": False,
             "predator_signal_scored": False,
@@ -370,7 +302,7 @@ def test_positive_receipt_preserves_recovery_evidence_references() -> None:
     assert fresh["flowering_population_evidence_reference"] == "PHOTO_SET_FLOWERING_001"
     assert fresh["access_evidence_reference"] == "FIELD_ACCESS_LOG_001"
     assert fresh["sampling_permission_reference"] == (
-        "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@perm123"
+        "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm"
     )
     assert fresh["revisit_plan_reference"] == "REVISIT_PLAN_001"
 
