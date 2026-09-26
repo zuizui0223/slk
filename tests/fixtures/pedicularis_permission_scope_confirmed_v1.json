@@ -1,0 +1,782 @@
+{
+  "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1",
+  "status": "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED",
+  "candidate_id": "SHANGRILA_WUFENG",
+  "response_bundle_id": "test-permission-bundle",
+  "required_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
+  "required_activities": [
+    "A",
+    "B",
+    "C"
+  ],
+  "required_activity_matrix": {
+    "A": {
+      "regulatory": "PASS",
+      "site": "PASS"
+    },
+    "B": {
+      "regulatory": "PASS",
+      "site": "PASS"
+    },
+    "C": {
+      "regulatory": "PASS",
+      "site": "PASS"
+    }
+  },
+  "required_activity_validity": {
+    "A": {
+      "regulatory": [
+        {
+          "response_id": "REG-TEST",
+          "route_id": "WUFENG_FORESTRY_REGULATOR",
+          "response_reference": "REG-A",
+          "decision_evidence_locator": "BODY:paragraph-A",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-A",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-A",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ],
+      "site": [
+        {
+          "response_id": "SITE-TEST",
+          "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+          "response_reference": "SITE-A",
+          "decision_evidence_locator": "BODY:paragraph-A",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-A",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-A",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ]
+    },
+    "B": {
+      "regulatory": [
+        {
+          "response_id": "REG-TEST",
+          "route_id": "WUFENG_FORESTRY_REGULATOR",
+          "response_reference": "REG-B",
+          "decision_evidence_locator": "BODY:paragraph-B",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-B",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-B",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ],
+      "site": [
+        {
+          "response_id": "SITE-TEST",
+          "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+          "response_reference": "SITE-B",
+          "decision_evidence_locator": "BODY:paragraph-B",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-B",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-B",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ]
+    },
+    "C": {
+      "regulatory": [
+        {
+          "response_id": "REG-TEST",
+          "route_id": "WUFENG_FORESTRY_REGULATOR",
+          "response_reference": "REG-C",
+          "decision_evidence_locator": "BODY:paragraph-C",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-C",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-C",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ],
+      "site": [
+        {
+          "response_id": "SITE-TEST",
+          "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+          "response_reference": "SITE-C",
+          "decision_evidence_locator": "BODY:paragraph-C",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-C",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-C",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ]
+    }
+  },
+  "all_activity_matrix": {
+    "A": {
+      "regulatory": "PASS",
+      "site": "PASS"
+    },
+    "B": {
+      "regulatory": "PASS",
+      "site": "PASS"
+    },
+    "C": {
+      "regulatory": "PASS",
+      "site": "PASS"
+    },
+    "D": {
+      "regulatory": "UNRESOLVED",
+      "site": "UNRESOLVED"
+    },
+    "E": {
+      "regulatory": "UNRESOLVED",
+      "site": "UNRESOLVED"
+    },
+    "F": {
+      "regulatory": "UNRESOLVED",
+      "site": "UNRESOLVED"
+    }
+  },
+  "all_activity_validity": {
+    "A": {
+      "regulatory": [
+        {
+          "response_id": "REG-TEST",
+          "route_id": "WUFENG_FORESTRY_REGULATOR",
+          "response_reference": "REG-A",
+          "decision_evidence_locator": "BODY:paragraph-A",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-A",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-A",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ],
+      "site": [
+        {
+          "response_id": "SITE-TEST",
+          "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+          "response_reference": "SITE-A",
+          "decision_evidence_locator": "BODY:paragraph-A",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-A",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-A",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ]
+    },
+    "B": {
+      "regulatory": [
+        {
+          "response_id": "REG-TEST",
+          "route_id": "WUFENG_FORESTRY_REGULATOR",
+          "response_reference": "REG-B",
+          "decision_evidence_locator": "BODY:paragraph-B",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-B",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-B",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ],
+      "site": [
+        {
+          "response_id": "SITE-TEST",
+          "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+          "response_reference": "SITE-B",
+          "decision_evidence_locator": "BODY:paragraph-B",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-B",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-B",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ]
+    },
+    "C": {
+      "regulatory": [
+        {
+          "response_id": "REG-TEST",
+          "route_id": "WUFENG_FORESTRY_REGULATOR",
+          "response_reference": "REG-C",
+          "decision_evidence_locator": "BODY:paragraph-C",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-C",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-C",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ],
+      "site": [
+        {
+          "response_id": "SITE-TEST",
+          "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+          "response_reference": "SITE-C",
+          "decision_evidence_locator": "BODY:paragraph-C",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-C",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "decision": "ALLOWED",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-C",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        }
+      ]
+    },
+    "D": {
+      "regulatory": [],
+      "site": []
+    },
+    "E": {
+      "regulatory": [],
+      "site": []
+    },
+    "F": {
+      "regulatory": [],
+      "site": []
+    }
+  },
+  "activity_definition_schema": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1",
+  "adjudication_metadata": {
+    "slk_source_commit": "test-source",
+    "adjudication_commit": "testperm",
+    "adjudication_timestamp": "2027-05-13T00:00:00Z"
+  },
+  "responses": [
+    {
+      "response_id": "REG-TEST",
+      "route_id": "WUFENG_FORESTRY_REGULATOR",
+      "route_type": "REGULATORY_ROUTING",
+      "route_class": "REGULATORY",
+      "organization": "Shangri-La Municipal Forestry and Grassland Bureau",
+      "response_date": "2027-05-10",
+      "response_reference": "REG-RESPONSE",
+      "source_response_event_id": "REG-EVENT",
+      "source_response_received_at": "2027-05-10T09:00:00+08:00",
+      "source_response_receive_channel": "EMAIL",
+      "source_response_content_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source_response_classification_review_reference": "REG-CLASS-REVIEW",
+      "activity_decisions": {
+        "A": "ALLOWED",
+        "B": "ALLOWED",
+        "C": "ALLOWED",
+        "D": "UNRESOLVED",
+        "E": "UNRESOLVED",
+        "F": "UNRESOLVED"
+      },
+      "effective_scope_decisions": {
+        "A": "ALLOWED",
+        "B": "ALLOWED",
+        "C": "ALLOWED",
+        "D": "UNRESOLVED",
+        "E": "UNRESOLVED",
+        "F": "UNRESOLVED"
+      },
+      "activity_decision_details": {
+        "A": {
+          "decision": "ALLOWED",
+          "response_reference": "REG-A",
+          "decision_evidence_locator": "BODY:paragraph-A",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-A",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-A",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        },
+        "B": {
+          "decision": "ALLOWED",
+          "response_reference": "REG-B",
+          "decision_evidence_locator": "BODY:paragraph-B",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-B",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-B",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        },
+        "C": {
+          "decision": "ALLOWED",
+          "response_reference": "REG-C",
+          "decision_evidence_locator": "BODY:paragraph-C",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "REG-EXTRACT-C",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "REG-COND-REVIEW-C",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        },
+        "D": {
+          "decision": "UNRESOLVED",
+          "response_reference": null,
+          "decision_evidence_locator": null,
+          "decision_extracted_by": null,
+          "decision_extraction_date": null,
+          "decision_extraction_reference": null,
+          "decision_extraction_rationale": null,
+          "valid_from": null,
+          "valid_through": null,
+          "conditions": null,
+          "conditions_compatible_with_registered_activity": null,
+          "conditions_review_reference": null,
+          "registered_activity_definition_reference": null,
+          "conditions_reviewed_by": null,
+          "conditions_review_date": null,
+          "conditions_review_rationale": null
+        },
+        "E": {
+          "decision": "UNRESOLVED",
+          "response_reference": null,
+          "decision_evidence_locator": null,
+          "decision_extracted_by": null,
+          "decision_extraction_date": null,
+          "decision_extraction_reference": null,
+          "decision_extraction_rationale": null,
+          "valid_from": null,
+          "valid_through": null,
+          "conditions": null,
+          "conditions_compatible_with_registered_activity": null,
+          "conditions_review_reference": null,
+          "registered_activity_definition_reference": null,
+          "conditions_reviewed_by": null,
+          "conditions_review_date": null,
+          "conditions_review_rationale": null
+        },
+        "F": {
+          "decision": "UNRESOLVED",
+          "response_reference": null,
+          "decision_evidence_locator": null,
+          "decision_extracted_by": null,
+          "decision_extraction_date": null,
+          "decision_extraction_reference": null,
+          "decision_extraction_rationale": null,
+          "valid_from": null,
+          "valid_through": null,
+          "conditions": null,
+          "conditions_compatible_with_registered_activity": null,
+          "conditions_review_reference": null,
+          "registered_activity_definition_reference": null,
+          "conditions_reviewed_by": null,
+          "conditions_review_date": null,
+          "conditions_review_rationale": null
+        }
+      },
+      "conditions": "non-destructive test scope"
+    },
+    {
+      "response_id": "SITE-TEST",
+      "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+      "route_type": "SITE_MANAGEMENT_ROUTING",
+      "route_class": "SITE",
+      "organization": "Shangri-La State-owned Forest Farm, Jiantang Branch",
+      "response_date": "2027-05-11",
+      "response_reference": "SITE-RESPONSE",
+      "source_response_event_id": "SITE-EVENT",
+      "source_response_received_at": "2027-05-11T09:00:00+08:00",
+      "source_response_receive_channel": "EMAIL",
+      "source_response_content_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "source_response_classification_review_reference": "SITE-CLASS-REVIEW",
+      "activity_decisions": {
+        "A": "ALLOWED",
+        "B": "ALLOWED",
+        "C": "ALLOWED",
+        "D": "UNRESOLVED",
+        "E": "UNRESOLVED",
+        "F": "UNRESOLVED"
+      },
+      "effective_scope_decisions": {
+        "A": "ALLOWED",
+        "B": "ALLOWED",
+        "C": "ALLOWED",
+        "D": "UNRESOLVED",
+        "E": "UNRESOLVED",
+        "F": "UNRESOLVED"
+      },
+      "activity_decision_details": {
+        "A": {
+          "decision": "ALLOWED",
+          "response_reference": "SITE-A",
+          "decision_evidence_locator": "BODY:paragraph-A",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-A",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-A",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        },
+        "B": {
+          "decision": "ALLOWED",
+          "response_reference": "SITE-B",
+          "decision_evidence_locator": "BODY:paragraph-B",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-B",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-B",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        },
+        "C": {
+          "decision": "ALLOWED",
+          "response_reference": "SITE-C",
+          "decision_evidence_locator": "BODY:paragraph-C",
+          "decision_extracted_by": "TEST-EXTRACTOR",
+          "decision_extraction_date": "2027-05-12",
+          "decision_extraction_reference": "SITE-EXTRACT-C",
+          "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+          "valid_from": "2027-05-01",
+          "valid_through": "2027-09-30",
+          "conditions": "NO_ADDITIONAL_CONDITIONS",
+          "conditions_compatible_with_registered_activity": true,
+          "conditions_review_reference": "SITE-COND-REVIEW-C",
+          "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+          "conditions_reviewed_by": "TEST-REVIEWER",
+          "conditions_review_date": "2027-05-12",
+          "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+        },
+        "D": {
+          "decision": "UNRESOLVED",
+          "response_reference": null,
+          "decision_evidence_locator": null,
+          "decision_extracted_by": null,
+          "decision_extraction_date": null,
+          "decision_extraction_reference": null,
+          "decision_extraction_rationale": null,
+          "valid_from": null,
+          "valid_through": null,
+          "conditions": null,
+          "conditions_compatible_with_registered_activity": null,
+          "conditions_review_reference": null,
+          "registered_activity_definition_reference": null,
+          "conditions_reviewed_by": null,
+          "conditions_review_date": null,
+          "conditions_review_rationale": null
+        },
+        "E": {
+          "decision": "UNRESOLVED",
+          "response_reference": null,
+          "decision_evidence_locator": null,
+          "decision_extracted_by": null,
+          "decision_extraction_date": null,
+          "decision_extraction_reference": null,
+          "decision_extraction_rationale": null,
+          "valid_from": null,
+          "valid_through": null,
+          "conditions": null,
+          "conditions_compatible_with_registered_activity": null,
+          "conditions_review_reference": null,
+          "registered_activity_definition_reference": null,
+          "conditions_reviewed_by": null,
+          "conditions_review_date": null,
+          "conditions_review_rationale": null
+        },
+        "F": {
+          "decision": "UNRESOLVED",
+          "response_reference": null,
+          "decision_evidence_locator": null,
+          "decision_extracted_by": null,
+          "decision_extraction_date": null,
+          "decision_extraction_reference": null,
+          "decision_extraction_rationale": null,
+          "valid_from": null,
+          "valid_through": null,
+          "conditions": null,
+          "conditions_compatible_with_registered_activity": null,
+          "conditions_review_reference": null,
+          "registered_activity_definition_reference": null,
+          "conditions_reviewed_by": null,
+          "conditions_review_date": null,
+          "conditions_review_rationale": null
+        }
+      },
+      "conditions": "non-destructive test scope"
+    }
+  ],
+  "recovery_handoff": {
+    "sampling_permission_status": "CONFIRMED",
+    "sampling_permission_scope": "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE",
+    "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm",
+    "required_activity_validity": {
+      "A": {
+        "regulatory": [
+          {
+            "response_id": "REG-TEST",
+            "route_id": "WUFENG_FORESTRY_REGULATOR",
+            "response_reference": "REG-A",
+            "decision_evidence_locator": "BODY:paragraph-A",
+            "decision_extracted_by": "TEST-EXTRACTOR",
+            "decision_extraction_date": "2027-05-12",
+            "decision_extraction_reference": "REG-EXTRACT-A",
+            "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+            "decision": "ALLOWED",
+            "valid_from": "2027-05-01",
+            "valid_through": "2027-09-30",
+            "conditions": "NO_ADDITIONAL_CONDITIONS",
+            "conditions_compatible_with_registered_activity": true,
+            "conditions_review_reference": "REG-COND-REVIEW-A",
+            "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+            "conditions_reviewed_by": "TEST-REVIEWER",
+            "conditions_review_date": "2027-05-12",
+            "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+          }
+        ],
+        "site": [
+          {
+            "response_id": "SITE-TEST",
+            "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+            "response_reference": "SITE-A",
+            "decision_evidence_locator": "BODY:paragraph-A",
+            "decision_extracted_by": "TEST-EXTRACTOR",
+            "decision_extraction_date": "2027-05-12",
+            "decision_extraction_reference": "SITE-EXTRACT-A",
+            "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+            "decision": "ALLOWED",
+            "valid_from": "2027-05-01",
+            "valid_through": "2027-09-30",
+            "conditions": "NO_ADDITIONAL_CONDITIONS",
+            "conditions_compatible_with_registered_activity": true,
+            "conditions_review_reference": "SITE-COND-REVIEW-A",
+            "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#A",
+            "conditions_reviewed_by": "TEST-REVIEWER",
+            "conditions_review_date": "2027-05-12",
+            "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+          }
+        ]
+      },
+      "B": {
+        "regulatory": [
+          {
+            "response_id": "REG-TEST",
+            "route_id": "WUFENG_FORESTRY_REGULATOR",
+            "response_reference": "REG-B",
+            "decision_evidence_locator": "BODY:paragraph-B",
+            "decision_extracted_by": "TEST-EXTRACTOR",
+            "decision_extraction_date": "2027-05-12",
+            "decision_extraction_reference": "REG-EXTRACT-B",
+            "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+            "decision": "ALLOWED",
+            "valid_from": "2027-05-01",
+            "valid_through": "2027-09-30",
+            "conditions": "NO_ADDITIONAL_CONDITIONS",
+            "conditions_compatible_with_registered_activity": true,
+            "conditions_review_reference": "REG-COND-REVIEW-B",
+            "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+            "conditions_reviewed_by": "TEST-REVIEWER",
+            "conditions_review_date": "2027-05-12",
+            "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+          }
+        ],
+        "site": [
+          {
+            "response_id": "SITE-TEST",
+            "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+            "response_reference": "SITE-B",
+            "decision_evidence_locator": "BODY:paragraph-B",
+            "decision_extracted_by": "TEST-EXTRACTOR",
+            "decision_extraction_date": "2027-05-12",
+            "decision_extraction_reference": "SITE-EXTRACT-B",
+            "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+            "decision": "ALLOWED",
+            "valid_from": "2027-05-01",
+            "valid_through": "2027-09-30",
+            "conditions": "NO_ADDITIONAL_CONDITIONS",
+            "conditions_compatible_with_registered_activity": true,
+            "conditions_review_reference": "SITE-COND-REVIEW-B",
+            "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#B",
+            "conditions_reviewed_by": "TEST-REVIEWER",
+            "conditions_review_date": "2027-05-12",
+            "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+          }
+        ]
+      },
+      "C": {
+        "regulatory": [
+          {
+            "response_id": "REG-TEST",
+            "route_id": "WUFENG_FORESTRY_REGULATOR",
+            "response_reference": "REG-C",
+            "decision_evidence_locator": "BODY:paragraph-C",
+            "decision_extracted_by": "TEST-EXTRACTOR",
+            "decision_extraction_date": "2027-05-12",
+            "decision_extraction_reference": "REG-EXTRACT-C",
+            "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+            "decision": "ALLOWED",
+            "valid_from": "2027-05-01",
+            "valid_through": "2027-09-30",
+            "conditions": "NO_ADDITIONAL_CONDITIONS",
+            "conditions_compatible_with_registered_activity": true,
+            "conditions_review_reference": "REG-COND-REVIEW-C",
+            "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+            "conditions_reviewed_by": "TEST-REVIEWER",
+            "conditions_review_date": "2027-05-12",
+            "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+          }
+        ],
+        "site": [
+          {
+            "response_id": "SITE-TEST",
+            "route_id": "WUFENG_JIANTANG_FOREST_FARM",
+            "response_reference": "SITE-C",
+            "decision_evidence_locator": "BODY:paragraph-C",
+            "decision_extracted_by": "TEST-EXTRACTOR",
+            "decision_extraction_date": "2027-05-12",
+            "decision_extraction_reference": "SITE-EXTRACT-C",
+            "decision_extraction_rationale": "Decision category was extracted from the cited response passage.",
+            "decision": "ALLOWED",
+            "valid_from": "2027-05-01",
+            "valid_through": "2027-09-30",
+            "conditions": "NO_ADDITIONAL_CONDITIONS",
+            "conditions_compatible_with_registered_activity": true,
+            "conditions_review_reference": "SITE-COND-REVIEW-C",
+            "registered_activity_definition_reference": "SLK_PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1#C",
+            "conditions_reviewed_by": "TEST-REVIEWER",
+            "conditions_review_date": "2027-05-12",
+            "conditions_review_rationale": "Authority condition is compatible with the registered activity definition."
+          }
+        ]
+      }
+    },
+    "destructive_activities_D_to_F_required_for_recovery_p0a_p0b": false
+  },
+  "sampling_permission_reference": "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1@testperm",
+  "claim_ceiling": "TEST_FIXTURE_ONLY"
+}
