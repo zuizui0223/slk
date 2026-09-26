@@ -5,6 +5,15 @@ import copy
 import json
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
+except ImportError:
+    from pedicularis_permission_scope import (
+        validate_confirmed_permission_scope,
+    )
+
 
 CAL_SCHEMA = "SLK_PEDICULARIS_P0_NATURAL_HISTORY_CALIBRATION_RECEIPT_V1"
 CAL_READY = "P0_RELEVANCE_FRESH_CALIBRATION_QUALIFIED"
@@ -45,6 +54,10 @@ def compile_qualification(calibration: dict, template: dict) -> dict:
     _need(
         isinstance(permission_receipt, dict),
         "qualified fresh calibration permission scope receipt missing",
+    )
+    validate_confirmed_permission_scope(
+        permission_receipt,
+        expected_candidate_id=cctx["candidate_id"],
     )
     out["permission_scope_receipt"] = copy.deepcopy(permission_receipt)
     rows = {row["input_id"]: row for row in out["inputs"]}
