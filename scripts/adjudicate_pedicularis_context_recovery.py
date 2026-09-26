@@ -7,6 +7,19 @@ import math
 from datetime import date
 from pathlib import Path
 
+try:
+    from scripts.pedicularis_permission_scope import (
+        REQUIRED_SCOPE,
+        activity_valid_on_day,
+        validate_confirmed_permission_scope,
+    )
+except ImportError:
+    from pedicularis_permission_scope import (
+        REQUIRED_SCOPE,
+        activity_valid_on_day,
+        validate_confirmed_permission_scope,
+    )
+
 FREEZE_SCHEMA = "SLK_PEDICULARIS_CONTEXT_RECOVERY_FREEZE_V1"
 OBS_SCHEMA = "SLK_PEDICULARIS_CONTEXT_RECOVERY_OBSERVATION_V1"
 PRODUCTION_STATUS = "PEDICULARIS_CONTEXT_RECOVERY_PROSPECTIVELY_FROZEN"
@@ -16,9 +29,7 @@ ALLOWED_PRIOR_STATUSES = {
     "RECENT_ASSESSMENT_OCCURRENCE_ONLY",
 }
 ALLOWED_PERMISSION = {"CONFIRMED"}
-REQUIRED_PERMISSION_SCOPE = "RECOVERY_PLUS_P0A_PLUS_P0B_NONDESTRUCTIVE"
-PERMISSION_RECEIPT_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_SCOPE_RECEIPT_V1"
-PERMISSION_RECEIPT_STATUS = "RECOVERY_P0A_P0B_PERMISSION_SCOPE_CONFIRMED"
+REQUIRED_PERMISSION_SCOPE = REQUIRED_SCOPE
 SPECIMEN_CONTEXT_RECEIPT_SCHEMA = (
     "SLK_PEDICULARIS_RECOVERY_SPECIMEN_CONTEXT_RECEIPT_V1"
 )
@@ -95,45 +106,6 @@ def _optional_nonnegative_int(value: object, label: str) -> int | None:
         raise ValueError(f"{label} must be an integer") from exc
     _need(math.isfinite(out) and out >= 0 and out.is_integer(), f"{label} must be a nonnegative integer")
     return int(out)
-
-
-def _permission_activity_valid_on_day(
-    receipt: dict,
-    activity_id: str,
-    day: date,
-) -> bool:
-    matrix = receipt.get("all_activity_matrix")
-    validity = receipt.get("all_activity_validity")
-    _need(
-        isinstance(matrix, dict) and set(matrix) == set("ABCDEF"),
-        "all-activity permission matrix changed",
-    )
-    _need(
-        isinstance(validity, dict) and set(validity) == set("ABCDEF"),
-        "all-activity permission validity changed",
-    )
-    cell = matrix[activity_id]
-    if not (
-        isinstance(cell, dict)
-        and cell.get("regulatory") == "PASS"
-        and cell.get("site") == "PASS"
-    ):
-        return False
-    validity_cell = validity[activity_id]
-    _need(
-        isinstance(validity_cell, dict)
-        and set(validity_cell) == {"regulatory", "site"},
-        f"all-activity permission validity cell changed: {activity_id}",
-    )
-    return all(
-        any(
-            date.fromisoformat(interval["valid_from"])
-            <= day
-            <= date.fromisoformat(interval["valid_through"])
-            for interval in validity_cell[side]
-        )
-        for side in ("regulatory", "site")
-    )
 
 
 def _candidate_ledger_row(candidate_id: str) -> dict[str, str]:
@@ -255,6 +227,7 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
 
     permission_receipt = observation.get("permission_scope_receipt")
     permission_receipt_valid = False
+    validated_permission = None
     if permission_raw in ALLOWED_PERMISSION:
         _need(
             permission_scope == REQUIRED_PERMISSION_SCOPE,
@@ -264,93 +237,21 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
             isinstance(permission_receipt, dict),
             "confirmed recovery permission scope receipt missing",
         )
-        _need(
-            permission_receipt.get("schema_version") == PERMISSION_RECEIPT_SCHEMA,
-            "wrong recovery permission scope receipt schema",
-        )
-        _need(
-            permission_receipt.get("status") == PERMISSION_RECEIPT_STATUS,
-            "recovery permission scope receipt is not confirmed",
-        )
-        _need(
-            permission_receipt.get("candidate_id") == fctx["candidate_id"],
-            "recovery permission scope receipt candidate mismatch",
-        )
-        _need(
-            permission_receipt.get("required_scope") == REQUIRED_PERMISSION_SCOPE,
-            "recovery permission scope receipt scope changed",
-        )
-        matrix = permission_receipt.get("required_activity_matrix")
-        _need(
-            isinstance(matrix, dict) and set(matrix) == {"A", "B", "C"},
-            "recovery permission scope receipt activity matrix changed",
-        )
-        validity = permission_receipt.get("required_activity_validity")
-        _need(
-            isinstance(validity, dict) and set(validity) == {"A", "B", "C"},
-            "recovery permission validity inventory changed",
-        )
-        for activity_id in ("A", "B", "C"):
-            cell = matrix[activity_id]
-            _need(
-                isinstance(cell, dict)
-                and cell.get("regulatory") == "PASS"
-                and cell.get("site") == "PASS",
-                f"recovery permission scope not passed for activity {activity_id}",
-            )
-            validity_cell = validity[activity_id]
-            _need(
-                isinstance(validity_cell, dict)
-                and set(validity_cell) == {"regulatory", "site"},
-                f"recovery permission validity cell changed for activity {activity_id}",
-            )
-            for side in ("regulatory", "site"):
-                intervals = validity_cell[side]
-                _need(
-                    isinstance(intervals, list) and intervals,
-                    f"recovery permission validity missing for activity {activity_id}/{side}",
-                )
-                for index, interval in enumerate(intervals):
-                    _need(
-                        isinstance(interval, dict),
-                        f"permission validity interval must be object: {activity_id}/{side}/{index}",
-                    )
-                    start = _optional_iso_date(
-                        interval.get("valid_from"),
-                        f"permission valid_from/{activity_id}/{side}/{index}",
-                    )
-                    end = _optional_iso_date(
-                        interval.get("valid_through"),
-                        f"permission valid_through/{activity_id}/{side}/{index}",
-                    )
-                    _need(
-                        start is not None and end is not None and start <= end,
-                        f"invalid permission validity interval: {activity_id}/{side}/{index}",
-                    )
-        all_matrix = permission_receipt.get("all_activity_matrix")
-        all_validity = permission_receipt.get("all_activity_validity")
-        _need(
-            isinstance(all_matrix, dict) and set(all_matrix) == set("ABCDEF"),
-            "all-activity permission matrix changed",
-        )
-        _need(
-            isinstance(all_validity, dict) and set(all_validity) == set("ABCDEF"),
-            "all-activity permission validity changed",
+        validated_permission = validate_confirmed_permission_scope(
+            permission_receipt,
+            expected_candidate_id=fctx["candidate_id"],
         )
         permission_receipt_valid = True
 
     permission_valid_on_verification_date: bool | None = None
-    if permission_receipt_valid and verification_day is not None:
-        validity = permission_receipt["required_activity_validity"]
+    if validated_permission is not None and verification_day is not None:
         permission_valid_on_verification_date = all(
-            any(
-                date.fromisoformat(interval["valid_from"])
-                <= verification_day
-                <= date.fromisoformat(interval["valid_through"])
-                for interval in validity[activity_id][side]
+            activity_valid_on_day(
+                validated_permission,
+                activity_id,
+                verification_day,
             )
             for activity_id in ("A", "B", "C")
-            for side in ("regulatory", "site")
         )
 
     taxon_method = _optional_text(fresh.get("taxon_verification_method"))
@@ -469,8 +370,8 @@ def adjudicate(observation: dict, freeze: dict) -> dict:
                 specimen_date == verification_day,
                 "new field voucher collection date must equal recovery verification date",
             )
-            new_voucher_permission_valid = _permission_activity_valid_on_day(
-                permission_receipt,
+            new_voucher_permission_valid = activity_valid_on_day(
+                validated_permission,
                 "D",
                 verification_day,
             )
