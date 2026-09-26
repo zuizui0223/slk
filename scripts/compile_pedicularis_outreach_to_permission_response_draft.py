@@ -80,6 +80,19 @@ def build(rows: list[dict[str, str]], candidate_id: str) -> dict:
                 "responding_organization": route["organization"].strip(),
                 "response_date": row["response_date"].strip(),
                 "response_reference": row["response_reference"].strip(),
+                "source_response_event_id": row["response_event_id"].strip(),
+                "source_response_received_at": row[
+                    "response_received_at"
+                ].strip(),
+                "source_response_receive_channel": row[
+                    "response_receive_channel"
+                ].strip(),
+                "source_response_content_sha256": row[
+                    "response_content_sha256"
+                ].strip(),
+                "source_response_classification_review_reference": row[
+                    "response_classification_review_reference"
+                ].strip(),
                 "activity_decisions": [
                     {
                         "activity_id": activity_id,
