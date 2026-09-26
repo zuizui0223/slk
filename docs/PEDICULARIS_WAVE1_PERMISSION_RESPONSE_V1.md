@@ -208,6 +208,7 @@ Conflicting responses are not resolved by choosing the more convenient answer.
 
 ```text
 data/PEDICULARIS_PERMISSION_ACTIVITY_DEFINITIONS_V1.json
+data/PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_TEMPLATE_V1.json
 data/PEDICULARIS_WAVE1_PERMISSION_RESPONSE_TEMPLATE_V1.json
 scripts/adjudicate_pedicularis_wave1_permission_responses.py
 scripts/compile_pedicularis_permission_scope_into_recovery.py
