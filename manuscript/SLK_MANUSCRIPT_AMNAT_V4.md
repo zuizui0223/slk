@@ -542,7 +542,7 @@ Observed mismatches between conflict, value, and realized architecture identify 
 - `Phi<0` but D invades when rare: negative-frequency feedback rescues rare entry; test coexistence rather than claiming endpoint superiority.
 - Reciprocal fixation and occupancy orderings disagree under the registered process: process assumptions are violated; audit mutation symmetry/rarity, game symmetry, and the fixation kernel.
 
-The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is a prediction of **where discordance should occur, which ecological mechanism creates it, and which additional measurement resolves it**.
+The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is a **discordance diagnostic**: once the upstream quantities are measured, a mismatch localizes the first decision layer at which the architecture comparison changes verdict and identifies the next quantity that must be measured. It does not by itself identify the biological mechanism generating that quantity; mechanism attribution requires a separate causal analysis.
 
 ## 11. Empirical measurement programme
 
