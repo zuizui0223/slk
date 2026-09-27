@@ -50,7 +50,7 @@ def test_theory_registers_cross_level_phi_compatibility() -> None:
 def test_audit_and_submission_both_name_uta1() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     audit = AUDIT.read_text(encoding="utf-8")
-    assert "Unified critical-surface theorem" in manuscript
+    assert "critical-surface transport atlas" in manuscript
     assert "UTA1" in audit
     assert "one convex recovery family" in manuscript
     assert "R(d)=d+d^2" in audit

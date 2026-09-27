@@ -1185,6 +1185,55 @@ The same result applies to the reverse-invasion threshold using `C_D`.
 
 These are deterministic approximation bounds conditional on valid local Lipschitz or curvature bounds. Sampling uncertainty in measured fitness differences must be added separately. A certified interval that overlaps zero is **uninformative**, not evidence of no invasion.
 
+The two-scale cancellation in `2Delta(epsilon)-Delta(2epsilon)` is Richardson-type extrapolation, with classical prior art in Richardson & Gaunt (1927). UTA1.9 therefore does **not** claim a new extrapolation theorem. Its SLK role is the biological adaptation: translating a rare-frequency endpoint into a prospective sign certificate, carrying approximation and sampling uncertainty together, and preserving an explicit unresolved state.
+
+## Diagnostic UTA1.10 — persistent integration is observationally non-identifying
+
+The transport hierarchy implies a diagnostic consequence that is biological rather than algebraic. The same macroscopic observation—continued integration or absence of realized differentiation—is compatible with different first-failing decision layers.
+
+Let
+
+```text
+g0 = R'(0)-k
+```
+
+be the net small-release gradient along the declared release path, and let
+
+```text
+Delta_R = lim_{p->0} Delta(p)
+```
+
+be the rare-D selection difference.
+
+Three distinct sign regimes are sufficient to separate three explanations within the registered hierarchy:
+
+```text
+A. architecture-value failure
+   L>0, Phi<0
+
+B. local-release failure
+   Phi>0, g0<0
+
+C. rare-establishment failure
+   Phi>0, g0>0, Delta_R<0
+```
+
+All three are compatible with no realized differentiation, but they license different conclusions and require different next measurements.
+
+- In A, the declared differentiated architecture is not net favorable even though conflict exists.
+- In B, the endpoint is favorable but sufficiently small release is downhill along the declared path.
+- In C, the endpoint is favorable and locally uphill, but D cannot establish from rarity in the current population context.
+
+The registered common witness family realizes A, B, and C as W1, W2, and W3 respectively. This is verified in `scripts/verify_amnat_claims.py`.
+
+### Diagnostic boundary
+
+UTA1.10 is not a theorem that phenotype alone reveals mechanism. It says the opposite: persistent integration is **non-identifying** without the upstream measurements. Once `Phi`, the local release gradient, and the rare-frequency margin are measured in sequence, the first sign change localizes the decision layer at which the declared architecture comparison stops carrying forward.
+
+The three regimes above are not claimed to be exhaustive causes of persistent integration. Drift, alternative mutation paths, demographic history, developmental constraints, environmental heterogeneity, and other processes can generate additional explanations. UTA1.10 therefore localizes a gate within the declared SLK hierarchy; it does not establish the causal mechanism producing that gate value.
+
+---
+
 ---
 
 ## 2. One-family constructive witnesses

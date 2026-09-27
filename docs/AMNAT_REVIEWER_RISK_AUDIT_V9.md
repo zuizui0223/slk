@@ -2,9 +2,9 @@
 
 ## Current verdict
 
-UTA1.9 converts the remaining endpoint-limit problem into a finite-frequency certification problem.
+UTA1.9 converts the endpoint-limit problem into a finite-frequency certification problem, but the numerical device is not itself a novelty claim. The two-scale cancellation at `epsilon` and `2epsilon` is Richardson-type extrapolation with classical prior art in Richardson & Gaunt (1927).
 
-The invasion layer no longer requires exact p=0 or p=1 treatments. Instead it uses finite frequencies plus an explicit local smoothness receipt.
+The invasion layer therefore uses an established extrapolation idea for a specific biological purpose: finite rare-frequency measurements, an explicit local smoothness receipt, combined approximation/sampling uncertainty, and a three-way invasion / non-invasion / unresolved decision.
 
 ## First-order certificate
 
@@ -102,9 +102,13 @@ This gives a direct frequency-resolution criterion for ecological-gradient exper
 
 ## Main reviewer risk now expected
 
-> How are the local smoothness bounds M_R or C_R justified empirically?
+> If the component algebra, invasion definition, extrapolation device, and fixation/occupancy process are established, what biological work is done by the integrated SLK transport?
 
-This is now the principal model-validation task.
+This is now the principal conceptual-review task. The strongest answer is UTA1.10: persistent integration is observationally non-identifying, but a fixed upstream comparison plus the measured sign sequence separates negative architecture value, local release barriers, and rare-establishment barriers. The one-family atlas shows these are compatible states of one comparison, while G1-G9 specifies what must be measured before each localization is licensed. The argument does not depend on priority claims for the component mathematics.
+
+A secondary model-validation question remains:
+
+> How are the local smoothness bounds M_R or C_R justified empirically?
 
 A defensible design should:
 
@@ -118,15 +122,11 @@ The theory does not claim that finite data can prove a global derivative bound w
 
 ## Practical implication
 
-The old risk was conceptual:
-
-> invasion depends on an experimentally unattainable limit.
-
-The new risk is ordinary experimental design:
+The endpoint-limit objection is now an ordinary experimental-design problem:
 
 > how fine must the frequency grid be, and how conservative must the local smoothness envelope be, to certify the endpoint sign?
 
-That is a much narrower and testable problem.
+But that repair should not be sold as new numerical mathematics. The biological payoff is diagnostic: identical persistent integration can arise at different decision layers, and the transport tells the reader which quantity must change sign before the next explanation is entertained. Mechanism attribution still requires separate causal evidence.
 
 ## Status
 
@@ -137,6 +137,8 @@ FINITE_FREQUENCY_ENDPOINT_BOUNDS     READY
 SAMPLING_PLUS_APPROXIMATION_INTERVAL READY
 ENVIRONMENTAL_THRESHOLD_ERROR_BOUND  READY
 EMPIRICAL_CEILING                    THEORY_ONLY
-MAIN_REVIEW_RISK                     LOCAL_SMOOTHNESS_BOUND_VALIDATION
+NUMERICAL_METHOD_NOVELTY             NOT_CLAIMED
+MAIN_REVIEW_RISK                     INTEGRATED_TRANSPORT_BIOLOGICAL_PAYOFF
+SECONDARY_REVIEW_RISK                LOCAL_SMOOTHNESS_BOUND_VALIDATION
 PRIMARY_TARGET                       THE_AMERICAN_NATURALIST
 ~~~

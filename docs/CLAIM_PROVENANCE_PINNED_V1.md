@@ -176,11 +176,11 @@ absolute fixation vs neutrality    3Phi=eta [weak selection]
 rare-mutation occupancy ordering   Phi=0
 ```
 
-The theorem synthesizes previously derived source mathematics into one registered architecture comparison. The compatibility lemma additionally registers `A_DD/2-A_SS/2=Phi`, so the architecture endpoint contrast is the same self-play difference transported into reciprocal fixation and symmetric rare-mutation occupancy. It does not erase source provenance or claim that the individual mathematical ingredients are new in isolation.
+The atlas synthesizes previously derived source mathematics into one registered architecture comparison. The compatibility lemma additionally registers `A_DD/2-A_SS/2=Phi`, so the architecture endpoint contrast is the same self-play difference transported into reciprocal fixation and symmetric rare-mutation occupancy. It does not erase source provenance or claim that the individual mathematical ingredients are new in isolation.
 
 The constructive non-equivalence witnesses are now all embedded in the common family `R(d)=d+d^2`, `K(d)=kd`, rather than being presented as disconnected toy parameterizations.
 
-## UTA1.4-UTA1.5 — ecological and comparative corollaries
+## UTA1.4-UTA1.5 — ecological and comparative derived consequences
 
 Current canonical owner: `zuizui0223/slk`
 
@@ -204,7 +204,7 @@ Phi=sL-K
    when s or K varies.
 ```
 
-These are SLK corollaries of the registered threshold geometry, not independent claims of universal environmental linearity or universal frequency-dependent ecology.
+These are SLK derived consequences of the registered threshold geometry, not independent claims of mathematical novelty, universal environmental linearity, or universal frequency-dependent ecology.
 
 ## UTA1.7 — frequency-curvature diagnostic
 
@@ -281,6 +281,37 @@ combined by interval widening.
 ```
 
 Intervals overlapping zero remain unresolved and must not be promoted to biological non-invasion.
+
+## UTA1.10 — persistent-integration gate localization
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+- `manuscript/SLK_MANUSCRIPT_V0.md`
+- `scripts/verify_amnat_claims.py`
+- `tests/test_amnat_submission_tools.py`
+
+Registered diagnostic claim:
+
+```text
+same observed persistent integration
+!=
+same underlying decision layer
+
+compatible sign regimes include:
+1  Phi < 0
+   -> architecture-value gate
+
+2  Phi > 0, g0 < 0
+   -> local-accessibility gate
+
+3  Phi > 0, g0 > 0, Delta_R < 0
+   -> rare-establishment gate
+```
+
+The executable verifier instantiates these three regimes using the registered common witness family W1-W3. UTA1.10 localizes the first changed decision layer only after the corresponding upstream quantities have been measured. It does not identify the causal mechanism responsible for low recoverability, architecture cost, path geometry, or ecological feedback.
 
 ## Freeze rule
 

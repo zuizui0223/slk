@@ -12,7 +12,7 @@ ADD_SECOND_POPULATION_PROCESS_BEFORE_SUBMISSION = false
 
 The fixation/occupancy results remain tied to the registered exponential Moran / connected symmetric rare-mutation process. Their role is not to claim universal population genetics. Their role is to demonstrate that transporting the same architecture-value object into a declared stochastic population process can create new separations and can also force an exact invariant.
 
-Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is now the empirical generality of the ecological threshold predictions rather than lack of another process example. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
+Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is whether UTA1.10 gate localization provides enough biological leverage beyond familiar component theories. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
 
 Revisit only if review specifically demands process robustness.
 
@@ -35,7 +35,7 @@ PRIMARY_TARGET = The American Naturalist
 ECOLOGY_LETTERS_REASSESSMENT = requires_real_same_system_G1_G5_receipt
 ```
 
-The current paper is strongest as a conceptual/theoretical ecology paper: an architecture-specific estimand transport, a unified critical-surface theorem, ecological threshold-displacement and conflict–differentiation discordance predictions, one-family constructive split witnesses, one exact process-level invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
+The current paper is strongest as a conceptual/theoretical ecology paper: an architecture-specific estimand transport, a unified critical-surface atlas, ecological threshold-displacement and conflict–differentiation discordance predictions, one-family constructive split witnesses, a process-level consistency invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
 
 The submission framing must emphasize biological theory and falsifiable measurement consequences, not software governance, repository integration, or bookkeeping.
 
@@ -46,7 +46,7 @@ THEORY_OWNERSHIP                         CLOSED
 GENERAL_MARGIN Phi=R-K                  CLOSED
 QUADRATIC_BRIDGE_SCOPE R=sL             CLOSED
 JOURNAL_PROSE_CONVERSION                 CLOSED
-REGISTERED_PRIOR_ART_COVERAGE            8/8 PASS
+REGISTERED_PRIOR_ART_COVERAGE            9/9 PASS
 CORE_LITERATURE_CITED                    CLOSED
 THEOREM_FORMULA_CONSISTENCY              PASS_AFTER_REPAIR
 UNIFIED_THRESHOLD_ATLAS                  PASS
@@ -60,24 +60,25 @@ ARBITRARY_SHAPE_ENDPOINT_INVASION        PASS
 FINITE_FREQUENCY_ENDPOINT_BOUNDS         PASS
 SAMPLING_PLUS_APPROXIMATION_INTERVAL     PASS
 CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
+GATE_LOCALIZATION_DIAGNOSTIC_UTA1_10      PASS
 FIGURE_2_ECOLOGICAL_PANEL                PASS
 FIGURE_1_THRESHOLD_ATLAS                 PASS
 WITNESS_ARITHMETIC                       PASS
 FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
-AMNAT_ABSTRACT_WORDS                    189 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       4438 PASS
+AMNAT_ABSTRACT_WORDS                    191 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE       5790 PASS
 AMNAT_FIGURES                             3 PASS
-AMNAT_TABLES                              2 PASS
-AMNAT_FIGURE_TABLE_TOTAL                  5 PASS
+AMNAT_TABLES                              3 PASS
+AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
 FULL_CI_PY311_PY312                      PASS
-REVIEW_MANUSCRIPT_PDF                    31 PAGES PASS
+REVIEW_MANUSCRIPT_PDF                    33 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
 DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
 ANONYMOUS_REVIEWER_BUNDLE                PASS
 IDENTITY_SCAN                             PASS
-CLAIM_VERIFIER_NE1_NE5                    PASS
+CLAIM_VERIFIER_NE1_NE5_UTA1_10            PASS
 FIXATION_OCCUPANCY_INVARIANT_GRID        PROCESS_DERIVED PASS
 MORAN_PROCESS_CANONICAL_GRID              PASS
 CANONICAL_MAPPING_GUARD                   PASS
@@ -87,12 +88,13 @@ FIGURE_3_MANUAL_QA                       PASS
 ANON_REVIEW_MORAN_TEST                  13/13 PASS
 INV1_PROCESS_COMPARISONS                336 PASS
 CANONICAL_MAPPING_GUARD                 PASS
+UTA1_10_DIAGNOSTIC_TABLE_MANUAL_QA       PASS_PAGES_25_26
 FINAL_FULL_PAGE_PROOFREAD                 OPEN
 ```
 
 ## Remaining submission actions
 
-There is no remaining internal theory or reviewer-package construction task required before upload. The generated files pass structural and anonymity checks; a final human page-by-page proofread remains before portal upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
+The current UTA1.10 source passes Python 3.11/3.12 CI, review-package build, rendered identity scan, executable claim verification, and targeted manual QA of the diagnostic table. A final full human page-by-page proofread remains before upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
 
 Remaining actions are controlled outside the scientific package:
 
@@ -108,14 +110,14 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Can conservative local Lipschitz or curvature bounds be validated well enough to turn finite-frequency assays into certified endpoint signs?
+> Does carrying one identified architecture comparison across familiar component theories generate enough biological leverage to justify the synthesis, once the component algebra is explicitly not claimed as new?
 
 The submission answer must center on four deductions:
 
-1. the same upstream architecture comparison can change verdict as it is transported through later estimands;
-2. along an ecological gradient, value and invasion are displaced by `eta/a`, predicting both transition order and the width `2|eta|/a` of the coordination/coexistence zone in the registered affine slice;
-3. conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies, so conflict–architecture discordance is expected rather than anomalous;
-4. separation is not universal: the registered process forces reciprocal fixation ordering and weak-mutation occupancy ordering to re-align, showing that the framework predicts both splits and invariants.
+1. persistent integration is observationally non-identifying: `Phi<0`, a downhill local release gradient, and failure of rare establishment can produce the same macroscopic absence of differentiation;
+2. because the upstream architecture comparison is held fixed, the measured sign sequence localizes the first decision layer that changed verdict and therefore specifies the next discriminating measurement;
+3. environmental threshold displacement and conflict–architecture discordance provide comparative settings in which these gate changes can be tested rather than inferred from phenotype alone;
+4. separation is not universal: the registered process supplies a fixation–occupancy consistency surface, so an observed disagreement also has a diagnostic interpretation.
 
 ## Submission state
 
@@ -133,5 +135,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = LOCAL_SMOOTHNESS_BOUND_VALIDATION
+MAIN_OPEN_RISK          = UTA1_10_GATE_LOCALIZATION_BIOLOGICAL_PAYOFF
 ```

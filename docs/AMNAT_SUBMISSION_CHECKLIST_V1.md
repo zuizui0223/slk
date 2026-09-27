@@ -13,8 +13,8 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
 TITLE_WORDS                         9
-ABSTRACT_WORDS                    189
-TEXT_WORDS_EXCL_LITERATURE_CITED 5357
+ABSTRACT_WORDS                    191
+TEXT_WORDS_EXCL_LITERATURE_CITED 5790
 FIGURES                             3
 ```
 
@@ -27,7 +27,7 @@ Status:
 ```text
 MAJOR_ARTICLE_TEXT_LIMIT        PASS
 ABSTRACT_200_WORD_LIMIT         PASS
-FIGURE_TABLE_LIMIT              PASS   (3 figures + 2 in-text tables = 5 items)
+FIGURE_TABLE_LIMIT              PASS   (3 figures + 3 in-text tables = 6 items)
 TITLE_LENGTH_PREFERENCE         PASS   (9 words; journal suggests ~8–10)
 KEYWORDS_1_TO_6                 PASS   (6)
 ANONYMOUS_TITLE_PAGE            PASS
@@ -38,24 +38,22 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ### 1. Anonymous review manuscript — PASS
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The current build renders successfully, passes DOCX/PDF structure and anonymity checks, and embeds all three figures.
+The CI-built review manuscript is generated directly from the canonical V4 source. The current UTA1.10 build completed successfully and was inspected from the exact workflow artifact.
 
 ```text
-MAIN_REVIEW_PDF_PAGES      31
-ANONYMOUS_TITLE_PDF_PAGES   1
-DOUBLE_SPACED               true
-LINE_NUMBERS                true
-PAGE_NUMBERS                true
-EMBEDDED_FIGURES            3
-RENDERED_IDENTITY_SCAN      PASS
-FIGURE_1_MANUAL_QA          PASS — threshold atlas readable, no clipping, no duplicate caption
-FIGURE_3_MANUAL_QA          PASS — G7 endpoint + 2–3+ frequency diagnostics readable, no clipping
-ANON_REVIEW_MORAN_TEST      PASS — 13/13 process-level tests in extracted bundle
-INV1_REVIEW_RECEIPT         PASS — 336 process comparisons + canonical guard
-FULL_PAGE_BY_PAGE_PROOFREAD OPEN
+MAIN_REVIEW_PDF_PAGES       33
+ANONYMOUS_TITLE_PDF_PAGES    1
+DOUBLE_SPACED                true
+LINE_NUMBERS                 true
+PAGE_NUMBERS                 true
+EMBEDDED_FIGURES             3
+RENDERED_IDENTITY_SCAN       PASS
+UTA1_10_RECEIPT              PASS
+UTA1_10_TABLE_MANUAL_QA      PASS — pages 25–26, no clipping
+FULL_PAGE_BY_PAGE_PROOFREAD  OPEN
 ```
 
-The threshold-atlas Figure 1 was manually inspected in the generated review PDF after the V4 redesign. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
+The current UTA1.10 review PDF was inspected directly from the workflow artifact. The diagnostic table spans pages 25–26 and remains readable without clipping. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
 
 Status: `PASS FOR GENERATED FILES — FINAL HUMAN PROOFREAD REMAINS`.
 
@@ -79,7 +77,7 @@ Current journal instructions require data/code needed to recreate results to be 
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Deposit the exact curated anonymous bundle in a repository that supports anonymous/reviewer access and insert that link in the anonymous manuscript.
 
-Status: `PASS INTERNALLY — ANONYMOUS_REVIEW_ARCHIVE_URL is an external submission blocker`.
+Status: `PASS INTERNALLY — CURRENT UTA1.10 BUNDLE VERIFIED; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -111,13 +109,13 @@ Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
 
 ### 7. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized later if requested.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered nine-paper core prior-art set, including the Richardson-extrapolation antecedent, in alphabetical order. Production-style punctuation can be normalized later if requested.
 
 Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No internal scientific-package or mechanical-format blocker remains. The repository produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated anonymous reviewer code/theory bundle with executable claim verification.
+No internal scientific-package or mechanical-format blocker remains. The current UTA1.10 source produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated reviewer bundle with executable claim verification.
 
 Remaining actions are external/human controlled:
 
@@ -134,4 +132,4 @@ ALL_AUTHOR_APPROVAL                    REQUIRED
 PORTAL_FILE_UPLOAD                     REQUIRED
 ```
 
-Scientific reviewer risk is now the empirical generality of the ecological threshold predictions, not format compliance.
+Scientific reviewer risk is now whether UTA1.10 gate localization—distinguishing negative value, local-release, and rare-establishment explanations for the same persistent phenotype—provides enough biological leverage beyond the deliberately non-novel component algebra, not format compliance.

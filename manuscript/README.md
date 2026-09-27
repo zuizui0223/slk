@@ -6,13 +6,13 @@ Two manuscript surfaces are retained deliberately.
 
 `SLK_MANUSCRIPT_AMNAT_V4.md`
 
-This is the current submission-oriented manuscript. Relative to V3 it promotes the split logic into a unified critical-surface theorem, places all five separation witnesses inside one convex recovery family, makes cross-level preservation of the endpoint contrast explicit, derives ecological threshold-displacement and conflict–differentiation discordance predictions, adds two-frequency identification, a three-frequency curvature diagnostic, arbitrary-shape endpoint invasion, and finite-frequency endpoint certification for population feedback, and tightens the accessibility claim to sufficiently small selectively uphill release steps. The process assumptions and empirical claim ceiling are unchanged. The title is 9 words and the abstract is 189 words by the registered checker.
+This is the current submission-oriented manuscript. Relative to V3 it promotes the split logic into a unified critical-surface atlas, places all five separation witnesses inside one convex recovery family, makes cross-level preservation of the endpoint contrast explicit, derives ecological threshold-displacement and conflict–differentiation discordance predictions, registers UTA1.10 gate localization for observationally non-identifying persistent integration, adds two-frequency identification, a three-frequency curvature diagnostic, arbitrary-shape endpoint invasion, and finite-frequency endpoint certification for population feedback, and tightens the accessibility claim to sufficiently small selectively uphill release steps. The process assumptions and empirical claim ceiling are unchanged. The title is 9 words and the abstract is 191 words by the registered checker.
 
 `AMNAT_TITLE_PAGE_V1.md` contains the anonymous title-page metadata and CI-derived counts.
 
 `SLK_MANUSCRIPT_AMNAT_V3.md` is retained as the pre-atlas split-and-witness checkpoint; `SLK_MANUSCRIPT_AMNAT_V2.md` is retained as the prior-art-complete checkpoint; `SLK_MANUSCRIPT_AMNAT_V1.md` is retained as the first label-free journal-prose checkpoint. None should be treated as the current submission surface.
 
-`LITERATURE_CITED_AMNAT_V1.md` is the bibliography ledger used to audit the eight-paper registered prior-art set.
+`LITERATURE_CITED_AMNAT_V1.md` is the bibliography ledger used to audit the nine-paper registered prior-art set, including the Richardson-extrapolation antecedent for the finite-frequency certificate.
 
 ## Audit manuscript
 

@@ -374,6 +374,47 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.10: the same persistent phenotype is compatible with distinct gate-localized sign patterns.
+    k_value = REGISTERED_WITNESS_PARAMETERS["W1"]["k"]
+    phi_value = architecture.phi(k_value)
+
+    k_access = REGISTERED_WITNESS_PARAMETERS["W2"]["k"]
+    phi_access = architecture.phi(k_access)
+    g0_access = k_local - k_access
+
+    k_invasion = REGISTERED_WITNESS_PARAMETERS["W3"]["k"]
+    eta_invasion = REGISTERED_WITNESS_PARAMETERS["W3"]["eta"]
+    phi_invasion = architecture.phi(k_invasion)
+    g0_invasion = k_local - k_invasion
+    delta_rare_invasion = phi_invasion - eta_invasion
+
+    assert phi_value < 0
+    assert phi_access > 0 and g0_access < 0
+    assert (
+        phi_invasion > 0
+        and g0_invasion > 0
+        and delta_rare_invasion < 0
+    )
+    checks["UTA1_10_persistent_integration_gate_localization"] = {
+        "negative_architecture_value": {
+            "Phi": phi_value,
+            "first_changed_layer": "architecture_value",
+        },
+        "local_release_barrier": {
+            "Phi": phi_access,
+            "g0": g0_access,
+            "first_changed_layer": "local_accessibility",
+        },
+        "rare_establishment_barrier": {
+            "Phi": phi_invasion,
+            "g0": g0_invasion,
+            "Delta_R": delta_rare_invasion,
+            "first_changed_layer": "rare_invasion",
+        },
+        "mechanism_identified": False,
+        "pass": True,
+    }
+
     # INV1: derive both fixation and occupancy from the registered process.
     max_relative_error = 0.0
     comparisons = 0

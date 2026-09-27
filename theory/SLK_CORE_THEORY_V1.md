@@ -160,7 +160,7 @@ Phi>0.
 
 Off-diagonal interaction can still alter invasion, coexistence, transition rates, and metastability without changing these symmetric rare-mutation monomorphic weights.
 
-## 8. Unified critical-surface theorem
+## 8. Unified critical-surface atlas
 
 For the registered composite model in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`, the same endpoint comparison encounters the following surfaces:
 
@@ -174,7 +174,7 @@ absolute fixation vs neutrality    3Phi = eta    [weak selection]
 rare-mutation occupancy ordering   Phi = 0
 ```
 
-This is the mathematical spine of SLK. Different evolutionary questions are not merely named differently; they are cut by different surfaces once new biological or population-level mechanisms enter.
+This is the mathematical spine of SLK. Different evolutionary questions are not merely named differently; they are cut by different surfaces once new biological or population-level mechanisms enter. The individual surface equations are not treated as standalone novelty claims.
 
 At the same time, three later criteria re-align under the registered process:
 
@@ -220,9 +220,26 @@ k=2.1, eta=-0.5       -> absolute fixation advantage, but occupancy favors S
 
 The proof details and claim boundaries are registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` and `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
 
-## 10. SLK hierarchy
+## 10. Gate-localization diagnostic
 
-The flagship theorem architecture is
+The same persistent integrated phenotype can be compatible with different locations in the hierarchy:
+
+```text
+L>0, Phi<0
+-> architecture value fails
+
+Phi>0, R'(0)-k<0
+-> endpoint value passes, local release fails
+
+Phi>0, R'(0)-k>0, Delta_R<0
+-> value and local release pass, rare establishment fails
+```
+
+These regimes are realized by W1-W3 of the common witness family. Their value is diagnostic: after measuring the upstream quantities, the sign sequence localizes the first decision layer that changed verdict and therefore identifies the next quantity to measure. It does not identify the causal mechanism generating that sign.
+
+## 11. SLK hierarchy
+
+The flagship transport architecture is
 
 ```text
 L

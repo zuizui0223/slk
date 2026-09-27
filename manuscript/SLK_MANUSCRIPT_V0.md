@@ -2,9 +2,9 @@
 
 ## Abstract
 
-Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and globally favorable differentiation need not become an evolutionary outcome. We develop an architecture-specific transport framework carrying one identified conflict comparison through architecture value, small-step release, invasion, fixation, and occupancy. Conflict is summarized by `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`. In one composite model, critical surfaces separate small-step accessibility at `k=k_local`, endpoint value at `Phi=0`, rare invasion at `Phi=eta`, reverse invasion at `Phi=-eta`, and weak-selection absolute fixation at `3Phi=eta`; reciprocal fixation and symmetric rare-mutation occupancy re-align at `Phi=0` under the registered Moran process. This geometry yields an ecological prediction: along `Phi(E)=a(E-E_V)`, the rare-invasion threshold shifts from the architecture-value threshold by `eta/a`, so frequency-dependent ecology can delay or advance establishment without changing the endpoint comparison. It also predicts that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies. A cumulative measurement ladder states the evidence needed for each claim.
+Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and globally favorable differentiation need not become an evolutionary outcome. We develop an architecture-specific transport framework that keeps one measured comparison fixed while asking what additional evidence is needed for architecture value, local accessibility, invasion, fixation, and long-run occupancy. Conflict is summarized by `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`. In one compatible composite model, added mechanisms move the relevant decision surface: small-step accessibility depends on release geometry, rare invasion on frequency-dependent ecology, and absolute fixation on the declared finite-population process, whereas reciprocal fixation ordering and symmetric rare-mutation occupancy re-align at `Phi=0`. The individual algebraic boundaries are not claimed as new. Their joint use yields UTA1.10: the same persistent integration can arise from negative architecture value, a local release barrier, or failure of rare establishment, and the measured sign sequence localizes which decision layer changed verdict. A cumulative G1-G9 measurement ladder defines the evidence ceiling for each biological claim.
 
-**Claim map:** C1-C9, UTA1, ecological corollaries UTA1.4-1.5, and invariant INV1. The master theorem is registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`; constructive witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
+**Claim map:** C1-C9, UTA1, derived consequences UTA1.4-1.9, diagnostic synthesis UTA1.10, and invariant INV1. The master atlas is registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`; constructive witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`.
 
 ## 1. Introduction
 
@@ -537,17 +537,20 @@ Along an environmental value gradient `Phi(E)=a(E-E_V)`, a fitness-scale endpoin
 
 For the two-point certificate, `B=C_R epsilon^2`. This turns endpoint invasion from an ideal limit into a prospective sampling-resolution problem.
 
-### Discordance becomes diagnostic
+### UTA1.10 — persistent integration is non-identifying, but the sign sequence is diagnostic
 
-Observed mismatches between conflict, value, and realized architecture identify which gate needs to be measured next rather than falsifying the whole framework.
+A single observed state—continued integration—does not identify why differentiation is absent. Once upstream quantities are measured, however, the transport sequence can localize the first layer at which the verdict changes. Let `g_0=R'(0)-k` denote the net small-release gradient along the declared path and `Delta_R=lim_{p->0}Delta(p)` the rare-D selection difference.
 
-- Strong identified conflict with `Phi<0`: persistent compromise remains favored; measure `R` and `K`.
-- `Phi>0` with a downhill small-release gradient: a small-step construction barrier separates the current state from the better endpoint; measure `k_local` and path geometry.
-- `Phi>0` but D fails when rare: coordination-like ecological feedback blocks establishment; estimate `eta`.
-- `Phi<0` but D invades when rare: negative-frequency feedback rescues rare entry; test coexistence rather than claiming endpoint superiority.
-- Reciprocal fixation and occupancy orderings disagree under the registered process: process assumptions are violated; audit mutation symmetry/rarity, game symmetry, and the fixation kernel.
+| Measured sign pattern | Localized layer | What the pattern licenses | Next measurement / excluded inference |
+|---|---|---|---|
+| `L>0, Phi<0` | architecture value | conflict is real, but the declared D is not net favorable | separate `R` from `K`; do not infer weak conflict or historical persistence |
+| `Phi>0, g_0<=0` | local release | the endpoint is better, but sufficiently small release is downhill on the declared path | test alternative paths and step sizes; do not infer global inaccessibility |
+| `Phi>0, g_0>0, Delta_R<=0` | rare invasion | value and the initial release direction pass, but rare D does not establish | estimate `h_R=Delta_R-Phi` and frequency response; causal mechanism remains unidentified |
+| `Phi<0, Delta_R>0` | ecological rescue at rarity | D has a rare-frequency advantage despite negative intrinsic endpoint value | measure `Delta_D`; do not infer intrinsic endpoint superiority |
+| `Delta_R>0`, `rho_D/rho_S<1` | reciprocal fixation | deterministic rare entry does not imply fixation ordering in the declared finite process | validate population size, selection mapping, and fixation kernel; no process-independent conclusion |
+| reciprocal fixation and occupancy orderings disagree under the registered symmetric rare-mutation process | process consistency | at least one registered stochastic-process assumption is inadequate | audit mutation symmetry/rarity/connectivity and the fixation kernel; this is not a new biological gate |
 
-The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is a prediction of **where discordance should occur, which ecological mechanism creates it, and which additional measurement resolves it**.
+UTA1.10 is a diagnostic synthesis, not a mechanism-identification theorem. Its contribution is gate localization under a fixed architecture comparison: the same macroscopic persistence can correspond to different sign patterns, and each pattern directs the next measurement. Mechanism attribution remains a separate causal problem.
 
 ## 11. Empirical programme
 
@@ -616,7 +619,7 @@ SLK does not claim:
 - the first weak-mutation stationary distribution;
 - universality of `R=sL` outside the declared quadratic bridge.
 
-SLK does claim the integrated architecture-specific hierarchy from identified conflict to evolutionary realization, the unified critical-surface theorem UTA1, one-family constructive separation witnesses, the placement of INV1 inside that hierarchy, and a gate-by-gate empirical claim ceiling.
+SLK does claim the integrated architecture-specific hierarchy from identified conflict to evolutionary realization, the unified critical-surface atlas UTA1, UTA1.10 gate localization for observationally non-identifying persistent integration, one-family constructive separation witnesses, the placement of INV1 as a process-consistency result inside that hierarchy, and a gate-by-gate empirical claim ceiling.
 
 ### Scope boundary
 
