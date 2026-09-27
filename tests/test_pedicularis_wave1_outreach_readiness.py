@@ -143,7 +143,7 @@ def test_tampered_reviewed_message_hash_is_rejected() -> None:
     ready["messages"][0]["body_en"] += "\nChanged after review."
     with pytest.raises(
         ValueError,
-        match=r"reviewed-message (?:CN|EN|bilingual )?hash mismatch",
+        match=r"(?:route )?reviewed-message (?:CN|EN|bilingual )?hash mismatch",
     ):
         audit_mod.audit(
             _rows(),
