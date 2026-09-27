@@ -12,7 +12,7 @@ ADD_SECOND_POPULATION_PROCESS_BEFORE_SUBMISSION = false
 
 The fixation/occupancy results remain tied to the registered exponential Moran / connected symmetric rare-mutation process. Their role is not to claim universal population genetics. Their role is to demonstrate that transporting the same architecture-value object into a declared stochastic population process can create new separations and can also force an exact invariant.
 
-Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is now the empirical generality of the ecological threshold predictions rather than lack of another process example. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
+Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is whether UTA1.10 gate localization provides enough biological leverage beyond familiar component theories. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
 
 Revisit only if review specifically demands process robustness.
 
@@ -60,6 +60,7 @@ ARBITRARY_SHAPE_ENDPOINT_INVASION        PASS
 FINITE_FREQUENCY_ENDPOINT_BOUNDS         PASS
 SAMPLING_PLUS_APPROXIMATION_INTERVAL     PASS
 CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
+GATE_LOCALIZATION_DIAGNOSTIC_UTA1_10      PASS
 FIGURE_2_ECOLOGICAL_PANEL                PASS
 FIGURE_1_THRESHOLD_ATLAS                 PASS
 WITNESS_ARITHMETIC                       PASS
@@ -112,10 +113,10 @@ The remaining reviewer question is:
 
 The submission answer must center on four deductions:
 
-1. the same upstream architecture comparison can change verdict as it is transported through later estimands;
-2. along an ecological gradient, value and invasion are displaced by `eta/a`, predicting both transition order and the width `2|eta|/a` of the coordination/coexistence zone in the registered affine slice;
-3. conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies, so conflict–architecture discordance is expected rather than anomalous;
-4. separation is not universal: the registered process forces reciprocal fixation ordering and weak-mutation occupancy ordering to re-align, showing that the framework predicts both splits and invariants.
+1. persistent integration is observationally non-identifying: `Phi<0`, a downhill local release gradient, and failure of rare establishment can produce the same macroscopic absence of differentiation;
+2. because the upstream architecture comparison is held fixed, the measured sign sequence localizes the first decision layer that changed verdict and therefore specifies the next discriminating measurement;
+3. environmental threshold displacement and conflict–architecture discordance provide comparative settings in which these gate changes can be tested rather than inferred from phenotype alone;
+4. separation is not universal: the registered process supplies a fixation–occupancy consistency surface, so an observed disagreement also has a diagnostic interpretation.
 
 ## Submission state
 
@@ -133,5 +134,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = INTEGRATED_TRANSPORT_BIOLOGICAL_PAYOFF
+MAIN_OPEN_RISK          = UTA1_10_GATE_LOCALIZATION_BIOLOGICAL_PAYOFF
 ```
