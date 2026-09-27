@@ -13,6 +13,7 @@ try:
         validate as validate_followup_policy,
     )
     from scripts.validate_pedicularis_wave1_permission_messages_for_send import (
+        human_review_receipt_sha256,
         message_content_sha256,
     )
 except ImportError:
@@ -23,6 +24,7 @@ except ImportError:
         validate as validate_followup_policy,
     )
     from validate_pedicularis_wave1_permission_messages_for_send import (
+        human_review_receipt_sha256,
         message_content_sha256,
     )
 
@@ -94,13 +96,47 @@ def _candidate_ready_messages(payload: dict) -> tuple[str, dict[str, dict]]:
     review_bundle_id = str(
         review_receipt.get("review_bundle_id", "")
     ).strip()
+    reviewer_name = str(
+        review_receipt.get("reviewer_name", "")
+    ).strip()
     review_reference = str(
         review_receipt.get("reviewer_reference", "")
     ).strip()
     reviewed_at = str(review_receipt.get("reviewed_at", "")).strip()
     _need(bool(review_bundle_id), "permission message review_bundle_id missing")
+    _need(bool(reviewer_name), "permission message reviewer_name missing")
     _need(bool(review_reference), "permission message reviewer_reference missing")
     _need(bool(reviewed_at), "permission message reviewed_at missing")
+    _need(
+        review_receipt.get("privacy_policy")
+        == "FILLED_REVIEW_LOCAL_GITIGNORED_DO_NOT_COMMIT",
+        "permission message review privacy policy changed",
+    )
+    review_policy = review_receipt.get("review_policy")
+    _need(
+        isinstance(review_policy, dict),
+        "permission message review policy missing",
+    )
+    for key in (
+        "bilingual_message_hash_must_match",
+        "every_registered_route_must_be_reviewed",
+        "every_check_must_pass",
+        "route_approval_required",
+    ):
+        _need(
+            review_policy.get(key) is True,
+            f"permission message review policy disabled: {key}",
+        )
+    _need(
+        review_policy.get("automatic_send_allowed") is False,
+        "permission message review cannot enable automatic send",
+    )
+    review_receipt_hash = human_review_receipt_sha256(review_receipt)
+    _need(
+        review_receipt.get("review_receipt_sha256")
+        == review_receipt_hash,
+        "permission message human-review receipt hash mismatch",
+    )
     review_routes = review_receipt.get("routes")
     _need(
         isinstance(review_routes, dict) and review_routes,
@@ -168,6 +204,15 @@ def _candidate_ready_messages(payload: dict) -> tuple[str, dict[str, dict]]:
         _need(
             guard.get("human_review_bundle_id") == review_bundle_id,
             f"route human-review bundle mismatch: {route_id}",
+        )
+        _need(
+            guard.get("human_review_reviewer_name") == reviewer_name,
+            f"route human-review reviewer-name mismatch: {route_id}",
+        )
+        _need(
+            guard.get("human_review_receipt_sha256")
+            == review_receipt_hash,
+            f"route human-review receipt hash mismatch: {route_id}",
         )
         _need(
             guard.get("human_review_reference") == review_reference,
