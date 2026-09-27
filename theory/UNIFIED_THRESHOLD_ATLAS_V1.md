@@ -1216,13 +1216,17 @@ B. local-release failure
 
 C. rare-establishment failure
    Phi>0, g0>0, Delta_R<0
+
+D. early measured gates passed
+   Phi>0, g0>0, Delta_R>0
 ```
 
-All three are compatible with no realized differentiation, but they license different conclusions and require different next measurements.
+A-C are compatible explanations for no realized differentiation and localize different first-failing layers. D is an exclusion state: none of those three early failure modes is supported by the measured signs.
 
 - In A, the declared differentiated architecture is not net favorable even though conflict exists.
 - In B, the endpoint is favorable but sufficiently small release is downhill along the declared path.
 - In C, the endpoint is favorable and the initial small-release direction is uphill, but D cannot establish from rarity in the current population context.
+- In D, negative endpoint value, a downhill initial release direction, and rare-invasion failure are excluded in the measured context; higher-order path barriers, fixation/demographic processes, history, or mechanisms outside the registered hierarchy remain open.
 
 The registered common witness family realizes A, B, and C as W1, W2, and W3 respectively. This is verified in `scripts/verify_amnat_claims.py`.
 

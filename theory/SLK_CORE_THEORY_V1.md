@@ -232,10 +232,13 @@ Phi>0, R'(0)-k<0
 -> endpoint value passes, local release fails
 
 Phi>0, R'(0)-k>0, Delta_R<0
--> value and local release pass, rare establishment fails
+-> value and initial release pass, rare establishment fails
+
+Phi>0, R'(0)-k>0, Delta_R>0
+-> first three measured gates pass; their failure explanations are excluded
 ```
 
-These regimes are realized by W1-W3 of the common witness family. Their value is diagnostic: after measuring the upstream quantities, the sign sequence localizes the first decision layer that changed verdict and therefore identifies the next quantity to measure. It does not identify the causal mechanism generating that sign.
+The three failure regimes are realized by W1-W3 of the common witness family; the all-positive exclusion state is realized in the same family by reducing frequency-dependent opposition. Their value is diagnostic: after measuring the upstream quantities, the sign sequence localizes a first failing layer or excludes those early failure explanations. It does not identify the causal mechanism generating a sign or imply that realized differentiation must occur.
 
 Exact boundary states are not assigned to either neighboring regime: `Phi=0` is the architecture-value boundary, `R'(0)-k=0` requires higher-order local path information, and `Delta_R=0` is the rare-invasion boundary. Numerically, the executable atlas applies the registered zero tolerance before assigning a sign regime.
 

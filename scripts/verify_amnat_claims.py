@@ -407,6 +407,10 @@ def verify() -> dict[str, object]:
     invasion_state = localize_persistent_integration_gate(
         phi_invasion, g0_invasion, delta_rare_invasion
     )
+    early_pass_delta = phi_invasion
+    early_pass_state = localize_persistent_integration_gate(
+        phi_invasion, g0_invasion, early_pass_delta
+    )
     boundary_policy = {
         "Phi=0": localize_persistent_integration_gate(
             0.0, -1.0, -1.0
@@ -421,6 +425,7 @@ def verify() -> dict[str, object]:
     assert value_state == "ARCHITECTURE_VALUE_FAILURE"
     assert access_state == "LOCAL_RELEASE_FAILURE"
     assert invasion_state == "RARE_INVASION_FAILURE"
+    assert early_pass_state == "EARLY_GATES_PASSED"
     assert all("UNRESOLVED" in state for state in boundary_policy.values())
 
     checks["UTA1_10_persistent_integration_gate_localization"] = {
@@ -441,6 +446,18 @@ def verify() -> dict[str, object]:
             "Delta_R": delta_rare_invasion,
             "first_changed_layer": "rare_invasion",
             "state": invasion_state,
+        },
+        "early_gates_passed": {
+            "Phi": phi_invasion,
+            "g0": g0_invasion,
+            "Delta_R": early_pass_delta,
+            "state": early_pass_state,
+            "excluded_failure_modes": [
+                "negative_architecture_value",
+                "downhill_initial_release",
+                "rare_invasion_failure",
+            ],
+            "realized_differentiation_implied": False,
         },
         "boundary_policy": boundary_policy,
         "mechanism_identified": False,

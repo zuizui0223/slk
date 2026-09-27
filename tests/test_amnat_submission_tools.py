@@ -31,6 +31,17 @@ def test_registered_slk_claims_recompute() -> None:
         "g0=0": "LOCAL_RELEASE_BOUNDARY_UNRESOLVED",
         "Delta_R=0": "RARE_INVASION_BOUNDARY_UNRESOLVED",
     }
+    early = diag["early_gates_passed"]
+    assert early["state"] == "EARLY_GATES_PASSED"
+    assert early["Phi"] > 0
+    assert early["g0"] > 0
+    assert early["Delta_R"] > 0
+    assert early["realized_differentiation_implied"] is False
+    assert early["excluded_failure_modes"] == [
+        "negative_architecture_value",
+        "downhill_initial_release",
+        "rare_invasion_failure",
+    ]
 
 
 def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:

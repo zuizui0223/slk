@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         9
 ABSTRACT_WORDS                    191
-TEXT_WORDS_EXCL_LITERATURE_CITED 5848
+TEXT_WORDS_EXCL_LITERATURE_CITED 5923
 FIGURES                             3
 ```
 
@@ -38,22 +38,22 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ### 1. Anonymous review manuscript — PASS
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The strict-sign UTA1.10 build completed successfully and was inspected from workflow artifact 10935382711.
+The CI-built review manuscript is generated directly from the canonical V4 source. The UTA1.10 early-gates-passed exclusion build completed successfully and was inspected from workflow artifact 10935955485.
 
 ```text
-MAIN_REVIEW_PDF_PAGES        33
-ANONYMOUS_TITLE_PDF_PAGES     1
-DOUBLE_SPACED                 true
-LINE_NUMBERS                  true
-PAGE_NUMBERS                  true
-EMBEDDED_FIGURES              3
-RENDERED_IDENTITY_SCAN        PASS
-UTA1_10_BOUNDARY_RECEIPT      PASS
-UTA1_10_TABLE_MANUAL_QA       PASS — pages 25-27, strict signs + zero-boundary note readable
-FULL_PAGE_BY_PAGE_PROOFREAD   OPEN
+MAIN_REVIEW_PDF_PAGES         33
+ANONYMOUS_TITLE_PDF_PAGES      1
+DOUBLE_SPACED                  true
+LINE_NUMBERS                   true
+PAGE_NUMBERS                   true
+EMBEDDED_FIGURES               3
+RENDERED_IDENTITY_SCAN         PASS
+UTA1_10_EXCLUSION_RECEIPT      PASS
+UTA1_10_TABLE_MANUAL_QA        PASS — pages 25-27, exclusion + zero-boundary logic readable
+FULL_PAGE_BY_PAGE_PROOFREAD    OPEN
 ```
 
-The fresh strict-sign UTA1.10 PDF was rebuilt from the canonical source. The diagnostic table spans pages 25-26 and the zero-boundary note continues on page 27; the rendered material is readable without clipping or overlap. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
+The fresh UTA1.10 exclusion-state PDF was rebuilt from the canonical source. The diagnostic table spans pages 25-27; the all-positive exclusion row is readable on page 26, the zero-boundary note is readable on page 27, and there is no clipping or overlap. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
 
 Status: `PASS FOR CURRENT GENERATED FILES — FINAL HUMAN PROOFREAD REMAINS`.
 
@@ -77,7 +77,7 @@ Current journal instructions require data/code needed to recreate results to be 
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Deposit the exact curated anonymous bundle in a repository that supports anonymous/reviewer access and insert that link in the anonymous manuscript.
 
-Status: `PASS INTERNALLY — STRICT-SIGN UTA1.10 BUNDLE VERIFIED; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
+Status: `PASS INTERNALLY — UTA1.10 EXCLUSION-STATE BUNDLE VERIFIED; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
 
 ### 3. Author metadata outside the anonymous manuscript
 

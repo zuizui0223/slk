@@ -309,9 +309,12 @@ compatible sign regimes include:
 
 3  Phi > 0, g0 > 0, Delta_R < 0
    -> rare-establishment gate
+
+4  Phi > 0, g0 > 0, Delta_R > 0
+   -> early measured gates passed; the first three failure explanations are excluded
 ```
 
-The executable verifier instantiates these three regimes using the registered common witness family W1-W3. UTA1.10 localizes the first changed decision layer only after the corresponding upstream quantities have been measured. It does not identify the causal mechanism responsible for low recoverability, architecture cost, path geometry, or ecological feedback.
+The executable verifier instantiates the three failure regimes using the registered common witness family W1-W3 and separately checks the all-positive `EARLY_GATES_PASSED` state. UTA1.10 localizes a first changed decision layer or excludes those early failure explanations only after the corresponding upstream quantities have been measured. The all-positive state does not prove a barrier-free full path, fixation, persistence, or historical realization. It does not identify the causal mechanism responsible for low recoverability, architecture cost, path geometry, or ecological feedback.
 
 Boundary policy is fail-closed: `Phi=0`, `g0=0`, and `Delta_R=0` are not assigned to either neighboring regime. The local-release zero requires higher-order path geometry, and an estimated interval crossing any zero surface remains unresolved.
 
