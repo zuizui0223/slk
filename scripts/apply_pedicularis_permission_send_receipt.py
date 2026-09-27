@@ -135,12 +135,24 @@ def _ready_message(payload: dict, route_id: str) -> dict:
         review_receipt.get("review_bundle_id"),
         "human_review_receipt.review_bundle_id",
     )
+    reviewer_name = _filled(
+        review_receipt.get("reviewer_name"),
+        "human_review_receipt.reviewer_name",
+    )
     reviewer_reference = _filled(
         review_receipt.get("reviewer_reference"),
         "human_review_receipt.reviewer_reference",
     )
     human_reviewed_at = _sent_at(
         review_receipt.get("reviewed_at")
+    )
+    review_receipt_hash = guard.human_review_receipt_sha256(
+        review_receipt
+    )
+    _need(
+        review_receipt.get("review_receipt_sha256")
+        == review_receipt_hash,
+        "ready message human-review receipt hash mismatch",
     )
 
     candidate = payload.get("candidate", {})
@@ -206,6 +218,15 @@ def _ready_message(payload: dict, route_id: str) -> dict:
         f"route human-review bundle mismatch: {route_id}",
     )
     _need(
+        send_guard.get("human_review_reviewer_name") == reviewer_name,
+        f"route human-review reviewer-name mismatch: {route_id}",
+    )
+    _need(
+        send_guard.get("human_review_receipt_sha256")
+        == review_receipt_hash,
+        f"route human-review receipt hash mismatch: {route_id}",
+    )
+    _need(
         send_guard.get("human_review_reference") == reviewer_reference,
         f"route human-review reference mismatch: {route_id}",
     )
@@ -223,7 +244,9 @@ def _ready_message(payload: dict, route_id: str) -> dict:
         "message": message,
         "message_content_sha256_by_language": expected_hashes,
         "human_review_bundle_id": review_bundle_id,
+        "human_review_reviewer_name": reviewer_name,
         "human_review_reference": reviewer_reference,
+        "human_review_receipt_sha256": review_receipt_hash,
         "human_reviewed_at": human_reviewed_at,
     }
 
@@ -382,7 +405,13 @@ def apply_send_receipt(
         "message_content_sha256": sent_content_sha256,
         "sender_identity_reference": sender_identity_reference,
         "human_review_bundle_id": ready["human_review_bundle_id"],
+        "human_review_reviewer_name": ready[
+            "human_review_reviewer_name"
+        ],
         "human_review_reference": ready["human_review_reference"],
+        "human_review_receipt_sha256": ready[
+            "human_review_receipt_sha256"
+        ],
         "human_reviewed_at": ready["human_reviewed_at"].isoformat(),
         "outreach_status_after": "SENT_AWAITING_RESPONSE",
         "automatic_send_used": False,
