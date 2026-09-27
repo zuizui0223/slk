@@ -1,0 +1,64 @@
+# SLK repository scope boundary
+
+## Purpose
+
+SLK is the flagship theory repository. Its tracked surface should make the architecture-value transport easy to inspect, test, and review:
+
+```text
+identified conflict L
+-> recoverable benefit R
+-> architecture cost K
+-> Phi = R - K
+-> accessibility
+-> invasion
+-> fixation
+-> occupancy
+```
+
+A biological execution programme can motivate and test this hierarchy without becoming the repository's dominant software surface.
+
+## Keep canonical in SLK
+
+The following remain first-class SLK material:
+
+1. the journal-facing and audit manuscripts;
+2. the registered theory, proofs, witnesses, and numerical/process validation;
+3. figures and manuscript-facing checks;
+4. generic estimand definitions and claim ceilings, including the G1-G9 measurement ladder;
+5. the operational definition of `K` and other definitions required to interpret the manuscript;
+6. prior-art, claim-provenance, and cross-repository ownership ledgers;
+7. a concise statement that `Pedicularis rex` is the first prospective same-system empirical anchor and that no real G1-G5 receipt has yet closed.
+
+## Treat as companion empirical/operations material
+
+Candidate-specific execution machinery should live in a Pedicularis companion repository rather than grow the flagship surface. This includes, unless a file directly changes a manuscript estimand or claim ceiling:
+
+- permission/contact routing;
+- inquiry-message generation;
+- send, response, and follow-up receipts;
+- correspondence provenance and administrative readiness audits;
+- access and scouting logistics;
+- candidate-specific recovery packets;
+- field-operation ledgers and handoff state machines;
+- candidate-specific sample-size, calibration, and execution machinery;
+- tests whose only purpose is to validate the above administrative or field-workflow state.
+
+These materials can remain temporarily in SLK while migration is prepared. Historical commits remain valid provenance.
+
+## Promotion rule
+
+A Pedicularis change belongs in the SLK flagship only if at least one of the following is true:
+
+1. it changes the definition or identification of an SLK estimand;
+2. it changes a theorem, corollary, or registered model assumption;
+3. it changes the generic empirical measurement ladder;
+4. it changes the manuscript's scientific claim ceiling;
+5. it provides a real biological result that must be represented in the flagship manuscript.
+
+Administrative completeness alone is not a promotion criterion.
+
+## Current boundary decision
+
+The WAVE1 outreach-readiness work in PR #84 is retained as a draft migration source and is not part of the flagship merge path. Existing permission-integrity machinery is sufficient for provenance while the empirical companion is separated.
+
+No destructive migration is required to enforce this boundary: first stop further flagship growth, then copy/move the empirical execution surface with history-preserving references, and only then prune duplicate files from SLK.
