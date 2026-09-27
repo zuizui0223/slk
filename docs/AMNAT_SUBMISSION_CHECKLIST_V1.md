@@ -36,30 +36,26 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — PASS
+### 1. Anonymous review manuscript — REBUILD PENDING AFTER UTA1.10
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The current build renders successfully, passes DOCX/PDF structure and anonymity checks, and embeds all three figures.
+The CI-built review manuscript is generated directly from the canonical V4 source. The last completed package predates the UTA1.10 diagnostic-table revision. A fresh build is required before the generated-file status can be promoted back to PASS.
 
 ```text
-MAIN_REVIEW_PDF_PAGES      31
-ANONYMOUS_TITLE_PDF_PAGES   1
-DOUBLE_SPACED               true
-LINE_NUMBERS                true
-PAGE_NUMBERS                true
-EMBEDDED_FIGURES            3
-RENDERED_IDENTITY_SCAN      PASS
-FIGURE_1_MANUAL_QA          PASS — threshold atlas readable, no clipping, no duplicate caption
-FIGURE_3_MANUAL_QA          PASS — G7 endpoint + 2–3+ frequency diagnostics readable, no clipping
-ANON_REVIEW_MORAN_TEST      PASS — 13/13 process-level tests in extracted bundle
-INV1_REVIEW_RECEIPT         PASS — 336 process comparisons + canonical guard
-FULL_PAGE_BY_PAGE_PROOFREAD OPEN
+CURRENT_SOURCE_TEXT_WORDS   5827
+CURRENT_SOURCE_TABLES        3
+CURRENT_SOURCE_FIGURES       3
+REVIEW_PDF_REBUILD           PENDING
+ANONYMOUS_TITLE_REBUILD      PENDING
+STRUCTURE_ANONYMITY_RECHECK  PENDING
+UTA1_10_RECEIPT_RECHECK      PENDING
+FULL_PAGE_BY_PAGE_PROOFREAD  OPEN
 ```
 
-The threshold-atlas Figure 1 was manually inspected in the generated review PDF after the V4 redesign. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
+The previously generated review PDF was inspected before the UTA1.10 revision. Because the source now contains a third table and revised abstract/discussion, the current generated package must be rebuilt and rechecked before portal upload.
 
-Status: `PASS FOR GENERATED FILES — FINAL HUMAN PROOFREAD REMAINS`.
+Status: `REBUILD PENDING — DO NOT USE THE PRE-UTA1.10 REVIEW PACKAGE`.
 
-### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, DEPOSIT STILL REQUIRED
+### 2. Anonymous reviewer code/theory package — REBUILD PENDING, DEPOSIT STILL REQUIRED
 
 The review bundle is curated rather than being a repository dump. It contains:
 
@@ -79,7 +75,7 @@ Current journal instructions require data/code needed to recreate results to be 
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Deposit the exact curated anonymous bundle in a repository that supports anonymous/reviewer access and insert that link in the anonymous manuscript.
 
-Status: `PASS INTERNALLY — ANONYMOUS_REVIEW_ARCHIVE_URL is an external submission blocker`.
+Status: `REBUILD CURRENT UTA1.10 BUNDLE, THEN ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -117,7 +113,7 @@ Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No internal scientific-package or mechanical-format blocker remains. The repository produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated anonymous reviewer code/theory bundle with executable claim verification.
+The scientific source is within the journal limits, but the generated anonymous manuscript and reviewer bundle must be rebuilt from the current UTA1.10 source before the package can be considered mechanically closed.
 
 Remaining actions are external/human controlled:
 
