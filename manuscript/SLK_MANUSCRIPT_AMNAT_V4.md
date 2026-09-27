@@ -36,7 +36,7 @@ R=sL,
 Phi=sL-K.
 ```
 
-The main result is therefore a critical-surface transport theorem rather than a claim that every adjacent stage differs. The same endpoint architecture comparison is carried through local release geometry, frequency-dependent competition, finite-population fixation, and rare-mutation occupancy. New mechanisms split the critical surfaces, whereas the registered fixation-occupancy process forces an exact re-alignment at `Phi=0`. Figure 1 summarizes those surfaces directly; its arrows are handoffs between estimands, not logical implications.
+The main analytical object is therefore a critical-surface transport atlas rather than a claim that every adjacent stage differs. The same endpoint architecture comparison is carried through local release geometry, frequency-dependent competition, finite-population fixation, and rare-mutation occupancy. New mechanisms split the critical surfaces, whereas the registered fixation-occupancy process forces an exact re-alignment at `Phi=0`. Figure 1 summarizes those surfaces directly; its arrows are handoffs between estimands, not logical implications.
 
 ![](../figures/FIG1_LOGIC_DIAGRAM.svg)
 
@@ -328,7 +328,7 @@ and the environmental distance between the two reciprocal invasion boundaries is
 |E_I-E_R|=2|eta|/a.
 ```
 
-Thus the same parameters predict not only which transition occurs first but also the width of the coordination or coexistence zone along the ecological gradient.
+Thus the same parameters predict not only which transition occurs first but also the width of the coordination or coexistence zone along the ecological gradient. These affine displacement formulas are direct solutions of the registered crossing equations; we use them as testable ecological mappings, not as standalone mathematical novelty.
 
 If `eta>0`, coordination-like ecological feedback creates an interval in which differentiation already pays but cannot establish from rarity. If `eta<0`, negative-frequency feedback allows the differentiated type to invade before its intrinsic endpoint margin becomes positive; in the registered deterministic game this leads toward coexistence rather than proving intrinsic endpoint superiority.
 
@@ -364,7 +364,7 @@ Phi=[Delta(p_+)+Delta(p_-)]/2
 eta=[Delta(p_+)-Delta(p_-)]/(4q).
 ```
 
-Thus the same experiment separates the intrinsic endpoint-centered architecture coordinate from frequency-dependent ecological feedback. Repeating this design across environments reconstructs `Phi(E)` and `eta(E)`, allowing independent estimation of the value crossing `E_V`, the invasion crossing `E_I`, and their local slopes. A failure of the linear-in-frequency fit is informative rather than fatal: it rejects the minimal canonical population mapping and indicates that a richer interaction model is required.
+Thus the same experiment separates the intrinsic endpoint-centered architecture coordinate from frequency-dependent ecological feedback. The two-frequency identities are the direct solution of the declared linear map; their role is experimental decomposition, not a new algebraic identification theorem. Repeating this design across environments reconstructs `Phi(E)` and `eta(E)`, allowing independent estimation of the value crossing `E_V`, the invasion crossing `E_I`, and their local slopes. A failure of the linear-in-frequency fit is informative rather than fatal: it rejects the minimal canonical population mapping and indicates that a richer interaction model is required.
 
 ### A third frequency treatment tests and repairs the canonical mapping
 
@@ -388,7 +388,7 @@ kappa=
 [Delta(p_+)+Delta(p_-)-2Delta(p_0)]/(8q^2).
 ```
 
-The minimal canonical pair is the nested case `h0=kappa=0`. Thus a third frequency treatment diagnoses whether the canonical mapping is adequate rather than assuming it.
+The minimal canonical pair is the nested case `h0=kappa=0`. The three-point coefficient recovery is ordinary quadratic interpolation; its SLK role is to diagnose whether the canonical mapping is adequate rather than to claim a new interpolation result.
 
 When curvature is retained, rare invasion and resistance to reverse invasion become
 
@@ -447,7 +447,7 @@ Phi=-h_R,
 Phi=-h_D,
 ```
 
-regardless of how nonlinear the interior frequency response may be.
+regardless of how nonlinear the interior frequency response may be. Dependence on the rare-mutant endpoint is part of the standard definition of invasion fitness; the useful SLK step is keeping the independently measured architecture contrast `Phi` explicit while the ecological endpoint offset is added.
 
 Along `Phi(E)=a(E-E_V)` with locally constant endpoint offsets,
 
@@ -509,7 +509,7 @@ Then
 C_R epsilon^2.
 ```
 
-The same construction applies near `p=1` using `1-epsilon` and `1-2epsilon`. Thus finite-frequency experiments can reduce deterministic endpoint approximation error from order `epsilon` to order `epsilon^2` when a curvature bound is available.
+The same construction applies near `p=1` using `1-epsilon` and `1-2epsilon`. Thus finite-frequency experiments can reduce deterministic endpoint approximation error from order `epsilon` to order `epsilon^2` when a curvature bound is available. This two-scale cancellation is Richardson-type extrapolation (Richardson and Gaunt 1927); the contribution here is its use as a prospective rare-frequency sign certificate with explicit biological and sampling uncertainty, not the extrapolation algebra itself.
 
 Sampling uncertainty can be folded into the same certificate. If `Delta(epsilon)` and `Delta(2epsilon)` have intervals `[L_1,U_1]` and `[L_2,U_2]`, then
 
@@ -577,7 +577,7 @@ At the organismal scale, `L` asks whether integration is costly. At the architec
 
 The registered composite model is nested rather than a sequence of unrelated payoff substitutions. The architecture path defines the endpoint contrast `Phi`; the canonical game is parameterized so that its self-play score difference is the same `Phi`; and the registered fixation and occupancy ratios inherit that same difference. What changes downstream is therefore the additional mechanism and coordinate required for the next question, not the identity of the endpoint architecture comparison.
 
-The framework therefore contributes four linked objects. First, it supplies a common handoff coordinate system without pretending that all quantities live on the same phase plane. Second, the unified critical-surface theorem identifies exactly where apparently adjacent criteria diverge while preserving the same endpoint contrast across the registered population mapping; the fixation-occupancy invariant then identifies the condition under which reciprocal fixation and occupancy re-align. Third, the ecological threshold-displacement result predicts when community or environmental feedback should make realized differentiation lag behind or precede intrinsic architecture value, and the discordance table turns mismatches into diagnostic evidence. Fourth, the empirical measurement ladder translates the theory into a sequential claim structure, so that a study can stop at the strongest level its measurements actually justify.
+The framework therefore contributes four linked objects. First, it supplies a common handoff coordinate system without pretending that all quantities live on the same phase plane. Second, the unified critical-surface atlas identifies exactly where apparently adjacent criteria diverge while preserving the same endpoint contrast across the registered population mapping; the fixation-occupancy invariant then identifies the condition under which reciprocal fixation and occupancy re-align. Third, the ecological threshold-displacement result predicts when community or environmental feedback should make realized differentiation lag behind or precede intrinsic architecture value, and the discordance table turns mismatches into diagnostic evidence. Fourth, the empirical measurement ladder translates the theory into a sequential claim structure, so that a study can stop at the strongest level its measurements actually justify.
 
 This framing also sharpens what would falsify or limit the framework. If a biological system lacks an identified `L`, the architecture argument never starts. If `R` and `K` cannot be placed on a common fitness scale, `Phi` is not empirically evaluable. If mutation neighborhoods, population feedback, or stochastic process assumptions are unspecified, later evolutionary claims remain open even when endpoint architecture value is known. The hierarchy is therefore cumulative rather than all-or-nothing.
 
@@ -585,7 +585,7 @@ The three figures mirror the three levels of the contribution. Figure 1 gives th
 
 ### Novelty boundary
 
-We do not claim a first theory of modularity or evolvability, a first theory of functional specialization or division of labor, a first theory that fitter endpoints can be locally inaccessible, a first distinction between invasion and fixation in finite populations, or a first weak-mutation stationary distribution. We also do not claim universality of `R=sL` outside the declared quadratic bridge. We claim the integrated architecture-specific hierarchy from identified conflict to evolutionary realization, a unified critical-surface theorem that places value, small-step accessibility, invasion, fixation, and occupancy in one compatible registered model, one-family constructive separation witnesses, an ecological threshold-displacement prediction linking environment and frequency feedback, the exact fixation-occupancy re-alignment within that hierarchy, and a gate-by-gate empirical claim ceiling.
+We do not claim a first theory of modularity or evolvability, a first theory of functional specialization or division of labor, a first theory that fitter endpoints can be locally inaccessible, a first distinction between invasion and fixation in finite populations, or a first weak-mutation stationary distribution. We also do not claim mathematical novelty for `R=sL` under the quadratic bridge, affine threshold-shift algebra, two- or three-frequency coefficient recovery, endpoint invasion defined at rarity, Richardson-type extrapolation, or the fixation-occupancy ordering result under the registered symmetric rare-mutation process. These transparent pieces are deliberately retained because they make the handoffs testable. Our contribution is the integrated architecture-specific transport from an identified conflict receipt through a common endpoint contrast to accessibility and population realization, the one-family atlas showing where added mechanisms alter the decision boundary, and the gate-by-gate empirical claim ceiling that prevents familiar component results from being overinterpreted.
 
 ### Scope boundary
 
@@ -598,6 +598,8 @@ Dieckmann, U., and R. Law. 1996. The dynamical theory of coevolution: a derivati
 Espinosa-Soto, C., and A. Wagner. 2010. Specialization can drive the evolution of modularity. *PLoS Computational Biology* 6:e1000719.
 
 Fudenberg, D., M. A. Nowak, C. Taylor, and L. A. Imhof. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352–363.
+
+Richardson, L. F., and J. A. Gaunt. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299–361.
 
 Kashtan, N., and U. Alon. 2005. Spontaneous evolution of modularity and network motifs. *Proceedings of the National Academy of Sciences USA* 102:13773–13778.
 
