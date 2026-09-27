@@ -52,6 +52,32 @@ def _aware_datetime(value: object, label: str) -> datetime:
 
 
 def human_review_receipt_sha256(receipt: dict) -> str:
+    route_reviews = receipt.get("route_reviews")
+    _need(
+        isinstance(route_reviews, list) and route_reviews,
+        "review hash requires route_reviews",
+    )
+    normalized_routes = []
+    for row in route_reviews:
+        _need(isinstance(row, dict), "review hash route must be object")
+        normalized_routes.append(
+            {
+                "route_id": _filled(row.get("route_id"), "review.route_id"),
+                "reviewed_message_sha256_bilingual": _filled(
+                    row.get("reviewed_message_sha256_bilingual"),
+                    "review.reviewed_message_sha256_bilingual",
+                ),
+                "checks": copy.deepcopy(row.get("checks")),
+                "approved_for_manual_send": row.get(
+                    "approved_for_manual_send"
+                ),
+                "route_review_notes": str(
+                    row.get("route_review_notes", "")
+                ),
+            }
+        )
+    normalized_routes.sort(key=lambda row: row["route_id"])
+
     payload = {
         "schema_version": _filled(
             receipt.get("schema_version"),
@@ -74,12 +100,12 @@ def human_review_receipt_sha256(receipt: dict) -> str:
             receipt.get("reviewer_reference"),
             "review.reviewer_reference",
         ),
-        "reviewed_at": _filled(
+        "reviewed_at": _aware_datetime(
             receipt.get("reviewed_at"),
             "review.reviewed_at",
-        ),
-        "route_reviews": receipt.get("route_reviews"),
-        "review_policy": receipt.get("review_policy"),
+        ).isoformat(),
+        "route_reviews": normalized_routes,
+        "review_policy": copy.deepcopy(receipt.get("review_policy")),
         "privacy_policy": receipt.get("privacy_policy"),
     }
     canonical = json.dumps(
@@ -216,6 +242,7 @@ def _validate_review_receipt(
         "reviewer_reference": reviewer_reference,
         "reviewed_at": reviewed_at.isoformat(),
         "routes": reviewed_routes,
+        "route_reviews": copy.deepcopy(route_reviews),
         "review_policy": copy.deepcopy(policy),
         "privacy_policy": review_receipt["privacy_policy"],
     }
