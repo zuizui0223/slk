@@ -101,6 +101,17 @@ def _ready_messages(candidate_id: str) -> dict:
     )
 
 
+def _reseal_retained_review(ready: dict) -> None:
+    receipt = ready["human_review_receipt"]
+    digest = guard.human_review_receipt_sha256(receipt)
+    receipt["review_receipt_sha256"] = digest
+    for message in ready["messages"]:
+        message["send_guard"]["human_review_receipt_sha256"] = digest
+        message["send_guard"]["human_review_reviewer_name"] = receipt[
+            "reviewer_name"
+        ]
+
+
 def test_current_canonical_state_reports_administrative_not_biological_blockers() -> None:
     out = audit_mod.audit(_rows())
     assert out["status"] == "OUTREACH_READINESS_AUDITED"
@@ -218,6 +229,7 @@ def test_ready_message_bundle_must_match_canonical_candidate_route_inventory() -
     ready = _ready_messages("SONGZANLIN_EIA_2025")
     ready["candidate"]["candidate_id"] = "SHANGRILA_WUFENG"
     ready["human_review_receipt"]["candidate_id"] = "SHANGRILA_WUFENG"
+    _reseal_retained_review(ready)
     with pytest.raises(
         ValueError,
         match="route inventory does not match canonical outreach routes",
@@ -233,9 +245,41 @@ def test_ready_message_candidate_must_exist_in_outreach_ledger() -> None:
     ready = _ready_messages("SONGZANLIN_EIA_2025")
     ready["candidate"]["candidate_id"] = "UNKNOWN_CANDIDATE"
     ready["human_review_receipt"]["candidate_id"] = "UNKNOWN_CANDIDATE"
+    _reseal_retained_review(ready)
     with pytest.raises(
         ValueError,
         match="ready-message candidate absent from outreach ledger",
+    ):
+        audit_mod.audit(
+            _rows(),
+            followup_policy=_policy(),
+            ready_message_payloads=[ready],
+        )
+
+
+
+def test_readiness_audit_rejects_tampered_retained_review_reviewer() -> None:
+    ready = _ready_messages("SONGZANLIN_EIA_2025")
+    ready["human_review_receipt"]["reviewer_name"] = "OTHER REVIEWER"
+    with pytest.raises(
+        ValueError,
+        match="human-review receipt hash mismatch",
+    ):
+        audit_mod.audit(
+            _rows(),
+            followup_policy=_policy(),
+            ready_message_payloads=[ready],
+        )
+
+
+def test_readiness_audit_rejects_tampered_retained_review_checks() -> None:
+    ready = _ready_messages("SONGZANLIN_EIA_2025")
+    ready["human_review_receipt"]["route_reviews"][0]["checks"][
+        "activity_A_F_wording_verified"
+    ] = False
+    with pytest.raises(
+        ValueError,
+        match="human-review receipt hash mismatch",
     ):
         audit_mod.audit(
             _rows(),
