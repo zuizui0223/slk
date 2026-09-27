@@ -157,6 +157,9 @@ def test_valid_send_receipt_moves_only_target_route_to_awaiting_response() -> No
     assert untouched["outreach_status"] == "NOT_SENT"
     assert event["status"] == "MANUAL_SEND_EVENT_VALIDATED"
     assert event["automatic_send_used"] is False
+    assert event["human_review_bundle_id"].startswith("TEST-REVIEW-")
+    assert event["human_review_reference"] == "TEST-REVIEWER-REF"
+    assert event["human_reviewed_at"] == "2027-04-20T10:00:00+09:00"
     assert event["manager_receipt_status"] == (
         "WAVE1_PERMISSION_OUTREACH_LEDGER_VALIDATED"
     )
@@ -396,3 +399,28 @@ def test_send_event_receipts_frozen_followup_schedule() -> None:
     assert event["followup_policy_freeze_commit"] == "followup-freeze-001"
     assert event["followup_policy_offsets_days"] == [7, 14]
     assert event["followup_escalation_review_after_days"] == 21
+
+
+
+def test_manual_send_cannot_precede_human_review_timestamp() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    receipt["sent_at"] = "2027-04-20T09:00:00+09:00"
+    with pytest.raises(ValueError, match="human review timestamp occurs after manual send"):
+        _apply_send(_rows(), ready, receipt)
+
+
+def test_send_applier_rejects_tampered_human_review_bundle_id() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    ready["messages"][0]["send_guard"]["human_review_bundle_id"] = "OTHER-REVIEW"
+    with pytest.raises(ValueError, match="human-review bundle mismatch"):
+        _apply_send(_rows(), ready, receipt)
+
+
+def test_send_applier_rejects_missing_top_level_human_review_receipt() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    ready.pop("human_review_receipt")
+    with pytest.raises(ValueError, match="human-review receipt missing"):
+        _apply_send(_rows(), ready, receipt)
