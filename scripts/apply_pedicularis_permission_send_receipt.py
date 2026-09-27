@@ -163,6 +163,15 @@ def _ready_message(payload: dict, route_id: str) -> dict:
     )
     messages = payload.get("messages")
     _need(isinstance(messages, list), "ready message list missing")
+    validated_review = guard.validate_review_receipt(
+        payload,
+        review_receipt,
+        messages,
+    )
+    _need(
+        validated_review["review_receipt_sha256"] == review_receipt_hash,
+        "ready message canonical review validation hash mismatch",
+    )
     matches = [
         message
         for message in messages
