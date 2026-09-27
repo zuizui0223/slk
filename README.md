@@ -106,65 +106,22 @@ The narrower novelty claim is the **architecture-specific estimand transport** f
 
 `K` is the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. It is comparison-specific rather than a universal physiological quantity. Empirical use must declare comparison states, scale, time horizon, included/excluded cost channels, uncertainty, and how double counting with `R` was prevented. See `docs/K_OPERATIONAL_DEFINITION_V1.md`.
 
-## Pedicularis same-system programme
+## Empirical anchor and repository boundary
 
-The first prospectively registered same-system empirical target is `Pedicularis rex`:
-
-```text
-P-1 fresh current-context recovery
--> P0a minimum-relevance natural-history calibration
--> P0b fresh population-season context screen
--> G1 causal shared-axis conflict
--> G2 conflict load L
--> structural-y Y0-Y3
--> qualified pre-cost D0 comparator
--> G3 recoverable benefit R
--> G4 K_incremental_y
--> G5 Phi.
-```
-
-The entire execution path is now registered, including fresh recovery of a currently usable population-season, P0 minimum-relevance calibration, the fresh P0 population-season screen, field calibration, threshold freeze, structural-y promotion, D0 qualification, final G3-G5 precision planning, final sample-size compilation, registered-z-grid field layout, and bootstrap adjudication.
-
-P0 is deliberately logistical. It requires fresh pollinator activity, fresh predator exposure/attack, a functional water state and adequate flowering-plant capacity. It does **not** use pollen limitation as a pass gate; pollen limitation stays unresolved until Qp calibration. A fully observed low-signal P0 context is `CONTEXT_UNINFORMATIVE_*`, not a biological negative. Plant/flower-based P0 predator and water units now join the same permanent-tag firewall chain used downstream; pollinator P0 units remain independent temporal bouts.
-
-This is **design readiness, not empirical closure**. No Pedicularis G1-G5 biological receipt has yet been produced.
-
-The first feasible Pedicularis architecture cost is deliberately narrow:
+The first prospectively registered same-system empirical anchor is `Pedicularis rex`. Its role is to test whether the abstract ladder can be closed in one biological system:
 
 ```text
-K_incremental_y
-= incremental reproductive-fitness debit of the high-retention structural-y state
-  conditional on the existing cupulate-bract background.
+identified conflict
+-> L
+-> R
+-> K
+-> Phi
+-> stronger realization claims only with their additional measurements
 ```
 
-It is not the historical total cost of originating the cupulate bract.
+The current biological claim ceiling is unchanged: **no real Pedicularis G1-G5 receipt has yet been produced**. Design readiness is not empirical closure.
 
-The final registered worlds are:
-
-```text
-S  = LOW-Y without external qualified retention
-D0 = LOW-Y with the independently qualified externalized retention comparator
-D  = HIGH-Y natural structural retention.
-```
-
-On the registered accessible z grid:
-
-```text
-R   = W_D0,pre* - W_S*
-K   = W_D0,pre* - W_D*
-Phi = W_D* - W_S*.
-```
-
-Same-block `R-K=Phi` is an algebraic identity only. A nontrivial empirical concordance claim requires the optional, independent S:D direct-Phi block.
-
-The canonical execution truth is kept in:
-
-```text
-docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md
-data/PEDICULARIS_G1_G5_EXECUTION_STATE_V1.json
-```
-
-where design status and biological status are separate fields.
+Candidate-specific permission, outreach, access, scouting, field-packet, receipt, and handoff machinery is operational support rather than part of the flagship theory contribution. New operational machinery should be developed in a Pedicularis empirical companion unless it changes an SLK estimand, theorem, generic measurement gate, or manuscript claim ceiling. The migration rule is frozen in `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md`.
 
 ## Publication architecture outside the flagship
 
@@ -180,148 +137,35 @@ These modules may be cited by SLK without being promoted to independent manuscri
 
 ## Canonical reader path
 
-1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current AMNAT manuscript with the unified critical-surface theorem.
-2. `figures/FIG1_LOGIC_DIAGRAM.svg` — flagship logic figure: split points plus fixation-occupancy invariant.
-3. `figures/FIG2_PHASE_MAP.svg` — architecture-value map, realization coordinates, and ecological displacement between value and invasion thresholds.
-4. `figures/FIG3_EMPIRICAL_LADDER.svg` — cumulative empirical measurement ladder G1-G9.
-5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master critical-surface theorem and one-family constructive witnesses.
-6. `theory/NON_EQUIVALENCE_THEOREM_V1.md` — non-implications recast as corollaries of the common atlas.
-7. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-8. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status for every flagship claim.
-9. `docs/SECTION_CLAIM_MAP_V1.md` — manuscript section-to-claim map and prose-promotion rule.
-10. `docs/CLAIM_PROVENANCE_PINNED_V1.md` — source files and provenance commits pinned claim by claim.
-11. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent Moran-process / rare-mutation validation receipt, canonical-mapping guard, and numerical policy.
-12. `docs/K_OPERATIONAL_DEFINITION_V1.md` — operational definition and empirical receipt for `K`.
-13. `docs/EMPIRICAL_G1_G9_SOURCE_LEDGER_V1.md` — source-adjudicated map of existing biological systems onto G1-G9, with explicit direct/partial/analogue/reality ceilings.
-14. `docs/PEDICULARIS_G1_G5_EXECUTION_LEDGER_V1.md` — canonical same-system execution order and design-versus-biological status boundary.
-15. `docs/PEDICULARIS_CONTEXT_RECOVERY_V1.md` — fresh current-season candidate recovery gate before any P0 signal work.
-16. `docs/PEDICULARIS_CONTEXT_SCREEN_V1.md` — fresh population-season P0 screen, field packet and relocation rule.
-17. `docs/PEDICULARIS_G2_CLOSURE_PROTOCOL_V1.md` — non-circular same-context protocol for biological `L`.
-17. `docs/PEDICULARIS_FIELD_QUALIFICATION_EXECUTION_V1.md` — execution order and stop rules.
-- `docs/PEDICULARIS_PHYSICAL_PLANT_FIREWALL_V1.md` — permanent field-tag registry preventing physical-plant reuse across calibration and confirmatory cohorts — Qz/Qp/Qg field execution, hard stops and fallback policy.
-18. `docs/PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_V1.md` — prospective threshold-freeze rules.
-19. `docs/PEDICULARIS_STRUCTURAL_Y_RECEIPT_V1.md` — Y0-Y1 repeatability/range and z-y coupling receipt.
-20. `docs/PEDICULARIS_STRUCTURAL_Y_FUNCTION_RECEIPT_V1.md` — Y2 preferential loading and Y3 performance-intervention receipt.
-21. `docs/PEDICULARIS_D0_FEASIBILITY_PROTOCOL_V1.md` — pre-cost comparator definition and incremental-K boundary.
-22. `docs/PEDICULARIS_D0_EQUIVALENCE_MARGIN_LEDGER_V1.md` — biological margin-source contract.
-23. `docs/PEDICULARIS_D0_CONFIRMATORY_QUALIFICATION_V1.md` — independent D0 Q1-Q6 qualification.
-24. `docs/PEDICULARIS_D0_JOINT_POWER_AUDIT_V1.md` — corrected TOST planning, all-pass power bounds, attrition semantics and endpoint-retention decision.
-25. `docs/PEDICULARIS_D0_JOINT_SIMULATION_SPEC_V1.md` — executable, prospectively frozen calibration-resampling design for covariance-aware full-qualification power.
-26. `docs/PEDICULARIS_G3_G5_PRECISION_PLAN_V1.md` — final independent-plant sample-size planning and sampling compiler.
-27. `docs/PEDICULARIS_G3_G5_EFFECT_EXECUTION_V1.md` — final registered-z-grid R/K/Phi experiment and adjudication.
-28. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary across modularity/specialization and population-process prior art.
-29. `docs/AMNAT_REVIEWER_RISK_AUDIT_V9.md` — current skeptical-reviewer audit after converting endpoint invasion into finite-frequency certification.
-30. `docs/OWNERSHIP_AND_HANDOFF.md` — claim ownership and anti-duplication boundary.
-31. `docs/PAPER_ROADMAP.md` — flagship plus active-paper / DOI-module publication architecture.
-32. `docs/THEORY_PROGRAMME_CLOSURE_V1.md` — frozen cross-repository ownership contract.
-33. `PROVENANCE.md` — historical provenance separated from current scientific ownership.
+For the flagship argument, the canonical path is deliberately short:
+
+1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
+2. `figures/FIG1_LOGIC_DIAGRAM.svg` — unified critical-surface transport and witness logic.
+3. `figures/FIG2_PHASE_MAP.svg` — architecture value, realization coordinates, and ecological threshold displacement.
+4. `figures/FIG3_EMPIRICAL_LADDER.svg` — cumulative empirical claim ladder.
+5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master theorem and constructive witnesses.
+6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
+7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status.
+8. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
+9. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary.
+10. `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md` — theory-core versus empirical-companion boundary.
+
+Pedicularis execution documents are retained for provenance during migration but are not part of the canonical reader path.
 
 ## Current status
 
 ```text
-INTEGRATED_SPINE_DEFINED
-FLAGSHIP_MANUSCRIPT_GENERALIZED_TO_PHI_EQUALS_R_MINUS_K
-NON_EQUIVALENCE_THEOREM_REGISTERED
+FLAGSHIP_MANUSCRIPT_V4_ACTIVE
+GENERAL_PHI_EQUALS_R_MINUS_K_SPINE_DEFINED
 UNIFIED_CRITICAL_SURFACE_ATLAS_REGISTERED
 ONE_FAMILY_WITNESS_SYSTEM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
-INV1_PROCESS_IMPLEMENTATION_REGISTERED
-INV1_PROCESS_TEST_REGISTERED
-CANONICAL_MAPPING_API_GUARD_REGISTERED
-NUMERICAL_TOLERANCE_POLICY_REGISTERED
-THEORY_TEST_CLASSES_SEPARATED
-FIGURE_1_REGISTERED
-FIGURE_2_REGISTERED
-FIGURE_3_REGISTERED
-PHASE_COORDINATE_BOUNDARY_REGISTERED
-EMPIRICAL_GATE_LADDER_REGISTERED
-EMPIRICAL_SOURCE_SYSTEM_LEDGER_REGISTERED
-PEDICULARIS_CONTEXT_RECOVERY_GATE_REGISTERED
-PEDICULARIS_CONTEXT_RECOVERY_LEDGER_BACKED_PACKET_REGISTERED
-PEDICULARIS_CONTEXT_RECOVERY_TO_P0_CALIBRATION_HANDOFF_REGISTERED
-PEDICULARIS_CONTEXT_SCREEN_FIELD_PACKET_REGISTERED
-PEDICULARIS_CONTEXT_LOW_SIGNAL_IS_UNINFORMATIVE_NOT_NEGATIVE
-PEDICULARIS_P0_TEMPORAL_AND_UNIT_INTEGRITY_REGISTERED
-PEDICULARIS_P0_PHYSICAL_PLANT_FIREWALL_CHAIN_REGISTERED
-PEDICULARIS_G2_CLOSURE_PROTOCOL_REGISTERED
-FIRST_BIOLOGICAL_G2_TARGET_LOCKED
-PEDICULARIS_FIELD_QUALIFICATION_POLICY_REGISTERED
-PEDICULARIS_THRESHOLD_FREEZE_PROTOCOL_REGISTERED
-PEDICULARIS_THRESHOLD_VALIDATOR_REGISTERED
-PEDICULARIS_UNIFIED_CALIBRATION_PROGRAM_REGISTERED
-PEDICULARIS_STRUCTURAL_Y_Y0_Y3_PIPELINE_REGISTERED
-PEDICULARIS_D0_CALIBRATION_AND_MARGIN_PIPELINE_REGISTERED
-PEDICULARIS_D0_INDEPENDENT_CONFIRMATORY_PIPELINE_REGISTERED
-PEDICULARIS_D0_TOST_POWER_CORRECTED
-PEDICULARIS_D0_JOINT_QUALIFICATION_POWER_REGISTERED
-PEDICULARIS_D0_RECRUITMENT_ANALYSIS_N_SEPARATED
-PEDICULARIS_D0_MISSINGNESS_RECEIPT_REGISTERED
-PEDICULARIS_D0_JOINT_SIMULATION_SPEC_REGISTERED
-PEDICULARIS_D0_JOINT_SIMULATION_IMPLEMENTED
-PEDICULARIS_D0_JOINT_SIMULATION_FREEZE_REGISTERED
-PEDICULARIS_D0_ENDPOINT_DEMOTION_NOT_AUTHORIZED
-PEDICULARIS_G3_G5_EFFECT_PIPELINE_REGISTERED
-PEDICULARIS_G3_G5_FINAL_PRECISION_AND_SAMPLE_SIZE_HANDOFF_REGISTERED
-PEDICULARIS_G1_G5_PROSPECTIVE_PIPELINE_END_TO_END_REGISTERED
-PEDICULARIS_G1_G5_BIOLOGICAL_CHAIN_OPEN
-PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
-PEDICULARIS_CONTEXT_RECOVERY_QUEUE_REGISTERED
-PEDICULARIS_CONTEXT_RECOVERY_SCOUTING_LOCATORS_REGISTERED
-PEDICULARIS_CONTEXT_RECOVERY_PACKET_LOCATOR_SNAPSHOT_REGISTERED
-PEDICULARIS_CONTEXT_RECOVERY_EVIDENCE_RECEIPTS_REGISTERED
-PEDICULARIS_REX_FIELD_TAXON_CHECKLIST_REGISTERED
-PEDICULARIS_VOUCHER_PERMISSION_BOUNDARY_REGISTERED
-PEDICULARIS_SPECIMEN_FRESH_CONTEXT_RECEIPT_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_CONTACT_ROUTES_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_INQUIRY_PACKET_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_RESPONSE_DRAFT_COMPILER_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_MESSAGE_RENDERER_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_MANUAL_SEND_GUARD_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_REGISTERED
-PEDICULARIS_WAVE1_INCOMING_RESPONSE_RECEIPT_REGISTERED
-PEDICULARIS_WAVE1_RESPONSE_PROVENANCE_CHAIN_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_MESSAGE_HASH_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_PLANNER_REGISTERED
-PEDICULARIS_WAVE1_PERMISSION_RESPONSE_ADJUDICATION_REGISTERED
-PEDICULARIS_ACTIVITY_SPECIFIC_PERMISSION_VALIDITY_REGISTERED
-PEDICULARIS_PERMISSION_CONDITION_COMPATIBILITY_REGISTERED
-PEDICULARIS_PERMISSION_CONDITION_REVIEW_AUDIT_REGISTERED
-PEDICULARIS_PERMISSION_ACTIVITY_DECISION_EVIDENCE_REGISTERED
-PEDICULARIS_PERMISSION_SCOPE_INTEGRITY_VALIDATOR_REGISTERED
-PEDICULARIS_PERMISSION_FULL_AUDIT_HANDOFF_REGISTERED
-PEDICULARIS_PERMISSION_VALIDITY_WINDOW_ENFORCED
-PEDICULARIS_P0A_ROW_DATE_WINDOW_ENFORCED
-PEDICULARIS_RECOVERY_P0A_P0B_NONDESTRUCTIVE_PERMISSION_SCOPE_REGISTERED
-PEDICULARIS_P0B_ROW_DATE_WINDOW_ENFORCED
-FIRST_EXECUTABLE_PEDICULARIS_TASK_IS_FRESH_CONTEXT_RECOVERY
-K_OPERATIONAL_DEFINITION_REGISTERED
-PRIOR_ART_BOUNDARY_EXPANDED
-FIRST_AMNAT_REVIEWER_REPAIR_ROUND_COMPLETE
-THRESHOLD_ATLAS_FRAMING_COMPLETE
-CROSS_LEVEL_PHI_COMPATIBILITY_REGISTERED
-FIGURE_1_THRESHOLD_ATLAS_REGISTERED
 ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
-ECOLOGICAL_FEEDBACK_GRADIENT_REGISTERED
-TWO_FREQUENCY_PHI_ETA_IDENTIFICATION_REGISTERED
-THREE_FREQUENCY_CURVATURE_DIAGNOSTIC_REGISTERED
-GENERALIZED_INVASION_SURFACES_REGISTERED
-ARBITRARY_SHAPE_ENDPOINT_INVASION_REGISTERED
 FINITE_FREQUENCY_ENDPOINT_CERTIFICATION_REGISTERED
-SAMPLING_PLUS_APPROXIMATION_INTERVAL_REGISTERED
-CONFLICT_DIFFERENTIATION_DISCORDANCE_REGISTERED
-FIGURE_2_ECOLOGICAL_PANEL_REGISTERED
-CORE_THEORY_MIGRATED_CONCEPTUALLY
-THEOREM_CLAIM_LEDGER_REGISTERED
-SECTION_CLAIM_MAP_REGISTERED
-CLAIM_PROVENANCE_PINNED
-THEORY_PROGRAMME_OWNERSHIP_FROZEN
-PUBLICATION_ARCHITECTURE_REFOCUSED
-ACTIVE_FLAGSHIP_SLK
-ACTIVE_FULL_PAPERS_SCH_BITA
-ACTIVE_SHORT_NOTE_PAYOFF_B
-DOI_MODULES_BALANCE_PAYOFF_A_SPATIAL_TOPOLOGY
+EMPIRICAL_G1_G9_CLAIM_LADDER_REGISTERED
+PEDICULARIS_PROSPECTIVE_ANCHOR_REGISTERED
+PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
+PEDICULARIS_OPERATIONS_COMPANION_BOUNDARY_REGISTERED
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```
 
