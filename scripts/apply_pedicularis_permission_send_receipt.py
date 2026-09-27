@@ -122,8 +122,33 @@ def _ready_message(payload: dict, route_id: str) -> dict:
         "human review approval missing",
     )
 
+    review_receipt = payload.get("human_review_receipt")
+    _need(
+        isinstance(review_receipt, dict),
+        "ready message human-review receipt missing",
+    )
+    _need(
+        review_receipt.get("status") == "HUMAN_REVIEW_APPROVED",
+        "ready message human-review receipt is not approved",
+    )
+    review_bundle_id = _filled(
+        review_receipt.get("review_bundle_id"),
+        "human_review_receipt.review_bundle_id",
+    )
+    reviewer_reference = _filled(
+        review_receipt.get("reviewer_reference"),
+        "human_review_receipt.reviewer_reference",
+    )
+    human_reviewed_at = _sent_at(
+        review_receipt.get("reviewed_at")
+    )
+
     candidate = payload.get("candidate", {})
     candidate_id = _filled(candidate.get("candidate_id"), "message candidate_id")
+    _need(
+        review_receipt.get("candidate_id") == candidate_id,
+        "ready message human-review candidate mismatch",
+    )
     messages = payload.get("messages")
     _need(isinstance(messages, list), "ready message list missing")
     matches = [
@@ -165,10 +190,41 @@ def _ready_message(payload: dict, route_id: str) -> dict:
         == expected_hashes["BILINGUAL"],
         f"ready bilingual message content hash mismatch: {route_id}",
     )
+    review_routes = review_receipt.get("routes")
+    _need(
+        isinstance(review_routes, dict) and route_id in review_routes,
+        f"ready message human-review route missing: {route_id}",
+    )
+    route_review = review_routes[route_id]
+    _need(
+        route_review.get("reviewed_message_sha256_bilingual")
+        == expected_hashes["BILINGUAL"],
+        f"ready message human-review hash mismatch: {route_id}",
+    )
+    _need(
+        send_guard.get("human_review_bundle_id") == review_bundle_id,
+        f"route human-review bundle mismatch: {route_id}",
+    )
+    _need(
+        send_guard.get("human_review_reference") == reviewer_reference,
+        f"route human-review reference mismatch: {route_id}",
+    )
+    _need(
+        send_guard.get("human_reviewed_at") == human_reviewed_at.isoformat(),
+        f"route human-review timestamp mismatch: {route_id}",
+    )
+    _need(
+        send_guard.get("reviewed_message_sha256_bilingual")
+        == expected_hashes["BILINGUAL"],
+        f"route human-reviewed message hash mismatch: {route_id}",
+    )
     return {
         "candidate_id": candidate_id,
         "message": message,
         "message_content_sha256_by_language": expected_hashes,
+        "human_review_bundle_id": review_bundle_id,
+        "human_review_reference": reviewer_reference,
+        "human_reviewed_at": human_reviewed_at,
     }
 
 
@@ -242,6 +298,10 @@ def apply_send_receipt(
     _need(
         ready["candidate_id"] == candidate_id,
         "send receipt candidate/message mismatch",
+    )
+    _need(
+        ready["human_reviewed_at"] <= sent_at,
+        "human review timestamp occurs after manual send",
     )
     message = ready["message"]
     message_contact = str(message.get("public_contact", "")).strip()
@@ -321,6 +381,9 @@ def apply_send_receipt(
         "sent_message_reference": sent_message_reference,
         "message_content_sha256": sent_content_sha256,
         "sender_identity_reference": sender_identity_reference,
+        "human_review_bundle_id": ready["human_review_bundle_id"],
+        "human_review_reference": ready["human_review_reference"],
+        "human_reviewed_at": ready["human_reviewed_at"].isoformat(),
         "outreach_status_after": "SENT_AWAITING_RESPONSE",
         "automatic_send_used": False,
         "manager_receipt_status": manager_receipt["status"],
