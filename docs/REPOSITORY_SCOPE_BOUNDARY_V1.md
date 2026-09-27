@@ -96,6 +96,19 @@ The exact path inventory and deletion-authorization state are frozen in:
 data/EMPIRICAL_COMPANION_MIGRATION_MANIFEST_V1.json
 ```
 
+
+Before any pruning batch, destination completeness must pass:
+
+```text
+scripts/check_empirical_companion_destination.py
+```
+
+against a filled destination receipt derived from:
+
+```text
+data/EMPIRICAL_COMPANION_DESTINATION_RECEIPT_TEMPLATE_V1.json
+```
+
 ## Executable scope guard
 
 The boundary is enforced in pull-request CI by:
