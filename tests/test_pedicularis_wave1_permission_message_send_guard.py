@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -9,6 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 RENDER = ROOT / "scripts" / "render_pedicularis_wave1_permission_messages.py"
 GUARD = ROOT / "scripts" / "validate_pedicularis_wave1_permission_messages_for_send.py"
 REVIEW = ROOT / "scripts" / "generate_pedicularis_permission_message_review.py"
+REVIEW_TEMPLATE = (
+    ROOT / "data"
+    / "PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REVIEW_TEMPLATE_V1.json"
+)
 
 spec = importlib.util.spec_from_file_location("ped_message_render", RENDER)
 render = importlib.util.module_from_spec(spec)
@@ -210,3 +215,50 @@ def test_human_review_receipt_is_retained_in_send_ready_output() -> None:
         == "TEST-REVIEW-BUNDLE-001"
         for message in out["messages"]
     )
+
+
+
+def test_human_review_template_is_explicitly_unapproved() -> None:
+    payload = json.loads(REVIEW_TEMPLATE.read_text())
+    assert payload["schema_version"] == (
+        "SLK_PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REVIEW_V1"
+    )
+    assert payload["status"] == "TEMPLATE_ONLY_NOT_DATA"
+    assert payload["route_reviews"] == []
+    assert payload["review_policy"]["automatic_send_allowed"] is False
+
+
+def test_human_review_timestamp_requires_timezone() -> None:
+    payload = _filled_payload()
+    receipt = _approved_review(payload)
+    receipt["reviewed_at"] = "2027-04-20T10:00:00"
+    with pytest.raises(ValueError, match="timezone offset"):
+        guard.validate_and_prepare(
+            payload,
+            human_review_approved=True,
+            review_receipt=receipt,
+        )
+
+
+def test_human_review_route_inventory_must_match_message_bundle() -> None:
+    payload = _filled_payload()
+    receipt = _approved_review(payload)
+    receipt["route_reviews"].pop()
+    with pytest.raises(ValueError, match="route inventory mismatch"):
+        guard.validate_and_prepare(
+            payload,
+            human_review_approved=True,
+            review_receipt=receipt,
+        )
+
+
+def test_human_review_requires_route_approval() -> None:
+    payload = _filled_payload()
+    receipt = _approved_review(payload)
+    receipt["route_reviews"][0]["approved_for_manual_send"] = False
+    with pytest.raises(ValueError, match="route not approved"):
+        guard.validate_and_prepare(
+            payload,
+            human_review_approved=True,
+            review_receipt=receipt,
+        )
