@@ -245,7 +245,9 @@ def audit(
     ):
         next_action = "FREEZE_FOLLOWUP_POLICY_BEFORE_FIRST_SEND"
     elif status_counts.get("BLOCKED_BEFORE_FIRST_SEND", 0):
-        next_action = "COMPLETE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES"
+        next_action = (
+            "FILL_LOCAL_REQUESTER_PROFILE_COMPILE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES"
+        )
     elif status_counts.get("AWAITING_RESPONSE_OR_FOLLOWUP", 0):
         next_action = "USE_FROZEN_FOLLOWUP_PLANNER_OR_RECORD_RESPONSE"
     elif status_counts.get(
