@@ -1185,6 +1185,8 @@ The same result applies to the reverse-invasion threshold using `C_D`.
 
 These are deterministic approximation bounds conditional on valid local Lipschitz or curvature bounds. Sampling uncertainty in measured fitness differences must be added separately. A certified interval that overlaps zero is **uninformative**, not evidence of no invasion.
 
+The two-scale cancellation in `2Delta(epsilon)-Delta(2epsilon)` is Richardson-type extrapolation, with classical prior art in Richardson & Gaunt (1927). UTA1.9 therefore does **not** claim a new extrapolation theorem. Its SLK role is the biological adaptation: translating a rare-frequency endpoint into a prospective sign certificate, carrying approximation and sampling uncertainty together, and preserving an explicit unresolved state.
+
 ---
 
 ## 2. One-family constructive witnesses
