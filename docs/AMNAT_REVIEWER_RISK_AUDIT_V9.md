@@ -104,7 +104,7 @@ This gives a direct frequency-resolution criterion for ecological-gradient exper
 
 > If the component algebra, invasion definition, extrapolation device, and fixation/occupancy process are established, what biological work is done by the integrated SLK transport?
 
-This is now the principal conceptual-review task. The answer must rest on the common estimand handoff, the one-family atlas of where added mechanisms change the decision boundary, and the G1-G9 measurement ceiling—not on priority claims for the component mathematics.
+This is now the principal conceptual-review task. The strongest answer is UTA1.10: persistent integration is observationally non-identifying, but a fixed upstream comparison plus the measured sign sequence separates negative architecture value, local release barriers, and rare-establishment barriers. The one-family atlas shows these are compatible states of one comparison, while G1-G9 specifies what must be measured before each localization is licensed. The argument does not depend on priority claims for the component mathematics.
 
 A secondary model-validation question remains:
 
@@ -126,7 +126,7 @@ The endpoint-limit objection is now an ordinary experimental-design problem:
 
 > how fine must the frequency grid be, and how conservative must the local smoothness envelope be, to certify the endpoint sign?
 
-But that repair should not be sold as new numerical mathematics. The paper succeeds only if the reader finds the cross-level transport biologically useful: a measured conflict can be followed without silently changing the comparison object, and each stronger evolutionary interpretation has an explicit additional evidentiary gate.
+But that repair should not be sold as new numerical mathematics. The biological payoff is diagnostic: identical persistent integration can arise at different decision layers, and the transport tells the reader which quantity must change sign before the next explanation is entertained. Mechanism attribution still requires separate causal evidence.
 
 ## Status
 
