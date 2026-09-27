@@ -313,6 +313,8 @@ compatible sign regimes include:
 
 The executable verifier instantiates these three regimes using the registered common witness family W1-W3. UTA1.10 localizes the first changed decision layer only after the corresponding upstream quantities have been measured. It does not identify the causal mechanism responsible for low recoverability, architecture cost, path geometry, or ecological feedback.
 
+Boundary policy is fail-closed: `Phi=0`, `g0=0`, and `Delta_R=0` are not assigned to either neighboring regime. The local-release zero requires higher-order path geometry, and an estimated interval crossing any zero surface remains unresolved.
+
 ## Freeze rule
 
 The SLK manuscript may simplify notation, but it may not strengthen the source claim. In particular:
