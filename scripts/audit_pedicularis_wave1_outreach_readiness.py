@@ -78,6 +78,35 @@ def _candidate_ready_messages(payload: dict) -> tuple[str, dict[str, dict]]:
     candidate_id = str(candidate.get("candidate_id", "")).strip()
     _need(bool(candidate_id), "permission message candidate_id missing")
 
+    review_receipt = payload.get("human_review_receipt")
+    _need(
+        isinstance(review_receipt, dict),
+        "permission message human-review receipt missing",
+    )
+    _need(
+        review_receipt.get("status") == "HUMAN_REVIEW_APPROVED",
+        "permission message human-review receipt is not approved",
+    )
+    _need(
+        review_receipt.get("candidate_id") == candidate_id,
+        "permission message human-review candidate mismatch",
+    )
+    review_bundle_id = str(
+        review_receipt.get("review_bundle_id", "")
+    ).strip()
+    review_reference = str(
+        review_receipt.get("reviewer_reference", "")
+    ).strip()
+    reviewed_at = str(review_receipt.get("reviewed_at", "")).strip()
+    _need(bool(review_bundle_id), "permission message review_bundle_id missing")
+    _need(bool(review_reference), "permission message reviewer_reference missing")
+    _need(bool(reviewed_at), "permission message reviewed_at missing")
+    review_routes = review_receipt.get("routes")
+    _need(
+        isinstance(review_routes, dict) and review_routes,
+        "permission message reviewed routes missing",
+    )
+
     messages = payload.get("messages")
     _need(isinstance(messages, list) and messages, "permission messages missing")
     by_route: dict[str, dict] = {}
@@ -126,7 +155,38 @@ def _candidate_ready_messages(payload: dict) -> tuple[str, dict[str, dict]]:
             == digests["BILINGUAL"],
             f"route reviewed-message hash mismatch: {route_id}",
         )
+        _need(
+            route_id in review_routes,
+            f"route human-review receipt missing: {route_id}",
+        )
+        route_review = review_routes[route_id]
+        _need(
+            route_review.get("reviewed_message_sha256_bilingual")
+            == digests["BILINGUAL"],
+            f"route human-review hash mismatch: {route_id}",
+        )
+        _need(
+            guard.get("human_review_bundle_id") == review_bundle_id,
+            f"route human-review bundle mismatch: {route_id}",
+        )
+        _need(
+            guard.get("human_review_reference") == review_reference,
+            f"route human-review reference mismatch: {route_id}",
+        )
+        _need(
+            guard.get("human_reviewed_at") == reviewed_at,
+            f"route human-review timestamp mismatch: {route_id}",
+        )
+        _need(
+            guard.get("reviewed_message_sha256_bilingual")
+            == digests["BILINGUAL"],
+            f"route send_guard review hash mismatch: {route_id}",
+        )
         by_route[route_id] = message
+    _need(
+        set(review_routes) == set(by_route),
+        "permission message human-review route inventory mismatch",
+    )
     return candidate_id, by_route
 
 
