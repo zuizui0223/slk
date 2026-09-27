@@ -9,7 +9,11 @@ SLK does not claim to originate the ideas that:
 - evolvability depends on the genotype-phenotype map;
 - invasion and fixation are distinct finite-population criteria;
 - weak-mutation dynamics can be represented by transitions among nearly monomorphic states;
-- stationary behavior under rare mutation is a distinct stochastic object.
+- stationary behavior under rare mutation is a distinct stochastic object;
+- affine threshold crossings become explicit by solving the declared invasion equation;
+- coefficients of a declared linear or quadratic frequency map can be recovered from the corresponding number of frequency treatments;
+- invasion is determined by the rare-mutant endpoint by definition of invasion fitness;
+- two-scale cancellation of a leading approximation error is standard Richardson extrapolation.
 
 Those are established themes in the literature.
 
@@ -31,9 +35,13 @@ Their finite-population evolutionary-game framework explicitly distinguishes con
 
 Their strong-selection/weak-mutation treatment analyzes long-run evolutionary-game behavior in finite populations with small mutation. SLK should not claim to originate weak-mutation state reduction or long-run stationary analysis.
 
-## SLK's narrower novelty
+### Richardson & Gaunt (1927)
 
-SLK's novelty is the **architecture-specific cross-scale estimand transport**:
+Their deferred-approach-to-the-limit method is foundational prior art for Richardson extrapolation. SLK's two-frequency endpoint certificate at `epsilon` and `2epsilon` uses the same leading-error cancellation logic. SLK should claim the biological endpoint certificate, sign-decision rule, and uncertainty bookkeeping as an adaptation, not a new extrapolation theorem.
+
+## SLK's narrower contribution
+
+SLK's defensible contribution is the **architecture-specific cross-scale estimand transport**:
 
 ```text
 identified shared-coordinate conflict L
@@ -63,7 +71,8 @@ A defensible framing paragraph is:
 - Rueffler C, Hermisson J, Wagner GP. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326-E335.
 - Taylor C, Fudenberg D, Sasaki A, Nowak MA. 2004. Evolutionary game dynamics in finite populations. *Bulletin of Mathematical Biology* 66:1621-1644.
 - Fudenberg D, Nowak MA, Taylor C, Imhof LA. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352-363.
+- Richardson LF, Gaunt JA. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299-361.
 
 ## Boundary status
 
-This file fixes the first submission-level boundary against the most obvious antecedents. It is not a claim that the literature audit is exhaustive; a journal-ready version should still check neighboring work on modularity, adaptive dynamics, accessibility/fitness landscapes, and stochastic evolutionary games before final submission.
+This file fixes the first submission-level boundary against the most obvious antecedents. It also fixes an internal algebra boundary: direct rearrangements, interpolation identities, endpoint definitions, and standard extrapolation devices may be useful SLK components without being advertised as new mathematics. It is not a claim that the literature audit is exhaustive; a journal-ready version should still check neighboring work on modularity, adaptive dynamics, accessibility/fitness landscapes, and stochastic evolutionary games before final submission.
