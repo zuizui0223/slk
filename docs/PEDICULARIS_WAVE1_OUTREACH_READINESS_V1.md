@@ -33,7 +33,22 @@ The canonical CLI now uses the repository-tracked prospectively frozen productio
 data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1.json
 ```
 
-Human-reviewed `READY_FOR_MANUAL_SEND` candidate message bundles remain local working inputs. The audit never fills requester identity, institution, reply contact, or human-review approval automatically.
+Human-reviewed `READY_FOR_MANUAL_SEND` candidate message bundles remain local working inputs.
+
+Requester identity is filled through a local, gitignored profile rather than being committed:
+
+```text
+data/PEDICULARIS_PERMISSION_REQUESTER_PROFILE_TEMPLATE_V1.json
+scripts/compile_pedicularis_permission_requester_profile.py
+```
+
+The filled local profile supplies name, institution and reply email to the bilingual drafts, but it cannot approve them. The resulting state is:
+
+```text
+DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW
+```
+
+and the manual-send guard still requires explicit human review before `READY_FOR_MANUAL_SEND`. The readiness audit never invents requester identity or review approval.
 
 ## Pre-send blockers
 
@@ -125,7 +140,7 @@ human-reviewed send-ready messages not provided.
 The current administrative next action is now:
 
 ```text
-COMPLETE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES
+FILL_LOCAL_REQUESTER_PROFILE_COMPILE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES
 ```
 
 After a candidate's route messages pass the manual-send guard, the readiness audit will promote only those routes to `READY_FOR_MANUAL_SEND`; automatic sending remains forbidden.
