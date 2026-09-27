@@ -1,0 +1,21 @@
+{
+  "schema_version": "SLK_EMPIRICAL_COMPANION_EXPORT_RECEIPT_V1",
+  "status": "TRANSFER_PACKAGE_STANDALONE_VERIFIED",
+  "source_repository": "zuizui0223/slk",
+  "frozen_source_commit": "0f632f7cfce12f04cb2106c24753ca976f30d677",
+  "builder_main_commit": "13dad78f1dd0c0f3db5f418a0f6be06b387f2aca",
+  "workflow_run_id": 36329677149,
+  "workflow_job_id": 108649092163,
+  "artifact_name": "slk-pedicularis-empirical-companion-export",
+  "artifact_id": 10935795158,
+  "artifact_zip_sha256": "3073722a7d35f1d13b1002b551aa7d3fe754497b7c58d9d89d2bc0197855b164",
+  "artifact_size_bytes": 1111584,
+  "copied_file_count": 160,
+  "standalone_pytest_passed": 446,
+  "standalone_pytest_failed": 0,
+  "destination_repository": null,
+  "destination_commit": null,
+  "destination_ci_verified": false,
+  "slk_deletion_authorized": false,
+  "claim_ceiling": "TRANSFER_PACKAGE_READINESS_ONLY_NO_SCIENTIFIC_CLAIM_CHANGE"
+}
