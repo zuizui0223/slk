@@ -89,6 +89,13 @@ The non-destructive package-level migration sequence is frozen in:
 docs/EMPIRICAL_COMPANION_MIGRATION_V1.md
 ```
 
+
+The exact path inventory and deletion-authorization state are frozen in:
+
+```text
+data/EMPIRICAL_COMPANION_MIGRATION_MANIFEST_V1.json
+```
+
 ## Executable scope guard
 
 The boundary is enforced in pull-request CI by:
