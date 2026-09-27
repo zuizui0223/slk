@@ -107,6 +107,14 @@ A result is not published twice merely by changing notation or biological framin
 
 It should not present the identical claim as a second primary novelty.
 
+## Operational boundary
+
+SLK owns the scientific handoff and generic empirical claim ladder; it does not need to own every study-specific administrative state needed to execute a biological test.
+
+For the prospective `Pedicularis rex` anchor, permission routing, outreach correspondence, send/response/follow-up receipts, access logistics, and candidate-specific field-workflow machinery are companion empirical/operations concerns. They should not be promoted into the flagship merely because they are auditable.
+
+A Pedicularis change remains canonical in SLK only when it changes an estimand, model assumption, generic empirical gate, manuscript claim ceiling, or a real biological result represented in the flagship. See `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md`.
+
 ## Current canonical split
 
 ```text
