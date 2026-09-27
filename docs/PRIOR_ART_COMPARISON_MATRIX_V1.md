@@ -29,9 +29,10 @@ with explicit constructive split regimes, a declared process-level invariant, an
 | Dieckmann & Law 1996 / adaptive-dynamics tradition | Evolution can be approximated as rare, small mutational steps with ecological feedback and invasion fitness. | Strong overlap with local accessibility and invasion logic. | Do not claim that local mutational steps or invasion fitness are new concepts. | SLK explicitly contrasts endpoint architecture value with local release-path accessibility and connects this contrast to an upstream measured conflict budget. |
 | Weinreich et al. 2006, *Science* | Only a subset of mutational paths to a fitter endpoint may be selectively accessible. | Direct overlap with the statement `globally better != locally reachable`. | Do not claim path accessibility as a new evolutionary concept. | SLK derives an architecture-specific accessibility interval from a recovery/cost representation and places it as a formal handoff after `Phi>0`. |
 | Taylor et al. 2004, *Bull Math Biol* | Finite populations distinguish invasion and fixation; population size creates additional selection scenarios. | Direct overlap with the invasion/fixation split. | Do not claim invasion and fixation are generically distinct for the first time. | SLK maps an architecture-value coordinate into these criteria and provides explicit witness regimes tied to the same upstream architecture comparison. |
-| Fudenberg et al. 2006, *Theor Popul Biol* | Strong-selection/weak-mutation evolutionary games have distinct long-run stochastic behavior; small mutation yields a substitution process over strategies. | Direct overlap with weak-mutation occupancy. | Do not claim weak-mutation long-run state weighting or Moran-game transport as a new field. | SLK identifies where its architecture-specific transport separates and where reciprocal fixation and occupancy re-align under the registered symmetric process. |
+| Fudenberg et al. 2006, *Theor Popul Biol* | Strong-selection/weak-mutation evolutionary games have distinct long-run stochastic behavior; small mutation yields a substitution process over strategies. | Direct overlap with weak-mutation occupancy. | Do not claim weak-mutation long-run state weighting or Moran-game transport as a new field. | SLK uses the registered process as a consistency surface inside the architecture-specific transport. |
+| Richardson & Gaunt 1927, *Phil. Trans. R. Soc. A* | Two-scale extrapolation cancels leading approximation error and accelerates approach to a limit. | Direct mathematical overlap with the `epsilon,2epsilon` endpoint certificate. | Do not claim the extrapolation algebra or its order improvement as new. | SLK adapts the device to rare-frequency invasion sign certification and combines deterministic remainder with sampling uncertainty. |
 
-## Strongest novelty candidate
+## Strongest contribution candidate
 
 After comparison with the closest antecedents, the strongest defensible novelty is not any individual arrow. It is the **registered handoff structure across arrows**:
 
@@ -48,8 +49,8 @@ identified conflict receipt
 The flagship adds three architecture-specific pieces to this synthesis:
 
 1. a common upstream `L -> R -> Phi` bookkeeping that prevents multifunctionality, conflict, recoverable benefit, and net architecture advantage from being collapsed;
-2. constructive parameter witnesses for the exact transitions where one criterion fails to imply the next;
-3. an exact process-level re-alignment in which reciprocal fixation ordering and symmetric rare-mutation monomorphic occupancy ordering coincide, plus an empirical G1-G9 claim ladder that states what must be measured before each biological interpretation is licensed.
+2. one compatible witness model that makes the handoff failures inspectable without swapping models at each step;
+3. an empirical G1-G9 claim ladder that states what must be measured before each biological interpretation is licensed, while known process identities such as fixation-occupancy re-alignment serve as consistency checks rather than novelty claims.
 
 ## Novelty danger zones
 
@@ -70,11 +71,13 @@ The following framing remains the candidate SLK contribution:
 
 ## Submission implication
 
-A skeptical reviewer can reasonably say that every component theory has antecedents. The manuscript is publishable only if the integration produces useful deductions that are not obvious from juxtaposition alone. The current strongest deductions are:
+A skeptical reviewer can reasonably say that every component theory has antecedents. The manuscript is publishable only if the integration produces useful deductions that are not obvious from juxtaposition alone. The current strongest deliverables are:
 
-- the explicit architecture accessibility gap after positive endpoint value;
-- the constructive witness table locating each failed implication;
-- the fixation-occupancy invariant under the registered process;
+- a single architecture comparison carried through a common set of declared estimands rather than redefined at each level;
+- a one-family witness atlas locating where added mechanisms change the decision boundary;
+- ecological-discordance measurements that tell the reader which gate failed without treating the algebraic threshold formulas as standalone novelty;
 - the measurement ladder that makes claim strength cumulative and auditable.
+
+The fixation-occupancy equality is retained because it prevents a false non-equivalence claim; it is not counted as an independent novelty claim.
 
 If these are treated as examples of a general transport discipline rather than as disconnected mini-results, the novelty case is materially stronger.
