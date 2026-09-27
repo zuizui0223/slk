@@ -13,8 +13,8 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
 TITLE_WORDS                         9
-ABSTRACT_WORDS                    172
-TEXT_WORDS_EXCL_LITERATURE_CITED 5529
+ABSTRACT_WORDS                    191
+TEXT_WORDS_EXCL_LITERATURE_CITED 5827
 FIGURES                             3
 ```
 
@@ -27,7 +27,7 @@ Status:
 ```text
 MAJOR_ARTICLE_TEXT_LIMIT        PASS
 ABSTRACT_200_WORD_LIMIT         PASS
-FIGURE_TABLE_LIMIT              PASS   (3 figures + 2 in-text tables = 5 items)
+FIGURE_TABLE_LIMIT              PASS   (3 figures + 3 in-text tables = 6 items)
 TITLE_LENGTH_PREFERENCE         PASS   (9 words; journal suggests ~8–10)
 KEYWORDS_1_TO_6                 PASS   (6)
 ANONYMOUS_TITLE_PAGE            PASS
