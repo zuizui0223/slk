@@ -59,15 +59,36 @@ A Pedicularis artifact stays or returns to the SLK flagship only if it changes a
 
 Administrative auditability, permission correspondence, field logistics, and candidate-specific power/layout machinery do not satisfy this exception by themselves.
 
+## Transfer-ready export before destination provisioning
+
+The frozen package can be assembled and tested before a destination repository exists:
+
+```text
+scripts/build_empirical_companion_export.py
+tests/test_empirical_companion_export.py
+CI job: companion-export
+```
+
+The builder copies the exact 160 frozen operational paths, adds only root transfer infrastructure (`pytest.ini`, a generated README, checksum ledger, export manifest and a minimal companion CI workflow), and then the SLK CI runs the exported test suite from the isolated export directory.
+
+A successful `companion-export` job establishes only:
+
+```text
+TRANSFER_PACKAGE_BUILT_AND_STANDALONE_TESTED
+```
+
+It does not authorize SLK deletion. Destination repository identity, full destination commit SHA and destination CI must still satisfy the destination-receipt gate.
+
 ## Non-destructive migration sequence
 
 ```text
 1  freeze source snapshot                                  DONE
-2  provision a Pedicularis empirical companion            REQUIRED
-3  copy the complete execution package to that companion  REQUIRED
-4  verify companion paths/tests and record destination SHA REQUIRED
-5  prune duplicated candidate-specific files from SLK     ONLY AFTER 2-4
-6  retain a short empirical-anchor pointer in SLK          REQUIRED
+2  build + standalone-test transfer package                CI-GATED
+3  provision a Pedicularis empirical companion            REQUIRED
+4  copy the complete execution package to that companion  REQUIRED
+5  verify companion paths/tests and record destination SHA REQUIRED
+6  prune duplicated candidate-specific files from SLK     ONLY AFTER 3-5
+7  retain a short empirical-anchor pointer in SLK          REQUIRED
 ```
 
 No file deletion from the flagship is authorized before the destination repository and destination commit are recorded. Git history plus the archive branch provide independent recovery paths, but the companion copy should exist before main is pruned.
