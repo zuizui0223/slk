@@ -44,10 +44,22 @@ def test_conflict_strength_is_not_promoted_to_differentiation_rank() -> None:
     assert "UTA1.5" in ledger
 
 
-def test_discordance_table_contains_process_falsification_case() -> None:
+def test_discordance_table_contains_process_consistency_case() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8").lower()
     assert "reciprocal fixation and occupancy orderings disagree" in manuscript
-    assert "process assumptions are violated" in manuscript
+    assert "at least one registered stochastic-process assumption is inadequate" in manuscript
+
+
+def test_persistent_integration_gate_localization_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    assert "UTA1.10" in theory
+    assert "UTA1.10" in ledger
+    assert "persistent integration is non-identifying" in manuscript.lower()
+    assert "Phi>0, g_0<=0" in manuscript
+    assert "Phi>0, g_0>0, Delta_R<=0" in manuscript
+    assert "Mechanism attribution remains a separate causal problem." in manuscript
 
 
 def test_feedback_gradient_generalization_is_registered() -> None:
