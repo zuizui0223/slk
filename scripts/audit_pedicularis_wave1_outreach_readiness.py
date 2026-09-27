@@ -215,6 +215,25 @@ def audit(
         ready_by_candidate[candidate_id] = messages
 
     progress = outreach_receipt["candidate_progress"]
+    canonical_routes_by_candidate: dict[str, set[str]] = {}
+    for row in outreach_rows:
+        candidate_id = str(row.get("candidate_id", "")).strip()
+        route_id = str(row.get("route_id", "")).strip()
+        canonical_routes_by_candidate.setdefault(candidate_id, set()).add(
+            route_id
+        )
+
+    for candidate_id, messages in ready_by_candidate.items():
+        _need(
+            candidate_id in canonical_routes_by_candidate,
+            f"ready-message candidate absent from outreach ledger: {candidate_id}",
+        )
+        _need(
+            set(messages) == canonical_routes_by_candidate[candidate_id],
+            "ready-message route inventory does not match canonical outreach routes: "
+            f"{candidate_id}",
+        )
+
     route_results: list[dict] = []
     status_counts: dict[str, int] = {}
 
