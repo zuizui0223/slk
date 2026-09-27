@@ -71,17 +71,23 @@ Administrative completeness alone is not a promotion criterion.
 At the boundary-freeze snapshot on SLK main, the Pedicularis-specific operational surface contains:
 
 ```text
-158 files total
+160 files total
 
 docs/    30
 data/    39
 scripts/ 50
-tests/   39
+tests/   41
 ```
 
 The inventory is defined mechanically by the same path families used by the scope guard. This count is a migration baseline, not a publication metric. After the boundary is merged, the expected direction in SLK is monotonically downward as files are copied to the empirical companion and deleted from the flagship.
 
 A future increase in this count is a scope regression.
+
+The non-destructive package-level migration sequence is frozen in:
+
+```text
+docs/EMPIRICAL_COMPANION_MIGRATION_V1.md
+```
 
 ## Executable scope guard
 
