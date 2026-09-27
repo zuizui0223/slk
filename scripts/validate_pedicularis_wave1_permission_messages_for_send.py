@@ -117,7 +117,7 @@ def human_review_receipt_sha256(receipt: dict) -> str:
     return hashlib.sha256(canonical).hexdigest()
 
 
-def _validate_review_receipt(
+def validate_review_receipt(
     payload: dict,
     review_receipt: dict | None,
     messages: list[dict],
@@ -296,7 +296,7 @@ def validate_and_prepare(
 
     validated_review = None
     if human_review_approved:
-        validated_review = _validate_review_receipt(
+        validated_review = validate_review_receipt(
             payload,
             review_receipt,
             messages,
