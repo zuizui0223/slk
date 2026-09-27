@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         9
 ABSTRACT_WORDS                    191
-TEXT_WORDS_EXCL_LITERATURE_CITED 5827
+TEXT_WORDS_EXCL_LITERATURE_CITED 5833
 FIGURES                             3
 ```
 
@@ -41,7 +41,7 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 The CI-built review manuscript is generated directly from the canonical V4 source. The last completed package predates the UTA1.10 diagnostic-table revision. A fresh build is required before the generated-file status can be promoted back to PASS.
 
 ```text
-CURRENT_SOURCE_TEXT_WORDS   5827
+CURRENT_SOURCE_TEXT_WORDS   5833
 CURRENT_SOURCE_TABLES        3
 CURRENT_SOURCE_FIGURES       3
 REVIEW_PDF_REBUILD           PENDING
