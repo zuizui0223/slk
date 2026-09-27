@@ -114,8 +114,15 @@ def test_human_review_can_mark_messages_ready_for_manual_send_only() -> None:
         == m["message_content_sha256_bilingual"]
         for m in out["messages"]
     )
+    assert len(out["human_review_receipt"]["review_receipt_sha256"]) == 64
+    assert out["human_review_receipt"]["review_receipt_sha256"] == (
+        guard.human_review_receipt_sha256(out["human_review_receipt"])
+    )
     assert all(
-        m["send_guard"]["automatic_send_allowed"] is False
+        m["send_guard"]["human_review_receipt_sha256"]
+        == out["human_review_receipt"]["review_receipt_sha256"]
+        and m["send_guard"]["human_review_reviewer_name"] == "TEST REVIEWER"
+        and m["send_guard"]["automatic_send_allowed"] is False
         for m in out["messages"]
     )
 
@@ -262,3 +269,31 @@ def test_human_review_requires_route_approval() -> None:
             human_review_approved=True,
             review_receipt=receipt,
         )
+
+
+
+def test_retained_review_hash_changes_if_reviewer_changes() -> None:
+    payload = _filled_payload()
+    out = guard.validate_and_prepare(
+        payload,
+        human_review_approved=True,
+        review_receipt=_approved_review(payload),
+    )
+    original = out["human_review_receipt"]["review_receipt_sha256"]
+    out["human_review_receipt"]["reviewer_name"] = "OTHER REVIEWER"
+    assert guard.human_review_receipt_sha256(
+        out["human_review_receipt"]
+    ) != original
+
+
+def test_retained_review_hash_is_route_order_independent() -> None:
+    payload = _filled_payload()
+    out = guard.validate_and_prepare(
+        payload,
+        human_review_approved=True,
+        review_receipt=_approved_review(payload),
+    )
+    receipt = out["human_review_receipt"]
+    original = guard.human_review_receipt_sha256(receipt)
+    receipt["route_reviews"] = list(reversed(receipt["route_reviews"]))
+    assert guard.human_review_receipt_sha256(receipt) == original
