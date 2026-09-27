@@ -237,6 +237,8 @@ Phi>0, R'(0)-k>0, Delta_R<0
 
 These regimes are realized by W1-W3 of the common witness family. Their value is diagnostic: after measuring the upstream quantities, the sign sequence localizes the first decision layer that changed verdict and therefore identifies the next quantity to measure. It does not identify the causal mechanism generating that sign.
 
+Exact boundary states are not assigned to either neighboring regime: `Phi=0` is the architecture-value boundary, `R'(0)-k=0` requires higher-order local path information, and `Delta_R=0` is the rare-invasion boundary. Numerically, the executable atlas applies the registered zero tolerance before assigning a sign regime.
+
 ## 11. SLK hierarchy
 
 The flagship transport architecture is

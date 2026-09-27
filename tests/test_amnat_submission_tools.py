@@ -26,6 +26,11 @@ def test_registered_slk_claims_recompute() -> None:
     assert diag["rare_establishment_barrier"]["g0"] > 0
     assert diag["rare_establishment_barrier"]["Delta_R"] < 0
     assert diag["mechanism_identified"] is False
+    assert diag["boundary_policy"] == {
+        "Phi=0": "ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED",
+        "g0=0": "LOCAL_RELEASE_BOUNDARY_UNRESOLVED",
+        "Delta_R=0": "RARE_INVASION_BOUNDARY_UNRESOLVED",
+    }
 
 
 def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:

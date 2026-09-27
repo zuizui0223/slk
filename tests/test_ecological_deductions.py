@@ -57,9 +57,11 @@ def test_persistent_integration_gate_localization_is_registered() -> None:
     assert "UTA1.10" in theory
     assert "UTA1.10" in ledger
     assert "persistent integration is non-identifying" in manuscript.lower()
-    assert "Phi>0, g_0<=0" in manuscript
-    assert "Phi>0, g_0>0, Delta_R<=0" in manuscript
+    assert "Phi>0, g_0<0" in manuscript
+    assert "Phi>0, g_0>0, Delta_R<0" in manuscript
     assert "Mechanism attribution remains a separate causal problem." in manuscript
+    assert "`g_0=0` leaves the local-release verdict unresolved" in manuscript
+    assert "`Delta_R=0` is the rare-invasion boundary" in manuscript
 
 
 def test_feedback_gradient_generalization_is_registered() -> None:

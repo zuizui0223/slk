@@ -16,6 +16,7 @@ try:
         canonical_reciprocal_fixation_ratio_closed_form,
         fixation_probability_d,
         fixation_probability_s,
+        localize_persistent_integration_gate,
         occupancy_ratio_from_process,
         reciprocal_fixation_ratio_from_process,
         symmetric_rare_mutation_stationary_distribution,
@@ -32,6 +33,7 @@ except ImportError:  # direct execution via `python scripts/verify_amnat_claims.
         canonical_reciprocal_fixation_ratio_closed_form,
         fixation_probability_d,
         fixation_probability_s,
+        localize_persistent_integration_gate,
         occupancy_ratio_from_process,
         reciprocal_fixation_ratio_from_process,
         symmetric_rare_mutation_stationary_distribution,
@@ -395,22 +397,52 @@ def verify() -> dict[str, object]:
         and g0_invasion > 0
         and delta_rare_invasion < 0
     )
+
+    value_state = localize_persistent_integration_gate(
+        phi_value, -1.0, -1.0
+    )
+    access_state = localize_persistent_integration_gate(
+        phi_access, g0_access, -1.0
+    )
+    invasion_state = localize_persistent_integration_gate(
+        phi_invasion, g0_invasion, delta_rare_invasion
+    )
+    boundary_policy = {
+        "Phi=0": localize_persistent_integration_gate(
+            0.0, -1.0, -1.0
+        ),
+        "g0=0": localize_persistent_integration_gate(
+            1.0, 0.0, -1.0
+        ),
+        "Delta_R=0": localize_persistent_integration_gate(
+            1.0, 1.0, 0.0
+        ),
+    }
+    assert value_state == "ARCHITECTURE_VALUE_FAILURE"
+    assert access_state == "LOCAL_RELEASE_FAILURE"
+    assert invasion_state == "RARE_INVASION_FAILURE"
+    assert all("UNRESOLVED" in state for state in boundary_policy.values())
+
     checks["UTA1_10_persistent_integration_gate_localization"] = {
         "negative_architecture_value": {
             "Phi": phi_value,
             "first_changed_layer": "architecture_value",
+            "state": value_state,
         },
         "local_release_barrier": {
             "Phi": phi_access,
             "g0": g0_access,
             "first_changed_layer": "local_accessibility",
+            "state": access_state,
         },
         "rare_establishment_barrier": {
             "Phi": phi_invasion,
             "g0": g0_invasion,
             "Delta_R": delta_rare_invasion,
             "first_changed_layer": "rare_invasion",
+            "state": invasion_state,
         },
+        "boundary_policy": boundary_policy,
         "mechanism_identified": False,
         "pass": True,
     }

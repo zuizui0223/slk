@@ -1222,17 +1222,25 @@ All three are compatible with no realized differentiation, but they license diff
 
 - In A, the declared differentiated architecture is not net favorable even though conflict exists.
 - In B, the endpoint is favorable but sufficiently small release is downhill along the declared path.
-- In C, the endpoint is favorable and locally uphill, but D cannot establish from rarity in the current population context.
+- In C, the endpoint is favorable and the initial small-release direction is uphill, but D cannot establish from rarity in the current population context.
 
 The registered common witness family realizes A, B, and C as W1, W2, and W3 respectively. This is verified in `scripts/verify_amnat_claims.py`.
+
+The zero surfaces are separate unresolved states rather than members of the neighboring regimes:
+
+```text
+Phi=0       -> architecture-value boundary unresolved
+g0=0        -> first-order local-release verdict unresolved; inspect higher-order path geometry
+Delta_R=0   -> rare-invasion boundary unresolved
+```
+
+With estimation uncertainty, an interval crossing zero inherits the same unresolved status.
 
 ### Diagnostic boundary
 
 UTA1.10 is not a theorem that phenotype alone reveals mechanism. It says the opposite: persistent integration is **non-identifying** without the upstream measurements. Once `Phi`, the local release gradient, and the rare-frequency margin are measured in sequence, the first sign change localizes the decision layer at which the declared architecture comparison stops carrying forward.
 
 The three regimes above are not claimed to be exhaustive causes of persistent integration. Drift, alternative mutation paths, demographic history, developmental constraints, environmental heterogeneity, and other processes can generate additional explanations. UTA1.10 therefore localizes a gate within the declared SLK hierarchy; it does not establish the causal mechanism producing that gate value.
-
----
 
 ---
 
