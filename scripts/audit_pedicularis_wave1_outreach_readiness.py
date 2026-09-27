@@ -32,6 +32,10 @@ DEFAULT_LEDGER = (
     ROOT / "data"
     / "PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv"
 )
+DEFAULT_FOLLOWUP_POLICY = (
+    ROOT / "data"
+    / "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1.json"
+)
 MESSAGE_SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_MESSAGE_DRAFTS_V1"
 
 
@@ -292,7 +296,11 @@ def main() -> None:
         type=Path,
         default=DEFAULT_LEDGER,
     )
-    parser.add_argument("--followup-policy-json", type=Path)
+    parser.add_argument(
+        "--followup-policy-json",
+        type=Path,
+        default=DEFAULT_FOLLOWUP_POLICY,
+    )
     parser.add_argument(
         "--ready-messages-json",
         type=Path,
@@ -303,10 +311,8 @@ def main() -> None:
     args = parser.parse_args()
 
     rows = _read_csv(args.outreach_ledger_csv)
-    followup = (
-        json.loads(args.followup_policy_json.read_text(encoding="utf-8"))
-        if args.followup_policy_json
-        else None
+    followup = json.loads(
+        args.followup_policy_json.read_text(encoding="utf-8")
     )
     ready_messages = [
         json.loads(path.read_text(encoding="utf-8"))
