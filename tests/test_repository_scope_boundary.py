@@ -100,3 +100,22 @@ def test_unrelated_repository_changes_pass() -> None:
         ]
     )
     assert violations == []
+
+
+
+def test_lowercase_and_nested_pedicularis_paths_cannot_escape_scope_guard() -> None:
+    assert mod.is_pedicularis_operational("docs/pedicularis_new_workflow.md")
+    assert mod.is_pedicularis_operational("data/archive/Pedicularis_state.json")
+    assert mod.is_pedicularis_operational(
+        "scripts/field/pedicularis_new_operation.py"
+    )
+    assert mod.is_pedicularis_operational(
+        "tests/field/test_Pedicularis_new_operation.py"
+    )
+
+
+def test_lowercase_pedicularis_addition_is_blocked() -> None:
+    violations = mod.scope_violations(
+        [change("A\tdocs/pedicularis_new_workflow.md")]
+    )
+    assert len(violations) == 1
