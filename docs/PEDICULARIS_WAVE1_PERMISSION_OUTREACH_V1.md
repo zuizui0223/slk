@@ -33,7 +33,9 @@ scripts/manage_pedicularis_wave1_permission_outreach.py
 scripts/apply_pedicularis_permission_response_receipt.py
 scripts/compile_pedicularis_outreach_to_permission_response_draft.py
 scripts/render_pedicularis_wave1_permission_messages.py
+scripts/compile_pedicularis_permission_requester_profile.py
 scripts/validate_pedicularis_wave1_permission_messages_for_send.py
+data/PEDICULARIS_PERMISSION_REQUESTER_PROFILE_TEMPLATE_V1.json
 scripts/apply_pedicularis_permission_send_receipt.py
 data/PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json
 data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_TEMPLATE_V1.json
@@ -82,6 +84,44 @@ human_review_required = true.
 ```
 
 Requester identity, institution and reply address remain `REQUIRED_BEFORE_SEND`. The message asks for A-F decisions separately and asks for activity-specific validity dates and conditions. Scouting coordinates are explicitly described as historical/project locators rather than current plant positions.
+
+## Local requester profile
+
+Requester identity and reply contact are intentionally excluded from repository-tracked production files.
+
+Start from:
+
+```text
+data/PEDICULARIS_PERMISSION_REQUESTER_PROFILE_TEMPLATE_V1.json
+```
+
+Create a filled local copy with:
+
+```text
+status = LOCAL_PROFILE_FILLED
+requester_name
+institution
+contact_email
+profile_reference
+privacy_policy = FILLED_PROFILE_LOCAL_GITIGNORED_DO_NOT_COMMIT
+```
+
+Then compile the local profile into a rendered candidate message bundle:
+
+```bash
+python scripts/compile_pedicularis_permission_requester_profile.py \
+  PEDICULARIS_WAVE1_PERMISSION_MESSAGE_DRAFTS.json \
+  PEDICULARIS_PERMISSION_REQUESTER_PROFILE_LOCAL.json \
+  --output PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REQUESTER_FILLED.json
+```
+
+The compiler only fills the three explicit requester placeholders. It cannot approve or send the message. Its output is:
+
+```text
+DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW.
+```
+
+Filled requester profiles and requester-filled drafts are local/gitignored.
 
 ## Manual-send guard
 
