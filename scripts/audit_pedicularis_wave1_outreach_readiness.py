@@ -16,7 +16,6 @@ try:
         human_review_receipt_sha256,
         message_content_sha256,
         validate_review_receipt,
-        validate_review_receipt,
     )
 except ImportError:
     from manage_pedicularis_wave1_permission_outreach import (
@@ -28,6 +27,7 @@ except ImportError:
     from validate_pedicularis_wave1_permission_messages_for_send import (
         human_review_receipt_sha256,
         message_content_sha256,
+        validate_review_receipt,
     )
 
 
