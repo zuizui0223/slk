@@ -86,21 +86,22 @@ SLK owns the cross-repository theory needed for the integrated hierarchy:
 2. the registered quadratic partial-release bridge `R=sL` as a model-specific corollary, not a universal identity;
 3. the distinction between global architecture value and local evolutionary accessibility;
 4. the minimal transport from architecture value to invasion, fixation, and occupancy;
-5. the unified critical-surface theorem showing where small-step release, endpoint value, invasion, fixation, and occupancy diverge or re-align, with one preserved endpoint contrast across the registered levels;
+5. the unified critical-surface atlas showing where small-step release, endpoint value, invasion, fixation, and occupancy change boundary or re-align while preserving the declared endpoint contrast;
 6. the ecological threshold-displacement corollary `E_I-E_V=eta/a`, which predicts where realized differentiation should lag behind or precede intrinsic architecture value along environmental gradients;
 7. the comparative prediction that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies;
 8. the three-frequency diagnostic that tests canonical frequency-map adequacy and repairs invasion thresholds when curvature is present;
 9. the arbitrary-shape endpoint result showing that deterministic invasion requires only rare-D and resident-D ecological offsets even when the interior frequency response is nonlinear;
-10. the finite-frequency certification result converting ideal endpoint limits into bounded one- or two-frequency near-endpoint assays with explicit unresolved states;
-11. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+10. the finite-frequency certification result adapting near-endpoint approximation to bounded invasion sign decisions with explicit unresolved states;
+11. the UTA1.10 gate-localization diagnostic: persistent integration is observationally non-identifying, but measured signs of `Phi`, the local release gradient, and rare invasion localize the first decision layer that changes verdict without claiming mechanism identification;
+12. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
 ## Prior-art boundary
 
-SLK does **not** claim to originate modularity/evolvability theory, functional specialization/division-of-labor theory, invasion-versus-fixation distinctions, or weak-mutation long-run population theory. The first registered boundary explicitly acknowledges Wagner & Altenberg (1996), Rueffler, Hermisson & Wagner (2012), Taylor et al. (2004), and Fudenberg et al. (2006).
+SLK does **not** claim to originate modularity/evolvability theory, functional specialization/division-of-labor theory, mutational accessibility, invasion-versus-fixation distinctions, weak-mutation long-run population theory, or Richardson-type extrapolation. The registered prior-art boundary therefore treats the component mathematics and process results as antecedents rather than priority claims.
 
-The narrower novelty claim is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization, together with a unified critical-surface theorem, ecological threshold-displacement predictions, constructive one-family separation witnesses, an exact process-level invariant where criteria re-align, and a gate-by-gate empirical claim ceiling.
+The narrower contribution is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization. Its main diagnostic payoff is UTA1.10: the same persistent integrated phenotype can arise because architecture value is negative, because the initial release direction is downhill, or because rare establishment fails; measured sign changes localize the first failed decision layer and the next quantity to measure. The one-family atlas, process-consistency surface, and G1-G9 ladder make that localization auditable without treating the component algebra as new.
 
 ## Architecture cost K
 
@@ -143,9 +144,9 @@ For the flagship argument, the canonical path is deliberately short:
 2. `figures/FIG1_LOGIC_DIAGRAM.svg` — unified critical-surface transport and witness logic.
 3. `figures/FIG2_PHASE_MAP.svg` — architecture value, realization coordinates, and ecological threshold displacement.
 4. `figures/FIG3_EMPIRICAL_LADDER.svg` — cumulative empirical claim ladder.
-5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master theorem and constructive witnesses.
+5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master atlas, constructive witnesses, and UTA1.10 diagnostic.
 6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem/corollary/empirical-handoff status.
+7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem, derived-consequence, diagnostic, and empirical-handoff status.
 8. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
 9. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary.
 10. `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md` — theory-core versus empirical-companion boundary.
@@ -162,6 +163,7 @@ ONE_FAMILY_WITNESS_SYSTEM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
 ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
 FINITE_FREQUENCY_ENDPOINT_CERTIFICATION_REGISTERED
+UTA1_10_GATE_LOCALIZATION_REGISTERED
 EMPIRICAL_G1_G9_CLAIM_LADDER_REGISTERED
 PEDICULARIS_PROSPECTIVE_ANCHOR_REGISTERED
 PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
