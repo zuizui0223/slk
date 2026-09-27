@@ -18,6 +18,14 @@ def test_registered_slk_claims_recompute() -> None:
     assert inv["derived_from_rare_mutation_chain"] is True
     assert inv["max_relative_error"] < 1e-10
     assert receipt["checks"]["CANONICAL_MAPPING_GUARD"]["guard_raised"] is True
+    diag = receipt["checks"]["UTA1_10_persistent_integration_gate_localization"]
+    assert diag["negative_architecture_value"]["Phi"] < 0
+    assert diag["local_release_barrier"]["Phi"] > 0
+    assert diag["local_release_barrier"]["g0"] < 0
+    assert diag["rare_establishment_barrier"]["Phi"] > 0
+    assert diag["rare_establishment_barrier"]["g0"] > 0
+    assert diag["rare_establishment_barrier"]["Delta_R"] < 0
+    assert diag["mechanism_identified"] is False
 
 
 def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:
