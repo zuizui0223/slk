@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         9
 ABSTRACT_WORDS                    189
-TEXT_WORDS_EXCL_LITERATURE_CITED 5357
+TEXT_WORDS_EXCL_LITERATURE_CITED 5513
 FIGURES                             3
 ```
 
@@ -111,7 +111,7 @@ Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
 
 ### 7. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered eight-paper core prior-art set in alphabetical order. Production-style punctuation can be normalized later if requested.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered nine-paper core prior-art set, including the Richardson-extrapolation antecedent, in alphabetical order. Production-style punctuation can be normalized later if requested.
 
 Status: `PASS FOR INITIAL REVIEW`.
 
@@ -134,4 +134,4 @@ ALL_AUTHOR_APPROVAL                    REQUIRED
 PORTAL_FILE_UPLOAD                     REQUIRED
 ```
 
-Scientific reviewer risk is now the empirical generality of the ecological threshold predictions, not format compliance.
+Scientific reviewer risk is now whether the architecture-specific transport provides enough biological leverage beyond its deliberately non-novel component algebra, not format compliance.
