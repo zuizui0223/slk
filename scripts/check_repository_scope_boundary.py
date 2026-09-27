@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
-from dataclasses import dataclass
+from typing import NamedTuple
 
 OPERATIONAL_PATTERNS = (
     re.compile(
@@ -13,8 +13,7 @@ OPERATIONAL_PATTERNS = (
 )
 
 
-@dataclass(frozen=True)
-class Change:
+class Change(NamedTuple):
     status: str
     old_path: str | None
     new_path: str
