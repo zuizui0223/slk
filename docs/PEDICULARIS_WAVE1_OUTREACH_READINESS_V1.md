@@ -50,6 +50,8 @@ DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW
 
 The next local step is to generate a route-level human-review receipt with `scripts/generate_pedicularis_permission_message_review.py`. Every route is bound to the exact bilingual message hash and seven explicit checks. The manual-send guard requires a filled `HUMAN_REVIEW_APPROVED` receipt before `READY_FOR_MANUAL_SEND`. The readiness audit never invents requester identity or review approval.
 
+The approved review receipt itself is also canonicalized and SHA-256 bound. The retained hash covers reviewer identity/reference, review timestamp, review policy, every route's reviewed bilingual hash, seven checks, route approval and notes. Route order is normalized. The same review-receipt hash is copied into every route send guard and is revalidated both by the readiness audit and immediately before a manual-send receipt can change the outreach ledger.
+
 ## Pre-send blockers
 
 For a `NOT_SENT` route, readiness requires both:
