@@ -57,6 +57,23 @@ A Pedicularis change belongs in the SLK flagship only if at least one of the fol
 
 Administrative completeness alone is not a promotion criterion.
 
+## Boundary-freeze inventory
+
+At the boundary-freeze snapshot on SLK main, the Pedicularis-specific operational surface contains:
+
+```text
+158 files total
+
+docs/    30
+data/    39
+scripts/ 50
+tests/   39
+```
+
+The inventory is defined mechanically by the same path families used by the scope guard. This count is a migration baseline, not a publication metric. After the boundary is merged, the expected direction in SLK is monotonically downward as files are copied to the empirical companion and deleted from the flagship.
+
+A future increase in this count is a scope regression.
+
 ## Executable scope guard
 
 The boundary is enforced in pull-request CI by:
