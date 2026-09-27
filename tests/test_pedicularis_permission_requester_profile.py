@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RENDER = ROOT / "scripts" / "render_pedicularis_wave1_permission_messages.py"
 COMPILE = ROOT / "scripts" / "compile_pedicularis_permission_requester_profile.py"
 GUARD = ROOT / "scripts" / "validate_pedicularis_wave1_permission_messages_for_send.py"
+REVIEW = ROOT / "scripts" / "generate_pedicularis_permission_message_review.py"
 PROFILE_TEMPLATE = (
     ROOT / "data" / "PEDICULARIS_PERMISSION_REQUESTER_PROFILE_TEMPLATE_V1.json"
 )
@@ -30,6 +31,12 @@ assert spec3.loader is not None
 spec3.loader.exec_module(guard)
 
 
+spec4 = importlib.util.spec_from_file_location("ped_requester_review", REVIEW)
+review = importlib.util.module_from_spec(spec4)
+assert spec4.loader is not None
+spec4.loader.exec_module(review)
+
+
 def _profile() -> dict:
     return {
         "schema_version": "SLK_PEDICULARIS_PERMISSION_REQUESTER_PROFILE_V1",
@@ -40,6 +47,19 @@ def _profile() -> dict:
         "profile_reference": "LOCAL-PROFILE-TEST-001",
         "privacy_policy": "FILLED_PROFILE_LOCAL_GITIGNORED_DO_NOT_COMMIT",
     }
+
+
+def _approved_review(payload: dict) -> dict:
+    receipt = review.build_review_draft(payload)
+    receipt["status"] = "HUMAN_REVIEW_APPROVED"
+    receipt["review_bundle_id"] = "TEST-REQUESTER-REVIEW-001"
+    receipt["reviewer_name"] = "TEST REVIEWER"
+    receipt["reviewer_reference"] = "TEST-REQUESTER-REVIEWER-REF"
+    receipt["reviewed_at"] = "2027-04-20T10:00:00+09:00"
+    for route in receipt["route_reviews"]:
+        route["checks"] = {key: True for key in route["checks"]}
+        route["approved_for_manual_send"] = True
+    return receipt
 
 
 def test_profile_template_is_explicitly_not_filled() -> None:
@@ -88,6 +108,7 @@ def test_requester_filled_draft_can_only_become_ready_after_human_review() -> No
     ready = guard.validate_and_prepare(
         filled,
         human_review_approved=True,
+        review_receipt=_approved_review(filled),
     )
     assert ready["status"] == "READY_FOR_MANUAL_SEND"
     assert ready["send_policy"]["manual_send_only"] is True
@@ -161,6 +182,23 @@ def test_profile_compiler_does_not_accept_already_reviewed_messages() -> None:
     ready = guard.validate_and_prepare(
         draft,
         human_review_approved=True,
+        review_receipt=_approved_review(draft),
     )
     with pytest.raises(ValueError, match="requires DRAFT_NOT_SENT"):
         compiler.compile_profile(ready, _profile())
+
+
+
+def test_review_draft_binds_to_requester_filled_bilingual_hash() -> None:
+    filled = compiler.compile_profile(
+        render.render("SONGZANLIN_EIA_2025"),
+        _profile(),
+    )
+    receipt = review.build_review_draft(filled)
+    assert receipt["status"] == "DRAFT_REVIEW_NOT_APPROVED"
+    assert receipt["candidate_id"] == "SONGZANLIN_EIA_2025"
+    assert len(receipt["route_reviews"]) == len(filled["messages"])
+    for route in receipt["route_reviews"]:
+        assert len(route["reviewed_message_sha256_bilingual"]) == 64
+        assert all(value is False for value in route["checks"].values())
+        assert route["approved_for_manual_send"] is False
