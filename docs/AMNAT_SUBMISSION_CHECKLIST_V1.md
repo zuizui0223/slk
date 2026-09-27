@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         9
 ABSTRACT_WORDS                    191
-TEXT_WORDS_EXCL_LITERATURE_CITED 5790
+TEXT_WORDS_EXCL_LITERATURE_CITED 5848
 FIGURES                             3
 ```
 
@@ -36,28 +36,25 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — PASS
+### 1. Anonymous review manuscript — REBUILD PENDING AFTER UTA1.10 BOUNDARY REPAIR
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The current UTA1.10 build completed successfully and was inspected from the exact workflow artifact.
+The CI-built review manuscript is generated directly from the canonical V4 source. The strict-sign UTA1.10 boundary repair changes the current source, so the previous rendered package is stale until this branch completes a fresh build.
 
 ```text
-MAIN_REVIEW_PDF_PAGES       33
-ANONYMOUS_TITLE_PDF_PAGES    1
-DOUBLE_SPACED                true
-LINE_NUMBERS                 true
-PAGE_NUMBERS                 true
-EMBEDDED_FIGURES             3
-RENDERED_IDENTITY_SCAN       PASS
-UTA1_10_RECEIPT              PASS
-UTA1_10_TABLE_MANUAL_QA      PASS — pages 25–26, no clipping
-FULL_PAGE_BY_PAGE_PROOFREAD  OPEN
+CURRENT_SOURCE_TEXT_WORDS    5848
+CURRENT_SOURCE_TABLES         3
+CURRENT_SOURCE_FIGURES        3
+REVIEW_PDF_REBUILD            PENDING
+STRUCTURE_ANONYMITY_RECHECK   PENDING
+UTA1_10_BOUNDARY_RECEIPT      PENDING
+FULL_PAGE_BY_PAGE_PROOFREAD   OPEN
 ```
 
-The current UTA1.10 review PDF was inspected directly from the workflow artifact. The diagnostic table spans pages 25–26 and remains readable without clipping. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
+The previous UTA1.10 review PDF passed visual QA, but it predates the strict-sign boundary repair. The current branch must rebuild and recheck the rendered table before portal upload.
 
-Status: `PASS FOR GENERATED FILES — FINAL HUMAN PROOFREAD REMAINS`.
+Status: `REBUILD PENDING — DO NOT USE THE PRE-BOUNDARY-REPAIR PACKAGE`.
 
-### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, DEPOSIT STILL REQUIRED
+### 2. Anonymous reviewer code/theory package — REBUILD PENDING, DEPOSIT STILL REQUIRED
 
 The review bundle is curated rather than being a repository dump. It contains:
 
@@ -77,7 +74,7 @@ Current journal instructions require data/code needed to recreate results to be 
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Deposit the exact curated anonymous bundle in a repository that supports anonymous/reviewer access and insert that link in the anonymous manuscript.
 
-Status: `PASS INTERNALLY — CURRENT UTA1.10 BUNDLE VERIFIED; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
+Status: `REBUILD CURRENT STRICT-SIGN UTA1.10 BUNDLE; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
