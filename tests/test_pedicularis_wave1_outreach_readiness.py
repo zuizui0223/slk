@@ -286,3 +286,21 @@ def test_readiness_audit_rejects_tampered_retained_review_checks() -> None:
             followup_policy=_policy(),
             ready_message_payloads=[ready],
         )
+
+
+
+def test_readiness_rejects_semantically_invalid_review_even_if_rehashed() -> None:
+    ready = _ready_messages("SONGZANLIN_EIA_2025")
+    ready["human_review_receipt"]["route_reviews"][0]["checks"][
+        "manual_send_only_acknowledged"
+    ] = False
+    _reseal_retained_review(ready)
+    with pytest.raises(
+        ValueError,
+        match="human review checks not all passed",
+    ):
+        audit_mod.audit(
+            _rows(),
+            followup_policy=_policy(),
+            ready_message_payloads=[ready],
+        )
