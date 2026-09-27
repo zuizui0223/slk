@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 AUDIT = ROOT / "scripts" / "audit_pedicularis_wave1_outreach_readiness.py"
 RENDER = ROOT / "scripts" / "render_pedicularis_wave1_permission_messages.py"
 GUARD = ROOT / "scripts" / "validate_pedicularis_wave1_permission_messages_for_send.py"
+REVIEW = ROOT / "scripts" / "generate_pedicularis_permission_message_review.py"
 FOLLOWUP_TEMPLATE = (
     ROOT / "data"
     / "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_TEMPLATE_V1.json"
@@ -38,6 +39,12 @@ spec3 = importlib.util.spec_from_file_location("ped_wave1_guard", GUARD)
 guard = importlib.util.module_from_spec(spec3)
 assert spec3.loader is not None
 spec3.loader.exec_module(guard)
+
+
+spec4 = importlib.util.spec_from_file_location("ped_wave1_review", REVIEW)
+review = importlib.util.module_from_spec(spec4)
+assert spec4.loader is not None
+spec4.loader.exec_module(review)
 
 
 def _rows() -> list[dict[str, str]]:
@@ -78,9 +85,19 @@ def _ready_messages(candidate_id: str) -> dict:
             "REQUIRED_BEFORE_SEND",
             "PROJECT_CONTACT",
         )
+    receipt = review.build_review_draft(payload)
+    receipt["status"] = "HUMAN_REVIEW_APPROVED"
+    receipt["review_bundle_id"] = f"TEST-READINESS-REVIEW-{candidate_id}"
+    receipt["reviewer_name"] = "TEST REVIEWER"
+    receipt["reviewer_reference"] = "TEST-READINESS-REVIEWER-REF"
+    receipt["reviewed_at"] = "2027-04-20T10:00:00+09:00"
+    for route in receipt["route_reviews"]:
+        route["checks"] = {key: True for key in route["checks"]}
+        route["approved_for_manual_send"] = True
     return guard.validate_and_prepare(
         payload,
         human_review_approved=True,
+        review_receipt=receipt,
     )
 
 
