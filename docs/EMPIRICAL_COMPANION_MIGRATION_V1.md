@@ -77,13 +77,26 @@ A successful `companion-export` job establishes only:
 TRANSFER_PACKAGE_BUILT_AND_STANDALONE_TESTED
 ```
 
-It does not authorize SLK deletion. Destination repository identity, full destination commit SHA and destination CI must still satisfy the destination-receipt gate.
+The first main-branch verified export is registered in:
+
+```text
+data/EMPIRICAL_COMPANION_EXPORT_RECEIPT_V1.json
+
+builder main commit  13dad78f1dd0c0f3db5f418a0f6be06b387f2aca
+workflow run         36329677149
+artifact             10935795158
+copied files         160
+standalone pytest    446 passed / 0 failed
+artifact ZIP SHA256  3073722a7d35f1d13b1002b551aa7d3fe754497b7c58d9d89d2bc0197855b164
+```
+
+This closes the transfer-package stage only. It does not authorize SLK deletion. Destination repository identity, full destination commit SHA and destination CI must still satisfy the destination-receipt gate.
 
 ## Non-destructive migration sequence
 
 ```text
 1  freeze source snapshot                                  DONE
-2  build + standalone-test transfer package                CI-GATED
+2  build + standalone-test transfer package                DONE
 3  provision a Pedicularis empirical companion            REQUIRED
 4  copy the complete execution package to that companion  REQUIRED
 5  verify companion paths/tests and record destination SHA REQUIRED
