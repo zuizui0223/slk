@@ -38,3 +38,43 @@ jobs:
         run: python -m pytest -q -m "theory_numeric or theory_process"
       - name: Run full repository checks
         run: python -m pytest -q
+
+
+  companion-export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install companion test dependency
+        run: python -m pip install --upgrade pip pytest
+      - name: Build frozen empirical companion export
+        run: |
+          python scripts/build_empirical_companion_export.py \
+            --output /tmp/slk-empirical-companion
+      - name: Run standalone companion tests
+        working-directory: /tmp/slk-empirical-companion
+        run: python -m pytest -q
+      - name: Verify exported inventory
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path("/tmp/slk-empirical-companion")
+          payload = json.loads(
+              (root / "COMPANION_EXPORT_MANIFEST.json").read_text()
+          )
+          assert payload["status"] == "TRANSFER_PACKAGE_BUILT"
+          assert payload["copied_file_count"] == 160
+          assert len(payload["copied_files"]) == 160
+          print("companion export inventory: PASS (160 files)")
+          PY
+      - name: Upload transfer-ready companion export
+        uses: actions/upload-artifact@v4
+        with:
+          name: slk-pedicularis-empirical-companion-export
+          path: /tmp/slk-empirical-companion
+          if-no-files-found: error
+          retention-days: 30
