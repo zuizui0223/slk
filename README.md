@@ -92,7 +92,7 @@ SLK owns the cross-repository theory needed for the integrated hierarchy:
 8. the three-frequency diagnostic that tests canonical frequency-map adequacy and repairs invasion thresholds when curvature is present;
 9. the arbitrary-shape endpoint result showing that deterministic invasion requires only rare-D and resident-D ecological offsets even when the interior frequency response is nonlinear;
 10. the finite-frequency certification result adapting near-endpoint approximation to bounded invasion sign decisions with explicit unresolved states;
-11. the UTA1.10 gate-localization diagnostic: persistent integration is observationally non-identifying, but measured signs of `Phi`, the local release gradient, and rare invasion localize the first decision layer that changes verdict without claiming mechanism identification;
+11. the UTA1.10 gate-localization diagnostic: persistent integration is observationally non-identifying; strict measured signs of `Phi`, the local release gradient, and rare invasion localize a first failing layer, while all three positive signs exclude those early failure explanations without implying that differentiation must be realized;
 12. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
@@ -101,7 +101,7 @@ SCH and BALANCE supply upstream identified objects and classifications; BITA rem
 
 SLK does **not** claim to originate modularity/evolvability theory, functional specialization/division-of-labor theory, mutational accessibility, invasion-versus-fixation distinctions, weak-mutation long-run population theory, or Richardson-type extrapolation. The registered prior-art boundary therefore treats the component mathematics and process results as antecedents rather than priority claims.
 
-The narrower contribution is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization. Its main diagnostic payoff is UTA1.10: the same persistent integrated phenotype can arise because architecture value is negative, because the initial release direction is downhill, or because rare establishment fails; measured sign changes localize the first failed decision layer and the next quantity to measure. The one-family atlas, process-consistency surface, and G1-G9 ladder make that localization auditable without treating the component algebra as new.
+The narrower contribution is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization. Its main diagnostic payoff is UTA1.10: the same persistent integrated phenotype can arise because architecture value is negative, because the initial release direction is downhill, or because rare establishment fails; measured strict signs localize a first failed layer, while an all-positive early sign sequence excludes those three explanations but leaves higher-order path, fixation, demographic, and historical explanations open. The one-family atlas, process-consistency surface, and G1-G9 ladder make that localization auditable without treating the component algebra as new.
 
 ## Architecture cost K
 
