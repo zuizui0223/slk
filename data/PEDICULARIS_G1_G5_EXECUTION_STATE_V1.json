@@ -186,9 +186,9 @@
     "permission_outreach_readiness_status": "CANONICAL_STATE_BLOCKED_ONLY_BY_REQUESTER_FILLED_HUMAN_REVIEWED_MESSAGES",
     "permission_outreach_current_blockers": [
       "LOCAL_REQUESTER_PROFILE_NOT_FILLED",
-      "HUMAN_REVIEWED_MESSAGES_NOT_APPROVED"
+      "HASH_BOUND_HUMAN_REVIEW_RECEIPT_NOT_APPROVED"
     ],
-    "permission_outreach_current_next_action": "FILL_LOCAL_REQUESTER_PROFILE_COMPILE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES",
+    "permission_outreach_current_next_action": "FILL_LOCAL_REQUESTER_PROFILE_COMPILE_GENERATE_AND_APPROVE_HUMAN_REVIEW_RECEIPT",
     "permission_outreach_blocker_is_biological_failure": false,
     "permission_followup_policy": "data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1.json",
     "permission_followup_policy_rationale": "docs/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_FREEZE_RATIONALE_V1.md",
@@ -200,7 +200,11 @@
     "permission_requester_profile_template": "data/PEDICULARIS_PERMISSION_REQUESTER_PROFILE_TEMPLATE_V1.json",
     "permission_requester_profile_compiler": "scripts/compile_pedicularis_permission_requester_profile.py",
     "permission_requester_profile_policy": "FILLED_PROFILE_LOCAL_GITIGNORED_DO_NOT_COMMIT",
-    "permission_requester_filled_message_status": "DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW"
+    "permission_requester_filled_message_status": "DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW",
+    "permission_message_review_template": "data/PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REVIEW_TEMPLATE_V1.json",
+    "permission_message_review_generator": "scripts/generate_pedicularis_permission_message_review.py",
+    "permission_message_review_policy": "ROUTE_LEVEL_BILINGUAL_HASH_PLUS_SEVEN_CHECKS_REVIEWER_REFERENCE_AND_TIME_REQUIRED",
+    "permission_message_review_status": "LOCAL_HUMAN_REVIEW_RECEIPT_REQUIRED_BEFORE_READY_FOR_MANUAL_SEND"
   },
   "stages": [
     {
