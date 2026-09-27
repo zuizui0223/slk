@@ -34,8 +34,10 @@ scripts/apply_pedicularis_permission_response_receipt.py
 scripts/compile_pedicularis_outreach_to_permission_response_draft.py
 scripts/render_pedicularis_wave1_permission_messages.py
 scripts/compile_pedicularis_permission_requester_profile.py
+scripts/generate_pedicularis_permission_message_review.py
 scripts/validate_pedicularis_wave1_permission_messages_for_send.py
 data/PEDICULARIS_PERMISSION_REQUESTER_PROFILE_TEMPLATE_V1.json
+data/PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REVIEW_TEMPLATE_V1.json
 scripts/apply_pedicularis_permission_send_receipt.py
 data/PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json
 data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_TEMPLATE_V1.json
@@ -123,14 +125,47 @@ DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW.
 
 Filled requester profiles and requester-filled drafts are local/gitignored.
 
+## Human-review receipt
+
+Requester-filled drafts are still not send-ready. Generate a local review draft:
+
+```bash
+python scripts/generate_pedicularis_permission_message_review.py \
+  PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REQUESTER_FILLED.json \
+  --output PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REVIEW_DRAFT.json
+```
+
+The review draft stores the exact bilingual SHA-256 hash of every route message and starts with all review checks and `approved_for_manual_send` set to false.
+
+For each route, the reviewer must verify:
+
+```text
+requester identity
+institution and reply contact
+candidate / scouting-locator wording
+organization and contact route
+A-F activity wording
+absence of permission or biological overclaim
+manual-send-only policy.
+```
+
+After review, fill reviewer identity/reference, a timezone-aware `reviewed_at`, set all route checks to true, set each `approved_for_manual_send=true`, and change the local receipt status to:
+
+```text
+HUMAN_REVIEW_APPROVED.
+```
+
+The filled review receipt is local/gitignored. Its bilingual route hashes must still match the requester-filled drafts when the manual-send guard runs.
+
 ## Manual-send guard
 
 Rendered messages are still drafts. Before manual sending, validate a requester-completed draft with:
 
 ```bash
 python scripts/validate_pedicularis_wave1_permission_messages_for_send.py \
-  PEDICULARIS_WAVE1_PERMISSION_MESSAGE_DRAFTS.json \
+  PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REQUESTER_FILLED.json \
   --human-review-approved \
+  --review-receipt-json PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REVIEW_FILLED.json \
   --output PEDICULARIS_WAVE1_PERMISSION_MESSAGES_READY.json
 ```
 
