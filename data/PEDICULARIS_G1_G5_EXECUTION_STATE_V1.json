@@ -204,7 +204,13 @@
     "permission_message_review_template": "data/PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REVIEW_TEMPLATE_V1.json",
     "permission_message_review_generator": "scripts/generate_pedicularis_permission_message_review.py",
     "permission_message_review_policy": "ROUTE_LEVEL_BILINGUAL_HASH_PLUS_SEVEN_CHECKS_REVIEWER_REFERENCE_AND_TIME_REQUIRED",
-    "permission_message_review_status": "LOCAL_HUMAN_REVIEW_RECEIPT_REQUIRED_BEFORE_READY_FOR_MANUAL_SEND"
+    "permission_message_review_status": "LOCAL_HUMAN_REVIEW_RECEIPT_REQUIRED_BEFORE_READY_FOR_MANUAL_SEND",
+    "permission_message_review_time_policy": "HUMAN_REVIEWED_AT_MUST_NOT_FOLLOW_MANUAL_SENT_AT",
+    "permission_send_event_preserves_review_provenance": [
+      "HUMAN_REVIEW_BUNDLE_ID",
+      "HUMAN_REVIEW_REFERENCE",
+      "HUMAN_REVIEWED_AT"
+    ]
   },
   "stages": [
     {
