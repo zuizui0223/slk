@@ -27,14 +27,13 @@ The canonical outreach ledger is used by default:
 data/PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv
 ```
 
-Optional working inputs are local:
+The canonical CLI now uses the repository-tracked prospectively frozen production follow-up policy by default:
 
 ```text
-a prospectively frozen follow-up policy
-one or more human-reviewed READY_FOR_MANUAL_SEND candidate message bundles.
+data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1.json
 ```
 
-The audit never fills these missing inputs automatically.
+Human-reviewed `READY_FOR_MANUAL_SEND` candidate message bundles remain local working inputs. The audit never fills requester identity, institution, reply contact, or human-review approval automatically.
 
 ## Pre-send blockers
 
@@ -105,22 +104,31 @@ before calling a route ready.
 
 ## Current canonical state
 
-With only repository-tracked canonical templates and no local production working files, the expected state is:
+The production follow-up policy is now prospectively frozen before any real send:
+
+```text
+day 7   first follow-up
+day 14  second follow-up
+day 21  manual escalation review
+automatic close after silence = false.
+```
+
+With repository-tracked canonical state and no local requester-filled message bundles, the expected state is therefore:
 
 ```text
 7 WAVE1 routes
 all NOT_SENT
-follow-up policy not yet production-frozen
+follow-up policy FROZEN_AND_VALIDATED
 human-reviewed send-ready messages not provided.
 ```
 
-Therefore the current administrative next action remains:
+The current administrative next action is now:
 
 ```text
-FREEZE_FOLLOWUP_POLICY_BEFORE_FIRST_SEND
+COMPLETE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES
 ```
 
-followed by completion and human review of the actual requester-filled messages.
+After a candidate's route messages pass the manual-send guard, the readiness audit will promote only those routes to `READY_FOR_MANUAL_SEND`; automatic sending remains forbidden.
 
 This statement is an administrative readiness result only. It does not mean any WAVE1 biological candidate has failed.
 
