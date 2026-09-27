@@ -51,6 +51,46 @@ def _aware_datetime(value: object, label: str) -> datetime:
     return out
 
 
+def human_review_receipt_sha256(receipt: dict) -> str:
+    payload = {
+        "schema_version": _filled(
+            receipt.get("schema_version"),
+            "review.schema_version",
+        ),
+        "status": _filled(receipt.get("status"), "review.status"),
+        "candidate_id": _filled(
+            receipt.get("candidate_id"),
+            "review.candidate_id",
+        ),
+        "review_bundle_id": _filled(
+            receipt.get("review_bundle_id"),
+            "review.review_bundle_id",
+        ),
+        "reviewer_name": _filled(
+            receipt.get("reviewer_name"),
+            "review.reviewer_name",
+        ),
+        "reviewer_reference": _filled(
+            receipt.get("reviewer_reference"),
+            "review.reviewer_reference",
+        ),
+        "reviewed_at": _filled(
+            receipt.get("reviewed_at"),
+            "review.reviewed_at",
+        ),
+        "route_reviews": receipt.get("route_reviews"),
+        "review_policy": receipt.get("review_policy"),
+        "privacy_policy": receipt.get("privacy_policy"),
+    }
+    canonical = json.dumps(
+        payload,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(canonical).hexdigest()
+
+
 def _validate_review_receipt(
     payload: dict,
     review_receipt: dict | None,
@@ -167,7 +207,7 @@ def _validate_review_receipt(
             "approved_for_manual_send": True,
         }
 
-    return {
+    validated = {
         "schema_version": REVIEW_SCHEMA,
         "status": "HUMAN_REVIEW_APPROVED",
         "candidate_id": candidate_id,
@@ -176,7 +216,13 @@ def _validate_review_receipt(
         "reviewer_reference": reviewer_reference,
         "reviewed_at": reviewed_at.isoformat(),
         "routes": reviewed_routes,
+        "review_policy": copy.deepcopy(policy),
+        "privacy_policy": review_receipt["privacy_policy"],
     }
+    validated["review_receipt_sha256"] = human_review_receipt_sha256(
+        review_receipt
+    )
+    return validated
 
 
 def message_content_sha256(
@@ -264,6 +310,12 @@ def validate_and_prepare(
             route_id = _filled(message.get("route_id"), f"route_id/{index}")
             guard["human_review_bundle_id"] = validated_review[
                 "review_bundle_id"
+            ]
+            guard["human_review_receipt_sha256"] = validated_review[
+                "review_receipt_sha256"
+            ]
+            guard["human_review_reviewer_name"] = validated_review[
+                "reviewer_name"
             ]
             guard["human_review_reference"] = validated_review[
                 "reviewer_reference"
