@@ -57,6 +57,44 @@ A Pedicularis change belongs in the SLK flagship only if at least one of the fol
 
 Administrative completeness alone is not a promotion criterion.
 
+## Executable scope guard
+
+The boundary is enforced in pull-request CI by:
+
+```text
+scripts/check_repository_scope_boundary.py
+tests/test_repository_scope_boundary.py
+.github/workflows/test.yml
+```
+
+The guard treats the current Pedicularis operational surface as **frozen in place**. For paths matching:
+
+```text
+docs/PEDICULARIS_*
+data/PEDICULARIS_*
+scripts/*pedicularis*.py
+tests/test_pedicularis_*.py
+```
+
+the flagship repository allows:
+
+```text
+DELETE
+```
+
+during migration, but blocks:
+
+```text
+ADD
+MODIFY
+COPY
+RENAME.
+```
+
+This is intentionally asymmetric. Existing files may remain temporarily for provenance and may be removed as the companion migration proceeds, but the flagship cannot accumulate new candidate-specific operational machinery.
+
+Generic manuscript, theory, claim-ledger, prior-art, ownership, and repository-boundary files remain editable.
+
 ## Current boundary decision
 
 The WAVE1 outreach-readiness work in PR #84 is retained as a draft migration source and is not part of the flagship merge path. Existing permission-integrity machinery is sufficient for provenance while the empirical companion is separated.
