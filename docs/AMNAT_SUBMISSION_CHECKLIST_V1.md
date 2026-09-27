@@ -134,4 +134,4 @@ ALL_AUTHOR_APPROVAL                    REQUIRED
 PORTAL_FILE_UPLOAD                     REQUIRED
 ```
 
-Scientific reviewer risk is now whether the architecture-specific transport provides enough biological leverage beyond its deliberately non-novel component algebra, not format compliance.
+Scientific reviewer risk is now whether UTA1.10 gate localization—distinguishing negative value, local-release, and rare-establishment explanations for the same persistent phenotype—provides enough biological leverage beyond the deliberately non-novel component algebra, not format compliance.
