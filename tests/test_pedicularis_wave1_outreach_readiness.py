@@ -129,7 +129,7 @@ def test_canonical_production_policy_is_frozen_and_leaves_only_message_blockers(
     )
     assert out["status_counts"] == {"BLOCKED_BEFORE_FIRST_SEND": 7}
     assert out["next_action"] == (
-        "FILL_LOCAL_REQUESTER_PROFILE_COMPILE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES"
+        "FILL_LOCAL_REQUESTER_PROFILE_COMPILE_GENERATE_AND_APPROVE_HUMAN_REVIEW_RECEIPT"
     )
     assert all(
         route["blockers"] == ["HUMAN_REVIEWED_MESSAGE_NOT_READY"]
