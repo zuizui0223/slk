@@ -189,7 +189,7 @@ Thus reciprocal fixation ordering and symmetric weak-mutation monomorphic occupa
 
 This result sits inside a well-developed literature on finite-population evolutionary games and weak-mutation substitution processes; the contribution here is the exact placement of the invariant inside the architecture-value transport, not the invention of weak-mutation Markov-chain theory. The invariant requires a finite symmetric game, connected symmetric rare mutation, and the registered exponential Moran fixation process.
 
-## 9. Unified critical-surface theorem and constructive witnesses
+## 9. Unified critical-surface atlas and constructive witnesses
 
 The preceding stages can be embedded in one registered composite model rather than treated as separate counterexamples. Let release from the shared architecture be `d in [0,dmax]`, let recovery `R(d)` be differentiable and convex with `R(0)=0`, and let path cost be linear, `K(d)=kd`. Define
 
@@ -599,9 +599,9 @@ Espinosa-Soto, C., and A. Wagner. 2010. Specialization can drive the evolution o
 
 Fudenberg, D., M. A. Nowak, C. Taylor, and L. A. Imhof. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352–363.
 
-Richardson, L. F., and J. A. Gaunt. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299–361.
-
 Kashtan, N., and U. Alon. 2005. Spontaneous evolution of modularity and network motifs. *Proceedings of the National Academy of Sciences USA* 102:13773–13778.
+
+Richardson, L. F., and J. A. Gaunt. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299–361.
 
 Rueffler, C., J. Hermisson, and G. P. Wagner. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326–E335.
 
