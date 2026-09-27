@@ -51,6 +51,39 @@ def require_numerically_nonzero(
         )
 
 
+def localize_persistent_integration_gate(
+    phi: float,
+    local_release_gradient: float,
+    rare_invasion_margin_value: float,
+    *,
+    zero_tol: float = DEFAULT_ZERO_TOL,
+) -> str:
+    """Localize the first UTA1.10 gate conditional on an identified conflict.
+
+    Exact or numerically near-zero values are boundary states and are never
+    silently assigned to either neighboring regime.
+    """
+    if zero_tol <= 0:
+        raise ValueError("zero_tol must be positive")
+
+    if abs(phi) <= zero_tol:
+        return "ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED"
+    if phi < 0:
+        return "ARCHITECTURE_VALUE_FAILURE"
+
+    if abs(local_release_gradient) <= zero_tol:
+        return "LOCAL_RELEASE_BOUNDARY_UNRESOLVED"
+    if local_release_gradient < 0:
+        return "LOCAL_RELEASE_FAILURE"
+
+    if abs(rare_invasion_margin_value) <= zero_tol:
+        return "RARE_INVASION_BOUNDARY_UNRESOLVED"
+    if rare_invasion_margin_value < 0:
+        return "RARE_INVASION_FAILURE"
+
+    return "EARLY_GATES_PASSED"
+
+
 @dataclass(frozen=True)
 class SymmetricTwoStrategyGame:
     """Symmetric two-strategy payoff game with S and D strategies."""
