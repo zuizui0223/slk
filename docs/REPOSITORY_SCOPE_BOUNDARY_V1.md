@@ -84,7 +84,7 @@ tests/test_repository_scope_boundary.py
 .github/workflows/test.yml
 ```
 
-The guard treats the current Pedicularis operational surface as **frozen in place**. For paths matching:
+The guard treats the current Pedicularis operational surface as **frozen in place**. Matching is case-insensitive and applies to nested paths under `docs/`, `data/`, `scripts/`, and `tests/` whenever the path contains `pedicularis`. The examples below cover the current naming convention:
 
 ```text
 docs/PEDICULARIS_*
