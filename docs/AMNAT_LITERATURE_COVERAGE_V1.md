@@ -7,9 +7,9 @@ Verify that the journal-facing manuscript covers the closest antecedents registe
 ## Coverage
 
 ```text
-REGISTERED_CLOSEST_ANTECEDENTS = 8
-CITED_IN_AMNAT_V2             = 8
-COVERAGE                       = 8/8
+REGISTERED_CLOSEST_ANTECEDENTS = 9
+CITED_IN_AMNAT_V4             = 9
+COVERAGE                       = 9/9
 ```
 
 | Antecedent | Manuscript role | Citation status |
@@ -22,12 +22,13 @@ COVERAGE                       = 8/8
 | Weinreich et al. 2006 | fitter endpoint does not imply accessible mutational path | CITED |
 | Taylor et al. 2004 | invasion/fixation distinctions in finite populations | CITED |
 | Fudenberg et al. 2006 | weak-mutation finite-population long-run dynamics | CITED |
+| Richardson & Gaunt 1927 | two-scale extrapolation / leading-error cancellation used by the finite-frequency certificate | CITED |
 
 ## Result
 
-`manuscript/SLK_MANUSCRIPT_AMNAT_V2.md` now states the occupied novelty territory before presenting the SLK contribution. The claim is restricted to the architecture-specific estimand transport, constructive split witnesses, the registered fixation–occupancy invariant, and the empirical measurement ladder.
+`manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` now states the occupied conceptual and numerical-method territory before presenting the SLK contribution. The claim is restricted to the architecture-specific estimand transport, the one-family critical-surface atlas, and the empirical measurement ladder; the registered fixation–occupancy equality is retained as a consistency result rather than advertised as independent novelty.
 
-The bibliography details were externally cross-checked before registration. This receipt concerns coverage and framing; it does not claim that eight references exhaust every relevant literature.
+The bibliography details were externally cross-checked before registration. This receipt concerns coverage and framing; it does not claim that nine references exhaust every relevant literature.
 
 ## Submission status
 
