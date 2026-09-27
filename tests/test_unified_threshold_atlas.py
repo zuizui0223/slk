@@ -17,6 +17,7 @@ from scripts.slk_threshold_atlas import (
     identify_phi_eta_from_symmetric_frequencies,
     identify_quadratic_frequency_components,
     invasion_environment_from_endpoint_offset,
+    localize_persistent_integration_gate,
     numerically_close,
     occupancy_ratio_from_process,
     rare_invasion_environment,
@@ -73,6 +74,68 @@ def test_w3_accessible_positive_endpoint_can_fail_rare_invasion():
     assert path.local_gradient(k=k) > 0
     assert phi > 0
     assert rare_invasion_margin(phi, eta) < 0
+
+
+def test_uta1_10_localizes_registered_w1_w3_gate_failures():
+    path = ArchitecturePath()
+
+    k1 = REGISTERED_WITNESS_PARAMETERS["W1"]["k"]
+    assert localize_persistent_integration_gate(
+        path.phi(k1),
+        path.local_gradient(k1),
+        -1.0,
+    ) == "ARCHITECTURE_VALUE_FAILURE"
+
+    k2 = REGISTERED_WITNESS_PARAMETERS["W2"]["k"]
+    assert localize_persistent_integration_gate(
+        path.phi(k2),
+        path.local_gradient(k2),
+        -1.0,
+    ) == "LOCAL_RELEASE_FAILURE"
+
+    k3 = REGISTERED_WITNESS_PARAMETERS["W3"]["k"]
+    eta3 = REGISTERED_WITNESS_PARAMETERS["W3"]["eta"]
+    phi3 = path.phi(k3)
+    assert localize_persistent_integration_gate(
+        phi3,
+        path.local_gradient(k3),
+        rare_invasion_margin(phi3, eta3),
+    ) == "RARE_INVASION_FAILURE"
+
+
+def test_uta1_10_exact_and_near_zero_boundaries_remain_unresolved():
+    assert localize_persistent_integration_gate(
+        0.0, -1.0, -1.0
+    ) == "ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED"
+    assert localize_persistent_integration_gate(
+        1.0, 0.0, -1.0
+    ) == "LOCAL_RELEASE_BOUNDARY_UNRESOLVED"
+    assert localize_persistent_integration_gate(
+        1.0, 1.0, 0.0
+    ) == "RARE_INVASION_BOUNDARY_UNRESOLVED"
+
+    assert localize_persistent_integration_gate(
+        0.5e-12, -1.0, -1.0
+    ) == "ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED"
+    assert localize_persistent_integration_gate(
+        1.0, -0.5e-12, -1.0
+    ) == "LOCAL_RELEASE_BOUNDARY_UNRESOLVED"
+    assert localize_persistent_integration_gate(
+        1.0, 1.0, 0.5e-12
+    ) == "RARE_INVASION_BOUNDARY_UNRESOLVED"
+
+
+def test_uta1_10_all_positive_early_signs_pass_early_gates():
+    assert localize_persistent_integration_gate(
+        1.0, 0.2, 0.1
+    ) == "EARLY_GATES_PASSED"
+
+
+def test_uta1_10_rejects_nonpositive_zero_tolerance():
+    with pytest.raises(ValueError, match="zero_tol must be positive"):
+        localize_persistent_integration_gate(
+            1.0, 1.0, 1.0, zero_tol=0.0
+        )
 
 
 def test_w4_rare_invasion_can_disagree_with_reciprocal_fixation_ordering():
