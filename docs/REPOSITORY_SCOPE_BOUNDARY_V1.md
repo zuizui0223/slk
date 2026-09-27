@@ -45,6 +45,15 @@ Candidate-specific execution machinery should live in a Pedicularis companion re
 
 These materials can remain temporarily in SLK while migration is prepared. Historical commits remain valid provenance.
 
+A non-destructive recovery snapshot is frozen at:
+
+```text
+archive/pedicularis-operations-2026-09-27
+source commit: 0f632f7cfce12f04cb2106c24753ca976f30d677
+```
+
+This branch preserves the pre-pruning operational tree independently of later flagship cleanup.
+
 ## Promotion rule
 
 A Pedicularis change belongs in the SLK flagship only if at least one of the following is true:
