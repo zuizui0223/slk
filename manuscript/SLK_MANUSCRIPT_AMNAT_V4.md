@@ -538,14 +538,14 @@ For the two-point certificate, `B=C_R epsilon^2`. This turns endpoint invasion f
 
 A single observed state—continued integration—does not identify why differentiation is absent. Once upstream quantities are measured, however, the transport sequence can localize the first layer at which the verdict changes. Let `g_0=R'(0)-k` denote the net small-release gradient along the declared path and `Delta_R=lim_{p->0}Delta(p)` the rare-D selection difference.
 
-| Measured pattern | First changed decision layer | Biological inference licensed | Next discriminating measurement | Does not establish |
-|---|---|---|---|---|
-| `L>0, Phi<0` | conflict -> architecture value | conflict is real, but the declared differentiated architecture is not net favorable | decompose `R` and `K`, or compare another architecture/environment | weak conflict, historical persistence, or a specific cost mechanism |
-| `Phi>0, g_0<=0` | architecture value -> local accessibility | the endpoint is better, but sufficiently small release is downhill along the declared path | alternative mutation/release paths, step sizes, and local path geometry | global or historical inaccessibility |
-| `Phi>0, g_0>0, Delta_R<=0` | accessibility -> rare invasion | a positive-value architecture with an initially uphill small-release direction nevertheless cannot establish as rare D in the current population context | the endpoint ecological offset `h_R=Delta_R-Phi` and frequency-response adequacy | which ecological interaction causes `h_R` |
-| `Phi<0, Delta_R>0` | architecture value -> rare invasion flips positive | current ecology gives D a rare-frequency advantage despite negative intrinsic endpoint value | the resident-D endpoint `Delta_D` and, if needed, the full frequency response | intrinsic endpoint superiority |
-| `Delta_R>0` but `rho_D/rho_S<1` | invasion -> reciprocal fixation | deterministic rare entry does not imply fixation ordering under the declared finite-population process | population size, selection mapping, and fixation-kernel validation | a process-independent stochastic conclusion |
-| reciprocal fixation and occupancy orderings disagree under the registered symmetric rare-mutation process | process-consistency check | at least one registered stochastic-process assumption is inadequate for the system | mutation symmetry/rarity/connectivity and the fixation kernel | an additional biological gate inside the registered model |
+| Measured sign pattern | Localized layer | What the pattern licenses | Next measurement / excluded inference |
+|---|---|---|---|
+| `L>0, Phi<0` | architecture value | conflict is real, but the declared D is not net favorable | separate `R` from `K`; do not infer weak conflict or historical persistence |
+| `Phi>0, g_0<=0` | local release | the endpoint is better, but sufficiently small release is downhill on the declared path | test alternative paths and step sizes; do not infer global inaccessibility |
+| `Phi>0, g_0>0, Delta_R<=0` | rare invasion | value and the initial release direction pass, but rare D does not establish | estimate `h_R=Delta_R-Phi` and frequency response; causal mechanism remains unidentified |
+| `Phi<0, Delta_R>0` | ecological rescue at rarity | D has a rare-frequency advantage despite negative intrinsic endpoint value | measure `Delta_D`; do not infer intrinsic endpoint superiority |
+| `Delta_R>0`, `rho_D/rho_S<1` | reciprocal fixation | deterministic rare entry does not imply fixation ordering in the declared finite process | validate population size, selection mapping, and fixation kernel; no process-independent conclusion |
+| fixation and occupancy orderings disagree under the registered symmetric rare-mutation process | process consistency | at least one registered stochastic-process assumption is inadequate | audit mutation symmetry/rarity/connectivity and the fixation kernel; this is not a new biological gate |
 
 The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is **gate localization under a fixed architecture comparison**. The same macroscopic persistence can correspond to different sign patterns, and each pattern directs the next measurement. Mechanism attribution remains a separate causal problem.
 
