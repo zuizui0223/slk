@@ -36,25 +36,28 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — REBUILD PENDING AFTER UTA1.10 BOUNDARY REPAIR
+### 1. Anonymous review manuscript — PASS
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The strict-sign UTA1.10 boundary repair changes the current source, so the previous rendered package is stale until this branch completes a fresh build.
+The CI-built review manuscript is generated directly from the canonical V4 source. The strict-sign UTA1.10 build completed successfully and was inspected from workflow artifact 10935382711.
 
 ```text
-CURRENT_SOURCE_TEXT_WORDS    5848
-CURRENT_SOURCE_TABLES         3
-CURRENT_SOURCE_FIGURES        3
-REVIEW_PDF_REBUILD            PENDING
-STRUCTURE_ANONYMITY_RECHECK   PENDING
-UTA1_10_BOUNDARY_RECEIPT      PENDING
+MAIN_REVIEW_PDF_PAGES        33
+ANONYMOUS_TITLE_PDF_PAGES     1
+DOUBLE_SPACED                 true
+LINE_NUMBERS                  true
+PAGE_NUMBERS                  true
+EMBEDDED_FIGURES              3
+RENDERED_IDENTITY_SCAN        PASS
+UTA1_10_BOUNDARY_RECEIPT      PASS
+UTA1_10_TABLE_MANUAL_QA       PASS — pages 25-27, strict signs + zero-boundary note readable
 FULL_PAGE_BY_PAGE_PROOFREAD   OPEN
 ```
 
-The previous UTA1.10 review PDF passed visual QA, but it predates the strict-sign boundary repair. The current branch must rebuild and recheck the rendered table before portal upload.
+The fresh strict-sign UTA1.10 PDF was rebuilt from the canonical source. The diagnostic table spans pages 25-26 and the zero-boundary note continues on page 27; the rendered material is readable without clipping or overlap. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
 
-Status: `REBUILD PENDING — DO NOT USE THE PRE-BOUNDARY-REPAIR PACKAGE`.
+Status: `PASS FOR CURRENT GENERATED FILES — FINAL HUMAN PROOFREAD REMAINS`.
 
-### 2. Anonymous reviewer code/theory package — REBUILD PENDING, DEPOSIT STILL REQUIRED
+### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, DEPOSIT STILL REQUIRED
 
 The review bundle is curated rather than being a repository dump. It contains:
 
@@ -74,7 +77,7 @@ Current journal instructions require data/code needed to recreate results to be 
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Deposit the exact curated anonymous bundle in a repository that supports anonymous/reviewer access and insert that link in the anonymous manuscript.
 
-Status: `REBUILD CURRENT STRICT-SIGN UTA1.10 BUNDLE; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
+Status: `PASS INTERNALLY — STRICT-SIGN UTA1.10 BUNDLE VERIFIED; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
