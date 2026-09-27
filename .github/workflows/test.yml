@@ -20,11 +20,18 @@ jobs:
         python-version: ["3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install test dependencies
         run: python -m pip install --upgrade pip pytest python-docx
+      - name: Enforce flagship repository scope
+        if: github.event_name == 'pull_request'
+        run: |
+          git diff --name-status "${{ github.event.pull_request.base.sha }}...HEAD" \
+            | python scripts/check_repository_scope_boundary.py --stdin
       - name: Check Am Nat manuscript limits
         run: python scripts/check_amnat_manuscript.py
       - name: Run numerical theory and process tests
