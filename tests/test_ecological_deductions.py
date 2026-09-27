@@ -62,6 +62,8 @@ def test_persistent_integration_gate_localization_is_registered() -> None:
     assert "Mechanism attribution remains a separate causal problem." in manuscript
     assert "`g_0=0` leaves the local-release verdict unresolved" in manuscript
     assert "`Delta_R=0` is the rare-invasion boundary" in manuscript
+    assert "Phi>0, g_0>0, Delta_R>0" in manuscript
+    assert "do not infer realized differentiation must occur" in manuscript
 
 
 def test_feedback_gradient_generalization_is_registered() -> None:
