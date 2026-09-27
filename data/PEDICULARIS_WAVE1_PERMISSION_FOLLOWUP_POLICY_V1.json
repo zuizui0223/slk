@@ -1,6 +1,6 @@
 {
   "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1",
-  "status": "DRAFT_POLICY_AWAITING_FREEZE_COMMIT",
+  "status": "FROZEN_POLICY",
   "policy": {
     "calendar_basis": "CALENDAR_DAYS",
     "followup_offsets_days": [
@@ -15,10 +15,10 @@
   },
   "freeze_metadata": {
     "slk_source_commit": "0f632f7cfce12f04cb2106c24753ca976f30d677",
-    "freeze_commit": "PENDING_POLICY_COMMIT_REFERENCE",
+    "freeze_commit": "cfb787f772f67d4f82169f54473f3bb16d4f7225",
     "freeze_timestamp": "2026-09-27T10:37:00+09:00",
     "policy_rationale_reference": "docs/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_FREEZE_RATIONALE_V1.md"
   },
-  "production_status": "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_DRAFT_AWAITING_COMMIT_REFERENCE",
+  "production_status": "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_PROSPECTIVELY_FROZEN",
   "claim_ceiling": "ADMINISTRATIVE_FOLLOWUP_TIMING_ONLY_NO_PERMISSION_NO_BIOLOGICAL_RESULT"
 }
