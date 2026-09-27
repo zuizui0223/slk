@@ -15,6 +15,10 @@ FOLLOWUP_TEMPLATE = (
     ROOT / "data"
     / "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_TEMPLATE_V1.json"
 )
+PRODUCTION_FOLLOWUP_POLICY = (
+    ROOT / "data"
+    / "PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1.json"
+)
 LEDGER = (
     ROOT / "data"
     / "PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv"
@@ -92,6 +96,24 @@ def test_current_canonical_state_reports_administrative_not_biological_blockers(
     assert all(
         "FOLLOWUP_POLICY_NOT_FROZEN" in route["blockers"]
         and "HUMAN_REVIEWED_MESSAGE_NOT_READY" in route["blockers"]
+        for route in out["routes"]
+    )
+
+
+def test_canonical_production_policy_is_frozen_and_leaves_only_message_blockers() -> None:
+    policy = json.loads(PRODUCTION_FOLLOWUP_POLICY.read_text())
+    out = audit_mod.audit(
+        _rows(),
+        followup_policy=policy,
+    )
+    assert out["followup_policy_state"] == "FROZEN_AND_VALIDATED"
+    assert out["followup_policy_freeze_commit"] == (
+        "cfb787f772f67d4f82169f54473f3bb16d4f7225"
+    )
+    assert out["status_counts"] == {"BLOCKED_BEFORE_FIRST_SEND": 7}
+    assert out["next_action"] == "COMPLETE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES"
+    assert all(
+        route["blockers"] == ["HUMAN_REVIEWED_MESSAGE_NOT_READY"]
         for route in out["routes"]
     )
 
