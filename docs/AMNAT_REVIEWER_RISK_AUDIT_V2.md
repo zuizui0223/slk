@@ -11,9 +11,10 @@ R=sL presented as universal identity              RESOLVED
 K theoretical definition                          RESOLVED
 BITA/SLK architecture-value ownership ambiguity   RESOLVED
 repository-style C/G/INV labels in submission     RESOLVED
-registered closest-prior-art coverage              8/8 PASS
+registered closest-prior-art coverage              9/9 PASS
 core Literature Cited integration                 RESOLVED
 formula/theorem cross-surface consistency          PASS_AFTER_REPAIR
+component algebra marketed as standalone novelty    RESOLVED
 Figure 1 general-margin label                     REPAIRED
 anonymous title-page metadata                     REGISTERED
 Am Nat title / abstract / length / figure limits  PASS
@@ -37,7 +38,7 @@ The response must remain concrete:
 
 1. SLK transports one identified upstream architecture comparison through successive estimands rather than merely listing concepts.
 2. Explicit witnesses show where the verdict changes, so each downstream gate is a falsifiable re-test rather than a semantic distinction.
-3. The hierarchy also predicts a non-separation: reciprocal fixation ordering and stationary occupancy re-align exactly under the registered process.
+3. The hierarchy also records a non-separation: reciprocal fixation ordering and stationary occupancy re-align under the registered process; this is used as a consistency check and is not presented as a newly discovered population-genetic principle.
 4. The measurement ladder translates those mathematical distinctions into different empirical requirements, preventing endpoint superiority from being silently promoted into evolutionary realization.
 
 ## Remaining submission tasks
@@ -54,7 +55,7 @@ These are submission mechanics rather than unresolved theory.
 
 ## Journal positioning
 
-Primary target remains **The American Naturalist, Major Article**. The journal explicitly values conceptual syntheses that merge existing ideas in new ways or change how readers think about a broad biological problem. SLK should therefore be sold on what the transport makes newly inferable and newly falsifiable, not on priority for the component literatures.
+Primary target remains **The American Naturalist, Major Article**. The journal explicitly values conceptual syntheses that merge existing ideas in new ways or change how readers think about a broad biological problem. SLK should therefore be sold on what the transport makes newly comparable, testable, and falsifiable across levels, not on priority for the component literatures or the algebra used inside individual levels.
 
 An Ecology Letters re-evaluation remains contingent on a real same-system G1-G5 empirical receipt rather than further theoretical ornamentation.
 
