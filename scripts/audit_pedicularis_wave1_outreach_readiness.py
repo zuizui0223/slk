@@ -15,6 +15,8 @@ try:
     from scripts.validate_pedicularis_wave1_permission_messages_for_send import (
         human_review_receipt_sha256,
         message_content_sha256,
+        validate_review_receipt,
+        validate_review_receipt,
     )
 except ImportError:
     from manage_pedicularis_wave1_permission_outreach import (
@@ -145,6 +147,15 @@ def _candidate_ready_messages(payload: dict) -> tuple[str, dict[str, dict]]:
 
     messages = payload.get("messages")
     _need(isinstance(messages, list) and messages, "permission messages missing")
+    validated_review = validate_review_receipt(
+        payload,
+        review_receipt,
+        messages,
+    )
+    _need(
+        validated_review["review_receipt_sha256"] == review_receipt_hash,
+        "permission message canonical review validation hash mismatch",
+    )
     by_route: dict[str, dict] = {}
     for message in messages:
         _need(isinstance(message, dict), "permission message must be an object")
