@@ -7,7 +7,11 @@ import json
 from pathlib import Path
 
 SCHEMA = "SLK_PEDICULARIS_WAVE1_PERMISSION_MESSAGE_DRAFTS_V1"
-ALLOWED_INPUT_STATUS = {"DRAFT_NOT_SENT", "READY_FOR_MANUAL_SEND"}
+ALLOWED_INPUT_STATUS = {
+    "DRAFT_NOT_SENT",
+    "DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW",
+    "READY_FOR_MANUAL_SEND",
+}
 
 
 def _need(ok: bool, message: str) -> None:
@@ -66,7 +70,11 @@ def validate_and_prepare(payload: dict, *, human_review_approved: bool) -> dict:
     out = copy.deepcopy(payload)
     for index, message in enumerate(out["messages"]):
         _need(
-            message.get("status") in {"DRAFT_NOT_SENT", "READY_FOR_MANUAL_SEND"},
+            message.get("status") in {
+                "DRAFT_NOT_SENT",
+                "DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW",
+                "READY_FOR_MANUAL_SEND",
+            },
             f"message status invalid: {index}",
         )
         guard = message.get("send_guard")
