@@ -11,6 +11,15 @@ archive/pedicularis-operations-2026-09-27
 source commit: 0f632f7cfce12f04cb2106c24753ca976f30d677
 ```
 
+
+The exact 160-file migration inventory is frozen machine-readably in:
+
+```text
+data/EMPIRICAL_COMPANION_MIGRATION_MANIFEST_V1.json
+```
+
+That manifest is the canonical checklist for companion copy completeness and later SLK pruning. It records destination fields as null and `slk_deletion_authorized=false` until a destination repository, destination commit, and verified companion CI are recorded.
+
 ## Why WAVE1 outreach cannot be pruned alone
 
 At the frozen source commit, the WAVE1 permission/outreach subgraph contains:
