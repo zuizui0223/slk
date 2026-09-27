@@ -72,6 +72,26 @@ Administrative auditability, permission correspondence, field logistics, and can
 
 No file deletion from the flagship is authorized before the destination repository and destination commit are recorded. Git history plus the archive branch provide independent recovery paths, but the companion copy should exist before main is pruned.
 
+Destination verification is machine-gated by:
+
+```text
+data/EMPIRICAL_COMPANION_DESTINATION_RECEIPT_TEMPLATE_V1.json
+scripts/check_empirical_companion_destination.py
+tests/test_empirical_companion_destination.py
+```
+
+The validator returns `READY_TO_PRUNE_SLK` only when:
+
+```text
+destination repository is identified
+destination commit is a full Git SHA
+destination CI is verified
+copied file inventory matches all 160 frozen paths exactly
+verification reference is present.
+```
+
+A missing file, extra file, duplicate file, unverified CI state, or incomplete destination receipt keeps SLK deletion unauthorized.
+
 ## Immediate development rule
 
 Until migration is complete, no new permission/outreach/readiness infrastructure should be merged into the flagship. PR #84 remains a draft migration source rather than a flagship merge candidate.
