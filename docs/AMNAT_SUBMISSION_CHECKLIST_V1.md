@@ -41,7 +41,7 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 The CI-built review manuscript is generated directly from the canonical V4 source. The UTA1.10 early-gates-passed exclusion row changes the current source, so the previous rendered package is stale until this branch completes a fresh build.
 
 ```text
-CURRENT_SOURCE_TEXT_WORDS     5942
+CURRENT_SOURCE_TEXT_WORDS     5923
 CURRENT_SOURCE_TABLES          3
 CURRENT_SOURCE_FIGURES         3
 REVIEW_PDF_REBUILD             PENDING
