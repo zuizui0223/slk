@@ -211,3 +211,34 @@ def test_sent_route_is_awaiting_response_not_blocked_for_missing_message_bundle(
     )
     assert route_out["administrative_state"] == "AWAITING_RESPONSE_OR_FOLLOWUP"
     assert route_out["blockers"] == []
+
+
+
+def test_ready_message_bundle_must_match_canonical_candidate_route_inventory() -> None:
+    ready = _ready_messages("SONGZANLIN_EIA_2025")
+    ready["candidate"]["candidate_id"] = "SHANGRILA_WUFENG"
+    ready["human_review_receipt"]["candidate_id"] = "SHANGRILA_WUFENG"
+    with pytest.raises(
+        ValueError,
+        match="route inventory does not match canonical outreach routes",
+    ):
+        audit_mod.audit(
+            _rows(),
+            followup_policy=_policy(),
+            ready_message_payloads=[ready],
+        )
+
+
+def test_ready_message_candidate_must_exist_in_outreach_ledger() -> None:
+    ready = _ready_messages("SONGZANLIN_EIA_2025")
+    ready["candidate"]["candidate_id"] = "UNKNOWN_CANDIDATE"
+    ready["human_review_receipt"]["candidate_id"] = "UNKNOWN_CANDIDATE"
+    with pytest.raises(
+        ValueError,
+        match="ready-message candidate absent from outreach ledger",
+    ):
+        audit_mod.audit(
+            _rows(),
+            followup_policy=_policy(),
+            ready_message_payloads=[ready],
+        )
