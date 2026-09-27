@@ -208,8 +208,24 @@
     "permission_message_review_time_policy": "HUMAN_REVIEWED_AT_MUST_NOT_FOLLOW_MANUAL_SENT_AT",
     "permission_send_event_preserves_review_provenance": [
       "HUMAN_REVIEW_BUNDLE_ID",
+      "HUMAN_REVIEW_REVIEWER_NAME",
       "HUMAN_REVIEW_REFERENCE",
+      "HUMAN_REVIEW_RECEIPT_SHA256",
       "HUMAN_REVIEWED_AT"
+    ],
+    "permission_message_review_receipt_hash": "SHA256_CANONICAL_HUMAN_REVIEW_RECEIPT",
+    "permission_message_review_receipt_hash_inputs": [
+      "REVIEWER_IDENTITY_AND_REFERENCE",
+      "REVIEW_TIMESTAMP",
+      "REVIEW_POLICY",
+      "ROUTE_MESSAGE_HASHES",
+      "SEVEN_ROUTE_CHECKS",
+      "ROUTE_APPROVALS",
+      "ROUTE_REVIEW_NOTES"
+    ],
+    "permission_message_review_receipt_revalidated_at": [
+      "OUTREACH_READINESS_AUDIT",
+      "MANUAL_SEND_RECEIPT_APPLICATION"
     ]
   },
   "stages": [
