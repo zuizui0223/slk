@@ -10,6 +10,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 RENDER = ROOT / "scripts" / "render_pedicularis_wave1_permission_messages.py"
 GUARD = ROOT / "scripts" / "validate_pedicularis_wave1_permission_messages_for_send.py"
+REVIEW = ROOT / "scripts" / "generate_pedicularis_permission_message_review.py"
 APPLY = ROOT / "scripts" / "apply_pedicularis_permission_send_receipt.py"
 LEDGER = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_OUTREACH_LEDGER_TEMPLATE_V1.csv"
 SEND_TEMPLATE = ROOT / "data" / "PEDICULARIS_WAVE1_PERMISSION_SEND_RECEIPT_TEMPLATE_V1.json"
@@ -25,6 +26,11 @@ guard = importlib.util.module_from_spec(spec2)
 assert spec2.loader is not None
 spec2.loader.exec_module(guard)
 
+spec_review = importlib.util.spec_from_file_location("ped_send_review", REVIEW)
+review = importlib.util.module_from_spec(spec_review)
+assert spec_review.loader is not None
+spec_review.loader.exec_module(review)
+
 spec3 = importlib.util.spec_from_file_location("ped_send_apply", APPLY)
 apply = importlib.util.module_from_spec(spec3)
 assert spec3.loader is not None
@@ -34,6 +40,19 @@ spec3.loader.exec_module(apply)
 def _rows() -> list[dict[str, str]]:
     with LEDGER.open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
+
+
+def _approved_review(payload: dict, candidate_id: str) -> dict:
+    receipt = review.build_review_draft(payload)
+    receipt["status"] = "HUMAN_REVIEW_APPROVED"
+    receipt["review_bundle_id"] = f"TEST-REVIEW-{candidate_id}"
+    receipt["reviewer_name"] = "TEST REVIEWER"
+    receipt["reviewer_reference"] = "TEST-REVIEWER-REF"
+    receipt["reviewed_at"] = "2027-04-20T10:00:00+09:00"
+    for route in receipt["route_reviews"]:
+        route["checks"] = {key: True for key in route["checks"]}
+        route["approved_for_manual_send"] = True
+    return receipt
 
 
 def _ready(candidate_id: str = "SONGZANLIN_EIA_2025") -> dict:
@@ -50,6 +69,7 @@ def _ready(candidate_id: str = "SONGZANLIN_EIA_2025") -> dict:
     return guard.validate_and_prepare(
         payload,
         human_review_approved=True,
+        review_receipt=_approved_review(payload, candidate_id),
     )
 
 
