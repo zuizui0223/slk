@@ -134,6 +134,15 @@ def _receipt(ready: dict, route_id: str = "SONGZANLIN_FORESTRY_REGULATOR") -> di
     }
 
 
+def _reseal_review(ready: dict) -> None:
+    digest = guard.human_review_receipt_sha256(
+        ready["human_review_receipt"]
+    )
+    ready["human_review_receipt"]["review_receipt_sha256"] = digest
+    for message in ready["messages"]:
+        message["send_guard"]["human_review_receipt_sha256"] = digest
+
+
 def test_valid_send_receipt_moves_only_target_route_to_awaiting_response() -> None:
     rows = _rows()
     ready = _ready()
@@ -454,4 +463,19 @@ def test_send_applier_rejects_guard_review_hash_mismatch() -> None:
         "0" * 64
     )
     with pytest.raises(ValueError, match="route human-review receipt hash mismatch"):
+        _apply_send(_rows(), ready, receipt)
+
+
+
+def test_send_rejects_semantically_invalid_review_even_if_rehashed() -> None:
+    ready = _ready()
+    receipt = _receipt(ready)
+    ready["human_review_receipt"]["route_reviews"][0]["checks"][
+        "manual_send_only_acknowledged"
+    ] = False
+    _reseal_review(ready)
+    with pytest.raises(
+        ValueError,
+        match="human review checks not all passed",
+    ):
         _apply_send(_rows(), ready, receipt)
