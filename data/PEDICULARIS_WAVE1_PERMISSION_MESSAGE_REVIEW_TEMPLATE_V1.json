@@ -1,0 +1,18 @@
+{
+  "schema_version": "SLK_PEDICULARIS_WAVE1_PERMISSION_MESSAGE_REVIEW_V1",
+  "status": "TEMPLATE_ONLY_NOT_DATA",
+  "candidate_id": "REQUIRED_BEFORE_LOCAL_USE",
+  "review_bundle_id": "REQUIRED_BEFORE_LOCAL_USE",
+  "reviewer_name": "REQUIRED_BEFORE_LOCAL_USE",
+  "reviewer_reference": "REQUIRED_BEFORE_LOCAL_USE",
+  "reviewed_at": "REQUIRED_BEFORE_LOCAL_USE",
+  "route_reviews": [],
+  "review_policy": {
+    "bilingual_message_hash_must_match": true,
+    "every_registered_route_must_be_reviewed": true,
+    "every_check_must_pass": true,
+    "route_approval_required": true,
+    "automatic_send_allowed": false
+  },
+  "privacy_policy": "FILLED_REVIEW_LOCAL_GITIGNORED_DO_NOT_COMMIT"
+}
