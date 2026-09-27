@@ -14,7 +14,7 @@ from
 the observed response history.
 ```
 
-The repository provides the policy machinery but does **not** choose the production cadence automatically.
+The repository provides the policy machinery and the production cadence is now prospectively frozen before any real WAVE1 send. The cadence was chosen administratively, not from observed response times.
 
 ## Prospective freeze
 
@@ -22,6 +22,26 @@ Canonical template:
 
 ```text
 data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_TEMPLATE_V1.json
+```
+
+
+Frozen production policy:
+
+```text
+data/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_POLICY_V1.json
+```
+
+Rationale:
+
+```text
+docs/PEDICULARIS_WAVE1_PERMISSION_FOLLOWUP_FREEZE_RATIONALE_V1.md
+```
+
+Production cadence:
+
+```text
+followup_offsets_days = [7, 14]
+escalation_review_after_days = 21
 ```
 
 Before the first real WAVE1 inquiry is sent, freeze:
@@ -133,7 +153,7 @@ It does not:
 
 ```text
 send a follow-up
-choose the production cadence
+retune the frozen production cadence after observing response speed
 close a route automatically
 interpret silence as refusal
 interpret silence as permission
