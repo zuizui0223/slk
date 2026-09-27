@@ -6,10 +6,10 @@ import sys
 from dataclasses import dataclass
 
 OPERATIONAL_PATTERNS = (
-    re.compile(r"^docs/PEDICULARIS_"),
-    re.compile(r"^data/PEDICULARIS_"),
-    re.compile(r"^scripts/[^/]*pedicularis[^/]*\.py$", re.IGNORECASE),
-    re.compile(r"^tests/test_pedicularis_[^/]*\.py$", re.IGNORECASE),
+    re.compile(
+        r"^(?:docs|data|scripts|tests)/.*pedicularis.*",
+        re.IGNORECASE,
+    ),
 )
 
 
