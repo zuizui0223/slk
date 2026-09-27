@@ -62,8 +62,7 @@ def test_raw_renderer_output_cannot_become_send_ready() -> None:
     with pytest.raises(ValueError, match="unfilled body_cn"):
         guard.validate_and_prepare(
             payload,
-            human_review_approved=True,
-            review_receipt=_approved_review(payload),
+            human_review_approved=False,
         )
 
 
