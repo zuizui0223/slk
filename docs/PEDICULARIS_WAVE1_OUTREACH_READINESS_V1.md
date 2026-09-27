@@ -48,7 +48,7 @@ The filled local profile supplies name, institution and reply email to the bilin
 DRAFT_REQUESTER_FILLED_AWAITING_HUMAN_REVIEW
 ```
 
-and the manual-send guard still requires explicit human review before `READY_FOR_MANUAL_SEND`. The readiness audit never invents requester identity or review approval.
+The next local step is to generate a route-level human-review receipt with `scripts/generate_pedicularis_permission_message_review.py`. Every route is bound to the exact bilingual message hash and seven explicit checks. The manual-send guard requires a filled `HUMAN_REVIEW_APPROVED` receipt before `READY_FOR_MANUAL_SEND`. The readiness audit never invents requester identity or review approval.
 
 ## Pre-send blockers
 
@@ -140,7 +140,7 @@ human-reviewed send-ready messages not provided.
 The current administrative next action is now:
 
 ```text
-FILL_LOCAL_REQUESTER_PROFILE_COMPILE_AND_HUMAN_REVIEW_PERMISSION_MESSAGES
+FILL_LOCAL_REQUESTER_PROFILE_COMPILE_GENERATE_AND_APPROVE_HUMAN_REVIEW_RECEIPT
 ```
 
 After a candidate's route messages pass the manual-send guard, the readiness audit will promote only those routes to `READY_FOR_MANUAL_SEND`; automatic sending remains forbidden.
