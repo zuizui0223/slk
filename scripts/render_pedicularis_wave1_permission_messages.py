@@ -157,9 +157,9 @@ def render(candidate_id: str) -> dict:
 4. 必须遵守的现场条件；
 5. 是否还需另行取得场地管理方、林草/野生植物主管部门或其他机构的批准。
 
-申请人姓名：REQUIRED_BEFORE_SEND
-所属机构：REQUIRED_BEFORE_SEND
-联系邮箱：REQUIRED_BEFORE_SEND
+申请人姓名：REQUIRED_BEFORE_SEND_NAME
+所属机构：REQUIRED_BEFORE_SEND_INSTITUTION
+联系邮箱：REQUIRED_BEFORE_SEND_EMAIL
 
 感谢您的指导。"""
 
@@ -182,9 +182,9 @@ Please address activities A-F separately:
 
 For each activity that is allowed or requires no additional permission, please provide a written reference, activity-specific validity dates, spatial scope, conditions, and any additional authority/site approvals that are required.
 
-Requester name: REQUIRED_BEFORE_SEND
-Institution: REQUIRED_BEFORE_SEND
-Email: REQUIRED_BEFORE_SEND
+Requester name: REQUIRED_BEFORE_SEND_NAME
+Institution: REQUIRED_BEFORE_SEND_INSTITUTION
+Email: REQUIRED_BEFORE_SEND_EMAIL
 
 Thank you for your guidance."""
 
