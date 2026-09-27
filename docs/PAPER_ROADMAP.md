@@ -42,7 +42,7 @@ Flagship exclusions:
 - general spatial spectral transport;
 - temporal Floquet theory beyond what is required for the flagship spine.
 
-The flagship owns the cross-repository estimand transport, the unified critical-surface theorem, its ecological threshold-displacement corollaries, and the claim-ceiling logic, not every technical extension developed in the source repositories.
+The flagship owns the cross-repository estimand transport, the unified critical-surface atlas, its ecological threshold-displacement mappings, and the claim-ceiling logic, not every technical extension developed in the source repositories. Items 7–11 above are derived predictions, diagnostics, or method adaptations rather than standalone mathematical novelty; INV1 is retained as a process-consistency result.
 
 ---
 
