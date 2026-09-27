@@ -9,8 +9,8 @@ This document maps both manuscript surfaces onto the canonical theorem-claim led
 
 | Manuscript section | Claim IDs | Claim class | Primary role | Must not overclaim |
 |---|---|---|---|---|
-| Abstract | C1-C9, UTA1, INV1 | mixed | summarize critical surfaces, separations and invariant | do not imply end-to-end empirical validation or universality outside registered model classes |
-| 1. Introduction | C1-C9, UTA1, INV1 overview | synthesis + prior-art boundary | motivate estimand transport, critical surfaces and re-alignment | do not claim first theory of modularity, specialization, accessibility, games or weak mutation |
+| Abstract | C1-C9, UTA1, UTA1.10, INV1 | mixed | summarize transport, gate localization, critical surfaces, and invariant | do not imply end-to-end empirical validation or universality outside registered model classes |
+| 1. Introduction | C1-C9, UTA1, UTA1.10, INV1 overview | synthesis + prior-art boundary | motivate estimand transport, observational non-identifiability, critical surfaces and re-alignment | do not claim first theory of modularity, specialization, accessibility, games or weak mutation |
 | 2. Identifying the conflict budget | C1 | empirical handoff | define valid entry receipt `L` | multifunctionality alone does not identify `L` |
 | 3. Persistent compromise and architecture crossing | C2, C4 | definition/classification | define `R`, operational `K`, `Phi=R-K`, and middle world | no historical persistence claim; no undefined omnibus `K` |
 | 4. Differentiation recovers only released conflict | C3-C5 | general definition + quadratic corollary + model result | use `Phi=R-K` generally; derive `R=sL` only in quadratic bridge | do not promote `R=sL` to arbitrary landscapes; `Phi>0` does not mean differentiation evolves |
@@ -19,9 +19,9 @@ This document maps both manuscript surfaces onto the canonical theorem-claim led
 | 7. Fixation is another estimand | C8 | process-specific theorem | distinguish rare invasion, reciprocal fixation ordering, absolute fixation advantage | Moran-specific unless generalized |
 | 8. Weak-mutation occupancy and fixation-occupancy invariant | C9, INV1 | process-specific theorem + invariant | separate occupancy from accessibility/absolute fixation while proving reciprocal-fixation alignment | requires symmetric rare mutation + registered fixation kernel |
 | 9. Unified critical-surface atlas and constructive witnesses | UTA1, NE1-NE5, INV1 | composite-model synthesis | place all realization criteria on explicit surfaces and derive all split witnesses in one recovery family | do not claim surfaces are universal outside registered assumptions |
-| 10. Ecological deductions from threshold ordering | UTA1.4, UTA1.4b, UTA1.5, UTA1.6, UTA1.7, UTA1.8, UTA1.9 | derived consequences + method adaptation | predict environmental displacement between value and invasion, conflict–differentiation discordance, and gate-specific diagnostic patterns | affine environmental formula is exact only for the registered slice; discordance is diagnostic, not proof of one mechanism |
+| 10. Ecological deductions from threshold ordering | UTA1.4, UTA1.4b, UTA1.5, UTA1.6, UTA1.7, UTA1.8, UTA1.9, UTA1.10 | derived consequences + method adaptation + diagnostic synthesis | predict environmental displacement, conflict–differentiation discordance, and gate-localized sign patterns | affine environmental formula is exact only for the registered slice; discordance is diagnostic, not proof of one mechanism |
 | 11. Empirical measurement programme | G1-G9 internally | empirical gates / journal measurement ladder | give sequential validation design | no completed biological chain claimed |
-| 12. Discussion | C1-C9, UTA1, UTA1.4-1.5, INV1 | synthesis + novelty boundary | state what the critical-surface transport adds and what prior theory already owns | preserve all claim ceilings |
+| 12. Discussion | C1-C9, UTA1, UTA1.4-1.5, UTA1.10, INV1 | synthesis + novelty boundary | state what gate localization adds and what prior theory already owns | preserve all claim ceilings |
 
 ## Reader-facing theorem order
 
@@ -57,6 +57,8 @@ UTA1.7 three-frequency curvature diagnostic / repaired invasion surfaces
 UTA1.8 arbitrary-shape endpoint invasion result
  ↓
 UTA1.9 finite-frequency endpoint certification
+ ↓
+UTA1.10 persistent integration is non-identifying; sign sequence localizes the changed gate
  ↓
 UTA1.5 conflict does not rank differentiation across systems
  ↘
