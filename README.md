@@ -92,7 +92,7 @@ SLK owns the cross-repository theory needed for the integrated hierarchy:
 8. the three-frequency diagnostic that tests canonical frequency-map adequacy and repairs invasion thresholds when curvature is present;
 9. the arbitrary-shape endpoint result showing that deterministic invasion requires only rare-D and resident-D ecological offsets even when the interior frequency response is nonlinear;
 10. the finite-frequency certification result converting ideal endpoint limits into bounded one- or two-frequency near-endpoint assays with explicit unresolved states;
-12. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+11. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
