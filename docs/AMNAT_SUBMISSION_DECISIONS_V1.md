@@ -35,7 +35,7 @@ PRIMARY_TARGET = The American Naturalist
 ECOLOGY_LETTERS_REASSESSMENT = requires_real_same_system_G1_G5_receipt
 ```
 
-The current paper is strongest as a conceptual/theoretical ecology paper: an architecture-specific estimand transport, a unified critical-surface theorem, ecological threshold-displacement and conflict–differentiation discordance predictions, one-family constructive split witnesses, one exact process-level invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
+The current paper is strongest as a conceptual/theoretical ecology paper: an architecture-specific estimand transport, a unified critical-surface atlas, ecological threshold-displacement and conflict–differentiation discordance predictions, one-family constructive split witnesses, a process-level consistency invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
 
 The submission framing must emphasize biological theory and falsifiable measurement consequences, not software governance, repository integration, or bookkeeping.
 
@@ -46,7 +46,7 @@ THEORY_OWNERSHIP                         CLOSED
 GENERAL_MARGIN Phi=R-K                  CLOSED
 QUADRATIC_BRIDGE_SCOPE R=sL             CLOSED
 JOURNAL_PROSE_CONVERSION                 CLOSED
-REGISTERED_PRIOR_ART_COVERAGE            8/8 PASS
+REGISTERED_PRIOR_ART_COVERAGE            9/9 PASS
 CORE_LITERATURE_CITED                    CLOSED
 THEOREM_FORMULA_CONSISTENCY              PASS_AFTER_REPAIR
 UNIFIED_THRESHOLD_ATLAS                  PASS
@@ -67,7 +67,7 @@ FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
 AMNAT_ABSTRACT_WORDS                    189 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       4438 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE       5513 PASS
 AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              2 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  5 PASS
@@ -108,7 +108,7 @@ ANONYMOUS_BUNDLE_UPLOAD_OR_DEPOSIT    REQUIRED
 
 The remaining reviewer question is:
 
-> Can conservative local Lipschitz or curvature bounds be validated well enough to turn finite-frequency assays into certified endpoint signs?
+> Does carrying one identified architecture comparison across familiar component theories generate enough biological leverage to justify the synthesis, once the component algebra is explicitly not claimed as new?
 
 The submission answer must center on four deductions:
 
@@ -133,5 +133,5 @@ REVIEWER_CODE_PACKAGE   = READY
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = LOCAL_SMOOTHNESS_BOUND_VALIDATION
+MAIN_OPEN_RISK          = INTEGRATED_TRANSPORT_BIOLOGICAL_PAYOFF
 ```
