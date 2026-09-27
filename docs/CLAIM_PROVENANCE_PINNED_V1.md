@@ -282,6 +282,37 @@ combined by interval widening.
 
 Intervals overlapping zero remain unresolved and must not be promoted to biological non-invasion.
 
+## UTA1.10 — persistent-integration gate localization
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+- `manuscript/SLK_MANUSCRIPT_V0.md`
+- `scripts/verify_amnat_claims.py`
+- `tests/test_amnat_submission_tools.py`
+
+Registered diagnostic claim:
+
+```text
+same observed persistent integration
+!=
+same underlying decision layer
+
+compatible sign regimes include:
+1  Phi < 0
+   -> architecture-value gate
+
+2  Phi > 0, g0 < 0
+   -> local-accessibility gate
+
+3  Phi > 0, g0 > 0, Delta_R < 0
+   -> rare-establishment gate
+```
+
+The executable verifier instantiates these three regimes using the registered common witness family W1-W3. UTA1.10 localizes the first changed decision layer only after the corresponding upstream quantities have been measured. It does not identify the causal mechanism responsible for low recoverability, architecture cost, path geometry, or ecological feedback.
+
 ## Freeze rule
 
 The SLK manuscript may simplify notation, but it may not strengthen the source claim. In particular:
