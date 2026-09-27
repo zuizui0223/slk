@@ -72,13 +72,13 @@ AMNAT_TEXT_WORDS_EXCL_LITERATURE       5827 PASS
 AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              3 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
-FULL_CI_PY311_PY312                      PASS
-REVIEW_MANUSCRIPT_PDF                    31 PAGES PASS
-ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
-DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
-ANONYMOUS_REVIEWER_BUNDLE                PASS
-IDENTITY_SCAN                             PASS
-CLAIM_VERIFIER_NE1_NE5                    PASS
+FULL_CI_PY311_PY312                      RECHECK_PENDING_UTA1_10
+REVIEW_MANUSCRIPT_PDF                    REBUILD_PENDING_UTA1_10
+ANONYMOUS_TITLE_PAGE_PDF                  REBUILD_PENDING_UTA1_10
+DOUBLE_SPACING_LINE_PAGE_NUMBERS         RECHECK_PENDING_UTA1_10
+ANONYMOUS_REVIEWER_BUNDLE                REBUILD_PENDING_UTA1_10
+IDENTITY_SCAN                             RECHECK_PENDING_UTA1_10
+CLAIM_VERIFIER_NE1_NE5_UTA1_10            RECHECK_PENDING
 FIXATION_OCCUPANCY_INVARIANT_GRID        PROCESS_DERIVED PASS
 MORAN_PROCESS_CANONICAL_GRID              PASS
 CANONICAL_MAPPING_GUARD                   PASS
@@ -88,12 +88,12 @@ FIGURE_3_MANUAL_QA                       PASS
 ANON_REVIEW_MORAN_TEST                  13/13 PASS
 INV1_PROCESS_COMPARISONS                336 PASS
 CANONICAL_MAPPING_GUARD                 PASS
-FINAL_FULL_PAGE_PROOFREAD                 OPEN
+FINAL_FULL_PAGE_PROOFREAD                 OPEN_AFTER_REBUILD
 ```
 
 ## Remaining submission actions
 
-There is no remaining internal theory or reviewer-package construction task required before upload. The generated files pass structural and anonymity checks; a final human page-by-page proofread remains before portal upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
+The source-level theory and claim framing are defined, but the UTA1.10 revision invalidates the previous generated review package. Fresh CI/test/build, structure/anonymity checks, and then a human page-by-page proofread are required before upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
 
 Remaining actions are controlled outside the scientific package:
 
@@ -129,10 +129,10 @@ JOURNAL_PROSE           = READY
 PRIOR_ART_CORE          = READY
 FORMULA_CONSISTENCY     = PASS
 FORMAT_LIMITS           = PASS
-ANONYMOUS_REVIEW_FILES  = READY
-REVIEWER_CODE_PACKAGE   = READY
+ANONYMOUS_REVIEW_FILES  = REBUILD_PENDING_UTA1_10
+REVIEWER_CODE_PACKAGE   = REBUILD_PENDING_UTA1_10
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
-INTERNAL_BLOCKERS       = NONE
+INTERNAL_BLOCKERS       = CURRENT_CI_AND_REVIEW_PACKAGE_REBUILD
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
 MAIN_OPEN_RISK          = UTA1_10_GATE_LOCALIZATION_BIOLOGICAL_PAYOFF
 ```
