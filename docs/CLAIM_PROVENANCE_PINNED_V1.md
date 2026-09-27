@@ -176,11 +176,11 @@ absolute fixation vs neutrality    3Phi=eta [weak selection]
 rare-mutation occupancy ordering   Phi=0
 ```
 
-The theorem synthesizes previously derived source mathematics into one registered architecture comparison. The compatibility lemma additionally registers `A_DD/2-A_SS/2=Phi`, so the architecture endpoint contrast is the same self-play difference transported into reciprocal fixation and symmetric rare-mutation occupancy. It does not erase source provenance or claim that the individual mathematical ingredients are new in isolation.
+The atlas synthesizes previously derived source mathematics into one registered architecture comparison. The compatibility lemma additionally registers `A_DD/2-A_SS/2=Phi`, so the architecture endpoint contrast is the same self-play difference transported into reciprocal fixation and symmetric rare-mutation occupancy. It does not erase source provenance or claim that the individual mathematical ingredients are new in isolation.
 
 The constructive non-equivalence witnesses are now all embedded in the common family `R(d)=d+d^2`, `K(d)=kd`, rather than being presented as disconnected toy parameterizations.
 
-## UTA1.4-UTA1.5 — ecological and comparative corollaries
+## UTA1.4-UTA1.5 — ecological and comparative derived consequences
 
 Current canonical owner: `zuizui0223/slk`
 
@@ -204,7 +204,7 @@ Phi=sL-K
    when s or K varies.
 ```
 
-These are SLK corollaries of the registered threshold geometry, not independent claims of universal environmental linearity or universal frequency-dependent ecology.
+These are SLK derived consequences of the registered threshold geometry, not independent claims of mathematical novelty, universal environmental linearity, or universal frequency-dependent ecology.
 
 ## UTA1.7 — frequency-curvature diagnostic
 
