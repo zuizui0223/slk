@@ -1,0 +1,9 @@
+{
+  "schema_version": "SLK_EMPIRICAL_COMPANION_DESTINATION_RECEIPT_V1",
+  "status": "TEMPLATE_ONLY_NOT_VERIFIED",
+  "destination_repository": "REQUIRED_BEFORE_USE",
+  "destination_commit": "REQUIRED_BEFORE_USE",
+  "destination_ci_verified": false,
+  "copied_files": [],
+  "verification_reference": "REQUIRED_BEFORE_USE"
+}
