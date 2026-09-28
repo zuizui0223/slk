@@ -1,0 +1,34 @@
+{
+  "schema_version": "SLK_AMNAT_PORTAL_READINESS_V1",
+  "phase": "initial_submission",
+  "status": "BLOCKED",
+  "missing": [
+    "acknowledgments_status_NONE_or_PROVIDED",
+    "ai_disclosure_author_approval",
+    "all_author_approval",
+    "anonymous_manuscript_uploaded",
+    "anonymous_title_page_uploaded",
+    "author_contributions",
+    "author_list",
+    "data_sharing_policy_agreement",
+    "editorial_manager_generated_pdf_verified",
+    "initial_archive_deposit_created",
+    "initial_archive_reference",
+    "preprint_status_NO_or_YES",
+    "reviewer_zip_uploaded"
+  ],
+  "warnings": [],
+  "reviewer_zip_sha256": "586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e",
+  "ready_machine_assets": {
+    "scientific_package": true,
+    "anonymous_review_files": true,
+    "reviewer_zip": true,
+    "reviewer_zip_route": "EDITORIAL_MANAGER_ZIP",
+    "zenodo_payload": true,
+    "zenodo_metadata_template": true,
+    "editorial_manager_upload_kit": true,
+    "portal_validator": true,
+    "internal_blockers": "NONE"
+  },
+  "claim_ceiling": "SUBMISSION_READINESS_ONLY_NO_SCIENTIFIC_CLAIM_CHANGE"
+}
