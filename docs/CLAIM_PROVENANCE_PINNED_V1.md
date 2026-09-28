@@ -331,8 +331,9 @@ Canonical source surfaces:
 Registered diagnostic claim:
 
 ```text
-valid intervals I_Phi, I_g, I_Delta
--> retain every UTA1.10 state whose sequential sign constraints remain possible
+marginal intervals I_Phi, I_g, I_Delta
+-> Cartesian box B=I_Phi x I_g x I_Delta
+-> retain every UTA1.10 state whose sequential sign constraints intersect B
 
 nested refinement:
 I'_Phi subset I_Phi
@@ -342,7 +343,7 @@ I'_Delta subset I_Delta
 -> C(I'_Phi,I'_g,I'_Delta) subset C(I_Phi,I_g,I_Delta)
 ```
 
-The compatible set is fail-closed: zero-crossing intervals retain boundary states and any downstream branches still allowed by positive values. The set-inclusion result concerns genuinely nested deterministic bounds; separately estimated confidence intervals are not asserted to be nested. No causal mechanism is identified by membership in the compatible set.
+The box-compatible set is fail-closed: zero-crossing intervals retain boundary states and any downstream branches still allowed by positive values. With marginal intervals alone this is a conservative outer state set, because covariance or other joint constraints can make retained sign combinations jointly impossible; exact joint compatibility would require a joint feasible region. The set-inclusion result concerns genuinely nested deterministic boxes; separately estimated confidence intervals are not asserted to be nested. No causal mechanism is identified by membership in the compatible set.
 
 ## Freeze rule
 
