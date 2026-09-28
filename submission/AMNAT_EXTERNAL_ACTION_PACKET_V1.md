@@ -91,6 +91,34 @@ Candidate wording:
 
 Before submission the authors must edit this sentence if needed so it exactly matches the actual workflow and approve its placement in the manuscript.
 
+## Minimal machine gate
+
+Fill only:
+
+```text
+submission/AMNAT_PORTAL_INPUT_TEMPLATE_V1.json
+```
+
+Then run:
+
+```bash
+python scripts/check_amnat_portal_readiness.py submission/AMNAT_PORTAL_INPUT_TEMPLATE_V1.json
+```
+
+The template is intentionally fail-closed. It returns `READY_TO_SUBMIT` only after author metadata, AI-disclosure approval, reviewer ZIP upload, initial archive deposit, portal-file upload checks, data-sharing confirmation, and all-author approval are complete.
+
+For the later publication archive gate:
+
+```bash
+python scripts/check_amnat_portal_readiness.py \
+  submission/AMNAT_PORTAL_INPUT_TEMPLATE_V1.json \
+  --phase publication
+```
+
+The publication phase additionally requires the permanent archive DOI and public-release readiness.
+
+This validator is the final machine gate only; it does not create accounts, upload to Zenodo/Editorial Manager, choose reviewers, or approve author-controlled text.
+
 ## Final portal order
 
 ```text
