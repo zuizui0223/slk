@@ -47,7 +47,7 @@ Use exactly:
 file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
 size      58,096 bytes
 SHA256    ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
-files     23
+files     17
 tests     13 passed / 0 failed
 identity  PASS
 ```
