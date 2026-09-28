@@ -50,12 +50,12 @@ EMBEDDED_FIGURES               3
 RENDERED_IDENTITY_SCAN         PASS
 UTA1_11_COMPATIBLE_SET_RECEIPT PASS
 UTA1_11_MANUAL_QA              PASS — pages 27-28, box outer-set caveat readable
-FULL_PAGE_BY_PAGE_PROOFREAD    OPEN
+FULL_PAGE_BY_PAGE_PROOFREAD    PASS
 ```
 
-The fresh UTA1.11 PDF was rebuilt from the canonical source. The diagnostic table remains readable across pages 25-27, and the interval-box uncertainty paragraph including the conservative outer-set caveat is readable across pages 27-28 without clipping or overlap. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
+The fresh UTA1.11 PDF was rebuilt from the canonical source. The diagnostic table remains readable across pages 25-27, and the interval-box uncertainty paragraph including the conservative outer-set caveat is readable across pages 27-28 without clipping or overlap. All 34 rendered pages then passed the full page-by-page QA registered in `docs/AMNAT_FULL_PAGE_QA_V1.md`.
 
-Status: `PASS FOR CURRENT GENERATED FILES — FINAL HUMAN PROOFREAD REMAINS`.
+Status: `PASS FOR CURRENT GENERATED FILES — FULL PAGE QA CLOSED`.
 
 ### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, DEPOSIT STILL REQUIRED
 
@@ -115,7 +115,7 @@ Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No internal scientific-package or mechanical-format blocker remains. The current UTA1.10-UTA1.11 source produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated reviewer bundle with executable claim verification.
+No internal scientific-package, rendered-manuscript, or mechanical-format blocker remains. The current UTA1.10-UTA1.11 source produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated reviewer bundle with executable claim verification; all 34 rendered pages passed full-page QA.
 
 Remaining actions are external/human controlled:
 
