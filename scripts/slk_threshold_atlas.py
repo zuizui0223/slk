@@ -8,7 +8,7 @@ It does not replace the analytical proofs.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from math import exp, isclose, log
+from math import exp, isclose, isfinite, log
 
 
 DEFAULT_ABS_TOL = 1e-12
@@ -82,6 +82,86 @@ def localize_persistent_integration_gate(
         return "RARE_INVASION_FAILURE"
 
     return "EARLY_GATES_PASSED"
+
+
+def _validated_interval(
+    bounds: tuple[float, float],
+    name: str,
+) -> tuple[float, float]:
+    """Validate a closed deterministic interval used by UTA1.11."""
+    try:
+        lower, upper = bounds
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{name} must contain exactly two bounds") from exc
+    lower = float(lower)
+    upper = float(upper)
+    if not (isfinite(lower) and isfinite(upper)):
+        raise ValueError(f"{name} bounds must be finite")
+    if lower > upper:
+        raise ValueError(f"{name} lower bound exceeds upper bound")
+    return lower, upper
+
+
+def compatible_persistent_integration_states(
+    phi_interval: tuple[float, float],
+    local_release_gradient_interval: tuple[float, float],
+    rare_invasion_margin_interval: tuple[float, float],
+    *,
+    zero_tol: float = DEFAULT_ZERO_TOL,
+) -> tuple[str, ...]:
+    """Return all UTA1.10 early-gate states compatible with closed intervals.
+
+    The function is set-valued by design. If an interval spans a critical
+    surface, both the boundary state and any sign regimes intersected by the
+    interval remain compatible. Later gates are considered only on branches
+    where all upstream positive-sign conditions remain possible.
+    """
+    if zero_tol <= 0:
+        raise ValueError("zero_tol must be positive")
+
+    phi_lo, phi_hi = _validated_interval(phi_interval, "phi_interval")
+    g_lo, g_hi = _validated_interval(
+        local_release_gradient_interval,
+        "local_release_gradient_interval",
+    )
+    d_lo, d_hi = _validated_interval(
+        rare_invasion_margin_interval,
+        "rare_invasion_margin_interval",
+    )
+
+    def signs(lower: float, upper: float) -> tuple[bool, bool, bool]:
+        negative_possible = lower < -zero_tol
+        boundary_possible = lower <= zero_tol and upper >= -zero_tol
+        positive_possible = upper > zero_tol
+        return negative_possible, boundary_possible, positive_possible
+
+    phi_neg, phi_zero, phi_pos = signs(phi_lo, phi_hi)
+    g_neg, g_zero, g_pos = signs(g_lo, g_hi)
+    d_neg, d_zero, d_pos = signs(d_lo, d_hi)
+
+    states: list[str] = []
+    if phi_neg:
+        states.append("ARCHITECTURE_VALUE_FAILURE")
+    if phi_zero:
+        states.append("ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED")
+
+    if phi_pos:
+        if g_neg:
+            states.append("LOCAL_RELEASE_FAILURE")
+        if g_zero:
+            states.append("LOCAL_RELEASE_BOUNDARY_UNRESOLVED")
+
+        if g_pos:
+            if d_neg:
+                states.append("RARE_INVASION_FAILURE")
+            if d_zero:
+                states.append("RARE_INVASION_BOUNDARY_UNRESOLVED")
+            if d_pos:
+                states.append("EARLY_GATES_PASSED")
+
+    if not states:
+        raise RuntimeError("no compatible UTA1.11 state; interval logic is inconsistent")
+    return tuple(states)
 
 
 @dataclass(frozen=True)
