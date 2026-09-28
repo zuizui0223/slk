@@ -107,6 +107,22 @@ It contains the anonymous manuscript DOCX/PDF, anonymous title-page DOCX/PDF, th
 
 The convenience ZIP itself is not a journal submission format: unzip it locally, then upload the appropriate constituent files separately in Editorial Manager.
 
+## Current readiness receipt
+
+The current unfilled portal template has been evaluated and frozen at:
+
+```text
+submission/AMNAT_PORTAL_READINESS_CURRENT_V1.json
+status = BLOCKED
+machine assets = READY
+internal blockers = NONE
+human/external missing fields = 13
+```
+
+The missing fields are author list, acknowledgments status, author contributions, AI-disclosure approval, preprint status, data-sharing agreement, reviewer-ZIP upload, initial archive deposit/reference, manuscript/title-page upload, Editorial Manager generated-PDF verification, and all-author approval.
+
+No additional repository implementation is required to clear these fields.
+
 ## Minimal machine gate
 
 Fill only:
