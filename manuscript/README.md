@@ -12,7 +12,7 @@ This is the current submission-oriented manuscript. Relative to V3 it promotes t
 
 `SLK_MANUSCRIPT_AMNAT_V3.md` is retained as the pre-atlas split-and-witness checkpoint; `SLK_MANUSCRIPT_AMNAT_V2.md` is retained as the prior-art-complete checkpoint; `SLK_MANUSCRIPT_AMNAT_V1.md` is retained as the first label-free journal-prose checkpoint. None should be treated as the current submission surface.
 
-`LITERATURE_CITED_AMNAT_V1.md` is the bibliography ledger used to audit the nine-paper registered prior-art set, including the Richardson-extrapolation antecedent for the finite-frequency certificate.
+`LITERATURE_CITED_AMNAT_V1.md` is the bibliography ledger used to audit the ten-paper registered prior-art set, including the Richardson-extrapolation antecedent for the finite-frequency certificate.
 
 ## Audit manuscript
 
