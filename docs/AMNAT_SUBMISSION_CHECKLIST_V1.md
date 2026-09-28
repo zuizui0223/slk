@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         9
 ABSTRACT_WORDS                    191
-TEXT_WORDS_EXCL_LITERATURE_CITED 5923
+TEXT_WORDS_EXCL_LITERATURE_CITED 6025
 FIGURES                             3
 ```
 
@@ -36,28 +36,25 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — PASS
+### 1. Anonymous review manuscript — REBUILD PENDING AFTER UTA1.11
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The UTA1.10 early-gates-passed exclusion build completed successfully and was inspected from workflow artifact 10935955485.
+The CI-built review manuscript is generated directly from the canonical V4 source. UTA1.11 changes the current source and reviewer receipt, so the previous rendered package is stale until this branch completes a fresh build.
 
 ```text
-MAIN_REVIEW_PDF_PAGES         33
-ANONYMOUS_TITLE_PDF_PAGES      1
-DOUBLE_SPACED                  true
-LINE_NUMBERS                   true
-PAGE_NUMBERS                   true
-EMBEDDED_FIGURES               3
-RENDERED_IDENTITY_SCAN         PASS
-UTA1_10_EXCLUSION_RECEIPT      PASS
-UTA1_10_TABLE_MANUAL_QA        PASS — pages 25-27, exclusion + zero-boundary logic readable
+CURRENT_SOURCE_TEXT_WORDS     6025
+CURRENT_SOURCE_TABLES          3
+CURRENT_SOURCE_FIGURES         3
+REVIEW_PDF_REBUILD             PENDING
+STRUCTURE_ANONYMITY_RECHECK    PENDING
+UTA1_11_COMPATIBLE_SET_RECEIPT PENDING
 FULL_PAGE_BY_PAGE_PROOFREAD    OPEN
 ```
 
-The fresh UTA1.10 exclusion-state PDF was rebuilt from the canonical source. The diagnostic table spans pages 25-27; the all-positive exclusion row is readable on page 26, the zero-boundary note is readable on page 27, and there is no clipping or overlap. The full manuscript still requires the ordinary final human page-by-page proofread before portal upload.
+The previous UTA1.10 exclusion-state PDF passed visual QA, but it predates UTA1.11 interval-compatible state propagation. The current branch must rebuild and recheck the rendered manuscript and reviewer receipt before portal upload.
 
-Status: `PASS FOR CURRENT GENERATED FILES — FINAL HUMAN PROOFREAD REMAINS`.
+Status: `REBUILD PENDING — DO NOT USE THE PRE-UTA1.11 PACKAGE`.
 
-### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, DEPOSIT STILL REQUIRED
+### 2. Anonymous reviewer code/theory package — REBUILD PENDING, DEPOSIT STILL REQUIRED
 
 The review bundle is curated rather than being a repository dump. It contains:
 
@@ -77,7 +74,7 @@ Current journal instructions require data/code needed to recreate results to be 
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Deposit the exact curated anonymous bundle in a repository that supports anonymous/reviewer access and insert that link in the anonymous manuscript.
 
-Status: `PASS INTERNALLY — UTA1.10 EXCLUSION-STATE BUNDLE VERIFIED; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
+Status: `REBUILD CURRENT UTA1.11 BUNDLE; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -132,4 +129,4 @@ ALL_AUTHOR_APPROVAL                    REQUIRED
 PORTAL_FILE_UPLOAD                     REQUIRED
 ```
 
-Scientific reviewer risk is now whether UTA1.10 gate localization—distinguishing negative value, local-release, and rare-establishment explanations for the same persistent phenotype—provides enough biological leverage beyond the deliberately non-novel component algebra, not format compliance.
+Scientific reviewer risk is now whether UTA1.10-UTA1.11 gate localization—together with fail-closed compatible-state uncertainty propagation—provides enough biological leverage beyond the deliberately non-novel component algebra, not format compliance.
