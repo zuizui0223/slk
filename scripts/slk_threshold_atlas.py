@@ -109,12 +109,16 @@ def compatible_persistent_integration_states(
     *,
     zero_tol: float = DEFAULT_ZERO_TOL,
 ) -> tuple[str, ...]:
-    """Return all UTA1.10 early-gate states compatible with closed intervals.
+    """Return UTA1.10 states compatible with a Cartesian interval box.
 
     The function is set-valued by design. If an interval spans a critical
     surface, both the boundary state and any sign regimes intersected by the
     interval remain compatible. Later gates are considered only on branches
     where all upstream positive-sign conditions remain possible.
+
+    When the three intervals are only marginal bounds, this is a conservative
+    outer state set: it may retain sign combinations that are not jointly
+    feasible under covariance or other cross-parameter constraints.
     """
     if zero_tol <= 0:
         raise ValueError("zero_tol must be positive")
