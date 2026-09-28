@@ -44,14 +44,24 @@ receipt                 submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json
 
 ## Route decision 2 — archive deposit and publication DOI
 
-Prepare a curated repository deposit containing only final necessary data/code/theory materials plus a comprehensive README. The archive deposit is required at initial submission but may remain private/non-public for peer review.
-
-For publication, finalize the archive in a curated permanent repository and obtain a DOI. For code maintained on GitHub, the journal recommends a permanent DOI deposit such as Zenodo.
+A provider-neutral verified payload is ready, and a Zenodo handoff is registered:
 
 ```text
-ARCHIVE_PROVIDER           = [AUTHOR CHOICE]
+payload                   SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+SHA256                    586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e
+Zenodo handoff             submission/ZENODO_DEPOSIT_HANDOFF_V1.md
+metadata template          submission/ZENODO_DEPOSIT_METADATA_TEMPLATE_V1.json
+```
+
+The archive deposit is required at initial submission but may remain private/non-public for peer review. The recommended default for this code/theory package is a Zenodo **draft** using the verified ZIP. Reviewer access can remain the separate Editorial Manager ZIP route.
+
+For publication, finalize the archive in a curated permanent repository and obtain a DOI.
+
+```text
+ARCHIVE_PROVIDER           = ZENODO_RECOMMENDED / AUTHOR CONFIRMATION
+ARCHIVE_PAYLOAD_READY      = true
+ARCHIVE_METADATA_TEMPLATE  = ready
 ARCHIVE_DEPOSIT_CREATED    = false
-REVIEW_PRIVATE_ACCESS      = [PENDING]
 PERMANENT_ARCHIVE_DOI      = [PENDING]
 PUBLICATION_READY          = false until DOI/archive gate closes
 ```
