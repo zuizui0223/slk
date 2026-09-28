@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         9
 ABSTRACT_WORDS                    191
-TEXT_WORDS_EXCL_LITERATURE_CITED 6069
+TEXT_WORDS_EXCL_LITERATURE_CITED 6131
 FIGURES                             3
 ```
 
@@ -36,28 +36,25 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — PASS
+### 1. Anonymous review manuscript — REBUILD PENDING AFTER PRIOR-ART EXPANSION
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The UTA1.11 build completed successfully and was inspected from workflow artifact 10948161170.
+The CI-built review manuscript is generated directly from the canonical V4 source. Adding Bowers et al. (2005) changes the current manuscript source and bibliography, so the previously generated package is stale until this branch completes a fresh build.
 
 ```text
-MAIN_REVIEW_PDF_PAGES         34
-ANONYMOUS_TITLE_PDF_PAGES      1
-DOUBLE_SPACED                  true
-LINE_NUMBERS                   true
-PAGE_NUMBERS                   true
-EMBEDDED_FIGURES               3
-RENDERED_IDENTITY_SCAN         PASS
-UTA1_11_COMPATIBLE_SET_RECEIPT PASS
-UTA1_11_MANUAL_QA              PASS — pages 27-28, box outer-set caveat readable
-FULL_PAGE_BY_PAGE_PROOFREAD    PASS
+CURRENT_SOURCE_TEXT_WORDS      6131
+CURRENT_SOURCE_TABLES           3
+CURRENT_SOURCE_FIGURES          3
+REVIEW_PDF_REBUILD              PENDING
+STRUCTURE_ANONYMITY_RECHECK     PENDING
+REVIEWER_BUNDLE_REBUILD         PENDING
+FULL_PAGE_BY_PAGE_PROOFREAD     PENDING
 ```
 
-The fresh UTA1.11 PDF was rebuilt from the canonical source. The diagnostic table remains readable across pages 25-27, and the interval-box uncertainty paragraph including the conservative outer-set caveat is readable across pages 27-28 without clipping or overlap. All 34 rendered pages then passed the full page-by-page QA registered in `docs/AMNAT_FULL_PAGE_QA_V1.md`.
+The previous UTA1.11 PDF passed full QA, but it predates the Bowers et al. prior-art expansion. Rebuild and recheck the current rendered manuscript before upload.
 
-Status: `PASS FOR CURRENT GENERATED FILES — FULL PAGE QA CLOSED`.
+Status: `REBUILD PENDING — PREVIOUS UPLOAD FILES ARE STALE`.
 
-### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, REVIEW ACCESS ROUTE REQUIRED
+### 2. Anonymous reviewer code/theory package — REBUILD PENDING
 
 The review bundle is curated rather than being a repository dump. It contains:
 
@@ -77,7 +74,7 @@ Current journal instructions distinguish reviewer access from archiving. At firs
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Use the exact curated anonymous bundle for either reviewer-access route.
 
-Status: `PASS INTERNALLY — UTA1.11 BUNDLE VERIFIED; EDITORIAL MANAGER ZIP ROUTE IS READY (SHA256 586412fb...42503e); INITIAL ARCHIVE DEPOSIT AND PERMANENT DOI STILL REQUIRED`.
+Status: `REBUILD CURRENT BUNDLE — PREVIOUS REVIEWER ZIP CHECKSUM IS STALE AFTER MANUSCRIPT CHANGE`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -109,7 +106,7 @@ Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
 
 ### 7. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered nine-paper core prior-art set, including the Richardson-extrapolation antecedent, in alphabetical order. Production-style punctuation can be normalized later if requested.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered ten-paper core prior-art set, including the Richardson-extrapolation antecedent, in alphabetical order. Production-style punctuation can be normalized later if requested.
 
 Status: `PASS FOR INITIAL REVIEW`.
 
@@ -121,8 +118,8 @@ Remaining actions are external/human controlled:
 
 ```text
 AUTHOR_METADATA                       REQUIRED
-REVIEWER_DATA_CODE_ACCESS_ROUTE       EDITORIAL_MANAGER_ZIP_READY
-INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      PAYLOAD_READY_AUTHENTICATED_DEPOSIT_PENDING
+REVIEWER_DATA_CODE_ACCESS_ROUTE       REBUILD_PENDING
+INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      PAYLOAD_REGENERATION_PENDING
 PERMANENT_DATA_CODE_ARCHIVE_DOI        METADATA_TEMPLATE_READY_DOI_PENDING
 ACKNOWLEDGMENTS_IN_AUTHOR_COMMENTS     REQUIRED
 AUTHOR_CONTRIBUTIONS_IN_COMMENTS       REQUIRED

@@ -10,7 +10,7 @@ Multifunctional traits can experience genuine conflict without favoring differen
 
 A trait can perform several functions without those functions opposing one another. Even when opposing selection is real, the existence of compromise does not tell us whether adding phenotypic dimensions is worth the cost of maintaining a more complex architecture. And even when differentiation has higher optimized fitness, evolution may fail to reach it through available mutations or may reject it at the population level.
 
-These questions have deep prior literatures. The modularity and evolvability literature has long emphasized that reducing pleiotropic interference among functions can improve adaptive potential (Wagner & Altenberg 1996). General theory of functional specialization has already identified conditions under which division of labor among modules is favored, including positional effects, accelerating performance functions, and synergistic interactions (Rueffler, Hermisson & Wagner 2012). Evolutionary-game and finite-population theory has separately distinguished invasion, fixation, and weak-mutation long-run behavior (Taylor et al. 2004; Fudenberg et al. 2006). SLK therefore does **not** claim a first theory of modularity, specialization, evolutionary games, fixation, or rare-mutation stationary dynamics.
+These questions have deep prior literatures. The modularity and evolvability literature has long emphasized that reducing pleiotropic interference among functions can improve adaptive potential (Wagner & Altenberg 1996). General theory of functional specialization has already identified conditions under which division of labor among modules is favored, including positional effects, accelerating performance functions, and synergistic interactions (Rueffler, Hermisson & Wagner 2012). Trade-off and invasion plots already combine trade-off geometry with resident-mutant invasion boundaries (Bowers et al. 2005), while evolutionary-game and finite-population theory separately distinguishes invasion, fixation, and weak-mutation long-run behavior (Taylor et al. 2004; Fudenberg et al. 2006). SLK therefore does **not** claim a first theory of modularity, specialization, trade-off/invasion geometry, evolutionary games, fixation, or rare-mutation stationary dynamics.
 
 The contribution here is the architecture-specific handoff between these literatures. We start from an empirically identified shared-coordinate conflict budget rather than assuming that multifunctionality implies conflict; separate recoverable architecture value from architecture-specific cost; then transport that value through local accessibility, frequency-dependent invasion, finite-population fixation, and weak-mutation occupancy. This construction lets us ask where successive criteria genuinely separate, where they re-align under an exact invariant, and what additional measurements are required before moving from one biological claim to the next.
 
@@ -626,6 +626,7 @@ SLK does not claim:
 
 - the first theory of modularity or evolvability;
 - the first theory of functional specialization or division of labor;
+- the first common geometry linking trade-offs to invasion boundaries;
 - the first distinction between invasion and fixation in finite populations;
 - the first weak-mutation stationary distribution;
 - universality of `R=sL` outside the declared quadratic bridge.
@@ -638,6 +639,7 @@ The present paper deliberately excludes continuous-architecture branching, edgew
 
 ## References cited in the novelty boundary
 
+- Bowers, R. G., Hoyle, A., White, A. & Boots, M. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363-377.
 - Fudenberg, D., Nowak, M. A., Taylor, C. & Imhof, L. A. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352-363.
 - Rueffler, C., Hermisson, J. & Wagner, G. P. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326-E335.
 - Taylor, C., Fudenberg, D., Sasaki, A. & Nowak, M. A. 2004. Evolutionary game dynamics in finite populations. *Bulletin of Mathematical Biology* 66:1621-1644.

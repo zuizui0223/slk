@@ -13,6 +13,7 @@ SLK does not claim to originate the ideas that:
 - affine threshold crossings become explicit by solving the declared invasion equation;
 - coefficients of a declared linear or quadratic frequency map can be recovered from the corresponding number of frequency treatments;
 - invasion is determined by the rare-mutant endpoint by definition of invasion fitness;
+- trade-off geometry and resident-mutant invasion boundaries have already been combined explicitly in trade-off-and-invasion plots;
 - two-scale cancellation of a leading approximation error is standard Richardson extrapolation.
 
 Those are established themes in the literature.
@@ -34,6 +35,12 @@ Their finite-population evolutionary-game framework explicitly distinguishes con
 ### Fudenberg, Nowak, Taylor & Imhof (2006)
 
 Their strong-selection/weak-mutation treatment analyzes long-run evolutionary-game behavior in finite populations with small mutation. SLK should not claim to originate weak-mutation state reduction or long-run stationary analysis.
+
+### Bowers, Hoyle, White & Boots (2005)
+
+Their trade-off and invasion plots (TIPs) place a biological trade-off curve and the two resident-mutant invasion boundaries in one geometric representation and use their relative geometry to classify evolutionary singularities. This is direct prior art for the idea that trade-off structure and invasion criteria can be integrated geometrically. SLK should therefore **not** claim the first common geometry linking trade-offs to invasion boundaries.
+
+SLK's residual distinction is narrower: the chain starts from an identified shared-coordinate conflict receipt, decomposes recoverable architecture benefit from architecture-specific cost, keeps the same declared endpoint contrast through local release, invasion, fixation and occupancy, and attaches an explicit empirical claim ceiling to each handoff.
 
 ### Richardson & Gaunt (1927)
 
@@ -70,6 +77,7 @@ A defensible framing paragraph is:
 - Wagner GP, Altenberg L. 1996. Complex adaptations and the evolution of evolvability. *Evolution* 50:967-976.
 - Rueffler C, Hermisson J, Wagner GP. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326-E335.
 - Taylor C, Fudenberg D, Sasaki A, Nowak MA. 2004. Evolutionary game dynamics in finite populations. *Bulletin of Mathematical Biology* 66:1621-1644.
+- Bowers RG, Hoyle A, White A, Boots M. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363-377. https://doi.org/10.1016/j.jtbi.2004.10.017.
 - Fudenberg D, Nowak MA, Taylor C, Imhof LA. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352-363.
 - Richardson LF, Gaunt JA. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299-361.
 
