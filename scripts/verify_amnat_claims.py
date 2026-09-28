@@ -14,6 +14,7 @@ try:
         SymmetricTwoStrategyGame,
         canonical_architecture_game,
         canonical_reciprocal_fixation_ratio_closed_form,
+        compatible_persistent_integration_states,
         fixation_probability_d,
         fixation_probability_s,
         localize_persistent_integration_gate,
@@ -31,6 +32,7 @@ except ImportError:  # direct execution via `python scripts/verify_amnat_claims.
         SymmetricTwoStrategyGame,
         canonical_architecture_game,
         canonical_reciprocal_fixation_ratio_closed_form,
+        compatible_persistent_integration_states,
         fixation_probability_d,
         fixation_probability_s,
         localize_persistent_integration_gate,
@@ -461,6 +463,35 @@ def verify() -> dict[str, object]:
         },
         "boundary_policy": boundary_policy,
         "mechanism_identified": False,
+        "pass": True,
+    }
+
+    # UTA1.11: uncertainty is propagated as a compatible-state set.
+    wide_states = compatible_persistent_integration_states(
+        (-0.2, 0.4),
+        (-0.2, 0.4),
+        (-0.2, 0.4),
+    )
+    medium_states = compatible_persistent_integration_states(
+        (0.1, 0.4),
+        (-0.1, 0.3),
+        (0.1, 0.4),
+    )
+    narrow_states = compatible_persistent_integration_states(
+        (0.2, 0.3),
+        (0.1, 0.2),
+        (0.1, 0.2),
+    )
+    assert set(medium_states) < set(wide_states)
+    assert set(narrow_states) < set(medium_states)
+    assert narrow_states == ("EARLY_GATES_PASSED",)
+
+    checks["UTA1_11_interval_compatible_state_set"] = {
+        "wide_states": list(wide_states),
+        "medium_states": list(medium_states),
+        "narrow_states": list(narrow_states),
+        "nested_refinement_monotone": True,
+        "statistical_partial_identification_novelty_claimed": False,
         "pass": True,
     }
 
