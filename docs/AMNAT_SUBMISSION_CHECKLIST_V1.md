@@ -73,11 +73,11 @@ The review bundle is curated rather than being a repository dump. It contains:
 
 The verifier recomputes the common convex recovery family, all five registered witness regimes, the critical surfaces, and the fixation–occupancy invariant. The invariant grid contains 112 comparisons with maximum absolute error 0.0. The bundle identity scan passes and excludes repository history, remote URLs, and author metadata.
 
-Current journal instructions distinguish reviewer access from permanent archiving. At first submission, reviewers/editors may receive the material through either a private/anonymized repository link or a ZIP uploaded directly to Editorial Manager. Separately, the journal requires a public data/code archive for publication; the deposit may remain private for peer review, and a permanent DOI is required for the publication archive.
+Current journal instructions distinguish reviewer access from archiving. At first submission, reviewers/editors may receive the material through either a private/anonymized repository link or a ZIP uploaded directly to Editorial Manager. Separately, the journal requires the data/code archive deposit at initial submission; that deposit may remain private for peer review. A permanent DOI/public archive is required for publication.
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Use the exact curated anonymous bundle for either reviewer-access route.
 
-Status: `PASS INTERNALLY — UTA1.11 BUNDLE VERIFIED; CHOOSE PRIVATE-LINK OR EM-ZIP REVIEW ROUTE, AND PREPARE PERMANENT DOI ARCHIVE`.
+Status: `PASS INTERNALLY — UTA1.11 BUNDLE VERIFIED; CHOOSE PRIVATE-LINK OR EM-ZIP REVIEW ROUTE, CREATE INITIAL ARCHIVE DEPOSIT, AND PLAN PERMANENT DOI`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -122,6 +122,7 @@ Remaining actions are external/human controlled:
 ```text
 AUTHOR_METADATA                       REQUIRED
 REVIEWER_DATA_CODE_ACCESS_ROUTE       PRIVATE_LINK_OR_EM_ZIP_REQUIRED
+INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      REQUIRED_AT_SUBMISSION
 PERMANENT_DATA_CODE_ARCHIVE_DOI        REQUIRED_FOR_PUBLICATION
 ACKNOWLEDGMENTS_IN_AUTHOR_COMMENTS     REQUIRED
 AUTHOR_CONTRIBUTIONS_IN_COMMENTS       REQUIRED
