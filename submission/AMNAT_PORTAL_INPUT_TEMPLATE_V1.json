@@ -1,0 +1,40 @@
+{
+  "schema_version": "SLK_AMNAT_PORTAL_INPUT_V1",
+  "authors": [],
+  "acknowledgments": {
+    "status": "PENDING",
+    "text": ""
+  },
+  "author_contributions": "",
+  "ai_disclosure": {
+    "approved": false,
+    "text": "Generative AI tools were used during development of this work to assist with scientific drafting and editing, mathematical and theoretical exploration, and code generation and troubleshooting. All claims, derivations, numerical checks, code, figures, references, and final prose remain the responsibility of the authors and were subject to author review and validation."
+  },
+  "preprint": {
+    "status": "PENDING",
+    "reference": ""
+  },
+  "data_sharing_policy_agreed": false,
+  "reviewer_access": {
+    "route": "EDITORIAL_MANAGER_ZIP",
+    "zip_filename": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
+    "zip_sha256": "586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e",
+    "uploaded": false
+  },
+  "archive": {
+    "provider": "ZENODO",
+    "deposit_created": false,
+    "reference": "",
+    "private_for_review": true,
+    "doi": "",
+    "public_release_ready": false
+  },
+  "portal": {
+    "manuscript_uploaded": false,
+    "anonymous_title_page_uploaded": false,
+    "generated_pdf_verified": false
+  },
+  "all_author_approval": false,
+  "suggested_reviewers": [],
+  "associate_editor_suggestion": ""
+}
