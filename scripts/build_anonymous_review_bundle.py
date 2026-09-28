@@ -58,6 +58,8 @@ python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py
 
 A successful run writes a JSON receipt with `all_checks_pass: true`.
 
+The regenerated receipt is a numerical audit, not a byte-for-byte reproducibility target. Last-bit floating-point values can differ at machine precision across Python/platform builds while all registered inequalities, tolerances, and process checks remain unchanged. Use the project numerical tolerance policy and `all_checks_pass`; do not treat a one-ULP JSON difference as a scientific discrepancy.
+
 ## Double-anonymous review
 
 This reviewer bundle is intentionally detached from repository history, remote URLs, author metadata, acknowledgments, and contributor information. `ANONYMITY_AUDIT.txt` records the automated identity-string scan. The bundle should be uploaded directly to the journal review system or another anonymous reviewer-accessible deposit; an identity-bearing repository URL should not be inserted into the anonymous manuscript.

@@ -61,6 +61,9 @@ def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:
     assert (out / "docs" / "INV1_EXECUTABLE_VALIDATION_V1.md").is_file()
     assert (out / "ANONYMITY_AUDIT.txt").read_text(encoding="utf-8").startswith("identity_scan=PASS")
     assert (out / "SHA256SUMS.txt").is_file()
+    readme = (out / "README.md").read_text(encoding="utf-8")
+    assert "not a byte-for-byte reproducibility target" in readme
+    assert "one-ULP JSON difference" in readme
     assert not (out / ".git").exists()
 
 
