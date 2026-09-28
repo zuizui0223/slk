@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         9
 ABSTRACT_WORDS                    191
-TEXT_WORDS_EXCL_LITERATURE_CITED 6098
+TEXT_WORDS_EXCL_LITERATURE_CITED 6131
 FIGURES                             3
 ```
 
@@ -41,7 +41,7 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 The CI-built review manuscript is generated directly from the canonical V4 source. Adding Bowers et al. (2005) changes the current manuscript source and bibliography, so the previously generated package is stale until this branch completes a fresh build.
 
 ```text
-CURRENT_SOURCE_TEXT_WORDS      6098
+CURRENT_SOURCE_TEXT_WORDS      6131
 CURRENT_SOURCE_TABLES           3
 CURRENT_SOURCE_FIGURES          3
 REVIEW_PDF_REBUILD              PENDING
