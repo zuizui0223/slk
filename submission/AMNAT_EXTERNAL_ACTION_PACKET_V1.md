@@ -91,6 +91,22 @@ Candidate wording:
 
 Before submission the authors must edit this sentence if needed so it exactly matches the actual workflow and approve its placement in the manuscript.
 
+## Local Editorial Manager upload kit
+
+A convenience ZIP containing the validated upload files is prepared locally:
+
+```text
+file       SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT.zip
+SHA256     b84f0d931cfb234765ea5fc57392a4a9e024c5b1fdf19fc92742529c9d6efdf1
+size       1,623,854 bytes
+files      8
+receipt    submission/AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_RECEIPT_V1.json
+```
+
+It contains the anonymous manuscript DOCX/PDF, anonymous title-page DOCX/PDF, the verified reviewer data/code ZIP, the build QA receipt, an internal checksum manifest, and a short portal-upload README.
+
+The convenience ZIP itself is not a journal submission format: unzip it locally, then upload the appropriate constituent files separately in Editorial Manager.
+
 ## Minimal machine gate
 
 Fill only:
