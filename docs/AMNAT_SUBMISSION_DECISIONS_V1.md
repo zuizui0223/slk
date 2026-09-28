@@ -61,7 +61,7 @@ FINITE_FREQUENCY_ENDPOINT_BOUNDS         PASS
 SAMPLING_PLUS_APPROXIMATION_INTERVAL     PASS
 CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
 GATE_LOCALIZATION_DIAGNOSTIC_UTA1_10      PASS
-INTERVAL_COMPATIBLE_STATE_SET_UTA1_11      PASS_SOURCE_PENDING_CI
+INTERVAL_COMPATIBLE_STATE_SET_UTA1_11      PASS
 FIGURE_2_ECOLOGICAL_PANEL                PASS
 FIGURE_1_THRESHOLD_ATLAS                 PASS
 WITNESS_ARITHMETIC                       PASS
@@ -73,13 +73,13 @@ AMNAT_TEXT_WORDS_EXCL_LITERATURE       6069 PASS
 AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              3 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
-FULL_CI_PY311_PY312                      RECHECK_PENDING_UTA1_11
-REVIEW_MANUSCRIPT_PDF                    REBUILD_PENDING_UTA1_11
+FULL_CI_PY311_PY312                      PASS_566_566
+REVIEW_MANUSCRIPT_PDF                    34 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
 DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
-ANONYMOUS_REVIEWER_BUNDLE                REBUILD_PENDING_UTA1_11
-IDENTITY_SCAN                             RECHECK_PENDING_UTA1_11
-CLAIM_VERIFIER_NE1_NE5_UTA1_11            RECHECK_PENDING
+ANONYMOUS_REVIEWER_BUNDLE                PASS
+IDENTITY_SCAN                             PASS
+CLAIM_VERIFIER_NE1_NE5_UTA1_11            PASS
 FIXATION_OCCUPANCY_INVARIANT_GRID        PROCESS_DERIVED PASS
 MORAN_PROCESS_CANONICAL_GRID              PASS
 CANONICAL_MAPPING_GUARD                   PASS
@@ -90,12 +90,13 @@ ANON_REVIEW_MORAN_TEST                  13/13 PASS
 INV1_PROCESS_COMPARISONS                336 PASS
 CANONICAL_MAPPING_GUARD                 PASS
 UTA1_10_DIAGNOSTIC_TABLE_MANUAL_QA       PASS_PAGES_25_27_EXCLUSION_STATE
+UTA1_11_INTERVAL_BOX_MANUAL_QA            PASS_PAGES_27_28_OUTER_SET_CAVEAT
 FINAL_FULL_PAGE_PROOFREAD                 OPEN
 ```
 
 ## Remaining submission actions
 
-The current UTA1.10 source passes Python 3.11/3.12 CI, review-package build, rendered identity scan, executable claim verification, and targeted manual QA of the diagnostic table. A final full human page-by-page proofread remains before upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
+The current UTA1.10-UTA1.11 source passes Python 3.11/3.12 CI (566/566), review-package build, rendered identity scan, executable claim verification, and targeted manual QA of the diagnostic table and interval-box caveat. A final full human page-by-page proofread remains before upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
 
 Remaining actions are controlled outside the scientific package:
 
@@ -131,10 +132,10 @@ JOURNAL_PROSE           = READY
 PRIOR_ART_CORE          = READY
 FORMULA_CONSISTENCY     = PASS
 FORMAT_LIMITS           = PASS
-ANONYMOUS_REVIEW_FILES  = REBUILD_PENDING_UTA1_11
-REVIEWER_CODE_PACKAGE   = REBUILD_PENDING_UTA1_11
+ANONYMOUS_REVIEW_FILES  = READY_CURRENT_UTA1_11
+REVIEWER_CODE_PACKAGE   = READY_CURRENT_UTA1_11
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
-INTERNAL_BLOCKERS       = CURRENT_CI_AND_REVIEW_PACKAGE_REBUILD
+INTERNAL_BLOCKERS       = FINAL_HUMAN_PAGE_BY_PAGE_PROOFREAD
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
 MAIN_OPEN_RISK          = UTA1_10_11_DIAGNOSTIC_BIOLOGICAL_PAYOFF
 ```
