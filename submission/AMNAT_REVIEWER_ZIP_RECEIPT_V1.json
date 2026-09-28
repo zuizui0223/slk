@@ -1,0 +1,22 @@
+{
+  "schema_version": "SLK_AMNAT_REVIEWER_ZIP_RECEIPT_V1",
+  "status": "EDITORIAL_MANAGER_ZIP_READY",
+  "source_repository": "zuizui0223/slk",
+  "source_main_commit": "19da52c382eeeb859e294c0757d7926f4e0856bf",
+  "source_workflow_run_id": 36375344739,
+  "source_workflow_artifact_id": 10949874573,
+  "source_workflow_artifact_sha256": "d54434daa736158cac0aa731e4b3905cc87f9cc93f9cec012346a6f5a97334c8",
+  "reviewer_zip_filename": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
+  "reviewer_zip_sha256": "586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e",
+  "reviewer_zip_size_bytes": 76579,
+  "reviewer_zip_file_count": 23,
+  "bundled_pytest_passed": 13,
+  "bundled_pytest_failed": 0,
+  "receipt_semantic_tolerance_comparison": true,
+  "identity_scan_passed": true,
+  "internal_sha256_manifest_passed": true,
+  "reviewer_access_route": "EDITORIAL_MANAGER_ZIP",
+  "initial_archive_deposit_still_required": true,
+  "permanent_archive_doi_still_required": true,
+  "claim_ceiling": "SUBMISSION_PACKAGING_ONLY_NO_SCIENTIFIC_CLAIM_CHANGE"
+}

@@ -24,7 +24,20 @@ Choose exactly one reviewer-access route for initial submission.
 
 ### Route B — Editorial Manager ZIP
 
-1. Upload the exact curated reviewer bundle directly to Editorial Manager as the reviewer-access data/code package.
+The upload-ready package is already frozen and verified:
+
+```text
+file                    SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+SHA256                  586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e
+size                    76,579 bytes
+files                   23
+bundled tests           13 passed / 0 failed
+anonymity scan          PASS
+checksum manifest       PASS
+receipt                 submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json
+```
+
+1. Upload this exact ZIP directly to Editorial Manager as the reviewer-access data/code package.
 2. Do not create or insert an identity-bearing public URL merely to satisfy a link field.
 3. In Editorial Manager, identify the uploaded package as the reviewer-access location if the form permits.
 4. **Also complete the archive deposit at initial submission**; the ZIP route replaces only the reviewer-access link, not the archive-deposit requirement.
