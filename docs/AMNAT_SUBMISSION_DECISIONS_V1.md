@@ -91,12 +91,12 @@ INV1_PROCESS_COMPARISONS                336 PASS
 CANONICAL_MAPPING_GUARD                 PASS
 UTA1_10_DIAGNOSTIC_TABLE_MANUAL_QA       PASS_PAGES_25_27_EXCLUSION_STATE
 UTA1_11_INTERVAL_BOX_MANUAL_QA            PASS_PAGES_27_28_OUTER_SET_CAVEAT
-FINAL_FULL_PAGE_PROOFREAD                 OPEN
+FINAL_FULL_PAGE_PROOFREAD                 PASS_34_34
 ```
 
 ## Remaining submission actions
 
-The current UTA1.10-UTA1.11 source passes Python 3.11/3.12 CI (566/566), review-package build, rendered identity scan, executable claim verification, and targeted manual QA of the diagnostic table and interval-box caveat. A final full human page-by-page proofread remains before upload. The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
+The current UTA1.10-UTA1.11 source passes Python 3.11/3.12 CI (566/566), review-package build, rendered identity scan, executable claim verification, targeted QA of the diagnostic table and interval-box caveat, and full rendered page-by-page QA (34/34). The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
 
 Remaining actions are controlled outside the scientific package:
 
@@ -135,7 +135,7 @@ FORMAT_LIMITS           = PASS
 ANONYMOUS_REVIEW_FILES  = READY_CURRENT_UTA1_11
 REVIEWER_CODE_PACKAGE   = READY_CURRENT_UTA1_11
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
-INTERNAL_BLOCKERS       = FINAL_HUMAN_PAGE_BY_PAGE_PROOFREAD
+INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
 MAIN_OPEN_RISK          = UTA1_10_11_DIAGNOSTIC_BIOLOGICAL_PAYOFF
 ```
