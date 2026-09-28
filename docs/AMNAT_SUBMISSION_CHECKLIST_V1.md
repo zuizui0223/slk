@@ -77,7 +77,7 @@ Current journal instructions distinguish reviewer access from archiving. At firs
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Use the exact curated anonymous bundle for either reviewer-access route.
 
-Status: `PASS INTERNALLY — UTA1.11 BUNDLE VERIFIED; CHOOSE PRIVATE-LINK OR EM-ZIP REVIEW ROUTE, CREATE INITIAL ARCHIVE DEPOSIT, AND PLAN PERMANENT DOI`.
+Status: `PASS INTERNALLY — UTA1.11 BUNDLE VERIFIED; EDITORIAL MANAGER ZIP ROUTE IS READY (SHA256 586412fb...42503e); INITIAL ARCHIVE DEPOSIT AND PERMANENT DOI STILL REQUIRED`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -121,7 +121,7 @@ Remaining actions are external/human controlled:
 
 ```text
 AUTHOR_METADATA                       REQUIRED
-REVIEWER_DATA_CODE_ACCESS_ROUTE       PRIVATE_LINK_OR_EM_ZIP_REQUIRED
+REVIEWER_DATA_CODE_ACCESS_ROUTE       EDITORIAL_MANAGER_ZIP_READY
 INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      REQUIRED_AT_SUBMISSION
 PERMANENT_DATA_CODE_ARCHIVE_DOI        REQUIRED_FOR_PUBLICATION
 ACKNOWLEDGMENTS_IN_AUTHOR_COMMENTS     REQUIRED
