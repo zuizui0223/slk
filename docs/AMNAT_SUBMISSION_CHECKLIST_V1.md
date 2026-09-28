@@ -36,25 +36,29 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — REBUILD PENDING AFTER PRIOR-ART EXPANSION
+### 1. Anonymous review manuscript — PASS
 
-The CI-built review manuscript is generated directly from the canonical V4 source. Adding Bowers et al. (2005) changes the current manuscript source and bibliography, so the previously generated package is stale until this branch completes a fresh build.
+The CI-built review manuscript is generated directly from the canonical V4 source. The Bowers et al. (2005) prior-art expansion was rebuilt from main commit `b4285a244ebdb8f7adab0f2e9eb42a8d8dc92fe4` in workflow run `36441156403` / artifact `10978421671`.
 
 ```text
-CURRENT_SOURCE_TEXT_WORDS      6131
-CURRENT_SOURCE_TABLES           3
-CURRENT_SOURCE_FIGURES          3
-REVIEW_PDF_REBUILD              PENDING
-STRUCTURE_ANONYMITY_RECHECK     PENDING
-REVIEWER_BUNDLE_REBUILD         PENDING
-FULL_PAGE_BY_PAGE_PROOFREAD     PENDING
+MAIN_REVIEW_PDF_PAGES         35
+ANONYMOUS_TITLE_PDF_PAGES      1
+DOUBLE_SPACED                  true
+LINE_NUMBERS                   true
+PAGE_NUMBERS                   true
+EMBEDDED_FIGURES               3
+RENDERED_IDENTITY_SCAN         PASS
+PRIOR_ART_CORE_REFERENCES      10/10 PASS
+REVIEWER_BUNDLE_CLEAN_FILES    17
+REVIEWER_BUNDLE_CACHE_FILES     0
+FULL_PAGE_BY_PAGE_PROOFREAD    PASS_35_35
 ```
 
-The previous UTA1.11 PDF passed full QA, but it predates the Bowers et al. prior-art expansion. Rebuild and recheck the current rendered manuscript before upload.
+The 35-page Bowers-expanded PDF passed page-by-page visual review. The current main render is pixel-identical across all 35 pages to the inspected pull-request render, and extracted-text checks found no identity strings, unresolved placeholders, merge markers, or broken glyphs. The ten registered core references are present in Literature Cited.
 
-Status: `REBUILD PENDING — PREVIOUS UPLOAD FILES ARE STALE`.
+Status: `PASS FOR CURRENT GENERATED FILES — FULL PAGE QA CLOSED`.
 
-### 2. Anonymous reviewer code/theory package — REBUILD PENDING
+### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, REVIEW ACCESS ROUTE REQUIRED
 
 The review bundle is curated rather than being a repository dump. It contains:
 
@@ -74,7 +78,7 @@ Current journal instructions distinguish reviewer access from archiving. At firs
 
 The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Use the exact curated anonymous bundle for either reviewer-access route.
 
-Status: `REBUILD CURRENT BUNDLE — PREVIOUS REVIEWER ZIP CHECKSUM IS STALE AFTER MANUSCRIPT CHANGE`.
+Status: `PASS INTERNALLY — DETERMINISTIC CACHE-FREE 17-FILE REVIEWER ZIP VERIFIED; EDITORIAL MANAGER ZIP ROUTE READY; INITIAL ARCHIVE DEPOSIT AND PERMANENT DOI STILL REQUIRED`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -112,14 +116,14 @@ Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No internal scientific-package, rendered-manuscript, or mechanical-format blocker remains. The current UTA1.10-UTA1.11 source produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated reviewer bundle with executable claim verification; all 34 rendered pages passed full-page QA.
+No internal scientific-package, rendered-manuscript, or mechanical-format blocker remains. The current UTA1.10-UTA1.11 source with the Bowers et al. prior-art boundary produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated deterministic reviewer bundle with executable claim verification; all 35 rendered pages passed full-page QA.
 
 Remaining actions are external/human controlled:
 
 ```text
 AUTHOR_METADATA                       REQUIRED
-REVIEWER_DATA_CODE_ACCESS_ROUTE       REBUILD_PENDING
-INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      PAYLOAD_REGENERATION_PENDING
+REVIEWER_DATA_CODE_ACCESS_ROUTE       EDITORIAL_MANAGER_ZIP_READY
+INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      PAYLOAD_READY_AUTHENTICATED_DEPOSIT_PENDING
 PERMANENT_DATA_CODE_ARCHIVE_DOI        METADATA_TEMPLATE_READY_DOI_PENDING
 ACKNOWLEDGMENTS_IN_AUTHOR_COMMENTS     REQUIRED
 AUTHOR_CONTRIBUTIONS_IN_COMMENTS       REQUIRED
