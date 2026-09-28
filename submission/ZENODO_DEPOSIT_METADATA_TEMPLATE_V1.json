@@ -1,0 +1,38 @@
+{
+  "schema_version": "SLK_ZENODO_DEPOSIT_METADATA_TEMPLATE_V1",
+  "status": "AUTHOR_METADATA_REQUIRED_BEFORE_DEPOSIT",
+  "zenodo_resource_type": "software",
+  "title": "Reproducibility materials for From functional conflict to evolutionary architecture: thresholds for differentiation",
+  "description": "Reproducibility materials accompanying the theory manuscript 'From functional conflict to evolutionary architecture: thresholds for differentiation'. The package contains the manuscript source, theory notes, figure sources, executable threshold/process implementation, claim verifier, regression test, anonymity audit, and checksum manifest needed to reproduce the registered constructive witness regimes and process checks.",
+  "creators": [
+    {
+      "name": "[AUTHOR NAME REQUIRED]",
+      "orcid": "[OPTIONAL]",
+      "affiliation": "[AUTHOR AFFILIATION REQUIRED]"
+    }
+  ],
+  "keywords": [
+    "functional conflict",
+    "trait architecture",
+    "modularity",
+    "evolutionary accessibility",
+    "fixation",
+    "weak mutation"
+  ],
+  "language": "eng",
+  "license": "[AUTHOR CHOICE — SELECT A LICENSE APPROPRIATE FOR CODE/THEORY MATERIALS]",
+  "publication_date": "[SET WHEN RECORD IS PUBLISHED]",
+  "upload_file": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
+  "upload_file_sha256": "586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e",
+  "upload_file_size_bytes": 76579,
+  "draft_visibility": "UNPUBLISHED_DRAFT",
+  "intended_final_file_visibility": "PUBLIC",
+  "reserve_doi_before_publication": "OPTIONAL",
+  "related_article_doi": "[ADD AFTER ARTICLE DOI EXISTS]",
+  "notes": [
+    "Use a Zenodo draft at initial submission; do not publish solely to create reviewer access.",
+    "Reviewer access can use the separate Editorial Manager ZIP route.",
+    "Before publication, confirm creators, license, final files, related article metadata, and DOI state.",
+    "If the final archived object changes materially, regenerate and reverify the ZIP checksum before publication."
+  ]
+}
