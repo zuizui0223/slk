@@ -43,7 +43,8 @@ The journal encourages reviewer suggestions. Do not infer names from citations o
 - Preprint status: [YES/NO + repository if applicable]
 - Agreement with journal data-sharing policy: [AUTHOR CONFIRMATION]
 - Reviewer-access route: [PRIVATE/ANONYMIZED REPOSITORY LINK OR EDITORIAL MANAGER ZIP]
-- Permanent archive/DOI plan: [CURATED REPOSITORY REQUIRED]
+- Initial archive deposit: [REQUIRED AT SUBMISSION; MAY REMAIN PRIVATE FOR REVIEW]
+- Permanent archive/DOI plan: [REQUIRED FOR PUBLICATION]
 
 ## Data/code access and archiving — two separate gates
 
@@ -57,7 +58,7 @@ B  a ZIP file uploaded directly to Editorial Manager
 
 The reviewer-access route is therefore **not** restricted to an anonymous external URL.
 
-Separately, the journal's archiving policy requires the data/code package to be deposited in a public data archive as a condition of publication, with the archive prepared at initial submission. The deposit may remain non-public/private-for-review during peer review. For publication, the repository must be curated, permanent and freely accessible, and the dataset/code archive must have a DOI. If code is hosted on GitHub, the journal specifically recommends depositing the final necessary code on Zenodo to obtain a permanent DOI.
+Separately, the journal's archiving policy requires the data/code package to be deposited in a public data archive at initial submission, although the deposit may remain non-public/private-for-review during peer review. For publication, the repository must be curated, permanent and freely accessible, and the dataset/code archive must have a DOI. If code is hosted on GitHub, the journal specifically recommends depositing the final necessary code on Zenodo to obtain a permanent DOI.
 
 For SLK, the reviewer package should be the exact curated anonymous review bundle, not the identity-bearing GitHub repository. Whether supplied through a private repository link or Editorial Manager ZIP, it must preserve:
 
@@ -75,7 +76,7 @@ Insert a reviewer-access statement using the private/anonymized URL, for example
 
 ### Route B — Editorial Manager ZIP
 
-Upload the exact curated reviewer bundle as the reviewer-accessible ZIP in Editorial Manager. Do not invent or insert a public identity-bearing URL merely to create a link. Record the eventual permanent repository/DOI separately for the publication archive.
+Upload the exact curated reviewer bundle as the reviewer-accessible ZIP in Editorial Manager. Do not invent or insert a public identity-bearing URL merely to create a link. This route changes only reviewer access: create the required archive deposit separately at initial submission, then finalize its DOI/public state for publication.
 
 The identity-bearing GitHub repository URL must not be inserted into the double-anonymous review manuscript.
 
@@ -112,7 +113,8 @@ The exact placement should follow the journal's current instruction that scienti
 - anonymous review manuscript PDF/DOCX generated from the canonical source;
 - anonymous title page;
 - reviewer-access data/code package through either a private/anonymized repository link or an Editorial Manager ZIP;
-- permanent curated archive/DOI plan for publication;
+- initial private/non-public archive deposit in a curated repository;
+- permanent archive DOI/publication plan;
 - any journal-required source files;
 - author metadata in Editorial Manager only.
 
@@ -123,6 +125,7 @@ SCIENTIFIC_PACKAGE = READY
 DOUBLE_ANONYMITY = READY
 COVER_LETTER = NOT_REQUIRED
 REVIEWER_DATA_CODE_ACCESS = PRIVATE_LINK_OR_EM_ZIP_REQUIRED
+INITIAL_DATA_CODE_ARCHIVE_DEPOSIT = REQUIRED_AT_SUBMISSION
 PERMANENT_DATA_CODE_ARCHIVE_DOI = REQUIRED_FOR_PUBLICATION
 AUTHOR_METADATA = REQUIRED_EXTERNAL_ACTION
 ACKNOWLEDGMENTS_AND_CONTRIBUTIONS = REQUIRED_EXTERNAL_ACTION
