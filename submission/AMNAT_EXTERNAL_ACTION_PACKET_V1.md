@@ -7,7 +7,7 @@ SCIENTIFIC_PACKAGE         READY
 FULL_CI                    PASS
 ANONYMOUS_REVIEW_MANUSCRIPT READY
 REVIEWER_CODE_THEORY_BUNDLE READY
-FULL_PAGE_QA               PASS_34_34
+FULL_PAGE_QA               PASS_35_35
 INTERNAL_BLOCKERS          NONE
 ```
 
@@ -30,7 +30,7 @@ The upload-ready package is already frozen and verified:
 file                    SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
 SHA256                  ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
 size                    58,096 bytes
-files                   23
+files     17
 bundled tests           13 passed / 0 failed
 cache/bytecode files    0
 anonymity scan          PASS
