@@ -318,6 +318,32 @@ The executable verifier instantiates the three failure regimes using the registe
 
 Boundary policy is fail-closed: `Phi=0`, `g0=0`, and `Delta_R=0` are not assigned to either neighboring regime. The local-release zero requires higher-order path geometry, and an estimated interval crossing any zero surface remains unresolved.
 
+## UTA1.11 — interval-valued compatible-state diagnostic
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `scripts/slk_threshold_atlas.py`
+- `tests/test_unified_threshold_atlas.py`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+
+Registered diagnostic claim:
+
+```text
+valid intervals I_Phi, I_g, I_Delta
+-> retain every UTA1.10 state whose sequential sign constraints remain possible
+
+nested refinement:
+I'_Phi subset I_Phi
+I'_g subset I_g
+I'_Delta subset I_Delta
+
+-> C(I'_Phi,I'_g,I'_Delta) subset C(I_Phi,I_g,I_Delta)
+```
+
+The compatible set is fail-closed: zero-crossing intervals retain boundary states and any downstream branches still allowed by positive values. The set-inclusion result concerns genuinely nested deterministic bounds; separately estimated confidence intervals are not asserted to be nested. No causal mechanism is identified by membership in the compatible set.
+
 ## Freeze rule
 
 The SLK manuscript may simplify notation, but it may not strengthen the source claim. In particular:
