@@ -27,18 +27,20 @@ Choose exactly one reviewer-access route for initial submission.
 1. Upload the exact curated reviewer bundle directly to Editorial Manager as the reviewer-access data/code package.
 2. Do not create or insert an identity-bearing public URL merely to satisfy a link field.
 3. In Editorial Manager, identify the uploaded package as the reviewer-access location if the form permits.
-4. Keep the permanent DOI archive as a separate publication requirement.
+4. **Also complete the archive deposit at initial submission**; the ZIP route replaces only the reviewer-access link, not the archive-deposit requirement.
 
-## Route decision 2 — permanent archive
+## Route decision 2 — archive deposit and publication DOI
 
-Prepare a curated permanent repository deposit containing only final necessary data/code/theory materials plus a comprehensive README.
+Prepare a curated repository deposit containing only final necessary data/code/theory materials plus a comprehensive README. The archive deposit is required at initial submission but may remain private/non-public for peer review.
 
-For code maintained on GitHub, the journal recommends a permanent DOI deposit such as Zenodo.
+For publication, finalize the archive in a curated permanent repository and obtain a DOI. For code maintained on GitHub, the journal recommends a permanent DOI deposit such as Zenodo.
 
 ```text
-PERMANENT_ARCHIVE_PROVIDER  = [AUTHOR CHOICE]
-PERMANENT_ARCHIVE_DOI       = [PENDING]
-PUBLICATION_READY           = false until DOI/archive gate closes
+ARCHIVE_PROVIDER           = [AUTHOR CHOICE]
+ARCHIVE_DEPOSIT_CREATED    = false
+REVIEW_PRIVATE_ACCESS      = [PENDING]
+PERMANENT_ARCHIVE_DOI      = [PENDING]
+PUBLICATION_READY          = false until DOI/archive gate closes
 ```
 
 ## Author-controlled metadata
@@ -69,14 +71,16 @@ Before submission the authors must edit this sentence if needed so it exactly ma
 ## Final portal order
 
 ```text
-1  choose reviewer-access route
-2  prepare reviewer access package/link
-3  approve AI disclosure
-4  enter author metadata
-5  enter acknowledgments + contributions in Author Comments
-6  answer preprint/data-sharing fields
-7  enter reviewer/AE suggestions if desired
-8  upload anonymous manuscript + title page + reviewer data/code package
-9  verify Editorial Manager-generated review PDF
-10 obtain all-author approval and submit
+1  choose archive provider and create initial private/non-public deposit
+2  choose reviewer-access route (private link or EM ZIP)
+3  prepare reviewer access package/link
+4  approve AI disclosure
+5  enter author metadata
+6  enter acknowledgments + contributions in Author Comments
+7  answer preprint/data-sharing fields
+8  enter reviewer/AE suggestions if desired
+9  upload anonymous manuscript + title page + reviewer data/code package
+10 verify Editorial Manager-generated review PDF
+11 obtain all-author approval and submit
+12 before publication, finalize permanent DOI archive
 ```
