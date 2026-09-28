@@ -26,19 +26,21 @@ Therefore an external anonymous URL is not the only valid reviewer-access route.
 
 ## Permanent archiving
 
-The journal separately requires data/code archiving as a condition of publication. The archive should be prepared at initial submission, may be private for peer review, and must ultimately be hosted in a curated permanent repository with a DOI and public accessibility as required by the journal.
+The journal separately requires data/code archiving. Its instructions state that complete deposition in a public data archive is required at the time of initial submission, although the deposit may remain private/non-public for peer review. The permanent DOI is a publication-stage requirement and must be in place before production/publication.
 
 For GitHub-hosted code, the journal recommends depositing the final necessary code on Zenodo to obtain a permanent DOI.
 
-Thus the SLK submission workflow should not conflate:
+Thus the SLK submission workflow should distinguish:
 
 ```text
-reviewer access
+reviewer access route
 !=
-permanent publication archive
+archive-deposit requirement
+!=
+final DOI/publication state
 ```
 
-A direct Editorial Manager ZIP can satisfy reviewer access, while the permanent DOI archive remains a separate publication gate.
+A direct Editorial Manager ZIP can satisfy reviewer access, but it does not remove the initial-submission archive-deposit requirement. The DOI can be finalized later for publication.
 
 ## Generative AI
 
@@ -50,6 +52,7 @@ For SLK, AI use was broader than language polishing and included scientific draf
 
 ```text
 REVIEWER_ACCESS_ROUTE          = PRIVATE_LINK_OR_EM_ZIP
+ARCHIVE_DEPOSIT                 = REQUIRED_AT_INITIAL_SUBMISSION
 PERMANENT_ARCHIVE_DOI          = REQUIRED_FOR_PUBLICATION
 AI_DISCLOSURE                  = REQUIRED_AUTHOR_APPROVAL
 COVER_LETTER                   = NOT_EXPECTED
