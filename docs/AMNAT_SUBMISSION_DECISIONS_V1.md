@@ -12,7 +12,7 @@ ADD_SECOND_POPULATION_PROCESS_BEFORE_SUBMISSION = false
 
 The fixation/occupancy results remain tied to the registered exponential Moran / connected symmetric rare-mutation process. Their role is not to claim universal population genetics. Their role is to demonstrate that transporting the same architecture-value object into a declared stochastic population process can create new separations and can also force an exact invariant.
 
-Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is whether UTA1.10 gate localization provides enough biological leverage beyond familiar component theories. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
+Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is whether UTA1.10-UTA1.11 gate localization and conservative uncertainty propagation provide enough biological leverage beyond familiar component theories. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
 
 Revisit only if review specifically demands process robustness.
 
