@@ -491,6 +491,8 @@ def verify() -> dict[str, object]:
         "medium_states": list(medium_states),
         "narrow_states": list(narrow_states),
         "nested_refinement_monotone": True,
+        "marginal_box_is_conservative_outer_set": True,
+        "exact_joint_feasibility_supported": False,
         "statistical_partial_identification_novelty_claimed": False,
         "pass": True,
     }
