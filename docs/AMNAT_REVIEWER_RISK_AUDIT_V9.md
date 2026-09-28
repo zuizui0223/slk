@@ -104,7 +104,7 @@ This gives a direct frequency-resolution criterion for ecological-gradient exper
 
 > If the component algebra, invasion definition, extrapolation device, and fixation/occupancy process are established, what biological work is done by the integrated SLK transport?
 
-This is now the principal conceptual-review task. The strongest answer is UTA1.10: persistent integration is observationally non-identifying, but a fixed upstream comparison plus the measured sign sequence separates negative architecture value, local release barriers, and rare-establishment barriers; if all three early signs are positive, those explanations are explicitly excluded rather than differentiation being declared inevitable. The one-family atlas shows these are compatible states of one comparison, while G1-G9 specifies what must be measured before each localization is licensed. The argument does not depend on priority claims for the component mathematics.
+This is now the principal conceptual-review task. The strongest answer is UTA1.10-UTA1.11: persistent integration is observationally non-identifying, but a fixed upstream comparison plus the measured sign sequence separates negative architecture value, local release barriers, and rare-establishment barriers; if all three early signs are positive, those explanations are explicitly excluded rather than differentiation being declared inevitable. When estimates are uncertain, marginal intervals define a conservative box-compatible outer state set rather than forcing a midpoint label; genuinely nested boxes can only eliminate states, while exact joint compatibility would require the joint feasible region. G1-G9 specifies what must be measured before each localization is licensed. The argument does not depend on priority claims for the component mathematics or statistical partial-identification theory.
 
 A secondary model-validation question remains:
 
@@ -138,7 +138,7 @@ SAMPLING_PLUS_APPROXIMATION_INTERVAL READY
 ENVIRONMENTAL_THRESHOLD_ERROR_BOUND  READY
 EMPIRICAL_CEILING                    THEORY_ONLY
 NUMERICAL_METHOD_NOVELTY             NOT_CLAIMED
-MAIN_REVIEW_RISK                     INTEGRATED_TRANSPORT_BIOLOGICAL_PAYOFF
+MAIN_REVIEW_RISK                     UTA1_10_11_DIAGNOSTIC_BIOLOGICAL_PAYOFF
 SECONDARY_REVIEW_RISK                LOCAL_SMOOTHNESS_BOUND_VALIDATION
 PRIMARY_TARGET                       THE_AMERICAN_NATURALIST
 ~~~

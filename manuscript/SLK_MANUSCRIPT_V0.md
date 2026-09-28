@@ -555,6 +555,12 @@ Boundary values are not pooled with neighboring failures. `Phi=0` is the archite
 
 Conversely, `Phi>0`, `g_0>0`, and `Delta_R>0` only exclude these three early failure modes in the measured context. They do not prove that the full path is barrier-free or that differentiation must fix, persist, or be historically realized.
 
+### UTA1.11 — uncertainty yields a compatible-state set
+
+When `Phi`, `g_0`, and `Delta_R` are bounded by closed intervals, classification is set-valued. Their Cartesian product defines an uncertainty box, and every UTA1.10 state whose sequential sign conditions intersect that box remains box-compatible. An interval spanning zero therefore retains the corresponding boundary state and any downstream positive branch that is still possible.
+
+If one valid interval triplet is narrowed by set inclusion in all three coordinates, the compatible-state set can only stay unchanged or shrink. A singleton box-compatible set localizes one early gate state; a larger set reports which explanations remain unresolved under the box approximation. Marginal intervals can over-retain states when joint covariance or other constraints make some sign combinations impossible; exact joint compatibility requires a joint feasible region. This is fail-closed uncertainty propagation through the registered sign logic, not a new statistical partial-identification theorem. Independently re-estimated confidence intervals need not be nested across repeated samples.
+
 UTA1.10 is a diagnostic synthesis, not a mechanism-identification theorem. Its contribution is gate localization under a fixed architecture comparison: the same macroscopic persistence can correspond to different sign patterns, and each pattern directs the next measurement. Mechanism attribution remains a separate causal problem.
 
 ## 11. Empirical programme

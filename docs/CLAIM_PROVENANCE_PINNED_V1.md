@@ -318,6 +318,33 @@ The executable verifier instantiates the three failure regimes using the registe
 
 Boundary policy is fail-closed: `Phi=0`, `g0=0`, and `Delta_R=0` are not assigned to either neighboring regime. The local-release zero requires higher-order path geometry, and an estimated interval crossing any zero surface remains unresolved.
 
+## UTA1.11 — interval-valued compatible-state diagnostic
+
+Current canonical owner: `zuizui0223/slk`
+
+Canonical source surfaces:
+- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`
+- `scripts/slk_threshold_atlas.py`
+- `tests/test_unified_threshold_atlas.py`
+- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md`
+
+Registered diagnostic claim:
+
+```text
+marginal intervals I_Phi, I_g, I_Delta
+-> Cartesian box B=I_Phi x I_g x I_Delta
+-> retain every UTA1.10 state whose sequential sign constraints intersect B
+
+nested refinement:
+I'_Phi subset I_Phi
+I'_g subset I_g
+I'_Delta subset I_Delta
+
+-> C(I'_Phi,I'_g,I'_Delta) subset C(I_Phi,I_g,I_Delta)
+```
+
+The box-compatible set is fail-closed: zero-crossing intervals retain boundary states and any downstream branches still allowed by positive values. With marginal intervals alone this is a conservative outer state set, because covariance or other joint constraints can make retained sign combinations jointly impossible; exact joint compatibility would require a joint feasible region. The set-inclusion result concerns genuinely nested deterministic boxes; separately estimated confidence intervals are not asserted to be nested. No causal mechanism is identified by membership in the compatible set.
+
 ## Freeze rule
 
 The SLK manuscript may simplify notation, but it may not strengthen the source claim. In particular:

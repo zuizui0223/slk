@@ -93,7 +93,8 @@ SLK owns the cross-repository theory needed for the integrated hierarchy:
 9. the arbitrary-shape endpoint result showing that deterministic invasion requires only rare-D and resident-D ecological offsets even when the interior frequency response is nonlinear;
 10. the finite-frequency certification result adapting near-endpoint approximation to bounded invasion sign decisions with explicit unresolved states;
 11. the UTA1.10 gate-localization diagnostic: persistent integration is observationally non-identifying; strict measured signs of `Phi`, the local release gradient, and rare invasion localize a first failing layer, while all three positive signs exclude those early failure explanations without implying that differentiation must be realized;
-12. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+12. the UTA1.11 uncertainty diagnostic: marginal intervals define a conservative Cartesian box of compatible early-gate states, and genuinely nested valid boxes can only shrink that outer set rather than forcing a midpoint classification;
+13. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
 
 SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
 
@@ -101,7 +102,7 @@ SCH and BALANCE supply upstream identified objects and classifications; BITA rem
 
 SLK does **not** claim to originate modularity/evolvability theory, functional specialization/division-of-labor theory, mutational accessibility, invasion-versus-fixation distinctions, weak-mutation long-run population theory, or Richardson-type extrapolation. The registered prior-art boundary therefore treats the component mathematics and process results as antecedents rather than priority claims.
 
-The narrower contribution is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization. Its main diagnostic payoff is UTA1.10: the same persistent integrated phenotype can arise because architecture value is negative, because the initial release direction is downhill, or because rare establishment fails; measured strict signs localize a first failed layer, while an all-positive early sign sequence excludes those three explanations but leaves higher-order path, fixation, demographic, and historical explanations open. The one-family atlas, process-consistency surface, and G1-G9 ladder make that localization auditable without treating the component algebra as new.
+The narrower contribution is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization. Its main diagnostic payoff is UTA1.10-UTA1.11: the same persistent integrated phenotype can arise because architecture value is negative, because the initial release direction is downhill, or because rare establishment fails; strict signs localize or exclude those early explanations, while interval uncertainty is carried forward as a conservative box-compatible outer state set rather than collapsed to a midpoint label. The one-family atlas, process-consistency surface, and G1-G9 ladder make that localization auditable without treating the component algebra or set propagation as new.
 
 ## Architecture cost K
 
@@ -144,7 +145,7 @@ For the flagship argument, the canonical path is deliberately short:
 2. `figures/FIG1_LOGIC_DIAGRAM.svg` — unified critical-surface transport and witness logic.
 3. `figures/FIG2_PHASE_MAP.svg` — architecture value, realization coordinates, and ecological threshold displacement.
 4. `figures/FIG3_EMPIRICAL_LADDER.svg` — cumulative empirical claim ladder.
-5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master atlas, constructive witnesses, and UTA1.10 diagnostic.
+5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master atlas, constructive witnesses, and UTA1.10-UTA1.11 diagnostics.
 6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
 7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem, derived-consequence, diagnostic, and empirical-handoff status.
 8. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
@@ -164,6 +165,7 @@ FIXATION_OCCUPANCY_INVARIANT_REGISTERED
 ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
 FINITE_FREQUENCY_ENDPOINT_CERTIFICATION_REGISTERED
 UTA1_10_GATE_LOCALIZATION_REGISTERED
+UTA1_11_INTERVAL_COMPATIBLE_STATE_SET_REGISTERED
 EMPIRICAL_G1_G9_CLAIM_LADDER_REGISTERED
 PEDICULARIS_PROSPECTIVE_ANCHOR_REGISTERED
 PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO

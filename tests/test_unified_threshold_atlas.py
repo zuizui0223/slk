@@ -7,6 +7,7 @@ from scripts.slk_threshold_atlas import (
     REGISTERED_WITNESS_PARAMETERS,
     canonical_architecture_game,
     canonical_reciprocal_fixation_ratio_closed_form,
+    compatible_persistent_integration_states,
     endpoint_curvature_interval,
     endpoint_curvature_interval_with_sampling,
     endpoint_lipschitz_interval,
@@ -135,6 +136,107 @@ def test_uta1_10_rejects_nonpositive_zero_tolerance():
     with pytest.raises(ValueError, match="zero_tol must be positive"):
         localize_persistent_integration_gate(
             1.0, 1.0, 1.0, zero_tol=0.0
+        )
+
+
+def test_uta1_11_interval_singletons_recover_point_states():
+    assert compatible_persistent_integration_states(
+        (-0.4, -0.1),
+        (-1.0, 1.0),
+        (-1.0, 1.0),
+    ) == ("ARCHITECTURE_VALUE_FAILURE",)
+
+    assert compatible_persistent_integration_states(
+        (0.1, 0.4),
+        (-0.5, -0.1),
+        (-1.0, 1.0),
+    ) == ("LOCAL_RELEASE_FAILURE",)
+
+    assert compatible_persistent_integration_states(
+        (0.1, 0.4),
+        (0.1, 0.5),
+        (-0.5, -0.1),
+    ) == ("RARE_INVASION_FAILURE",)
+
+    assert compatible_persistent_integration_states(
+        (0.1, 0.4),
+        (0.1, 0.5),
+        (0.1, 0.7),
+    ) == ("EARLY_GATES_PASSED",)
+
+
+def test_uta1_11_wide_intervals_return_compatible_state_set():
+    states = compatible_persistent_integration_states(
+        (-0.2, 0.3),
+        (-0.2, 0.3),
+        (-0.2, 0.3),
+    )
+    assert states == (
+        "ARCHITECTURE_VALUE_FAILURE",
+        "ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED",
+        "LOCAL_RELEASE_FAILURE",
+        "LOCAL_RELEASE_BOUNDARY_UNRESOLVED",
+        "RARE_INVASION_FAILURE",
+        "RARE_INVASION_BOUNDARY_UNRESOLVED",
+        "EARLY_GATES_PASSED",
+    )
+
+
+def test_uta1_11_nested_interval_refinement_cannot_add_states():
+    wide = set(
+        compatible_persistent_integration_states(
+            (-0.2, 0.4),
+            (-0.2, 0.4),
+            (-0.2, 0.4),
+        )
+    )
+    medium = set(
+        compatible_persistent_integration_states(
+            (0.1, 0.4),
+            (-0.1, 0.3),
+            (0.1, 0.4),
+        )
+    )
+    narrow = set(
+        compatible_persistent_integration_states(
+            (0.2, 0.3),
+            (0.1, 0.2),
+            (0.1, 0.2),
+        )
+    )
+    assert medium < wide
+    assert narrow < medium
+    assert narrow == {"EARLY_GATES_PASSED"}
+
+
+def test_uta1_11_near_zero_interval_keeps_boundary_state():
+    states = compatible_persistent_integration_states(
+        (0.5e-12, 2.0e-12),
+        (0.2, 0.3),
+        (0.2, 0.3),
+    )
+    assert states == (
+        "ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED",
+        "EARLY_GATES_PASSED",
+    )
+
+
+@pytest.mark.parametrize(
+    "phi_interval,g_interval,d_interval,match",
+    [
+        ((0.2, 0.1), (0.1, 0.2), (0.1, 0.2), "lower bound exceeds"),
+        ((0.1, 0.2), (float("nan"), 0.2), (0.1, 0.2), "bounds must be finite"),
+        ((0.1, 0.2), (0.1, 0.2), (float("-inf"), 0.2), "bounds must be finite"),
+    ],
+)
+def test_uta1_11_rejects_invalid_intervals(
+    phi_interval, g_interval, d_interval, match
+):
+    with pytest.raises(ValueError, match=match):
+        compatible_persistent_integration_states(
+            phi_interval,
+            g_interval,
+            d_interval,
         )
 
 

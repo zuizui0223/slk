@@ -242,6 +242,8 @@ The three failure regimes are realized by W1-W3 of the common witness family; th
 
 Exact boundary states are not assigned to either neighboring regime: `Phi=0` is the architecture-value boundary, `R'(0)-k=0` requires higher-order local path information, and `Delta_R=0` is the rare-invasion boundary. Numerically, the executable atlas applies the registered zero tolerance before assigning a sign regime.
 
+With interval uncertainty, the same diagnostic becomes set-valued. Every sign regime intersected by the valid intervals remains compatible, conditional on its upstream positive branches. If all three intervals are narrowed by set inclusion, the compatible-state set can only shrink or stay unchanged. This is the UTA1.11 uncertainty extension; it is ordinary fail-closed set propagation, not a new statistical identification theorem.
+
 ## 11. SLK hierarchy
 
 The flagship transport architecture is

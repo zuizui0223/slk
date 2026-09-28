@@ -1246,6 +1246,34 @@ UTA1.10 is not a theorem that phenotype alone reveals mechanism. It says the opp
 
 The three regimes above are not claimed to be exhaustive causes of persistent integration. Drift, alternative mutation paths, demographic history, developmental constraints, environmental heterogeneity, and other processes can generate additional explanations. UTA1.10 therefore localizes a gate within the declared SLK hierarchy; it does not establish the causal mechanism producing that gate value.
 
+## Diagnostic UTA1.11 — interval-valued compatible-state sets
+
+Real applications estimate `Phi`, `g0`, and `Delta_R` with uncertainty. Let closed deterministic intervals `I_Phi`, `I_g`, and `I_Delta` bound those three quantities. Rather than classify an interval by its midpoint, form the Cartesian uncertainty box `B=I_Phi x I_g x I_Delta` and define the box-compatible state set `C_box(B)` as every UTA1.10 state whose sequential sign conditions intersect that box.
+
+Thus an interval spanning zero retains the corresponding boundary state and, when the positive branch remains possible, any downstream states that are still compatible. For example, if `I_Phi` contains negative values, zero, and positive values, architecture-value failure, the architecture-value boundary, and downstream positive-`Phi` branches can all remain in `C`.
+
+A useful monotonicity follows immediately. If the bounds are tightened by set inclusion,
+
+```text
+I'_Phi   subset I_Phi
+I'_g     subset I_g
+I'_Delta subset I_Delta,
+```
+
+then
+
+```text
+C(I'_Phi,I'_g,I'_Delta)
+subset
+C(I_Phi,I_g,I_Delta).
+```
+
+Shrinking valid box bounds cannot create a previously box-incompatible gate state; it can only retain or eliminate candidates. A singleton box-compatible state set therefore gives the strongest UTA1.10 localization licensed by that box, whereas a multi-state set reports which explanations remain unresolved under the box approximation.
+
+### UTA1.11 claim boundary
+
+This is deterministic set propagation through the registered sign logic, not a new theory of partial identification or confidence intervals. If `I_Phi`, `I_g`, and `I_Delta` are only marginal bounds, `C_box` is a conservative outer state set: covariance or other joint constraints may make some retained sign combinations impossible. Exact joint compatibility would require a joint feasible region rather than only its Cartesian bounding box. The monotonicity statement applies when one valid box is genuinely nested inside another. Independently re-estimated confidence intervals need not be nested across repeated samples. UTA1.11 also does not identify the causal mechanism generating any retained state.
+
 ---
 
 ## 2. One-family constructive witnesses
