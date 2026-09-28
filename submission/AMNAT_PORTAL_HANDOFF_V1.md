@@ -42,13 +42,25 @@ The journal encourages reviewer suggestions. Do not infer names from citations o
 
 - Preprint status: [YES/NO + repository if applicable]
 - Agreement with journal data-sharing policy: [AUTHOR CONFIRMATION]
-- Reviewer-accessible data/code archive URL: [REQUIRED BEFORE SUBMISSION]
+- Reviewer-access route: [PRIVATE/ANONYMIZED REPOSITORY LINK OR EDITORIAL MANAGER ZIP]
+- Initial archive deposit: [REQUIRED AT SUBMISSION; MAY REMAIN PRIVATE FOR REVIEW]
+- Permanent archive/DOI plan: [REQUIRED FOR PUBLICATION]
 
-## Data/code archive gate — required at first submission
+## Data/code access and archiving — two separate gates
 
-The American Naturalist requires the data and/or code needed to recreate the results to be deposited in a public data repository and made accessible to reviewers and editors at first submission. The deposit may remain non-public during review, but the manuscript must contain a reviewer-accessible link.
+The American Naturalist requires the data/code needed to recreate results to be available to reviewers and editors at first submission. Its current submission instructions explicitly allow either:
 
-For SLK the deposited object should be the exact curated anonymous review bundle, not the identity-bearing GitHub repository. The deposit must preserve the existing anonymity audit:
+```text
+A  reviewer-accessible private/anonymized repository link
+OR
+B  a ZIP file uploaded directly to Editorial Manager
+```
+
+The reviewer-access route is therefore **not** restricted to an anonymous external URL.
+
+Separately, the journal's archiving policy requires the data/code package to be deposited in a public data archive at initial submission, although the deposit may remain non-public/private-for-review during peer review. For publication, the repository must be curated, permanent and freely accessible, and the dataset/code archive must have a DOI. If code is hosted on GitHub, the journal specifically recommends depositing the final necessary code on Zenodo to obtain a permanent DOI.
+
+For SLK, the reviewer package should be the exact curated anonymous review bundle, not the identity-bearing GitHub repository. Whether supplied through a private repository link or Editorial Manager ZIP, it must preserve:
 
 ```text
 repository_history_included = false
@@ -56,11 +68,17 @@ repository_remote_url_included = false
 author_metadata_included = false
 ```
 
-Before upload, replace the token below with the reviewer-accessible repository URL and insert the resulting sentence into the anonymous manuscript in a short Data and code availability section:
+### Route A — private/anonymized repository
+
+Insert a reviewer-access statement using the private/anonymized URL, for example:
 
 > The code and theory materials needed to reproduce the registered witness regimes, ecological threshold-displacement predictions, arbitrary-shape endpoint invasion, finite-frequency endpoint certification, frequency-response diagnostics, and fixation–occupancy verification are available to reviewers at [ANONYMOUS_REVIEW_ARCHIVE_URL].
 
-Do not insert the public identity-bearing repository URL into the double-anonymous manuscript.
+### Route B — Editorial Manager ZIP
+
+Upload the exact curated reviewer bundle as the reviewer-accessible ZIP in Editorial Manager. Do not invent or insert a public identity-bearing URL merely to create a link. This route changes only reviewer access: create the required archive deposit separately at initial submission, then finalize its DOI/public state for publication.
+
+The identity-bearing GitHub repository URL must not be inserted into the double-anonymous review manuscript.
 
 ## Author Comments field
 
@@ -80,19 +98,23 @@ Use only if needed. The journal states that cover letters are not expected and t
 
 ## Generative-AI transparency gate
 
-The journal permits generative AI for readability, drafting and code troubleshooting with human oversight, but use that generated scientific content must be described transparently in the manuscript where needed for repeatability. Before submission, the authors must approve an exact disclosure matching the actual use.
+The journal permits generative AI for readability, drafting, and code troubleshooting with human oversight. It further requires AI use that generated scientific content such as analysis or figures to be described transparently in the Methods to support repeatability.
 
-Suggested starting text, to be edited for factual accuracy:
+For SLK, generative AI was used beyond language polishing: it assisted scientific drafting, mathematical/theoretical development, code generation/troubleshooting, and repository/reproducibility work. The submission should therefore carry an explicit author-approved disclosure rather than treating disclosure as optional.
 
-> Generative AI tools were used during manuscript development to assist with drafting, editing, and code troubleshooting. All mathematical arguments, numerical checks, code, figures, references, and final prose were reviewed and validated by the authors, who take full responsibility for the submitted content.
+Conservative starting text, to be edited and approved by the authors for factual accuracy:
 
-Do not mark this gate complete until the wording accurately reflects actual use and is placed in the journal-appropriate location.
+> Generative AI tools were used during development of this work to assist with scientific drafting and editing, mathematical and theoretical exploration, and code generation and troubleshooting. All claims, derivations, numerical checks, code, figures, references, and final prose remain the responsibility of the authors and were subject to author review and validation.
+
+The exact placement should follow the journal's current instruction that scientific-content-generating AI use be described transparently in the Methods. Do not mark this gate complete until the authors approve the wording and confirm that it accurately describes the actual workflow.
 
 ## Upload set
 
 - anonymous review manuscript PDF/DOCX generated from the canonical source;
 - anonymous title page;
-- exact anonymous reviewer data/code deposit link in the manuscript;
+- reviewer-access data/code package through either a private/anonymized repository link or an Editorial Manager ZIP;
+- initial private/non-public archive deposit in a curated repository;
+- permanent archive DOI/publication plan;
 - any journal-required source files;
 - author metadata in Editorial Manager only.
 
@@ -102,11 +124,13 @@ Do not mark this gate complete until the wording accurately reflects actual use 
 SCIENTIFIC_PACKAGE = READY
 DOUBLE_ANONYMITY = READY
 COVER_LETTER = NOT_REQUIRED
-ANONYMOUS_DATA_CODE_DEPOSIT = REQUIRED_EXTERNAL_ACTION
+REVIEWER_DATA_CODE_ACCESS = PRIVATE_LINK_OR_EM_ZIP_REQUIRED
+INITIAL_DATA_CODE_ARCHIVE_DEPOSIT = REQUIRED_AT_SUBMISSION
+PERMANENT_DATA_CODE_ARCHIVE_DOI = REQUIRED_FOR_PUBLICATION
 AUTHOR_METADATA = REQUIRED_EXTERNAL_ACTION
 ACKNOWLEDGMENTS_AND_CONTRIBUTIONS = REQUIRED_EXTERNAL_ACTION
 REVIEWER_AND_AE_FIELDS = AUTHOR_CONTROLLED
-AI_DISCLOSURE = AUTHOR_APPROVAL_REQUIRED
+AI_DISCLOSURE = REQUIRED_AUTHOR_APPROVAL
 ALL_AUTHOR_APPROVAL = REQUIRED_EXTERNAL_ACTION
 PORTAL_UPLOAD = REQUIRED_EXTERNAL_ACTION
 ```

@@ -57,7 +57,7 @@ The fresh UTA1.11 PDF was rebuilt from the canonical source. The diagnostic tabl
 
 Status: `PASS FOR CURRENT GENERATED FILES — FULL PAGE QA CLOSED`.
 
-### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, DEPOSIT STILL REQUIRED
+### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, REVIEW ACCESS ROUTE REQUIRED
 
 The review bundle is curated rather than being a repository dump. It contains:
 
@@ -73,11 +73,11 @@ The review bundle is curated rather than being a repository dump. It contains:
 
 The verifier recomputes the common convex recovery family, all five registered witness regimes, the critical surfaces, and the fixation–occupancy invariant. The invariant grid contains 112 comparisons with maximum absolute error 0.0. The bundle identity scan passes and excludes repository history, remote URLs, and author metadata.
 
-Current journal instructions require data/code needed to recreate results to be deposited in a public data repository and made reviewer-accessible at first submission. The deposit can remain non-public during review, but a reviewer-accessible link must be included in the manuscript. Therefore direct portal upload of the bundle alone is not treated as sufficient unless the journal office explicitly confirms otherwise.
+Current journal instructions distinguish reviewer access from archiving. At first submission, reviewers/editors may receive the material through either a private/anonymized repository link or a ZIP uploaded directly to Editorial Manager. Separately, the journal requires the data/code archive deposit at initial submission; that deposit may remain private for peer review. A permanent DOI/public archive is required for publication.
 
-The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Deposit the exact curated anonymous bundle in a repository that supports anonymous/reviewer access and insert that link in the anonymous manuscript.
+The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Use the exact curated anonymous bundle for either reviewer-access route.
 
-Status: `PASS INTERNALLY — UTA1.11 BUNDLE VERIFIED; ANONYMOUS_REVIEW_ARCHIVE_URL remains an external submission blocker`.
+Status: `PASS INTERNALLY — UTA1.11 BUNDLE VERIFIED; CHOOSE PRIVATE-LINK OR EM-ZIP REVIEW ROUTE, CREATE INITIAL ARCHIVE DEPOSIT, AND PLAN PERMANENT DOI`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -99,7 +99,7 @@ Current instructions permit generative AI for readability, drafting and code tro
 
 A non-authoritative starting template is registered in `submission/AMNAT_PORTAL_HANDOFF_V1.md`.
 
-Status: `AUTHOR-APPROVED DISCLOSURE REQUIRED BEFORE SUBMISSION`.
+Status: `AI DISCLOSURE REQUIRED — AUTHOR APPROVAL OF EXACT WORDING BEFORE SUBMISSION`.
 
 ### 6. Reviewer / editor / additional-information fields
 
@@ -121,10 +121,12 @@ Remaining actions are external/human controlled:
 
 ```text
 AUTHOR_METADATA                       REQUIRED
-ANONYMOUS_REVIEW_ARCHIVE_URL          REQUIRED
+REVIEWER_DATA_CODE_ACCESS_ROUTE       PRIVATE_LINK_OR_EM_ZIP_REQUIRED
+INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      REQUIRED_AT_SUBMISSION
+PERMANENT_DATA_CODE_ARCHIVE_DOI        REQUIRED_FOR_PUBLICATION
 ACKNOWLEDGMENTS_IN_AUTHOR_COMMENTS     REQUIRED
 AUTHOR_CONTRIBUTIONS_IN_COMMENTS       REQUIRED
-AI_USE_DISCLOSURE                      REQUIRED_IF_APPLICABLE_TO_CONTENT
+AI_USE_DISCLOSURE                      REQUIRED_AUTHOR_APPROVAL
 SUGGESTED_REVIEWER_FIELDS              AUTHOR_CONTROLLED
 ASSOCIATE_EDITOR_SUGGESTION            AUTHOR_CONTROLLED
 PREPRINT_AND_DATA_SHARING_FIELDS       REQUIRED_PORTAL_RESPONSES
