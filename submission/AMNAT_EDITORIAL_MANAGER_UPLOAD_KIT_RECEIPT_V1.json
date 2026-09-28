@@ -1,18 +1,21 @@
 {
   "schema_version": "SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_RECEIPT_V1",
   "status": "LOCAL_UPLOAD_KIT_READY",
-  "source_main_commit": "4ef7c02facd19dac49d6be761f3b261f638dfcd1",
+  "source_main_commit": "b4285a244ebdb8f7adab0f2e9eb42a8d8dc92fe4",
   "kit_filename": "SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT.zip",
-  "kit_sha256": "b84f0d931cfb234765ea5fc57392a4a9e024c5b1fdf19fc92742529c9d6efdf1",
-  "kit_size_bytes": 1623854,
+  "kit_sha256": "3a0cc0fef7843fef7086602b63f4be5de7f243667d42bfb9fb3d731407217cd0",
+  "kit_size_bytes": 1607305,
   "kit_file_count": 8,
-  "review_manuscript_pages": 34,
+  "review_manuscript_pages": 35,
   "anonymous_title_pages": 1,
   "reviewer_bundle_filename": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
-  "reviewer_bundle_sha256": "586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e",
+  "reviewer_bundle_sha256": "ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b",
   "internal_sha256_manifest_passed": true,
   "portal_upload_performed": false,
   "initial_archive_deposit_performed": false,
   "all_author_approval_recorded": false,
-  "claim_ceiling": "LOCAL_SUBMISSION_KIT_ONLY_NO_SCIENTIFIC_CLAIM_CHANGE"
+  "claim_ceiling": "LOCAL_SUBMISSION_KIT_ONLY_NO_SCIENTIFIC_CLAIM_CHANGE",
+  "source_workflow_run_id": 36441156403,
+  "source_workflow_artifact_id": 10978421671,
+  "deterministic_archive": true
 }

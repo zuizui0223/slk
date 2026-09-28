@@ -8,10 +8,10 @@ The reviewer-access route is already ready as an Editorial Manager ZIP:
 
 ```text
 SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-SHA256 586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e
+SHA256 ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
 ```
 
-The same verified ZIP is suitable as the file payload for a Zenodo draft. Zenodo recommends ZIP packaging for deposits with many files, and a software record can contain a single compressed source/reproducibility package.
+The same verified, cache-free deterministic ZIP is suitable as the file payload for a Zenodo draft. Zenodo recommends ZIP packaging for deposits with many files, and a software record can contain a single compressed source/reproducibility package.
 
 ## Why draft first
 
@@ -45,9 +45,9 @@ Use exactly:
 
 ```text
 file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-size      76,579 bytes
-SHA256    586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e
-files     23
+size      58,096 bytes
+SHA256    ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
+files     17
 tests     13 passed / 0 failed
 identity  PASS
 ```

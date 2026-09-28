@@ -73,12 +73,12 @@ AMNAT_TEXT_WORDS_EXCL_LITERATURE       6131 PASS
 AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              3 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
-FULL_CI_PY311_PY312                      RECHECK_PENDING_PRIOR_ART
-REVIEW_MANUSCRIPT_PDF                    REBUILD_PENDING_PRIOR_ART
+FULL_CI_PY311_PY312                      PASS_571_571
+REVIEW_MANUSCRIPT_PDF                    35 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
 DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
-ANONYMOUS_REVIEWER_BUNDLE                REBUILD_PENDING_PRIOR_ART
-IDENTITY_SCAN                             RECHECK_PENDING_PRIOR_ART
+ANONYMOUS_REVIEWER_BUNDLE                PASS_17_FILES_CACHE_FREE
+IDENTITY_SCAN                             PASS
 CLAIM_VERIFIER_NE1_NE5_UTA1_11            PASS
 FIXATION_OCCUPANCY_INVARIANT_GRID        PROCESS_DERIVED PASS
 MORAN_PROCESS_CANONICAL_GRID              PASS
@@ -91,12 +91,12 @@ INV1_PROCESS_COMPARISONS                336 PASS
 CANONICAL_MAPPING_GUARD                 PASS
 UTA1_10_DIAGNOSTIC_TABLE_MANUAL_QA       PASS_PAGES_25_27_EXCLUSION_STATE
 UTA1_11_INTERVAL_BOX_MANUAL_QA            PASS_PAGES_27_28_OUTER_SET_CAVEAT
-FINAL_FULL_PAGE_PROOFREAD                 RECHECK_PENDING_PRIOR_ART
+FINAL_FULL_PAGE_PROOFREAD                 PASS_35_35
 ```
 
 ## Remaining submission actions
 
-The current UTA1.10-UTA1.11 source plus submission tooling passes Python 3.11/3.12 CI (571/571), review-package build, rendered identity scan, executable claim verification, targeted QA of the diagnostic table and interval-box caveat, and full rendered page-by-page QA (34/34). The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
+The current UTA1.10-UTA1.11 source plus the Bowers et al. prior-art boundary passes Python 3.11/3.12 CI (571/571), review-package build, rendered identity scan, executable claim verification, targeted QA of the diagnostic table and interval-box caveat, and full rendered page-by-page QA (35/35). The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
 
 Remaining actions are controlled outside the scientific package:
 
@@ -136,10 +136,10 @@ JOURNAL_PROSE           = READY
 PRIOR_ART_CORE          = READY
 FORMULA_CONSISTENCY     = PASS
 FORMAT_LIMITS           = PASS
-ANONYMOUS_REVIEW_FILES  = REBUILD_PENDING_PRIOR_ART
-REVIEWER_CODE_PACKAGE   = REBUILD_PENDING_PRIOR_ART
+ANONYMOUS_REVIEW_FILES  = READY_CURRENT_BOWERS_35_PAGE
+REVIEWER_CODE_PACKAGE   = READY_17_FILE_DETERMINISTIC
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
-INTERNAL_BLOCKERS       = CURRENT_REVIEW_PACKAGE_REBUILD
+INTERNAL_BLOCKERS       = NONE
 EXTERNAL_ACTIONS        = AUTHOR_INPUT + AUTHENTICATED_ZENODO_DRAFT + EDITORIAL_MANAGER_UPLOAD + APPROVAL + PUBLICATION_DOI
 MAIN_OPEN_RISK          = UTA1_10_11_DIAGNOSTIC_BIOLOGICAL_PAYOFF
 ```

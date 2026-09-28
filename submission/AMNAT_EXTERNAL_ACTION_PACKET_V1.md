@@ -7,7 +7,7 @@ SCIENTIFIC_PACKAGE         READY
 FULL_CI                    PASS
 ANONYMOUS_REVIEW_MANUSCRIPT READY
 REVIEWER_CODE_THEORY_BUNDLE READY
-FULL_PAGE_QA               PASS_34_34
+FULL_PAGE_QA               PASS_35_35
 INTERNAL_BLOCKERS          NONE
 ```
 
@@ -28,10 +28,11 @@ The upload-ready package is already frozen and verified:
 
 ```text
 file                    SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-SHA256                  586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e
-size                    76,579 bytes
-files                   23
+SHA256                  ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
+size                    58,096 bytes
+files     17
 bundled tests           13 passed / 0 failed
+cache/bytecode files    0
 anonymity scan          PASS
 checksum manifest       PASS
 receipt                 submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json
@@ -48,7 +49,7 @@ A provider-neutral verified payload is ready, and a Zenodo handoff is registered
 
 ```text
 payload                   SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-SHA256                    586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e
+SHA256                    ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
 Zenodo handoff             submission/ZENODO_DEPOSIT_HANDOFF_V1.md
 metadata template          submission/ZENODO_DEPOSIT_METADATA_TEMPLATE_V1.json
 ```
@@ -107,8 +108,8 @@ A convenience ZIP containing the validated upload files is prepared locally:
 
 ```text
 file       SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT.zip
-SHA256     b84f0d931cfb234765ea5fc57392a4a9e024c5b1fdf19fc92742529c9d6efdf1
-size       1,623,854 bytes
+SHA256     3a0cc0fef7843fef7086602b63f4be5de7f243667d42bfb9fb3d731407217cd0
+size       1,607,305 bytes
 files      8
 receipt    submission/AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_RECEIPT_V1.json
 ```
