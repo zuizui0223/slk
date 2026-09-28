@@ -61,6 +61,7 @@ FINITE_FREQUENCY_ENDPOINT_BOUNDS         PASS
 SAMPLING_PLUS_APPROXIMATION_INTERVAL     PASS
 CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
 GATE_LOCALIZATION_DIAGNOSTIC_UTA1_10      PASS
+INTERVAL_COMPATIBLE_STATE_SET_UTA1_11      PASS_SOURCE_PENDING_CI
 FIGURE_2_ECOLOGICAL_PANEL                PASS
 FIGURE_1_THRESHOLD_ATLAS                 PASS
 WITNESS_ARITHMETIC                       PASS
@@ -68,17 +69,17 @@ FIGURE_1_GENERALITY                      REPAIRED
 CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
 AMNAT_TITLE_WORDS                         9 PASS
 AMNAT_ABSTRACT_WORDS                    191 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       5923 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE       6025 PASS
 AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              3 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
-FULL_CI_PY311_PY312                      PASS_559_559
-REVIEW_MANUSCRIPT_PDF                    33 PAGES PASS
+FULL_CI_PY311_PY312                      RECHECK_PENDING_UTA1_11
+REVIEW_MANUSCRIPT_PDF                    REBUILD_PENDING_UTA1_11
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
 DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
-ANONYMOUS_REVIEWER_BUNDLE                PASS
-IDENTITY_SCAN                             PASS
-CLAIM_VERIFIER_NE1_NE5_UTA1_10            PASS
+ANONYMOUS_REVIEWER_BUNDLE                REBUILD_PENDING_UTA1_11
+IDENTITY_SCAN                             RECHECK_PENDING_UTA1_11
+CLAIM_VERIFIER_NE1_NE5_UTA1_11            RECHECK_PENDING
 FIXATION_OCCUPANCY_INVARIANT_GRID        PROCESS_DERIVED PASS
 MORAN_PROCESS_CANONICAL_GRID              PASS
 CANONICAL_MAPPING_GUARD                   PASS
@@ -115,7 +116,7 @@ The remaining reviewer question is:
 The submission answer must center on four deductions:
 
 1. persistent integration is observationally non-identifying: `Phi<0`, a downhill local release gradient, and failure of rare establishment can produce the same macroscopic absence of differentiation;
-2. because the upstream architecture comparison is held fixed, the measured sign sequence localizes the first decision layer that changed verdict and therefore specifies the next discriminating measurement;
+2. because the upstream architecture comparison is held fixed, strict signs localize the first changed layer, while interval uncertainty yields the full compatible-state set; nested valid bounds can only remove candidates and therefore quantify what added precision resolves;
 3. environmental threshold displacement and conflict–architecture discordance provide comparative settings in which these gate changes can be tested rather than inferred from phenotype alone;
 4. separation is not universal: the registered process supplies a fixation–occupancy consistency surface, so an observed disagreement also has a diagnostic interpretation.
 
@@ -130,10 +131,10 @@ JOURNAL_PROSE           = READY
 PRIOR_ART_CORE          = READY
 FORMULA_CONSISTENCY     = PASS
 FORMAT_LIMITS           = PASS
-ANONYMOUS_REVIEW_FILES  = READY_CURRENT_UTA1_10
-REVIEWER_CODE_PACKAGE   = READY_CURRENT_UTA1_10
+ANONYMOUS_REVIEW_FILES  = REBUILD_PENDING_UTA1_11
+REVIEWER_CODE_PACKAGE   = REBUILD_PENDING_UTA1_11
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
-INTERNAL_BLOCKERS       = FINAL_HUMAN_PAGE_BY_PAGE_PROOFREAD
+INTERNAL_BLOCKERS       = CURRENT_CI_AND_REVIEW_PACKAGE_REBUILD
 EXTERNAL_ACTIONS        = METADATA + DISCLOSURE + APPROVAL + UPLOAD
-MAIN_OPEN_RISK          = UTA1_10_GATE_LOCALIZATION_BIOLOGICAL_PAYOFF
+MAIN_OPEN_RISK          = UTA1_10_11_DIAGNOSTIC_BIOLOGICAL_PAYOFF
 ```
