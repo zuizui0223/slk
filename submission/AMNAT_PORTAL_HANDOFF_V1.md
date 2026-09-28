@@ -112,7 +112,7 @@ The exact placement should follow the journal's current instruction that scienti
 
 - anonymous review manuscript PDF/DOCX generated from the canonical source;
 - anonymous title page;
-- reviewer-access data/code package through either a private/anonymized repository link or an Editorial Manager ZIP;
+- reviewer-access data/code package: `SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip` is verified and ready for Editorial Manager upload (SHA256 `586412fbdd5a5739cbd46093e61ce6da077d8c14734f940ffa764bb79442503e`);
 - initial private/non-public archive deposit in a curated repository;
 - permanent archive DOI/publication plan;
 - any journal-required source files;
@@ -124,7 +124,7 @@ The exact placement should follow the journal's current instruction that scienti
 SCIENTIFIC_PACKAGE = READY
 DOUBLE_ANONYMITY = READY
 COVER_LETTER = NOT_REQUIRED
-REVIEWER_DATA_CODE_ACCESS = PRIVATE_LINK_OR_EM_ZIP_REQUIRED
+REVIEWER_DATA_CODE_ACCESS = EDITORIAL_MANAGER_ZIP_READY
 INITIAL_DATA_CODE_ARCHIVE_DEPOSIT = REQUIRED_AT_SUBMISSION
 PERMANENT_DATA_CODE_ARCHIVE_DOI = REQUIRED_FOR_PUBLICATION
 AUTHOR_METADATA = REQUIRED_EXTERNAL_ACTION
