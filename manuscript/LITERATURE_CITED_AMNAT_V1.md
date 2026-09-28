@@ -2,6 +2,8 @@
 
 This bibliography is the submission-facing prior-art set corresponding to `docs/PRIOR_ART_COMPARISON_MATRIX_V1.md`. It separates already-established component ideas and numerical devices from the integrated SLK contribution.
 
+Bowers, R. G., A. Hoyle, A. White, and M. Boots. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363–377. https://doi.org/10.1016/j.jtbi.2004.10.017.
+
 Dieckmann, U., and R. Law. 1996. The dynamical theory of coevolution: a derivation from stochastic ecological processes. *Journal of Mathematical Biology* 34:579–612. https://doi.org/10.1007/BF02409751.
 
 Espinosa-Soto, C., and A. Wagner. 2010. Specialization can drive the evolution of modularity. *PLoS Computational Biology* 6:e1000719. https://doi.org/10.1371/journal.pcbi.1000719.
