@@ -73,7 +73,7 @@ AMNAT_TEXT_WORDS_EXCL_LITERATURE       6069 PASS
 AMNAT_FIGURES                             3 PASS
 AMNAT_TABLES                              3 PASS
 AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
-FULL_CI_PY311_PY312                      PASS_566_566
+FULL_CI_PY311_PY312                      PASS_571_571
 REVIEW_MANUSCRIPT_PDF                    34 PAGES PASS
 ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
 DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
@@ -96,18 +96,20 @@ FINAL_FULL_PAGE_PROOFREAD                 PASS_34_34
 
 ## Remaining submission actions
 
-The current UTA1.10-UTA1.11 source passes Python 3.11/3.12 CI (566/566), review-package build, rendered identity scan, executable claim verification, targeted QA of the diagnostic table and interval-box caveat, and full rendered page-by-page QA (34/34). The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
+The current UTA1.10-UTA1.11 source plus submission tooling passes Python 3.11/3.12 CI (571/571), review-package build, rendered identity scan, executable claim verification, targeted QA of the diagnostic table and interval-box caveat, and full rendered page-by-page QA (34/34). The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
 
 Remaining actions are controlled outside the scientific package:
 
 ```text
 AUTHOR_METADATA                       REQUIRED
-AI_USE_DISCLOSURE                     REQUIRED
+AI_USE_DISCLOSURE                     REQUIRED_AUTHOR_APPROVAL
 ALL_AUTHOR_APPROVAL                   REQUIRED
-PORTAL_UPLOAD                         REQUIRED
+PORTAL_INPUT_VALIDATOR                READY
+EDITORIAL_MANAGER_UPLOAD_KIT          READY
 REVIEWER_BUNDLE_ACCESS_ROUTE          EDITORIAL_MANAGER_ZIP_READY
-INITIAL_ARCHIVE_DEPOSIT                PAYLOAD_READY_AUTHENTICATED_DEPOSIT_PENDING
-PERMANENT_ARCHIVE_DOI                  METADATA_TEMPLATE_READY_DOI_PENDING
+INITIAL_ARCHIVE_DEPOSIT               PAYLOAD_READY_AUTHENTICATED_DEPOSIT_PENDING
+PORTAL_UPLOAD                         REQUIRED
+PERMANENT_ARCHIVE_DOI                 METADATA_TEMPLATE_READY_DOI_PENDING
 ```
 
 ## Remaining scientific-editorial risk
@@ -138,6 +140,6 @@ ANONYMOUS_REVIEW_FILES  = READY_CURRENT_UTA1_11
 REVIEWER_CODE_PACKAGE   = READY_CURRENT_UTA1_11
 EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
 INTERNAL_BLOCKERS       = NONE
-EXTERNAL_ACTIONS        = METADATA + AI_DISCLOSURE + INITIAL_ARCHIVE + REVIEWER_ZIP_UPLOAD + PERMANENT_DOI + APPROVAL + PORTAL_UPLOAD
+EXTERNAL_ACTIONS        = AUTHOR_INPUT + AUTHENTICATED_ZENODO_DRAFT + EDITORIAL_MANAGER_UPLOAD + APPROVAL + PUBLICATION_DOI
 MAIN_OPEN_RISK          = UTA1_10_11_DIAGNOSTIC_BIOLOGICAL_PAYOFF
 ```
