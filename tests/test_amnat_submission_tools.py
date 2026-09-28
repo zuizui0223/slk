@@ -26,6 +26,11 @@ def test_registered_slk_claims_recompute() -> None:
     assert diag["rare_establishment_barrier"]["g0"] > 0
     assert diag["rare_establishment_barrier"]["Delta_R"] < 0
     assert diag["mechanism_identified"] is False
+    interval_diag = receipt["checks"]["UTA1_11_interval_compatible_state_set"]
+    assert interval_diag["nested_refinement_monotone"] is True
+    assert interval_diag["narrow_states"] == ["EARLY_GATES_PASSED"]
+    assert set(interval_diag["medium_states"]) < set(interval_diag["wide_states"])
+    assert interval_diag["statistical_partial_identification_novelty_claimed"] is False
     assert diag["boundary_policy"] == {
         "Phi=0": "ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED",
         "g0=0": "LOCAL_RELEASE_BOUNDARY_UNRESOLVED",
