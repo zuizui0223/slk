@@ -1248,7 +1248,7 @@ The three regimes above are not claimed to be exhaustive causes of persistent in
 
 ## Diagnostic UTA1.11 — interval-valued compatible-state sets
 
-Real applications estimate `Phi`, `g0`, and `Delta_R` with uncertainty. Let closed deterministic intervals `I_Phi`, `I_g`, and `I_Delta` bound those three quantities. Rather than classify an interval by its midpoint, define the compatible-state set `C(I_Phi,I_g,I_Delta)` as every UTA1.10 state whose sequential sign conditions intersect the supplied intervals.
+Real applications estimate `Phi`, `g0`, and `Delta_R` with uncertainty. Let closed deterministic intervals `I_Phi`, `I_g`, and `I_Delta` bound those three quantities. Rather than classify an interval by its midpoint, form the Cartesian uncertainty box `B=I_Phi x I_g x I_Delta` and define the box-compatible state set `C_box(B)` as every UTA1.10 state whose sequential sign conditions intersect that box.
 
 Thus an interval spanning zero retains the corresponding boundary state and, when the positive branch remains possible, any downstream states that are still compatible. For example, if `I_Phi` contains negative values, zero, and positive values, architecture-value failure, the architecture-value boundary, and downstream positive-`Phi` branches can all remain in `C`.
 
@@ -1268,11 +1268,11 @@ subset
 C(I_Phi,I_g,I_Delta).
 ```
 
-Shrinking valid bounds cannot create a previously incompatible gate state; it can only retain or eliminate candidates. A singleton compatible-state set therefore gives the strongest UTA1.10 localization licensed by those bounds, whereas a multi-state set reports exactly which explanations remain unresolved.
+Shrinking valid box bounds cannot create a previously box-incompatible gate state; it can only retain or eliminate candidates. A singleton box-compatible state set therefore gives the strongest UTA1.10 localization licensed by that box, whereas a multi-state set reports which explanations remain unresolved under the box approximation.
 
 ### UTA1.11 claim boundary
 
-This is deterministic set propagation through the registered sign logic, not a new theory of partial identification or confidence intervals. The monotonicity statement applies when one set of valid bounds is genuinely nested inside another. Independently re-estimated confidence intervals need not be nested across repeated samples. UTA1.11 also does not identify the causal mechanism generating any retained state.
+This is deterministic set propagation through the registered sign logic, not a new theory of partial identification or confidence intervals. If `I_Phi`, `I_g`, and `I_Delta` are only marginal bounds, `C_box` is a conservative outer state set: covariance or other joint constraints may make some retained sign combinations impossible. Exact joint compatibility would require a joint feasible region rather than only its Cartesian bounding box. The monotonicity statement applies when one valid box is genuinely nested inside another. Independently re-estimated confidence intervals need not be nested across repeated samples. UTA1.11 also does not identify the causal mechanism generating any retained state.
 
 ---
 
