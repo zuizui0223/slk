@@ -30,6 +30,8 @@ def test_registered_slk_claims_recompute() -> None:
     assert interval_diag["nested_refinement_monotone"] is True
     assert interval_diag["narrow_states"] == ["EARLY_GATES_PASSED"]
     assert set(interval_diag["medium_states"]) < set(interval_diag["wide_states"])
+    assert interval_diag["marginal_box_is_conservative_outer_set"] is True
+    assert interval_diag["exact_joint_feasibility_supported"] is False
     assert interval_diag["statistical_partial_identification_novelty_claimed"] is False
     assert diag["boundary_policy"] == {
         "Phi=0": "ARCHITECTURE_VALUE_BOUNDARY_UNRESOLVED",
