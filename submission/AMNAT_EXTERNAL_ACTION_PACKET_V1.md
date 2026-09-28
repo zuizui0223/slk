@@ -66,6 +66,16 @@ PERMANENT_ARCHIVE_DOI      = [PENDING]
 PUBLICATION_READY          = false until DOI/archive gate closes
 ```
 
+## Editor / reviewer candidate research
+
+A current, unranked candidate shortlist is available at:
+
+```text
+submission/AMNAT_EDITOR_REVIEWER_CANDIDATES_V1.md
+```
+
+It contains 3 current Am Nat associate-editor candidates and 5 outside reviewer candidates selected from current public research profiles. **Do not copy them into Editorial Manager until the authors complete the journal conflict checks**, especially recent collaboration and same-institution screening.
+
 ## Author-controlled metadata
 
 ```text
