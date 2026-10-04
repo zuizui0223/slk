@@ -47,9 +47,9 @@ def test_conflict_strength_is_not_promoted_to_differentiation_rank() -> None:
 
 def test_downstream_process_extension_is_not_a_fourth_persistence_explanation() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8").lower()
-    assert "downstream population-process extensions" in manuscript
-    assert "reciprocal fixation ordering and symmetric rare-mutation occupancy re-align" in manuscript
-    assert "not a fourth explanation" in manuscript
+    assert "downstream consequences after establishment" in manuscript
+    assert "reciprocal fixation ordering and monomorphic occupancy re-align" in manuscript
+    assert "not as a fourth ecological explanation" in manuscript
 
 
 def test_persistent_multifunctionality_three_cause_diagnosis_is_registered() -> None:
@@ -133,5 +133,8 @@ def test_natural_systems_anchor_multiple_conflict_resolutions() -> None:
         "spatial partitioning",
         "temporal partitioning",
         "ecological re-coupling",
+        "Ipomoea purpurea",
+        "Dactylorhiza sambucina",
+        "Primula farinosa",
     ):
         assert token in manuscript
