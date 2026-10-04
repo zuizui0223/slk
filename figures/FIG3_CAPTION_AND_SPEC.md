@@ -6,7 +6,7 @@
 
 ## Scientific role
 
-Figure 2 makes two biological points.
+Figure 3 makes two biological points.
 
 First, a single measure of conflict cannot answer the later questions. Profitability, reachability, and rare establishment require different information:
 
