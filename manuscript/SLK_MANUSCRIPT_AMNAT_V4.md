@@ -33,7 +33,7 @@ The resulting theory generates two broad ecological predictions. First, conflict
 
 ![](../figures/FIG1_LOGIC_DIAGRAM.svg)
 
-**Figure 1. Three reasons why multifunctionality can persist despite conflict.** After a functional conflict has been established, division of labor can fail at three biologically different stages: the differentiated architecture may not repay its own cost (`Phi<0`); a fitter differentiated endpoint may be locally inaccessible (`Phi>0, g_0<0`); or a favorable and initially reachable differentiated type may fail to establish when rare (`Phi>0, g_0>0, Delta_R<0`). These routes converge on the same observed phenotype—persistent multifunctionality—but imply different evolutionary responses to changes in architecture and ecology. *Pedicularis rex* illustrates a system in which conflict is documented while its evolutionary resolution remains integrated.
+**Figure 1. Three evolutionary states can underlie persistent multifunctionality.** Under genuine functional conflict, an integrated architecture can remain because integration has higher net value (**adaptive integration**; `Phi<0`), because a fitter differentiated endpoint is separated by unfavorable small steps (**historical or developmental trapping**; `Phi>0, g_0<0`), or because a favorable and initially reachable differentiated type performs poorly when rare (**ecological stabilization**; `Phi>0, g_0>0, Delta_R<0`). The same morphology can therefore have different evolutionary meanings and respond differently to architectural or ecological change. *Pedicularis rex* illustrates a system in which conflict is documented while its floral resolution remains integrated.
 
 ## 2. Functional conflict creates the problem, not its resolution
 
