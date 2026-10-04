@@ -552,16 +552,34 @@ E > E_I:
 
 A set of populations can therefore show the **same integrated phenotype for different evolutionary reasons** along one environmental gradient. Before any visible differentiation appears, the limiting explanation can turn over from architecture value, to local reachability, to rare establishment.
 
-Define the architecture barrier on the same payoff scale as frequency feedback,
+More generally, a distinct ecology-only persistence interval exists whenever rare establishment still fails at the local-accessibility crossing,
 
 ```text
-B_A = dmax (k_global-k_local).
+Delta_R(E_A)<0.
 ```
 
-Then a distinct ecology-only persistence interval exists exactly when
+For the canonical pair with constant `eta`, define the architecture barrier on the same payoff scale as
 
 ```text
-eta > B_A.
+B_A = Phi(E_A).
+```
+
+Then
+
+```text
+Delta_R(E_A)<0
+iff
+eta>B_A.
+```
+
+Under the present cost-lowering environmental slice,
+
+```text
+B_A
+=
+Phi(E_A)
+=
+dmax (k_global-k_local).
 ```
 
 The width of the local-accessibility-limited interval is
