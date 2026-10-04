@@ -79,7 +79,7 @@ No new *P. rex* biological result is claimed by this repository.
 
 ## What the theory contributes
 
-The mathematical machinery supports the biological diagnosis rather than replacing it. The main contributions are:
+The mathematical machinery supports the biological theory rather than replacing it. The main contributions are:
 
 1. a common fitness comparison `Phi=R-K` that separates conflict strength from the net value of division of labor;
 2. a demonstration that positive endpoint value can coexist with a local accessibility barrier under convex recovery;
@@ -95,7 +95,7 @@ Finite-population fixation and weak-mutation occupancy remain valid **downstream
 
 SLK does **not** claim a first theory of modularity, specialization, division of labor, pleiotropy, mutational accessibility, invasion fitness, fixation, or weak-mutation dynamics. Existing specialization theory already shows that whether division of labor is favored depends on performance curvature, trade-off structure, positional effects, synergy, and fitness mapping. Gene duplication, sexual dimorphism, and floral heteranthery provide established biological routes by which shared functions can become decoupled.
 
-The narrower contribution is to make **the evolutionary resolution of documented functional conflict** the object to be explained: why some systems divide functions structurally, others retain integration, and ecological context can shift the balance among these outcomes.
+The narrower contribution is to make **the evolutionary resolution of documented functional conflict** the object to be explained: why some systems divide functions structurally, others retain integration, and why the selective state maintaining the same integrated architecture can change with environment before morphology changes.
 
 ## Architecture cost K
 
