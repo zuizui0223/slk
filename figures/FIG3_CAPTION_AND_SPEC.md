@@ -6,20 +6,7 @@
 
 ## Scientific role
 
-Figure 3 makes two biological points.
-
-First, a single measure of conflict cannot answer the later questions. Profitability, reachability, and rare establishment require different information:
-
-```text
-architecture value:       L, R, K, Phi
-small-step construction:  release-path geometry, k_local
-population establishment: eta
-ecological displacement:  environmental slope dPhi/dE
-finite population:        N, beta, fixation process
-long-run occupancy:       mutation graph/kernel
-```
-
-Second, those distinct measurements generate a comparative ecological prediction rather than a bookkeeping distinction. Along a common environmental axis, the identity of the limiting barrier can change even while the visible multifunctional phenotype remains unchanged.
+Figure 3 makes two biological points. First, profitability, evolutionary accessibility, and establishment are different evolutionary transitions and need not occur at the same environmental condition. Second, ecology determines whether a distinct ecologically stabilized integrated phase exists after the historical barrier has disappeared.
 
 For the barrier-turnover slice,
 
@@ -46,7 +33,7 @@ then
 E_V < E_A < E_I,
 ```
 
-which yields the ordered sequence value limitation -> accessibility limitation -> rare-establishment limitation.
+which yields the ordered sequence adaptive integration -> historical trapping -> ecological stabilization. If `0<eta<=B_A`, establishment becomes possible before local accessibility and the ecology-only phase disappears; if `eta<0`, rarity favors the differentiated type in the canonical game.
 
 ## Claim mapping
 
