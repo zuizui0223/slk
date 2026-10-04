@@ -18,6 +18,7 @@ on:
       - 'scripts/slk_threshold_atlas.py'
       - 'scripts/verify_amnat_claims.py'
       - 'scripts/build_anonymous_review_bundle.py'
+      - 'scripts/build_amnat_distribution_zip.py'
       - 'tests/test_amnat_submission_tools.py'
       - 'tests/test_threshold_atlas_framing.py'
       - 'tests/test_ecological_deductions.py'
@@ -162,10 +163,12 @@ jobs:
 
       - name: Build anonymous reviewer code and theory bundle
         run: |
-          python scripts/build_anonymous_review_bundle.py
+          python scripts/build_amnat_distribution_zip.py
           test -f submission/amnat_review/generated/reviewer_bundle/ANONYMITY_AUDIT.txt
           grep -q 'identity_scan=PASS' submission/amnat_review/generated/reviewer_bundle/ANONYMITY_AUDIT.txt
           grep -q '"all_checks_pass": true' submission/amnat_review/generated/reviewer_bundle/CLAIM_VERIFICATION_RECEIPT.json
+          test -s submission/amnat_review/generated/SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+          grep -q '"status": "DETERMINISTIC_REVIEWER_ZIP_BUILT"' submission/amnat_review/generated/DISTRIBUTION_ZIP_BUILD_RECEIPT.json
 
       - name: Upload anonymous Am Nat review package
         uses: actions/upload-artifact@v4
@@ -178,5 +181,7 @@ jobs:
             submission/amnat_review/generated/rendered/SLK_AMNAT_ANONYMOUS_TITLE_PAGE.pdf
             submission/amnat_review/generated/rendered/main_pages/*.png
             submission/amnat_review/generated/reviewer_bundle/**
+            submission/amnat_review/generated/SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+            submission/amnat_review/generated/DISTRIBUTION_ZIP_BUILD_RECEIPT.json
             submission/amnat_review/generated/AMNAT_REVIEW_PACKAGE_QA.txt
           if-no-files-found: error
