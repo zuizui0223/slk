@@ -53,7 +53,7 @@ The natural-history record already rejects a simple rule in which stronger confl
 
 ### The same pollen conflict can be divided in space, divided in time, or both
 
-Pollen-reward flowers provide the clearest natural comparison because the underlying conflict is unusually explicit: pollen must both attract or reward pollinators and survive as male gametes. In *Solanum rostratum*, feeding anthers are preferentially handled by bumble bees whereas pollinating anthers export proportionally more pollen, supporting genuine functional division of labor (Vallejo-Marín et al. 2009). Yet the same species also dispenses pollen gradually across successive bumble-bee buzzes (Vallejo-Marín and Lundgren 2026). Structural differentiation and temporal regulation therefore coexist in one natural system rather than representing mutually exclusive endpoints.
+Pollen-reward flowers provide the clearest natural comparison because the underlying conflict is unusually explicit: pollen must both attract or reward pollinators and survive as male gametes. Yet structural division is far from inevitable. A phylogenetic survey found heteranthery in at least 12 angiosperm orders but emphasized its relative scarcity despite the widespread occurrence of pollen-collecting bees and nectarless flowers, implying that the ecological and architectural conditions permitting this form of division of labor are restrictive (Vallejo-Marín et al. 2010). In *Solanum rostratum*, feeding anthers are preferentially handled by bumble bees whereas pollinating anthers export proportionally more pollen, supporting genuine functional division of labor (Vallejo-Marín et al. 2009). Yet the same species also dispenses pollen gradually across successive bumble-bee buzzes (Vallejo-Marín and Lundgren 2026). Structural differentiation and temporal regulation therefore coexist in one natural system rather than representing mutually exclusive endpoints.
 
 *Clarkia* reaches a different resolution. Its two anther whorls look like a classic division-of-labor system, but pollen from both whorls is collected and exported by bees in similar functional roles. Instead, delayed dehiscence of one whorl produces staggered pollen presentation (Kay et al. 2020). Thus morphological differentiation need not mean functional partitioning, and the same broad pollen-consumption conflict can be alleviated without assigning one organ type exclusively to reward and another to reproduction.
 
@@ -345,6 +345,8 @@ Xia, J., S.-G. Sun, and G.-H. Liu. 2013. Evidence of a component Allee effect dr
 Toräng, P., J. Ehrlén, and J. Ågren. 2008. Mutualists and antagonists mediate frequency-dependent selection on floral display. *Ecology* 89:1564–1572.
 
 Taylor, C., D. Fudenberg, A. Sasaki, and M. A. Nowak. 2004. Evolutionary game dynamics in finite populations. *Bulletin of Mathematical Biology* 66:1621–1644.
+
+Vallejo-Marín, M., E. M. Da Silva, R. D. Sargent, and S. C. H. Barrett. 2010. Trait correlates and functional significance of heteranthery in flowering plants. *New Phytologist* 188:418–425.
 
 Vallejo-Marín, M., and A. Lundgren. 2026. Gradual pollen release in a buzz-pollinated plant: investigating pollen presentation theory under bee visitation. *Functional Ecology* 40:476–485.
 
