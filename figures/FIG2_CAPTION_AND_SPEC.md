@@ -2,8 +2,7 @@
 
 ## Reader-facing caption
 
-**Figure 2. Division of labor can become profitable, reachable, and able to establish at different conditions.**
-(A) The `L-Phi` plane classifies architecture value. `L>0, Phi<0` is persistent compromise, whereas `Phi>0` means the declared differentiated endpoint is globally favored. The `Phi=0` crossing is therefore an architecture-value boundary, not an evolutionary transition boundary. (B) Small-step accessibility introduces a release-path coordinate `d`; for convex recovery, `k_local<k<k_global` creates a region in which sufficiently small release steps are selectively downhill even though complete release has positive payoff. (C) Population feedback introduces `eta`, splitting the static architecture crossing into rare-invasion thresholds at `Phi=±eta`. (D) If an ecological coordinate `E` changes architecture value as `Phi(E)=a(E-E_V)`, the rare-invasion crossing is displaced to `E_I=E_V+eta/a`. Positive `eta` delays rare invasion beyond the environment where differentiation already pays; negative `eta` allows rare invasion before intrinsic endpoint value becomes positive and produces the coexistence ordering in the registered pair game. The distance `eta/a` is therefore a testable ecological separation between value and establishment.
+**Figure 2. Division of labor can become profitable, reachable, and able to establish at different conditions.** (A) The `L-Phi` plane separates persistent compromise from positive net architecture value. (B) Convex recovery can create a range in which the differentiated endpoint is fitter but sufficiently small release steps are still downhill. (C) Frequency-dependent ecology can then move the rare-establishment boundary away from the value boundary. (D) When an environmental gradient progressively lowers marginal architecture cost, strict convexity guarantees that profitability precedes local reachability. If positive frequency feedback is strong enough, establishment occurs later still, producing `E_V<E_A<E_I`. Populations can therefore remain morphologically integrated while the limiting explanation turns over from negative value, to local inaccessibility, to rare-establishment failure.
 
 ## Scientific role
 
@@ -20,41 +19,41 @@ finite population:        N, beta, fixation process
 long-run occupancy:       mutation graph/kernel
 ```
 
-Second, those distinct measurements generate a comparative ecological prediction rather than a bookkeeping distinction. Along a common environmental axis, the architecture-value transition and the invasion transition can occur at different locations.
+Second, those distinct measurements generate a comparative ecological prediction rather than a bookkeeping distinction. Along a common environmental axis, the identity of the limiting barrier can change even while the visible multifunctional phenotype remains unchanged.
 
-For the registered affine environmental slice,
-
-```text
-Phi(E)=a(E-E_V),  a>0
-```
-
-one obtains
+For the barrier-turnover slice,
 
 ```text
-E_I = E_V + eta/a
-E_R = E_V - eta/a.
+k(E)=k0-c(E-E0),  c>0
 ```
 
-Therefore:
+with fixed convex recovery and fixed `eta`,
 
 ```text
-eta>0
--> E_R < E_V < E_I
--> coordination interval
--> differentiation can pay before a rare differentiated type can establish
-
-eta<0
--> E_I < E_V < E_R
--> coexistence interval
--> a rare differentiated type can invade while its intrinsic endpoint margin is still negative.
+E_A-E_V=(k_global-k_local)/c
+E_I-E_V=eta/(c dmax).
 ```
+
+If
+
+```text
+eta > dmax(k_global-k_local),
+```
+
+then
+
+```text
+E_V < E_A < E_I,
+```
+
+which yields the ordered sequence value limitation -> accessibility limitation -> rare-establishment limitation.
 
 ## Claim mapping
 
 - Panel A: C1-C5.
 - Panel B: C6.
 - Panel C: C7.
-- Panel D: ecological corollary UTA1.4.
+- Panel D: ecological barrier-turnover corollary UTA1.4c.
 - Fixation/occupancy are downstream extensions and are not part of the three core explanations in Figure 1.
 
 ## Anti-overclaim rule
