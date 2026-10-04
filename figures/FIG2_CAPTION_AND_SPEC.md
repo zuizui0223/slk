@@ -26,7 +26,7 @@ architecture + evolutionary history + ecological context
 - **Solanum rostratum:** Vallejo-Marín et al. (2009) experimentally support feeding-versus-pollinating anther division of labor; Vallejo-Marín & Lundgren (2026) show gradual pollen release under real bumble-bee buzzes.
 - **Clarkia:** Kay et al. (2020) find no support for feeding-versus-pollinating division of labor; heteranthery instead supports staggered pollen presentation.
 - **Penstemon / Keckiella:** Castellanos et al. (2006) show phylogenetically replicated shifts in pollen presentation associated with bee versus hummingbird pollination.
-- **Pedicularis rex:** Sun et al. (2016) show opposing pollinator- and seed-predator-mediated effects on floral traits across 14 populations, with a geographic mosaic in the antagonist component.
+- **Pedicularis rex:** Xia et al. (2013) show a predator-driven component Allee effect, with stronger predispersal seed predation in sparse patches; Sun et al. (2016) show opposing pollinator- and seed-predator-mediated effects on floral traits across 14 populations, with a geographic mosaic in the antagonist component.
 - **Ipomoea purpurea:** Epperson & Clegg (1987) show lower bumble-bee service and outcrossing for the white morph when rare.
 - **Primula farinosa:** Toräng et al. (2008) show pollinator- and seed-predator-mediated frequency dependence whose strength and direction vary among populations and years.
 - **Neotropical cichlids:** Burress et al. (2020) show relaxed integration between oral and pharyngeal jaws, novel trait combinations and greater trophic diversity, together with aligned ecological responses across feeding guilds.
