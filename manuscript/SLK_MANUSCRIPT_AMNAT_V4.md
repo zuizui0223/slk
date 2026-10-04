@@ -215,15 +215,21 @@ E > E_I
 
 Thus a chain of populations can look morphologically similar while the evolutionary reason for that morphology changes. **Phenotypic stability across geography does not imply stability of the process maintaining the phenotype.**
 
-Ecology also determines whether a distinct ecologically stabilized phase exists at all. Let the gap between the global-value and local-accessibility thresholds, expressed on the same payoff scale as frequency feedback, be
+Ecology also determines whether a distinct ecologically stabilized phase exists at all. The general criterion is simple: evaluate rare-type performance at the point where the local historical/developmental barrier disappears. If
 
 ```text
-B_A = dmax (k_global-k_local).
+Delta_R(E_A) < 0,
 ```
 
-If positive frequency feedback is stronger than this architecture barrier (`eta>B_A`), the crossings satisfy `E_V<E_A<E_I`: after the developmental or historical barrier is released, ecology still prevents a rare divided architecture from spreading. If `0<eta<=B_A`, rare establishment becomes possible before the local accessibility barrier disappears, so there is no environment in which ecology alone maintains integration. With negative frequency dependence, rarity can instead favor the differentiated type and move establishment to the other side of the value crossing.
+then the divided architecture has become locally reachable but still cannot establish from rarity, so ecology becomes the final early barrier. If `Delta_R(E_A)>=0`, establishment is already possible by the time local accessibility is gained and there is no ecology-only persistence interval.
 
-This gives a sharper biological prediction: **whether ecology becomes the final barrier to division of labor depends on the strength of frequency-dependent interactions relative to the architecture's local evolutionary barrier.**
+In the canonical frequency-feedback model, define the architecture barrier on the same payoff scale as
+
+```text
+B_A = Phi(E_A).
+```
+
+Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that lowers marginal architecture cost, `B_A=dmax(k_global-k_local)`. Thus the earlier condition is a special case of a more general biological statement: **ecology becomes the final barrier to division of labor exactly when a newly reachable divided type is still selected against because it is rare.**
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
