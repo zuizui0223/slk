@@ -298,6 +298,8 @@ Morphological differentiation alone does not demonstrate functional division of 
 
 The present paper addresses structural release from a multifunctional compromise and its ecological context. It does not attempt a general theory of every form of modularity, temporal partitioning, plasticity, sexual conflict, gene duplication, social division of labor, or floral diversification. Those alternatives matter precisely because nature often combines them. The present analysis asks why structural division of labor becomes one resolution in some ecological settings while integrated architecture remains viable in others.
 
+The general message is simple: **functional conflict defines the problem, evolutionary architecture determines which resolutions are available, and ecology helps determine which resolution persists.**
+
 ## Literature Cited
 
 Ågren, J., F. Hellström, P. Toräng, and J. Ehrlén. 2013. Mutualists and antagonists drive among-population variation in selection and evolution of floral display in a perennial herb. *Proceedings of the National Academy of Sciences USA* 110:18202–18207.
