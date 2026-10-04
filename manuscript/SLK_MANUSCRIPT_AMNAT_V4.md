@@ -65,6 +65,8 @@ The same ecological principle appears at the level of geographic variation withi
 
 The frequency-dependent ecological term used in the theory is also biologically plausible rather than merely formal, although the available examples concern floral phenotypes rather than newly divided architectures. In *Ipomoea purpurea*, white flowers received poorer bumble-bee service and lower outcrossing when they were rare, demonstrating a rare-phenotype disadvantage (Epperson and Clegg 1987). In the rewardless orchid *Dactylorhiza sambucina*, manipulative arrays in natural habitat showed the opposite sign: rare flower-colour morphs had higher male and female reproductive success (Gigord, Macnair, and Smithson 2001). In *Primula farinosa*, pollination and seed predation jointly generated frequency-dependent selection on floral-display morphs, and both the strength and direction of that selection changed among populations and years (Toräng, Ehrlén, and Ågren 2008). Ecology can therefore make rarity either a barrier or an advantage, exactly the qualitative distinction represented by the sign of frequency feedback in the model.
 
+A longer-term experiment in *P. farinosa* goes beyond a snapshot of selection. Across 69 natural populations, the direction and magnitude of selection on floral-display morphs varied geographically with pollination and grazing. Experimental grazer removal at nine sites significantly reduced the frequency of the short-scaped morph over eight years, demonstrating that changes in interacting animals can drive rapid genetic change in floral organization (Ågren, Hellström, and Toräng 2013). This is the kind of ecological contingency relevant to the theory: an interaction regime can alter the evolutionary fate of an existing phenotype without any change in the underlying functional conflict being required.
+
 ### Rare forms can be helped or blocked by ecological interactions
 
 Frequency dependence in natural plant populations provides a direct ecological analogue of the establishment term in the model. In experimental populations of *Ipomoea purpurea*, white-flowered plants received poorer bumble-bee service and had lower outcrossing rates when they were rare, whereas the colored morphs did not suffer the same rare-morph penalty (Epperson and Clegg 1987). A novel floral phenotype can therefore lose reproductive success specifically because it is uncommon.
@@ -297,6 +299,8 @@ Morphological differentiation alone does not demonstrate functional division of 
 The present paper addresses structural release from a multifunctional compromise and its ecological context. It does not attempt a general theory of every form of modularity, temporal partitioning, plasticity, sexual conflict, gene duplication, social division of labor, or floral diversification. Those alternatives matter precisely because nature often combines them. The present analysis asks why structural division of labor becomes one resolution in some ecological settings while integrated architecture remains viable in others.
 
 ## Literature Cited
+
+Ågren, J., F. Hellström, and P. Toräng. 2013. Mutualists and antagonists drive among-population variation in selection and evolution of floral display in a perennial herb. *Proceedings of the National Academy of Sciences USA* 110:18202–18207.
 
 Bowers, R. G., A. Hoyle, A. White, and M. Boots. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363–377.
 
