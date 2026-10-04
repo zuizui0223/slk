@@ -69,7 +69,7 @@ The same ecological principle appears at the level of variation within a species
 
 Frequency dependence in natural plant populations provides a direct ecological analogue of the establishment term in the model. In experimental populations of *Ipomoea purpurea*, white-flowered plants received poorer bumble-bee service and had lower outcrossing rates when they were rare, demonstrating that rarity itself can become a reproductive disadvantage (Epperson and Clegg 1987). The sign can reverse: in manipulative arrays of the rewardless orchid *Dactylorhiza sambucina*, rare flower-colour morphs achieved higher male and female reproductive success (Gigord, Macnair, and Smithson 2001). Rarity is therefore not intrinsically bad or good; its effect is set by ecological interactions.
 
-*Primula farinosa* shows that this ecological contingency can extend from immediate fitness to evolutionary change. Pollination and seed predation jointly generated frequency-dependent selection on alternative floral-display morphs, with the direction and strength varying among populations and years (Toräng, Ehrlén, and Ågren 2008). Across 69 natural populations, grazing and pollination also generated a geographic selection mosaic; experimentally removing grazers at nine sites significantly reduced the frequency of the short-scaped morph over eight years (Ågren, Hellström, and Toräng 2013). Changing interacting animals can therefore redirect the evolutionary trajectory of a floral phenotype.
+*Primula farinosa* shows that this ecological contingency can extend from immediate fitness to evolutionary change. Pollination and seed predation jointly generated frequency-dependent selection on alternative floral-display morphs, with the direction and strength varying among populations and years (Toräng, Ehrlén, and Ågren 2008). Across 69 natural populations, grazing and pollination also generated a geographic selection mosaic; experimentally removing grazers at nine sites significantly reduced the frequency of the short-scaped morph over eight years (Ågren et al. 2013). Changing interacting animals can therefore redirect the evolutionary trajectory of a floral phenotype.
 
 These examples do not demonstrate the full structural transition modeled here, but they establish the ecological premise required for it: a new phenotype can be blocked when rare in one interaction regime, favored when rare in another, and change evolutionary fate as the interacting community changes.
 
@@ -300,7 +300,7 @@ The present paper addresses structural release from a multifunctional compromise
 
 ## Literature Cited
 
-Ågren, J., F. Hellström, and P. Toräng. 2013. Mutualists and antagonists drive among-population variation in selection and evolution of floral display in a perennial herb. *Proceedings of the National Academy of Sciences USA* 110:18202–18207.
+Ågren, J., F. Hellström, P. Toräng, and J. Ehrlén. 2013. Mutualists and antagonists drive among-population variation in selection and evolution of floral display in a perennial herb. *Proceedings of the National Academy of Sciences USA* 110:18202–18207.
 
 Bowers, R. G., A. Hoyle, A. White, and M. Boots. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363–377.
 
