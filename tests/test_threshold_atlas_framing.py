@@ -17,20 +17,19 @@ def test_submission_title_is_synchronized() -> None:
     title_page_title = TITLE_PAGE.read_text(encoding="utf-8").splitlines()[0].removeprefix("# ").strip()
     assert manuscript_title == title_page_title
     assert manuscript_title == (
-        "From functional conflict to evolutionary architecture: thresholds for differentiation"
+        "Why multifunctional structures persist under conflicting selection"
     )
 
 
-def test_figure1_contains_registered_critical_surfaces() -> None:
+def test_figure1_centers_three_biological_causes_of_persistence() -> None:
     text = FIG1.read_text(encoding="utf-8")
     for token in (
-        "k = k_local",
-        "Φ = 0",
-        "Φ = η",
-        "Φ = −η",
-        "3Φ = η",
-        "R(d) = d + d²",
-        "same Φ = 0 surface",
+        "Why can multifunctionality persist despite functional conflict?",
+        "Differentiation does not pay",
+        "Fitter, but locally inaccessible",
+        "Reachable, but cannot establish",
+        "persistent multifunctionality",
+        "Pedicularis rex",
     ):
         assert token in text
 
