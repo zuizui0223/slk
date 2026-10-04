@@ -2,8 +2,8 @@
   "schema_version": "SLK_ZENODO_DEPOSIT_METADATA_TEMPLATE_V1",
   "status": "AUTHOR_METADATA_REQUIRED_BEFORE_DEPOSIT",
   "zenodo_resource_type": "software",
-  "title": "Reproducibility materials for From functional conflict to evolutionary architecture: thresholds for differentiation",
-  "description": "Reproducibility materials accompanying the theory manuscript 'From functional conflict to evolutionary architecture: thresholds for differentiation'. The package contains the manuscript source, theory notes, figure sources, executable threshold/process implementation, claim verifier, regression test, anonymity audit, and checksum manifest needed to reproduce the registered constructive witness regimes and process checks.",
+  "title": "Reproducibility materials for Why multifunctional structures persist under conflicting selection",
+  "description": "Reproducibility materials accompanying the theory manuscript 'Why multifunctional structures persist under conflicting selection'. The package contains the manuscript source, theory notes, figure sources, executable model/process implementation, claim verifier, regression tests, anonymity audit, and checksum manifest. The manuscript distinguishes three causes of persistent multifunctionality under documented conflict: differentiation may not pay, may be locally inaccessible, or may fail to establish when rare.",
   "creators": [
     {
       "name": "[AUTHOR NAME REQUIRED]",
@@ -13,11 +13,11 @@
   ],
   "keywords": [
     "functional conflict",
-    "trait architecture",
-    "modularity",
+    "multifunctionality",
+    "division of labor",
+    "specialization",
     "evolutionary accessibility",
-    "fixation",
-    "weak mutation"
+    "frequency dependence"
   ],
   "language": "eng",
   "license": "[AUTHOR CHOICE — SELECT A LICENSE APPROPRIATE FOR CODE/THEORY MATERIALS]",
