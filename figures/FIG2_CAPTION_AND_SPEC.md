@@ -25,6 +25,7 @@ architecture + evolutionary history + ecological context
 
 - **Solanum rostratum:** Vallejo-Marín et al. (2009) experimentally support feeding-versus-pollinating anther division of labor; Vallejo-Marín & Lundgren (2026) show gradual pollen release under real bumble-bee buzzes.
 - **Clarkia:** Kay et al. (2020) find no support for feeding-versus-pollinating division of labor; heteranthery instead supports staggered pollen presentation.
+- **Merianieae:** Dellinger et al. (2021) show across 63 species that heteranthery repeatedly evolved in food-body- and nectar-rewarding lineages after the classic pollen dilemma was removed; passerine foraging supports staggered stamen removal as an alternative function.
 - **Penstemon / Keckiella:** Castellanos et al. (2006) show phylogenetically replicated shifts in pollen presentation associated with bee versus hummingbird pollination.
 - **Pedicularis rex:** Xia et al. (2013) show a predator-driven component Allee effect, with stronger predispersal seed predation in sparse patches; Sun et al. (2016) show opposing pollinator- and seed-predator-mediated effects on floral traits across 14 populations, with a geographic mosaic in the antagonist component.
 - **Ipomoea purpurea:** Epperson & Clegg (1987) show lower bumble-bee service and outcrossing for the white morph when rare.
