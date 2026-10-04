@@ -31,11 +31,12 @@ Core claims:
 3. a second cause is local inaccessibility: a differentiated endpoint can have `Phi>0` while sufficiently small changes away from integration are initially selected against;
 4. a third cause is rare-establishment failure: a favorable and initially reachable differentiated type can still have `Delta_R<0` because of frequency-dependent ecology;
 5. conflict magnitude alone cannot rank systems by their tendency toward division of labor when recoverability or architecture cost varies;
-6. along environmental gradients, the profitability crossing and rare-establishment crossing can be displaced, with `E_I-E_V=eta/a` in the local affine canonical model;
-7. the three causes imply different next measurements, turning persistent integration from an ambiguous observation into a testable diagnosis;
-8. *Pedicularis rex* provides a literature-based running example in which opposing selection is documented but the reason for persistent integration remains unmeasured;
-9. finite-population fixation and weak-mutation occupancy are retained as downstream process extensions rather than as headline explanations;
-10. under the specified symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and monomorphic occupancy re-align exactly at `Phi=0` (INV1).
+6. along a gradient that lowers marginal architecture cost, strict convexity orders profitability before local reachability, and sufficiently strong positive frequency feedback can place rare establishment later still (`E_V<E_A<E_I`), so the limiting reason for persistent multifunctionality turns over before morphology changes;
+7. along environmental gradients, the profitability crossing and rare-establishment crossing can be displaced, with `E_I-E_V=eta/a` in the local affine canonical model;
+8. the three causes imply different next measurements, turning persistent integration from an ambiguous observation into a testable diagnosis;
+9. *Pedicularis rex* provides a literature-based running example in which opposing selection is documented but the reason for persistent integration remains unmeasured;
+10. finite-population fixation and weak-mutation occupancy are retained as downstream process extensions rather than as headline explanations;
+11. under the specified symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and monomorphic occupancy re-align exactly at `Phi=0` (INV1).
 
 Flagship exclusions:
 
