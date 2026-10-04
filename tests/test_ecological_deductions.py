@@ -113,3 +113,17 @@ def test_finite_frequency_endpoint_certification_is_registered() -> None:
     assert "UTA1.9" in ledger
     assert "C_R epsilon^2" in manuscript
     assert "overlap with zero remains unresolved" in manuscript
+
+
+
+def test_environmental_barrier_turnover_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    assert "UTA1.4c" in theory
+    assert "UTA1.4c" in ledger
+    assert "E_V<E_A<E_I" in theory
+    assert "limiting explanation" in theory
+    assert "same integrated phenotype" in theory
+    assert "reason for persistence can change" in manuscript
+    assert "E_V < E_A < E_I" in manuscript
