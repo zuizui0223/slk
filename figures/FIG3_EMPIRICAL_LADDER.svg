@@ -1,80 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1420" viewBox="0 0 1200 1420">
   <style>
-    .title{font:700 42px sans-serif}.sub{font:600 26px sans-serif}.txt{font:22px sans-serif}.small{font:18px sans-serif}.box{fill:white;stroke:#222;stroke-width:2}.gate{fill:#f6f6f6;stroke:#222;stroke-width:2}.arrow{stroke:#222;stroke-width:2.5;marker-end:url(#a)}.ceiling{font:18px sans-serif;font-style:italic}
-  </style>
+    .title{font:700 40px sans-serif}.sub{font:600 25px sans-serif}.txt{font:21px sans-serif}.small{font:18px sans-serif}.box{fill:white;stroke:#222;stroke-width:2}.main{fill:#fafafa;stroke:#222;stroke-width:2.2}.optional{fill:white;stroke:#666;stroke-width:2;stroke-dasharray:8 6}.arrow{stroke:#222;stroke-width:2.5;marker-end:url(#a)}.dash{stroke:#666;stroke-width:2;stroke-dasharray:8 6;marker-end:url(#a)}.ceiling{font:18px sans-serif;font-style:italic}.tag{font:700 17px sans-serif}</style>
   <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#222"/></marker></defs>
-  <text x="60" y="70" class="title">Figure 3. Empirical measurement ladder for SLK</text>
-  <text x="60" y="112" class="txt">Each gate adds a new estimand; failure later does not erase earlier claims.</text>
 
-  <g transform="translate(90,160)">
-    <rect x="0" y="0" width="1020" height="110" rx="16" class="gate"/>
-    <text x="25" y="38" class="sub">G1 — Identify shared-axis conflict</text>
-    <text x="25" y="72" class="txt">Measure: opposing functional geometry on one phenotypic coordinate.</text>
-    <text x="25" y="100" class="ceiling">Ceiling if stop: multifunctionality may be shown, but conflict remains unproven.</text>
-  </g>
-  <line x1="600" y1="275" x2="600" y2="315" class="arrow"/>
+  <text x="60" y="68" class="title">Figure 3. How to diagnose why multifunctionality persists</text>
+  <text x="60" y="108" class="txt">Each measurement distinguishes a different biological explanation; later population processes are optional extensions.</text>
 
-  <g transform="translate(90,320)">
-    <rect x="0" y="0" width="1020" height="110" rx="16" class="box"/>
-    <text x="25" y="38" class="sub">G2 — Estimate or bound L</text>
-    <text x="25" y="72" class="txt">Measure: fitness-scale compromise load from a valid SCH-style receipt.</text>
-    <text x="25" y="100" class="ceiling">Ceiling if stop: real conflict quantified, architecture value still unknown.</text>
+  <g transform="translate(90,150)">
+    <rect x="0" y="0" width="1020" height="112" rx="16" class="main"/>
+    <text x="25" y="38" class="sub">1 — Establish real functional conflict</text>
+    <text x="25" y="72" class="txt">Measure opposing functional optima or causal performance surfaces on the shared structure.</text>
+    <text x="25" y="100" class="ceiling">If conflict is not established, persistence needs no conflict-resolution explanation.</text>
   </g>
-  <line x1="600" y1="435" x2="600" y2="475" class="arrow"/>
+  <line x1="600" y1="267" x2="600" y2="307" class="arrow"/>
 
-  <g transform="translate(90,480)">
-    <rect x="0" y="0" width="1020" height="110" rx="16" class="gate"/>
-    <text x="25" y="38" class="sub">G3 — Estimate recoverable release s or R</text>
-    <text x="25" y="72" class="txt">Measure: how much of L is actually recovered by the differentiated comparison.</text>
-    <text x="25" y="100" class="ceiling">Ceiling if stop: potential benefit known, but cost not yet paid.</text>
+  <g transform="translate(90,312)">
+    <rect x="0" y="0" width="1020" height="112" rx="16" class="box"/>
+    <text x="25" y="38" class="sub">2 — Put the conflict on a common fitness scale</text>
+    <text x="25" y="72" class="txt">Estimate or bound conflict load L.</text>
+    <text x="25" y="100" class="ceiling">Conflict strength alone still does not predict division of labor.</text>
   </g>
-  <line x1="600" y1="595" x2="600" y2="635" class="arrow"/>
+  <line x1="600" y1="429" x2="600" y2="469" class="arrow"/>
 
-  <g transform="translate(90,640)">
-    <rect x="0" y="0" width="1020" height="110" rx="16" class="box"/>
-    <text x="25" y="38" class="sub">G4 — Define and estimate K</text>
-    <text x="25" y="72" class="txt">Measure: developmental, maintenance, regulatory or other architecture cost on the same scale.</text>
-    <text x="25" y="100" class="ceiling">Ceiling if stop: R and K available, but the architecture crossing not yet evaluated.</text>
+  <g transform="translate(90,474)">
+    <rect x="0" y="0" width="1020" height="126" rx="16" class="main"/>
+    <text x="25" y="38" class="sub">3 — Test whether division of labor would pay</text>
+    <text x="25" y="72" class="txt">Measure recoverable benefit R and architecture cost K on the same fitness scale.</text>
+    <text x="25" y="102" class="txt">Compute Φ = R − K.</text>
+    <text x="760" y="103" class="tag">Φ &lt; 0 → cause 1</text>
   </g>
-  <line x1="600" y1="755" x2="600" y2="795" class="arrow"/>
+  <line x1="600" y1="605" x2="600" y2="645" class="arrow"/>
 
-  <g transform="translate(90,800)">
-    <rect x="0" y="0" width="1020" height="110" rx="16" class="gate"/>
-    <text x="25" y="38" class="sub">G5 — Evaluate Φ = R − K</text>
-    <text x="25" y="72" class="txt">Classify: Φ&lt;0 persistent compromise; Φ&gt;0 global differentiated advantage.</text>
-    <text x="25" y="100" class="ceiling">Ceiling if stop: global value only; no claim of evolutionary realization.</text>
+  <g transform="translate(90,650)">
+    <rect x="0" y="0" width="1020" height="126" rx="16" class="box"/>
+    <text x="25" y="38" class="sub">4 — Test reachability from the integrated state</text>
+    <text x="25" y="72" class="txt">Measure fitness along small developmental, mutational, or experimental release steps.</text>
+    <text x="25" y="102" class="txt">Estimate the local gradient g₀.</text>
+    <text x="760" y="103" class="tag">g₀ &lt; 0 → cause 2</text>
   </g>
-  <line x1="600" y1="915" x2="600" y2="955" class="arrow"/>
+  <line x1="600" y1="781" x2="600" y2="821" class="arrow"/>
 
-  <g transform="translate(90,960)">
-    <rect x="0" y="0" width="1020" height="110" rx="16" class="box"/>
-    <text x="25" y="38" class="sub">G6 — Define small-step accessibility</text>
-    <text x="25" y="72" class="txt">Measure/test: mutational neighborhood, release path, or stepwise perturbations.</text>
-    <text x="25" y="100" class="ceiling">Ceiling if stop: reachable or trapped, but invasion still untested.</text>
+  <g transform="translate(90,826)">
+    <rect x="0" y="0" width="1020" height="126" rx="16" class="main"/>
+    <text x="25" y="38" class="sub">5 — Test establishment when rare</text>
+    <text x="25" y="72" class="txt">Measure rare-frequency performance and frequency-dependent ecological feedback.</text>
+    <text x="25" y="102" class="txt">Estimate ΔR = lim p→0 Δ(p).</text>
+    <text x="760" y="103" class="tag">ΔR &lt; 0 → cause 3</text>
   </g>
-  <line x1="600" y1="1075" x2="600" y2="1115" class="arrow"/>
 
-  <g transform="translate(90,1120)">
-    <rect x="0" y="0" width="1020" height="110" rx="16" class="gate"/>
-    <text x="25" y="38" class="sub">G7 — Estimate population feedback / invasion</text>
-    <text x="25" y="72" class="txt">Measure: finite rare/resident assays; 2–3+ frequencies for feedback shape.</text>
-    <text x="25" y="100" class="ceiling">Ceiling if stop: invasion phase known, fixation and occupancy unresolved.</text>
+  <line x1="600" y1="957" x2="600" y2="997" class="arrow"/>
+  <g transform="translate(210,1002)">
+    <rect x="0" y="0" width="780" height="112" rx="16" class="box"/>
+    <text x="390" y="39" text-anchor="middle" class="sub">Early explanations excluded</text>
+    <text x="390" y="73" text-anchor="middle" class="txt">Φ &gt; 0, g₀ &gt; 0 and ΔR &gt; 0</text>
+    <text x="390" y="99" text-anchor="middle" class="small">does not imply historical realization or long-run persistence</text>
   </g>
-  <line x1="600" y1="1235" x2="600" y2="1275" class="arrow"/>
 
-  <g transform="translate(90,1280)">
-    <rect x="0" y="0" width="490" height="150" rx="16" class="box"/>
-    <text x="25" y="38" class="sub">G8 — Fixation model</text>
-    <text x="25" y="72" class="small">Specify N, selection map, stochastic process.</text>
-    <text x="25" y="102" class="small">Outputs: reciprocal ordering and/or</text>
-    <text x="25" y="128" class="small">absolute advantage over neutrality.</text>
+  <line x1="600" y1="1119" x2="600" y2="1163" class="dash"/>
+  <text x="625" y="1148" class="small">only if the biological question goes further</text>
+
+  <g transform="translate(90,1170)">
+    <rect x="0" y="0" width="490" height="160" rx="16" class="optional"/>
+    <text x="25" y="39" class="sub">Downstream: fixation</text>
+    <text x="25" y="75" class="small">Specify population size, selection mapping,</text>
+    <text x="25" y="102" class="small">and stochastic population process.</text>
+    <text x="25" y="136" class="ceiling">Needed only for fixation claims.</text>
   </g>
-  <g transform="translate(620,1280)">
-    <rect x="0" y="0" width="490" height="150" rx="16" class="gate"/>
-    <text x="25" y="38" class="sub">G9 — Mutation connectivity</text>
-    <text x="25" y="72" class="small">Specify graph and mutation symmetry/bias.</text>
-    <text x="25" y="102" class="small">Output: weak-mutation monomorphic</text>
-    <text x="25" y="128" class="small">stationary occupancy.</text>
+
+  <g transform="translate(620,1170)">
+    <rect x="0" y="0" width="490" height="160" rx="16" class="optional"/>
+    <text x="25" y="39" class="sub">Downstream: long-run occupancy</text>
+    <text x="25" y="75" class="small">Specify mutation connectivity and bias in</text>
+    <text x="25" y="102" class="small">addition to the fixation process.</text>
+    <text x="25" y="136" class="ceiling">Needed only for long-run state claims.</text>
   </g>
-  <text x="90" y="1470" class="txt">No system is claimed to pass G1–G9; full validation requires all relevant gates.</text>
+
+  <text x="600" y="1385" text-anchor="middle" class="txt">The core empirical paper can stop once the biological explanation of persistence is identified.</text>
 </svg>
