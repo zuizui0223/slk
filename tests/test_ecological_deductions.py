@@ -6,51 +6,49 @@ ROOT = Path(__file__).resolve().parents[1]
 MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
 THEORY = ROOT / "theory" / "UNIFIED_THRESHOLD_ATLAS_V1.md"
 FIG2 = ROOT / "figures" / "FIG2_PHASE_MAP.svg"
+FIG3 = ROOT / "figures" / "FIG3_EMPIRICAL_LADDER.svg"
 LEDGER = ROOT / "docs" / "THEOREM_CLAIM_LEDGER_V1.md"
 
 pytestmark = pytest.mark.document_sync
 
 
-def test_environmental_threshold_displacement_is_registered_everywhere() -> None:
+def test_environmental_threshold_displacement_is_retained_in_supporting_theory() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     theory = THEORY.read_text(encoding="utf-8")
-    figure = FIG2.read_text(encoding="utf-8")
+    figure = FIG3.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
 
     for token in ("E_I=E_V+eta/a", "eta/a"):
-        assert token in manuscript
         assert token in theory
 
     assert "UTA1.4" in theory
     assert "UTA1.4" in ledger
+    assert "E_I" in manuscript
+    assert "E_V" in manuscript
     assert "E_I" in figure
     assert "E_V" in figure
 
-
-def test_ecological_prediction_distinguishes_positive_and_negative_feedback() -> None:
+def test_ecological_prediction_distinguishes_frequency_feedback_signs() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
-    assert "If `eta>0`" in manuscript
-    assert "If `eta<0`" in manuscript
-    assert "differentiation already pays but cannot establish from rarity" in manuscript
-    assert "negative-frequency feedback allows the differentiated type to invade" in manuscript
-    assert "coexistence" in manuscript
+    assert "Positive frequency dependence" in manuscript
+    assert "negative frequency dependence" in manuscript
+    assert "fail when uncommon" in manuscript
+    assert "promote coexistence" in manuscript
 
 
 def test_conflict_strength_is_not_promoted_to_differentiation_rank() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
-    assert "larger conflict load does not necessarily predict stronger differentiation" in manuscript
+    assert "incidence of division of labor need not increase monotonically" in manuscript
     assert "UTA1.5" in theory
     assert "UTA1.5" in ledger
 
 
-def test_downstream_process_extension_is_not_a_fourth_persistence_explanation() -> None:
+def test_downstream_population_processes_are_demoted_to_supporting_theory() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8").lower()
-    assert "downstream consequences after establishment" in manuscript
-    assert "reciprocal fixation ordering and monomorphic occupancy re-align" in manuscript
-    assert "not as a fourth ecological explanation" in manuscript
-
+    assert "finite-population fixation and weak-mutation occupancy remain in the supporting theory" in manuscript
+    assert "not additional explanations for multifunctionality" in manuscript
 
 def test_persistent_multifunctionality_three_cause_diagnosis_is_registered() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
@@ -62,19 +60,18 @@ def test_persistent_multifunctionality_three_cause_diagnosis_is_registered() -> 
     assert "Phi>0, g_0<0" in manuscript
     assert "Phi>0, g_0>0, Delta_R<0" in manuscript
     assert "Phi>0, g_0>0, Delta_R>0" in manuscript
-    assert "does not prove that differentiation must fix or persist historically" in manuscript
-    assert "Persistent integration is not a diagnosis of weak conflict" in manuscript
+    assert "does not guarantee fixation or historical realization" in manuscript
+    assert "same morphology can consequently have different evolutionary meanings" in manuscript
 
 
-def test_feedback_gradient_generalization_is_registered() -> None:
+def test_feedback_gradient_generalization_is_retained_in_supporting_theory() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
-    assert "eta_0/(a-b)" in manuscript
+    assert "eta_0/(a-b)" in theory
     assert "UTA1.4b" in theory
     assert "UTA1.4b" in ledger
-    assert "Phi'(E_V)-eta'(E_V)" in manuscript
-
+    assert "Community turnover can therefore change whether an innovation spreads" in manuscript
 
 def test_two_frequency_identification_is_retained_in_supporting_theory() -> None:
     theory = THEORY.read_text(encoding="utf-8")
@@ -118,23 +115,33 @@ def test_environmental_barrier_turnover_is_registered() -> None:
     assert "limiting explanation" in theory
     assert "same integrated phenotype" in theory
     assert "reason for persistence can change" in manuscript
-    assert "E_V < E_A < E_I" in manuscript
+    assert "E_A" in manuscript
+    assert "E_I" in manuscript
 
 
 def test_natural_systems_anchor_multiple_conflict_resolutions() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    figure = FIG2.read_text(encoding="utf-8")
     for token in (
         "Natural systems show multiple resolutions of functional conflict",
         "Solanum rostratum",
         "Clarkia",
         "Penstemon",
         "Pedicularis rex",
-        "cichlid",
-        "spatial partitioning",
-        "temporal partitioning",
-        "ecological re-coupling",
         "Ipomoea purpurea",
-        "Dactylorhiza sambucina",
         "Primula farinosa",
+        "cichlid",
+        "structural partitioning",
+        "temporal partitioning",
+        "ecological coupling",
     ):
         assert token in manuscript
+    for token in (
+        "Solanum rostratum",
+        "Clarkia",
+        "Penstemon + Keckiella",
+        "Pedicularis rex",
+        "Ipomoea + Primula",
+        "Cichlid feeding apparatus",
+    ):
+        assert token in figure
