@@ -58,7 +58,7 @@ def test_persistent_multifunctionality_three_cause_diagnosis_is_registered() -> 
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.10" in theory
     assert "UTA1.10" in ledger
-    assert "Why can multifunctionality persist? Three distinct explanations" in manuscript
+    assert "Three evolutionary states behind persistent multifunctionality" in manuscript
     assert "Phi>0, g_0<0" in manuscript
     assert "Phi>0, g_0>0, Delta_R<0" in manuscript
     assert "Phi>0, g_0>0, Delta_R>0" in manuscript
@@ -76,43 +76,35 @@ def test_feedback_gradient_generalization_is_registered() -> None:
     assert "Phi'(E_V)-eta'(E_V)" in manuscript
 
 
-def test_two_frequency_identification_is_registered() -> None:
-    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+def test_two_frequency_identification_is_retained_in_supporting_theory() -> None:
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.6" in theory
     assert "UTA1.6" in ledger
-    assert "symmetric frequency treatments estimate the strength and sign" in manuscript
 
 
-def test_three_frequency_curvature_diagnostic_is_registered() -> None:
-    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+def test_three_frequency_curvature_diagnostic_is_retained_in_supporting_theory() -> None:
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.7" in theory
     assert "UTA1.7" in ledger
-    assert "If the response is nonlinear, more frequencies are needed" in manuscript
     assert "does not inherit the canonical exponential-Moran fixation" in theory
 
 
-def test_arbitrary_shape_endpoint_invasion_is_registered() -> None:
+def test_arbitrary_shape_endpoint_invasion_is_retained_in_supporting_theory() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.8" in theory
     assert "UTA1.8" in ledger
-    assert "does not require committing to a linear or quadratic description" in manuscript
     assert "Delta_R" in manuscript
 
 
-def test_finite_frequency_endpoint_certification_is_registered() -> None:
-    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+def test_finite_frequency_endpoint_certification_is_retained_in_supporting_theory() -> None:
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.9" in theory
     assert "UTA1.9" in ledger
-    assert "prospectively justified smoothness bound" in manuscript
-    assert "uncertainty that overlaps zero remains unresolved" in manuscript
 
 
 
@@ -127,3 +119,19 @@ def test_environmental_barrier_turnover_is_registered() -> None:
     assert "same integrated phenotype" in theory
     assert "reason for persistence can change" in manuscript
     assert "E_V < E_A < E_I" in manuscript
+
+
+def test_natural_systems_anchor_multiple_conflict_resolutions() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    for token in (
+        "Natural systems show multiple resolutions of functional conflict",
+        "Solanum rostratum",
+        "Clarkia",
+        "Penstemon",
+        "Pedicularis rex",
+        "cichlid",
+        "spatial partitioning",
+        "temporal partitioning",
+        "ecological re-coupling",
+    ):
+        assert token in manuscript
