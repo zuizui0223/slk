@@ -6,6 +6,7 @@ from docx.shared import RGBColor
 
 from scripts.build_anonymous_review_bundle import build
 from scripts.build_amnat_distribution_zip import build_distribution
+from scripts.build_amnat_editorial_manager_kit import build_upload_kit
 from scripts.format_amnat_review_docx import format_document
 from scripts.verify_amnat_claims import verify
 
@@ -110,3 +111,39 @@ def test_reviewer_distribution_zip_is_byte_reproducible(tmp_path: Path) -> None:
     assert first["cache_files_included"] is False
     assert first["bundle_identity_audit"] == "identity_scan=PASS"
     assert first["sorted_paths"] is True
+
+
+def test_editorial_manager_upload_kit_is_deterministic(tmp_path: Path) -> None:
+    generated = tmp_path / "generated"
+    rendered = generated / "rendered"
+    rendered.mkdir(parents=True)
+
+    fake_files = {
+        generated / "SLK_AMNAT_REVIEW_MANUSCRIPT.docx": b"manuscript-docx",
+        generated / "SLK_AMNAT_ANONYMOUS_TITLE_PAGE.docx": b"title-docx",
+        rendered / "SLK_AMNAT_REVIEW_MANUSCRIPT.pdf": b"manuscript-pdf",
+        rendered / "SLK_AMNAT_ANONYMOUS_TITLE_PAGE.pdf": b"title-pdf",
+        generated / "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip": b"reviewer-zip",
+        generated / "AMNAT_REVIEW_PACKAGE_QA.txt": b"qa-pass",
+    }
+    for path, payload in fake_files.items():
+        path.write_bytes(payload)
+
+    first = build_upload_kit(
+        generated_dir=generated,
+        staging_dir=tmp_path / "stage1",
+        output_zip=tmp_path / "kit1.zip",
+        receipt_path=tmp_path / "kit1.json",
+    )
+    second = build_upload_kit(
+        generated_dir=generated,
+        staging_dir=tmp_path / "stage2",
+        output_zip=tmp_path / "kit2.zip",
+        receipt_path=tmp_path / "kit2.json",
+    )
+
+    assert (tmp_path / "kit1.zip").read_bytes() == (tmp_path / "kit2.zip").read_bytes()
+    assert first["kit_sha256"] == second["kit_sha256"]
+    assert first["kit_file_count"] == 8
+    assert first["reviewer_bundle_sha256"] == second["reviewer_bundle_sha256"]
+    assert first["internal_sha256_manifest_passed"] is True
