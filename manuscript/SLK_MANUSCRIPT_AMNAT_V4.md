@@ -43,61 +43,62 @@ That conflict does not specify what evolution should do next. A lineage can reta
 
 In the theory below, `L` is therefore the magnitude of the problem that differentiation might release. It is not itself a pressure toward any particular solution. This distinction is essential because two systems with equally strong conflict can occupy different architectures, whereas two systems with different conflict strengths can converge on the same organization.
 
-## 3. Would division of labor pay?
+## 3. Natural systems show multiple resolutions of functional conflict
 
-Let `R>=0` be the optimized shared-coordinate compromise loss recovered by the declared differentiated architecture before charging any additional debit specific to possessing, maintaining, regulating, or expressing that architecture. Let `K>=0` be that additional architecture-specific debit, measured on the same fitness scale and over the same comparison horizon. Define
-
-```text
-Phi=R-K.
-```
-
-Three regions follow:
-
-```text
-L=0                no identified shared-axis conflict
-L>0, Phi<0         persistent compromise
-Phi=0              architecture critical surface
-Phi>0              differentiation globally favored.
-```
-
-The middle region is biologically important. Conflict is real, but it is still cheaper to tolerate compromise than to pay for additional architecture. Thus persistence of an integrated trait is not evidence that the functions are aligned; it can instead indicate that the declared differentiated alternative fails a cost-benefit test.
-
-`K` is not a free biological label. Any empirical estimate must declare the shared and differentiated comparison states, fitness scale, time horizon, included cost channels, excluded channels, possible overlap with `R`, and uncertainty or bounds. A cost already expressed through reduced recovered performance cannot be charged again in `K`. Accordingly, `L>0, Phi<0` classifies a declared comparison; it does not by itself establish historical persistence, realized structural absence of differentiation, or a particular developmental mechanism.
-
-## 4. How much of the conflict can differentiation actually release?
-
-The general framework does not require recovery to be a fixed fraction of `L`. It requires only an architecture comparison yielding a recoverable amount `R`, after which
-
-```text
-Phi=R-K.
-```
-
-A differentiated architecture is globally favored under the declared optimized comparison exactly when
-
-```text
-Phi>0 iff K<R.
-```
-
-The parameter `s` enters in the quadratic partial-release model used here. There, `s in [0,1]` is both the realized separation fraction and the recovered fraction of the one-axis compromise load, giving
-
-```text
-R=sL,
-Phi=sL-K.
-```
-
-This is a quadratic corollary rather than an arbitrary-landscape identity. It provides a transparent worked bridge between measured conflict magnitude and partial release, but the general architecture-value coordinate remains `Phi=R-K`.
-
-Under the nested architecture comparison used here, `Phi>0` means the differentiated architecture has higher globally optimized payoff than the declared shared comparison. Structural elaboration with weak functional decoupling can remain below the crossing even when full theoretical decoupling would be beneficial.
-
-Figure 2 separates this architecture-value classification from later realization criteria. Panel A lives on the `L-Phi` plane. Panels B and C deliberately introduce additional coordinates, because local accessibility depends on release-path geometry and rare invasion depends on population feedback. Those later boundaries therefore cannot be drawn as universal extra lines in the same `L-Phi` plane.
+The natural-history record already rejects a simple rule in which stronger conflict automatically produces more structural division of labor. Similar functional problems can be resolved by different combinations of spatial differentiation, temporal regulation, and retained multifunctionality (Fig. 2).
 
 ![](../figures/FIG2_PHASE_MAP.svg)
 
-**Figure 2. Division of labor can become profitable, reachable, and able to establish under different conditions.** The `L-Phi` plane first separates persistent compromise from positive net architecture value. Convex recovery can then leave a range in which the differentiated endpoint is fitter but small changes remain downhill, and frequency-dependent ecology can delay rare establishment beyond both crossings. Along an environmental gradient that lowers marginal architecture cost, sufficiently strong positive feedback gives `E_V<E_A<E_I`: populations can remain visibly multifunctional while the limiting reason for persistence changes from negative value, to local inaccessibility, to rare-establishment failure.
+**Figure 2. Natural systems use different resolutions to functional conflict.** In pollen-reward flowers, pollen is simultaneously a male gamete and food for pollinators. *Solanum rostratum* partitions these roles partly among different anther types, while also releasing pollen gradually across bee visits. In *Clarkia*, superficially similar heteranthery does not produce feeding versus pollinating anthers; the two whorls instead differ mainly in timing of pollen presentation. Across *Penstemon* and *Keckiella*, bee-adapted species release pollen more gradually than hummingbird-adapted relatives, showing that pollinator ecology changes the favored temporal solution. In *Pedicularis rex*, pollinator-mediated selection for floral exposure is opposed by seed-predator-mediated selection for protection, but the antagonist component varies strongly among populations. Cichlid oral and pharyngeal jaws illustrate a broader animal analogue: structural decoupling of prey capture and processing expanded trophic diversity, yet feeding ecology still produces correlated evolution between the two jaw systems.
 
-`Phi>0` is therefore a global-value statement only. It is not shorthand for local reachability, invasion, fixation, occupancy, or historical evolution.
+### The same pollen conflict can be divided in space, divided in time, or both
 
-## 5. Can a fitter differentiated architecture be reached?
+Pollen-reward flowers provide the clearest natural comparison because the underlying conflict is unusually explicit: pollen must both attract or reward pollinators and survive as male gametes. In *Solanum rostratum*, feeding anthers are preferentially handled by bumble bees whereas pollinating anthers export proportionally more pollen, supporting genuine functional division of labor (Vallejo-Marín et al. 2009). Yet the same species also dispenses pollen gradually across successive bumble-bee buzzes (Vallejo-Marín and Lundgren 2026). Structural differentiation and temporal regulation therefore coexist in one natural system rather than representing mutually exclusive endpoints.
+
+*Clarkia* reaches a different resolution. Its two anther whorls look like a classic division-of-labor system, but pollen from both whorls is collected and exported by bees in similar functional roles. Instead, delayed dehiscence of one whorl produces staggered pollen presentation (Kay et al. 2020). Thus morphological differentiation need not mean functional partitioning, and the same broad pollen-consumption conflict can be alleviated without assigning one organ type exclusively to reward and another to reproduction.
+
+### Ecological partners change which resolution is favored
+
+The temporal solution itself varies with pollinator ecology. Across *Penstemon* and *Keckiella*, transitions between hymenopteran and hummingbird pollination are associated with predictable changes in pollen presentation. After accounting for phylogeny, bee-adapted species dispense pollen more gradually, whereas hummingbird-adapted relatives present it more simultaneously; a species pair that appeared exceptional achieved comparable dosing through the timing of anther maturation (Castellanos et al. 2006). The relevant evolutionary outcome therefore depends not only on the plant's internal functional conflict but also on how efficiently its ecological partner removes, grooms, and delivers pollen.
+
+The same ecological principle appears at the level of geographic variation within a species. In *Pedicularis rex*, greater corolla exsertion increases pollen receipt but also seed predation. Pollinator-mediated effects were comparatively consistent across the 14 populations studied, whereas seed-predator effects formed a geographic mosaic; observed seed predation ranged from less than 1% in some populations to more than 27% in another (Sun, Armbruster, and Huang 2016). The same integrated floral architecture can therefore experience very different balances of mutualist and antagonist selection across its range without first changing its gross morphology.
+
+The frequency-dependent ecological term used in the theory is also biologically plausible rather than merely formal, although the available examples concern floral phenotypes rather than newly divided architectures. In *Ipomoea purpurea*, white flowers received poorer bumble-bee service and lower outcrossing when they were rare, demonstrating a rare-phenotype disadvantage (Epperson and Clegg 1987). In the rewardless orchid *Dactylorhiza sambucina*, manipulative arrays in natural habitat showed the opposite sign: rare flower-colour morphs had higher male and female reproductive success (Gigord, Macnair, and Smithson 2001). In *Primula farinosa*, pollination and seed predation jointly generated frequency-dependent selection on floral-display morphs, and both the strength and direction of that selection changed among populations and years (Toräng, Ehrlén, and Ågren 2008). Ecology can therefore make rarity either a barrier or an advantage, exactly the qualitative distinction represented by the sign of frequency feedback in the model.
+
+### Rare forms can be helped or blocked by ecological interactions
+
+Frequency dependence in natural plant populations provides a direct ecological analogue of the establishment term in the model. In experimental populations of *Ipomoea purpurea*, white-flowered plants received poorer bumble-bee service and had lower outcrossing rates when they were rare, whereas the colored morphs did not suffer the same rare-morph penalty (Epperson and Clegg 1987). A novel floral phenotype can therefore lose reproductive success specifically because it is uncommon.
+
+The sign of this effect is not fixed. In *Primula farinosa*, pollinators and seed predators jointly generated frequency-dependent selection on alternative inflorescence-height morphs, and the direction and strength of that selection varied among populations and years (Toräng, Ehrlén, and Ågren 2008). Ecological context can therefore change not just the magnitude but the **direction** of frequency dependence. This is the natural-history counterpart of allowing `eta` to vary across environments: a rare phenotype can be blocked in one community, favored in another, and experience little frequency dependence elsewhere.
+
+### Division of labor can release a trade-off without producing complete independence
+
+Cichlid feeding systems show the same logic outside flowers. Separate oral and pharyngeal jaws decouple prey capture from prey processing and relax the force–mobility trade-off that constrains a single jaw system. Across Neotropical cichlids, this decoupling is associated with novel trait combinations and greater trophic diversity (Burress, Martinez, and Wainwright 2020). Yet the two jaw systems still show aligned evolutionary responses across feeding guilds. Ecology therefore partially re-couples structures that anatomy has decoupled.
+
+Natural systems consequently do not fall neatly into "multifunctional" versus "divided." They occupy combinations of structural partitioning, temporal partitioning, plasticity, and ecological coupling. The theoretical contrast developed here should therefore be read as the axis of **structural release from a shared functional compromise**, not as a claim that evolution chooses only between two discrete organismal designs.
+
+## 4. When is multifunctionality itself adaptive?
+
+A real functional conflict does not imply that functions should be structurally separated. Let `R` be the fitness recovered when a candidate differentiated architecture releases part of the shared compromise, and let `K` be the extra developmental, structural, regulatory, or maintenance cost of that architecture. Define
+
+```text
+Phi=R-K.
+```
+
+If `L>0` but `Phi<0`, the functions genuinely conflict and yet the integrated architecture still has higher net value. Multifunctionality is then not failed specialization. It is an **adaptive compromise**: tolerating interference between functions is cheaper than building and maintaining a more divided organization.
+
+How much conflict exists and how much of it can actually be released are different biological properties. In the quadratic partial-release model,
+
+```text
+R=sL,
+Phi=sL-K,
+```
+
+where `s` is the fraction of the compromise released by the candidate architecture. Stronger conflict can therefore coexist with persistent integration if differentiation releases only a small fraction of that conflict or carries a high cost. Conversely, modest conflict can favor division of labor when it is cheaply and efficiently released.
+
+This distinction makes a simple biological prediction: the incidence of division of labor need not increase monotonically with the strength of functional conflict. What matters is the balance between the conflict that can be escaped and the price of the architecture that escapes it.
+
+## 5. When can evolutionary history preserve multifunctionality?
 
 The architecture crossing is not yet an evolutionary transition. Let `d` measure release from the current integrated state, with recovery function `R(d)` and linear marginal architecture price `k`. Define
 
@@ -122,9 +123,9 @@ W_k=s0(1-s0)Delta^2,
 
 maximized at intermediate residual integration, `s0=1/2`.
 
-Accessibility is therefore conditional on the declared mutation or release neighborhood and its path geometry. Endpoint architecture value alone does not identify local reachability.
+A multifunctional structure can therefore persist even when a differentiated endpoint would be fitter, because evolution acts through available intermediates rather than by choosing directly among completed designs. Drift, recombination, large-effect changes, or a new developmental route can alter this historical constraint.
 
-## 6. Can a differentiated type establish when rare?
+## 6. How can ecology stabilize multifunctionality?
 
 Suppose two architectures differ intrinsically by `Phi` but also experience symmetric frequency-dependent ecological feedback summarized by `eta`. Their canonical selection difference is
 
@@ -139,7 +140,7 @@ Phi=+eta
 Phi=-eta.
 ```
 
-The population phase is therefore not determined by architecture value alone. Depending on `eta`, the system can show dominance, stable coexistence, or coordination bistability. This split is conditional on the symmetric pair mapping used here and on an identified or explicitly specified population-feedback term.
+The fate of a differentiated architecture is therefore not determined by its intrinsic value alone. Positive frequency dependence can make a favorable new type fail when uncommon, whereas negative frequency dependence can give rare forms an advantage and promote coexistence. Pollinators, enemies, competitors, mates, and other ecological partners can thus decide whether a structural innovation spreads after it appears.
 
 ## 7. Three evolutionary states behind persistent multifunctionality
 
@@ -155,7 +156,7 @@ Here `g_0=R'(0)-k` is the local fitness gradient away from the integrated archit
 
 The biological distinction is therefore not merely between "specialized" and "unspecialized." An integrated structure can be the favored architecture, a locally trapped architecture, or an architecture maintained by its ecological context. The same morphology can consequently have different evolutionary meanings in different populations or environments.
 
-## 8. Formal model for the three explanations
+## 8. Formal backbone
 
 Let release from the shared architecture be `d in [0,dmax]`, with differentiable convex recovery `R(d)`, `R(0)=0`, and linear path cost `K(d)=kd`. Define
 
@@ -228,172 +229,48 @@ With `L=2` when an upstream conflict quantity is needed:
 
 The point is not the difficulty of these inequalities. It is that the same persistent phenotype can be generated by three different evolutionary states, and those states respond differently when architecture or ecology changes.
 
-## 9. Biological predictions
+## 9. Ecological and evolutionary consequences
 
-These distinctions change the biological interpretation of several common comparative patterns.
+### The same phenotype can change evolutionary meaning before it changes form
 
-### The reason for persistence can change before the phenotype does
+The three states need not occupy different species. They can occur along one environmental or geographic gradient while the visible architecture remains integrated.
 
-Consider an environmental coordinate `E` that progressively lowers the marginal cost of architectural release,
-
-```text
-k(E)=k0-c(E-E0),
-c>0.
-```
-
-This slice can represent, for example, a resource or developmental context in which maintaining separate functional structures becomes progressively cheaper. With convex recovery, the environment at which differentiation first becomes profitable (`E_V`) necessarily precedes the environment at which sufficiently small release steps become uphill (`E_A`):
-
-```text
-E_A-E_V
-=
-(k_global-k_local)/c
->
-0.
-```
-
-For the canonical frequency-dependent comparison, rare establishment occurs at
-
-```text
-E_I-E_V
-=
-eta/(c dmax).
-```
-
-If coordination-like feedback is strong enough that
-
-```text
-eta
->
-dmax(k_global-k_local),
-```
-
-then
-
-```text
-E_V < E_A < E_I.
-```
-
-A transect of still-integrated populations can then cross three different limiting regimes without showing any morphological transition:
+Let an ecological coordinate `E` progressively lower the marginal cost of differentiation. Under convex recovery there is first a point `E_V` where the differentiated endpoint becomes more valuable than integration, and a later point `E_A` where small changes away from integration become selectively uphill. If positive frequency dependence is strong enough, a third crossing `E_I` occurs later still, when a rare differentiated type can finally establish:
 
 ```text
 E < E_V
-    differentiation does not pay
+    adaptive integration
 
 E_V < E < E_A
-    differentiation pays but is locally difficult to reach
+    differentiation would pay, but integration is historically trapped
 
 E_A < E < E_I
-    differentiation pays and is initially reachable,
-    but a rare differentiated type cannot establish.
+    differentiation pays and is reachable,
+    but ecology prevents establishment from rarity
+
+E > E_I
+    the three early barriers are removed
 ```
 
-This is stronger than saying that environment changes the amount of selection for specialization. It predicts **turnover in the reason why the same multifunctional phenotype persists**. Along a geographic or environmental gradient, populations can therefore remain morphologically integrated even while the evolutionary state maintaining that integration changes.
-
-### Conflict and differentiation need not covary monotonically
-
-Under the quadratic bridge,
-
-```text
-Phi=sL-K.
-```
-
-Thus a larger conflict load does not necessarily predict stronger differentiation across populations or taxa. A high-conflict system can remain integrated when little of the conflict is recoverable by the candidate architecture or when architecture-specific cost is high. Conversely, a system with more modest conflict can cross the differentiation threshold if recovery is efficient and architecture cost is low. The relevant comparative target is therefore not conflict magnitude alone but the triplet `(L,R,K)`, or `(L,s,K)` where the quadratic bridge is justified.
-
-This gives a specific interpretation to persistent integration: an integrated phenotype in the presence of measured opposing functional selection is not evidence that the conflict is weak. It can instead locate the system below the architecture-value surface.
-
-### Ecological feedback can delay or advance establishment without changing endpoint value
-
-Let an environmental coordinate `E` change the intrinsic architecture margin approximately linearly,
-
-```text
-Phi(E)=a(E-E_V),
-a>0,
-```
-
-while the local frequency-feedback term is `eta`. The endpoint architecture becomes globally favorable at
-
-```text
-E=E_V,
-```
-
-whereas a rare differentiated type can invade at
-
-```text
-E_I=E_V+eta/a.
-```
-
-The displacement is therefore
-
-```text
-E_I-E_V=eta/a,
-```
-
-and the environmental distance between the two reciprocal invasion boundaries is
-
-```text
-|E_I-E_R|=2|eta|/a.
-```
-
-Thus the same parameters predict not only which transition occurs first but also the width of the coordination or coexistence zone along the ecological gradient. These affine displacement formulas are direct solutions of the crossing equations; we use them as testable ecological mappings, not as standalone mathematical novelty.
-
-If `eta>0`, coordination-like ecological feedback creates an interval in which differentiation already pays but cannot establish from rarity. If `eta<0`, negative-frequency feedback allows the differentiated type to invade before its intrinsic endpoint margin becomes positive; in the deterministic game considered here this leads toward coexistence rather than proving intrinsic endpoint superiority.
-
-This yields a directly testable comparative prediction: the ecological position of the invasion transition should be displaced from the architecture-value transition by the strength of frequency feedback relative to the environmental slope of architecture value. Environmental or community change can therefore alter realized differentiation even when the underlying functional conflict is unchanged.
-
-The prediction also extends when ecological feedback itself changes along the same gradient. If
-
-```text
-eta(E)=eta_0+b(E-E_V),
-```
-
-then the affine model gives
-
-```text
-E_I-E_V=eta_0/(a-b),
-E_R-E_V=-eta_0/(a+b).
-```
-
-Thus the **slope** of ecological feedback matters as well as its magnitude. Coordination-like feedback that strengthens in the same direction as architecture value (`0<b<a`) pushes establishment farther from the value crossing than the constant-`eta` prediction. As `b` approaches `a`, the rare-invasion threshold is driven far away; if `b>=a` with `eta_0>0`, increasing `E` in the affine model never overcomes the coordination barrier even though intrinsic endpoint value continues to increase. For smooth non-affine systems the local approximation is `E_I-E_V approximately eta(E_V)/[Phi'(E_V)-eta'(E_V)]`. Ecology can therefore alter not only which threshold is crossed first but whether an invasion crossing occurs in the focal environmental direction at all.
-
-## 10. Natural systems show multiple resolutions of functional conflict
-
-The natural-history record already rejects a simple rule in which stronger conflict automatically produces more structural division of labor. Similar functional problems can be resolved by different combinations of spatial differentiation, temporal regulation, and retained multifunctionality (Fig. 3).
+Thus a chain of populations can look morphologically similar while the evolutionary reason for that morphology changes. **Phenotypic stability across geography does not imply stability of the process maintaining the phenotype.**
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
-**Figure 3. Natural systems use different resolutions to functional conflict.** In pollen-reward flowers, pollen is simultaneously a male gamete and food for pollinators. *Solanum rostratum* partitions these roles partly among different anther types, while also releasing pollen gradually across bee visits. In *Clarkia*, superficially similar heteranthery does not produce feeding versus pollinating anthers; the two whorls instead differ mainly in timing of pollen presentation. Across *Penstemon* and *Keckiella*, bee-adapted species release pollen more gradually than hummingbird-adapted relatives, showing that pollinator ecology changes the favored temporal solution. In *Pedicularis rex*, pollinator-mediated selection for floral exposure is opposed by seed-predator-mediated selection for protection, but the antagonist component varies strongly among populations. Cichlid oral and pharyngeal jaws illustrate a broader animal analogue: structural decoupling of prey capture and processing expanded trophic diversity, yet feeding ecology still produces correlated evolution between the two jaw systems.
+**Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** A real conflict first asks whether structural differentiation has positive net value. Convex recovery can then leave a region in which the completed differentiated state is fitter but small changes away from integration remain downhill. Frequency-dependent ecology can move the rare-establishment boundary still farther. Along an environmental gradient, populations can therefore remain multifunctional while the evolutionary state maintaining integration changes from adaptive compromise, to historical trapping, to ecological stabilization.
 
-### The same pollen conflict can be divided in space, divided in time, or both
+### Conflict strength need not predict division of labor
 
-Pollen-reward flowers provide the clearest natural comparison because the underlying conflict is unusually explicit: pollen must both attract or reward pollinators and survive as male gametes. In *Solanum rostratum*, feeding anthers are preferentially handled by bumble bees whereas pollinating anthers export proportionally more pollen, supporting genuine functional division of labor (Vallejo-Marín et al. 2009). Yet the same species also dispenses pollen gradually across successive bumble-bee buzzes (Vallejo-Marín and Lundgren 2026). Structural differentiation and temporal regulation therefore coexist in one natural system rather than representing mutually exclusive endpoints.
+Under the quadratic bridge, `Phi=sL-K`. A lineage with stronger conflict can remain integrated if little of that conflict is released by the available architecture or if separation is costly, while a lineage with weaker conflict can differentiate when release is efficient and cheap. Comparative relationships between conflict strength and specialization can therefore be weak, absent, or even reversed without implying that conflict is biologically unimportant.
 
-*Clarkia* reaches a different resolution. Its two anther whorls look like a classic division-of-labor system, but pollen from both whorls is collected and exported by bees in similar functional roles. Instead, delayed dehiscence of one whorl produces staggered pollen presentation (Kay et al. 2020). Thus morphological differentiation need not mean functional partitioning, and the same broad pollen-consumption conflict can be alleviated without assigning one organ type exclusively to reward and another to reproduction.
+Natural pollen systems already warn against a one-dimensional expectation. The same pollen-consumption problem is associated with functional heteranthery in *Solanum rostratum*, temporal presentation in *Clarkia*, and different dosing schedules under bee versus hummingbird pollination. What evolves depends on the available architecture and on the ecology in which it functions, not on conflict magnitude alone.
 
-### Ecological partners change which resolution is favored
+### Community change can move the boundary between integration and division of labor
 
-The temporal solution itself varies with pollinator ecology. Across *Penstemon* and *Keckiella*, transitions between hymenopteran and hummingbird pollination are associated with predictable changes in pollen presentation. After accounting for phylogeny, bee-adapted species dispense pollen more gradually, whereas hummingbird-adapted relatives present it more simultaneously; a species pair that appeared exceptional achieved comparable dosing through the timing of anther maturation (Castellanos et al. 2006). The relevant evolutionary outcome therefore depends not only on the plant's internal functional conflict but also on how efficiently its ecological partner removes, grooms, and delivers pollen.
+The model's frequency-feedback term changes the fate of a differentiated type specifically when it is rare. Natural populations show that such effects can switch sign: rare floral forms can receive poorer pollinator service in one system, while mutualists and antagonists generate negative or positive frequency dependence in different populations or years in another. Community turnover can therefore change whether an innovation spreads without changing the innovation itself.
 
-The same ecological principle appears at the level of geographic variation within a species. In *Pedicularis rex*, greater corolla exsertion increases pollen receipt but also seed predation. Pollinator-mediated effects were comparatively consistent across the 14 populations studied, whereas seed-predator effects formed a geographic mosaic; observed seed predation ranged from less than 1% in some populations to more than 27% in another (Sun, Armbruster, and Huang 2016). The same integrated floral architecture can therefore experience very different balances of mutualist and antagonist selection across its range without first changing its gross morphology.
+This makes the strongest ecological prediction of the theory: **the boundary between multifunctionality and division of labor should move when interacting communities change, even if the underlying functional conflict and intrinsic architecture remain similar.**
 
-The frequency-dependent ecological term used in the theory is also biologically plausible rather than merely formal, although the available examples concern floral phenotypes rather than newly divided architectures. In *Ipomoea purpurea*, white flowers received poorer bumble-bee service and lower outcrossing when they were rare, demonstrating a rare-phenotype disadvantage (Epperson and Clegg 1987). In the rewardless orchid *Dactylorhiza sambucina*, manipulative arrays in natural habitat showed the opposite sign: rare flower-colour morphs had higher male and female reproductive success (Gigord, Macnair, and Smithson 2001). In *Primula farinosa*, pollination and seed predation jointly generated frequency-dependent selection on floral-display morphs, and both the strength and direction of that selection changed among populations and years (Toräng, Ehrlén, and Ågren 2008). Ecology can therefore make rarity either a barrier or an advantage, exactly the qualitative distinction represented by the sign of frequency feedback in the model.
-
-### Rare forms can be helped or blocked by ecological interactions
-
-Frequency dependence in natural plant populations provides a direct ecological analogue of the establishment term in the model. In experimental populations of *Ipomoea purpurea*, white-flowered plants received poorer bumble-bee service and had lower outcrossing rates when they were rare, whereas the colored morphs did not suffer the same rare-morph penalty (Epperson and Clegg 1987). A novel floral phenotype can therefore lose reproductive success specifically because it is uncommon.
-
-The sign of this effect is not fixed. In *Primula farinosa*, pollinators and seed predators jointly generated frequency-dependent selection on alternative inflorescence-height morphs, and the direction and strength of that selection varied among populations and years (Toräng, Ehrlén, and Ågren 2008). Ecological context can therefore change not just the magnitude but the **direction** of frequency dependence. This is the natural-history counterpart of allowing `eta` to vary across environments: a rare phenotype can be blocked in one community, favored in another, and experience little frequency dependence elsewhere.
-
-### Division of labor can release a trade-off without producing complete independence
-
-Cichlid feeding systems show the same logic outside flowers. Separate oral and pharyngeal jaws decouple prey capture from prey processing and relax the force–mobility trade-off that constrains a single jaw system. Across Neotropical cichlids, this decoupling is associated with novel trait combinations and greater trophic diversity (Burress, Martinez, and Wainwright 2020). Yet the two jaw systems still show aligned evolutionary responses across feeding guilds. Ecology therefore partially re-couples structures that anatomy has decoupled.
-
-Natural systems consequently do not fall neatly into "multifunctional" versus "divided." They occupy combinations of structural partitioning, temporal partitioning, plasticity, and ecological coupling. The theoretical contrast developed here should therefore be read as the axis of **structural release from a shared functional compromise**, not as a claim that evolution chooses only between two discrete organismal designs.
-
-## 11. Downstream consequences after establishment
-
-Once a differentiated type can establish, its eventual fixation or long-run prevalence depends on demography, stochasticity, and mutation. Those questions belong to a later population-genetic layer rather than to the origin of the multifunctional-versus-divided architecture itself. For the specific exponential Moran and symmetric rare-mutation process analyzed in the supporting theory, reciprocal fixation ordering and monomorphic occupancy re-align on the same `Phi=0` boundary, whereas invasion can still depend on frequency feedback. The full process derivation is retained in the supporting theory as a boundary on stronger claims, not as a fourth ecological explanation.
-
-## 12. Discussion
+## 10. Discussion
 
 The biological problem addressed here is why comparable functional conflicts generate different forms of biological organization. Natural flowers already show that there is no single answer. A pollen-consumption conflict can produce functional heteranthery, temporal pollen dosing, or both; pollinator identity can shift the favored presentation strategy; and geographically variable enemies can change the balance of opposing selection within one species. *Pedicularis rex* makes the latter problem tangible: greater floral exposure improves pollen receipt but also exposes reproductive tissues to seed predators, while water-filled bracts provide protection, and the strength of the antagonistic component varies geographically.
 
@@ -407,7 +284,7 @@ Ecological context adds a second prediction, and a sharper one follows when valu
 
 The *P. rex* case also shows why geography matters. The pollination benefit of floral exposure is opposed by protection from seed predators, but the antagonistic side of that conflict varies markedly among populations (Sun and Huang 2015; Sun, Armbruster, and Huang 2016). The same morphology can therefore sit in different selective environments across a species' range. The theory predicts that such geographic variation need not merely change the strength of selection on one trait; it can change which evolutionary state maintains integration and, eventually, whether structural division of labor becomes favorable or able to spread.
 
-The finite-population fixation and weak-mutation occupancy results are retained only as downstream consequences after establishment. They are not additional explanations for multifunctionality and are not needed for the ecological argument developed here.
+Finite-population fixation and weak-mutation occupancy remain in the supporting theory as downstream consequences after establishment. They are not additional explanations for multifunctionality and are not needed for the ecological argument developed here.
 
 ### Position relative to existing theory
 
