@@ -375,6 +375,8 @@ The temporal solution itself varies with pollinator ecology. Across *Penstemon* 
 
 The same ecological principle appears at the level of geographic variation within a species. In *Pedicularis rex*, greater corolla exsertion increases pollen receipt but also seed predation. Pollinator-mediated effects were comparatively consistent across the 14 populations studied, whereas seed-predator effects formed a geographic mosaic; observed seed predation ranged from less than 1% in some populations to more than 27% in another (Sun, Armbruster, and Huang 2016). The same integrated floral architecture can therefore experience very different balances of mutualist and antagonist selection across its range without first changing its gross morphology.
 
+The frequency-dependent ecological term used in the theory is also biologically plausible rather than merely formal, although the available examples concern floral phenotypes rather than newly divided architectures. In *Ipomoea purpurea*, white flowers received poorer bumble-bee service and lower outcrossing when they were rare, demonstrating a rare-phenotype disadvantage (Epperson and Clegg 1987). In the rewardless orchid *Dactylorhiza sambucina*, manipulative arrays in natural habitat showed the opposite sign: rare flower-colour morphs had higher male and female reproductive success (Gigord, Macnair, and Smithson 2001). In *Primula farinosa*, pollination and seed predation jointly generated frequency-dependent selection on floral-display morphs, and both the strength and direction of that selection changed among populations and years (Toräng, Ehrlén, and Ågren 2008). Ecology can therefore make rarity either a barrier or an advantage, exactly the qualitative distinction represented by the sign of frequency feedback in the model.
+
 ### Rare forms can be helped or blocked by ecological interactions
 
 Frequency dependence in natural plant populations provides a direct ecological analogue of the establishment term in the model. In experimental populations of *Ipomoea purpurea*, white-flowered plants received poorer bumble-bee service and had lower outcrossing rates when they were rare, whereas the colored morphs did not suffer the same rare-morph penalty (Epperson and Clegg 1987). A novel floral phenotype can therefore lose reproductive success specifically because it is uncommon.
@@ -434,6 +436,8 @@ Egas, M., U. Dieckmann, and M. W. Sabelis. 2004. Evolution restricts the coexist
 Epperson, B. K., and M. T. Clegg. 1987. Frequency-dependent variation for outcrossing rate among flower-color morphs of *Ipomoea purpurea*. *Evolution* 41:1302–1311.
 
 Fudenberg, D., M. A. Nowak, C. Taylor, and L. A. Imhof. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352–363.
+
+Gigord, L. D. B., M. R. Macnair, and A. Smithson. 2001. Negative frequency-dependent selection maintains a dramatic flower color polymorphism in the rewardless orchid *Dactylorhiza sambucina*. *Proceedings of the National Academy of Sciences USA* 98:6253–6255.
 
 Guillaume, F., and S. P. Otto. 2012. Gene functional trade-offs and the evolution of pleiotropy. *Genetics* 192:1389–1409.
 
