@@ -139,52 +139,23 @@ Phi=-eta.
 
 The population phase is therefore not determined by architecture value alone. Depending on `eta`, the system can show dominance, stable coexistence, or coordination bistability. This split is conditional on the symmetric pair mapping used here and on an identified or explicitly specified population-feedback term.
 
-## 7. What happens after establishment depends on the population process
+## 7. Why can multifunctionality persist? Three distinct explanations
 
-In finite populations, invasion when rare and fixation ordering need not coincide. Under the exponential Moran process considered here for the canonical symmetric pair,
+Once conflict has been established, continued integration does not identify its cause. The same observed multifunctional structure is compatible with three biologically different states.
 
-```text
-rho_D/rho_S=exp[beta(N-2)Phi].
-```
+| Observed quantities | Biological interpretation | What to measure next |
+|---|---|---|
+| `L>0, Phi<0` | **Division of labor does not pay.** Conflict is real, but the differentiated architecture fails the net cost-benefit test. | Separate recoverable benefit `R` from architecture cost `K`; compare alternative differentiated designs. |
+| `Phi>0, g_0<0` | **Division of labor would pay but is locally difficult to reach.** The endpoint is better, yet sufficiently small release from the integrated state is initially selected against. | Measure fitness along alternative developmental or mutational paths and at larger step sizes. |
+| `Phi>0, g_0>0, Delta_R<0` | **A favorable differentiated type cannot establish when rare.** Value and initial reachability pass, but ecology reverses the verdict at low frequency. | Measure rare-frequency performance and the ecological interaction responsible for `Delta_R-Phi`. |
 
-Thus reciprocal fixation ordering depends on intrinsic architecture value, whereas rare invasion depends on both `Phi` and `eta`. Under weak selection, absolute mutant advantage relative to neutrality follows another criterion,
+Here `g_0=R'(0)-k` is the local fitness gradient away from the integrated architecture, and `Delta_R` is the selection difference experienced by a rare differentiated type. A fourth state, `Phi>0, g_0>0, Delta_R>0`, excludes these three early explanations in the measured context but does not prove that differentiation must fix or persist historically.
 
-```text
-rho_D>1/N iff 3Phi>eta.
-```
+This is the main biological use of the theory. Persistent integration is not a diagnosis of weak conflict, developmental constraint, or ecological exclusion by itself. Those explanations become distinguishable only after the corresponding quantities are measured.
 
-The distinction between reciprocal fixation ordering and absolute fixation advantage matters downstream. These fixation results are specific to the stated Moran mapping.
+## 8. Formal model for the three explanations
 
-## 8. Long-run persistence is a further population-process question
-
-Under connected symmetric rare mutation among architectures, the monomorphic stationary law can be written in terms of self-play scores `u_i=A_ii/2`:
-
-```text
-Pi_i proportional to exp[beta(N-2)u_i].
-```
-
-For any allowed pair `i,j`, the same self-play difference determines the reciprocal fixation ratio:
-
-```text
-rho(j|i)/rho(i|j)
-=exp[beta(N-2)(u_j-u_i)],
-```
-
-so
-
-```text
-rho(j|i)>rho(i|j)
-iff
-Pi_j>Pi_i.
-```
-
-Thus reciprocal fixation ordering and symmetric weak-mutation monomorphic occupancy ordering are not independent under this process; they coincide exactly. By contrast, absolute fixation advantage over neutrality can disagree with occupancy ordering because it depends on `eta` as well as `Phi` under weak selection.
-
-This result sits inside a well-developed literature on finite-population evolutionary games and weak-mutation substitution processes. Its role here is simply to show that some downstream criteria can re-align rather than continually diverge. The invariant requires a finite symmetric game, connected symmetric rare mutation, and the exponential Moran fixation process considered here.
-
-## 9. Formal model: separating the biological explanations
-
-The preceding stages can be embedded in one composite model rather than treated as separate counterexamples. Let release from the shared architecture be `d in [0,dmax]`, let recovery `R(d)` be differentiable and convex with `R(0)=0`, and let path cost be linear, `K(d)=kd`. Define
+Let release from the shared architecture be `d in [0,dmax]`, with differentiable convex recovery `R(d)`, `R(0)=0`, and linear path cost `K(d)=kd`. Define
 
 ```text
 k_local  = R'(0)
@@ -192,87 +163,70 @@ k_global = R(dmax)/dmax
 Phi      = R(dmax)-k dmax.
 ```
 
-For the same endpoint pair, use the canonical population game
+The endpoint differentiated architecture is favorable when `Phi>0`, equivalently `k<k_global`. Sufficiently small release from the integrated architecture is selectively uphill when `k<k_local`. Convexity gives
 
 ```text
-Delta(p)=Phi+eta(2p-1),
-```
-
-the self-excluding exponential Moran process, and connected symmetric rare mutation.
-
-The cross-level mapping is exact for the declared comparison. The architecture path generates the endpoint gap `Phi=W_D-W_S`; the canonical pair has self-play difference `A_DD/2-A_SS/2=Phi`; and the corresponding reciprocal-fixation and symmetric rare-mutation occupancy ratios both use that same self-play difference. Frequency dependence enters through `eta` and moves invasion boundaries without redefining the endpoint contrast. Thus the later stages retain the same `Phi`, rather than substituting unrelated payoff quantities.
-
-Under these assumptions the critical surfaces are
-
-| Evolutionary question | Criterion for D | Critical surface |
-|---|---|---|
-| sufficiently small release is selectively uphill | `k<k_local` | `k=k_local` |
-| differentiated endpoint has positive global value | `Phi>0`, equivalently `k<k_global` | `Phi=0` |
-| D invades S from rarity | `Phi>eta` | `Phi=eta` |
-| D resists rare S invasion | `Phi>-eta` | `Phi=-eta` |
-| reciprocal fixation ordering favors D | `Phi>0` | `Phi=0` |
-| absolute fixation exceeds neutrality, weak selection | `3Phi>eta` | `3Phi=eta` |
-| symmetric rare-mutation occupancy favors D | `Phi>0` | `Phi=0` |
-
-The proof is direct but informative. Net value along the construction path is `R(d)-kd`, so the derivative at the shared state changes sign at `k=k_local`; endpoint value changes sign at `k=k_global`. Rare invasion and resistance to reverse invasion are the endpoint signs `Delta(0)=Phi-eta` and `Delta(1)=Phi+eta`. Reciprocal fixation satisfies
-
-```text
-rho_D/rho_S=exp[beta(N-2)Phi],
-```
-
-while symmetric rare-mutation occupancy satisfies the identical pairwise ratio
-
-```text
-Pi_D/Pi_S=exp[beta(N-2)Phi].
-```
-
-Thus the same architecture comparison is cut by genuinely different surfaces when release geometry and frequency dependence enter, but reciprocal fixation and monomorphic occupancy re-align exactly at `Phi=0` under the specified process.
-
-Convexity adds a structural result. Because `R(0)=0`,
-
-```text
-k_local<=k_global.
+k_local <= k_global.
 ```
 
 Whenever the inequality is strict, the interval
 
 ```text
-k_local<k<k_global
+k_local < k < k_global
 ```
 
-contains architectures whose differentiated endpoint has positive global value even though sufficiently small release steps are selectively downhill.
+is nonempty. In that interval, the differentiated endpoint is fitter although every sufficiently small release step is initially downhill. This is the reachability explanation above.
 
-All flagship non-implications can then be realized inside one convex recovery family,
+For ecological establishment, use the canonical frequency-dependent comparison
 
 ```text
-d in [0,1],
-R(d)=d+d^2,
-K(d)=kd,
+Delta(p)=Phi+eta(2p-1),
 ```
 
-for which
+where `p` is the frequency of the differentiated type. Rare differentiated types invade when
 
 ```text
-k_local=1,
-k_global=2,
+Delta(0)=Phi-eta>0,
+```
+
+and resist reverse invasion when
+
+```text
+Delta(1)=Phi+eta>0.
+```
+
+Thus the architecture-value boundary `Phi=0` and the establishment boundaries `Phi=+/-eta` need not coincide.
+
+The three relevant decision surfaces are therefore
+
+| Biological question | Criterion favoring differentiation | Boundary |
+|---|---|---|
+| does differentiation pay? | `Phi>0` | `Phi=0` |
+| are small release steps uphill? | `k<k_local` | `k=k_local` |
+| can a rare differentiated type establish? | `Phi>eta` | `Phi=eta` |
+
+A single convex recovery family is enough to show that the answers can separate:
+
+```text
+d in [0,1]
+R(d)=d+d^2
+K(d)=kd
+k_local=1
+k_global=2
 Phi=2-k.
 ```
 
-Setting `L=2` when an upstream conflict budget is needed gives the following constructive witnesses:
+With `L=2` when an upstream conflict quantity is needed:
 
 | Separation | Parameters | Result |
 |---|---|---|
-| conflict -> payoff | `L=2, k=2.2` | `L>0` but `Phi=-0.2` |
-| payoff -> small-step accessibility | `k=1.5` | `Phi=0.5>0`, but `Phi'(0)=-0.5` |
-| accessible payoff -> invasion | `k=0.8, eta=1.5` | `Phi=1.2>0`, `Phi'(0)=0.2>0`, but `Delta(0)=-0.3` |
-| invasion -> reciprocal fixation | `k=2.2, eta=-1` | `Delta(0)=0.8>0`, but `rho_D/rho_S<1` |
-| absolute fixation advantage -> occupancy | `k=2.1, eta=-0.5` | `3Phi=-0.3>eta`, but `Pi_D<Pi_S` |
+| conflict does not imply positive value | `k=2.2` | `L>0`, but `Phi=-0.2` |
+| positive value does not imply small-step reachability | `k=1.5` | `Phi=0.5>0`, but `g_0=-0.5` |
+| positive value plus initial reachability does not imply rare establishment | `k=0.8, eta=1.5` | `Phi=1.2>0`, `g_0=0.2>0`, but `Delta(0)=-0.3` |
 
-The value of the theorem is therefore not that each inequality is mathematically difficult. It is that one declared architecture comparison encounters different exact decision surfaces as the biological question changes. The framework identifies where a verdict must be re-tested rather than carried forward by verbal implication.
+The point is not the difficulty of these inequalities. It is that the same persistent phenotype can be generated by failure at three different biological stages, each requiring a different measurement to distinguish it.
 
-The final pair remains an important qualification: reciprocal fixation ordering itself does not diverge from stationary monomorphic occupancy ordering under connected symmetric rare mutation and the registered exponential Moran process. Both are controlled by the same self-play score difference.
-
-## 10. Biological predictions
+## 9. Biological predictions
 
 The threshold atlas changes the biological interpretation of several common comparative patterns.
 
@@ -536,8 +490,6 @@ A single observed state—continued integration—does not identify why differen
 | `Phi>0, g_0>0, Delta_R<0` | rare invasion | value and the initial release direction pass, but rare D does not establish | estimate `h_R=Delta_R-Phi` and frequency response; causal mechanism remains unidentified |
 | `Phi>0, g_0>0, Delta_R>0` | early explanations excluded | the first three explanations above are excluded in the measured context | test full-path geometry and fixation/demography/history; do not infer realized differentiation must occur |
 | `Phi<0, Delta_R>0` | ecological rescue at rarity | D has a rare-frequency advantage despite negative intrinsic endpoint value | measure `Delta_D`; do not infer intrinsic endpoint superiority |
-| `Delta_R>0`, `rho_D/rho_S<1` | reciprocal fixation | deterministic rare entry does not imply fixation ordering in the declared finite process | validate population size, selection mapping, and fixation kernel; no process-independent conclusion |
-| reciprocal fixation and occupancy orderings disagree under the specified symmetric rare-mutation process | process consistency | at least one stochastic-process assumption is inadequate | audit the mutation model and fixation kernel; this is not a new biological explanation |
 
 Boundary values are not pooled with neighboring failures. `Phi=0` is the architecture-value boundary; `g_0=0` leaves the local-release verdict unresolved at first order and requires higher-order path geometry; `Delta_R=0` is the rare-invasion boundary. With sampling uncertainty, an interval overlapping any of these zero surfaces remains unresolved rather than being assigned to either adjacent regime.
 
@@ -547,7 +499,7 @@ With uncertainty, the diagnostic is set-valued rather than forced into one row. 
 
 The biological contribution is therefore not a universal prediction that conflict produces modularity. It is the diagnosis of persistent multifunctionality under a fixed architecture comparison: the same observed persistence can correspond to different sign patterns, and each pattern points to a different next measurement. Mechanism attribution remains a separate causal problem.
 
-## 11. How to distinguish the alternatives empirically
+## 10. How to distinguish the alternatives empirically
 
 The empirical programme is deliberately cumulative. Each measurement step supports a stronger biological conclusion, and failure at a later step does not erase what earlier measurements established (Fig. 3).
 
@@ -575,6 +527,24 @@ No single biological system is claimed here to have completed the full measureme
 ### Running example: what is already known in *Pedicularis rex*?
 
 Existing experiments and field comparisons establish opposing selection on floral exsertion and support a protective function of water-filled bracts. In the terminology used here, that is evidence that the **conflict is real**, but it is not yet an estimate of the full conflict load `L` on a common fitness scale, and it says nothing by itself about `R`, `K`, reachability, or rare establishment. The next biological experiment is therefore not "measure more conflict." It is to decouple presentation and protection experimentally and ask how much reproductive fitness can be recovered when the two functions are allowed to approach their separate optima. A distinct architecture treatment, with its own developmental or material burden measured rather than assumed, is then needed to decide whether division of labor would actually pay.
+
+## 11. Downstream population-process extensions
+
+The three explanations above concern whether division of labor is favorable, reachable, and able to establish. Stronger claims about fixation or long-run occupancy require an explicit population process.
+
+For the canonical pair under the self-excluding exponential Moran process,
+
+```text
+rho_D/rho_S = exp[beta(N-2)Phi].
+```
+
+Reciprocal fixation ordering therefore switches at `Phi=0`, whereas absolute fixation advantage over neutrality follows `3Phi>eta` only in the weak-selection approximation. Under connected symmetric rare mutation, the monomorphic stationary occupancy ratio is
+
+```text
+Pi_D/Pi_S = exp[beta(N-2)Phi].
+```
+
+so reciprocal fixation ordering and symmetric rare-mutation occupancy re-align exactly at the same `Phi=0` surface. This is useful as a process-level consistency result, but it is not a fourth explanation for why a multifunctional architecture initially persists. A biological application need not estimate fixation or occupancy unless its question extends beyond establishment.
 
 ## 12. Discussion
 
