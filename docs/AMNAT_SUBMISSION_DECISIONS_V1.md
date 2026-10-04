@@ -4,17 +4,15 @@
 
 Freeze the remaining scope decisions after theory ownership, journal-prose conversion, prior-art coverage, formula consistency, review-file generation, anonymous reviewer packaging, and visual QA have been closed.
 
-## Decision 1 — keep one explicit population-process exemplar
+## Decision 1 — keep fixation and occupancy out of the biological main line
 
 ```text
-ADD_SECOND_POPULATION_PROCESS_BEFORE_SUBMISSION = false
+FIXATION_OCCUPANCY_ROLE = SUPPORTING_THEORY_ONLY
 ```
 
-The fixation/occupancy results remain tied to the registered exponential Moran / connected symmetric rare-mutation process. Their role is not to claim universal population genetics. Their role is to demonstrate that transporting the same architecture-value object into a declared stochastic population process can create new separations and can also force an exact invariant.
+The paper now ends its biological explanation at rare establishment. Finite-population fixation and weak-mutation occupancy remain mathematically valid downstream results, but they are not additional causes of persistent multifunctionality and should not compete with the ecology in the main narrative.
 
-Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is whether UTA1.10-UTA1.11 gate localization and conservative uncertainty propagation provide enough biological leverage beyond familiar component theories. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
-
-Revisit only if review specifically demands process robustness.
+Revisit only if review specifically asks for downstream population-process consequences.
 
 ## Decision 2 — do not manufacture a Pedicularis worked result
 
@@ -24,7 +22,7 @@ ADD_PARTIAL_PEDICULARIS_WORKED_RESULT_TO_MAIN_TEXT = false
 
 The Pedicularis G1-G5 programme is prospectively registered but has no completed biological G1-G5 receipt. It must therefore not be used as a worked empirical result merely to make the theory look more validated.
 
-Figure 3 provides the empirical measurement ladder. Pedicularis remains the first prospective application, but the submission manuscript keeps the explicit statement that no single biological system has completed the full ladder.
+Pedicularis is now used as a literature-based natural system: opposing pollinator and seed-predator selection, geographic variation in antagonism, and predator-driven density dependence establish the ecological problem without manufacturing a new empirical SLK result.
 
 A real partial worked example can be added only after an actual identified receipt exists and its claim ceiling is clear.
 
@@ -34,15 +32,13 @@ A real partial worked example can be added only after an actual identified recei
 PRIMARY_TARGET = The American Naturalist
 ```
 
-The refocused manuscript is now a biological theory paper about why documented conflict can remain multifunctional. Its central contribution is the inverse diagnosis of three causes—failure of net value, local reachability, or rare establishment—rather than the threshold atlas as an object in itself. That framing remains appropriate for *The American Naturalist*.
-
-The submission framing must continue to emphasize biological theory and falsifiable measurement consequences, not software governance or repository architecture.
+The refocused manuscript is now an evolutionary-ecology paper about why comparable functional conflicts have different resolutions in nature. Its central contribution is the three-state account of persistent integration—adaptive integration, historical/developmental trapping, and ecological stabilization—and the prediction that those selective states can turn over across environments before morphology changes. That framing remains appropriate for *The American Naturalist*.
 
 ## Closed scientific items
 
 ```text
 BIOLOGICAL_QUESTION_REFOCUS              PASS
-THREE_CAUSE_PERSISTENCE_DIAGNOSIS        PASS
+THREE_STATE_PERSISTENCE_THEORY           PASS
 PEDICULARIS_RUNNING_EXAMPLE_BOUNDARY     PASS
 PRIOR_ART_REPOSITIONING                  PASS
 GENERAL_MARGIN Phi=R-K                   PASS
@@ -53,10 +49,10 @@ CONFLICT_DIFFERENTIATION_DISCORDANCE      PASS
 DOWNSTREAM_FIXATION_OCCUPANCY_SCOPE       PASS
 AMNAT_TITLE_WORDS                          7 PASS
 AMNAT_ABSTRACT_WORDS                     168 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE        5760 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE        5313 PASS
 AMNAT_FIGURES                              3 PASS
-AMNAT_TABLES                               3 PASS
-AMNAT_FIGURE_TABLE_TOTAL                   6 PASS
+AMNAT_TABLES                               0 PASS
+AMNAT_FIGURE_TABLE_TOTAL                   3 PASS
 FULL_CI                                   PASS
 REFOCUSED_REVIEW_PACKAGE_BUILD            PASS
 ```
@@ -84,16 +80,17 @@ The portal validator now refuses a reviewer package whose receipt is not both `E
 
 ## Remaining scientific-editorial risk
 
-The remaining reviewer question is:
+The remaining reviewer question is now biological rather than methodological:
 
-> Does carrying one identified architecture comparison across familiar component theories generate enough biological leverage to justify the synthesis, once the component algebra is explicitly not claimed as new?
+> Does the three-state theory explain something beyond the already established facts that integration can constrain or promote evolution, ecology shapes trait integration, and stable phenotypes can hide changing mechanisms?
 
-The submission answer must center on four deductions:
+The submission answer is deliberately narrow:
 
-1. persistent integration is observationally non-identifying: `Phi<0`, a downhill local release gradient, and failure of rare establishment can produce the same macroscopic absence of differentiation;
-2. because the upstream architecture comparison is held fixed, strict signs localize the first changed layer, while interval uncertainty yields the full compatible-state set; nested valid bounds can only remove candidates and therefore quantify what added precision resolves;
-3. environmental threshold displacement and conflict–architecture discordance provide comparative settings in which these gate changes can be tested rather than inferred from phenotype alone;
-4. separation is not universal: the registered process supplies a fixation–occupancy consistency surface, so an observed disagreement also has a diagnostic interpretation.
+1. natural systems establish that comparable conflicts have multiple resolutions;
+2. existing theory already covers specialization conditions and evolutionary inaccessibility;
+3. SLK predicts a specific turnover in the **selective status of structural division of labor** under one persistent integrated phenotype: adaptive integration -> historical/developmental trapping -> ecological stabilization;
+4. an ecology-only stabilization phase exists only when positive rare-type frequency dependence exceeds the local architecture barrier, so community ecology is predicted to become the final barrier only in a defined region of parameter space;
+5. conflict magnitude itself need not rank structural differentiation because recoverability and architecture cost can reverse the ordering.
 
 ## Submission state
 
@@ -101,7 +98,7 @@ The submission answer must center on four deductions:
 TARGET                  = THE_AMERICAN_NATURALIST
 ARTICLE_TYPE            = MAJOR_ARTICLE
 MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V4.md
-SCIENTIFIC_FRAMING      = BIOLOGY_FIRST_THREE_CAUSE_DIAGNOSIS
+SCIENTIFIC_FRAMING      = ECOLOGICAL_RESOLUTIONS_THREE_STATE_THEORY
 THEORY                  = READY
 FORMAT_LIMITS           = PASS
 FULL_CI                 = PASS
