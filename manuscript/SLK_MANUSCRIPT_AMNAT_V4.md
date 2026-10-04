@@ -33,7 +33,7 @@ The resulting theory generates two broad ecological predictions. First, conflict
 
 ![](../figures/FIG1_LOGIC_DIAGRAM.svg)
 
-**Figure 1. Three evolutionary states can underlie persistent multifunctionality.** Under genuine functional conflict, an integrated architecture can remain because integration has higher net value (**adaptive integration**; `Phi<0`), because a fitter differentiated endpoint is separated by unfavorable small steps (**historical or developmental trapping**; `Phi>0, g_0<0`), or because a favorable and initially reachable differentiated type performs poorly when rare (**ecological stabilization**; `Phi>0, g_0>0, Delta_R<0`). The same morphology can therefore have different evolutionary meanings and respond differently to architectural or ecological change. *Pedicularis rex* illustrates a system in which conflict is documented while its floral resolution remains integrated.
+**Figure 1. Three selective states can maintain the same multifunctional phenotype.** Under adaptive integration, structural division of labor has negative net value (`Phi<0`). Under historical or developmental trapping, a divided endpoint is fitter but sufficiently small changes away from integration are initially selected against (`Phi>0, g_0<0`). Under ecological stabilization, division of labor is favorable and initially reachable but a rare divided type performs poorly in its ecological background (`Phi>0, g_0>0, Delta_R<0`). These states share one visible outcome—persistent multifunctionality—but differ in what would release integration: architecture economics, evolutionary path geometry, or ecological context.
 
 ## 2. Functional conflict creates the problem, not its resolution
 
