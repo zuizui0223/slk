@@ -552,6 +552,18 @@ E > E_I:
 
 A set of populations can therefore show the **same integrated phenotype for different evolutionary reasons** along one environmental gradient. Before any visible differentiation appears, the limiting explanation can turn over from architecture value, to local reachability, to rare establishment.
 
+Define the architecture barrier on the same payoff scale as frequency feedback,
+
+```text
+B_A = dmax (k_global-k_local).
+```
+
+Then a distinct ecology-only persistence interval exists exactly when
+
+```text
+eta > B_A.
+```
+
 The width of the local-accessibility-limited interval is
 
 ```text
@@ -566,7 +578,7 @@ E_I-E_A
 [eta/dmax-(k_global-k_local)]/c.
 ```
 
-The latter interval exists only when `eta>dmax(k_global-k_local)`. If `eta` is smaller, the invasion boundary is crossed before the local-accessibility boundary and the third interval disappears.
+The latter interval exists only when `eta>B_A`. If `0<eta<=B_A`, the invasion boundary is crossed before the local-accessibility boundary, so historical/developmental trapping remains the last early barrier and no ecology-only persistence interval appears. If `eta<0`, rarity favors the differentiated type in the canonical game and the invasion crossing lies on the opposite side of the value crossing.
 
 This is a prediction about the ordering of measured barriers under the declared environmental slice. It does not assert that historical evolution follows only small mutations, that large-effect changes are impossible, or that passing all three early criteria guarantees realized differentiation.
 
