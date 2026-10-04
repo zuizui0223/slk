@@ -3,79 +3,30 @@
 ## Current internal state
 
 ```text
-SCIENTIFIC_PACKAGE         READY
-FULL_CI                    PASS
-ANONYMOUS_REVIEW_MANUSCRIPT READY
-REVIEWER_CODE_THEORY_BUNDLE READY
-FULL_PAGE_QA               PASS_35_35
-INTERNAL_BLOCKERS          NONE
+SCIENTIFIC_MANUSCRIPT          READY
+FULL_CI                       PASS
+ANONYMOUS_REVIEW_BUILD        PASS
+REVIEWER_DISTRIBUTION_ZIP     STALE_REBUILD_REQUIRED
+EDITORIAL_MANAGER_UPLOAD_KIT  STALE_REBUILD_REQUIRED
+ZENODO_PAYLOAD                STALE_REBUILD_REQUIRED
+FINAL_PAGE_BY_PAGE_QA         REOPENED_AFTER_REFOCUS
+INTERNAL_BLOCKERS             PACKAGE_REBUILD_AND_FINAL_VISUAL_QA
 ```
 
-## Route decision 1 — reviewer data/code access
+The manuscript was substantially reframed after the previous fixed submission ZIP was created. The old ZIP, its SHA256, the old convenience upload kit, and the old 35-page manual QA must not be treated as current.
 
-Choose exactly one reviewer-access route for initial submission.
+## Internal actions before any external submission step
 
-### Route A — private/anonymized repository link
+1. regenerate the deterministic anonymous reviewer ZIP from the biology-refocused source;
+2. verify bundled tests, anonymity scan, and internal checksum manifest;
+3. register the new source commit, ZIP SHA256, size, and file count;
+4. rebuild the Editorial Manager convenience kit;
+5. perform final page-by-page QA on the newly rendered manuscript;
+6. only then proceed to Editorial Manager or Zenodo.
 
-1. Upload the exact curated reviewer bundle from the current main build to a repository that supports private/anonymized reviewer access.
-2. Confirm the link does not expose author names, repository history or identity-bearing URLs.
-3. Insert the private reviewer URL into the review-access statement.
-4. Enter the data location in Editorial Manager.
+## Reviewer access and archive route
 
-### Route B — Editorial Manager ZIP
-
-The upload-ready package is already frozen and verified:
-
-```text
-file                    SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-SHA256                  ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
-size                    58,096 bytes
-files     17
-bundled tests           13 passed / 0 failed
-cache/bytecode files    0
-anonymity scan          PASS
-checksum manifest       PASS
-receipt                 submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json
-```
-
-1. Upload this exact ZIP directly to Editorial Manager as the reviewer-access data/code package.
-2. Do not create or insert an identity-bearing public URL merely to satisfy a link field.
-3. In Editorial Manager, identify the uploaded package as the reviewer-access location if the form permits.
-4. **Also complete the archive deposit at initial submission**; the ZIP route replaces only the reviewer-access link, not the archive-deposit requirement.
-
-## Route decision 2 — archive deposit and publication DOI
-
-A provider-neutral verified payload is ready, and a Zenodo handoff is registered:
-
-```text
-payload                   SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-SHA256                    ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
-Zenodo handoff             submission/ZENODO_DEPOSIT_HANDOFF_V1.md
-metadata template          submission/ZENODO_DEPOSIT_METADATA_TEMPLATE_V1.json
-```
-
-The archive deposit is required at initial submission but may remain private/non-public for peer review. The recommended default for this code/theory package is a Zenodo **draft** using the verified ZIP. Reviewer access can remain the separate Editorial Manager ZIP route.
-
-For publication, finalize the archive in a curated permanent repository and obtain a DOI.
-
-```text
-ARCHIVE_PROVIDER           = ZENODO_RECOMMENDED / AUTHOR CONFIRMATION
-ARCHIVE_PAYLOAD_READY      = true
-ARCHIVE_METADATA_TEMPLATE  = ready
-ARCHIVE_DEPOSIT_CREATED    = false
-PERMANENT_ARCHIVE_DOI      = [PENDING]
-PUBLICATION_READY          = false until DOI/archive gate closes
-```
-
-## Editor / reviewer candidate research
-
-A current, unranked candidate shortlist is available at:
-
-```text
-submission/AMNAT_EDITOR_REVIEWER_CANDIDATES_V1.md
-```
-
-It contains 3 current Am Nat associate-editor candidates and 5 outside reviewer candidates selected from current public research profiles. **Do not copy them into Editorial Manager until the authors complete the journal conflict checks**, especially recent collaboration and same-institution screening.
+Editorial Manager ZIP remains the intended reviewer-access route, and Zenodo remains the intended archive provider. **Neither payload is currently frozen.** Do not upload the historical pre-refocus package.
 
 ## Author-controlled metadata
 
@@ -104,19 +55,9 @@ Before submission the authors must edit this sentence if needed so it exactly ma
 
 ## Local Editorial Manager upload kit
 
-A convenience ZIP containing the validated upload files is prepared locally:
+Status: `REBUILD_REQUIRED_AFTER_MANUSCRIPT_REFOCUS`.
 
-```text
-file       SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT.zip
-SHA256     3a0cc0fef7843fef7086602b63f4be5de7f243667d42bfb9fb3d731407217cd0
-size       1,607,305 bytes
-files      8
-receipt    submission/AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_RECEIPT_V1.json
-```
-
-It contains the anonymous manuscript DOCX/PDF, anonymous title-page DOCX/PDF, the verified reviewer data/code ZIP, the build QA receipt, an internal checksum manifest, and a short portal-upload README.
-
-The convenience ZIP itself is not a journal submission format: unzip it locally, then upload the appropriate constituent files separately in Editorial Manager.
+The historical kit receipt is retained for provenance but has `current_for_submission=false`. A replacement kit must be built only after the new reviewer ZIP is frozen.
 
 ## Current readiness receipt
 
@@ -125,8 +66,8 @@ The current unfilled portal template has been evaluated and frozen at:
 ```text
 submission/AMNAT_PORTAL_READINESS_CURRENT_V1.json
 status = BLOCKED
-machine assets = READY
-internal blockers = NONE
+reviewer ZIP / upload kit / archive payload = REBUILD_REQUIRED
+internal blocker = REBUILD_SUBMISSION_ARTIFACTS_AND_FINAL_VISUAL_QA
 human/external missing fields = 13
 ```
 
