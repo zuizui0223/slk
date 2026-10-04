@@ -54,6 +54,17 @@ The comparison is broader than a two-way contrast. Castellanos et al. (2006) sho
 
 Burress, Martinez & Wainwright (2020) provide an animal analogue: cichlid oral and pharyngeal jaws relax a force–mobility trade-off and expand trophic diversity, yet feeding ecology still drives correlated evolutionary responses in both jaw systems. Anatomical decoupling therefore need not erase ecological coupling.
 
+### Multifunctionality, integration, and phenotypic stability
+
+Schwenk (2001) explicitly connects functional trade-offs and integration to phenotypic stability. Farina, Kane & Hernandez (2019) emphasize that multifunctionality can both constrain and promote morphological evolution, that integration occurs at multiple levels, and that ecological demands can reshape integrated relationships. Evans & Felice (2026) review the broader role of integration and modularity in evolutionary diversification.
+
+Therefore SLK must **not** claim:
+- that multifunctionality is newly recognized as an evolutionary trait in its own right;
+- that integration is always a constraint or always an adaptation;
+- that ecology or historical contingency influencing integration is a new general principle.
+
+The residual SLK prediction is narrower and dynamic: an unchanged integrated phenotype can move from adaptive integration to historical trapping to ecological stabilization along an environmental gradient before structural differentiation appears.
+
 ### Evolutionary attainability of specialist states
 
 Egas, Dieckmann & Sabelis (2004) provide direct prior art for the distinction between evolutionary stability and gradual attainability. In their specialist–generalist model, coexistence can be evolutionarily stable yet in most cases cannot be reached through gradual evolution; immigration or large-effect mutations may be required.
@@ -120,6 +131,9 @@ A defensible positioning paragraph is:
 
 ## Citation targets
 
+- Evans KM, Felice R. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
+- Farina SC, Kane EA, Hernandez LP. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
+- Schwenk K. 2001. Function and the evolution of phenotypic stability: connecting pattern to process. *American Zoologist* 41:552–563.
 - Burress ED, Martinez CM, Wainwright PC. 2020. Decoupled jaws promote trophic diversity in cichlid fishes. *Evolution* 74:950–961.
 - Castellanos MC, Wilson P, Keller SJ, Wolfe AD, Thomson JD. 2006. Anther evolution: pollen presentation strategies when pollinators differ. *The American Naturalist* 167:288–296.
 - Epperson BK, Clegg MT. 1987. Frequency-dependent variation for outcrossing rate among flower-color morphs of *Ipomoea purpurea*. *Evolution* 41:1302–1311.
