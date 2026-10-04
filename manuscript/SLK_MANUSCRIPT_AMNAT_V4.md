@@ -148,19 +148,17 @@ The fate of a differentiated architecture is therefore not determined by its int
 
 Continued integration does not imply one evolutionary condition. The same multifunctional phenotype can occupy three biologically different states.
 
-| Evolutionary state | Formal condition | Biological meaning | Expected response to ecological or architectural change |
-|---|---|---|---|
-| **adaptive integration** | `L>0, Phi<0` | conflict is real, but an integrated architecture still has higher net value than the declared divided alternative | stronger recoverability or lower architecture cost can make division of labor favorable |
-| **historical or developmental trapping** | `Phi>0, g_0<0` | a differentiated endpoint is fitter, but sufficiently small changes away from integration are initially selected against | a new developmental route, recombination, large-effect change, or altered path cost can release the system |
-| **ecological stabilization of integration** | `Phi>0, g_0>0, Delta_R<0` | differentiation is favorable and initially reachable, but a rare differentiated type performs poorly in its ecological background | changing competitors, mutualists, enemies, or frequency-dependent interactions can permit establishment |
+**Adaptive integration.** When `L>0` but `Phi<0`, conflict is real and yet the integrated architecture has higher net value than the declared divided alternative. Integration is maintained because tolerating functional interference is cheaper than escaping it. If recoverability increases or architecture cost falls, this state can give way to division of labor.
 
-Here `g_0=R'(0)-k` is the local fitness gradient away from the integrated architecture, and `Delta_R` is the selection difference experienced by a rare differentiated type. A fourth state, `Phi>0, g_0>0, Delta_R>0`, removes these three early barriers but still does not guarantee fixation or historical realization.
+**Historical or developmental trapping.** When `Phi>0` but the local release gradient `g_0=R'(0)-k` is negative, a differentiated endpoint would be fitter if present but sufficiently small changes away from integration are selected against. A new developmental route, recombination, large-effect change, or altered path cost can therefore change the outcome without any change in the endpoint comparison itself.
 
-The biological distinction is therefore not merely between "specialized" and "unspecialized." An integrated structure can be the favored architecture, a locally trapped architecture, or an architecture maintained by its ecological context. The same morphology can consequently have different evolutionary meanings in different populations or environments.
+**Ecological stabilization of integration.** When differentiation is favorable and initially reachable but `Delta_R<0`, a rare differentiated type performs poorly in its ecological background. Competitors, mutualists, enemies, mates, or other frequency-dependent interactions can then maintain integration even though structural separation is intrinsically favorable. Community change can remove or reverse this barrier.
+
+A fourth state, `Phi>0`, `g_0>0`, and `Delta_R>0`, removes these three early barriers but still does not guarantee fixation or historical realization. The biological distinction is therefore not merely between "specialized" and "unspecialized." An integrated structure can be the favored architecture, a historically trapped architecture, or an architecture stabilized by its ecological context. The same morphology can consequently have different evolutionary meanings in different populations or environments.
 
 ## 8. Formal backbone
 
-Let release from the shared architecture be `d in [0,dmax]`, with differentiable convex recovery `R(d)`, `R(0)=0`, and linear path cost `K(d)=kd`. Define
+The formal model is deliberately minimal. Let release from the shared architecture be `d in [0,dmax]`, with differentiable convex recovery `R(d)`, `R(0)=0`, and linear path cost `K(d)=kd`. Define
 
 ```text
 k_local  = R'(0)
@@ -168,68 +166,27 @@ k_global = R(dmax)/dmax
 Phi      = R(dmax)-k dmax.
 ```
 
-The endpoint differentiated architecture is favorable when `Phi>0`, equivalently `k<k_global`. Sufficiently small release from the integrated architecture is selectively uphill when `k<k_local`. Convexity gives
+The differentiated endpoint is favorable when `Phi>0`, equivalently `k<k_global`. Small releases are initially uphill only when `k<k_local`. Convexity gives `k_local<=k_global`, so a nonempty interval can exist in which the completed divided architecture is fitter even though sufficiently small steps toward it are selected against.
+
+For ecological establishment, let the two architectures experience frequency-dependent feedback,
 
 ```text
-k_local <= k_global.
+Delta(p)=Phi+eta(2p-1).
 ```
 
-Whenever the inequality is strict, the interval
+A rare differentiated type experiences `Delta_R=Phi-eta`. Positive frequency feedback can therefore make `Delta_R<0` even when `Phi>0`, while negative frequency feedback can favor rare forms and generate coexistence.
+
+The three persistence states can thus be written compactly as
 
 ```text
-k_local < k < k_global
+adaptive integration:       Phi < 0
+
+historical trapping:        Phi > 0 and g0 < 0
+
+ecological stabilization:   Phi > 0, g0 > 0, Delta_R < 0.
 ```
 
-is nonempty. In that interval, the differentiated endpoint is fitter although every sufficiently small release step is initially downhill. This is the reachability explanation above.
-
-For ecological establishment, use the canonical frequency-dependent comparison
-
-```text
-Delta(p)=Phi+eta(2p-1),
-```
-
-where `p` is the frequency of the differentiated type. Rare differentiated types invade when
-
-```text
-Delta(0)=Phi-eta>0,
-```
-
-and resist reverse invasion when
-
-```text
-Delta(1)=Phi+eta>0.
-```
-
-Thus the architecture-value boundary `Phi=0` and the establishment boundaries `Phi=+/-eta` need not coincide.
-
-The three relevant decision surfaces are therefore
-
-| Biological question | Criterion favoring differentiation | Boundary |
-|---|---|---|
-| does differentiation pay? | `Phi>0` | `Phi=0` |
-| are small release steps uphill? | `k<k_local` | `k=k_local` |
-| can a rare differentiated type establish? | `Phi>eta` | `Phi=eta` |
-
-A single convex recovery family is enough to show that the answers can separate:
-
-```text
-d in [0,1]
-R(d)=d+d^2
-K(d)=kd
-k_local=1
-k_global=2
-Phi=2-k.
-```
-
-With `L=2` when an upstream conflict quantity is needed:
-
-| Separation | Parameters | Result |
-|---|---|---|
-| conflict does not imply positive value | `k=2.2` | `L>0`, but `Phi=-0.2` |
-| positive value does not imply small-step reachability | `k=1.5` | `Phi=0.5>0`, but `g_0=-0.5` |
-| positive value plus initial reachability does not imply rare establishment | `k=0.8, eta=1.5` | `Phi=1.2>0`, `g_0=0.2>0`, but `Delta(0)=-0.3` |
-
-The point is not the difficulty of these inequalities. It is that the same persistent phenotype can be generated by three different evolutionary states, and those states respond differently when architecture or ecology changes.
+These inequalities are not presented as difficult mathematics. Their biological value is that the same integrated phenotype can sit on different sides of the value, accessibility, and establishment boundaries. Full constructive witness families, generalized frequency responses, finite-population fixation, and weak-mutation results are retained in the supporting theory rather than the main ecological argument.
 
 ## 9. Ecological and evolutionary consequences
 
