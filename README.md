@@ -51,7 +51,7 @@ These states can look identical if one only observes that the structure remains 
 
 ![Figure 2. Architecture value, accessibility and establishment can cross under different conditions.](figures/FIG2_PHASE_MAP.svg)
 
-![Figure 3. Measurements needed to distinguish the three causes.](figures/FIG3_EMPIRICAL_LADDER.svg)
+![Figure 3. Natural systems use different resolutions of functional conflict.](figures/FIG3_EMPIRICAL_LADDER.svg)
 
 ## Biological predictions
 
@@ -73,7 +73,7 @@ The sign of frequency dependence determines whether rare establishment is delaye
 
 The manuscript uses *Pedicularis rex* as a literature-based running example. Existing work documents opposing pollinator- and seed-predator-mediated selection on floral exsertion and experimentally supports a defensive role of water held by cup-like bracts. That establishes the biological motivation—real conflict in a multifunctional structure—but it does **not** yet identify why integration persists.
 
-The next relevant measurements are therefore not simply more estimates of conflict. They are measurements of how much fitness could be recovered by decoupling presentation and protection (`R`), what the differentiated arrangement costs (`K`), whether such a state can be approached through favorable small changes, and whether it can establish when rare.
+The important biological point is that the balance of this conflict already varies geographically: seed-predator effects change strongly among populations while the pollinator side is more consistent. The same integrated floral architecture can therefore occupy different selective environments across the species' range.
 
 No new *P. rex* biological result is claimed by this repository.
 
@@ -87,7 +87,7 @@ The mathematical machinery supports the biological diagnosis rather than replaci
 4. a three-way diagnosis of persistent multifunctionality into failure of value, reachability, or establishment;
 5. the comparative prediction that stronger conflict need not imply more differentiation;
 6. the ecological prediction that profitability and rare establishment can be displaced along environmental gradients;
-7. an empirical measurement sequence that tells a study what to measure next rather than treating persistent integration as a single mechanism.
+7. the prediction that ecological context can change the evolutionary resolution of conflict, including cases in which the same phenotype persists for different reasons across environments.
 
 Finite-population fixation and weak-mutation occupancy remain valid **downstream extensions**. Under the specified symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy re-align at `Phi=0`. Those process results are retained because they delimit stronger evolutionary claims, not because they are a fourth explanation for persistent multifunctionality.
 
@@ -95,7 +95,7 @@ Finite-population fixation and weak-mutation occupancy remain valid **downstream
 
 SLK does **not** claim a first theory of modularity, specialization, division of labor, pleiotropy, mutational accessibility, invasion fitness, fixation, or weak-mutation dynamics. Existing specialization theory already shows that whether division of labor is favored depends on performance curvature, trade-off structure, positional effects, synergy, and fitness mapping. Gene duplication, sexual dimorphism, and floral heteranthery provide established biological routes by which shared functions can become decoupled.
 
-The narrower contribution is to make the opposite observation—**continued multifunctionality under documented conflict**—the object to be explained, and to separate three causes that require different measurements.
+The narrower contribution is to make **the evolutionary resolution of documented functional conflict** the object to be explained: why some systems divide functions structurally, others retain integration, and ecological context can shift the balance among these outcomes.
 
 ## Architecture cost K
 
@@ -137,7 +137,7 @@ For the flagship argument, the canonical path is deliberately short:
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
 2. `figures/FIG1_LOGIC_DIAGRAM.svg` — three biological causes of persistent multifunctionality.
 3. `figures/FIG2_PHASE_MAP.svg` — profitability, reachability, rare establishment, and environmental turnover of the limiting cause.
-4. `figures/FIG3_EMPIRICAL_LADDER.svg` — measurements that distinguish the three causes, with fixation/occupancy shown only as downstream extensions.
+4. `figures/FIG3_EMPIRICAL_LADDER.svg` — natural examples showing spatial partitioning, temporal partitioning, geographic variation in conflict, and ecological re-coupling.
 5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
 6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
 7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem, derived-consequence, diagnostic, and empirical-handoff status.
@@ -160,7 +160,7 @@ ENVIRONMENTAL_PERSISTENCE_BARRIER_TURNOVER_REGISTERED
 FINITE_FREQUENCY_ENDPOINT_CERTIFICATION_REGISTERED
 UTA1_10_GATE_LOCALIZATION_REGISTERED
 UTA1_11_INTERVAL_COMPATIBLE_STATE_SET_REGISTERED
-EMPIRICAL_G1_G9_CLAIM_LADDER_REGISTERED
+NATURAL_SYSTEM_RESOLUTION_SYNTHESIS_REGISTERED
 PEDICULARIS_PROSPECTIVE_ANCHOR_REGISTERED
 PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
 PEDICULARIS_OPERATIONS_COMPANION_BOUNDARY_REGISTERED
