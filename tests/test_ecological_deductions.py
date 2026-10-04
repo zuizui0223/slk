@@ -31,7 +31,8 @@ def test_ecological_prediction_distinguishes_positive_and_negative_feedback() ->
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     assert "If `eta>0`" in manuscript
     assert "If `eta<0`" in manuscript
-    assert "delays" in manuscript
+    assert "differentiation already pays but cannot establish from rarity" in manuscript
+    assert "negative-frequency feedback allows the differentiated type to invade" in manuscript
     assert "coexistence" in manuscript
 
 
