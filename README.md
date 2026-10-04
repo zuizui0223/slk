@@ -59,6 +59,8 @@ The framework makes two primary predictions.
 
 **Conflict strength alone should not rank the tendency toward division of labor.** Two systems with different conflict loads can reverse their ordering in differentiation if they differ in how much conflict can be released or in the cost of the alternative architecture.
 
+**The reason for persistence can change before the phenotype does.** If environment progressively lowers the marginal cost of architectural release, strict convexity makes profitability cross before local reachability. With sufficiently strong positive frequency feedback, rare establishment crosses later still. A transect can therefore remain visibly multifunctional while the limiting explanation changes from negative net value, to local inaccessibility, to rare-establishment failure.
+
 **Profitability and establishment can occur at different ecological conditions.** Along an environmental gradient, the point where differentiated architecture first has positive net value need not be the point where a rare differentiated type can spread. In the local canonical model the displacement is
 
 ```text
