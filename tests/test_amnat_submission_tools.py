@@ -17,6 +17,11 @@ def test_registered_slk_claims_recompute() -> None:
     assert inv["derived_from_moran_process"] is True
     assert inv["derived_from_rare_mutation_chain"] is True
     assert inv["max_relative_error"] < 1e-10
+    critical = receipt["checks"]["UTA1_critical_surfaces"]
+    assert critical["finite_N_process_cases"] == 3995
+    assert critical["derived_from_moran_process"] is True
+    assert critical["max_abs_fixation_error_at_Phi_0"] < 1e-10
+    assert critical["max_abs_occupancy_error_at_Phi_0"] < 1e-10
     assert receipt["checks"]["CANONICAL_MAPPING_GUARD"]["guard_raised"] is True
     diag = receipt["checks"]["UTA1_10_persistent_integration_gate_localization"]
     assert diag["negative_architecture_value"]["Phi"] < 0
