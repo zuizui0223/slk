@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Multifunctional structures often face conflicting selection, yet many remain integrated rather than evolving division of labor. Why? We distinguish three biological explanations that can produce the same observed persistence. First, differentiation may fail to recover enough fitness to repay the cost of maintaining additional structure or regulation. Second, a differentiated endpoint may be fitter but unreachable through sufficiently small selectively favorable changes. Third, a favorable and reachable differentiated type may fail to establish when rare because its ecological performance is frequency dependent. These alternatives imply that conflict magnitude alone cannot rank systems by their propensity to differentiate, and that persistent multifunctionality is not evidence for weak conflict or for any single evolutionary constraint. We formalize the distinction using a common fitness comparison, show how profitability, reachability, and establishment can cross at different conditions, and translate the theory into measurements that discriminate among the three explanations. The goal is a biological account of why functional conflict is sometimes resolved by division of labor and sometimes retained as multifunctional compromise.
+Multifunctional structures often face conflicting selection, yet many remain integrated rather than evolving division of labor. Why? We distinguish three biological explanations that can produce the same observed persistence. First, differentiation may fail to recover enough fitness to repay the cost of maintaining additional structure or regulation. Second, a differentiated endpoint may be fitter but unreachable through sufficiently small selectively favorable changes. Third, a favorable and reachable differentiated type may fail to establish when rare because its ecological performance is frequency dependent. These alternatives imply that conflict magnitude alone cannot rank systems by their propensity to differentiate, and that persistent multifunctionality is not evidence for weak conflict or for any single evolutionary constraint. Along one environmental gradient, the limiting reason for persistence can also change before the phenotype does. We formalize the distinction using a common fitness comparison, show how profitability, reachability, and establishment can cross at different conditions, and translate the theory into measurements that discriminate among the three explanations. The goal is a biological account of why functional conflict is sometimes resolved by division of labor and sometimes retained as multifunctional compromise.
 
 ## 1. Introduction
 
@@ -10,9 +10,9 @@ In the subalpine herb *Pedicularis rex*, tubular flowers are subtended by cup-li
 
 Biology contains many versions of this problem. In heterantherous flowers, distinct anther types can divide pollen-feeding and pollen-transfer functions, although alternative functions such as staggered pollen presentation show that morphological differentiation alone does not prove division of labor (Vallejo-Marín et al. 2009; Kay et al. 2020). At the molecular level, gene duplication can allow descendant copies to escape an adaptive conflict that constrained a multifunctional ancestral protein (Des Marais and Rausher 2008). In sexually antagonistic traits, sex-biased or sex-specific regulation can decouple phenotypes that were previously constrained by a shared genome (Ingleby, Flis, and Morrow 2015). Across these systems, differentiation is one possible evolutionary resolution of conflicting functional demands.
 
-The basic conditions favoring specialization are already well developed. General theory shows that division of labor is favored by positional effects, accelerating performance functions, and synergistic interactions among modules, while developmental constraints and maintenance of differentiated pathways can still limit its evolution (Rueffler, Hermisson, and Wagner 2012). Models of pleiotropy likewise show that multifunctionality or specialization depends on the shape of functional trade-offs and on how component performance maps to fitness; complete subfunctionalization is expected only under restricted conditions (Guillaume and Otto 2012). We therefore do not claim that functional conflict automatically produces specialization, or that specialization is favored whenever a verbal trade-off is present. Nor do we claim a first connection between trade-off geometry and invasion: adaptive-dynamics and trade-off–invasion theory already distinguish a phenotype's performance from its ability to invade an ecological background (Dieckmann and Law 1996; Bowers et al. 2005).
+The basic conditions favoring specialization are already well developed. General theory shows that division of labor is favored by positional effects, accelerating performance functions, and synergistic interactions among modules, while developmental constraints and maintenance of differentiated pathways can still limit its evolution (Rueffler, Hermisson, and Wagner 2012). Models of pleiotropy likewise show that multifunctionality or specialization depends on the shape of functional trade-offs and on how component performance maps to fitness; complete subfunctionalization is expected only under restricted conditions (Guillaume and Otto 2012). We therefore do not claim that functional conflict automatically produces specialization, or that specialization is favored whenever a verbal trade-off is present. Nor do we claim a first connection between trade-off geometry and invasion: adaptive-dynamics and trade-off–invasion theory already distinguish a phenotype's performance from its ability to invade an ecological background (Dieckmann and Law 1996; Bowers et al. 2005). Egas, Dieckmann, and Sabelis (2004) further showed that an evolutionarily stable specialist–generalist state can nevertheless be unreachable through gradual evolution. Separating endpoint value from reachability is therefore also prior art.
 
-We instead organize these results around a narrower and partly inverse biological problem: **what does it mean when a multifunctional structure remains integrated despite documented conflict?** Existing models primarily ask which conditions favor specialization. We ask how to diagnose the reason for non-specialization once the same persistent multifunctional phenotype has already been observed. The same observation can arise for at least three different reasons. A split may simply not pay: the fitness recovered by separating functions may be smaller than the additional structural, developmental, regulatory, or maintenance cost of doing so. A split may pay at the endpoint but be difficult to reach: small changes away from the integrated state can initially reduce fitness even when a more differentiated endpoint would be superior. Or a differentiated type may be reachable and intrinsically favorable yet fail to spread from rarity because pollinators, competitors, enemies, or other ecological partners change its fitness when it is uncommon. These are different biological explanations, not different names for the same constraint.
+We instead organize these results around a narrower and partly inverse biological problem: **what does it mean when a multifunctional structure remains integrated despite documented conflict?** Existing models primarily ask which conditions favor specialization. We ask how to diagnose the reason for non-specialization once the same persistent multifunctional phenotype has already been observed, and whether that limiting reason can change across environments before morphology changes. The same observation can arise for at least three different reasons. A split may simply not pay: the fitness recovered by separating functions may be smaller than the additional structural, developmental, regulatory, or maintenance cost of doing so. A split may pay at the endpoint but be difficult to reach: small changes away from the integrated state can initially reduce fitness even when a more differentiated endpoint would be superior. Or a differentiated type may be reachable and intrinsically favorable yet fail to spread from rarity because pollinators, competitors, enemies, or other ecological partners change its fitness when it is uncommon. These are different biological explanations, not different names for the same constraint.
 
 This distinction changes how conflict should be interpreted comparatively. Stronger opposing selection need not imply a greater tendency toward division of labor, because systems can differ in how much of the conflict differentiation actually releases and in the cost of the alternative architecture. Likewise, the ecological position where differentiation becomes profitable need not coincide with the position where a rare differentiated type can establish. Persistent multifunctionality is therefore an outcome that must be diagnosed, rather than a direct measure of conflict strength or evolutionary constraint.
 
@@ -229,6 +229,63 @@ The point is not the difficulty of these inequalities. It is that the same persi
 ## 9. Biological predictions
 
 The threshold atlas changes the biological interpretation of several common comparative patterns.
+
+### The reason for persistence can change before the phenotype does
+
+Consider an environmental coordinate `E` that progressively lowers the marginal cost of architectural release,
+
+```text
+k(E)=k0-c(E-E0),
+c>0.
+```
+
+With convex recovery, the environment at which differentiation first becomes profitable (`E_V`) necessarily precedes the environment at which sufficiently small release steps become uphill (`E_A`):
+
+```text
+E_A-E_V
+=
+(k_global-k_local)/c
+>
+0.
+```
+
+For the canonical frequency-dependent comparison, rare establishment occurs at
+
+```text
+E_I-E_V
+=
+eta/(c dmax).
+```
+
+If coordination-like feedback is strong enough that
+
+```text
+eta
+>
+dmax(k_global-k_local),
+```
+
+then
+
+```text
+E_V < E_A < E_I.
+```
+
+A transect of still-integrated populations can then cross three different limiting regimes without showing any morphological transition:
+
+```text
+E < E_V
+    differentiation does not pay
+
+E_V < E < E_A
+    differentiation pays but is locally difficult to reach
+
+E_A < E < E_I
+    differentiation pays and is initially reachable,
+    but a rare differentiated type cannot establish.
+```
+
+This is stronger than saying that environment changes the amount of selection for specialization. It predicts **turnover in the reason why the same multifunctional phenotype persists**. The empirical test is to measure `Phi`, the local release gradient `g_0`, and rare-frequency performance across populations that remain morphologically integrated.
 
 ### Conflict and differentiation need not covary monotonically
 
@@ -533,7 +590,7 @@ The first alternative connects directly to existing theories of specialization. 
 
 That distinction also clarifies what comparative data can and cannot show. A stronger measured conflict need not predict a greater incidence of division of labor, because the same conflict can differ in recoverability and in the cost of the alternative architecture. The relevant comparative test is therefore not simply "more conflict -> more specialization." It is whether specialization becomes more likely after controlling for the fraction of conflict that can actually be released and for the costs of maintaining separate functional modules. Reversals are possible: a system with stronger conflict can remain integrated while a system with weaker conflict differentiates if the latter can recover more of its conflict at lower cost.
 
-Ecological context adds a second prediction. The environment in which division of labor first becomes profitable need not be the environment in which a rare differentiated type can spread. Frequency-dependent interactions can move the establishment boundary in either direction. In a floral system, for example, a new presentation architecture could have high intrinsic performance but receive poor service when rare if pollinators learn, assort, or respond to reward frequency; alternatively, negative-frequency dependence could allow a differentiated form to establish before it is intrinsically superior. This is why the profitability and establishment questions should be measured separately rather than collapsed into a single "selection for specialization" estimate.
+Ecological context adds a second prediction, and a sharper one follows when value, reachability, and establishment are placed on the same gradient. The environment in which division of labor first becomes profitable need not be the environment in which a rare differentiated type can spread. Under convex recovery, the local-reachability crossing can lie between those two points. A set of populations can therefore remain visibly multifunctional while the limiting explanation changes from negative net value, to local inaccessibility, to rare-establishment failure. The phenotype can stay the same while the evolutionary reason for its persistence turns over. Frequency-dependent interactions can move the establishment boundary in either direction. In a floral system, for example, a new presentation architecture could have high intrinsic performance but receive poor service when rare if pollinators learn, assort, or respond to reward frequency; alternatively, negative-frequency dependence could allow a differentiated form to establish before it is intrinsically superior. This is why the profitability and establishment questions should be measured separately rather than collapsed into a single "selection for specialization" estimate.
 
 The *P. rex* literature already establishes the first empirical prerequisite: opposing selection acts on floral exsertion, and the defensive role of water-filled bracts has experimental support (Sun and Huang 2015; Sun, Armbruster, and Huang 2016). It does **not** yet establish why this conflict remains integrated. Doing so would require a design that independently manipulates floral presentation and defensive protection, places their consequences on a common reproductive-fitness scale, and then asks how much fitness an experimentally decoupled arrangement recovers relative to the cost of producing or maintaining that arrangement. Only after a favorable differentiated comparison is demonstrated does it become meaningful to test mutational or developmental reachability and rare-frequency establishment. In this sense, *P. rex* is a motivating biological system, not an empirical result of the present paper.
 
@@ -568,6 +625,8 @@ Sun, S.-G., and S.-Q. Huang. 2015. Rainwater in cupulate bracts repels seed herb
 Vallejo-Marín, M., J. S. Manson, J. D. Thomson, and S. C. H. Barrett. 2009. Division of labour within flowers: heteranthery, a floral strategy to reconcile contrasting pollen fates. *Journal of Evolutionary Biology* 22:828–839.
 
 Dieckmann, U., and R. Law. 1996. The dynamical theory of coevolution: a derivation from stochastic ecological processes. *Journal of Mathematical Biology* 34:579–612.
+
+Egas, M., U. Dieckmann, and M. W. Sabelis. 2004. Evolution restricts the coexistence of specialists and generalists: the role of trade-off structure. *The American Naturalist* 163:518–531.
 
 Espinosa-Soto, C., and A. Wagner. 2010. Specialization can drive the evolution of modularity. *PLoS Computational Biology* 6:e1000719.
 
