@@ -44,26 +44,25 @@ def test_conflict_strength_is_not_promoted_to_differentiation_rank() -> None:
     assert "UTA1.5" in ledger
 
 
-def test_discordance_table_contains_process_consistency_case() -> None:
+def test_downstream_process_extension_is_not_a_fourth_persistence_explanation() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8").lower()
-    assert "reciprocal fixation and occupancy orderings disagree" in manuscript
-    assert "at least one registered stochastic-process assumption is inadequate" in manuscript
+    assert "downstream population-process extensions" in manuscript
+    assert "reciprocal fixation ordering and symmetric rare-mutation occupancy re-align" in manuscript
+    assert "not a fourth explanation" in manuscript
 
 
-def test_persistent_integration_gate_localization_is_registered() -> None:
+def test_persistent_multifunctionality_three_cause_diagnosis_is_registered() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.10" in theory
     assert "UTA1.10" in ledger
-    assert "persistent integration is non-identifying" in manuscript.lower()
+    assert "Why can multifunctionality persist? Three distinct explanations" in manuscript
     assert "Phi>0, g_0<0" in manuscript
     assert "Phi>0, g_0>0, Delta_R<0" in manuscript
-    assert "Mechanism attribution remains a separate causal problem." in manuscript
-    assert "`g_0=0` leaves the local-release verdict unresolved" in manuscript
-    assert "`Delta_R=0` is the rare-invasion boundary" in manuscript
     assert "Phi>0, g_0>0, Delta_R>0" in manuscript
-    assert "do not infer realized differentiation must occur" in manuscript
+    assert "does not prove that differentiation must fix or persist historically" in manuscript
+    assert "Persistent integration is not a diagnosis of weak conflict" in manuscript
 
 
 def test_feedback_gradient_generalization_is_registered() -> None:
