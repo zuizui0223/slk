@@ -65,6 +65,14 @@ Therefore SLK must **not** claim:
 
 The residual SLK prediction is narrower and dynamic: an unchanged integrated phenotype can move from adaptive integration to historical trapping to ecological stabilization along an environmental gradient before structural differentiation appears.
 
+### Stable phenotypes with changing underlying mechanisms
+
+Developmental system drift and related theory already show that a phenotype can remain stable while the underlying genetic or developmental mechanism changes. Schiffman & Ralph (2022) give an explicit model in which phenotypically equivalent gene networks diverge by system drift.
+
+Therefore SLK must **not** claim that phenotypic constancy generally implies hidden mechanistic turnover as a new idea.
+
+The SLK distinction is narrower: its three states concern the **selective status of structural differentiation relative to an integrated phenotype**—whether division of labor is net unfavorable, selectively inaccessible, or ecologically blocked when rare. The predicted turnover is among these selective states, not merely among molecular mechanisms that realize the same phenotype.
+
 ### Evolutionary attainability of specialist states
 
 Egas, Dieckmann & Sabelis (2004) provide direct prior art for the distinction between evolutionary stability and gradual attainability. In their specialist–generalist model, coexistence can be evolutionarily stable yet in most cases cannot be reached through gradual evolution; immigration or large-effect mutations may be required.
@@ -131,6 +139,7 @@ A defensible positioning paragraph is:
 
 ## Citation targets
 
+- Schiffman JS, Ralph PL. 2022. System drift and speciation. *Evolution* 76:236–251.
 - Evans KM, Felice R. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
 - Farina SC, Kane EA, Hernandez LP. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
 - Schwenk K. 2001. Function and the evolution of phenotypic stability: connecting pattern to process. *American Zoologist* 41:552–563.
