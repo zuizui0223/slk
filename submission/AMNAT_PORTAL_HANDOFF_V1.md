@@ -112,7 +112,7 @@ The exact placement should follow the journal's current instruction that scienti
 
 - anonymous review manuscript PDF/DOCX generated from the canonical source;
 - anonymous title page;
-- reviewer-access data/code package: `SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip` is verified and ready for Editorial Manager upload (SHA256 `ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b`);
+- reviewer-access data/code package: **REBUILD REQUIRED** after manuscript refocus; the historical ZIP and checksum are not current for submission;
 - initial private/non-public archive deposit in a curated repository;
 - permanent archive DOI/publication plan;
 - any journal-required source files;
@@ -121,16 +121,19 @@ The exact placement should follow the journal's current instruction that scienti
 ## Final gate
 
 ```text
-SCIENTIFIC_PACKAGE = READY
-DOUBLE_ANONYMITY = READY
+SCIENTIFIC_MANUSCRIPT = READY
+AUTOMATED_REVIEW_BUILD = PASS
+DOUBLE_ANONYMITY_SOURCE_CHECK = PASS
 COVER_LETTER = NOT_REQUIRED
-REVIEWER_DATA_CODE_ACCESS = EDITORIAL_MANAGER_ZIP_READY
-INITIAL_DATA_CODE_ARCHIVE_DEPOSIT = REQUIRED_AT_SUBMISSION
-PERMANENT_DATA_CODE_ARCHIVE_DOI = REQUIRED_FOR_PUBLICATION
+REVIEWER_DATA_CODE_ACCESS = REBUILD_REQUIRED_AFTER_REFOCUS
+EDITORIAL_MANAGER_UPLOAD_KIT = REBUILD_REQUIRED_AFTER_REFOCUS
+ZENODO_ARCHIVE_PAYLOAD = REBUILD_REQUIRED_AFTER_REFOCUS
+FINAL_RENDERED_PAGE_QA = REQUIRED_AFTER_REBUILD
 AUTHOR_METADATA = REQUIRED_EXTERNAL_ACTION
 ACKNOWLEDGMENTS_AND_CONTRIBUTIONS = REQUIRED_EXTERNAL_ACTION
-REVIEWER_AND_AE_FIELDS = AUTHOR_CONTROLLED
 AI_DISCLOSURE = REQUIRED_AUTHOR_APPROVAL
 ALL_AUTHOR_APPROVAL = REQUIRED_EXTERNAL_ACTION
 PORTAL_UPLOAD = REQUIRED_EXTERNAL_ACTION
 ```
+
+The portal readiness validator is fail-closed: it cannot return ready while the reviewer ZIP receipt is stale.
