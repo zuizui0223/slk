@@ -114,7 +114,7 @@ def test_environmental_barrier_turnover_is_registered() -> None:
     assert "E_V<E_A<E_I" in theory
     assert "limiting explanation" in theory
     assert "same integrated phenotype" in theory
-    assert "reason for persistence can change" in manuscript
+    assert "The same phenotype can change evolutionary meaning before it changes form" in manuscript
     assert "E_A" in manuscript
     assert "E_I" in manuscript
 
