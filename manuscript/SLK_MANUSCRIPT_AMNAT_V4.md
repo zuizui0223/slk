@@ -215,9 +215,19 @@ E > E_I
 
 Thus a chain of populations can look morphologically similar while the evolutionary reason for that morphology changes. **Phenotypic stability across geography does not imply stability of the process maintaining the phenotype.**
 
+Ecology also determines whether a distinct ecologically stabilized phase exists at all. Let the gap between the global-value and local-accessibility thresholds, expressed on the same payoff scale as frequency feedback, be
+
+```text
+B_A = dmax (k_global-k_local).
+```
+
+If positive frequency feedback is stronger than this architecture barrier (`eta>B_A`), the crossings satisfy `E_V<E_A<E_I`: after the developmental or historical barrier is released, ecology still prevents a rare divided architecture from spreading. If `0<eta<=B_A`, rare establishment becomes possible before the local accessibility barrier disappears, so there is no environment in which ecology alone maintains integration. With negative frequency dependence, rarity can instead favor the differentiated type and move establishment to the other side of the value crossing.
+
+This gives a sharper biological prediction: **whether ecology becomes the final barrier to division of labor depends on the strength of frequency-dependent interactions relative to the architecture's local evolutionary barrier.**
+
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
-**Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** A real conflict first asks whether structural differentiation has positive net value. Convex recovery can then leave a region in which the completed differentiated state is fitter but small changes away from integration remain downhill. Frequency-dependent ecology can move the rare-establishment boundary still farther. Along an environmental gradient, populations can therefore remain multifunctional while the evolutionary state maintaining integration changes from adaptive compromise, to historical trapping, to ecological stabilization.
+**Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** Convex recovery makes global profitability cross before local accessibility when environmental change lowers the cost of differentiation. Strong positive frequency dependence can place rare establishment later still, generating an ecologically stabilized integrated phase after the historical barrier has disappeared. That third phase exists only when rare-type disadvantage is stronger than the architecture barrier; otherwise history remains the last barrier. Populations can therefore remain multifunctional along a gradient while the evolutionary state maintaining integration changes beneath the same gross phenotype.
 
 ### Conflict strength need not predict division of labor
 
