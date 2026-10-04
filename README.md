@@ -49,9 +49,9 @@ These states can look identical if one only observes that the structure remains 
 
 ![Figure 1. Three causes of persistent multifunctionality under functional conflict.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
-![Figure 2. Architecture value, accessibility and establishment can cross under different conditions.](figures/FIG2_PHASE_MAP.svg)
+![Figure 2. Natural systems use different resolutions of functional conflict.](figures/FIG2_PHASE_MAP.svg)
 
-![Figure 3. Natural systems use different resolutions of functional conflict.](figures/FIG3_EMPIRICAL_LADDER.svg)
+![Figure 3. Architecture value, accessibility and establishment can cross under different conditions.](figures/FIG3_EMPIRICAL_LADDER.svg)
 
 ## Biological predictions
 
@@ -135,9 +135,9 @@ These modules may be cited by SLK without being promoted to independent manuscri
 For the flagship argument, the canonical path is deliberately short:
 
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
-2. `figures/FIG1_LOGIC_DIAGRAM.svg` — three biological causes of persistent multifunctionality.
-3. `figures/FIG2_PHASE_MAP.svg` — profitability, reachability, rare establishment, and environmental turnover of the limiting cause.
-4. `figures/FIG3_EMPIRICAL_LADDER.svg` — natural examples showing spatial partitioning, temporal partitioning, geographic variation in conflict, and ecological re-coupling.
+2. `figures/FIG1_LOGIC_DIAGRAM.svg` — three evolutionary states behind persistent multifunctionality.
+3. `figures/FIG2_PHASE_MAP.svg` — natural examples showing structural partitioning, temporal partitioning, geographic variation, frequency dependence, and ecological re-coupling.
+4. `figures/FIG3_EMPIRICAL_LADDER.svg` — profitability, reachability, rare establishment, and environmental turnover of the state maintaining integration.
 5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
 6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
 7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem, derived-consequence, diagnostic, and empirical-handoff status.
