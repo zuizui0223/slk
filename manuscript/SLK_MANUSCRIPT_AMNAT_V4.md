@@ -315,9 +315,9 @@ Sun, S.-G., W. S. Armbruster, and S.-Q. Huang. 2016. Geographic consistency and 
 
 Sun, S.-G., and S.-Q. Huang. 2015. Rainwater in cupulate bracts repels seed herbivores in a bumblebee-pollinated subalpine flower. *AoB PLANTS* 7:plv019.
 
-Toräng, P., J. Ehrlén, and J. Ågren. 2008. Mutualists and antagonists mediate frequency-dependent selection on floral display. *Ecology* 89:1564–1572.
-
 Taylor, C., D. Fudenberg, A. Sasaki, and M. A. Nowak. 2004. Evolutionary game dynamics in finite populations. *Bulletin of Mathematical Biology* 66:1621–1644.
+
+Toräng, P., J. Ehrlén, and J. Ågren. 2008. Mutualists and antagonists mediate frequency-dependent selection on floral display. *Ecology* 89:1564–1572.
 
 Vallejo-Marín, M., E. M. Da Silva, R. D. Sargent, and S. C. H. Barrett. 2010. Trait correlates and functional significance of heteranthery in flowering plants. *New Phytologist* 188:418–425.
 
