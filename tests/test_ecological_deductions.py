@@ -50,19 +50,20 @@ def test_downstream_population_processes_are_demoted_to_supporting_theory() -> N
     assert "finite-population fixation and weak-mutation occupancy remain in the supporting theory" in manuscript
     assert "not additional explanations for multifunctionality" in manuscript
 
-def test_persistent_multifunctionality_three_cause_diagnosis_is_registered() -> None:
+def test_persistent_multifunctionality_three_evolutionary_states_are_registered() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.10" in theory
     assert "UTA1.10" in ledger
     assert "Three evolutionary states behind persistent multifunctionality" in manuscript
-    assert "Phi>0, g_0<0" in manuscript
-    assert "Phi>0, g_0>0, Delta_R<0" in manuscript
-    assert "Phi>0, g_0>0, Delta_R>0" in manuscript
+    assert "Adaptive integration." in manuscript
+    assert "Historical or developmental trapping." in manuscript
+    assert "Ecological stabilization of integration." in manuscript
+    assert "Phi > 0 and g0 < 0" in manuscript
+    assert "Phi > 0, g0 > 0, Delta_R < 0" in manuscript
     assert "does not guarantee fixation or historical realization" in manuscript
     assert "same morphology can consequently have different evolutionary meanings" in manuscript
-
 
 def test_feedback_gradient_generalization_is_retained_in_supporting_theory() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
