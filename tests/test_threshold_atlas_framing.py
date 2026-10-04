@@ -25,9 +25,9 @@ def test_figure1_centers_three_biological_causes_of_persistence() -> None:
     text = FIG1.read_text(encoding="utf-8")
     for token in (
         "Why can multifunctionality persist despite functional conflict?",
-        "Differentiation does not pay",
-        "Fitter, but locally inaccessible",
-        "Reachable, but cannot establish",
+        "Adaptive integration",
+        "Historical / developmental trapping",
+        "Ecological stabilization",
         "persistent multifunctionality",
         "Pedicularis rex",
     ):
