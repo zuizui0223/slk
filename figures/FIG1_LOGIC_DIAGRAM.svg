@@ -37,15 +37,16 @@
   <text x="240" y="411" text-anchor="middle" class="body">division of labor releases too little conflict</text>
   <text x="240" y="439" text-anchor="middle" class="body">or costs too much to build and maintain</text>
   <text x="240" y="485" text-anchor="middle" class="mid">integration is the better architecture</text>
-  <text x="240" y="520" text-anchor="middle" class="tiny">state changes if recoverability rises or architecture cost falls</text>
+  <text x="240" y="520" text-anchor="middle" class="tiny">lower architecture cost can release integration</text>
 
   <rect x="515" y="302" width="370" height="250" class="state"/>
-  <text x="700" y="340" text-anchor="middle" class="head">Historical / developmental trapping</text>
-  <text x="700" y="374" text-anchor="middle" class="mid">Phi &gt; 0,  g0 &lt; 0</text>
-  <text x="700" y="411" text-anchor="middle" class="body">a divided endpoint is fitter, but available</text>
-  <text x="700" y="439" text-anchor="middle" class="body">small changes initially move downhill</text>
-  <text x="700" y="485" text-anchor="middle" class="mid">integration persists because of the path</text>
-  <text x="700" y="520" text-anchor="middle" class="tiny">state changes if a new developmental or mutational route appears</text>
+  <text x="700" y="329" text-anchor="middle" class="head">Historical / developmental</text>
+  <text x="700" y="355" text-anchor="middle" class="head">trapping</text>
+  <text x="700" y="386" text-anchor="middle" class="mid">Phi &gt; 0,  g0 &lt; 0</text>
+  <text x="700" y="420" text-anchor="middle" class="body">a divided endpoint is fitter, but available</text>
+  <text x="700" y="447" text-anchor="middle" class="body">small changes initially move downhill</text>
+  <text x="700" y="488" text-anchor="middle" class="mid">integration persists because of the path</text>
+  <text x="700" y="520" text-anchor="middle" class="tiny">a new developmental or mutational route can release the trap</text>
 
   <rect x="975" y="302" width="370" height="250" class="state"/>
   <text x="1160" y="340" text-anchor="middle" class="head">Ecological stabilization</text>
@@ -53,7 +54,7 @@
   <text x="1160" y="411" text-anchor="middle" class="body">division of labor is favorable and reachable,</text>
   <text x="1160" y="439" text-anchor="middle" class="body">but a rare divided type performs poorly</text>
   <text x="1160" y="485" text-anchor="middle" class="mid">integration persists because of ecology</text>
-  <text x="1160" y="520" text-anchor="middle" class="tiny">state changes if frequency dependence or community context changes</text>
+  <text x="1160" y="520" text-anchor="middle" class="tiny">community change can release ecological stabilization</text>
 
   <path d="M240 552 C240 640 500 660 615 670" class="line"/>
   <path d="M700 552 L700 655" class="line"/>
@@ -62,9 +63,6 @@
   <rect x="485" y="654" width="430" height="105" class="outcome"/>
   <text x="700" y="694" text-anchor="middle" class="head">Same visible outcome</text>
   <text x="700" y="729" text-anchor="middle" class="mid">persistent multifunctionality</text>
-
-  <path d="M915 706 C1040 706 1105 695 1160 645" class="dash"/>
-  <text x="1115" y="685" text-anchor="end" class="tiny">community change can release ecological stabilization</text>
 
   <rect x="220" y="798" width="960" height="62" class="box"/>
   <text x="700" y="824" text-anchor="middle" class="mid">The same morphology can therefore have different evolutionary meanings across populations or environments.</text>
