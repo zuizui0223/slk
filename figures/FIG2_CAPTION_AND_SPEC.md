@@ -1,61 +1,36 @@
-# Figure 2 — profitability, reachability, and establishment
+# Figure 2 — natural evolutionary resolutions of functional conflict
 
-## Reader-facing caption
+## Caption
 
-**Figure 2. Division of labor can become profitable, reachable, and able to establish at different conditions.** (A) The `L-Phi` plane separates persistent compromise from positive net architecture value. (B) Convex recovery can create a range in which the differentiated endpoint is fitter but sufficiently small release steps are still downhill. (C) Frequency-dependent ecology can then move the rare-establishment boundary away from the value boundary. (D) When an environmental gradient progressively lowers marginal architecture cost, strict convexity guarantees that profitability precedes local reachability. If positive frequency feedback is strong enough, establishment occurs later still, producing `E_V<E_A<E_I`. Populations can therefore remain morphologically integrated while the limiting explanation turns over from negative value, to local inaccessibility, to rare-establishment failure.
+**Figure 2. Natural systems use multiple evolutionary resolutions to functional conflict.** (A) In pollen-reward flowers, the same conflict between pollen as pollinator food and pollen as male gametes can be reduced by different strategies. *Solanum rostratum* shows functional heteranthery, with feeding anthers preferentially handled by bees and pollinating anthers contributing disproportionately to pollen export, while the same species also releases pollen gradually across successive buzzes. In *Clarkia*, superficially similar heteranthery does not divide feeding and pollinating functions; delayed dehiscence instead staggers pollen presentation. (B) Ecological partners alter which solution is favored. Bee-adapted *Penstemon* and *Keckiella* species release pollen more gradually than hummingbird-adapted relatives; *Pedicularis rex* retains an integrated floral architecture while seed-predator-mediated selection varies geographically; and natural plant populations show that pollinators and antagonists can make reproductive success frequency dependent, changing whether rare phenotypes are penalized or favored. (C) Functional decoupling need not create evolutionary independence. In Neotropical cichlids, oral and pharyngeal jaws release a force–mobility trade-off and expand trophic diversity, yet feeding ecology still drives aligned evolutionary responses in the two jaw systems. Together these cases show that functional conflict does not prescribe one architecture: structural partitioning, temporal partitioning, persistent integration, and mixed states all occur in nature.
 
-## Scientific role
+## Biological message
 
-Figure 2 makes two biological points.
+The figure is not an empirical measurement ladder. Its role is to establish the natural-history premise of the paper:
 
-First, a single measure of conflict cannot answer the later questions. Profitability, reachability, and rare establishment require different information:
+~~~text
+similar functional conflict
+        |
+        +--> structural division of labor
+        +--> temporal partitioning
+        +--> persistent multifunctionality
+        +--> combinations / partial decoupling
 
-```text
-architecture value:       L, R, K, Phi
-small-step construction:  release-path geometry, k_local
-population establishment: eta
-ecological displacement:  environmental slope dPhi/dE
-finite population:        N, beta, fixation process
-long-run occupancy:       mutation graph/kernel
-```
+which resolution persists
+        =
+architecture + evolutionary history + ecological context
+~~~
 
-Second, those distinct measurements generate a comparative ecological prediction rather than a bookkeeping distinction. Along a common environmental axis, the identity of the limiting barrier can change even while the visible multifunctional phenotype remains unchanged.
+## Evidence represented
 
-For the barrier-turnover slice,
+- **Solanum rostratum:** Vallejo-Marín et al. (2009) experimentally support feeding-versus-pollinating anther division of labor; Vallejo-Marín & Lundgren (2026) show gradual pollen release under real bumble-bee buzzes.
+- **Clarkia:** Kay et al. (2020) find no support for feeding-versus-pollinating division of labor; heteranthery instead supports staggered pollen presentation.
+- **Penstemon / Keckiella:** Castellanos et al. (2006) show phylogenetically replicated shifts in pollen presentation associated with bee versus hummingbird pollination.
+- **Pedicularis rex:** Sun et al. (2016) show opposing pollinator- and seed-predator-mediated effects on floral traits across 14 populations, with a geographic mosaic in the antagonist component.
+- **Ipomoea purpurea:** Epperson & Clegg (1987) show lower bumble-bee service and outcrossing for the white morph when rare.
+- **Primula farinosa:** Toräng et al. (2008) show pollinator- and seed-predator-mediated frequency dependence whose strength and direction vary among populations and years.
+- **Neotropical cichlids:** Burress et al. (2020) show relaxed integration between oral and pharyngeal jaws, novel trait combinations and greater trophic diversity, together with aligned ecological responses across feeding guilds.
 
-```text
-k(E)=k0-c(E-E0),  c>0
-```
+## Scope
 
-with fixed convex recovery and fixed `eta`,
-
-```text
-E_A-E_V=(k_global-k_local)/c
-E_I-E_V=eta/(c dmax).
-```
-
-If
-
-```text
-eta > dmax(k_global-k_local),
-```
-
-then
-
-```text
-E_V < E_A < E_I,
-```
-
-which yields the ordered sequence value limitation -> accessibility limitation -> rare-establishment limitation.
-
-## Claim mapping
-
-- Panel A: C1-C5.
-- Panel B: C6.
-- Panel C: C7.
-- Panel D: ecological barrier-turnover corollary UTA1.4c.
-- Fixation/occupancy are downstream extensions and are not part of the three core explanations in Figure 1.
-
-## Anti-overclaim rule
-
-Panel D is exact for the declared affine `Phi(E)` and locally constant `eta` slice. For smooth non-affine functions it is a local first-order prediction, not a universal constant spacing. Negative-frequency feedback allowing rare invasion with `Phi<0` does not mean the differentiated endpoint is intrinsically superior; in the registered deterministic pair game it identifies the coexistence route. Likewise, positive `eta` delaying rare invasion does not prove permanent historical absence of differentiation.
+These examples do not claim that every natural system has been assigned to one of the model's three formal states. They establish the broader ecological facts that motivate the theory: comparable conflicts have multiple evolutionary resolutions; ecological partners alter selection on those resolutions; and anatomical decoupling does not eliminate ecological coupling.
