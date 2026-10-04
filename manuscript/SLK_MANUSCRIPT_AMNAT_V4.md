@@ -39,7 +39,7 @@ The resulting theory is used for two purposes. First, it identifies the measurem
 
 Consider two or more fitness-relevant functions constrained to one phenotypic coordinate. Let `L>=0` denote the compromise load on a common fitness scale. `L=0` is the no-identified-conflict boundary; `L>0` means that forcing the functions onto one coordinate produces a positive fitness loss relative to the relevant function-specific benchmark.
 
-The empirical interpretation of `L` requires causal care. Context-specific optima measured under selective environments are not automatically pure-function optima. In practice, the conflict budget should therefore be exported only from designs that identify opposing causal geometry or from explicitly bounded state-specific contrasts. The integrated theory starts from a valid `L` receipt; it does not redefine how that receipt is obtained. Thus the present framework does not prove that a biological system has `L>0`; that conclusion must be imported from an identified analysis of shared-coordinate conflict.
+The empirical interpretation of `L` requires causal care. Context-specific optima measured under selective environments are not automatically pure-function optima. In practice, the conflict budget should therefore be exported only from designs that identify opposing causal geometry or from explicitly bounded state-specific contrasts. The analysis starts from an empirically supported estimate or bound for `L`; it does not redefine how that evidence is obtained. Thus the present framework does not prove that a biological system has `L>0`; that conclusion must be imported from an identified analysis of shared-coordinate conflict.
 
 ## 3. Would division of labor pay?
 
@@ -76,7 +76,7 @@ A differentiated architecture is globally favored under the declared optimized c
 Phi>0 iff K<R.
 ```
 
-The parameter `s` enters in the registered quadratic partial-release bridge. There, `s in [0,1]` is both the realized separation fraction and the recovered fraction of the one-axis compromise load, giving
+The parameter `s` enters in the quadratic partial-release model used here. There, `s in [0,1]` is both the realized separation fraction and the recovered fraction of the one-axis compromise load, giving
 
 ```text
 R=sL,
@@ -85,7 +85,7 @@ Phi=sL-K.
 
 This is a quadratic corollary rather than an arbitrary-landscape identity. It provides a transparent worked bridge between measured conflict magnitude and partial release, but the general architecture-value coordinate remains `Phi=R-K`.
 
-Under the registered nested architecture comparison, `Phi>0` means the differentiated architecture has higher globally optimized payoff than the declared shared comparison. Structural elaboration with weak functional decoupling can remain below the crossing even when full theoretical decoupling would be beneficial.
+Under the nested architecture comparison used here, `Phi>0` means the differentiated architecture has higher globally optimized payoff than the declared shared comparison. Structural elaboration with weak functional decoupling can remain below the crossing even when full theoretical decoupling would be beneficial.
 
 Figure 2 separates this architecture-value classification from later realization criteria. Panel A lives on the `L-Phi` plane. Panels B and C deliberately introduce additional coordinates, because local accessibility depends on release-path geometry and rare invasion depends on population feedback. Those later boundaries therefore cannot be drawn as universal extra lines in the same `L-Phi` plane.
 
@@ -112,7 +112,7 @@ k_local<k<k_global
 
 can be nonempty. Inside it, all sufficiently small releases are selected against even though complete release has positive net payoff.
 
-This produces an endpoint architecture that is globally favorable but cannot be approached by sufficiently small selectively uphill release steps along the declared path. It does not rule out crossing by drift, large mutations, recombination, or another developmental route. In the registered two-function quadratic case, the barrier width is
+This produces an endpoint architecture that is globally favorable but cannot be approached by sufficiently small selectively uphill release steps along the declared path. It does not rule out crossing by drift, large mutations, recombination, or another developmental route. In the two-function quadratic example, the barrier width is
 
 ```text
 W_k=s0(1-s0)Delta^2,
@@ -137,11 +137,11 @@ Phi=+eta
 Phi=-eta.
 ```
 
-The population phase is therefore not determined by architecture value alone. Depending on `eta`, the system can show dominance, stable coexistence, or coordination bistability. This split is conditional on the registered symmetric pair mapping and an identified or declared population-feedback term.
+The population phase is therefore not determined by architecture value alone. Depending on `eta`, the system can show dominance, stable coexistence, or coordination bistability. This split is conditional on the symmetric pair mapping used here and on an identified or explicitly specified population-feedback term.
 
 ## 7. What happens after establishment depends on the population process
 
-In finite populations, invasion when rare and fixation ordering need not coincide. Under the registered exponential Moran process for the canonical symmetric pair,
+In finite populations, invasion when rare and fixation ordering need not coincide. Under the exponential Moran process considered here for the canonical symmetric pair,
 
 ```text
 rho_D/rho_S=exp[beta(N-2)Phi].
@@ -153,7 +153,7 @@ Thus reciprocal fixation ordering depends on intrinsic architecture value, where
 rho_D>1/N iff 3Phi>eta.
 ```
 
-The distinction between reciprocal fixation ordering and absolute fixation advantage matters for the final transport step. These fixation results are specific to the declared Moran mapping.
+The distinction between reciprocal fixation ordering and absolute fixation advantage matters downstream. These fixation results are specific to the stated Moran mapping.
 
 ## 8. Long-run persistence is a further population-process question
 
@@ -178,13 +178,13 @@ iff
 Pi_j>Pi_i.
 ```
 
-Thus reciprocal fixation ordering and symmetric weak-mutation monomorphic occupancy ordering are not independent under this registered process; they coincide exactly. By contrast, absolute fixation advantage over neutrality can disagree with occupancy ordering because it depends on `eta` as well as `Phi` under weak selection.
+Thus reciprocal fixation ordering and symmetric weak-mutation monomorphic occupancy ordering are not independent under this process; they coincide exactly. By contrast, absolute fixation advantage over neutrality can disagree with occupancy ordering because it depends on `eta` as well as `Phi` under weak selection.
 
-This result sits inside a well-developed literature on finite-population evolutionary games and weak-mutation substitution processes; the contribution here is the exact placement of the invariant inside the architecture-value transport, not the invention of weak-mutation Markov-chain theory. The invariant requires a finite symmetric game, connected symmetric rare mutation, and the registered exponential Moran fixation process.
+This result sits inside a well-developed literature on finite-population evolutionary games and weak-mutation substitution processes. Its role here is simply to show that some downstream criteria can re-align rather than continually diverge. The invariant requires a finite symmetric game, connected symmetric rare mutation, and the exponential Moran fixation process considered here.
 
 ## 9. Formal model: separating the biological explanations
 
-The preceding stages can be embedded in one registered composite model rather than treated as separate counterexamples. Let release from the shared architecture be `d in [0,dmax]`, let recovery `R(d)` be differentiable and convex with `R(0)=0`, and let path cost be linear, `K(d)=kd`. Define
+The preceding stages can be embedded in one composite model rather than treated as separate counterexamples. Let release from the shared architecture be `d in [0,dmax]`, let recovery `R(d)` be differentiable and convex with `R(0)=0`, and let path cost be linear, `K(d)=kd`. Define
 
 ```text
 k_local  = R'(0)
@@ -192,7 +192,7 @@ k_global = R(dmax)/dmax
 Phi      = R(dmax)-k dmax.
 ```
 
-For the same endpoint pair, use the registered canonical population game
+For the same endpoint pair, use the canonical population game
 
 ```text
 Delta(p)=Phi+eta(2p-1),
@@ -200,7 +200,7 @@ Delta(p)=Phi+eta(2p-1),
 
 the self-excluding exponential Moran process, and connected symmetric rare mutation.
 
-The cross-level mapping is exact for the declared comparison. The architecture path generates the endpoint gap `Phi=W_D-W_S`; the canonical pair has self-play difference `A_DD/2-A_SS/2=Phi`; and the registered reciprocal-fixation and symmetric rare-mutation occupancy ratios both use that same self-play difference. Frequency dependence enters through `eta` and moves invasion boundaries without redefining the endpoint contrast. Thus the later stages transport one `Phi`, rather than substituting unrelated payoff quantities.
+The cross-level mapping is exact for the declared comparison. The architecture path generates the endpoint gap `Phi=W_D-W_S`; the canonical pair has self-play difference `A_DD/2-A_SS/2=Phi`; and the corresponding reciprocal-fixation and symmetric rare-mutation occupancy ratios both use that same self-play difference. Frequency dependence enters through `eta` and moves invasion boundaries without redefining the endpoint contrast. Thus the later stages retain the same `Phi`, rather than substituting unrelated payoff quantities.
 
 Under these assumptions the critical surfaces are
 
@@ -226,7 +226,7 @@ while symmetric rare-mutation occupancy satisfies the identical pairwise ratio
 Pi_D/Pi_S=exp[beta(N-2)Phi].
 ```
 
-Thus the same architecture comparison is cut by genuinely different surfaces when release geometry and frequency dependence enter, but reciprocal fixation and monomorphic occupancy re-align exactly at `Phi=0` under the registered process.
+Thus the same architecture comparison is cut by genuinely different surfaces when release geometry and frequency dependence enter, but reciprocal fixation and monomorphic occupancy re-align exactly at `Phi=0` under the specified process.
 
 Convexity adds a structural result. Because `R(0)=0`,
 
@@ -321,9 +321,9 @@ and the environmental distance between the two reciprocal invasion boundaries is
 |E_I-E_R|=2|eta|/a.
 ```
 
-Thus the same parameters predict not only which transition occurs first but also the width of the coordination or coexistence zone along the ecological gradient. These affine displacement formulas are direct solutions of the registered crossing equations; we use them as testable ecological mappings, not as standalone mathematical novelty.
+Thus the same parameters predict not only which transition occurs first but also the width of the coordination or coexistence zone along the ecological gradient. These affine displacement formulas are direct solutions of the crossing equations; we use them as testable ecological mappings, not as standalone mathematical novelty.
 
-If `eta>0`, coordination-like ecological feedback creates an interval in which differentiation already pays but cannot establish from rarity. If `eta<0`, negative-frequency feedback allows the differentiated type to invade before its intrinsic endpoint margin becomes positive; in the registered deterministic game this leads toward coexistence rather than proving intrinsic endpoint superiority.
+If `eta>0`, coordination-like ecological feedback creates an interval in which differentiation already pays but cannot establish from rarity. If `eta<0`, negative-frequency feedback allows the differentiated type to invade before its intrinsic endpoint margin becomes positive; in the deterministic game considered here this leads toward coexistence rather than proving intrinsic endpoint superiority.
 
 This yields a directly testable comparative prediction: the ecological position of the invasion transition should be displaced from the architecture-value transition by the strength of frequency feedback relative to the environmental slope of architecture value. Environmental or community change can therefore alter realized differentiation even when the underlying functional conflict is unchanged.
 
@@ -344,7 +344,7 @@ Thus the **slope** of ecological feedback matters as well as its magnitude. Coor
 
 ### A two-frequency experiment separates architecture value from ecological feedback
 
-The registered population mapping is directly estimable without observing fixation. At a fixed ecological context,
+The population mapping is directly estimable without observing fixation. At a fixed ecological context,
 
 ```text
 Delta(p)=Phi+eta(2p-1).
@@ -381,7 +381,7 @@ kappa=
 [Delta(p_+)+Delta(p_-)-2Delta(p_0)]/(8q^2).
 ```
 
-The minimal canonical pair is the nested case `h0=kappa=0`. The three-point coefficient recovery is ordinary quadratic interpolation; its SLK role is to diagnose whether the canonical mapping is adequate rather than to claim a new interpolation result.
+The minimal canonical pair is the nested case `h0=kappa=0`. The three-point coefficient recovery is ordinary quadratic interpolation; its role here is to diagnose whether the canonical mapping is adequate rather than to claim a new interpolation result.
 
 When curvature is retained, rare invasion and resistance to reverse invasion become
 
@@ -440,7 +440,7 @@ Phi=-h_R,
 Phi=-h_D,
 ```
 
-regardless of how nonlinear the interior frequency response may be. Dependence on the rare-mutant endpoint is part of the standard definition of invasion fitness; the useful SLK step is keeping the independently measured architecture contrast `Phi` explicit while the ecological endpoint offset is added.
+regardless of how nonlinear the interior frequency response may be. Dependence on the rare-mutant endpoint is part of the standard definition of invasion fitness; the useful step here is keeping the independently measured architecture contrast `Phi` explicit while the ecological endpoint offset is added.
 
 Along `Phi(E)=a(E-E_V)` with locally constant endpoint offsets,
 
@@ -527,33 +527,33 @@ For the two-point certificate, `B=C_R epsilon^2`. This turns endpoint invasion f
 
 ### Persistent integration is non-identifying, but the sign sequence is diagnostic
 
-A single observed state—continued integration—does not identify why differentiation is absent. Once upstream quantities are measured, however, the transport sequence can localize the first layer at which the verdict changes. Let `g_0=R'(0)-k` denote the net small-release gradient along the declared path and `Delta_R=lim_{p->0}Delta(p)` the rare-D selection difference.
+A single observed state—continued integration—does not identify why differentiation is absent. Once upstream quantities are measured, however, the biological sequence can identify the first stage at which the conclusion changes. Let `g_0=R'(0)-k` denote the net small-release gradient along the declared path and `Delta_R=lim_{p->0}Delta(p)` the rare-D selection difference.
 
 | Measured sign pattern | Localized layer | What the pattern licenses | Next measurement / excluded inference |
 |---|---|---|---|
 | `L>0, Phi<0` | architecture value | conflict is real, but the declared D is not net favorable | separate `R` from `K`; do not infer weak conflict or historical persistence |
 | `Phi>0, g_0<0` | local release | the endpoint is better, but sufficiently small release is downhill on the declared path | test alternative paths and step sizes; do not infer global inaccessibility |
 | `Phi>0, g_0>0, Delta_R<0` | rare invasion | value and the initial release direction pass, but rare D does not establish | estimate `h_R=Delta_R-Phi` and frequency response; causal mechanism remains unidentified |
-| `Phi>0, g_0>0, Delta_R>0` | early-gate exclusion | the first three registered failure modes are excluded in the measured context | test full-path geometry and fixation/demography/history; do not infer realized differentiation must occur |
+| `Phi>0, g_0>0, Delta_R>0` | early explanations excluded | the first three explanations above are excluded in the measured context | test full-path geometry and fixation/demography/history; do not infer realized differentiation must occur |
 | `Phi<0, Delta_R>0` | ecological rescue at rarity | D has a rare-frequency advantage despite negative intrinsic endpoint value | measure `Delta_D`; do not infer intrinsic endpoint superiority |
 | `Delta_R>0`, `rho_D/rho_S<1` | reciprocal fixation | deterministic rare entry does not imply fixation ordering in the declared finite process | validate population size, selection mapping, and fixation kernel; no process-independent conclusion |
-| reciprocal fixation and occupancy orderings disagree under the registered symmetric rare-mutation process | process consistency | at least one registered stochastic-process assumption is inadequate | audit the mutation model and fixation kernel; this is not a new biological gate |
+| reciprocal fixation and occupancy orderings disagree under the specified symmetric rare-mutation process | process consistency | at least one stochastic-process assumption is inadequate | audit the mutation model and fixation kernel; this is not a new biological explanation |
 
 Boundary values are not pooled with neighboring failures. `Phi=0` is the architecture-value boundary; `g_0=0` leaves the local-release verdict unresolved at first order and requires higher-order path geometry; `Delta_R=0` is the rare-invasion boundary. With sampling uncertainty, an interval overlapping any of these zero surfaces remains unresolved rather than being assigned to either adjacent regime.
 
 Conversely, `Phi>0`, `g_0>0`, and `Delta_R>0` only exclude these three early failure modes in the measured context. They do not prove that the full path is barrier-free or that differentiation must fix, persist, or be historically realized.
 
-With uncertainty, the diagnostic is set-valued rather than forced into one row. Closed intervals for `Phi`, `g_0`, and `Delta_R` define a Cartesian uncertainty box and retain every gate state whose sequential sign conditions intersect that box. An interval crossing zero therefore preserves the relevant boundary state and any downstream branch that positive values still permit. If valid box bounds are tightened by set inclusion, the compatible-state set can only stay the same or shrink. Better-resolved measurements therefore have an explicit diagnostic payoff: they eliminate explanations rather than manufacturing a sharper label from an unresolved sign. When the intervals are only marginal bounds, this is a conservative outer state set because covariance or other joint constraints may rule out some retained sign combinations. Exact joint compatibility would require a joint feasible region. This is uncertainty propagation through the gate logic, not a new partial-identification method.
+With uncertainty, the diagnostic is set-valued rather than forced into one row. Closed intervals for `Phi`, `g_0`, and `Delta_R` define a Cartesian uncertainty box and retain every explanatory state whose sequential sign conditions intersect that box. An interval crossing zero therefore preserves the relevant boundary state and any downstream branch that positive values still permit. If valid box bounds are tightened by set inclusion, the compatible-state set can only stay the same or shrink. Better-resolved measurements therefore have an explicit diagnostic payoff: they eliminate explanations rather than manufacturing a sharper label from an unresolved sign. When the intervals are only marginal bounds, this is a conservative outer state set because covariance or other joint constraints may rule out some retained sign combinations. Exact joint compatibility would require a joint feasible region. This is uncertainty propagation through the decision logic, not a new partial-identification method.
 
-The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is **gate localization under a fixed architecture comparison**. The same macroscopic persistence can correspond to different sign patterns, and each pattern directs the next measurement. Mechanism attribution remains a separate causal problem.
+The biological contribution is therefore not a universal prediction that conflict produces modularity. It is the diagnosis of persistent multifunctionality under a fixed architecture comparison: the same observed persistence can correspond to different sign patterns, and each pattern points to a different next measurement. Mechanism attribution remains a separate causal problem.
 
 ## 11. How to distinguish the alternatives empirically
 
-The empirical programme is deliberately cumulative. Each measurement level adds a new estimand and raises the ceiling of the biological claim; failure at a later level does not erase what earlier measurements established (Fig. 3).
+The empirical programme is deliberately cumulative. Each measurement step supports a stronger biological conclusion, and failure at a later step does not erase what earlier measurements established (Fig. 3).
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
-**Figure 3. Sequential empirical validation of the SLK hierarchy.** A first stage identifies a real shared-coordinate conflict and estimates or bounds `L`. The next stages quantify recoverable architecture benefit `R` and architecture cost `K` on a common fitness scale, allowing evaluation of `Phi=R-K`. These measurements are sufficient only for architecture-value classification. Stronger claims require additional information: a local mutation or release neighborhood for accessibility, rare-frequency performance and population feedback for invasion, an explicit stochastic finite-population process for fixation, and a mutation graph or kernel for stationary occupancy.
+**Figure 3. Sequential empirical tests of why multifunctionality persists.** A first stage identifies a real shared-coordinate conflict and estimates or bounds `L`. The next stages quantify recoverable architecture benefit `R` and architecture cost `K` on a common fitness scale, allowing evaluation of `Phi=R-K`. These measurements are sufficient only for architecture-value classification. Stronger claims require additional information: a local mutation or release neighborhood for accessibility, rare-frequency performance and population feedback for invasion, an explicit stochastic finite-population process for fixation, and a mutation graph or kernel for stationary occupancy.
 
 The corresponding measurement ladder is:
 
@@ -568,7 +568,7 @@ finite-population process       -> fixation statements become justified
 mutation graph/kernel           -> weak-mutation monomorphic occupancy becomes justified.
 ```
 
-This ordering prevents a common empirical shortcut: endpoint superiority cannot substitute for local accessibility or later population-process measurements. Likewise, a rare-invasion assay cannot by itself determine fixation or occupancy. Under the registered symmetric rare-mutation exponential-Moran model, reciprocal fixation ordering and occupancy ordering coincide, but that agreement is a theorem conditional on the process assumptions rather than permission to skip process specification.
+This ordering prevents a common empirical shortcut: endpoint superiority cannot substitute for local accessibility or later population-process measurements. Likewise, a rare-invasion assay cannot by itself determine fixation or occupancy. Under the specified symmetric rare-mutation exponential-Moran model, reciprocal fixation ordering and occupancy ordering coincide, but that agreement is a theorem conditional on the process assumptions rather than permission to skip process specification.
 
 No single biological system is claimed here to have completed the full measurement ladder end to end.
 
