@@ -353,188 +353,27 @@ E_R-E_V=-eta_0/(a+b).
 
 Thus the **slope** of ecological feedback matters as well as its magnitude. Coordination-like feedback that strengthens in the same direction as architecture value (`0<b<a`) pushes establishment farther from the value crossing than the constant-`eta` prediction. As `b` approaches `a`, the rare-invasion threshold is driven far away; if `b>=a` with `eta_0>0`, increasing `E` in the affine model never overcomes the coordination barrier even though intrinsic endpoint value continues to increase. For smooth non-affine systems the local approximation is `E_I-E_V approximately eta(E_V)/[Phi'(E_V)-eta'(E_V)]`. Ecology can therefore alter not only which threshold is crossed first but whether an invasion crossing occurs in the focal environmental direction at all.
 
-### A two-frequency experiment separates architecture value from ecological feedback
+### Measuring rare establishment in practice
 
-The population mapping is directly estimable without observing fixation. At a fixed ecological context,
-
-```text
-Delta(p)=Phi+eta(2p-1).
-```
-
-Measure the relative performance of D versus S at two frequencies symmetric around one half, `p_-=1/2-q` and `p_+=1/2+q`. Then
-
-```text
-Phi=[Delta(p_+)+Delta(p_-)]/2
-eta=[Delta(p_+)-Delta(p_-)]/(4q).
-```
-
-Thus the same experiment separates the intrinsic endpoint-centered architecture coordinate from frequency-dependent ecological feedback. The two-frequency identities are the direct solution of the declared linear map; their role is experimental decomposition, not a new algebraic identification theorem. Repeating this design across environments reconstructs `Phi(E)` and `eta(E)`, allowing independent estimation of the value crossing `E_V`, the invasion crossing `E_I`, and their local slopes. A failure of the linear-in-frequency fit is informative rather than fatal: it rejects the minimal canonical population mapping and indicates that a richer interaction model is required.
-
-### A third frequency treatment tests and repairs the canonical mapping
-
-The two-frequency decomposition above assumes that population feedback is linear in frequency. That assumption is testable. Retain the independently measured architecture margin `Phi` from G5 and add a balanced-frequency treatment `p_0=1/2`. Approximate the population selection difference by
-
-```text
-Delta(p)
-=
-Phi+h0+eta x+kappa x^2,
-x=2p-1.
-```
-
-With `p_-=1/2-q`, `p_0=1/2`, and `p_+=1/2+q`,
-
-```text
-h0=Delta(p_0)-Phi,
-
-eta=[Delta(p_+)-Delta(p_-)]/(4q),
-
-kappa=
-[Delta(p_+)+Delta(p_-)-2Delta(p_0)]/(8q^2).
-```
-
-The minimal canonical pair is the nested case `h0=kappa=0`. The three-point coefficient recovery is ordinary quadratic interpolation; its role here is to diagnose whether the canonical mapping is adequate rather than to claim a new interpolation result.
-
-When curvature is retained, rare invasion and resistance to reverse invasion become
-
-```text
-Phi>eta-kappa-h0
-```
-
-and
-
-```text
-Phi>-eta-kappa-h0.
-```
-
-Along `Phi(E)=a(E-E_V)` with locally constant `h0`, `eta`, and `kappa`,
-
-```text
-E_I-E_V=(eta-kappa-h0)/a,
-E_R-E_V=-(eta+kappa+h0)/a.
-```
-
-Hence `eta` controls the spacing between reciprocal invasion thresholds, while `h0+kappa` shifts the center of the entire invasion window relative to the independently measured architecture-value crossing. Nonlinearity therefore does not merely invalidate the minimal model; to quadratic order it has a distinct ecological signature.
-
-This diagnostic extension applies to invasion inference only. The canonical Moran fixation and weak-mutation occupancy invariant is not automatically inherited once `h0` or `kappa` is nonzero.
-
-### Invasion prediction itself does not require a linear or quadratic frequency curve
-
-The internal shape of frequency dependence is useful for mechanism diagnosis, but it is not required to define invasion. Write the population selection difference generally as
-
-```text
-Delta(p,E)=Phi(E)+H(p,E),
-```
-
-where `H` contains any additional ecological frequency-dependent contribution. Define the endpoint ecological offsets
-
-```text
-h_R(E)=lim_{p->0} H(p,E),
-h_D(E)=lim_{p->1} H(p,E).
-```
-
-Then rare D invasion and resistance to rare S invasion are exactly
-
-```text
-Phi(E)+h_R(E)>0
-```
-
-and
-
-```text
-Phi(E)+h_D(E)>0.
-```
-
-Thus the generalized invasion surfaces are simply
-
-```text
-Phi=-h_R,
-Phi=-h_D,
-```
-
-regardless of how nonlinear the interior frequency response may be. Dependence on the rare-mutant endpoint is part of the standard definition of invasion fitness; the useful step here is keeping the independently measured architecture contrast `Phi` explicit while the ecological endpoint offset is added.
-
-Along `Phi(E)=a(E-E_V)` with locally constant endpoint offsets,
-
-```text
-E_I-E_V=-h_R/a,
-E_R-E_V=-h_D/a.
-```
-
-Therefore
-
-```text
-E_I-E_R=(h_D-h_R)/a
-```
-
-and
-
-```text
-(E_I+E_R)/2-E_V=-(h_R+h_D)/(2a).
-```
-
-The canonical and quadratic models are nested descriptions of these endpoint offsets: the former has `h_R=-eta`, `h_D=eta`; the latter has `h_R=h0-eta+kappa`, `h_D=h0+eta+kappa`.
-
-This means higher-order frequency dependence changes how ecological mechanisms are decomposed, but it does not invalidate deterministic endpoint invasion inference if the endpoint selection limits can be estimated. Fixation and occupancy remain separate and are not rescued by this endpoint argument.
-
-### Finite-frequency assays can certify the endpoint signs
-
-Endpoint invasion does not require experimentally attaining exactly `p=0` or `p=1`. Suppose near the rare-D endpoint that
-
-```text
-|Delta(p)-Delta_R| <= M_R p.
-```
-
-A measurement at `p=epsilon` then implies
+The third explanation requires the performance of a differentiated type when it is uncommon. The core quantity is the rare-frequency selection difference,
 
 ```text
 Delta_R
-in
-[
-Delta(epsilon)-M_R epsilon,
-Delta(epsilon)+M_R epsilon
-].
-```
-
-If the lower bound is positive, rare D invasion is certified; if the upper bound is negative, failure of rare D invasion is certified. An interval containing zero is unresolved, not evidence of no invasion.
-
-A stronger second-order certificate uses two rare frequencies. If `|Delta''(p)|<=C_R` on `[0,2epsilon]`, define
-
-```text
-Delta_R_hat
 =
-2Delta(epsilon)-Delta(2epsilon).
+lim_{p->0} Delta(p).
 ```
 
-Then
+The diagnosis does not require committing to a linear or quadratic description of the entire frequency-response curve. A positive estimate of `Delta_R` supports establishment from rarity; a negative estimate supports rare-establishment failure; uncertainty that overlaps zero remains unresolved.
+
+In practice, exactly zero frequency is impossible. A study can therefore use one or more low-frequency treatments and a prospectively justified smoothness bound to translate finite-frequency performance into an endpoint interval. Two nearby rare-frequency treatments can improve that approximation when curvature is bounded. The full endpoint-certification formulas and their approximation bounds are retained in the supporting theory (UTA1.8-UTA1.9); the biological requirement is simply that the sign of rare-frequency performance be resolved rather than assumed.
+
+Additional frequency treatments have a different purpose: they reveal **why** rare-frequency performance differs from intrinsic architecture value. In the minimal canonical model,
 
 ```text
-|Delta_R_hat-Delta_R|
-<=
-C_R epsilon^2.
+Delta(p)=Phi+eta(2p-1),
 ```
 
-The same construction applies near `p=1` using `1-epsilon` and `1-2epsilon`. Thus finite-frequency experiments can reduce deterministic endpoint approximation error from order `epsilon` to order `epsilon^2` when a curvature bound is available. This two-scale cancellation is Richardson-type extrapolation (Richardson and Gaunt 1927); the contribution here is its use as a prospective rare-frequency sign certificate with explicit biological and sampling uncertainty, not the extrapolation algebra itself.
-
-Sampling uncertainty can be folded into the same certificate. If `Delta(epsilon)` and `Delta(2epsilon)` have intervals `[L_1,U_1]` and `[L_2,U_2]`, then
-
-```text
-Delta_R
-in
-[
-2L_1-U_2-C_R epsilon^2,
-2U_1-L_2+C_R epsilon^2
-].
-```
-
-Only an interval entirely above or below zero licenses an invasion or non-invasion verdict; overlap with zero remains unresolved.
-
-Along an environmental value gradient `Phi(E)=a(E-E_V)`, a fitness-scale endpoint error bound `B` translates directly into environmental threshold uncertainty
-
-```text
-|E_I_hat-E_I| <= B/a.
-```
-
-For the two-point certificate, `B=C_R epsilon^2`. This turns endpoint invasion from an ideal limit into a prospective sampling-resolution problem.
+so symmetric frequency treatments estimate the strength and sign of frequency feedback. If the response is nonlinear, more frequencies are needed before attributing the establishment barrier to a particular ecological mechanism. The three-cause diagnosis itself, however, does not depend on fitting that mechanism before `Delta_R` is known.
 
 ## 10. How to distinguish the alternatives empirically
 
