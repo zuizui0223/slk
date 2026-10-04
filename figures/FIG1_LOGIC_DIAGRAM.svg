@@ -1,104 +1,72 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="940" viewBox="0 0 1400 940">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
   <defs>
     <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
     </marker>
     <style>
-      .title { font: 700 32px Arial, Helvetica, sans-serif; fill:#111; }
-      .subtitle { font: 400 18px Arial, Helvetica, sans-serif; fill:#333; }
+      .title { font:700 32px Arial,Helvetica,sans-serif; fill:#111; }
+      .subtitle { font:400 18px Arial,Helvetica,sans-serif; fill:#333; }
+      .head { font:700 23px Arial,Helvetica,sans-serif; fill:#111; }
+      .mid { font:600 18px Arial,Helvetica,sans-serif; fill:#222; }
+      .body { font:400 16px Arial,Helvetica,sans-serif; fill:#222; }
+      .tiny { font:400 14px Arial,Helvetica,sans-serif; fill:#333; }
       .box { fill:#fff; stroke:#222; stroke-width:2.2; rx:16; }
-      .cause { fill:#fafafa; stroke:#222; stroke-width:2.1; rx:16; }
+      .state { fill:#fafafa; stroke:#222; stroke-width:2.2; rx:18; }
       .outcome { fill:#fff; stroke:#111; stroke-width:3; rx:18; }
-      .extension { fill:#fff; stroke:#666; stroke-width:1.8; stroke-dasharray:8 6; rx:14; }
-      .label { font:700 22px Arial, Helvetica, sans-serif; fill:#111; }
-      .mid { font:600 18px Arial, Helvetica, sans-serif; fill:#222; }
-      .small { font:400 16px Arial, Helvetica, sans-serif; fill:#222; }
-      .tiny { font:400 14px Arial, Helvetica, sans-serif; fill:#333; }
       .arrow { stroke:#333; stroke-width:2.5; fill:none; marker-end:url(#arrow); }
+      .line { stroke:#555; stroke-width:2.2; fill:none; }
       .dash { stroke:#666; stroke-width:2; stroke-dasharray:8 6; fill:none; marker-end:url(#arrow); }
-      .line { stroke:#555; stroke-width:2; fill:none; }
     </style>
   </defs>
 
-  <text x="700" y="48" text-anchor="middle" class="title">Why can multifunctionality persist despite functional conflict?</text>
-  <text x="700" y="78" text-anchor="middle" class="subtitle">The same integrated phenotype can represent three different evolutionary states</text>
+  <text x="700" y="48" text-anchor="middle" class="title">Three selective states can maintain the same multifunctional phenotype</text>
+  <text x="700" y="79" text-anchor="middle" class="subtitle">Functional conflict defines the problem; architecture, history, and ecology determine why integration persists</text>
 
-  <rect x="390" y="112" width="620" height="88" class="box"/>
-  <text x="700" y="145" text-anchor="middle" class="label">Functional conflict is established</text>
-  <text x="700" y="174" text-anchor="middle" class="small">opposing functional optima on a shared structure; conflict load L &gt; 0</text>
+  <rect x="390" y="112" width="620" height="92" class="box"/>
+  <text x="700" y="147" text-anchor="middle" class="head">Documented functional conflict</text>
+  <text x="700" y="177" text-anchor="middle" class="body">one integrated structure faces opposing functional optima; L &gt; 0</text>
 
-  <path d="M700 200 L700 236" class="arrow"/>
+  <path d="M700 204 L700 245" class="arrow"/>
+  <path d="M700 245 C515 245 335 262 240 300" class="line"/>
+  <path d="M700 245 L700 300" class="line"/>
+  <path d="M700 245 C885 245 1065 262 1160 300" class="line"/>
 
-  <rect x="390" y="238" width="620" height="92" class="box"/>
-  <text x="700" y="270" text-anchor="middle" class="label">Would division of labor pay?</text>
-  <text x="700" y="299" text-anchor="middle" class="small">recoverable benefit R versus architecture cost K; Φ = R − K</text>
+  <rect x="55" y="302" width="370" height="250" class="state"/>
+  <text x="240" y="340" text-anchor="middle" class="head">Adaptive integration</text>
+  <text x="240" y="374" text-anchor="middle" class="mid">Phi &lt; 0</text>
+  <text x="240" y="411" text-anchor="middle" class="body">division of labor releases too little conflict</text>
+  <text x="240" y="439" text-anchor="middle" class="body">or costs too much to build and maintain</text>
+  <text x="240" y="485" text-anchor="middle" class="mid">integration is the better architecture</text>
+  <text x="240" y="520" text-anchor="middle" class="tiny">state changes if recoverability rises or architecture cost falls</text>
 
-  <!-- Cause 1 -->
-  <path d="M390 284 C320 284 300 335 300 382" class="arrow"/>
-  <text x="320" y="310" text-anchor="middle" class="mid">NO</text>
-  <rect x="65" y="382" width="390" height="154" class="cause"/>
-  <text x="260" y="416" text-anchor="middle" class="label">1  Adaptive integration</text>
-  <text x="260" y="447" text-anchor="middle" class="mid">Φ &lt; 0</text>
-  <text x="260" y="478" text-anchor="middle" class="small">division of labor does not repay</text>
-  <text x="260" y="503" text-anchor="middle" class="small">its architecture-specific cost</text>
+  <rect x="515" y="302" width="370" height="250" class="state"/>
+  <text x="700" y="340" text-anchor="middle" class="head">Historical / developmental trapping</text>
+  <text x="700" y="374" text-anchor="middle" class="mid">Phi &gt; 0,  g0 &lt; 0</text>
+  <text x="700" y="411" text-anchor="middle" class="body">a divided endpoint is fitter, but available</text>
+  <text x="700" y="439" text-anchor="middle" class="body">small changes initially move downhill</text>
+  <text x="700" y="485" text-anchor="middle" class="mid">integration persists because of the path</text>
+  <text x="700" y="520" text-anchor="middle" class="tiny">state changes if a new developmental or mutational route appears</text>
 
-  <!-- Continue to reachability -->
-  <path d="M700 330 L700 372" class="arrow"/>
-  <text x="735" y="355" class="mid">YES</text>
+  <rect x="975" y="302" width="370" height="250" class="state"/>
+  <text x="1160" y="340" text-anchor="middle" class="head">Ecological stabilization</text>
+  <text x="1160" y="374" text-anchor="middle" class="mid">Phi &gt; 0,  g0 &gt; 0,  Delta_R &lt; 0</text>
+  <text x="1160" y="411" text-anchor="middle" class="body">division of labor is favorable and reachable,</text>
+  <text x="1160" y="439" text-anchor="middle" class="body">but a rare divided type performs poorly</text>
+  <text x="1160" y="485" text-anchor="middle" class="mid">integration persists because of ecology</text>
+  <text x="1160" y="520" text-anchor="middle" class="tiny">state changes if frequency dependence or community context changes</text>
 
-  <rect x="480" y="374" width="440" height="92" class="box"/>
-  <text x="700" y="406" text-anchor="middle" class="label">Can the fitter state be reached?</text>
-  <text x="700" y="436" text-anchor="middle" class="small">small release is uphill only when g₀ = R′(0) − k &gt; 0</text>
+  <path d="M240 552 C240 640 500 660 615 670" class="line"/>
+  <path d="M700 552 L700 655" class="line"/>
+  <path d="M1160 552 C1160 640 900 660 785 670" class="line"/>
 
-  <!-- Cause 2 -->
-  <path d="M480 420 C430 420 430 490 455 555" class="arrow"/>
-  <text x="454" y="458" text-anchor="middle" class="mid">NO</text>
-  <rect x="300" y="556" width="390" height="154" class="cause"/>
-  <text x="495" y="590" text-anchor="middle" class="label">2  Historical / developmental trapping</text>
-  <text x="495" y="621" text-anchor="middle" class="mid">Φ &gt; 0,  g₀ &lt; 0</text>
-  <text x="495" y="652" text-anchor="middle" class="small">the endpoint is better, but sufficiently small</text>
-  <text x="495" y="677" text-anchor="middle" class="small">changes away from integration are selected against</text>
+  <rect x="485" y="654" width="430" height="105" class="outcome"/>
+  <text x="700" y="694" text-anchor="middle" class="head">Same visible outcome</text>
+  <text x="700" y="729" text-anchor="middle" class="mid">persistent multifunctionality</text>
 
-  <!-- Continue to establishment -->
-  <path d="M920 420 C1010 420 1030 470 1030 516" class="arrow"/>
-  <text x="982" y="443" text-anchor="middle" class="mid">YES</text>
-  <rect x="800" y="518" width="500" height="96" class="box"/>
-  <text x="1050" y="551" text-anchor="middle" class="label">Can the differentiated type establish when rare?</text>
-  <text x="1050" y="581" text-anchor="middle" class="small">rare-frequency selection difference ΔR &gt; 0</text>
+  <path d="M915 706 C1040 706 1105 695 1160 645" class="dash"/>
+  <text x="1115" y="685" text-anchor="end" class="tiny">community change can release ecological stabilization</text>
 
-  <!-- Cause 3 -->
-  <path d="M1050 614 L1050 654" class="arrow"/>
-  <text x="1084" y="640" class="mid">NO</text>
-  <rect x="835" y="656" width="430" height="150" class="cause"/>
-  <text x="1050" y="690" text-anchor="middle" class="label">3  Ecological stabilization</text>
-  <text x="1050" y="721" text-anchor="middle" class="mid">Φ &gt; 0,  g₀ &gt; 0,  ΔR &lt; 0</text>
-  <text x="1050" y="752" text-anchor="middle" class="small">frequency-dependent ecology blocks spread</text>
-  <text x="1050" y="777" text-anchor="middle" class="small">when the differentiated type is uncommon</text>
-
-  <!-- Convergence to observed phenotype -->
-  <path d="M260 536 C260 812 470 816 610 826" class="line"/>
-  <path d="M495 710 C495 785 560 810 630 826" class="line"/>
-  <path d="M1050 806 C1010 826 925 832 790 832" class="line"/>
-
-  <rect x="500" y="812" width="400" height="84" class="outcome"/>
-  <text x="700" y="846" text-anchor="middle" class="label">Same observed outcome</text>
-  <text x="700" y="875" text-anchor="middle" class="mid">persistent multifunctionality</text>
-
-  <!-- successful early route / downstream -->
-  <path d="M1300 566 C1350 566 1350 390 1275 348" class="dash"/>
-  <text x="1280" y="535" text-anchor="end" class="mid">YES</text>
-  <rect x="1040" y="242" width="300" height="104" class="extension"/>
-  <text x="1190" y="276" text-anchor="middle" class="mid">Differentiation can establish</text>
-  <text x="1190" y="302" text-anchor="middle" class="small">later persistence depends on demography</text>
-  <text x="1190" y="326" text-anchor="middle" class="tiny">and evolutionary history</text>
-
-  <!-- Pedicularis inset -->
-  <rect x="65" y="120" width="270" height="174" class="extension"/>
-  <text x="200" y="151" text-anchor="middle" class="mid">Running example: Pedicularis rex</text>
-  <text x="200" y="181" text-anchor="middle" class="small">greater corolla exsertion</text>
-  <text x="200" y="205" text-anchor="middle" class="small">↑ pollen receipt</text>
-  <text x="200" y="229" text-anchor="middle" class="small">↑ seed predation</text>
-  <text x="200" y="260" text-anchor="middle" class="tiny">integration persists across variable antagonist pressure</text>
-
-  <text x="700" y="925" text-anchor="middle" class="tiny">The same integrated phenotype can respond differently to architectural and ecological change.</text>
+  <rect x="220" y="798" width="960" height="62" class="box"/>
+  <text x="700" y="824" text-anchor="middle" class="mid">The same morphology can therefore have different evolutionary meanings across populations or environments.</text>
+  <text x="700" y="848" text-anchor="middle" class="tiny">Figure 3 asks when environmental change moves an integrated lineage among these states.</text>
 </svg>
