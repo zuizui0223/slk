@@ -13,9 +13,10 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
 TITLE_WORDS                         7
-ABSTRACT_WORDS                    184
-TEXT_WORDS_EXCL_LITERATURE_CITED 5414
+ABSTRACT_WORDS                    168
+TEXT_WORDS_EXCL_LITERATURE_CITED 5313
 FIGURES                             3
+TABLES                              0
 ```
 
 ## Current journal-limit checks
@@ -27,7 +28,7 @@ Status:
 ```text
 MAJOR_ARTICLE_TEXT_LIMIT        PASS
 ABSTRACT_200_WORD_LIMIT         PASS
-FIGURE_TABLE_LIMIT              PASS   (3 figures + 3 in-text tables = 6 items)
+FIGURE_TABLE_LIMIT              PASS   (3 figures + 0 tables = 3 items)
 TITLE_LENGTH_PREFERENCE         PASS   (7 words; concise)
 KEYWORDS_1_TO_6                 PASS   (6)
 ANONYMOUS_TITLE_PAGE            PASS
@@ -99,7 +100,7 @@ Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
 
 ### 7. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. The biology-refocused V4 has 13 main-text references; every Literature Cited entry is cited in the manuscript and the list is alphabetical. Broader technical prior art remains documented in the repository but is no longer carried into the streamlined main bibliography when the corresponding derivation has moved out of the journal-facing prose.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. The biology-refocused V4 uses a literature-based natural-history synthesis spanning floral division of labor, temporal pollen presentation, geographic mosaics of mutualist–antagonist selection, frequency dependence, organismal integration, and cichlid jaw decoupling. Technical process results that no longer support the biological main line remain in the supporting theory rather than the journal-facing narrative.
 
 Status: `PASS FOR INITIAL REVIEW`.
 
