@@ -1,103 +1,54 @@
-# Figure 3 — empirical diagnosis of persistent multifunctionality
+# Figure 3 — natural resolutions of functional conflict
 
 ## Caption
 
-**Figure 3. How to distinguish the biological causes of persistent multifunctionality.** The empirical sequence begins by establishing a genuine functional conflict and placing its magnitude on a common fitness scale. It then asks three progressively different questions: does division of labor pay (`Phi=R-K`), is a fitter differentiated state reachable from the integrated architecture, and can that state establish when rare? Negative answers at these stages diagnose the three explanations in Figure 1. If all three early tests are positive, they exclude those explanations but do not prove historical realization or long-run persistence. Fixation and stationary occupancy therefore appear only as optional downstream extensions requiring additional demographic and mutation-process assumptions.
+**Figure 3. Natural systems use different resolutions to functional conflict.** Pollen-reward flowers provide a particularly clear comparison because pollen functions both as a male gamete and as food for pollinators. In *Solanum rostratum*, distinct anther types partly divide feeding and pollen-export functions, while the same flowers also release pollen gradually across bee visits. In *Clarkia*, superficially similar heteranthery does not produce feeding versus pollinating anthers; delayed dehiscence instead creates staggered pollen presentation. Across *Penstemon* and *Keckiella*, bee-adapted species present pollen more gradually than hummingbird-adapted relatives, linking the temporal solution to pollinator ecology. In *Pedicularis rex*, floral exposure is pulled in opposite directions by pollinators and seed predators, while the strength of seed-predator selection varies geographically. Cichlid oral and pharyngeal jaws provide an animal example in which structural decoupling promotes trophic diversification, yet feeding ecology still produces correlated evolution between the two jaw systems.
 
-## Purpose
-
-The figure makes the experimental logic match the biological question.
+## Reader-facing message
 
 ~~~text
-documented conflict
-      |
-      v
-measure L
-      |
-      v
-measure R and K
-      |
-      +-- Phi < 0 -> differentiation does not pay
-      |
-      v
-measure local release gradient g0
-      |
-      +-- g0 < 0 -> fitter endpoint is locally inaccessible
-      |
-      v
-measure rare-frequency selection Delta_R
-      |
-      +-- Delta_R < 0 -> differentiated type cannot establish when rare
-      |
-      v
-early explanations excluded
+functional conflict
+    |
+    +-- spatial partitioning
+    |      Solanum: feeding vs pollen-export anthers
+    |
+    +-- temporal partitioning
+    |      Clarkia: staggered pollen release
+    |      Penstemon/Keckiella: pollinator-dependent dispensing
+    |
+    +-- persistent integrated compromise
+    |      Pedicularis rex: pollination vs seed-predator selection
+    |
+    +-- partial decoupling with ecological re-coupling
+           cichlid oral and pharyngeal jaws
 ~~~
 
-The empirical programme can stop when the biological question has been answered. Fixation and long-run occupancy are not mandatory endpoints for a study of why multifunctionality persists.
+Nature therefore does not present a binary choice between "multifunctional" and "specialized." Structural differentiation, temporal regulation, and ecological coupling can coexist.
 
-## Core measurements
+## Evidence represented
 
-| Step | Quantity | Minimal biological design | Interpretation |
-|---|---|---|---|
-| conflict | opposing functional effects and `L` | manipulations or contrasts that identify different functional optima on the same structure and put their consequences on a common fitness scale | establishes that persistence occurs despite real conflict |
-| value | `R`, `K`, `Phi=R-K` | matched integrated and experimentally or naturally differentiated comparisons | `Phi<0` supports the "does not pay" explanation |
-| reachability | local gradient `g0` | small developmental, mutational, or experimental release steps away from integration | `g0<0` supports a local accessibility barrier |
-| establishment | `Delta_R` and frequency response | rare-frequency differentiated types in the relevant ecological background | `Delta_R<0` supports rare-establishment failure |
+### *Solanum rostratum*
 
-## Environmental test
+Vallejo-Marín et al. (2009) found that bumble bees preferentially manipulate the feeding anthers, whereas pollinating anthers export proportionally more pollen to other flowers. This supports functional division of labor.
 
-Repeat the value and rare-frequency measurements across an ecological coordinate `E`.
+Vallejo-Marín and Lundgren (2026) then showed gradual pollen release across repeated bumble-bee buzzing in the same species. The system therefore combines structural differentiation with temporal pollen dispensing.
 
-If
+### *Clarkia*
 
-~~~text
-Phi(E)=a(E-E_V)
-~~~
+Kay et al. (2020) found no support for feeding versus pollinating division of labor between the two anther whorls. Both whorls contributed to pollen collection and export, while delayed dehiscence supported a pollen-dosing explanation.
 
-and frequency feedback is locally summarized by `eta`, then the rare-establishment boundary is displaced from the profitability boundary by
+### *Penstemon* and *Keckiella*
 
-~~~text
-E_I-E_V=eta/a.
-~~~
+Castellanos et al. (2006) showed, after phylogenetic control, that hymenopteran-adapted species present pollen more gradually than hummingbird-adapted relatives. Pollinator transfer efficiency and grooming therefore predict different temporal resolutions of the pollen-presentation problem.
 
-This predicts a measurable ecological interval in which division of labor is already profitable but cannot establish when rare, or the reverse when frequency dependence favors rarity.
+### *Pedicularis rex*
 
-## Frequency-response design
+Sun, Armbruster, and Huang (2016) found opposing effects of corolla exsertion on pollen receipt and seed predation across 14 populations. Seed-predator-mediated selection varied geographically, with observed seed predation ranging from below 1% in some populations to above 27% in another. Sun and Huang (2015) experimentally supported the defensive role of rainwater retained by the cupulate bracts.
 
-For the canonical local model
+### Cichlid jaws
 
-~~~text
-Delta(p)=Phi+eta(2p-1),
-~~~
+Burress, Martinez, and Wainwright (2020) found relaxed evolutionary integration between oral and pharyngeal jaw systems and associated novel trait combinations with trophic diversification. Despite this structural decoupling, the two systems showed aligned responses across feeding ecologies. Division of labor therefore releases a mechanical trade-off without erasing ecological integration.
 
-two symmetric frequency treatments estimate `Phi` and `eta`:
+## Scope
 
-~~~text
-Phi=[Delta(p_+)+Delta(p_-)]/2
-eta=[Delta(p_+)-Delta(p_-)]/(4q).
-~~~
-
-A balanced treatment at `p=1/2` can test curvature. More generally, invasion itself depends on the endpoint selection limits rather than on a particular interior curve:
-
-~~~text
-Delta_R = lim_{p->0} Delta(p)
-Delta_D = lim_{p->1} Delta(p).
-~~~
-
-Interior frequencies are then used to identify the ecological mechanism generating those endpoint effects.
-
-## Finite-frequency endpoint certification
-
-Exact `p=0` or `p=1` treatments are not necessary. If the local response is Lipschitz bounded, a measurement at small `epsilon` gives an explicit interval for the endpoint. With measurements at `epsilon` and `2epsilon` and a valid curvature bound,
-
-~~~text
-Delta_R_hat = 2Delta(epsilon)-Delta(2epsilon)
-
-|Delta_R_hat-Delta_R| <= C_R epsilon^2.
-~~~
-
-A certified interval entirely above zero supports rare establishment; one entirely below zero supports failure; overlap with zero remains unresolved.
-
-## Optional downstream extensions
-
-A fixation claim additionally requires a finite-population stochastic model. A long-run occupancy claim additionally requires a mutation graph and mutation kernel. Under the specific symmetric rare-mutation exponential-Moran model used in the mathematical extension, reciprocal fixation ordering and stationary occupancy ordering happen to share the same `Phi=0` boundary. That process result is useful but is not part of the core empirical diagnosis of persistent multifunctionality.
+These studies support the broad biological premise that comparable functional conflicts can have different evolutionary resolutions and that ecological interactions help determine those resolutions. They do **not** constitute an end-to-end empirical validation of the paper's three formal persistence states (`Phi`, `g0`, and rare-establishment sign) in a single species. That stronger claim is intentionally not made.
