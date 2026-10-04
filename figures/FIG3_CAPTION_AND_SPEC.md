@@ -33,7 +33,7 @@ then
 E_V < E_A < E_I,
 ```
 
-which yields the ordered sequence adaptive integration -> historical trapping -> ecological stabilization. More generally, ecological stabilization is a distinct final early barrier exactly when `Delta_R(E_A)<0`; if `Delta_R(E_A)>=0`, rare establishment is already possible when local accessibility is gained.
+which yields the ordered sequence adaptive integration -> historical trapping -> ecological stabilization. More generally, ecological stabilization is a distinct final early barrier exactly when `Delta_R(E_A)<0`; if `Delta_R(E_A)>0`, rare establishment is already possible when local accessibility is gained, while equality makes the two boundaries coincide. Later re-entry under non-monotonic feedback is outside the displayed monotone slice.
 
 ## Claim mapping
 
