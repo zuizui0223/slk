@@ -221,7 +221,7 @@ Ecology also determines whether a distinct ecologically stabilized phase exists 
 Delta_R(E_A) < 0,
 ```
 
-then the divided architecture has become locally reachable but still cannot establish from rarity, so ecology becomes the final early barrier. If `Delta_R(E_A)>=0`, establishment is already possible by the time local accessibility is gained and there is no ecology-only persistence interval.
+then the divided architecture has become locally reachable but still cannot establish from rarity, so ecology becomes the final early barrier. If `Delta_R(E_A)>0`, establishment is already possible when local accessibility is gained, so no ecology-only interval begins at `E_A`; `Delta_R(E_A)=0` makes the two boundaries coincide. A later ecology-only interval would require non-monotonic ecological feedback and lies outside the ordered monotone slice considered here.
 
 In the canonical frequency-feedback model, define the architecture barrier on the same payoff scale as
 
