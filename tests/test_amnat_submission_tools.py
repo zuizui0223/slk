@@ -5,6 +5,7 @@ from docx.oxml.ns import qn
 from docx.shared import RGBColor
 
 from scripts.build_anonymous_review_bundle import build
+from scripts.build_amnat_distribution_zip import build_distribution
 from scripts.format_amnat_review_docx import format_document
 from scripts.verify_amnat_claims import verify
 
@@ -80,3 +81,32 @@ def test_formatter_adds_line_and_page_number_fields() -> None:
     assert "w:suppressLineNumbers" in footer_xml
     assert doc.styles["Normal"].paragraph_format.line_spacing == 2
     assert doc.styles["Heading 1"].font.color.rgb == RGBColor(0, 0, 0)
+
+
+def test_reviewer_distribution_zip_is_byte_reproducible(tmp_path: Path) -> None:
+    first_dir = tmp_path / "first_bundle"
+    second_dir = tmp_path / "second_bundle"
+    first_zip = tmp_path / "first.zip"
+    second_zip = tmp_path / "second.zip"
+    first_receipt = tmp_path / "first_receipt.json"
+    second_receipt = tmp_path / "second_receipt.json"
+
+    first = build_distribution(
+        bundle_dir=first_dir,
+        output_zip=first_zip,
+        receipt_path=first_receipt,
+        rebuild_bundle=True,
+    )
+    second = build_distribution(
+        bundle_dir=second_dir,
+        output_zip=second_zip,
+        receipt_path=second_receipt,
+        rebuild_bundle=True,
+    )
+
+    assert first_zip.read_bytes() == second_zip.read_bytes()
+    assert first["reviewer_zip_sha256"] == second["reviewer_zip_sha256"]
+    assert first["reviewer_zip_file_count"] == 17
+    assert first["cache_files_included"] is False
+    assert first["bundle_identity_audit"] == "identity_scan=PASS"
+    assert first["sorted_paths"] is True
