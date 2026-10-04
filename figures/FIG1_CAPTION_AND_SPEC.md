@@ -1,32 +1,28 @@
-# Figure 1 — three evolutionary states behind persistent multifunctionality
+# Figure 1 — three selective states maintaining persistent multifunctionality
 
 ## Caption
 
-**Figure 1. Three evolutionary states can underlie persistent multifunctionality.** Once opposing functional selection has been established, the continued use of one multifunctional architecture does not identify why division of labor has failed to evolve. First, differentiation may not repay its architecture-specific cost (`Phi=R-K<0`). Second, a differentiated endpoint may be fitter but locally difficult to reach because sufficiently small release steps are initially selected against (`Phi>0`, `g0=R'(0)-k<0`). Third, a favorable and initially reachable differentiated type may fail to establish when rare (`Phi>0`, `g0>0`, `Delta_R<0`). These three routes converge on the same observed phenotype—persistent multifunctionality—but represent different evolutionary states and should respond differently to changes in architecture, developmental opportunity, and ecological context. The *Pedicularis rex* inset illustrates a system in which opposing pollinator- and seed-predator-mediated selection is documented while the floral resolution remains integrated. Fixation, demography, and long-run occupancy are downstream extensions rather than additional explanations for the origin of the multifunctional state.
+**Figure 1. Three selective states can maintain the same multifunctional phenotype.** Adaptive integration occurs when structural division of labor has negative net value (`Phi<0`). Historical or developmental trapping occurs when a divided endpoint is fitter but sufficiently small changes away from integration are initially selected against (`Phi>0`, `g0<0`). Ecological stabilization occurs when division of labor is favorable and initially reachable but a rare divided type performs poorly (`Phi>0`, `g0>0`, `Delta_R<0`). These states share one visible outcome—persistent multifunctionality—but differ in what would release integration: architecture economics, evolutionary path geometry, or ecological context.
 
 ## Reader-facing message
 
 ~~~text
 documented functional conflict
-          |
-          v
-would division of labor pay?
-    | no                     | yes
-    v                        v
-adaptive integration   can a fitter state be reached?
-Phi < 0                     | no              | yes
-                            v                 v
-                   historical trap      can it establish when rare?
-                         g0 < 0             | no            | yes
-                                           v               v
-                              ecological stabilization   differentiation can establish
-                                        Delta_R < 0
-    \________________________|________________/
-                             v
-                  persistent multifunctionality
+        |
+        +--> adaptive integration
+        |    integration is the better architecture
+        |
+        +--> historical/developmental trapping
+        |    a better divided state exists, but the path is unfavorable
+        |
+        +--> ecological stabilization
+             a favorable divided state cannot spread when rare
+
+all three can produce:
+persistent multifunctionality
 ~~~
 
-The figure is a **map of alternative evolutionary states behind one biological outcome**, not a catalogue of mathematical thresholds.
+The figure is a **state map for one biological phenotype**, not a diagnostic workflow or a catalogue of mathematical thresholds.
 
 ## Biological quantities
 
@@ -44,10 +40,6 @@ Delta_R selection difference experienced by a rare differentiated type
 The phenotype is many-to-one with respect to evolutionary state. Persistent integration can be favored directly, preserved by an inaccessible route to a fitter divided architecture, or stabilized by ecological interactions that disadvantage a differentiated type when rare. Those states differ in how they should respond when architecture, developmental routes, or interacting communities change.
 
 The route with `Phi>0, g0>0, Delta_R>0` removes the three early barriers represented in the figure but does not imply that differentiation must fix or persist historically.
-
-## Running example
-
-For *Pedicularis rex*, existing work documents opposing selection on corolla exsertion: greater exsertion is associated with increased pollen receipt and increased seed predation, while experiments support a defensive role of rainwater held by cupulate bracts. The system therefore demonstrates persistent integration under genuine conflict and geographically variable antagonism, without claiming that existing data uniquely assign it to one of the three formal states.
 
 ## Scope
 
