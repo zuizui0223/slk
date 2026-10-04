@@ -37,10 +37,10 @@
   <path d="M390 284 C320 284 300 335 300 382" class="arrow"/>
   <text x="320" y="310" text-anchor="middle" class="mid">NO</text>
   <rect x="65" y="382" width="390" height="154" class="cause"/>
-  <text x="260" y="416" text-anchor="middle" class="label">1  Differentiation does not pay</text>
+  <text x="260" y="416" text-anchor="middle" class="label">1  Adaptive integration</text>
   <text x="260" y="447" text-anchor="middle" class="mid">Φ &lt; 0</text>
-  <text x="260" y="478" text-anchor="middle" class="small">conflict is real, but too little is recoverable</text>
-  <text x="260" y="503" text-anchor="middle" class="small">or the alternative architecture is too costly</text>
+  <text x="260" y="478" text-anchor="middle" class="small">division of labor does not repay</text>
+  <text x="260" y="503" text-anchor="middle" class="small">its architecture-specific cost</text>
 
   <!-- Continue to reachability -->
   <path d="M700 330 L700 372" class="arrow"/>
@@ -54,7 +54,7 @@
   <path d="M480 420 C430 420 430 490 455 555" class="arrow"/>
   <text x="454" y="458" text-anchor="middle" class="mid">NO</text>
   <rect x="300" y="556" width="390" height="154" class="cause"/>
-  <text x="495" y="590" text-anchor="middle" class="label">2  Fitter, but locally inaccessible</text>
+  <text x="495" y="590" text-anchor="middle" class="label">2  Historical / developmental trapping</text>
   <text x="495" y="621" text-anchor="middle" class="mid">Φ &gt; 0,  g₀ &lt; 0</text>
   <text x="495" y="652" text-anchor="middle" class="small">the endpoint is better, but sufficiently small</text>
   <text x="495" y="677" text-anchor="middle" class="small">changes away from integration are selected against</text>
@@ -70,9 +70,9 @@
   <path d="M1050 614 L1050 654" class="arrow"/>
   <text x="1084" y="640" class="mid">NO</text>
   <rect x="835" y="656" width="430" height="150" class="cause"/>
-  <text x="1050" y="690" text-anchor="middle" class="label">3  Reachable, but cannot establish</text>
+  <text x="1050" y="690" text-anchor="middle" class="label">3  Ecological stabilization</text>
   <text x="1050" y="721" text-anchor="middle" class="mid">Φ &gt; 0,  g₀ &gt; 0,  ΔR &lt; 0</text>
-  <text x="1050" y="752" text-anchor="middle" class="small">frequency-dependent ecology reverses the verdict</text>
+  <text x="1050" y="752" text-anchor="middle" class="small">frequency-dependent ecology blocks spread</text>
   <text x="1050" y="777" text-anchor="middle" class="small">when the differentiated type is uncommon</text>
 
   <!-- Convergence to observed phenotype -->
@@ -88,9 +88,9 @@
   <path d="M1300 566 C1350 566 1350 390 1275 348" class="dash"/>
   <text x="1280" y="535" text-anchor="end" class="mid">YES</text>
   <rect x="1040" y="242" width="300" height="104" class="extension"/>
-  <text x="1190" y="276" text-anchor="middle" class="mid">Early explanations excluded</text>
-  <text x="1190" y="302" text-anchor="middle" class="small">later fixation, demography and history</text>
-  <text x="1190" y="326" text-anchor="middle" class="tiny">require additional process assumptions</text>
+  <text x="1190" y="276" text-anchor="middle" class="mid">Differentiation can establish</text>
+  <text x="1190" y="302" text-anchor="middle" class="small">later persistence depends on demography</text>
+  <text x="1190" y="326" text-anchor="middle" class="tiny">and evolutionary history</text>
 
   <!-- Pedicularis inset -->
   <rect x="65" y="120" width="270" height="174" class="extension"/>
