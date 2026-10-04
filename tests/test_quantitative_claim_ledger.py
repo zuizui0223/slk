@@ -23,30 +23,20 @@ def test_quantitative_claim_ledger_declares_all_claim_classes() -> None:
         assert f"`{claim_class}`" in text
 
 
-def test_manuscript_keeps_three_biological_witnesses_and_ledger_keeps_full_theory() -> None:
+def test_full_constructive_witness_family_stays_in_supporting_ledger() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
 
-    manuscript_tokens = (
-        "R(d)=d+d^2",
-        "k=2.2",
-        "k=1.5",
-        "k=0.8, eta=1.5",
-    )
-    for token in manuscript_tokens:
-        assert token in manuscript
-
-    full_theory_tokens = (
+    assert "Full constructive witness families" in manuscript
+    for token in (
         "R(d)=d+d^2",
         "L=2, k=2.2",
         "k=1.5",
         "k=0.8, eta=1.5",
         "k=2.2, eta=-1",
         "k=2.1, eta=-0.5",
-    )
-    for token in full_theory_tokens:
+    ):
         assert token in ledger
-
 
 def test_ledger_blocks_empirical_overpromotion() -> None:
     text = LEDGER.read_text(encoding="utf-8")
