@@ -1,108 +1,99 @@
-# SLK — From Shared Conflict to Evolutionary Architecture
+# SLK — Why Multifunctional Structures Persist under Conflicting Selection
 
-SLK is the active integrated flagship theory programme connecting four previously separate repositories:
+SLK asks a biological question: **when does functional conflict lead to division of labor, and when does a multifunctional structure persist instead?**
 
-- [`sch`](https://github.com/zuizui0223/sch): identifies whether a shared-coordinate functional conflict exists and estimates its compromise load `L`.
-- [`balance`](https://github.com/zuizui0223/balance): classifies and characterizes the persistent-compromise region `L > 0, Phi < 0`.
-- [`slk`](https://github.com/zuizui0223/slk): owns the architecture-value objects `R`, `K`, and `Phi=R-K`, the registered quadratic bridge `R=sL`, and the transport hierarchy from architecture value to accessibility, invasion, fixation, and occupancy.
-- [`bita`](https://github.com/zuizui0223/bita): is orthogonal to the architecture-value boundary and asks what ecological mechanism is identified by a measured trait interaction.
-- [`payoff`](https://github.com/zuizui0223/payoff): supplies source mathematical results used by later SLK realization steps and retains broader continuous, spatial, temporal, and topological extensions.
+The project draws on several linked theory modules, but the modules are not the subject of the paper. Their roles are:
 
-The frozen programme spine is:
-
-```text
-SCH      identifies L
-BALANCE classifies L > 0, Phi < 0
-SLK      defines/tests R, K, and Phi = R - K
-         with R = sL only as the registered quadratic bridge
-SLK      transports Phi through accessibility -> invasion -> fixation -> occupancy
-BITA     separately maps trait interaction -> identified set -> mechanism allocation
-```
+- [`sch`](https://github.com/zuizui0223/sch): establishes whether opposing functions genuinely conflict on a shared phenotypic coordinate and supplies the conflict quantity `L`.
+- [`balance`](https://github.com/zuizui0223/balance): develops diagnostics for the region in which conflict is real but differentiated architecture is not yet favored.
+- [`slk`](https://github.com/zuizui0223/slk): asks why documented conflict can remain unresolved by division of labor.
+- [`bita`](https://github.com/zuizui0223/bita): separately asks which ecological mechanism generates an observed trait interaction.
+- [`payoff`](https://github.com/zuizui0223/payoff): retains broader mathematical extensions used when later population or dynamical questions require them.
 
 ## Central question
 
-> When multiple biological functions are forced to share one phenotypic coordinate, when is differentiation worth its architecture-specific cost, and when does that global advantage actually become an evolutionary outcome?
+> **Why can the same outcome—persistent multifunctionality—remain after strong functional conflict?**
 
-## Core hierarchy
-
-```text
-shared functional conflict
-        |
-        v
-conflict load L
-        |
-        v
-recoverable benefit R
-        |
-        +-- quadratic bridge only: R = sL
-        |
-        v
-architecture margin Phi = R - K
-        |
-        +-- L > 0, Phi < 0: persistent compromise / BALANCE
-        +-- Phi = 0: SLK architecture-value critical surface
-        +-- Phi > 0: differentiated comparison globally favored
-        |
-        v
-local accessibility
-        |
-        +-- globally favored but locally inaccessible
-        |
-        v
-population transport
-        |
-        +-- rare invasion
-        +-- fixation
-        +-- weak-mutation occupancy
-```
-
-The flagship is not a claim that every adjacent criterion differs. It contains both sharp splits and a process-level invariant:
+SLK separates three biological explanations.
 
 ```text
-L>0                         !=> Phi>0
-Phi>0                       !=> local accessibility
-accessible + Phi>0          !=> rare invasion
-rare invasion               !=> reciprocal fixation superiority
-absolute fixation advantage !=> greater weak-mutation occupancy
-
-but, under the registered symmetric rare-mutation exponential-Moran process,
-
-reciprocal fixation ordering <=> stationary monomorphic occupancy ordering.
+documented functional conflict
+          |
+          v
+would division of labor pay?
+          |
+   Phi = R - K
+      /       \
+ Phi < 0     Phi > 0
+    |           |
+cause 1         v
+does not pay   can a fitter state be reached?
+                    /       \
+                 no          yes
+                 |            |
+              cause 2         v
+          local barrier     can it establish when rare?
+                                /       \
+                              no         yes
+                              |           |
+                           cause 3    early causes excluded
 ```
 
-![Figure 1. Unified critical-surface transport from conflict to evolutionary outcome.](figures/FIG1_LOGIC_DIAGRAM.svg)
+The three causes are:
 
-![Figure 2. Architecture-value phase map with accessibility and invasion insets.](figures/FIG2_PHASE_MAP.svg)
+1. **Differentiation does not pay.** Conflict is real, but the recoverable benefit `R` is too small relative to architecture cost `K`, so `Phi=R-K<0`.
+2. **A fitter differentiated state is locally difficult to reach.** `Phi>0`, but sufficiently small changes away from integration are selected against.
+3. **A favorable and reachable differentiated type cannot establish when rare.** Frequency-dependent ecology reverses the fitness verdict at low frequency.
 
-![Figure 3. Empirical measurement ladder for SLK.](figures/FIG3_EMPIRICAL_LADDER.svg)
+These states can look identical if one only observes that the structure remains multifunctional.
 
-The three figures have distinct jobs. Figure 1 shows the unified critical-surface transport, the one-family witness system, and the exact `Phi=0` re-alignment. Figure 2 shows the coordinate geometry and why small-step accessibility and invasion cannot be collapsed into the `L-Phi` plane. Figure 3 shows the empirical gate sequence required to justify progressively stronger biological claims.
+![Figure 1. Three causes of persistent multifunctionality under functional conflict.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
-## What SLK owns
+![Figure 2. Architecture value, accessibility and establishment can cross under different conditions.](figures/FIG2_PHASE_MAP.svg)
 
-SLK owns the cross-repository theory needed for the integrated hierarchy:
+![Figure 3. Measurements needed to distinguish the three causes.](figures/FIG3_EMPIRICAL_LADDER.svg)
 
-1. the architecture-value definition `Phi=R-K` for a declared matched comparison;
-2. the registered quadratic partial-release bridge `R=sL` as a model-specific corollary, not a universal identity;
-3. the distinction between global architecture value and local evolutionary accessibility;
-4. the minimal transport from architecture value to invasion, fixation, and occupancy;
-5. the unified critical-surface atlas showing where small-step release, endpoint value, invasion, fixation, and occupancy change boundary or re-align while preserving the declared endpoint contrast;
-6. the ecological threshold-displacement corollary `E_I-E_V=eta/a`, which predicts where realized differentiation should lag behind or precede intrinsic architecture value along environmental gradients;
-7. the comparative prediction that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies;
-8. the three-frequency diagnostic that tests canonical frequency-map adequacy and repairs invasion thresholds when curvature is present;
-9. the arbitrary-shape endpoint result showing that deterministic invasion requires only rare-D and resident-D ecological offsets even when the interior frequency response is nonlinear;
-10. the finite-frequency certification result adapting near-endpoint approximation to bounded invasion sign decisions with explicit unresolved states;
-11. the UTA1.10 gate-localization diagnostic: persistent integration is observationally non-identifying; strict measured signs of `Phi`, the local release gradient, and rare invasion localize a first failing layer, while all three positive signs exclude those early failure explanations without implying that differentiation must be realized;
-12. the UTA1.11 uncertainty diagnostic: marginal intervals define a conservative Cartesian box of compatible early-gate states, and genuinely nested valid boxes can only shrink that outer set rather than forcing a midpoint classification;
-13. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+## Biological predictions
 
-SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
+The framework makes two primary predictions.
+
+**Conflict strength alone should not rank the tendency toward division of labor.** Two systems with different conflict loads can reverse their ordering in differentiation if they differ in how much conflict can be released or in the cost of the alternative architecture.
+
+**Profitability and establishment can occur at different ecological conditions.** Along an environmental gradient, the point where differentiated architecture first has positive net value need not be the point where a rare differentiated type can spread. In the local canonical model the displacement is
+
+```text
+E_I - E_V = eta / a.
+```
+
+The sign of frequency dependence determines whether rare establishment is delayed beyond or advanced ahead of the architecture-value crossing.
+
+## Running biological example
+
+The manuscript uses *Pedicularis rex* as a literature-based running example. Existing work documents opposing pollinator- and seed-predator-mediated selection on floral exsertion and experimentally supports a defensive role of water held by cup-like bracts. That establishes the biological motivation—real conflict in a multifunctional structure—but it does **not** yet identify why integration persists.
+
+The next relevant measurements are therefore not simply more estimates of conflict. They are measurements of how much fitness could be recovered by decoupling presentation and protection (`R`), what the differentiated arrangement costs (`K`), whether such a state can be approached through favorable small changes, and whether it can establish when rare.
+
+No new *P. rex* biological result is claimed by this repository.
+
+## What the theory contributes
+
+The mathematical machinery supports the biological diagnosis rather than replacing it. The main contributions are:
+
+1. a common fitness comparison `Phi=R-K` that separates conflict strength from the net value of division of labor;
+2. a demonstration that positive endpoint value can coexist with a local accessibility barrier under convex recovery;
+3. a population-level establishment test showing that frequency-dependent ecology can reverse the endpoint verdict when a differentiated type is rare;
+4. a three-way diagnosis of persistent multifunctionality into failure of value, reachability, or establishment;
+5. the comparative prediction that stronger conflict need not imply more differentiation;
+6. the ecological prediction that profitability and rare establishment can be displaced along environmental gradients;
+7. an empirical measurement sequence that tells a study what to measure next rather than treating persistent integration as a single mechanism.
+
+Finite-population fixation and weak-mutation occupancy remain valid **downstream extensions**. Under the specified symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy re-align at `Phi=0`. Those process results are retained because they delimit stronger evolutionary claims, not because they are a fourth explanation for persistent multifunctionality.
 
 ## Prior-art boundary
 
-SLK does **not** claim to originate modularity/evolvability theory, functional specialization/division-of-labor theory, mutational accessibility, geometric integration of trade-offs with invasion boundaries, invasion-versus-fixation distinctions, weak-mutation long-run population theory, or Richardson-type extrapolation. The registered prior-art boundary therefore treats the component mathematics and process results as antecedents rather than priority claims.
+SLK does **not** claim a first theory of modularity, specialization, division of labor, pleiotropy, mutational accessibility, invasion fitness, fixation, or weak-mutation dynamics. Existing specialization theory already shows that whether division of labor is favored depends on performance curvature, trade-off structure, positional effects, synergy, and fitness mapping. Gene duplication, sexual dimorphism, and floral heteranthery provide established biological routes by which shared functions can become decoupled.
 
-The narrower contribution is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization. Its main diagnostic payoff is UTA1.10-UTA1.11: the same persistent integrated phenotype can arise because architecture value is negative, because the initial release direction is downhill, or because rare establishment fails; strict signs localize or exclude those early explanations, while interval uncertainty is carried forward as a conservative box-compatible outer state set rather than collapsed to a midpoint label. The one-family atlas, process-consistency surface, and G1-G9 ladder make that localization auditable without treating the component algebra or set propagation as new.
+The narrower contribution is to make the opposite observation—**continued multifunctionality under documented conflict**—the object to be explained, and to separate three causes that require different measurements.
 
 ## Architecture cost K
 
