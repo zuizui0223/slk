@@ -39,13 +39,13 @@ FORBIDDEN_IDENTITY_STRINGS = (
 
 README = """# Anonymous reviewer code/theory package
 
-This package accompanies the manuscript **From functional conflict to evolutionary architecture: thresholds for differentiation**.
+This package accompanies the manuscript **Why multifunctional structures persist under conflicting selection**.
 
 ## Scope
 
-The submitted paper is a theory/concept paper. It does not estimate its headline results from a private or external empirical dataset. Numerical values in the witness table are constructive parameter regimes used to demonstrate logical non-implications. The three figures are theory diagrams/phase summaries.
+The submitted paper is a theory/concept paper about why documented functional conflict can end either in division of labor or in persistent multifunctionality. It does not estimate its headline results from a private or external empirical dataset. *Pedicularis rex* is used as a literature-based running example rather than as a new empirical result. Numerical witness values are constructive parameter regimes used to separate alternative biological explanations.
 
-The package therefore contains the exact manuscript source, the unified threshold-atlas theorem, the supporting core/non-equivalence theory notes, the three submitted figure sources, the authoritative standard-library threshold/process implementation, an independent Moran-process regression test, and a Python verifier for the common witness family, five separation regimes, ecological threshold displacement, two- and three-frequency feedback identification, curvature diagnostics, arbitrary-shape endpoint invasion, finite-frequency endpoint certification, comparative conflict-differentiation discordance, critical surfaces, and fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package therefore contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the threshold/process implementation, an independent Moran-process regression test, and a Python verifier. The main manuscript centers three causes of persistent multifunctionality—negative net value, local inaccessibility, and rare-establishment failure—while the package also retains downstream fixation/occupancy checks and the fuller mathematical derivations. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 
