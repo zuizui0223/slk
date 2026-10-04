@@ -1,56 +1,47 @@
-# From functional conflict to evolutionary architecture: thresholds for differentiation
+# Why multifunctional structures persist under conflicting selection
 
 ## Abstract
 
-Multifunctional traits can experience genuine conflict without favoring differentiated architecture, and globally favorable differentiation need not become an evolutionary outcome. We develop an architecture-specific transport framework that keeps one measured comparison fixed while asking what additional evidence is needed for architecture value, local accessibility, invasion, fixation, and long-run occupancy. Conflict is summarized by `L`; a differentiated comparison recovers `R` and incurs `K`, so `Phi=R-K`. In one compatible composite model, added mechanisms move the relevant decision surface: small-step accessibility depends on release geometry, rare invasion on frequency-dependent ecology, and absolute fixation on the declared finite-population process, whereas reciprocal fixation ordering and symmetric rare-mutation occupancy re-align at `Phi=0`. The individual algebraic boundaries are not claimed as new. Their joint use yields a discordance diagnostic: the same persistent integration can arise from negative architecture value, a local release barrier, or failure of rare establishment, and the measured sign sequence localizes which decision layer changed verdict. Along environmental gradients, frequency feedback can displace invasion from architecture value, while conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies. A cumulative G1-G9 measurement ladder defines the evidence ceiling for each biological claim.
+Biological structures often perform several functions whose optima conflict. One possible response is division of labor: duplicated genes can specialize, sexes can evolve different expression programs, and floral organs can differentiate into distinct functional types. Yet many systems remain multifunctional despite clear opposing selection. Why? We distinguish three biological explanations that produce the same observed persistence. First, a differentiated architecture may fail to recover enough of the conflict to repay the cost of maintaining additional structure or regulation. Second, a differentiated endpoint may have higher fitness but be unreachable through sufficiently small selectively favorable changes. Third, a reachable differentiated type may still fail to establish when rare because its ecological performance depends on frequency. These alternatives imply that conflict magnitude alone cannot rank systems by their propensity to differentiate, and that persistent multifunctionality is not evidence for weak conflict or for any single evolutionary constraint. We formalize the distinction using a common fitness comparison, derive environmental predictions for when profitability and establishment diverge, and translate the theory into measurements that discriminate among the three explanations. The aim is not a new theory of trade-offs or specialization, but a biological account of why functional conflict is sometimes resolved by division of labor and sometimes retained as multifunctional compromise.
 
 ## 1. Introduction
 
-A trait can perform several functions without those functions opposing one another. Even when opposing selection is real, the existence of compromise does not tell us whether adding phenotypic dimensions is worth the cost of maintaining a more complex architecture. And even when differentiation has higher optimized fitness, evolution may fail to reach it through available mutations or may reject it at the population level.
+In the subalpine herb *Pedicularis rex*, flowers sit above cup-like bracts that collect rainwater. The water protects developing fruits from seed predators, but pollinators favor greater corolla exsertion above the protective bracts. Across 14 populations, greater exsertion was associated with greater pollen receipt and also with greater seed predation: the same floral axis is pulled in opposite directions by mutualists and antagonists (Sun, Armbruster, and Huang 2016). Experimentally draining the bracts increased seed predation, confirming that the water-filled structure contributes to defense (Sun and Huang 2015). This is a concrete multifunctional compromise. The interesting evolutionary question is not simply whether conflict exists, but why conflict of this kind sometimes produces separate functional structures and sometimes remains embedded in one architecture.
 
-These questions have deep prior literatures, and most individual arrows in our framework already have important antecedents. The modularity and evolvability literature established that genotype–phenotype organization can alter evolvability and that reduced interference among functions can favor modular organization (Wagner and Altenberg 1996). Modular organization can also emerge under modularly varying goals (Kashtan and Alon 2005), while specialization itself can promote modularity by reducing interference among gene activities (Espinosa-Soto and Wagner 2010). General theory of functional specialization and division of labor has already identified conditions under which specialization is favored, including performance curvature, positional effects, and synergistic interactions (Rueffler, Hermisson, and Wagner 2012). We therefore do not claim the ideas that conflict can favor modular organization, that specialization can pay when benefits exceed costs, or that modularity can improve evolvability.
+Biology contains many versions of this problem. In heterantherous flowers, distinct anther types can divide pollen-feeding and pollen-transfer functions, although alternative functions such as staggered pollen presentation show that morphological differentiation alone does not prove division of labor (Vallejo-Marín et al. 2009; Kay et al. 2020). At the molecular level, gene duplication can allow descendant copies to escape an adaptive conflict that constrained a multifunctional ancestral protein (Des Marais and Rausher 2008). In sexually antagonistic traits, sex-biased or sex-specific regulation can decouple phenotypes that were previously constrained by a shared genome. Across these systems, differentiation is one possible evolutionary resolution of conflicting functional demands.
 
-A separate literature establishes that endpoint value does not determine evolutionary realization. Adaptive-dynamics theory formalizes evolution through rare local mutations and invasion fitness in an ecological background (Dieckmann and Law 1996), and trade-off and invasion plots explicitly place a trade-off curve together with the two resident-mutant invasion boundaries in one evolutionary geometry (Bowers et al. 2005). Empirical fitness landscapes further show that only a restricted subset of mutational paths to a fitter endpoint may be selectively accessible (Weinreich et al. 2006). Finite-population evolutionary-game theory distinguishes invasion and fixation criteria (Taylor et al. 2004), and strong-selection/weak-mutation theory gives a substitution process with long-run stochastic state occupancy (Fudenberg et al. 2006). We therefore do not claim local mutational accessibility, a first common geometry of trade-offs and invasion boundaries, invasion–fixation distinctions, or weak-mutation stationary dynamics as new concepts.
+The basic conditions favoring specialization are already well developed. General theory shows that division of labor depends on performance curvature, positional effects, and synergistic interactions among modules (Rueffler, Hermisson, and Wagner 2012). Models of pleiotropy likewise show that multifunctionality or specialization depends on the shape of functional trade-offs and on how component performance maps to fitness; complete subfunctionalization is expected only under restricted conditions (Guillaume and Otto 2012). We therefore do not claim that functional conflict automatically produces specialization, or that specialization is favored whenever a verbal trade-off is present. Nor do we claim a first connection between trade-off geometry and invasion: adaptive-dynamics and trade-off–invasion theory already distinguish a phenotype's performance from its ability to invade an ecological background (Dieckmann and Law 1996; Bowers et al. 2005).
 
-The contribution here is instead the architecture-specific handoff across these literatures. We start from an empirically identified shared-coordinate conflict budget rather than assuming that multifunctionality implies conflict; separate recoverable architecture value from architecture-specific cost; then transport that value through local accessibility, frequency-dependent invasion, finite-population fixation, and weak-mutation occupancy. The same upstream architecture comparison is therefore forced through a sequence of distinct estimands, making it possible to identify where its verdict must be re-tested, where adjacent criteria genuinely separate, and where two later criteria re-align under an exact process-level invariant. The empirical counterpart is a measurement ladder that states what additional information is required before each stronger biological interpretation is licensed.
+We instead organize these results around a narrower biological problem: **what does it mean when a multifunctional structure remains integrated despite documented conflict?** The same observation can arise for at least three different reasons. A split may simply not pay: the fitness recovered by separating functions may be smaller than the additional structural, developmental, regulatory, or maintenance cost of doing so. A split may pay at the endpoint but be difficult to reach: small changes away from the integrated state can initially reduce fitness even when a more differentiated endpoint would be superior. Or a differentiated type may be reachable and intrinsically favorable yet fail to spread from rarity because pollinators, competitors, enemies, or other ecological partners change its fitness when it is uncommon. These are different biological explanations, not different names for the same constraint.
 
-This transport yields ecological predictions that are not contained in the endpoint cost-benefit comparison alone. Two populations can have the same intrinsic architecture margin but differ in whether differentiation establishes because their frequency-dependent ecological feedback differs. Conversely, two populations can experience different conflict loads yet show the opposite ranking of differentiation because recoverability and architecture cost differ. Along an environmental gradient, the environment where differentiation first becomes globally profitable need not be the environment where a rare differentiated type can invade. SLK therefore predicts systematic discordance between functional conflict, architecture value, and realized differentiation rather than treating such discordance as noise or failed adaptation.
+This distinction changes how conflict should be interpreted comparatively. Stronger opposing selection need not imply a greater tendency toward division of labor, because systems can differ in how much of the conflict differentiation actually releases and in the cost of the alternative architecture. Likewise, the ecological position where differentiation becomes profitable need not coincide with the position where a rare differentiated type can establish. Persistent multifunctionality is therefore an outcome that must be diagnosed, rather than a direct measure of conflict strength or evolutionary constraint.
 
-This matters because persistent integration is observationally non-identifying. The same absence of realized differentiation is compatible with at least three distinct states: the candidate differentiated architecture has negative net value; it has positive endpoint value but sufficiently small release steps are selectively downhill along the available path; or it is valuable and locally accessible but cannot establish from rarity in the current ecological context. The transport framework does not infer a mechanism from the phenotype alone. It turns that shared phenotype into sequentially distinguishable hypotheses by asking where the measured sign first changes.
-
-Our central hierarchy is
+The core biological sequence in this paper is
 
 ```text
-shared-coordinate conflict
--> compromise load L
--> recoverable loss R
--> architecture margin Phi=R-K
--> local accessibility
--> rare invasion
--> fixation
--> weak-mutation occupancy.
+functional conflict
+-> fitness that division of labor could recover
+-> cost of the differentiated architecture
+-> net value of differentiation
+-> evolutionary reachability
+-> establishment when rare.
 ```
 
-For the quadratic partial-release bridge only,
+We denote the conflict load by `L`, the recoverable component by `R`, the architecture-specific cost by `K`, and the net value of differentiation by `Phi=R-K`. The first three steps answer whether division of labor would be worth having; the next two ask whether a favorable differentiated state can actually evolve and establish. Finite-population fixation and long-run occupancy are retained later as process-specific downstream extensions, but they are not the biological premise of the paper.
 
-```text
-R=sL,
-Phi=sL-K.
-```
-
-The main analytical object is therefore a critical-surface transport atlas rather than a claim that every adjacent stage differs. The same endpoint architecture comparison is carried through local release geometry, frequency-dependent competition, finite-population fixation, and rare-mutation occupancy. New mechanisms split the critical surfaces, whereas the registered fixation-occupancy process forces an exact re-alignment at `Phi=0`. Figure 1 summarizes those surfaces directly; its arrows are handoffs between estimands, not logical implications.
+The resulting theory is used for two purposes. First, it identifies the measurements needed to distinguish the three explanations for persistent multifunctionality. Second, it generates comparative and environmental predictions: conflict magnitude can be decoupled from differentiation when recoverability or architecture cost varies, and frequency-dependent ecology can displace establishment from the environment where differentiation first becomes profitable. Figure 1 summarizes the formal thresholds supporting these biological alternatives; the equations are tools for separating explanations, not the subject of the paper.
 
 ![](../figures/FIG1_LOGIC_DIAGRAM.svg)
 
 **Figure 1. One architecture comparison crosses different evolutionary thresholds.** The same comparison is transported from identified conflict through endpoint value, small-step selective accessibility, invasion, fixation, and occupancy. Exact critical surfaces are shown beside each stage: `Phi=0` for endpoint value, `k=k_local` for sufficiently small release, `Phi=±eta` for reciprocal invasion boundaries, `Phi=0` for reciprocal fixation ordering, `3Phi=eta` for absolute fixation advantage under weak selection, and `Phi=0` for symmetric rare-mutation occupancy. The repeated `Phi=0` surface marks the exact re-alignment of endpoint value, reciprocal fixation ordering, and occupancy under the registered process. The left panel shows that all five non-implications can be realized in one convex recovery family.
 
-## 2. Identifying the conflict budget
+## 2. Is the functional conflict real?
 
 Consider two or more fitness-relevant functions constrained to one phenotypic coordinate. Let `L>=0` denote the compromise load on a common fitness scale. `L=0` is the no-identified-conflict boundary; `L>0` means that forcing the functions onto one coordinate produces a positive fitness loss relative to the relevant function-specific benchmark.
 
 The empirical interpretation of `L` requires causal care. Context-specific optima measured under selective environments are not automatically pure-function optima. In practice, the conflict budget should therefore be exported only from designs that identify opposing causal geometry or from explicitly bounded state-specific contrasts. The integrated theory starts from a valid `L` receipt; it does not redefine how that receipt is obtained. Thus the present framework does not prove that a biological system has `L>0`; that conclusion must be imported from an identified analysis of shared-coordinate conflict.
 
-## 3. Persistent compromise and the architecture crossing
+## 3. Would division of labor pay?
 
 Let `R>=0` be the optimized shared-coordinate compromise loss recovered by the declared differentiated architecture before charging any additional debit specific to possessing, maintaining, regulating, or expressing that architecture. Let `K>=0` be that additional architecture-specific debit, measured on the same fitness scale and over the same comparison horizon. Define
 
@@ -71,7 +62,7 @@ The middle region is biologically important. Conflict is real, but it is still c
 
 `K` is not a free biological label. Any empirical estimate must declare the shared and differentiated comparison states, fitness scale, time horizon, included cost channels, excluded channels, possible overlap with `R`, and uncertainty or bounds. A cost already expressed through reduced recovered performance cannot be charged again in `K`. Accordingly, `L>0, Phi<0` classifies a declared comparison; it does not by itself establish historical persistence, realized structural absence of differentiation, or a particular developmental mechanism.
 
-## 4. Differentiation recovers only the conflict it actually releases
+## 4. How much of the conflict can differentiation actually release?
 
 The general framework does not require recovery to be a fixed fraction of `L`. It requires only an architecture comparison yielding a recoverable amount `R`, after which
 
@@ -104,7 +95,7 @@ Figure 2 separates this architecture-value classification from later realization
 
 `Phi>0` is therefore a global-value statement only. It is not shorthand for local reachability, invasion, fixation, occupancy, or historical evolution.
 
-## 5. Global value can exceed local accessibility
+## 5. Can a fitter differentiated architecture be reached?
 
 The architecture crossing is not yet an evolutionary transition. Let `d` measure release from the current integrated state, with recovery function `R(d)` and linear marginal architecture price `k`. Define
 
@@ -131,7 +122,7 @@ maximized at intermediate residual integration, `s0=1/2`.
 
 Accessibility is therefore conditional on the declared mutation or release neighborhood and its path geometry. Endpoint architecture value alone does not identify local reachability.
 
-## 6. Population feedback splits the architecture boundary
+## 6. Can a differentiated type establish when rare?
 
 Suppose two architectures differ intrinsically by `Phi` but also experience symmetric frequency-dependent ecological feedback summarized by `eta`. Their canonical selection difference is
 
@@ -148,7 +139,7 @@ Phi=-eta.
 
 The population phase is therefore not determined by architecture value alone. Depending on `eta`, the system can show dominance, stable coexistence, or coordination bistability. This split is conditional on the registered symmetric pair mapping and an identified or declared population-feedback term.
 
-## 7. Fixation is another estimand
+## 7. What happens after establishment depends on the population process
 
 In finite populations, invasion when rare and fixation ordering need not coincide. Under the registered exponential Moran process for the canonical symmetric pair,
 
@@ -164,7 +155,7 @@ rho_D>1/N iff 3Phi>eta.
 
 The distinction between reciprocal fixation ordering and absolute fixation advantage matters for the final transport step. These fixation results are specific to the declared Moran mapping.
 
-## 8. Weak-mutation occupancy and a fixation-occupancy invariant
+## 8. Long-run persistence is a further population-process question
 
 Under connected symmetric rare mutation among architectures, the monomorphic stationary law can be written in terms of self-play scores `u_i=A_ii/2`:
 
@@ -191,7 +182,7 @@ Thus reciprocal fixation ordering and symmetric weak-mutation monomorphic occupa
 
 This result sits inside a well-developed literature on finite-population evolutionary games and weak-mutation substitution processes; the contribution here is the exact placement of the invariant inside the architecture-value transport, not the invention of weak-mutation Markov-chain theory. The invariant requires a finite symmetric game, connected symmetric rare mutation, and the registered exponential Moran fixation process.
 
-## 9. Unified critical-surface atlas and constructive witnesses
+## 9. Formal model: separating the biological explanations
 
 The preceding stages can be embedded in one registered composite model rather than treated as separate counterexamples. Let release from the shared architecture be `d in [0,dmax]`, let recovery `R(d)` be differentiable and convex with `R(0)=0`, and let path cost be linear, `K(d)=kd`. Define
 
@@ -281,7 +272,7 @@ The value of the theorem is therefore not that each inequality is mathematically
 
 The final pair remains an important qualification: reciprocal fixation ordering itself does not diverge from stationary monomorphic occupancy ordering under connected symmetric rare mutation and the registered exponential Moran process. Both are controlled by the same self-play score difference.
 
-## 10. Ecological deductions from threshold ordering
+## 10. Biological predictions
 
 The threshold atlas changes the biological interpretation of several common comparative patterns.
 
@@ -556,7 +547,7 @@ With uncertainty, the diagnostic is set-valued rather than forced into one row. 
 
 The ecological contribution of SLK is therefore not a universal prediction that conflict produces modularity. It is **gate localization under a fixed architecture comparison**. The same macroscopic persistence can correspond to different sign patterns, and each pattern directs the next measurement. Mechanism attribution remains a separate causal problem.
 
-## 11. Empirical measurement programme
+## 11. How to distinguish the alternatives empirically
 
 The empirical programme is deliberately cumulative. Each measurement level adds a new estimand and raises the ceiling of the biological claim; failure at a later level does not erase what earlier measurements established (Fig. 3).
 
@@ -606,6 +597,18 @@ The present paper deliberately excludes continuous-architecture branching, edgew
 ## Literature Cited
 
 Bowers, R. G., A. Hoyle, A. White, and M. Boots. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363–377.
+
+Des Marais, D. L., and M. D. Rausher. 2008. Escape from adaptive conflict after duplication in an anthocyanin pathway gene. *Nature* 454:762–765.
+
+Guillaume, F., and S. P. Otto. 2012. Gene functional trade-offs and the evolution of pleiotropy. *Genetics* 192:1389–1409.
+
+Kay, K. M., T. Jogesh, D. Tataru, and S. Akiba. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
+
+Sun, S.-G., W. S. Armbruster, and S.-Q. Huang. 2016. Geographic consistency and variation in conflicting selection generated by pollinators and seed predators. *Annals of Botany* 118:227–237.
+
+Sun, S.-G., and S.-Q. Huang. 2015. Rainwater in cupulate bracts repels seed herbivores in a bumblebee-pollinated subalpine flower. *AoB PLANTS* 7:plv019.
+
+Vallejo-Marín, M., J. S. Manson, J. D. Thomson, and S. C. H. Barrett. 2009. Division of labour within flowers: heteranthery, a floral strategy to reconcile contrasting pollen fates. *Journal of Evolutionary Biology* 22:828–839.
 
 Dieckmann, U., and R. Law. 1996. The dynamical theory of coevolution: a derivation from stochastic ecological processes. *Journal of Mathematical Biology* 34:579–612.
 
