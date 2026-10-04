@@ -222,6 +222,74 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.4c: the identity of the limiting early barrier can turn over
+    # along one environmental gradient while the observed architecture
+    # remains integrated.
+    dmax = 1.0
+    k_local_turn = 1.0
+    k_global_turn = 2.0
+    k0_turn = 3.0
+    c_turn = 1.0
+    e0_turn = 0.0
+    eta_turn = 1.5
+
+    e_v_turn = e0_turn + (k0_turn - k_global_turn) / c_turn
+    e_a_turn = e0_turn + (k0_turn - k_local_turn) / c_turn
+    e_i_turn = e_v_turn + eta_turn / (c_turn * dmax)
+
+    assert eta_turn > dmax * (k_global_turn - k_local_turn)
+    assert e_v_turn < e_a_turn < e_i_turn
+
+    def turnover_state(e_value: float) -> tuple[float, float, float]:
+        k_value = k0_turn - c_turn * (e_value - e0_turn)
+        phi_value = dmax * (k_global_turn - k_value)
+        g0_value = k_local_turn - k_value
+        delta_rare_value = phi_value - eta_turn
+        return phi_value, g0_value, delta_rare_value
+
+    phi_low, g0_low, dr_low = turnover_state(0.5)
+    phi_value, g0_value, dr_value = turnover_state(1.5)
+    phi_access, g0_access, dr_access = turnover_state(2.25)
+    phi_pass, g0_pass, dr_pass = turnover_state(3.0)
+
+    assert phi_low < 0
+    assert phi_value > 0 and g0_value < 0
+    assert phi_access > 0 and g0_access > 0 and dr_access < 0
+    assert phi_pass > 0 and g0_pass > 0 and dr_pass > 0
+
+    checks["UTA1_4c_environmental_barrier_turnover"] = {
+        "E_V": e_v_turn,
+        "E_A": e_a_turn,
+        "E_I": e_i_turn,
+        "eta": eta_turn,
+        "convexity_gap": k_global_turn - k_local_turn,
+        "value_limited_example": {
+            "E": 0.5,
+            "Phi": phi_low,
+            "g0": g0_low,
+            "Delta_R": dr_low,
+        },
+        "accessibility_limited_example": {
+            "E": 1.5,
+            "Phi": phi_value,
+            "g0": g0_value,
+            "Delta_R": dr_value,
+        },
+        "establishment_limited_example": {
+            "E": 2.25,
+            "Phi": phi_access,
+            "g0": g0_access,
+            "Delta_R": dr_access,
+        },
+        "early_gates_pass_example": {
+            "E": 3.0,
+            "Phi": phi_pass,
+            "g0": g0_pass,
+            "Delta_R": dr_pass,
+        },
+        "pass": True,
+    }
+
     # UTA1.5: stronger conflict need not mean larger architecture margin.
     L_A, s_A, K_A = 3.0, 0.2, 0.8
     L_B, s_B, K_B = 2.0, 0.8, 0.5
