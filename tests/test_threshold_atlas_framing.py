@@ -51,7 +51,7 @@ def test_theory_is_preserved_while_submission_is_biology_first() -> None:
     audit = AUDIT.read_text(encoding="utf-8")
     assert "persistent multifunctionality" in manuscript
     assert "Three evolutionary states behind persistent multifunctionality" in manuscript
-    assert "R(d)=d+d^2" in manuscript
+    assert "Full constructive witness families" in manuscript
     assert "UTA1" in audit
     assert "R(d)=d+d^2" in audit
 
