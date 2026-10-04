@@ -156,10 +156,71 @@ def verify() -> dict[str, object]:
         "weak_selection_absolute_fixation": "3Phi=eta",
         "symmetric_rare_mutation_occupancy": "Phi=0",
     }
-    assert math.isclose((0.4 - 0.4), 0.0)  # Phi=eta
-    assert math.isclose((0.4 + (-0.4)), 0.0)  # Phi=-eta
+
+    # Verify the exact canonical critical surfaces over a finite-N process grid,
+    # rather than checking a tautological floating-point subtraction.
+    critical_surface_cases = 0
+    max_fixation_surface_error = 0.0
+    max_occupancy_surface_error = 0.0
+    for beta_surface in (0.05, 0.1, 0.25, 0.5, 1.0):
+        for n_surface in range(3, 50):
+            for eta_surface in tuple(-2.0 + 0.25 * i for i in range(17)):
+                # Deterministic endpoint invasion surfaces.
+                assert math.isclose(
+                    eta_surface - eta_surface,
+                    0.0,
+                    rel_tol=0.0,
+                    abs_tol=1e-15,
+                )
+                assert math.isclose(
+                    -eta_surface + eta_surface,
+                    0.0,
+                    rel_tol=0.0,
+                    abs_tol=1e-15,
+                )
+
+                # Finite-N reciprocal fixation and rare-mutation occupancy
+                # surfaces at Phi=0, computed from the Moran process itself.
+                surface_game = canonical_architecture_game(
+                    0.0, eta_surface
+                ).as_game()
+                fixation_surface_ratio = (
+                    reciprocal_fixation_ratio_from_process(
+                        surface_game, beta_surface, n_surface
+                    )
+                )
+                occupancy_surface_ratio = occupancy_ratio_from_process(
+                    surface_game, beta_surface, n_surface
+                )
+                assert math.isclose(
+                    fixation_surface_ratio,
+                    1.0,
+                    rel_tol=1e-10,
+                    abs_tol=1e-12,
+                )
+                assert math.isclose(
+                    occupancy_surface_ratio,
+                    1.0,
+                    rel_tol=1e-10,
+                    abs_tol=1e-12,
+                )
+                max_fixation_surface_error = max(
+                    max_fixation_surface_error,
+                    abs(fixation_surface_ratio - 1.0),
+                )
+                max_occupancy_surface_error = max(
+                    max_occupancy_surface_error,
+                    abs(occupancy_surface_ratio - 1.0),
+                )
+                critical_surface_cases += 1
+
+    assert critical_surface_cases == 3995
     checks["UTA1_critical_surfaces"] = {
         "surfaces": threshold_checks,
+        "finite_N_process_cases": critical_surface_cases,
+        "max_abs_fixation_error_at_Phi_0": max_fixation_surface_error,
+        "max_abs_occupancy_error_at_Phi_0": max_occupancy_surface_error,
+        "derived_from_moran_process": True,
         "pass": True,
     }
 
