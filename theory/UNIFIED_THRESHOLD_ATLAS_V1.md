@@ -596,7 +596,7 @@ E_I-E_A
 [eta/dmax-(k_global-k_local)]/c.
 ```
 
-The latter interval exists only when `eta>B_A`. If `0<eta<=B_A`, the invasion boundary is crossed before the local-accessibility boundary, so historical/developmental trapping remains the last early barrier and no ecology-only persistence interval appears. If `eta<0`, rarity favors the differentiated type in the canonical game and the invasion crossing lies on the opposite side of the value crossing.
+The latter interval exists only when `eta>B_A`. If `0<eta<B_A`, the invasion boundary is crossed before the local-accessibility boundary, so no ecology-only interval begins when the local barrier disappears; `eta=B_A` makes the accessibility and invasion boundaries coincide. If `eta<0`, rarity favors the differentiated type in the canonical game and the invasion crossing lies on the opposite side of the value crossing. More generally, `Delta_R(E_A)<0` guarantees a local ecology-only interval after `E_A` by continuity, whereas `Delta_R(E_A)>0` rules out such an interval immediately after `E_A` but does not forbid a later re-entry under non-monotonic frequency feedback.
 
 This is a prediction about the ordering of measured barriers under the declared environmental slice. It does not assert that historical evolution follows only small mutations, that large-effect changes are impossible, or that passing all three early criteria guarantees realized differentiation.
 
