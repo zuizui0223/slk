@@ -70,8 +70,8 @@
   <text x="750" y="441" text-anchor="middle" class="species">Pedicularis rex</text>
   <text x="750" y="471" text-anchor="middle" class="strong">same integrated architecture, different local conflict</text>
   <text x="750" y="505" text-anchor="middle" class="body">exsertion increases pollen receipt and seed predation</text>
-  <text x="750" y="531" text-anchor="middle" class="body">seed-predator selection varies geographically</text>
-  <text x="750" y="566" text-anchor="middle" class="small">Sun et al. 2016</text>
+  <text x="750" y="531" text-anchor="middle" class="body">enemy effects vary with geography and density</text>
+  <text x="750" y="566" text-anchor="middle" class="small">Xia et al. 2013; Sun et al. 2016</text>
 
   <path d="M750 594 L750 629" class="arrow"/>
 
