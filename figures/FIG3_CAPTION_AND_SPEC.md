@@ -1,137 +1,103 @@
-# Figure 3 — empirical measurement ladder
+# Figure 3 — empirical diagnosis of persistent multifunctionality
 
 ## Caption
 
-**Figure 3. A sequential empirical programme for testing SLK.** Each gate introduces a distinct estimand required for a stronger biological claim. G1 establishes opposing functional geometry on a shared phenotypic coordinate; G2 estimates or bounds the conflict load `L`; G3 quantifies recoverable loss `s` or `R`; G4 places architecture cost `K` on the same fitness scale; and G5 evaluates the global architecture margin `Phi=R-K`. G6 then asks whether sufficiently small changes toward the globally superior architecture are selectively uphill along a declared release path. G7 estimates rare-frequency performance and population feedback needed for invasion claims. G8 specifies a finite-population fixation process, while G9 specifies mutation connectivity for weak-mutation occupancy. Failure at a later gate does not invalidate an earlier result; it simply limits the strongest claim that can be made. No single biological system is currently claimed by SLK to have passed G1–G9 end to end.
+**Figure 3. How to distinguish the biological causes of persistent multifunctionality.** The empirical sequence begins by establishing a genuine functional conflict and placing its magnitude on a common fitness scale. It then asks three progressively different questions: does division of labor pay (`Phi=R-K`), is a fitter differentiated state reachable from the integrated architecture, and can that state establish when rare? Negative answers at these stages diagnose the three explanations in Figure 1. If all three early tests are positive, they exclude those explanations but do not prove historical realization or long-run persistence. Fixation and stationary occupancy therefore appear only as optional downstream extensions requiring additional demographic and mutation-process assumptions.
 
 ## Purpose
 
-Figure 3 is the empirical counterpart to Figures 1 and 2.
+The figure makes the experimental logic match the biological question.
 
-- Figure 1: inferential logic — where criteria split and where they re-align.
-- Figure 2: coordinate geometry — which criteria share a phase space and which require new coordinates.
-- Figure 3: measurement logic — what an empirical study must measure to move from one claim level to the next.
+~~~text
+documented conflict
+      |
+      v
+measure L
+      |
+      v
+measure R and K
+      |
+      +-- Phi < 0 -> differentiation does not pay
+      |
+      v
+measure local release gradient g0
+      |
+      +-- g0 < 0 -> fitter endpoint is locally inaccessible
+      |
+      v
+measure rare-frequency selection Delta_R
+      |
+      +-- Delta_R < 0 -> differentiated type cannot establish when rare
+      |
+      v
+early explanations excluded
+~~~
 
-## Gate table
+The empirical programme can stop when the biological question has been answered. Fixation and long-run occupancy are not mandatory endpoints for a study of why multifunctionality persists.
 
-| Gate | Primary estimand | Minimal design/data need | Strongest justified claim if passed |
+## Core measurements
+
+| Step | Quantity | Minimal biological design | Interpretation |
 |---|---|---|---|
-| G1 | shared-axis causal conflict | manipulations or contrasts that isolate opposing function-specific effects on one coordinate | a real conflict exists |
-| G2 | `L` | common fitness scale and valid conflict receipt | conflict magnitude is estimated/bounded |
-| G3 | `s` or `R` | matched shared vs differentiated comparison | recoverable compromise loss is quantified |
-| G4 | `K` | operational architecture-cost definition on same scale | architecture cost is quantified |
-| G5 | `Phi=R-K` | G2–G4 on compatible scales | persistent compromise (`Phi<0`) or global differentiated advantage (`Phi>0`) |
-| G6 | small-step accessibility | mutation/release neighborhood or stepwise intervention path | sufficiently small changes toward the target are selectively uphill/downhill on the declared path |
-| G7 | invasion / feedback | finite rare-D/resident-D assays with endpoint certification; 2–3+ frequency treatments when feedback mechanism/shape is interpreted | invasion phase is certified or left unresolved; internal frequency-response structure is diagnosed only to the measured resolution |
-| G8 | fixation | explicit stochastic finite-population process | reciprocal fixation ordering and/or absolute fixation advantage |
-| G9 | occupancy | mutation graph and mutation kernel | weak-mutation monomorphic stationary occupancy |
+| conflict | opposing functional effects and `L` | manipulations or contrasts that identify different functional optima on the same structure and put their consequences on a common fitness scale | establishes that persistence occurs despite real conflict |
+| value | `R`, `K`, `Phi=R-K` | matched integrated and experimentally or naturally differentiated comparisons | `Phi<0` supports the "does not pay" explanation |
+| reachability | local gradient `g0` | small developmental, mutational, or experimental release steps away from integration | `g0<0` supports a local accessibility barrier |
+| establishment | `Delta_R` and frequency response | rare-frequency differentiated types in the relevant ecological background | `Delta_R<0` supports rare-establishment failure |
 
-## Anti-shortcut rule
+## Environmental test
 
-No later gate may be inferred solely from an earlier endpoint comparison. In particular:
+Repeat the value and rare-frequency measurements across an ecological coordinate `E`.
 
-```text
-Phi>0
-!= evidence of local accessibility
-!= evidence of rare invasion
-!= evidence of fixation
-!= evidence of stationary occupancy.
-```
+If
 
-Likewise, passing G7 does not determine G8 without a fixation model, and G8 does not determine G9 without a mutation graph/kernel. Under the registered symmetric rare-mutation exponential-Moran model, reciprocal fixation ordering and stationary occupancy ordering coincide, but this is a process-level invariant rather than a generic shortcut.
+~~~text
+Phi(E)=a(E-E_V)
+~~~
 
+and frequency feedback is locally summarized by `eta`, then the rare-establishment boundary is displaced from the profitability boundary by
 
-## Prospective ecological-gradient test
-
-UTA1.4 can be tested by repeating the architecture-value and invasion measurements across an ecological coordinate `E`.
-
-Minimal design:
-
-```text
-estimate Phi(E) across contexts
--> locate E_V where Phi crosses 0
--> estimate eta or rare-frequency performance across the same contexts
--> locate E_I where rare-D invasion crosses 0
--> compare observed E_I-E_V with eta / (dPhi/dE).
-```
-
-Under the affine registered slice, the prediction is exact:
-
-```text
+~~~text
 E_I-E_V=eta/a.
-```
+~~~
 
-For smooth non-affine systems, use the local slope `dPhi/dE` at the architecture-value crossing and treat the formula as a first-order prediction.
+This predicts a measurable ecological interval in which division of labor is already profitable but cannot establish when rare, or the reverse when frequency dependence favors rarity.
 
+## Frequency-response design
 
-## Two-frequency identification design
+For the canonical local model
 
-Within the registered canonical pair,
+~~~text
+Delta(p)=Phi+eta(2p-1),
+~~~
 
-```text
-Delta(p)=Phi+eta(2p-1).
-```
+two symmetric frequency treatments estimate `Phi` and `eta`:
 
-Choose symmetric frequencies `p_-=1/2-q` and `p_+=1/2+q`. Then
-
-```text
+~~~text
 Phi=[Delta(p_+)+Delta(p_-)]/2
 eta=[Delta(p_+)-Delta(p_-)]/(4q).
-```
+~~~
 
-Repeating this crossed frequency design across ecological contexts `E` provides direct estimates of `Phi(E)` and `eta(E)`, which can be used to locate `E_V`, `E_I`, and estimate the local slopes required by UTA1.4b. This identification is conditional on the registered linear-in-frequency pair. Add a balanced-frequency treatment `p=1/2` to test that assumption: with independently measured `Phi`, the three treatments identify `h0`, `eta`, and quadratic curvature `kappa`. Nonzero `h0` or `kappa` rejects the minimal canonical mapping but still yields repaired invasion surfaces under UTA1.7.
+A balanced treatment at `p=1/2` can test curvature. More generally, invasion itself depends on the endpoint selection limits rather than on a particular interior curve:
 
+~~~text
+Delta_R = lim_{p->0} Delta(p)
+Delta_D = lim_{p->1} Delta(p).
+~~~
 
-## Shape-robust endpoint invasion design
-
-The most general G7 invasion receipt does not require a linear or quadratic frequency fit. With independently measured `Phi`, estimate the endpoint selection limits
-
-```text
-Delta_rare = lim_{p->0} Delta(p)
-Delta_residentD = lim_{p->1} Delta(p).
-```
-
-Then
-
-```text
-h_R = Delta_rare-Phi
-h_D = Delta_residentD-Phi
-```
-
-and invasion is determined directly by the signs of `Delta_rare` and `Delta_residentD`.
-
-Additional interior frequency treatments have a different role: they identify or test the ecological mechanism generating those endpoint offsets. Two symmetric treatments estimate the canonical `eta`; adding `p=1/2` identifies `h0` and quadratic curvature `kappa`; further frequencies test whether the quadratic approximation is adequate.
-
-Thus G7 separates **invasion identification** from **frequency-response mechanism identification**.
-
+Interior frequencies are then used to identify the ecological mechanism generating those endpoint effects.
 
 ## Finite-frequency endpoint certification
 
-Exact endpoint frequencies are not required. For rare-D invasion, first choose a feasible small frequency `epsilon`.
+Exact `p=0` or `p=1` treatments are not necessary. If the local response is Lipschitz bounded, a measurement at small `epsilon` gives an explicit interval for the endpoint. With measurements at `epsilon` and `2epsilon` and a valid curvature bound,
 
-Under a local Lipschitz bound `M_R`,
+~~~text
+Delta_R_hat = 2Delta(epsilon)-Delta(2epsilon)
 
-```text
-Delta_R
-in
-[Delta(epsilon)-M_R epsilon,
- Delta(epsilon)+M_R epsilon].
-```
+|Delta_R_hat-Delta_R| <= C_R epsilon^2.
+~~~
 
-For a stronger second-order design, measure at `epsilon` and `2epsilon`. If local curvature satisfies `|Delta''|<=C_R`,
+A certified interval entirely above zero supports rare establishment; one entirely below zero supports failure; overlap with zero remains unresolved.
 
-```text
-Delta_R_hat
-=
-2Delta(epsilon)-Delta(2epsilon)
+## Optional downstream extensions
 
-|Delta_R_hat-Delta_R|
-<=
-C_R epsilon^2.
-```
-
-When measured effects have uncertainty intervals, widen the endpoint interval by the same deterministic remainder. The analogous design applies near `p=1`.
-
-A lower endpoint above zero certifies invasion. An upper endpoint below zero certifies non-invasion. An interval that overlaps zero is **unresolved**, not a biological negative.
-
-This provides a prospective frequency-resolution rule for G7 rather than requiring ideal `p=0` or `p=1` treatments.
+A fixation claim additionally requires a finite-population stochastic model. A long-run occupancy claim additionally requires a mutation graph and mutation kernel. Under the specific symmetric rare-mutation exponential-Moran model used in the mathematical extension, reciprocal fixation ordering and stationary occupancy ordering happen to share the same `Phi=0` boundary. That process result is useful but is not part of the core empirical diagnosis of persistent multifunctionality.
