@@ -1,86 +1,130 @@
-# SLK prior-art boundary V1
+# SLK prior-art boundary V2 — biology-first framing
 
-## What SLK does not claim
+## Biological question
 
-SLK does not claim to originate the ideas that:
+The manuscript asks:
 
-- pleiotropic interference can favor modular organization;
-- specialization can evolve when functional returns favor division of labor;
-- evolvability depends on the genotype-phenotype map;
-- invasion and fixation are distinct finite-population criteria;
-- weak-mutation dynamics can be represented by transitions among nearly monomorphic states;
-- stationary behavior under rare mutation is a distinct stochastic object;
-- affine threshold crossings become explicit by solving the declared invasion equation;
-- coefficients of a declared linear or quadratic frequency map can be recovered from the corresponding number of frequency treatments;
-- invasion is determined by the rare-mutant endpoint by definition of invasion fitness;
-- trade-off geometry and resident-mutant invasion boundaries have already been combined explicitly in trade-off-and-invasion plots;
-- two-scale cancellation of a leading approximation error is standard Richardson extrapolation.
+> **When functional conflict is real, why does division of labor sometimes evolve and sometimes fail to appear?**
 
-Those are established themes in the literature.
+The novelty claim is not that conflict can favor specialization, nor that specialization can fail. The contribution is to treat **persistent multifunctionality under documented conflict** as an inverse diagnostic problem and to separate three experimentally distinguishable explanations:
 
-## Primary antecedents to acknowledge
+1. differentiation does not pay;
+2. a fitter differentiated state is locally difficult to reach;
+3. a favorable and reachable differentiated type cannot establish when rare.
 
-### Wagner & Altenberg (1996)
+## What is already established
 
-Their evolvability framework explicitly links modular genotype-phenotype organization to reduced interference among functions. SLK should cite this as foundational prior art for the idea that modularity can improve adaptation by decoupling functional interference.
+### General theory of division of labor
 
-### Rueffler, Hermisson & Wagner (2012)
+Rueffler, Hermisson & Wagner (2012) provide direct general theory for when functional specialization and division of labor are favored. They identify positional effects, accelerating performance functions, and synergistic interactions as factors promoting division of labor, and explicitly note that developmental constraints and costs of maintaining differentiated developmental pathways can limit its evolution.
 
-Their theory of functional specialization and division of labor is direct prior art for the claim that specialization can be favored by the structure of functional returns and trade-offs. SLK should not market `Phi>0` or any benefit-cost crossing as the first criterion for specialization.
+Therefore SLK must **not** claim:
+- a first theory that trade-offs can produce specialization;
+- a first benefit-versus-cost condition for division of labor;
+- a first recognition that developmental constraints or maintenance costs can block specialization.
 
-### Taylor, Fudenberg, Sasaki & Nowak (2004)
+### Pleiotropy versus specialization
 
-Their finite-population evolutionary-game framework explicitly distinguishes conditions favoring invasion and/or fixation and shows that finite populations admit more selection scenarios than deterministic infinite-population dynamics. SLK should therefore not claim that invasion-fixation separation is new in itself.
+Guillaume & Otto (2012) show that whether genes evolve multifunctionality or specialization depends on functional trade-offs and on how component function maps to fitness. Perfect subfunctionalization after gene duplication requires restrictive conditions, and multifunctional redundancy can persist.
 
-### Fudenberg, Nowak, Taylor & Imhof (2006)
+Therefore SLK must **not** claim:
+- that strong trade-offs automatically imply specialization;
+- that persistent multifunctionality under trade-offs is itself surprising or previously unexplained in every model class.
 
-Their strong-selection/weak-mutation treatment analyzes long-run evolutionary-game behavior in finite populations with small mutation. SLK should not claim to originate weak-mutation state reduction or long-run stationary analysis.
+### Empirical conflict resolution after gene duplication
 
-### Bowers, Hoyle, White & Boots (2005)
+Des Marais & Rausher (2008) provide an empirical case of escape from adaptive conflict after gene duplication: duplication releases a multifunctional ancestral gene from detrimental pleiotropic effects and permits descendant copies to improve different functions.
 
-Their trade-off and invasion plots (TIPs) place a biological trade-off curve and the two resident-mutant invasion boundaries in one geometric representation and use their relative geometry to classify evolutionary singularities. This is direct prior art for the idea that trade-off structure and invasion criteria can be integrated geometrically. SLK should therefore **not** claim the first common geometry linking trade-offs to invasion boundaries.
+This is prior art for division of labor as one route out of adaptive conflict.
 
-SLK's residual distinction is narrower: the chain starts from an identified shared-coordinate conflict receipt, decomposes recoverable architecture benefit from architecture-specific cost, keeps the same declared endpoint contrast through local release, invasion, fixation and occupancy, and attaches an explicit empirical claim ceiling to each handoff.
+### Sexual dimorphism and sex-specific regulation
 
-### Richardson & Gaunt (1927)
+Work on intralocus sexual conflict shows that sex-biased or sex-specific expression can decouple phenotypes constrained by a shared genome. Ingleby, Flis & Morrow (2015) review sex-biased expression as a mechanism that can help resolve differing male and female optima.
 
-Their deferred-approach-to-the-limit method is foundational prior art for Richardson extrapolation. SLK's two-frequency endpoint certificate at `epsilon` and `2epsilon` uses the same leading-error cancellation logic. SLK should claim the biological endpoint certificate, sign-decision rule, and uncertainty bookkeeping as an adaptation, not a new extrapolation theorem.
+This is prior art for regulatory differentiation as a route out of a shared-function conflict.
 
-## SLK's narrower contribution
+### Floral division of labor
 
-SLK's defensible contribution is the **architecture-specific cross-scale estimand transport**:
+Vallejo-Marín et al. (2009) experimentally support a division-of-labor interpretation of heteranthery in *Solanum rostratum*, where different anthers contribute differently to pollen feeding and pollen export.
 
-```text
-identified shared-coordinate conflict L
--> recoverable benefit R
--> architecture margin Phi=R-K
--> local accessibility
--> rare invasion
--> fixation criteria
--> weak-mutation occupancy
-```
+Kay et al. (2020) are an equally important caution: in *Clarkia*, heteranthery was better supported as staggered pollen presentation than as division of labor. Morphological differentiation therefore does not by itself demonstrate that conflicting functions have been partitioned.
 
-combined with three things not claimed from the antecedent literatures individually:
+### Trade-off geometry and invasion
 
-1. the chain begins with an identified shared-coordinate conflict receipt rather than assuming multifunctionality or trade-off by label;
-2. explicit architecture-specific witness regimes show where successive criteria separate;
-3. an exact registered process-level invariant shows where reciprocal fixation ordering and weak-mutation occupancy re-align, while G1-G9 states the extra evidence required for each stronger empirical claim.
+Bowers et al. (2005) already combine trade-off geometry with resident-mutant invasion boundaries. Adaptive-dynamics theory more broadly treats establishment through invasion fitness rather than endpoint performance alone.
 
-## Required Introduction language
+SLK must therefore **not** claim a first connection between trade-offs and invasion.
 
-A defensible framing paragraph is:
+### Finite populations and weak mutation
 
-> The idea that functional interference can favor modularity or specialization is longstanding, and evolutionary theory already distinguishes invasion, fixation, and weak-mutation long-run behavior. Our aim is therefore not to replace those theories with another general account of modularity. We ask a narrower linking question: once conflict has been identified on a shared phenotypic coordinate, which estimand is handed to the next level of evolutionary inference, and where do apparently equivalent criteria cease to agree? The resulting framework connects a measurable compromise budget to recoverable architecture value and then to accessibility and population realization, with explicit witness regimes for the separations, an exact process-level invariant where reciprocal fixation and weak-mutation occupancy re-align, and an empirical gate structure that prevents weaker measurements from supporting stronger claims.
+Taylor et al. (2004) distinguish invasion and fixation in finite populations. Fudenberg et al. (2006) analyze long-run evolutionary-game dynamics under strong selection and weak mutation.
+
+Fixation and occupancy are retained only as downstream process extensions.
+
+### Numerical extrapolation
+
+The two-frequency endpoint certificate uses Richardson-type cancellation. Richardson & Gaunt (1927) are prior art for the extrapolation device.
+
+## Empirical anchor: Pedicularis rex
+
+Two existing studies provide a strong biological starting point without supplying a new SLK empirical result.
+
+Sun & Huang (2015) experimentally drained the rainwater held by the cupulate bracts of *Pedicularis rex*. Seed predation increased after drainage, supporting a defensive function of the water-filled bracts.
+
+Sun, Armbruster & Huang (2016) studied floral traits across 14 populations. Greater corolla exsertion was associated with greater stigmatic pollen receipt and also greater seed predation, demonstrating opposing pollinator- and seed-predator-mediated selection.
+
+These studies establish a real conflict around floral presentation and protection. They do **not** establish why that conflict remains integrated. In SLK terms, they motivate the entry problem but do not yet estimate `R`, `K`, local reachability, or rare establishment.
+
+## Defensible residual contribution
+
+The manuscript's contribution is best stated as:
+
+> Existing theories mostly ask which parameters favor specialization. We ask the inverse question posed by an observed multifunctional phenotype: once conflict is documented, which biological stage prevents division of labor?
+
+The answer is organized around three measurements.
+
+~~~text
+value:
+    Phi = R-K
+    Phi < 0 -> differentiation does not pay
+
+reachability:
+    g0 = R'(0)-k
+    Phi > 0 but g0 < 0 -> fitter endpoint is locally difficult to reach
+
+establishment:
+    Delta_R = lim_{p->0} Delta(p)
+    Phi > 0, g0 > 0, Delta_R < 0 -> favorable/reachable type fails when rare
+~~~
+
+This yields two further predictions:
+
+- conflict magnitude alone cannot rank systems by their tendency toward division of labor when recoverability or architecture cost differs;
+- the environmental condition at which division of labor becomes profitable can differ from the condition at which a rare differentiated type can establish.
+
+The formal threshold atlas, witness family, fixation invariant, and uncertainty machinery support these claims but should not be presented as the biological subject of the manuscript.
+
+## Required manuscript language
+
+A defensible positioning paragraph is:
+
+> Theory already explains many conditions that favor division of labor, including performance curvature, positional effects, synergy, pleiotropic trade-offs, developmental constraints, and the costs of differentiated pathways. Empirical studies also document several routes by which shared functions become decoupled, from gene duplication to sexual dimorphism and heteranthery. We address a partly inverse problem. Given a multifunctional structure that remains integrated despite documented opposing selection, what can that persistence mean? We distinguish failure of net value, failure of local reachability, and failure of rare establishment, and show which measurements separate these explanations.
 
 ## Citation targets
 
-- Wagner GP, Altenberg L. 1996. Complex adaptations and the evolution of evolvability. *Evolution* 50:967-976.
-- Rueffler C, Hermisson J, Wagner GP. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326-E335.
-- Taylor C, Fudenberg D, Sasaki A, Nowak MA. 2004. Evolutionary game dynamics in finite populations. *Bulletin of Mathematical Biology* 66:1621-1644.
-- Bowers RG, Hoyle A, White A, Boots M. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363-377. https://doi.org/10.1016/j.jtbi.2004.10.017.
-- Fudenberg D, Nowak MA, Taylor C, Imhof LA. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352-363.
-- Richardson LF, Gaunt JA. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299-361.
+- Bowers RG, Hoyle A, White A, Boots M. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363–377.
+- Des Marais DL, Rausher MD. 2008. Escape from adaptive conflict after duplication in an anthocyanin pathway gene. *Nature* 454:762–765.
+- Fudenberg D, Nowak MA, Taylor C, Imhof LA. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352–363.
+- Guillaume F, Otto SP. 2012. Gene functional trade-offs and the evolution of pleiotropy. *Genetics* 192:1389–1409.
+- Ingleby FC, Flis I, Morrow EH. 2015. Sex-biased gene expression and sexual conflict throughout development. *Cold Spring Harbor Perspectives in Biology* 7:a017632.
+- Kay KM, Jogesh T, Tataru D, Akiba S. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
+- Richardson LF, Gaunt JA. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299–361.
+- Rueffler C, Hermisson J, Wagner GP. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326–E335.
+- Sun S-G, Huang S-Q. 2015. Rainwater in cupulate bracts repels seed herbivores in a bumblebee-pollinated subalpine flower. *AoB PLANTS* 7:plv019.
+- Sun S-G, Armbruster WS, Huang S-Q. 2016. Geographic consistency and variation in conflicting selection generated by pollinators and seed predators. *Annals of Botany* 118:227–237.
+- Taylor C, Fudenberg D, Sasaki A, Nowak MA. 2004. Evolutionary game dynamics in finite populations. *Bulletin of Mathematical Biology* 66:1621–1644.
+- Vallejo-Marín M, Manson JS, Thomson JD, Barrett SCH. 2009. Division of labour within flowers: heteranthery, a floral strategy to reconcile contrasting pollen fates. *Journal of Evolutionary Biology* 22:828–839.
 
 ## Boundary status
 
-This file fixes the first submission-level boundary against the most obvious antecedents. It also fixes an internal algebra boundary: direct rearrangements, interpolation identities, endpoint definitions, and standard extrapolation devices may be useful SLK components without being advertised as new mathematics. It is not a claim that the literature audit is exhaustive; a journal-ready version should still check neighboring work on modularity, adaptive dynamics, accessibility/fitness landscapes, and stochastic evolutionary games before final submission.
+The literature boundary is intentionally conservative. Any claim that resembles a general theory of specialization, trade-offs, invasion, fixation, or weak-mutation dynamics should be treated as prior art unless the manuscript is making the narrower diagnostic claim above.
