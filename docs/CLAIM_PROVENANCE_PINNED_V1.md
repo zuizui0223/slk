@@ -199,12 +199,18 @@ Phi(E)=a(E-E_V)
 -> E_R=E_V-eta/a
 -> |E_I-E_R|=2|eta|/a
 
+k(E)=k0-c(E-E0), c>0
+strict convex recovery -> E_V<E_A
+if eta>dmax(k_global-k_local) -> E_V<E_A<E_I
+-> limiting persistence barrier turns over:
+   value -> local accessibility -> rare establishment
+
 Phi=sL-K
 -> conflict magnitude L alone does not rank architecture margin across systems
    when s or K varies.
 ```
 
-These are SLK derived consequences of the registered threshold geometry, not independent claims of mathematical novelty, universal environmental linearity, or universal frequency-dependent ecology.
+These are SLK derived consequences of the registered threshold geometry. UTA1.4c is the biology-facing barrier-turnover prediction; it is exact only for the declared monotone-cost environmental slice and does not claim that all natural gradients act through architecture cost.
 
 ## UTA1.7 — frequency-curvature diagnostic
 
