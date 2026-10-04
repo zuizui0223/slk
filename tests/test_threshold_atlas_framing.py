@@ -46,12 +46,13 @@ def test_theory_registers_cross_level_phi_compatibility() -> None:
         assert token in text
 
 
-def test_audit_and_submission_both_name_uta1() -> None:
+def test_theory_is_preserved_while_submission_is_biology_first() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     audit = AUDIT.read_text(encoding="utf-8")
-    assert "critical-surface transport atlas" in manuscript
+    assert "persistent multifunctionality" in manuscript
+    assert "three biological explanations" in manuscript
+    assert "R(d)=d+d^2" in manuscript
     assert "UTA1" in audit
-    assert "one convex recovery family" in manuscript
     assert "R(d)=d+d^2" in audit
 
 
