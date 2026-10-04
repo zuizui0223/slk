@@ -1,97 +1,124 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1120" viewBox="0 0 1400 1120">
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1100" viewBox="0 0 1500 1100">
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+    <style>
+      .title{font:700 36px Arial,Helvetica,sans-serif;fill:#111}
+      .subtitle{font:400 18px Arial,Helvetica,sans-serif;fill:#333}
+      .paneltitle{font:700 23px Arial,Helvetica,sans-serif;fill:#111}
+      .species{font:700 19px Arial,Helvetica,sans-serif;fill:#111}
+      .body{font:400 17px Arial,Helvetica,sans-serif;fill:#222}
+      .small{font:400 15px Arial,Helvetica,sans-serif;fill:#333}
+      .strong{font:700 17px Arial,Helvetica,sans-serif;fill:#111}
+      .panel{fill:#fff;stroke:#222;stroke-width:2.2;rx:18}
+      .case{fill:#fafafa;stroke:#555;stroke-width:1.6;rx:13}
+      .claim{fill:#fff;stroke:#111;stroke-width:3;rx:18}
+      .arrow{stroke:#333;stroke-width:2.5;fill:none;marker-end:url(#a)}
+      .dash{stroke:#666;stroke-width:2;stroke-dasharray:8 6;fill:none;marker-end:url(#a)}
+    </style>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
       <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
     </marker>
-    <style>
-      .title{font:700 34px Arial,Helvetica,sans-serif;fill:#111}
-      .subtitle{font:400 19px Arial,Helvetica,sans-serif;fill:#333}
-      .head{font:700 23px Arial,Helvetica,sans-serif;fill:#111}
-      .mid{font:600 19px Arial,Helvetica,sans-serif;fill:#222}
-      .txt{font:400 17px Arial,Helvetica,sans-serif;fill:#222}
-      .tiny{font:400 14px Arial,Helvetica,sans-serif;fill:#444}
-      .box{fill:#fff;stroke:#222;stroke-width:2.2;rx:18}
-      .soft{fill:#fafafa;stroke:#444;stroke-width:1.9;rx:16}
-      .arrow{stroke:#333;stroke-width:2.4;fill:none;marker-end:url(#arrow)}
-      .line{stroke:#666;stroke-width:2;fill:none}
-    </style>
   </defs>
 
-  <text x="700" y="54" text-anchor="middle" class="title">Figure 3. Natural systems use different resolutions of functional conflict</text>
-  <text x="700" y="88" text-anchor="middle" class="subtitle">Conflict does not dictate one architecture: ecology shifts spatial partitioning, temporal regulation, and continued integration</text>
+  <text x="750" y="48" text-anchor="middle" class="title">Natural systems resolve functional conflict in different ways</text>
+  <text x="750" y="79" text-anchor="middle" class="subtitle">Structural division of labor is one resolution among temporal regulation, persistent integration, and partial decoupling</text>
 
-  <rect x="405" y="120" width="590" height="92" class="box"/>
-  <text x="700" y="154" text-anchor="middle" class="head">Shared biological problem</text>
-  <text x="700" y="185" text-anchor="middle" class="mid">one structure or resource serves functions with different optima</text>
+  <!-- Panel A -->
+  <rect x="45" y="115" width="450" height="735" class="panel"/>
+  <text x="270" y="153" text-anchor="middle" class="paneltitle">A. Same pollen conflict, different resolutions</text>
 
-  <path d="M700 212 L700 248" class="arrow"/>
+  <rect x="80" y="185" width="380" height="120" class="case"/>
+  <text x="270" y="217" text-anchor="middle" class="species">Shared conflict</text>
+  <text x="270" y="247" text-anchor="middle" class="body">pollen rewards pollinators</text>
+  <text x="270" y="273" text-anchor="middle" class="body">but pollen is also the male gamete</text>
 
-  <!-- Flowers: same pollen conflict, different resolutions -->
-  <rect x="55" y="255" width="625" height="310" class="soft"/>
-  <text x="367" y="292" text-anchor="middle" class="head">A. The pollen dilemma: same conflict, different solutions</text>
-  <text x="367" y="326" text-anchor="middle" class="txt">pollen = male gametes + food/reward for pollinators</text>
+  <path d="M270 305 L270 344" class="arrow"/>
 
-  <rect x="85" y="355" width="265" height="165" class="box"/>
-  <text x="218" y="388" text-anchor="middle" class="mid">Solanum rostratum</text>
-  <text x="218" y="419" text-anchor="middle" class="txt">different anther types partly divide</text>
-  <text x="218" y="445" text-anchor="middle" class="txt">feeding and pollen-export functions</text>
-  <text x="218" y="476" text-anchor="middle" class="txt">+ pollen is released gradually</text>
-  <text x="218" y="505" text-anchor="middle" class="tiny">Vallejo-Marín et al. 2009; Vallejo-Marín &amp; Lundgren 2026</text>
+  <rect x="75" y="348" width="390" height="190" class="case"/>
+  <text x="270" y="380" text-anchor="middle" class="species">Solanum rostratum</text>
+  <text x="270" y="410" text-anchor="middle" class="strong">structural + temporal partitioning</text>
+  <text x="270" y="444" text-anchor="middle" class="body">feeding anthers: preferentially handled</text>
+  <text x="270" y="470" text-anchor="middle" class="body">pollinating anther: greater pollen export</text>
+  <text x="270" y="496" text-anchor="middle" class="body">pollen also released gradually across buzzes</text>
+  <text x="270" y="523" text-anchor="middle" class="small">Vallejo-Marín et al. 2009; Vallejo-Marín &amp; Lundgren 2026</text>
 
-  <rect x="385" y="355" width="265" height="165" class="box"/>
-  <text x="518" y="388" text-anchor="middle" class="mid">Clarkia</text>
-  <text x="518" y="419" text-anchor="middle" class="txt">two anther whorls do not divide</text>
-  <text x="518" y="445" text-anchor="middle" class="txt">feeding versus export functions</text>
-  <text x="518" y="476" text-anchor="middle" class="txt">conflict is reduced by staggered release</text>
-  <text x="518" y="505" text-anchor="middle" class="tiny">Kay et al. 2020</text>
+  <path d="M270 538 L270 575" class="arrow"/>
 
-  <!-- Pollinator ecology -->
-  <rect x="720" y="255" width="625" height="310" class="soft"/>
-  <text x="1032" y="292" text-anchor="middle" class="head">B. Ecological partners shift the resolution</text>
-  <text x="1032" y="326" text-anchor="middle" class="txt">pollen presentation evolves with pollinator efficiency and grooming</text>
+  <rect x="75" y="579" width="390" height="190" class="case"/>
+  <text x="270" y="611" text-anchor="middle" class="species">Clarkia</text>
+  <text x="270" y="641" text-anchor="middle" class="strong">temporal partitioning, not functional DoL</text>
+  <text x="270" y="675" text-anchor="middle" class="body">two anther whorls look differentiated</text>
+  <text x="270" y="701" text-anchor="middle" class="body">but both participate in pollen export</text>
+  <text x="270" y="727" text-anchor="middle" class="body">delayed dehiscence staggers presentation</text>
+  <text x="270" y="754" text-anchor="middle" class="small">Kay et al. 2020</text>
 
-  <rect x="770" y="365" width="245" height="130" class="box"/>
-  <text x="892" y="401" text-anchor="middle" class="mid">Bee-adapted species</text>
-  <text x="892" y="433" text-anchor="middle" class="txt">more gradual pollen release</text>
-  <text x="892" y="464" text-anchor="middle" class="tiny">Penstemon / Keckiella</text>
+  <text x="270" y="812" text-anchor="middle" class="strong">Morphological differentiation ≠ one universal function</text>
 
-  <rect x="1050" y="365" width="245" height="130" class="box"/>
-  <text x="1172" y="401" text-anchor="middle" class="mid">Hummingbird-adapted species</text>
-  <text x="1172" y="433" text-anchor="middle" class="txt">more simultaneous presentation</text>
-  <text x="1172" y="464" text-anchor="middle" class="tiny">Castellanos et al. 2006</text>
+  <!-- Panel B -->
+  <rect x="525" y="115" width="450" height="735" class="panel"/>
+  <text x="750" y="153" text-anchor="middle" class="paneltitle">B. Ecological partners move the resolution</text>
 
-  <path d="M1015 430 L1050 430" class="arrow"/>
+  <rect x="560" y="185" width="380" height="185" class="case"/>
+  <text x="750" y="217" text-anchor="middle" class="species">Penstemon + Keckiella</text>
+  <text x="750" y="247" text-anchor="middle" class="strong">pollinator identity shifts pollen dosing</text>
+  <text x="750" y="281" text-anchor="middle" class="body">bee-adapted species: more gradual release</text>
+  <text x="750" y="307" text-anchor="middle" class="body">hummingbird-adapted relatives: more simultaneous</text>
+  <text x="750" y="342" text-anchor="middle" class="small">Castellanos et al. 2006</text>
 
-  <!-- Geographic mosaic -->
-  <rect x="55" y="610" width="625" height="285" class="soft"/>
-  <text x="367" y="648" text-anchor="middle" class="head">C. The same integrated structure can face different conflicts</text>
-  <text x="367" y="682" text-anchor="middle" class="mid">Pedicularis rex</text>
-  <text x="367" y="716" text-anchor="middle" class="txt">greater floral exsertion → more pollen receipt</text>
-  <text x="367" y="744" text-anchor="middle" class="txt">greater floral exsertion → more seed predation</text>
-  <text x="367" y="782" text-anchor="middle" class="txt">seed-predator selection varies strongly among populations</text>
-  <text x="367" y="810" text-anchor="middle" class="txt">observed seed predation: &lt;1% to &gt;27%</text>
-  <text x="367" y="853" text-anchor="middle" class="tiny">Sun &amp; Huang 2015; Sun, Armbruster &amp; Huang 2016</text>
+  <path d="M750 370 L750 405" class="arrow"/>
 
-  <!-- Cichlid decoupling -->
-  <rect x="720" y="610" width="625" height="285" class="soft"/>
-  <text x="1032" y="648" text-anchor="middle" class="head">D. Division of labor need not mean full independence</text>
-  <text x="1032" y="682" text-anchor="middle" class="mid">cichlid oral + pharyngeal jaws</text>
-  <text x="1032" y="716" text-anchor="middle" class="txt">capture and processing become structurally decoupled</text>
-  <text x="1032" y="744" text-anchor="middle" class="txt">→ novel trait combinations and trophic diversification</text>
-  <text x="1032" y="782" text-anchor="middle" class="txt">but both jaw systems still respond jointly to feeding ecology</text>
-  <text x="1032" y="810" text-anchor="middle" class="txt">→ ecology partially re-couples divided functions</text>
-  <text x="1032" y="853" text-anchor="middle" class="tiny">Burress, Martinez &amp; Wainwright 2020</text>
+  <rect x="560" y="409" width="380" height="185" class="case"/>
+  <text x="750" y="441" text-anchor="middle" class="species">Pedicularis rex</text>
+  <text x="750" y="471" text-anchor="middle" class="strong">same integrated architecture, different local conflict</text>
+  <text x="750" y="505" text-anchor="middle" class="body">exsertion increases pollen receipt and seed predation</text>
+  <text x="750" y="531" text-anchor="middle" class="body">seed-predator selection varies geographically</text>
+  <text x="750" y="566" text-anchor="middle" class="small">Sun et al. 2016</text>
 
-  <!-- Synthesis -->
-  <path d="M367 895 C367 940 520 950 650 950" class="line"/>
-  <path d="M1032 895 C1032 940 880 950 750 950" class="line"/>
-  <path d="M367 565 C367 590 500 590 650 950" class="line"/>
-  <path d="M1032 565 C1032 590 900 590 750 950" class="line"/>
+  <path d="M750 594 L750 629" class="arrow"/>
 
-  <rect x="285" y="938" width="830" height="122" class="box"/>
-  <text x="700" y="977" text-anchor="middle" class="head">Natural outcome</text>
-  <text x="700" y="1010" text-anchor="middle" class="mid">functional conflict has multiple evolutionary resolutions</text>
-  <text x="700" y="1039" text-anchor="middle" class="txt">structural division • temporal partitioning • persistent integration • partial ecological re-coupling</text>
+  <rect x="560" y="633" width="380" height="160" class="case"/>
+  <text x="750" y="665" text-anchor="middle" class="species">Ipomoea + Primula</text>
+  <text x="750" y="695" text-anchor="middle" class="strong">rarity itself changes reproductive success</text>
+  <text x="750" y="729" text-anchor="middle" class="body">pollinators/enemies generate frequency dependence</text>
+  <text x="750" y="755" text-anchor="middle" class="body">its sign can differ among populations and years</text>
+  <text x="750" y="782" text-anchor="middle" class="small">Epperson &amp; Clegg 1987; Toräng et al. 2008</text>
 
-  <text x="700" y="1100" text-anchor="middle" class="tiny">The theory in this paper addresses when structural release from a multifunctional compromise is favored and realized.</text>
+  <text x="750" y="824" text-anchor="middle" class="strong">Ecology changes both selection and establishment</text>
+
+  <!-- Panel C -->
+  <rect x="1005" y="115" width="450" height="735" class="panel"/>
+  <text x="1230" y="153" text-anchor="middle" class="paneltitle">C. Decoupling need not mean independence</text>
+
+  <rect x="1040" y="205" width="380" height="135" class="case"/>
+  <text x="1230" y="238" text-anchor="middle" class="species">Cichlid feeding apparatus</text>
+  <text x="1230" y="269" text-anchor="middle" class="body">oral jaws capture prey</text>
+  <text x="1230" y="296" text-anchor="middle" class="body">pharyngeal jaws process prey</text>
+  <text x="1230" y="323" text-anchor="middle" class="small">structural functional decoupling</text>
+
+  <path d="M1230 340 L1230 386" class="arrow"/>
+
+  <rect x="1040" y="390" width="380" height="145" class="case"/>
+  <text x="1230" y="424" text-anchor="middle" class="strong">trade-off partly released</text>
+  <text x="1230" y="456" text-anchor="middle" class="body">novel trait combinations appear</text>
+  <text x="1230" y="482" text-anchor="middle" class="body">trophic diversity expands</text>
+  <text x="1230" y="511" text-anchor="middle" class="small">Burress et al. 2020</text>
+
+  <path d="M1230 535 L1230 580" class="arrow"/>
+
+  <rect x="1040" y="584" width="380" height="150" class="case"/>
+  <text x="1230" y="618" text-anchor="middle" class="strong">but ecology re-couples evolution</text>
+  <text x="1230" y="650" text-anchor="middle" class="body">feeding guilds drive aligned evolutionary</text>
+  <text x="1230" y="676" text-anchor="middle" class="body">responses in both jaw systems</text>
+  <text x="1230" y="706" text-anchor="middle" class="body">despite structural independence</text>
+
+  <text x="1230" y="812" text-anchor="middle" class="strong">Division of labor can remain ecologically integrated</text>
+
+  <!-- Bottom synthesis -->
+  <path d="M270 850 C270 910 570 930 665 930" class="dash"/>
+  <path d="M750 850 L750 914" class="dash"/>
+  <path d="M1230 850 C1230 910 930 930 835 930" class="dash"/>
+
+  <rect x="355" y="918" width="790" height="126" class="claim"/>
+  <text x="750" y="955" text-anchor="middle" class="paneltitle">Functional conflict does not dictate one architecture</text>
+  <text x="750" y="988" text-anchor="middle" class="body">Structural partitioning, temporal partitioning, persistent integration, and mixed states all occur in nature.</text>
+  <text x="750" y="1017" text-anchor="middle" class="body">Which resolution is favored depends on architecture, evolutionary history, and ecological partners.</text>
 </svg>
