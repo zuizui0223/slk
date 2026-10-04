@@ -57,6 +57,8 @@ Pollen-reward flowers provide the clearest natural comparison because the underl
 
 *Clarkia* reaches a different resolution. Its two anther whorls look like a classic division-of-labor system, but pollen from both whorls is collected and exported by bees in similar functional roles. Instead, delayed dehiscence of one whorl produces staggered pollen presentation (Kay et al. 2020). Thus morphological differentiation need not mean functional partitioning, and the same broad pollen-consumption conflict can be alleviated without assigning one organ type exclusively to reward and another to reproduction.
 
+A broader phylogenetic comparison shows that even the evolutionary meaning of the same differentiated morphology can change. Across 63 species of Merianieae, heteranthery was not restricted to pollen-rewarding bee-pollinated flowers. It evolved repeatedly de novo in lineages offering food bodies or nectar, where the classic pollen dilemma had been removed; field observations of passerine-pollinated species instead supported staggered removal of different stamen types through anthesis (Dellinger et al. 2021). Structural differentiation can therefore be retained or re-evolved for a different functional solution after the ecological problem that originally motivated a division-of-labor interpretation has changed.
+
 ### Ecological partners change which resolution is favored
 
 The temporal solution itself varies with pollinator ecology. Across *Penstemon* and *Keckiella*, transitions between hymenopteran and hummingbird pollination are associated with predictable changes in pollen presentation. After accounting for phylogeny, bee-adapted species dispense pollen more gradually, whereas hummingbird-adapted relatives present it more simultaneously; a species pair that appeared exceptional achieved comparable dosing through the timing of anther maturation (Castellanos et al. 2006). The relevant evolutionary outcome therefore depends not only on the plant's internal functional conflict but also on how efficiently its ecological partner removes, grooms, and delivers pollen.
@@ -305,6 +307,8 @@ Bowers, R. G., A. Hoyle, A. White, and M. Boots. 2005. The geometric theory of a
 Burress, E. D., C. M. Martinez, and P. C. Wainwright. 2020. Decoupled jaws promote trophic diversity in cichlid fishes. *Evolution* 74:950–961.
 
 Castellanos, M. C., P. Wilson, S. J. Keller, A. D. Wolfe, and J. D. Thomson. 2006. Anther evolution: pollen presentation strategies when pollinators differ. *The American Naturalist* 167:288–296.
+
+Dellinger, A. S., S. Artuso, D. M. Fernández-Fernández, and J. Schönenberger. 2021. Stamen dimorphism in bird-pollinated flowers: investigating alternative hypotheses on the evolution of heteranthery. *Evolution* 75:2589–2599.
 
 Des Marais, D. L., and M. D. Rausher. 2008. Escape from adaptive conflict after duplication in an anthocyanin pathway gene. *Nature* 454:762–765.
 
