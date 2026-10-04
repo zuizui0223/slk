@@ -24,7 +24,11 @@ def _filled(value: object) -> bool:
     return not any(token in upper for token in ("[REQUIRED", "[PENDING", "TBD", "REQUIRED_BEFORE_USE"))
 
 
-def assess(payload: dict, phase: str = "initial_submission") -> dict:
+def assess(
+    payload: dict,
+    phase: str = "initial_submission",
+    reviewer_zip_receipt: dict | None = None,
+) -> dict:
     if phase not in {"initial_submission", "publication"}:
         raise ValueError("phase must be initial_submission or publication")
 
@@ -91,16 +95,30 @@ def assess(payload: dict, phase: str = "initial_submission") -> dict:
     if payload.get("data_sharing_policy_agreed") is not True:
         missing.append("data_sharing_policy_agreement")
 
-    receipt = json.loads(ZIP_RECEIPT.read_text(encoding="utf-8"))
+    receipt = (
+        reviewer_zip_receipt
+        if reviewer_zip_receipt is not None
+        else json.loads(ZIP_RECEIPT.read_text(encoding="utf-8"))
+    )
+    receipt_current = (
+        receipt.get("status") == "EDITORIAL_MANAGER_ZIP_READY"
+        and receipt.get("current_for_submission") is True
+    )
+    if not receipt_current:
+        missing.append("reviewer_zip_current_receipt")
+
     access = payload.get("reviewer_access")
     if not isinstance(access, dict):
         missing.append("reviewer_access")
     else:
         if access.get("route") != "EDITORIAL_MANAGER_ZIP":
             missing.append("reviewer_access_route_EDITORIAL_MANAGER_ZIP")
-        if access.get("zip_filename") != receipt["reviewer_zip_filename"]:
+        if access.get("zip_filename") != receipt.get("reviewer_zip_filename"):
             missing.append("reviewer_zip_filename_matches_receipt")
-        if access.get("zip_sha256") != receipt["reviewer_zip_sha256"]:
+        if (
+            not receipt_current
+            or access.get("zip_sha256") != receipt.get("reviewer_zip_sha256")
+        ):
             missing.append("reviewer_zip_sha256_matches_receipt")
         if access.get("uploaded") is not True:
             missing.append("reviewer_zip_uploaded")
@@ -147,7 +165,10 @@ def assess(payload: dict, phase: str = "initial_submission") -> dict:
         "status": status,
         "missing": sorted(set(missing)),
         "warnings": sorted(set(warnings)),
-        "reviewer_zip_sha256": receipt["reviewer_zip_sha256"],
+        "reviewer_zip_sha256": (
+            receipt.get("reviewer_zip_sha256") if receipt_current else None
+        ),
+        "reviewer_zip_receipt_current": receipt_current,
         "claim_ceiling": "SUBMISSION_READINESS_ONLY_NO_SCIENTIFIC_CLAIM_CHANGE",
     }
 
