@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Biological structures often perform several functions whose optima conflict. One possible response is division of labor: duplicated genes can specialize, sexes can evolve different expression programs, and floral organs can differentiate into distinct functional types. Yet many systems remain multifunctional despite clear opposing selection. Why? We distinguish three biological explanations that produce the same observed persistence. First, a differentiated architecture may fail to recover enough of the conflict to repay the cost of maintaining additional structure or regulation. Second, a differentiated endpoint may have higher fitness but be unreachable through sufficiently small selectively favorable changes. Third, a reachable differentiated type may still fail to establish when rare because its ecological performance depends on frequency. These alternatives imply that conflict magnitude alone cannot rank systems by their propensity to differentiate, and that persistent multifunctionality is not evidence for weak conflict or for any single evolutionary constraint. We formalize the distinction using a common fitness comparison, derive environmental predictions for when profitability and establishment diverge, and translate the theory into measurements that discriminate among the three explanations. The aim is not a new theory of trade-offs or specialization, but a biological account of why functional conflict is sometimes resolved by division of labor and sometimes retained as multifunctional compromise.
+Multifunctional structures often face conflicting selection, yet many remain integrated rather than evolving division of labor. Why? We distinguish three biological explanations that can produce the same observed persistence. First, differentiation may fail to recover enough fitness to repay the cost of maintaining additional structure or regulation. Second, a differentiated endpoint may be fitter but unreachable through sufficiently small selectively favorable changes. Third, a favorable and reachable differentiated type may fail to establish when rare because its ecological performance is frequency dependent. These alternatives imply that conflict magnitude alone cannot rank systems by their propensity to differentiate, and that persistent multifunctionality is not evidence for weak conflict or for any single evolutionary constraint. We formalize the distinction using a common fitness comparison, show how profitability, reachability, and establishment can cross at different conditions, and translate the theory into measurements that discriminate among the three explanations. The goal is a biological account of why functional conflict is sometimes resolved by division of labor and sometimes retained as multifunctional compromise.
 
 ## 1. Introduction
 
@@ -33,7 +33,7 @@ The resulting theory is used for two purposes. First, it identifies the measurem
 
 ![](../figures/FIG1_LOGIC_DIAGRAM.svg)
 
-**Figure 1. Three reasons why multifunctionality can persist despite conflict.** After a functional conflict has been established, division of labor can fail at three biologically different stages: the differentiated architecture may not repay its own cost; a fitter differentiated endpoint may be locally inaccessible from the integrated state; or a reachable differentiated type may fail to establish when rare. The exact surfaces shown in the figure formalize these alternatives for the registered model. Fixation and weak-mutation occupancy are retained as downstream, process-specific extensions rather than as additional explanations for the origin of the conflict.
+**Figure 1. Three reasons why multifunctionality can persist despite conflict.** After a functional conflict has been established, division of labor can fail at three biologically different stages: the differentiated architecture may not repay its own cost (`Phi<0`); a fitter differentiated endpoint may be locally inaccessible (`Phi>0, g_0<0`); or a favorable and initially reachable differentiated type may fail to establish when rare (`Phi>0, g_0>0, Delta_R<0`). These routes converge on the same observed phenotype—persistent multifunctionality—but imply different next measurements. *Pedicularis rex* illustrates a system in which conflict is documented while the cause of persistence remains open.
 
 ## 2. Is the functional conflict real?
 
@@ -478,26 +478,6 @@ Along an environmental value gradient `Phi(E)=a(E-E_V)`, a fitness-scale endpoin
 ```
 
 For the two-point certificate, `B=C_R epsilon^2`. This turns endpoint invasion from an ideal limit into a prospective sampling-resolution problem.
-
-### Persistent integration is non-identifying, but the sign sequence is diagnostic
-
-A single observed state—continued integration—does not identify why differentiation is absent. Once upstream quantities are measured, however, the biological sequence can identify the first stage at which the conclusion changes. Let `g_0=R'(0)-k` denote the net small-release gradient along the declared path and `Delta_R=lim_{p->0}Delta(p)` the rare-D selection difference.
-
-| Measured sign pattern | Localized layer | What the pattern licenses | Next measurement / excluded inference |
-|---|---|---|---|
-| `L>0, Phi<0` | architecture value | conflict is real, but the declared D is not net favorable | separate `R` from `K`; do not infer weak conflict or historical persistence |
-| `Phi>0, g_0<0` | local release | the endpoint is better, but sufficiently small release is downhill on the declared path | test alternative paths and step sizes; do not infer global inaccessibility |
-| `Phi>0, g_0>0, Delta_R<0` | rare invasion | value and the initial release direction pass, but rare D does not establish | estimate `h_R=Delta_R-Phi` and frequency response; causal mechanism remains unidentified |
-| `Phi>0, g_0>0, Delta_R>0` | early explanations excluded | the first three explanations above are excluded in the measured context | test full-path geometry and fixation/demography/history; do not infer realized differentiation must occur |
-| `Phi<0, Delta_R>0` | ecological rescue at rarity | D has a rare-frequency advantage despite negative intrinsic endpoint value | measure `Delta_D`; do not infer intrinsic endpoint superiority |
-
-Boundary values are not pooled with neighboring failures. `Phi=0` is the architecture-value boundary; `g_0=0` leaves the local-release verdict unresolved at first order and requires higher-order path geometry; `Delta_R=0` is the rare-invasion boundary. With sampling uncertainty, an interval overlapping any of these zero surfaces remains unresolved rather than being assigned to either adjacent regime.
-
-Conversely, `Phi>0`, `g_0>0`, and `Delta_R>0` only exclude these three early failure modes in the measured context. They do not prove that the full path is barrier-free or that differentiation must fix, persist, or be historically realized.
-
-With uncertainty, the diagnostic is set-valued rather than forced into one row. Closed intervals for `Phi`, `g_0`, and `Delta_R` define a Cartesian uncertainty box and retain every explanatory state whose sequential sign conditions intersect that box. An interval crossing zero therefore preserves the relevant boundary state and any downstream branch that positive values still permit. If valid box bounds are tightened by set inclusion, the compatible-state set can only stay the same or shrink. Better-resolved measurements therefore have an explicit diagnostic payoff: they eliminate explanations rather than manufacturing a sharper label from an unresolved sign. When the intervals are only marginal bounds, this is a conservative outer state set because covariance or other joint constraints may rule out some retained sign combinations. Exact joint compatibility would require a joint feasible region. This is uncertainty propagation through the decision logic, not a new partial-identification method.
-
-The biological contribution is therefore not a universal prediction that conflict produces modularity. It is the diagnosis of persistent multifunctionality under a fixed architecture comparison: the same observed persistence can correspond to different sign patterns, and each pattern points to a different next measurement. Mechanism attribution remains a separate causal problem.
 
 ## 10. How to distinguish the alternatives empirically
 
