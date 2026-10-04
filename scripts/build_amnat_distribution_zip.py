@@ -86,9 +86,6 @@ def write_deterministic_zip(bundle_dir: Path, output_zip: Path) -> dict[str, obj
             "__pycache__" in path.parts or path.suffix in {".pyc", ".pyo"}
             for path in files
         ),
-        "bundle_identity_audit": (
-            bundle_dir / "ANONYMITY_AUDIT.txt"
-        ).read_text(encoding="utf-8").splitlines()[0],
     }
 
 
@@ -105,7 +102,12 @@ def build_distribution(
     receipt = write_deterministic_zip(bundle_dir, output_zip)
     if receipt["cache_files_included"]:
         raise RuntimeError("cache/bytecode files entered reviewer ZIP")
-    if receipt["bundle_identity_audit"] != "identity_scan=PASS":
+
+    audit = (bundle_dir / "ANONYMITY_AUDIT.txt").read_text(
+        encoding="utf-8"
+    ).splitlines()[0]
+    receipt["bundle_identity_audit"] = audit
+    if audit != "identity_scan=PASS":
         raise RuntimeError("reviewer bundle anonymity audit did not pass")
 
     receipt_path.parent.mkdir(parents=True, exist_ok=True)
