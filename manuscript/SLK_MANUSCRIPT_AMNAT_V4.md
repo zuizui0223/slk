@@ -344,8 +344,6 @@ Sun, S.-G., W. S. Armbruster, and S.-Q. Huang. 2016. Geographic consistency and 
 
 Sun, S.-G., and S.-Q. Huang. 2015. Rainwater in cupulate bracts repels seed herbivores in a bumblebee-pollinated subalpine flower. *AoB PLANTS* 7:plv019.
 
-Xia, J., S.-G. Sun, and G.-H. Liu. 2013. Evidence of a component Allee effect driven by predispersal seed predation in a plant (*Pedicularis rex*, Orobanchaceae). *Biology Letters* 9:20130387.
-
 Toräng, P., J. Ehrlén, and J. Ågren. 2008. Mutualists and antagonists mediate frequency-dependent selection on floral display. *Ecology* 89:1564–1572.
 
 Taylor, C., D. Fudenberg, A. Sasaki, and M. A. Nowak. 2004. Evolutionary game dynamics in finite populations. *Bulletin of Mathematical Biology* 66:1621–1644.
@@ -355,3 +353,5 @@ Vallejo-Marín, M., E. M. Da Silva, R. D. Sargent, and S. C. H. Barrett. 2010. T
 Vallejo-Marín, M., and A. Lundgren. 2026. Gradual pollen release in a buzz-pollinated plant: investigating pollen presentation theory under bee visitation. *Functional Ecology* 40:476–485.
 
 Vallejo-Marín, M., J. S. Manson, J. D. Thomson, and S. C. H. Barrett. 2009. Division of labour within flowers: heteranthery, a floral strategy to reconcile contrasting pollen fates. *Journal of Evolutionary Biology* 22:828–839.
+
+Xia, J., S.-G. Sun, and G.-H. Liu. 2013. Evidence of a component Allee effect driven by predispersal seed predation in a plant (*Pedicularis rex*, Orobanchaceae). *Biology Letters* 9:20130387.
