@@ -458,6 +458,120 @@ Thus ecological feedback has two separable effects on realized differentiation: 
 
 ---
 
+## Corollary UTA1.4c — the limiting reason for persistent integration can turn over along an environmental gradient
+
+The previous environmental results compare architecture value with invasion. The local accessibility boundary can be placed on the same environmental axis when the environment changes the marginal price of architectural release.
+
+Hold the convex recovery function `R(d)`, `dmax`, and the canonical frequency-feedback term `eta` fixed, and let
+
+```text
+k(E)=k0-c(E-E0),
+c>0.
+```
+
+Thus increasing `E` makes architectural release progressively cheaper. Define
+
+```text
+k_local  = R'(0),
+k_global = R(dmax)/dmax,
+Phi(E)   = dmax [k_global-k(E)],
+g0(E)    = k_local-k(E).
+```
+
+Let `E_V` be the architecture-value crossing, `E_A` the small-step accessibility crossing, and `E_I` the rare-D invasion crossing:
+
+```text
+k(E_V)=k_global,
+k(E_A)=k_local,
+Phi(E_I)=eta.
+```
+
+Then
+
+```text
+E_A-E_V
+=
+(k_global-k_local)/c,
+```
+
+and
+
+```text
+E_I-E_V
+=
+eta/(c dmax).
+```
+
+For strictly convex recovery,
+
+```text
+k_local<k_global,
+```
+
+so
+
+```text
+E_V<E_A.
+```
+
+If coordination-like frequency feedback is strong enough that
+
+```text
+eta
+>
+dmax (k_global-k_local),
+```
+
+then
+
+```text
+E_V<E_A<E_I.
+```
+
+Along increasing `E`, the identity of the first failing early criterion therefore changes in a fixed order:
+
+```text
+E < E_V:
+    Phi<0
+    -> differentiation does not pay
+
+E_V < E < E_A:
+    Phi>0, g0<0
+    -> differentiation pays but small release is locally downhill
+
+E_A < E < E_I:
+    Phi>0, g0>0, Delta_R<0
+    -> value and initial reachability pass, but rare establishment fails
+
+E > E_I:
+    Phi>0, g0>0, Delta_R>0
+    -> these three early failure explanations are excluded.
+```
+
+### Ecological interpretation
+
+A set of populations can therefore show the **same integrated phenotype for different evolutionary reasons** along one environmental gradient. Before any visible differentiation appears, the limiting explanation can turn over from architecture value, to local reachability, to rare establishment.
+
+The width of the local-accessibility-limited interval is
+
+```text
+E_A-E_V=(k_global-k_local)/c,
+```
+
+while the width of the rare-establishment-limited interval is
+
+```text
+E_I-E_A
+=
+[eta/dmax-(k_global-k_local)]/c.
+```
+
+The latter interval exists only when `eta>dmax(k_global-k_local)`. If `eta` is smaller, the invasion boundary is crossed before the local-accessibility boundary and the third interval disappears.
+
+This is a prediction about the ordering of measured barriers under the declared environmental slice. It does not assert that historical evolution follows only small mutations, that large-effect changes are impossible, or that passing all three early criteria guarantees realized differentiation.
+
+---
+
 ## Corollary UTA1.5 — conflict strength alone cannot rank the tendency toward differentiation across systems
 
 Under the registered quadratic bridge,
