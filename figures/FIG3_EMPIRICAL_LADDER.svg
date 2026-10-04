@@ -1,80 +1,97 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1450" viewBox="0 0 1200 1450">
-  <style>
-    .title{font:700 40px sans-serif}.sub{font:600 25px sans-serif}.txt{font:21px sans-serif}.small{font:18px sans-serif}.box{fill:white;stroke:#222;stroke-width:2}.main{fill:#fafafa;stroke:#222;stroke-width:2.2}.optional{fill:white;stroke:#666;stroke-width:2;stroke-dasharray:8 6}.arrow{stroke:#222;stroke-width:2.5;marker-end:url(#a)}.dash{stroke:#666;stroke-width:2;stroke-dasharray:8 6;marker-end:url(#a)}.ceiling{font:18px sans-serif;font-style:italic}.tag{font:700 17px sans-serif}</style>
-  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#222"/></marker></defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1120" viewBox="0 0 1400 1120">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+    <style>
+      .title{font:700 34px Arial,Helvetica,sans-serif;fill:#111}
+      .subtitle{font:400 19px Arial,Helvetica,sans-serif;fill:#333}
+      .head{font:700 23px Arial,Helvetica,sans-serif;fill:#111}
+      .mid{font:600 19px Arial,Helvetica,sans-serif;fill:#222}
+      .txt{font:400 17px Arial,Helvetica,sans-serif;fill:#222}
+      .tiny{font:400 14px Arial,Helvetica,sans-serif;fill:#444}
+      .box{fill:#fff;stroke:#222;stroke-width:2.2;rx:18}
+      .soft{fill:#fafafa;stroke:#444;stroke-width:1.9;rx:16}
+      .arrow{stroke:#333;stroke-width:2.4;fill:none;marker-end:url(#arrow)}
+      .line{stroke:#666;stroke-width:2;fill:none}
+    </style>
+  </defs>
 
-  <text x="600" y="68" text-anchor="middle" class="title">Figure 3. Diagnosing persistent multifunctionality</text>
-  <text x="600" y="106" text-anchor="middle" class="txt">Each measurement distinguishes a different biological explanation.</text>
-  <text x="600" y="134" text-anchor="middle" class="small">Fixation and long-run occupancy are optional downstream extensions.</text>
+  <text x="700" y="54" text-anchor="middle" class="title">Figure 3. Natural systems use different resolutions of functional conflict</text>
+  <text x="700" y="88" text-anchor="middle" class="subtitle">Conflict does not dictate one architecture: ecology shifts spatial partitioning, temporal regulation, and continued integration</text>
 
-  <g transform="translate(90,174)">
-    <rect x="0" y="0" width="1020" height="112" rx="16" class="main"/>
-    <text x="25" y="38" class="sub">1 — Establish real functional conflict</text>
-    <text x="25" y="72" class="txt">Measure opposing functional optima or causal performance surfaces on the shared structure.</text>
-    <text x="25" y="100" class="ceiling">If conflict is not established, persistence needs no conflict-resolution explanation.</text>
-  </g>
-  <line x1="600" y1="291" x2="600" y2="331" class="arrow"/>
+  <rect x="405" y="120" width="590" height="92" class="box"/>
+  <text x="700" y="154" text-anchor="middle" class="head">Shared biological problem</text>
+  <text x="700" y="185" text-anchor="middle" class="mid">one structure or resource serves functions with different optima</text>
 
-  <g transform="translate(90,336)">
-    <rect x="0" y="0" width="1020" height="112" rx="16" class="box"/>
-    <text x="25" y="38" class="sub">2 — Put the conflict on a common fitness scale</text>
-    <text x="25" y="72" class="txt">Estimate or bound conflict load L.</text>
-    <text x="25" y="100" class="ceiling">Conflict strength alone still does not predict division of labor.</text>
-  </g>
-  <line x1="600" y1="453" x2="600" y2="493" class="arrow"/>
+  <path d="M700 212 L700 248" class="arrow"/>
 
-  <g transform="translate(90,498)">
-    <rect x="0" y="0" width="1020" height="126" rx="16" class="main"/>
-    <text x="25" y="38" class="sub">3 — Test whether division of labor would pay</text>
-    <text x="25" y="72" class="txt">Measure recoverable benefit R and architecture cost K on the same fitness scale.</text>
-    <text x="25" y="102" class="txt">Compute Φ = R − K.</text>
-    <text x="760" y="103" class="tag">Φ &lt; 0 → cause 1</text>
-  </g>
-  <line x1="600" y1="629" x2="600" y2="669" class="arrow"/>
+  <!-- Flowers: same pollen conflict, different resolutions -->
+  <rect x="55" y="255" width="625" height="310" class="soft"/>
+  <text x="367" y="292" text-anchor="middle" class="head">A. The pollen dilemma: same conflict, different solutions</text>
+  <text x="367" y="326" text-anchor="middle" class="txt">pollen = male gametes + food/reward for pollinators</text>
 
-  <g transform="translate(90,674)">
-    <rect x="0" y="0" width="1020" height="126" rx="16" class="box"/>
-    <text x="25" y="38" class="sub">4 — Test reachability from the integrated state</text>
-    <text x="25" y="72" class="txt">Measure fitness along small developmental, mutational, or experimental release steps.</text>
-    <text x="25" y="102" class="txt">Estimate the local gradient g₀.</text>
-    <text x="760" y="103" class="tag">g₀ &lt; 0 → cause 2</text>
-  </g>
-  <line x1="600" y1="805" x2="600" y2="845" class="arrow"/>
+  <rect x="85" y="355" width="265" height="165" class="box"/>
+  <text x="218" y="388" text-anchor="middle" class="mid">Solanum rostratum</text>
+  <text x="218" y="419" text-anchor="middle" class="txt">different anther types partly divide</text>
+  <text x="218" y="445" text-anchor="middle" class="txt">feeding and pollen-export functions</text>
+  <text x="218" y="476" text-anchor="middle" class="txt">+ pollen is released gradually</text>
+  <text x="218" y="505" text-anchor="middle" class="tiny">Vallejo-Marín et al. 2009; Vallejo-Marín &amp; Lundgren 2026</text>
 
-  <g transform="translate(90,850)">
-    <rect x="0" y="0" width="1020" height="126" rx="16" class="main"/>
-    <text x="25" y="38" class="sub">5 — Test establishment when rare</text>
-    <text x="25" y="72" class="txt">Measure rare-frequency performance and frequency-dependent ecological feedback.</text>
-    <text x="25" y="102" class="txt">Estimate ΔR = lim p→0 Δ(p).</text>
-    <text x="760" y="103" class="tag">ΔR &lt; 0 → cause 3</text>
-  </g>
+  <rect x="385" y="355" width="265" height="165" class="box"/>
+  <text x="518" y="388" text-anchor="middle" class="mid">Clarkia</text>
+  <text x="518" y="419" text-anchor="middle" class="txt">two anther whorls do not divide</text>
+  <text x="518" y="445" text-anchor="middle" class="txt">feeding versus export functions</text>
+  <text x="518" y="476" text-anchor="middle" class="txt">conflict is reduced by staggered release</text>
+  <text x="518" y="505" text-anchor="middle" class="tiny">Kay et al. 2020</text>
 
-  <line x1="600" y1="981" x2="600" y2="1021" class="arrow"/>
-  <g transform="translate(210,1026)">
-    <rect x="0" y="0" width="780" height="112" rx="16" class="box"/>
-    <text x="390" y="39" text-anchor="middle" class="sub">Early explanations excluded</text>
-    <text x="390" y="73" text-anchor="middle" class="txt">Φ &gt; 0, g₀ &gt; 0 and ΔR &gt; 0</text>
-    <text x="390" y="99" text-anchor="middle" class="small">does not imply historical realization or long-run persistence</text>
-  </g>
+  <!-- Pollinator ecology -->
+  <rect x="720" y="255" width="625" height="310" class="soft"/>
+  <text x="1032" y="292" text-anchor="middle" class="head">B. Ecological partners shift the resolution</text>
+  <text x="1032" y="326" text-anchor="middle" class="txt">pollen presentation evolves with pollinator efficiency and grooming</text>
 
-  <line x1="600" y1="1143" x2="600" y2="1187" class="dash"/>
-  <text x="625" y="1172" class="small">only if the biological question goes further</text>
+  <rect x="770" y="365" width="245" height="130" class="box"/>
+  <text x="892" y="401" text-anchor="middle" class="mid">Bee-adapted species</text>
+  <text x="892" y="433" text-anchor="middle" class="txt">more gradual pollen release</text>
+  <text x="892" y="464" text-anchor="middle" class="tiny">Penstemon / Keckiella</text>
 
-  <g transform="translate(90,1194)">
-    <rect x="0" y="0" width="490" height="160" rx="16" class="optional"/>
-    <text x="25" y="39" class="sub">Downstream: fixation</text>
-    <text x="25" y="75" class="small">Specify population size, selection mapping,</text>
-    <text x="25" y="102" class="small">and stochastic population process.</text>
-    <text x="25" y="136" class="ceiling">Needed only for fixation claims.</text>
-  </g>
+  <rect x="1050" y="365" width="245" height="130" class="box"/>
+  <text x="1172" y="401" text-anchor="middle" class="mid">Hummingbird-adapted species</text>
+  <text x="1172" y="433" text-anchor="middle" class="txt">more simultaneous presentation</text>
+  <text x="1172" y="464" text-anchor="middle" class="tiny">Castellanos et al. 2006</text>
 
-  <g transform="translate(620,1194)">
-    <rect x="0" y="0" width="490" height="160" rx="16" class="optional"/>
-    <text x="25" y="39" class="sub">Downstream: long-run occupancy</text>
-    <text x="25" y="75" class="small">Specify mutation connectivity and bias in</text>
-    <text x="25" y="102" class="small">addition to the fixation process.</text>
-    <text x="25" y="136" class="ceiling">Needed only for long-run state claims.</text>
-  </g>
+  <path d="M1015 430 L1050 430" class="arrow"/>
 
-  <text x="600" y="1409" text-anchor="middle" class="txt">The core empirical paper can stop once the biological explanation of persistence is identified.</text>
+  <!-- Geographic mosaic -->
+  <rect x="55" y="610" width="625" height="285" class="soft"/>
+  <text x="367" y="648" text-anchor="middle" class="head">C. The same integrated structure can face different conflicts</text>
+  <text x="367" y="682" text-anchor="middle" class="mid">Pedicularis rex</text>
+  <text x="367" y="716" text-anchor="middle" class="txt">greater floral exsertion → more pollen receipt</text>
+  <text x="367" y="744" text-anchor="middle" class="txt">greater floral exsertion → more seed predation</text>
+  <text x="367" y="782" text-anchor="middle" class="txt">seed-predator selection varies strongly among populations</text>
+  <text x="367" y="810" text-anchor="middle" class="txt">observed seed predation: &lt;1% to &gt;27%</text>
+  <text x="367" y="853" text-anchor="middle" class="tiny">Sun &amp; Huang 2015; Sun, Armbruster &amp; Huang 2016</text>
+
+  <!-- Cichlid decoupling -->
+  <rect x="720" y="610" width="625" height="285" class="soft"/>
+  <text x="1032" y="648" text-anchor="middle" class="head">D. Division of labor need not mean full independence</text>
+  <text x="1032" y="682" text-anchor="middle" class="mid">cichlid oral + pharyngeal jaws</text>
+  <text x="1032" y="716" text-anchor="middle" class="txt">capture and processing become structurally decoupled</text>
+  <text x="1032" y="744" text-anchor="middle" class="txt">→ novel trait combinations and trophic diversification</text>
+  <text x="1032" y="782" text-anchor="middle" class="txt">but both jaw systems still respond jointly to feeding ecology</text>
+  <text x="1032" y="810" text-anchor="middle" class="txt">→ ecology partially re-couples divided functions</text>
+  <text x="1032" y="853" text-anchor="middle" class="tiny">Burress, Martinez &amp; Wainwright 2020</text>
+
+  <!-- Synthesis -->
+  <path d="M367 895 C367 940 520 950 650 950" class="line"/>
+  <path d="M1032 895 C1032 940 880 950 750 950" class="line"/>
+  <path d="M367 565 C367 590 500 590 650 950" class="line"/>
+  <path d="M1032 565 C1032 590 900 590 750 950" class="line"/>
+
+  <rect x="285" y="938" width="830" height="122" class="box"/>
+  <text x="700" y="977" text-anchor="middle" class="head">Natural outcome</text>
+  <text x="700" y="1010" text-anchor="middle" class="mid">functional conflict has multiple evolutionary resolutions</text>
+  <text x="700" y="1039" text-anchor="middle" class="txt">structural division • temporal partitioning • persistent integration • partial ecological re-coupling</text>
+
+  <text x="700" y="1100" text-anchor="middle" class="tiny">The theory in this paper addresses when structural release from a multifunctional compromise is favored and realized.</text>
 </svg>
