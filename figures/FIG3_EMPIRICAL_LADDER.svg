@@ -1,46 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1420" viewBox="0 0 1200 1420">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1450" viewBox="0 0 1200 1450">
   <style>
     .title{font:700 40px sans-serif}.sub{font:600 25px sans-serif}.txt{font:21px sans-serif}.small{font:18px sans-serif}.box{fill:white;stroke:#222;stroke-width:2}.main{fill:#fafafa;stroke:#222;stroke-width:2.2}.optional{fill:white;stroke:#666;stroke-width:2;stroke-dasharray:8 6}.arrow{stroke:#222;stroke-width:2.5;marker-end:url(#a)}.dash{stroke:#666;stroke-width:2;stroke-dasharray:8 6;marker-end:url(#a)}.ceiling{font:18px sans-serif;font-style:italic}.tag{font:700 17px sans-serif}</style>
   <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#222"/></marker></defs>
 
-  <text x="60" y="68" class="title">Figure 3. How to diagnose why multifunctionality persists</text>
-  <text x="60" y="108" class="txt">Each measurement distinguishes a different biological explanation; later population processes are optional extensions.</text>
+  <text x="600" y="68" text-anchor="middle" class="title">Figure 3. Diagnosing persistent multifunctionality</text>
+  <text x="600" y="106" text-anchor="middle" class="txt">Each measurement distinguishes a different biological explanation.</text>
+  <text x="600" y="134" text-anchor="middle" class="small">Fixation and long-run occupancy are optional downstream extensions.</text>
 
-  <g transform="translate(90,150)">
+  <g transform="translate(90,174)">
     <rect x="0" y="0" width="1020" height="112" rx="16" class="main"/>
     <text x="25" y="38" class="sub">1 — Establish real functional conflict</text>
     <text x="25" y="72" class="txt">Measure opposing functional optima or causal performance surfaces on the shared structure.</text>
     <text x="25" y="100" class="ceiling">If conflict is not established, persistence needs no conflict-resolution explanation.</text>
   </g>
-  <line x1="600" y1="267" x2="600" y2="307" class="arrow"/>
+  <line x1="600" y1="291" x2="600" y2="331" class="arrow"/>
 
-  <g transform="translate(90,312)">
+  <g transform="translate(90,336)">
     <rect x="0" y="0" width="1020" height="112" rx="16" class="box"/>
     <text x="25" y="38" class="sub">2 — Put the conflict on a common fitness scale</text>
     <text x="25" y="72" class="txt">Estimate or bound conflict load L.</text>
     <text x="25" y="100" class="ceiling">Conflict strength alone still does not predict division of labor.</text>
   </g>
-  <line x1="600" y1="429" x2="600" y2="469" class="arrow"/>
+  <line x1="600" y1="453" x2="600" y2="493" class="arrow"/>
 
-  <g transform="translate(90,474)">
+  <g transform="translate(90,498)">
     <rect x="0" y="0" width="1020" height="126" rx="16" class="main"/>
     <text x="25" y="38" class="sub">3 — Test whether division of labor would pay</text>
     <text x="25" y="72" class="txt">Measure recoverable benefit R and architecture cost K on the same fitness scale.</text>
     <text x="25" y="102" class="txt">Compute Φ = R − K.</text>
     <text x="760" y="103" class="tag">Φ &lt; 0 → cause 1</text>
   </g>
-  <line x1="600" y1="605" x2="600" y2="645" class="arrow"/>
+  <line x1="600" y1="629" x2="600" y2="669" class="arrow"/>
 
-  <g transform="translate(90,650)">
+  <g transform="translate(90,674)">
     <rect x="0" y="0" width="1020" height="126" rx="16" class="box"/>
     <text x="25" y="38" class="sub">4 — Test reachability from the integrated state</text>
     <text x="25" y="72" class="txt">Measure fitness along small developmental, mutational, or experimental release steps.</text>
     <text x="25" y="102" class="txt">Estimate the local gradient g₀.</text>
     <text x="760" y="103" class="tag">g₀ &lt; 0 → cause 2</text>
   </g>
-  <line x1="600" y1="781" x2="600" y2="821" class="arrow"/>
+  <line x1="600" y1="805" x2="600" y2="845" class="arrow"/>
 
-  <g transform="translate(90,826)">
+  <g transform="translate(90,850)">
     <rect x="0" y="0" width="1020" height="126" rx="16" class="main"/>
     <text x="25" y="38" class="sub">5 — Test establishment when rare</text>
     <text x="25" y="72" class="txt">Measure rare-frequency performance and frequency-dependent ecological feedback.</text>
@@ -48,18 +49,18 @@
     <text x="760" y="103" class="tag">ΔR &lt; 0 → cause 3</text>
   </g>
 
-  <line x1="600" y1="957" x2="600" y2="997" class="arrow"/>
-  <g transform="translate(210,1002)">
+  <line x1="600" y1="981" x2="600" y2="1021" class="arrow"/>
+  <g transform="translate(210,1026)">
     <rect x="0" y="0" width="780" height="112" rx="16" class="box"/>
     <text x="390" y="39" text-anchor="middle" class="sub">Early explanations excluded</text>
     <text x="390" y="73" text-anchor="middle" class="txt">Φ &gt; 0, g₀ &gt; 0 and ΔR &gt; 0</text>
     <text x="390" y="99" text-anchor="middle" class="small">does not imply historical realization or long-run persistence</text>
   </g>
 
-  <line x1="600" y1="1119" x2="600" y2="1163" class="dash"/>
-  <text x="625" y="1148" class="small">only if the biological question goes further</text>
+  <line x1="600" y1="1143" x2="600" y2="1187" class="dash"/>
+  <text x="625" y="1172" class="small">only if the biological question goes further</text>
 
-  <g transform="translate(90,1170)">
+  <g transform="translate(90,1194)">
     <rect x="0" y="0" width="490" height="160" rx="16" class="optional"/>
     <text x="25" y="39" class="sub">Downstream: fixation</text>
     <text x="25" y="75" class="small">Specify population size, selection mapping,</text>
@@ -67,7 +68,7 @@
     <text x="25" y="136" class="ceiling">Needed only for fixation claims.</text>
   </g>
 
-  <g transform="translate(620,1170)">
+  <g transform="translate(620,1194)">
     <rect x="0" y="0" width="490" height="160" rx="16" class="optional"/>
     <text x="25" y="39" class="sub">Downstream: long-run occupancy</text>
     <text x="25" y="75" class="small">Specify mutation connectivity and bias in</text>
@@ -75,5 +76,5 @@
     <text x="25" y="136" class="ceiling">Needed only for long-run state claims.</text>
   </g>
 
-  <text x="600" y="1385" text-anchor="middle" class="txt">The core empirical paper can stop once the biological explanation of persistence is identified.</text>
+  <text x="600" y="1409" text-anchor="middle" class="txt">The core empirical paper can stop once the biological explanation of persistence is identified.</text>
 </svg>
