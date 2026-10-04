@@ -65,6 +65,14 @@ Therefore SLK must **not** claim:
 
 The residual SLK prediction is narrower and dynamic: an unchanged integrated phenotype can move from adaptive integration to historical trapping to ecological stabilization along an environmental gradient before structural differentiation appears.
 
+### Phenotypic similarity across environments is not a new inference
+
+Countergradient variation provides a classic ecological example in which genetic and environmental influences oppose one another, reducing phenotypic divergence across an environmental gradient even though the underlying causes differ (Conover & Schultz 1995).
+
+Therefore SLK must **not** claim that a geographically stable phenotype is newly recognized as potentially concealing environmental or genetic change.
+
+The narrower prediction concerns the **selective status of structural division of labor** under a persistent multifunctional phenotype: the integrated architecture can cross from net-favored, to globally suboptimal but locally trapped, to ecologically stabilized against a rare differentiated alternative.
+
 ### Stable phenotypes with changing underlying mechanisms
 
 Developmental system drift and related theory already show that a phenotype can remain stable while the underlying genetic or developmental mechanism changes. Schiffman & Ralph (2022) give an explicit model in which phenotypically equivalent gene networks diverge by system drift.
@@ -139,6 +147,7 @@ A defensible positioning paragraph is:
 
 ## Citation targets
 
+- Conover DO, Schultz ET. 1995. Phenotypic similarity and the evolutionary significance of countergradient variation. *Trends in Ecology & Evolution* 10:248–252.
 - Schiffman JS, Ralph PL. 2022. System drift and speciation. *Evolution* 76:236–251.
 - Evans KM, Felice R. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
 - Farina SC, Kane EA, Hernandez LP. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
