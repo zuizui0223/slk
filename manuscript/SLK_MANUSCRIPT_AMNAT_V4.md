@@ -27,7 +27,7 @@ functional conflict
 -> establishment when rare.
 ```
 
-We denote the conflict load by `L`, the recoverable component by `R`, the architecture-specific cost by `K`, and the net value of differentiation by `Phi=R-K`. The first three steps answer whether division of labor would be worth having; the next two ask whether a favorable differentiated state can actually evolve and establish. Finite-population fixation and long-run occupancy are retained later as process-specific downstream extensions, but they are not the biological premise of the paper.
+We denote the conflict load by `L`, the recoverable component by `R`, the architecture-specific cost by `K`, and the net value of differentiation by `Phi=R-K`. The first three steps answer whether division of labor would be worth having; the next two ask whether a favorable differentiated state can actually evolve and establish. Finite-population fixation and long-run occupancy are retained in the supporting theory as process-specific downstream extensions, but they are not the biological premise of the paper.
 
 The resulting theory generates two broad ecological predictions. First, conflict magnitude can be decoupled from differentiation when recoverability or architecture cost varies. Second, ecological context can shift the transition from integration to division of labor because the environment where differentiation becomes profitable need not be the environment where it becomes reachable or can establish. Figure 1 summarizes these alternative evolutionary states; the equations are tools for explaining biological organization rather than the subject of the paper.
 
