@@ -1,8 +1,8 @@
-# Figure 1 — three causes of persistent multifunctionality
+# Figure 1 — three evolutionary states behind persistent multifunctionality
 
 ## Caption
 
-**Figure 1. Three reasons why multifunctionality can persist despite functional conflict.** Once opposing functional selection has been established, the continued use of one multifunctional architecture does not identify why division of labor has failed to evolve. First, differentiation may not repay its architecture-specific cost (`Phi=R-K<0`). Second, a differentiated endpoint may be fitter but locally difficult to reach because sufficiently small release steps are initially selected against (`Phi>0`, `g0=R'(0)-k<0`). Third, a favorable and initially reachable differentiated type may fail to establish when rare (`Phi>0`, `g0>0`, `Delta_R<0`). These three routes converge on the same observed phenotype—persistent multifunctionality—but represent different evolutionary states and should respond differently to changes in architecture, developmental opportunity, and ecological context. The *Pedicularis rex* inset illustrates a system in which opposing pollinator- and seed-predator-mediated selection is documented while the floral resolution remains integrated. Fixation, demography, and long-run occupancy are downstream extensions rather than additional explanations for the origin of the multifunctional state.
+**Figure 1. Three evolutionary states can underlie persistent multifunctionality.** Once opposing functional selection has been established, the continued use of one multifunctional architecture does not identify why division of labor has failed to evolve. First, differentiation may not repay its architecture-specific cost (`Phi=R-K<0`). Second, a differentiated endpoint may be fitter but locally difficult to reach because sufficiently small release steps are initially selected against (`Phi>0`, `g0=R'(0)-k<0`). Third, a favorable and initially reachable differentiated type may fail to establish when rare (`Phi>0`, `g0>0`, `Delta_R<0`). These three routes converge on the same observed phenotype—persistent multifunctionality—but represent different evolutionary states and should respond differently to changes in architecture, developmental opportunity, and ecological context. The *Pedicularis rex* inset illustrates a system in which opposing pollinator- and seed-predator-mediated selection is documented while the floral resolution remains integrated. Fixation, demography, and long-run occupancy are downstream extensions rather than additional explanations for the origin of the multifunctional state.
 
 ## Reader-facing message
 
@@ -13,13 +13,13 @@ documented functional conflict
 would division of labor pay?
     | no                     | yes
     v                        v
-cause 1                can a fitter state be reached?
+adaptive integration   can a fitter state be reached?
 Phi < 0                     | no              | yes
                             v                 v
-                         cause 2         can it establish when rare?
+                   historical trap      can it establish when rare?
                          g0 < 0             | no            | yes
                                            v               v
-                                        cause 3       early causes excluded
+                              ecological stabilization   differentiation can establish
                                         Delta_R < 0
     \________________________|________________/
                              v
@@ -43,7 +43,7 @@ Delta_R selection difference experienced by a rare differentiated type
 
 The phenotype is many-to-one with respect to evolutionary state. Persistent integration can be favored directly, preserved by an inaccessible route to a fitter divided architecture, or stabilized by ecological interactions that disadvantage a differentiated type when rare. Those states differ in how they should respond when architecture, developmental routes, or interacting communities change.
 
-The successful early route (`Phi>0, g0>0, Delta_R>0`) does not prove that differentiation must fix, persist, or have evolved historically. It only excludes the three early explanations represented in the main figure.
+The route with `Phi>0, g0>0, Delta_R>0` removes the three early barriers represented in the figure but does not imply that differentiation must fix or persist historically.
 
 ## Running example
 
