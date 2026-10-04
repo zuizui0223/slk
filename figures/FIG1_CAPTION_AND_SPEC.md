@@ -1,78 +1,54 @@
-# Figure 1 — unified critical-surface transport
+# Figure 1 — three causes of persistent multifunctionality
 
 ## Caption
 
-**Figure 1. One architecture comparison crosses different evolutionary thresholds.** SLK transports the same declared architecture comparison from identified shared-coordinate conflict through endpoint architecture value, small-step selective accessibility, frequency-dependent invasion, finite-population fixation, and symmetric rare-mutation occupancy. Each added mechanism introduces its own critical surface: sufficiently small release switches at k=k_local; global endpoint value at Phi=0, equivalently k=k_global; rare invasion at Phi=eta; resistance to reverse invasion at Phi=-eta; reciprocal fixation ordering at Phi=0; and absolute fixation advantage over neutrality at 3Phi=eta under weak selection. Under the registered exponential-Moran process with connected symmetric rare mutation, reciprocal fixation ordering and monomorphic occupancy re-align exactly on the same Phi=0 surface. The left panel shows that all five flagship non-implications can be constructed inside one convex recovery family, R(d)=d+d^2 and K(d)=kd, by varying only k and eta. The arrows are estimand handoffs, not logical implications.
+**Figure 1. Three reasons why multifunctionality can persist despite functional conflict.** Once opposing functional selection has been established, the continued use of one multifunctional architecture does not identify why division of labor has failed to evolve. First, differentiation may not repay its architecture-specific cost (`Phi=R-K<0`). Second, a differentiated endpoint may be fitter but locally difficult to reach because sufficiently small release steps are initially selected against (`Phi>0`, `g0=R'(0)-k<0`). Third, a favorable and initially reachable differentiated type may fail to establish when rare (`Phi>0`, `g0>0`, `Delta_R<0`). These three routes converge on the same observed phenotype—persistent multifunctionality—but require different measurements to distinguish. The *Pedicularis rex* inset illustrates a system in which opposing pollinator- and seed-predator-mediated selection is already documented, while the cause of persistent integration remains open. Fixation, demography, and long-run occupancy are downstream extensions rather than additional explanations for the origin of the multifunctional state.
 
 ## Reader-facing message
 
 ~~~text
-identified conflict
-      |
-      v
-global endpoint value            Phi=0
-      |
-      v
-small-step accessibility         k=k_local
-      |
-      v
-rare invasion                    Phi=+/-eta
-      |
-      v
-finite-population fixation       Phi=0; 3Phi=eta under weak selection
-      |
-      v
-rare-mutation occupancy          Phi=0
+documented functional conflict
+          |
+          v
+would division of labor pay?
+    | no                     | yes
+    v                        v
+cause 1                can a fitter state be reached?
+Phi < 0                     | no              | yes
+                            v                 v
+                         cause 2         can it establish when rare?
+                         g0 < 0             | no            | yes
+                                           v               v
+                                        cause 3       early causes excluded
+                                        Delta_R < 0
+    \________________________|________________/
+                             v
+                  persistent multifunctionality
 ~~~
 
-The figure is a **critical-surface transport map**, not a claim that every stage has a different threshold.
+The figure is a **diagnostic map of one biological outcome**, not a catalogue of mathematical thresholds.
 
-## Exact re-alignment
-
-For the registered canonical pair and exponential-Moran / symmetric rare-mutation process,
+## Biological quantities
 
 ~~~text
-rho_D/rho_S = exp[beta(N-2)Phi]
-Pi_D/Pi_S   = exp[beta(N-2)Phi]
+L       conflict load on a common fitness scale
+R       fitness recovered by the differentiated architecture
+K       architecture-specific cost
+Phi     R-K, net value of differentiation
+g0      R'(0)-k, local gradient away from the integrated state
+Delta_R selection difference experienced by a rare differentiated type
 ~~~
 
-so
+## Interpretation
 
-~~~text
-global endpoint D>S
-iff
-reciprocal fixation favors D
-iff
-symmetric rare-mutation occupancy favors D
-iff
-Phi>0.
-~~~
+The key inferential asymmetry is that the phenotype is many-to-one with respect to mechanism. Observing persistent integration cannot by itself distinguish low net value, a local accessibility barrier, or rare-establishment failure. The next measurement depends on which upstream quantities have already been established.
 
-This shared surface is conditional on the declared equal-diagonal-feedback canonical mapping, fixation process, and mutation assumptions.
+The successful early route (`Phi>0, g0>0, Delta_R>0`) does not prove that differentiation must fix, persist, or have evolved historically. It only excludes the three early explanations represented in the main figure.
 
-## One-family witness system
+## Running example
 
-Use
-
-~~~text
-d in [0,1]
-R(d)=d+d^2
-K(d)=k d
-k_local=1
-k_global=2
-Phi=2-k.
-~~~
-
-Then varying only k and eta yields all five registered separations:
-
-1. conflict without positive endpoint value;
-2. positive endpoint value without sufficiently small selectively uphill release;
-3. positive value plus small-step accessibility without rare invasion;
-4. rare invasion without reciprocal fixation superiority;
-5. absolute fixation advantage over neutrality without greater symmetric rare-mutation occupancy.
-
-The explicit parameter values remain registered in theory/UNIFIED_THRESHOLD_ATLAS_V1.md and theory/NON_EQUIVALENCE_THEOREM_V1.md.
+For *Pedicularis rex*, existing work documents opposing selection on corolla exsertion: greater exsertion is associated with increased pollen receipt and increased seed predation, while experiments support a defensive role of rainwater held by cupulate bracts. The figure therefore treats *P. rex* as an example in which the entry condition—real functional conflict—is supported, but `R`, `K`, reachability, and rare establishment remain to be measured.
 
 ## Scope
 
-The figure does not depict continuous-architecture branching, edgewise topology, spatial migration, or temporal Floquet dynamics. Those remain PAYOFF extensions outside the SLK flagship. The local-accessibility surface refers specifically to sufficiently small selectively uphill steps along the declared release path and does not imply absolute historical unreachability.
+Finite-population fixation and weak-mutation occupancy remain valid downstream results in the theory, but they are intentionally omitted from the main causal branches because they do not constitute separate explanations for why the observed multifunctional architecture initially persists.
