@@ -49,6 +49,16 @@ Vallejo-Marín et al. (2009) experimentally support a division-of-labor interpre
 
 Kay et al. (2020) are an equally important caution: in *Clarkia*, heteranthery was better supported as staggered pollen presentation than as division of labor. Morphological differentiation therefore does not by itself demonstrate that conflicting functions have been partitioned.
 
+### Evolutionary attainability of specialist states
+
+Egas, Dieckmann & Sabelis (2004) provide direct prior art for the distinction between evolutionary stability and gradual attainability. In their specialist–generalist model, coexistence can be evolutionarily stable yet in most cases cannot be reached through gradual evolution; immigration or large-effect mutations may be required.
+
+Therefore SLK must **not** claim:
+- a first demonstration that a favorable or stable specialized state can be inaccessible by small evolutionary steps;
+- a first distinction between endpoint desirability and gradual evolutionary reachability.
+
+The residual prediction developed here is narrower: when value, local reachability, and rare establishment are placed on the same environmental axis, the **identity of the limiting barrier can turn over while the observed multifunctional phenotype remains unchanged**.
+
 ### Trade-off geometry and invasion
 
 Bowers et al. (2005) already combine trade-off geometry with resident-mutant invasion boundaries. Adaptive-dynamics theory more broadly treats establishment through invasion fitness rather than endpoint performance alone.
@@ -79,7 +89,7 @@ These studies establish a real conflict around floral presentation and protectio
 
 The manuscript's contribution is best stated as:
 
-> Existing theories mostly ask which parameters favor specialization. We ask the inverse question posed by an observed multifunctional phenotype: once conflict is documented, which biological stage prevents division of labor?
+> Existing theories already identify conditions favoring specialization and show that stable specialized outcomes need not be gradually attainable. We ask an inverse diagnostic question posed by an observed multifunctional phenotype: once conflict is documented, which biological stage currently prevents division of labor, and can that limiting stage change across environments before the phenotype does?
 
 The answer is organized around three measurements.
 
@@ -114,6 +124,7 @@ A defensible positioning paragraph is:
 
 - Bowers RG, Hoyle A, White A, Boots M. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363–377.
 - Des Marais DL, Rausher MD. 2008. Escape from adaptive conflict after duplication in an anthocyanin pathway gene. *Nature* 454:762–765.
+- Egas M, Dieckmann U, Sabelis MW. 2004. Evolution restricts the coexistence of specialists and generalists: the role of trade-off structure. *The American Naturalist* 163:518–531.
 - Fudenberg D, Nowak MA, Taylor C, Imhof LA. 2006. Evolutionary game dynamics in finite populations with strong selection and weak mutation. *Theoretical Population Biology* 70:352–363.
 - Guillaume F, Otto SP. 2012. Gene functional trade-offs and the evolution of pleiotropy. *Genetics* 192:1389–1409.
 - Ingleby FC, Flis I, Morrow EH. 2015. Sex-biased gene expression and sexual conflict throughout development. *Cold Spring Harbor Perspectives in Biology* 7:a017632.
