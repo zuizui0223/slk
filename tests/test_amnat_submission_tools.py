@@ -19,6 +19,14 @@ def test_registered_slk_claims_recompute() -> None:
     assert inv["derived_from_moran_process"] is True
     assert inv["derived_from_rare_mutation_chain"] is True
     assert inv["max_relative_error"] < 1e-10
+    turnover = receipt["checks"]["UTA1_4c_environmental_barrier_turnover"]
+    assert turnover["E_V"] < turnover["E_A"] < turnover["E_I"]
+    assert turnover["value_limited_example"]["Phi"] < 0
+    assert turnover["accessibility_limited_example"]["Phi"] > 0
+    assert turnover["accessibility_limited_example"]["g0"] < 0
+    assert turnover["establishment_limited_example"]["Phi"] > 0
+    assert turnover["establishment_limited_example"]["g0"] > 0
+    assert turnover["establishment_limited_example"]["Delta_R"] < 0
     assert receipt["checks"]["CANONICAL_MAPPING_GUARD"]["guard_raised"] is True
     diag = receipt["checks"]["UTA1_10_persistent_integration_gate_localization"]
     assert diag["negative_architecture_value"]["Phi"] < 0
