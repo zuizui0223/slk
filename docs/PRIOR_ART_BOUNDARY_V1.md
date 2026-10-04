@@ -6,11 +6,11 @@ The manuscript asks:
 
 > **When functional conflict is real, why does division of labor sometimes evolve and sometimes fail to appear?**
 
-The novelty claim is not that conflict can favor specialization, nor that specialization can fail. The contribution is to treat **persistent multifunctionality under documented conflict** as an inverse diagnostic problem and to separate three experimentally distinguishable explanations:
+The novelty claim is not that conflict can favor specialization, nor that specialization can fail. The biological contribution is to ask why comparable conflicts have **different evolutionary resolutions in nature**. Persistent multifunctionality is treated as one possible resolution, maintained in three different evolutionary states:
 
-1. differentiation does not pay;
-2. a fitter differentiated state is locally difficult to reach;
-3. a favorable and reachable differentiated type cannot establish when rare.
+1. **adaptive integration** — separation does not repay its architectural cost;
+2. **historical or developmental trapping** — a fitter differentiated state is separated by unfavorable intermediates;
+3. **ecological stabilization** — differentiation is favorable and reachable, but ecological interactions prevent establishment from rarity.
 
 ## What is already established
 
@@ -49,6 +49,11 @@ Vallejo-Marín et al. (2009) experimentally support a division-of-labor interpre
 
 Kay et al. (2020) are an equally important caution: in *Clarkia*, heteranthery was better supported as staggered pollen presentation than as division of labor. Morphological differentiation therefore does not by itself demonstrate that conflicting functions have been partitioned.
 
+
+The comparison is broader than a two-way contrast. Castellanos et al. (2006) show that bee- versus hummingbird-pollinated *Penstemon* and *Keckiella* lineages differ predictably in pollen-presentation schedules, and Vallejo-Marín & Lundgren (2026) show gradual pollen dispensing within *S. rostratum* itself. Structural and temporal resolutions can therefore coexist or substitute for one another.
+
+Burress, Martinez & Wainwright (2020) provide an animal analogue: cichlid oral and pharyngeal jaws relax a force–mobility trade-off and expand trophic diversity, yet feeding ecology still drives correlated evolutionary responses in both jaw systems. Anatomical decoupling therefore need not erase ecological coupling.
+
 ### Evolutionary attainability of specialist states
 
 Egas, Dieckmann & Sabelis (2004) provide direct prior art for the distinction between evolutionary stability and gradual attainability. In their specialist–generalist model, coexistence can be evolutionarily stable yet in most cases cannot be reached through gradual evolution; immigration or large-effect mutations may be required.
@@ -64,6 +69,13 @@ The residual prediction developed here is narrower: when value, local reachabili
 Bowers et al. (2005) already combine trade-off geometry with resident-mutant invasion boundaries. Adaptive-dynamics theory more broadly treats establishment through invasion fitness rather than endpoint performance alone.
 
 SLK must therefore **not** claim a first connection between trade-offs and invasion.
+
+
+### Frequency-dependent ecology in natural populations
+
+Epperson & Clegg (1987) show that rare white-flowered *Ipomoea purpurea* receive poorer bumble-bee service and lower outcrossing when uncommon. Toräng, Ehrlén & Ågren (2008) show that mutualists and antagonists generate frequency-dependent selection on *Primula farinosa* floral display and that its strength and direction vary among populations and years.
+
+These studies do not test SLK's structural differentiation model directly, but they establish the ecological premise required by its establishment mechanism: rarity can alter reproductive success, and the sign of that effect can depend on community context.
 
 ### Finite populations and weak mutation
 
@@ -89,39 +101,30 @@ These studies establish a real conflict around floral presentation and protectio
 
 The manuscript's contribution is best stated as:
 
-> Existing theories already identify conditions favoring specialization and show that stable specialized outcomes need not be gradually attainable. We ask an inverse diagnostic question posed by an observed multifunctional phenotype: once conflict is documented, which biological stage currently prevents division of labor, and can that limiting stage change across environments before the phenotype does?
+> Natural systems show that functional conflict can be resolved by structural division of labor, temporal partitioning, persistent integration, or combinations of these strategies. Existing theory explains many conditions favoring specialization and already shows that favorable specialist states need not be gradually attainable. SLK adds an ecological synthesis: persistent integration can itself be adaptive, historically trapped, or ecologically stabilized, and the state maintaining integration can turn over across environments before morphology changes.
 
-The answer is organized around three measurements.
+The central biological predictions are:
 
-~~~text
-value:
-    Phi = R-K
-    Phi < 0 -> differentiation does not pay
+- conflict magnitude alone cannot rank lineages by their tendency toward structural division of labor;
+- the same integrated phenotype can have different evolutionary meanings in different environments;
+- community change can move the boundary between integration and division of labor because rare-form establishment depends on ecological interactions;
+- structural decoupling can release one functional trade-off while ecological selection continues to correlate the supposedly separated modules.
 
-reachability:
-    g0 = R'(0)-k
-    Phi > 0 but g0 < 0 -> fitter endpoint is locally difficult to reach
+The formal threshold atlas, witness family, fixation invariant, and uncertainty machinery support these claims but are not the biological subject of the manuscript.
 
-establishment:
-    Delta_R = lim_{p->0} Delta(p)
-    Phi > 0, g0 > 0, Delta_R < 0 -> favorable/reachable type fails when rare
-~~~
-
-This yields two further predictions:
-
-- conflict magnitude alone cannot rank systems by their tendency toward division of labor when recoverability or architecture cost differs;
-- the environmental condition at which division of labor becomes profitable can differ from the condition at which a rare differentiated type can establish.
-
-The formal threshold atlas, witness family, fixation invariant, and uncertainty machinery support these claims but should not be presented as the biological subject of the manuscript.
-
-## Required manuscript language
+## Required manuscri## Required manuscript language
 
 A defensible positioning paragraph is:
 
-> Theory already explains many conditions that favor division of labor, including performance curvature, positional effects, synergy, pleiotropic trade-offs, developmental constraints, and the costs of differentiated pathways. Empirical studies also document several routes by which shared functions become decoupled, from gene duplication to sexual dimorphism and heteranthery. We address a partly inverse problem. Given a multifunctional structure that remains integrated despite documented opposing selection, what can that persistence mean? We distinguish failure of net value, failure of local reachability, and failure of rare establishment, and show which measurements separate these explanations.
+> Theory already explains many conditions that favor division of labor, including performance curvature, positional effects, synergy, pleiotropic trade-offs, developmental constraints, and the costs of differentiated pathways. Natural systems nevertheless resolve comparable conflicts in several ways: by structural partitioning, temporal regulation, persistent integration, or mixed strategies. We therefore ask why integrated architecture remains one viable evolutionary resolution. It can remain because integration is still the better design, because history blocks access to a better divided design, or because ecological interactions prevent a divided type from establishing when rare. Ecology can consequently change the evolutionary resolution of conflict without first changing the conflict itself.
 
 ## Citation targets
 
+- Burress ED, Martinez CM, Wainwright PC. 2020. Decoupled jaws promote trophic diversity in cichlid fishes. *Evolution* 74:950–961.
+- Castellanos MC, Wilson P, Keller SJ, Wolfe AD, Thomson JD. 2006. Anther evolution: pollen presentation strategies when pollinators differ. *The American Naturalist* 167:288–296.
+- Epperson BK, Clegg MT. 1987. Frequency-dependent variation for outcrossing rate among flower-color morphs of *Ipomoea purpurea*. *Evolution* 41:1302–1311.
+- Toräng P, Ehrlén J, Ågren J. 2008. Mutualists and antagonists mediate frequency-dependent selection on floral display. *Ecology* 89:1564–1572.
+- Vallejo-Marín M, Lundgren A. 2026. Gradual pollen release in a buzz-pollinated plant: investigating pollen presentation theory under bee visitation. *Functional Ecology* 40:476–485.
 - Bowers RG, Hoyle A, White A, Boots M. 2005. The geometric theory of adaptive evolution: trade-off and invasion plots. *Journal of Theoretical Biology* 233:363–377.
 - Des Marais DL, Rausher MD. 2008. Escape from adaptive conflict after duplication in an anthocyanin pathway gene. *Nature* 454:762–765.
 - Egas M, Dieckmann U, Sabelis MW. 2004. Evolution restricts the coexistence of specialists and generalists: the role of trade-off structure. *The American Naturalist* 163:518–531.
@@ -138,4 +141,4 @@ A defensible positioning paragraph is:
 
 ## Boundary status
 
-The literature boundary is intentionally conservative. Any claim that resembles a general theory of specialization, trade-offs, invasion, fixation, or weak-mutation dynamics should be treated as prior art unless the manuscript is making the narrower diagnostic claim above.
+The literature boundary is intentionally conservative. Any claim that resembles a general theory of specialization, trade-offs, invasion, fixation, or weak-mutation dynamics should be treated as prior art. The manuscript's residual claim is ecological and comparative: functional conflict has multiple natural resolutions, and integration can persist for different evolutionary reasons whose importance changes with architecture, history, and ecological context.
