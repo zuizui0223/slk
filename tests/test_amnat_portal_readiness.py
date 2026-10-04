@@ -19,6 +19,16 @@ def _template() -> dict:
     return json.loads(TEMPLATE.read_text(encoding="utf-8"))
 
 
+def _ready_receipt() -> dict:
+    return {
+        "schema_version": "SLK_AMNAT_REVIEWER_ZIP_RECEIPT_V1",
+        "status": "EDITORIAL_MANAGER_ZIP_READY",
+        "current_for_submission": True,
+        "reviewer_zip_filename": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
+        "reviewer_zip_sha256": "1" * 64,
+    }
+
+
 def _complete_initial() -> dict:
     payload = _template()
     payload["authors"] = [
@@ -35,6 +45,8 @@ def _complete_initial() -> dict:
     payload["ai_disclosure"]["approved"] = True
     payload["preprint"] = {"status": "NO", "reference": ""}
     payload["data_sharing_policy_agreed"] = True
+    payload["reviewer_access"]["zip_sha256"] = "1" * 64
+    payload["reviewer_access"]["package_status"] = "CURRENT_VERIFIED_PACKAGE"
     payload["reviewer_access"]["uploaded"] = True
     payload["archive"].update(
         {
@@ -61,34 +73,49 @@ def test_template_is_fail_closed() -> None:
     assert "author_list" in result["missing"]
     assert "initial_archive_deposit_created" in result["missing"]
     assert "reviewer_zip_uploaded" in result["missing"]
+    assert "reviewer_zip_current_receipt" in result["missing"]
     assert "ai_disclosure_author_approval" in result["missing"]
     assert "all_author_approval" in result["missing"]
 
 
-def test_complete_initial_submission_is_ready() -> None:
+def test_current_stale_receipt_blocks_otherwise_complete_submission() -> None:
     result = mod.assess(_complete_initial())
+    assert result["status"] == "BLOCKED"
+    assert "reviewer_zip_current_receipt" in result["missing"]
+    assert result["reviewer_zip_receipt_current"] is False
+
+
+def test_complete_initial_submission_is_ready_with_current_receipt() -> None:
+    result = mod.assess(
+        _complete_initial(), reviewer_zip_receipt=_ready_receipt()
+    )
     assert result["status"] == "READY_TO_SUBMIT"
     assert result["missing"] == []
+    assert result["reviewer_zip_receipt_current"] is True
 
 
 def test_reviewer_zip_must_match_registered_receipt() -> None:
     payload = _complete_initial()
     payload["reviewer_access"]["zip_sha256"] = "0" * 64
-    result = mod.assess(payload)
+    result = mod.assess(payload, reviewer_zip_receipt=_ready_receipt())
     assert result["status"] == "BLOCKED"
     assert "reviewer_zip_sha256_matches_receipt" in result["missing"]
 
 
 def test_publication_phase_requires_doi_and_public_release() -> None:
     payload = _complete_initial()
-    result = mod.assess(payload, phase="publication")
+    result = mod.assess(
+        payload, phase="publication", reviewer_zip_receipt=_ready_receipt()
+    )
     assert result["status"] == "BLOCKED"
     assert "permanent_archive_doi" in result["missing"]
     assert "archive_public_release_ready" in result["missing"]
 
     payload["archive"]["doi"] = "10.5281/zenodo.1234567"
     payload["archive"]["public_release_ready"] = True
-    result = mod.assess(payload, phase="publication")
+    result = mod.assess(
+        payload, phase="publication", reviewer_zip_receipt=_ready_receipt()
+    )
     assert result["status"] == "READY_FOR_PUBLICATION"
     assert result["missing"] == []
 
