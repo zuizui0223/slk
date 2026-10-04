@@ -24,7 +24,7 @@
 
   <!-- Panel A -->
   <rect x="45" y="115" width="450" height="735" class="panel"/>
-  <text x="270" y="153" text-anchor="middle" class="paneltitle">A. Same pollen conflict, different resolutions</text>
+  <text x="270" y="153" text-anchor="middle" class="paneltitle">A. Same pollen conflict, different solutions</text>
 
   <rect x="80" y="185" width="380" height="120" class="case"/>
   <text x="270" y="217" text-anchor="middle" class="species">Shared conflict</text>
@@ -55,7 +55,7 @@
 
   <!-- Panel B -->
   <rect x="525" y="115" width="450" height="735" class="panel"/>
-  <text x="750" y="153" text-anchor="middle" class="paneltitle">B. Ecological partners move the resolution</text>
+  <text x="750" y="153" text-anchor="middle" class="paneltitle">B. Ecology shifts the resolution</text>
 
   <rect x="560" y="185" width="380" height="185" class="case"/>
   <text x="750" y="217" text-anchor="middle" class="species">Penstemon + Keckiella</text>
@@ -86,7 +86,7 @@
 
   <!-- Panel C -->
   <rect x="1005" y="115" width="450" height="735" class="panel"/>
-  <text x="1230" y="153" text-anchor="middle" class="paneltitle">C. Decoupling need not mean independence</text>
+  <text x="1230" y="153" text-anchor="middle" class="paneltitle">C. Decoupling is not independence</text>
 
   <rect x="1040" y="205" width="380" height="135" class="case"/>
   <text x="1230" y="238" text-anchor="middle" class="species">Cichlid feeding apparatus</text>
