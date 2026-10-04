@@ -157,5 +157,5 @@ def test_ecology_only_phase_has_general_rare_type_criterion() -> None:
         assert "Delta_R(E_A)<0" in text
         assert "B_A = Phi(E_A)" in text
 
-    assert "Delta_R(E_A)" in figure
+    assert "ΔR(E_A)" in figure
     assert "ecological stabilization" in figure
