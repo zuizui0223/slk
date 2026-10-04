@@ -50,7 +50,7 @@ def test_theory_is_preserved_while_submission_is_biology_first() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     audit = AUDIT.read_text(encoding="utf-8")
     assert "persistent multifunctionality" in manuscript
-    assert "three biological explanations" in manuscript
+    assert "Three evolutionary states behind persistent multifunctionality" in manuscript
     assert "R(d)=d+d^2" in manuscript
     assert "UTA1" in audit
     assert "R(d)=d+d^2" in audit
