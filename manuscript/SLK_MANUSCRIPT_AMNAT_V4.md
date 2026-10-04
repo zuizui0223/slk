@@ -91,7 +91,7 @@ Figure 2 separates this architecture-value classification from later realization
 
 ![](../figures/FIG2_PHASE_MAP.svg)
 
-**Figure 2. Division of labor can become profitable, reachable, and able to establish under different conditions.** The `L-Phi` plane first separates persistent compromise from a differentiated architecture with positive net value. Reachability then depends on release-path geometry, while rare establishment additionally depends on frequency-dependent ecology. Along an environmental gradient with `Phi(E)=a(E-E_V)`, the rare-establishment crossing occurs at `E_I=E_V+eta/a`: positive `eta` delays establishment beyond the point where differentiation already pays, whereas negative `eta` can permit establishment from rarity before intrinsic endpoint value becomes positive.
+**Figure 2. Division of labor can become profitable, reachable, and able to establish under different conditions.** The `L-Phi` plane first separates persistent compromise from positive net architecture value. Convex recovery can then leave a range in which the differentiated endpoint is fitter but small changes remain downhill, and frequency-dependent ecology can delay rare establishment beyond both crossings. Along an environmental gradient that lowers marginal architecture cost, sufficiently strong positive feedback gives `E_V<E_A<E_I`: populations can remain visibly multifunctional while the limiting reason for persistence changes from negative value, to local inaccessibility, to rare-establishment failure.
 
 `Phi>0` is therefore a global-value statement only. It is not shorthand for local reachability, invasion, fixation, occupancy, or historical evolution.
 
