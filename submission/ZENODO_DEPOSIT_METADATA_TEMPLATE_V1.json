@@ -1,6 +1,6 @@
 {
   "schema_version": "SLK_ZENODO_DEPOSIT_METADATA_TEMPLATE_V1",
-  "status": "AUTHOR_METADATA_REQUIRED_BEFORE_DEPOSIT",
+  "status": "PACKAGE_REBUILD_REQUIRED_BEFORE_DEPOSIT",
   "zenodo_resource_type": "software",
   "title": "Reproducibility materials for Why multifunctional structures persist under conflicting selection",
   "description": "Reproducibility materials accompanying the theory manuscript 'Why multifunctional structures persist under conflicting selection'. The package contains the manuscript source, theory notes, figure sources, executable model/process implementation, claim verifier, regression tests, anonymity audit, and checksum manifest. The manuscript distinguishes three causes of persistent multifunctionality under documented conflict: differentiation may not pay, may be locally inaccessible, or may fail to establish when rare.",
@@ -23,17 +23,18 @@
   "license": "[AUTHOR CHOICE — SELECT A LICENSE APPROPRIATE FOR CODE/THEORY MATERIALS]",
   "publication_date": "[SET WHEN RECORD IS PUBLISHED]",
   "upload_file": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
-  "upload_file_sha256": "ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b",
-  "upload_file_size_bytes": 58096,
+  "upload_file_sha256": "",
+  "upload_file_size_bytes": null,
   "draft_visibility": "UNPUBLISHED_DRAFT",
   "intended_final_file_visibility": "PUBLIC",
   "reserve_doi_before_publication": "OPTIONAL",
   "related_article_doi": "[ADD AFTER ARTICLE DOI EXISTS]",
   "notes": [
+    "The pre-refocus reviewer ZIP receipt is stale and must not be deposited.",
+    "Regenerate and verify the reviewer/archive ZIP from the biology-refocused manuscript before creating or updating the Zenodo draft.",
     "Use a Zenodo draft at initial submission; do not publish solely to create reviewer access.",
     "Reviewer access can use the separate Editorial Manager ZIP route.",
     "Before publication, confirm creators, license, final files, related article metadata, and DOI state.",
-    "If the final archived object changes materially, regenerate and reverify the ZIP checksum before publication.",
-    "The canonical distribution ZIP is deterministic and contains only the 16 manifest-listed payload files plus SHA256SUMS.txt; no cache or bytecode files are included."
+    "If the final archived object changes materially, regenerate and reverify the ZIP checksum before publication."
   ]
 }
