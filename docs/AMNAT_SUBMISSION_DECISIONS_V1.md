@@ -32,85 +32,55 @@ A real partial worked example can be added only after an actual identified recei
 
 ```text
 PRIMARY_TARGET = The American Naturalist
-ECOLOGY_LETTERS_REASSESSMENT = requires_real_same_system_G1_G5_receipt
 ```
 
-The current paper is strongest as a conceptual/theoretical ecology paper: an architecture-specific estimand transport, a unified critical-surface atlas, ecological threshold-displacement and conflict–differentiation discordance predictions, one-family constructive split witnesses, a process-level consistency invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
+The refocused manuscript is now a biological theory paper about why documented conflict can remain multifunctional. Its central contribution is the inverse diagnosis of three causes—failure of net value, local reachability, or rare establishment—rather than the threshold atlas as an object in itself. That framing remains appropriate for *The American Naturalist*.
 
-The submission framing must emphasize biological theory and falsifiable measurement consequences, not software governance, repository integration, or bookkeeping.
+The submission framing must continue to emphasize biological theory and falsifiable measurement consequences, not software governance or repository architecture.
 
-## Closed pre-submission items
+## Closed scientific items
 
 ```text
-THEORY_OWNERSHIP                         CLOSED
-GENERAL_MARGIN Phi=R-K                  CLOSED
-QUADRATIC_BRIDGE_SCOPE R=sL             CLOSED
-JOURNAL_PROSE_CONVERSION                 CLOSED
-REGISTERED_PRIOR_ART_COVERAGE           10/10 PASS
-CORE_LITERATURE_CITED                    CLOSED
-THEOREM_FORMULA_CONSISTENCY              PASS_AFTER_REPAIR
-UNIFIED_THRESHOLD_ATLAS                  PASS
-CROSS_LEVEL_PHI_COMPATIBILITY            PASS
-ECOLOGICAL_THRESHOLD_DISPLACEMENT        PASS
-ECOLOGICAL_FEEDBACK_GRADIENT             PASS
-TWO_FREQUENCY_PHI_ETA_IDENTIFICATION      PASS
-THREE_FREQUENCY_CURVATURE_DIAGNOSTIC     PASS
-GENERALIZED_INVASION_SURFACES            PASS
-ARBITRARY_SHAPE_ENDPOINT_INVASION        PASS
-FINITE_FREQUENCY_ENDPOINT_BOUNDS         PASS
-SAMPLING_PLUS_APPROXIMATION_INTERVAL     PASS
-CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
-GATE_LOCALIZATION_DIAGNOSTIC_UTA1_10      PASS
-INTERVAL_COMPATIBLE_STATE_SET_UTA1_11      PASS
-FIGURE_2_ECOLOGICAL_PANEL                PASS
-FIGURE_1_THRESHOLD_ATLAS                 PASS
-WITNESS_ARITHMETIC                       PASS
-FIGURE_1_GENERALITY                      REPAIRED
-CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
-AMNAT_TITLE_WORDS                         9 PASS
-AMNAT_ABSTRACT_WORDS                    191 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       6131 PASS
-AMNAT_FIGURES                             3 PASS
-AMNAT_TABLES                              3 PASS
-AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
-FULL_CI_PY311_PY312                      PASS_571_571
-REVIEW_MANUSCRIPT_PDF                    35 PAGES PASS
-ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
-DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
-ANONYMOUS_REVIEWER_BUNDLE                PASS_17_FILES_CACHE_FREE
-IDENTITY_SCAN                             PASS
-CLAIM_VERIFIER_NE1_NE5_UTA1_11            PASS
-FIXATION_OCCUPANCY_INVARIANT_GRID        PROCESS_DERIVED PASS
-MORAN_PROCESS_CANONICAL_GRID              PASS
-CANONICAL_MAPPING_GUARD                   PASS
-NUMERICAL_TOLERANCE_POLICY                PASS
-FIGURE_1_MANUAL_QA                       PASS
-FIGURE_3_MANUAL_QA                       PASS
-ANON_REVIEW_MORAN_TEST                  13/13 PASS
-INV1_PROCESS_COMPARISONS                336 PASS
-CANONICAL_MAPPING_GUARD                 PASS
-UTA1_10_DIAGNOSTIC_TABLE_MANUAL_QA       PASS_PAGES_25_27_EXCLUSION_STATE
-UTA1_11_INTERVAL_BOX_MANUAL_QA            PASS_PAGES_27_28_OUTER_SET_CAVEAT
-FINAL_FULL_PAGE_PROOFREAD                 PASS_35_35
+BIOLOGICAL_QUESTION_REFOCUS              PASS
+THREE_CAUSE_PERSISTENCE_DIAGNOSIS        PASS
+PEDICULARIS_RUNNING_EXAMPLE_BOUNDARY     PASS
+PRIOR_ART_REPOSITIONING                  PASS
+GENERAL_MARGIN Phi=R-K                   PASS
+LOCAL_ACCESSIBILITY_SEPARATION            PASS
+RARE_ESTABLISHMENT_SEPARATION             PASS
+ECOLOGICAL_THRESHOLD_DISPLACEMENT         PASS
+CONFLICT_DIFFERENTIATION_DISCORDANCE      PASS
+DOWNSTREAM_FIXATION_OCCUPANCY_SCOPE       PASS
+AMNAT_TITLE_WORDS                          7 PASS
+AMNAT_ABSTRACT_WORDS                     168 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE        5760 PASS
+AMNAT_FIGURES                              3 PASS
+AMNAT_TABLES                               3 PASS
+AMNAT_FIGURE_TABLE_TOTAL                   6 PASS
+FULL_CI                                   PASS
+REFOCUSED_REVIEW_PACKAGE_BUILD            PASS
 ```
+
+The mathematical theory files retain the fuller witness family and process results. Their presence no longer determines the manuscript's subject.
 
 ## Remaining submission actions
 
-The current UTA1.10-UTA1.11 source plus the Bowers et al. prior-art boundary passes Python 3.11/3.12 CI (571/571), review-package build, rendered identity scan, executable claim verification, targeted QA of the diagnostic table and interval-box caveat, and full rendered page-by-page QA (35/35). The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
-
-Remaining actions are controlled outside the scientific package:
+The biology-refocused source passes CI and the anonymous package build. The old frozen reviewer ZIP and upload kit do not.
 
 ```text
+REVIEWER_BUNDLE_ACCESS_ROUTE          REBUILD_REQUIRED_AFTER_REFOCUS
+EDITORIAL_MANAGER_UPLOAD_KIT          REBUILD_REQUIRED_AFTER_REFOCUS
+INITIAL_ARCHIVE_PAYLOAD               REBUILD_REQUIRED_AFTER_REFOCUS
+FINAL_RENDERED_PAGE_QA                REQUIRED_AFTER_REBUILD
 AUTHOR_METADATA                       REQUIRED
 AI_USE_DISCLOSURE                     REQUIRED_AUTHOR_APPROVAL
 ALL_AUTHOR_APPROVAL                   REQUIRED
-PORTAL_INPUT_VALIDATOR                READY
-EDITORIAL_MANAGER_UPLOAD_KIT          READY
-REVIEWER_BUNDLE_ACCESS_ROUTE          EDITORIAL_MANAGER_ZIP_READY
-INITIAL_ARCHIVE_DEPOSIT               PAYLOAD_READY_AUTHENTICATED_DEPOSIT_PENDING
+INITIAL_ARCHIVE_DEPOSIT               REQUIRED
 PORTAL_UPLOAD                         REQUIRED
-PERMANENT_ARCHIVE_DOI                 METADATA_TEMPLATE_READY_DOI_PENDING
+PERMANENT_ARCHIVE_DOI                 REQUIRED_FOR_PUBLICATION
 ```
+
+The portal validator now refuses a reviewer package whose receipt is not both `EDITORIAL_MANAGER_ZIP_READY` and `current_for_submission=true`.
 
 ## Remaining scientific-editorial risk
 
@@ -131,15 +101,14 @@ The submission answer must center on four deductions:
 TARGET                  = THE_AMERICAN_NATURALIST
 ARTICLE_TYPE            = MAJOR_ARTICLE
 MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V4.md
+SCIENTIFIC_FRAMING      = BIOLOGY_FIRST_THREE_CAUSE_DIAGNOSIS
 THEORY                  = READY
-JOURNAL_PROSE           = READY
-PRIOR_ART_CORE          = READY
-FORMULA_CONSISTENCY     = PASS
 FORMAT_LIMITS           = PASS
-ANONYMOUS_REVIEW_FILES  = READY_CURRENT_BOWERS_35_PAGE
-REVIEWER_CODE_PACKAGE   = READY_17_FILE_DETERMINISTIC
-EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
-INTERNAL_BLOCKERS       = NONE
-EXTERNAL_ACTIONS        = AUTHOR_INPUT + AUTHENTICATED_ZENODO_DRAFT + EDITORIAL_MANAGER_UPLOAD + APPROVAL + PUBLICATION_DOI
-MAIN_OPEN_RISK          = UTA1_10_11_DIAGNOSTIC_BIOLOGICAL_PAYOFF
+FULL_CI                 = PASS
+ANONYMOUS_PACKAGE_BUILD = PASS
+FROZEN_REVIEWER_ZIP     = STALE_REBUILD_REQUIRED
+EM_UPLOAD_KIT           = STALE_REBUILD_REQUIRED
+ZENODO_PAYLOAD          = STALE_REBUILD_REQUIRED
+FINAL_MANUAL_RENDER_QA  = REOPENED
+INTERNAL_BLOCKERS       = REBUILD_AND_VERIFY_SUBMISSION_ARTIFACTS
 ```
