@@ -1,6 +1,6 @@
 {
   "schema_version": "SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_RECEIPT_V1",
-  "status": "LOCAL_UPLOAD_KIT_READY",
+  "status": "STALE_AFTER_MANUSCRIPT_REFOCUS_REBUILD_REQUIRED",
   "source_main_commit": "b4285a244ebdb8f7adab0f2e9eb42a8d8dc92fe4",
   "kit_filename": "SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT.zip",
   "kit_sha256": "3a0cc0fef7843fef7086602b63f4be5de7f243667d42bfb9fb3d731407217cd0",
@@ -17,5 +17,10 @@
   "claim_ceiling": "LOCAL_SUBMISSION_KIT_ONLY_NO_SCIENTIFIC_CLAIM_CHANGE",
   "source_workflow_run_id": 36441156403,
   "source_workflow_artifact_id": 10978421671,
-  "deterministic_archive": true
+  "deterministic_archive": true,
+  "current_for_submission": false,
+  "stale_reason": "MANUSCRIPT_AND_REVIEWER_BUNDLE_CHANGED_AFTER_KIT_WAS_FROZEN",
+  "replacement_required": true,
+  "prior_kit_sha256": "3a0cc0fef7843fef7086602b63f4be5de7f243667d42bfb9fb3d731407217cd0",
+  "prior_reviewer_bundle_sha256": "ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b"
 }
