@@ -14,14 +14,20 @@ Biological question:
 
 > When opposing functions genuinely conflict, why does division of labor sometimes evolve and sometimes fail to appear?
 
-Core spine:
+Core biological spine:
 
 ```text
-documented conflict
--> does division of labor pay?          Phi = R-K
--> can the fitter state be reached?     local release gradient g0
--> can it establish when rare?          Delta_R / frequency dependence
--> optional downstream fixation and occupancy
+functional conflict
+-> multiple natural resolutions
+   structural partitioning
+   temporal partitioning
+   persistent integration
+   mixed / partial decoupling
+-> if integration persists, it can be:
+   adaptive
+   historically trapped
+   ecologically stabilized
+-> environmental and community change can move the system among these states
 ```
 
 Core claims:
@@ -33,10 +39,10 @@ Core claims:
 5. conflict magnitude alone cannot rank systems by their tendency toward division of labor when recoverability or architecture cost varies;
 6. along a gradient that lowers marginal architecture cost, strict convexity orders profitability before local reachability, and sufficiently strong positive frequency feedback can place rare establishment later still (`E_V<E_A<E_I`), so the limiting reason for persistent multifunctionality turns over before morphology changes;
 7. along environmental gradients, the profitability crossing and rare-establishment crossing can be displaced, with `E_I-E_V=eta/a` in the local affine canonical model;
-8. the three causes imply different next measurements, turning persistent integration from an ambiguous observation into a testable diagnosis;
-9. *Pedicularis rex* provides a literature-based running example in which opposing selection is documented but the reason for persistent integration remains unmeasured;
-10. finite-population fixation and weak-mutation occupancy are retained as downstream process extensions rather than as headline explanations;
-11. under the specified symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and monomorphic occupancy re-align exactly at `Phi=0` (INV1).
+8. natural systems already show alternative resolutions of comparable conflicts: functional heteranthery, temporal pollen presentation, persistent integration under geographically variable antagonism, and partial anatomical decoupling with continued ecological coupling;
+9. field studies of floral frequency dependence show that rarity itself can change reproductive success and that the sign of this effect can vary among populations and years, grounding the ecological-establishment mechanism;
+10. *Pedicularis rex* provides a literature-based example in which the same integrated floral architecture experiences a geographic mosaic in the balance of mutualist and antagonist selection;
+11. finite-population fixation and weak-mutation occupancy remain supporting-theory extensions rather than headline explanations.
 
 Flagship exclusions:
 
@@ -51,7 +57,7 @@ Flagship exclusions:
 - general spatial spectral transport;
 - temporal Floquet theory beyond what is required for the flagship argument.
 
-The flagship owns the **biological diagnosis of persistent multifunctionality under documented conflict**. The mathematical threshold results, process invariants, and measurement machinery support that question but are not themselves the manuscript's subject.
+The flagship owns the **ecological theory of alternative resolutions of functional conflict**, with persistent multifunctionality treated as adaptive integration, historical trapping, or ecological stabilization. The mathematical threshold results and process invariants support that biological argument but are not themselves the manuscript's subject.
 
 ---
 
