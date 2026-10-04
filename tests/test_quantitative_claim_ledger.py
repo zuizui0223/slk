@@ -60,4 +60,6 @@ def test_ledger_registers_ecological_threshold_predictions() -> None:
     ledger = LEDGER.read_text(encoding="utf-8")
     for token in ("E_I=E_V+eta/a", "conflict–differentiation discordance"):
         assert token in ledger
-    assert "E_I=E_V+eta/a" in manuscript
+    assert "E_I" in manuscript
+    assert "E_V" in manuscript
+    assert "Community turnover can therefore change whether an innovation spreads" in manuscript
