@@ -485,24 +485,21 @@ The empirical programme is deliberately cumulative. Each measurement step suppor
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
-**Figure 3. Sequential empirical tests of why multifunctionality persists.** A first stage identifies a real shared-coordinate conflict and estimates or bounds `L`. The next stages quantify recoverable architecture benefit `R` and architecture cost `K` on a common fitness scale, allowing evaluation of `Phi=R-K`. These measurements are sufficient only for architecture-value classification. Stronger claims require additional information: a local mutation or release neighborhood for accessibility, rare-frequency performance and population feedback for invasion, an explicit stochastic finite-population process for fixation, and a mutation graph or kernel for stationary occupancy.
+**Figure 3. How to distinguish the causes of persistent multifunctionality.** The empirical sequence first establishes real functional conflict and places it on a common fitness scale. It then asks whether division of labor pays (`Phi=R-K`), whether a fitter differentiated state is locally reachable, and whether it can establish when rare. A negative result at these three stages diagnoses the three explanations in Figure 1. Fixation and long-run occupancy are optional downstream extensions rather than mandatory endpoints of the core biological test.
 
 The corresponding measurement ladder is:
 
 ```text
-identified conflict             -> a real shared-axis conflict is established
-estimated or bounded L          -> conflict magnitude is quantified
-estimated R and K               -> recoverable benefit and architecture cost are separated
-evaluated Phi=R-K               -> persistent compromise or global differentiated advantage is classified
-local release neighborhood      -> local reachability/trapping can be evaluated
-rare-frequency performance      -> rare-invasion phase can be evaluated
-finite-population process       -> fixation statements become justified
-mutation graph/kernel           -> weak-mutation monomorphic occupancy becomes justified.
+documented functional conflict  -> opposing functional selection is established
+estimated or bounded L          -> conflict magnitude is placed on a common fitness scale
+estimated R and K               -> test whether division of labor pays
+local release gradient g0       -> test whether a fitter differentiated state is reachable
+rare-frequency performance      -> test whether that state can establish when rare
 ```
 
-This ordering prevents a common empirical shortcut: endpoint superiority cannot substitute for local accessibility or later population-process measurements. Likewise, a rare-invasion assay cannot by itself determine fixation or occupancy. Under the specified symmetric rare-mutation exponential-Moran model, reciprocal fixation ordering and occupancy ordering coincide, but that agreement is a theorem conditional on the process assumptions rather than permission to skip process specification.
+This ordering prevents a common empirical shortcut: stronger conflict does not imply that division of labor pays, endpoint superiority does not imply reachability, and reachability does not imply establishment. A study can stop once the biological cause of persistence has been identified. Fixation and long-run occupancy require additional process assumptions only when the biological question extends beyond establishment.
 
-No single biological system is claimed here to have completed the full measurement ladder end to end.
+No biological system is claimed here to have completed this full sequence end to end.
 
 ### Running example: what is already known in *Pedicularis rex*?
 
