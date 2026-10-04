@@ -12,9 +12,9 @@ PORTAL_HANDOFF = submission/AMNAT_PORTAL_HANDOFF_V1.md
 Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
-TITLE_WORDS                         9
-ABSTRACT_WORDS                    191
-TEXT_WORDS_EXCL_LITERATURE_CITED 6131
+TITLE_WORDS                         7
+ABSTRACT_WORDS                    168
+TEXT_WORDS_EXCL_LITERATURE_CITED 5760
 FIGURES                             3
 ```
 
@@ -28,7 +28,7 @@ Status:
 MAJOR_ARTICLE_TEXT_LIMIT        PASS
 ABSTRACT_200_WORD_LIMIT         PASS
 FIGURE_TABLE_LIMIT              PASS   (3 figures + 3 in-text tables = 6 items)
-TITLE_LENGTH_PREFERENCE         PASS   (9 words; journal suggests ~8–10)
+TITLE_LENGTH_PREFERENCE         PASS   (7 words; concise)
 KEYWORDS_1_TO_6                 PASS   (6)
 ANONYMOUS_TITLE_PAGE            PASS
 AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
@@ -36,49 +36,38 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — PASS
+### 1. Anonymous review manuscript — BUILD PASS, MANUAL QA REOPENED
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The Bowers et al. (2005) prior-art expansion was rebuilt from main commit `b4285a244ebdb8f7adab0f2e9eb42a8d8dc92fe4` in workflow run `36441156403` / artifact `10978421671`.
+The biology-refocused manuscript, title page, and all three figures build successfully through the anonymous-review workflow. The workflow verifies manuscript limits, generates the DOCX/PDF, embeds all three figures, checks line/page numbering, and scans rendered files for identity-bearing text.
+
+Because the title, prose, figures, references, and pagination changed after the previous 35-page proofread, that earlier page-by-page QA is **historical evidence only**. It does not certify the refocused render.
+
+Status: `AUTOMATED BUILD PASS — NEW RENDER REQUIRES FINAL HUMAN PAGE-BY-PAGE QA`.
+
+### 2. Anonymous reviewer code/theory package — SOURCE BUILD PASS, FROZEN ZIP STALE
+
+The current workflow successfully builds the curated anonymous reviewer bundle from the refocused source. However, the previously frozen distribution ZIP and its SHA256 were generated from an earlier manuscript state.
+
+The historical ZIP receipt is retained for provenance but now has:
 
 ```text
-MAIN_REVIEW_PDF_PAGES         35
-ANONYMOUS_TITLE_PDF_PAGES      1
-DOUBLE_SPACED                  true
-LINE_NUMBERS                   true
-PAGE_NUMBERS                   true
-EMBEDDED_FIGURES               3
-RENDERED_IDENTITY_SCAN         PASS
-PRIOR_ART_CORE_REFERENCES      10/10 PASS
-REVIEWER_BUNDLE_CLEAN_FILES    17
-REVIEWER_BUNDLE_CACHE_FILES     0
-FULL_PAGE_BY_PAGE_PROOFREAD    PASS_35_35
+status                 STALE_AFTER_MANUSCRIPT_REFOCUS_REBUILD_REQUIRED
+current_for_submission false
 ```
 
-The 35-page Bowers-expanded PDF passed page-by-page visual review. The current main render is pixel-identical across all 35 pages to the inspected pull-request render, and extracted-text checks found no identity strings, unresolved placeholders, merge markers, or broken glyphs. The ten registered core references are present in Literature Cited.
+Do **not** upload the old `SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip`, do not deposit it to Zenodo, and do not reuse its SHA256 in Editorial Manager.
 
-Status: `PASS FOR CURRENT GENERATED FILES — FULL PAGE QA CLOSED`.
+Required internal action:
 
-### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, REVIEW ACCESS ROUTE REQUIRED
+```text
+regenerate deterministic reviewer ZIP from refocused source
+-> rerun bundled tests / anonymity scan / internal checksum manifest
+-> register new ZIP SHA256 + size + source commit
+-> rebuild Editorial Manager upload kit
+-> rerun final rendered-page QA
+```
 
-The review bundle is curated rather than being a repository dump. It contains:
-
-- the exact anonymous manuscript and title-page sources;
-- `theory/SLK_CORE_THEORY_V1.md`;
-- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`;
-- `theory/NON_EQUIVALENCE_THEOREM_V1.md`;
-- the three submitted SVG figure sources;
-- `code/verify_amnat_claims.py`;
-- a precomputed `CLAIM_VERIFICATION_RECEIPT.json`;
-- `ANONYMITY_AUDIT.txt`;
-- `SHA256SUMS.txt`.
-
-The verifier recomputes the common convex recovery family, all five registered witness regimes, the critical surfaces, and the fixation–occupancy invariant. The invariant grid contains 112 comparisons with maximum absolute error 0.0. The bundle identity scan passes and excludes repository history, remote URLs, and author metadata.
-
-Current journal instructions distinguish reviewer access from archiving. At first submission, reviewers/editors may receive the material through either a private/anonymized repository link or a ZIP uploaded directly to Editorial Manager. Separately, the journal requires the data/code archive deposit at initial submission; that deposit may remain private for peer review. A permanent DOI/public archive is required for publication.
-
-The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Use the exact curated anonymous bundle for either reviewer-access route.
-
-Status: `PASS INTERNALLY — DETERMINISTIC CACHE-FREE 17-FILE REVIEWER ZIP VERIFIED; EDITORIAL MANAGER ZIP ROUTE READY; INITIAL ARCHIVE DEPOSIT AND PERMANENT DOI STILL REQUIRED`.
+Status: `BLOCKED UNTIL REFOCUSED PACKAGE IS REBUILT AND VERIFIED`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -116,23 +105,15 @@ Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No internal scientific-package, rendered-manuscript, or mechanical-format blocker remains. The current UTA1.10-UTA1.11 source with the Bowers et al. prior-art boundary produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated deterministic reviewer bundle with executable claim verification; all 35 rendered pages passed full-page QA.
+The scientific manuscript and automated review-package build pass, but the **submission package is intentionally fail-closed after the biology refocus**. The frozen reviewer ZIP, Zenodo payload checksum, Editorial Manager convenience kit, and previous manual page-by-page QA all belong to the pre-refocus version.
 
-Remaining actions are external/human controlled:
+Current internal actions:
 
 ```text
-AUTHOR_METADATA                       REQUIRED
-REVIEWER_DATA_CODE_ACCESS_ROUTE       EDITORIAL_MANAGER_ZIP_READY
-INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      PAYLOAD_READY_AUTHENTICATED_DEPOSIT_PENDING
-PERMANENT_DATA_CODE_ARCHIVE_DOI        METADATA_TEMPLATE_READY_DOI_PENDING
-ACKNOWLEDGMENTS_IN_AUTHOR_COMMENTS     REQUIRED
-AUTHOR_CONTRIBUTIONS_IN_COMMENTS       REQUIRED
-AI_USE_DISCLOSURE                      REQUIRED_AUTHOR_APPROVAL
-SUGGESTED_REVIEWER_FIELDS              AUTHOR_CONTROLLED
-ASSOCIATE_EDITOR_SUGGESTION            AUTHOR_CONTROLLED
-PREPRINT_AND_DATA_SHARING_FIELDS       REQUIRED_PORTAL_RESPONSES
-ALL_AUTHOR_APPROVAL                    REQUIRED
-PORTAL_FILE_UPLOAD                     REQUIRED
+REFOCUSED_REVIEWER_ZIP_REBUILD          REQUIRED
+NEW_ZIP_CHECKSUM_RECEIPT                REQUIRED
+EDITORIAL_MANAGER_UPLOAD_KIT_REBUILD    REQUIRED
+REFOCUSED_RENDER_PAGE_BY_PAGE_QA        REQUIRED
 ```
 
-Scientific reviewer risk is now whether UTA1.10-UTA1.11 gate localization—together with fail-closed compatible-state uncertainty propagation—provides enough biological leverage beyond the deliberately non-novel component algebra, not format compliance.
+After those are closed, the remaining author-controlled items are metadata, acknowledgments/contributions, AI-disclosure approval, archive creation, portal upload, and all-author approval.
