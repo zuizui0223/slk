@@ -21,15 +21,15 @@ def test_submission_title_is_synchronized() -> None:
     )
 
 
-def test_figure1_centers_three_biological_causes_of_persistence() -> None:
+def test_figure1_centers_three_selective_states_of_persistence() -> None:
     text = FIG1.read_text(encoding="utf-8")
     for token in (
-        "Why can multifunctionality persist despite functional conflict?",
+        "Three selective states can maintain the same multifunctional phenotype",
         "Adaptive integration",
         "Historical / developmental trapping",
         "Ecological stabilization",
         "persistent multifunctionality",
-        "Pedicularis rex",
+        "architecture, history, and ecology",
     ):
         assert token in text
 
