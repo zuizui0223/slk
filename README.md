@@ -12,9 +12,9 @@ The project draws on several linked theory modules, but the modules are not the 
 
 ## Central question
 
-> **Why can the same outcome—persistent multifunctionality—remain after strong functional conflict?**
+> **Why does similar functional conflict produce structural division of labor in some systems, temporal partitioning in others, and persistent multifunctionality in still others—and why can ecology move the balance among these resolutions?**
 
-SLK separates three biological explanations.
+For the persistent-integration branch, SLK separates three evolutionary states.
 
 ```text
 documented functional conflict
@@ -84,7 +84,7 @@ The mathematical machinery supports the biological diagnosis rather than replaci
 1. a common fitness comparison `Phi=R-K` that separates conflict strength from the net value of division of labor;
 2. a demonstration that positive endpoint value can coexist with a local accessibility barrier under convex recovery;
 3. a population-level establishment test showing that frequency-dependent ecology can reverse the endpoint verdict when a differentiated type is rare;
-4. a three-way diagnosis of persistent multifunctionality into failure of value, reachability, or establishment;
+4. three ways persistent integration can be maintained: adaptive integration, historical/developmental trapping, or ecological stabilization;
 5. the comparative prediction that stronger conflict need not imply more differentiation;
 6. the ecological prediction that profitability and rare establishment can be displaced along environmental gradients;
 7. the prediction that ecological context can change the evolutionary resolution of conflict, including cases in which the same phenotype persists for different reasons across environments.
@@ -101,20 +101,11 @@ The narrower contribution is to make **the evolutionary resolution of documented
 
 `K` is the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. It is comparison-specific rather than a universal physiological quantity. Empirical use must declare comparison states, scale, time horizon, included/excluded cost channels, uncertainty, and how double counting with `R` was prevented. See `docs/K_OPERATIONAL_DEFINITION_V1.md`.
 
-## Empirical anchor and repository boundary
+## Pedicularis rex as a prospective biological test
 
-The first prospectively registered same-system empirical anchor is `Pedicularis rex`. Its role is to test whether the abstract ladder can be closed in one biological system:
+*Pedicularis rex* is the focal prospective system because its functional conflict is already biologically documented: greater floral exposure improves pollen receipt but also increases seed predation, while water-filled bracts reduce seed-predator damage. The unresolved question is why this conflict remains structurally integrated and whether populations exposed to different antagonist regimes occupy different evolutionary states.
 
-```text
-identified conflict
--> L
--> R
--> K
--> Phi
--> stronger realization claims only with their additional measurements
-```
-
-The current biological claim ceiling is unchanged: **no real Pedicularis G1-G5 receipt has yet been produced**. Design readiness is not empirical closure.
+The current claim ceiling is unchanged: the published natural-history evidence motivates the theory, but this repository does not claim a new end-to-end *P. rex* test of adaptive integration, trapping, or ecological stabilization.
 
 Candidate-specific permission, outreach, access, scouting, field-packet, receipt, and handoff machinery is operational support rather than part of the flagship theory contribution. New operational machinery should be developed in a Pedicularis empirical companion unless it changes an SLK estimand, theorem, generic measurement gate, or manuscript claim ceiling. The migration rule is frozen in `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md`.
 
