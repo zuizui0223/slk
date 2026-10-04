@@ -64,7 +64,7 @@
   <rect x="60" y="800" width="1270" height="250" class="box"/>
   <text x="85" y="840" class="t m">D. The reason for persistence can change before the phenotype does</text>
   <text x="85" y="872" class="t xs">Let environment E lower architecture cost: k(E)=k0−c(E−E0), c&gt;0, with strict convex recovery.</text>
-  <text x="85" y="898" class="t xs">A distinct ecological-stabilization phase exists only if η &gt; B_A = dmax(k_global−k_local).</text>
+  <text x="85" y="898" class="t xs">Ecological stabilization exists if ΔR(E_A)&lt;0; canonically, η &gt; B_A = Φ(E_A).</text>
 
   <line x1="150" y1="950" x2="1240" y2="950" class="axis"/>
   <line x1="420" y1="922" x2="420" y2="978" class="grid"/>
@@ -85,6 +85,6 @@
   <text x="840" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&gt;0, ΔR&lt;0</text>
   <text x="1110" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&gt;0, ΔR&gt;0</text>
 
-  <text x="60" y="1082" class="t xs">If 0 &lt; η ≤ B_A, ecology crosses first and no ecology-only persistence phase appears.</text>
+  <text x="60" y="1082" class="t xs">If ΔR(E_A) ≥ 0, rare establishment is already possible when the local barrier disappears.</text>
   <text x="60" y="1108" class="t xs">Main message: ecology determines whether a distinct ecologically stabilized integrated phase exists.</text>
 </svg>
