@@ -35,11 +35,13 @@ The resulting theory generates two broad ecological predictions. First, conflict
 
 **Figure 1. Three reasons why multifunctionality can persist despite conflict.** After a functional conflict has been established, division of labor can fail at three biologically different stages: the differentiated architecture may not repay its own cost (`Phi<0`); a fitter differentiated endpoint may be locally inaccessible (`Phi>0, g_0<0`); or a favorable and initially reachable differentiated type may fail to establish when rare (`Phi>0, g_0>0, Delta_R<0`). These routes converge on the same observed phenotype—persistent multifunctionality—but imply different evolutionary responses to changes in architecture and ecology. *Pedicularis rex* illustrates a system in which conflict is documented while its evolutionary resolution remains integrated.
 
-## 2. Is the functional conflict real?
+## 2. Functional conflict creates the problem, not its resolution
 
-Consider two or more fitness-relevant functions constrained to one phenotypic coordinate. Let `L>=0` denote the compromise load on a common fitness scale. `L=0` is the no-identified-conflict boundary; `L>0` means that forcing the functions onto one coordinate produces a positive fitness loss relative to the relevant function-specific benchmark.
+Consider two or more fitness-relevant functions constrained to one phenotypic coordinate. Let `L>=0` denote the fitness loss created by forcing those functions onto a shared compromise. `L>0` therefore means that the same architecture cannot simultaneously occupy the function-specific optima.
 
-The empirical interpretation of `L` requires causal care. Context-specific optima measured under selective environments are not automatically pure-function optima. In practice, the conflict budget should therefore be exported only from designs that identify opposing causal geometry or from explicitly bounded state-specific contrasts. The analysis starts from an empirically supported estimate or bound for `L`; it does not redefine how that evidence is obtained. Thus the present framework does not prove that a biological system has `L>0`; that conclusion must be imported from an identified analysis of shared-coordinate conflict.
+That conflict does not specify what evolution should do next. A lineage can retain the compromise, divide functions among structures, regulate the shared structure differently across time or context, or combine these responses. The pollen dilemma illustrates this immediately: pollen can be lost to pollinators as food yet is also required for male reproduction, but natural plants respond through several distinct floral strategies rather than one universal architecture.
+
+In the theory below, `L` is therefore the magnitude of the problem that differentiation might release. It is not itself a pressure toward any particular solution. This distinction is essential because two systems with equally strong conflict can occupy different architectures, whereas two systems with different conflict strengths can converge on the same organization.
 
 ## 3. Would division of labor pay?
 
