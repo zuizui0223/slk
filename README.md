@@ -135,10 +135,10 @@ These modules may be cited by SLK without being promoted to independent manuscri
 For the flagship argument, the canonical path is deliberately short:
 
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
-2. `figures/FIG1_LOGIC_DIAGRAM.svg` — unified critical-surface transport and witness logic.
-3. `figures/FIG2_PHASE_MAP.svg` — architecture value, realization coordinates, and ecological threshold displacement.
-4. `figures/FIG3_EMPIRICAL_LADDER.svg` — cumulative empirical claim ladder.
-5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master atlas, constructive witnesses, and UTA1.10-UTA1.11 diagnostics.
+2. `figures/FIG1_LOGIC_DIAGRAM.svg` — three biological causes of persistent multifunctionality.
+3. `figures/FIG2_PHASE_MAP.svg` — profitability, reachability, rare establishment, and environmental turnover of the limiting cause.
+4. `figures/FIG3_EMPIRICAL_LADDER.svg` — measurements that distinguish the three causes, with fixation/occupancy shown only as downstream extensions.
+5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
 6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
 7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem, derived-consequence, diagnostic, and empirical-handoff status.
 8. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
@@ -156,6 +156,7 @@ UNIFIED_CRITICAL_SURFACE_ATLAS_REGISTERED
 ONE_FAMILY_WITNESS_SYSTEM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
 ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
+ENVIRONMENTAL_PERSISTENCE_BARRIER_TURNOVER_REGISTERED
 FINITE_FREQUENCY_ENDPOINT_CERTIFICATION_REGISTERED
 UTA1_10_GATE_LOCALIZATION_REGISTERED
 UTA1_11_INTERVAL_COMPATIBLE_STATE_SET_REGISTERED
