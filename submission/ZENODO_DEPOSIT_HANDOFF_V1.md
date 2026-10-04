@@ -2,16 +2,24 @@
 
 ## Purpose
 
-Prepare the archive-deposit step required by The American Naturalist without conflating it with reviewer access.
+Prepare the archive-deposit step required by *The American Naturalist* without conflating it with reviewer access.
 
-The reviewer-access route is already ready as an Editorial Manager ZIP:
+## Current payload status — REBUILD REQUIRED
+
+The previously frozen reviewer/archive ZIP was created before the manuscript was reframed around persistent multifunctionality. Its historical checksum remains in the stale receipt for provenance, but that ZIP is **not current for submission and must not be uploaded to Zenodo**.
+
+Current required sequence:
 
 ```text
-SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-SHA256 ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
+biology-refocused source
+-> build anonymous reviewer bundle
+-> regenerate deterministic distribution ZIP
+-> run bundled tests + anonymity scan + checksum manifest
+-> register new source commit / size / SHA256
+-> only then create or update the Zenodo draft
 ```
 
-The same verified, cache-free deterministic ZIP is suitable as the file payload for a Zenodo draft. Zenodo recommends ZIP packaging for deposits with many files, and a software record can contain a single compressed source/reproducibility package.
+The metadata template has already been updated to the new manuscript title and keywords, but its payload checksum is intentionally blank until the new ZIP is frozen.
 
 ## Why draft first
 
@@ -41,22 +49,9 @@ before publication:
 
 ## Upload payload
 
-Use exactly:
+No upload payload is currently frozen. Do not use the pre-refocus ZIP or its checksum.
 
-```text
-file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-size      58,096 bytes
-SHA256    ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
-files     17
-tests     13 passed / 0 failed
-identity  PASS
-```
-
-The exact package receipt is:
-
-```text
-submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json
-```
+After regeneration, record the new file, size, SHA256, file count, bundled test result, and identity scan in `submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json`, then copy those values into the Zenodo metadata and handoff.
 
 ## Metadata template
 
@@ -105,12 +100,13 @@ Immediately before publishing the Zenodo record:
 ## Current state
 
 ```text
-ARCHIVE_PAYLOAD_READY       true
-ZENODO_METADATA_TEMPLATE    ready
+ARCHIVE_PAYLOAD_READY       false
+PACKAGE_REBUILD_REQUIRED    true
+ZENODO_METADATA_TEMPLATE    ready_without_payload_checksum
 ZENODO_DRAFT_CREATED        false
 ZENODO_FILE_UPLOADED        false
 ZENODO_DOI_RESERVED         false
 ZENODO_RECORD_PUBLISHED     false
 ```
 
-The remaining actions require an authenticated Zenodo account and author-controlled metadata.
+The next internal action is package regeneration and verification. Authenticated Zenodo actions remain author-controlled.
