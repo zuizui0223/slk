@@ -73,13 +73,17 @@ def test_template_is_fail_closed() -> None:
     assert "author_list" in result["missing"]
     assert "initial_archive_deposit_created" in result["missing"]
     assert "reviewer_zip_uploaded" in result["missing"]
-    assert "reviewer_zip_current_receipt" in result["missing"]
     assert "ai_disclosure_author_approval" in result["missing"]
     assert "all_author_approval" in result["missing"]
 
 
-def test_current_stale_receipt_blocks_otherwise_complete_submission() -> None:
-    result = mod.assess(_complete_initial())
+def test_stale_receipt_blocks_otherwise_complete_submission() -> None:
+    stale = _ready_receipt()
+    stale["status"] = "STALE_AFTER_MANUSCRIPT_CHANGE"
+    stale["current_for_submission"] = False
+    result = mod.assess(
+        _complete_initial(), reviewer_zip_receipt=stale
+    )
     assert result["status"] == "BLOCKED"
     assert "reviewer_zip_current_receipt" in result["missing"]
     assert result["reviewer_zip_receipt_current"] is False
