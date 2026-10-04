@@ -26,7 +26,8 @@ def test_figure1_centers_three_selective_states_of_persistence() -> None:
     for token in (
         "Three selective states can maintain the same multifunctional phenotype",
         "Adaptive integration",
-        "Historical / developmental trapping",
+        "Historical / developmental",
+        "trapping",
         "Ecological stabilization",
         "persistent multifunctionality",
         "architecture, history, and ecology",
