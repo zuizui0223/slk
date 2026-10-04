@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         7
 ABSTRACT_WORDS                    184
-TEXT_WORDS_EXCL_LITERATURE_CITED 6146
+TEXT_WORDS_EXCL_LITERATURE_CITED 5418
 FIGURES                             3
 ```
 
@@ -99,7 +99,7 @@ Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
 
 ### 7. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered ten-paper core prior-art set, including the Richardson-extrapolation antecedent, in alphabetical order. Production-style punctuation can be normalized later if requested.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. The biology-refocused V4 has 13 main-text references; every Literature Cited entry is cited in the manuscript and the list is alphabetical. Broader technical prior art remains documented in the repository but is no longer carried into the streamlined main bibliography when the corresponding derivation has moved out of the journal-facing prose.
 
 Status: `PASS FOR INITIAL REVIEW`.
 
