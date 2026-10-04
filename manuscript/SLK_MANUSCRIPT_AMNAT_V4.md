@@ -228,7 +228,7 @@ The point is not the difficulty of these inequalities. It is that the same persi
 
 ## 9. Biological predictions
 
-The threshold atlas changes the biological interpretation of several common comparative patterns.
+These distinctions change the biological interpretation of several common comparative patterns.
 
 ### The reason for persistence can change before the phenotype does
 
@@ -365,7 +365,7 @@ lim_{p->0} Delta(p).
 
 The diagnosis does not require committing to a linear or quadratic description of the entire frequency-response curve. A positive estimate of `Delta_R` supports establishment from rarity; a negative estimate supports rare-establishment failure; uncertainty that overlaps zero remains unresolved.
 
-In practice, exactly zero frequency is impossible. A study can therefore use one or more low-frequency treatments and a prospectively justified smoothness bound to translate finite-frequency performance into an endpoint interval. Two nearby rare-frequency treatments can improve that approximation when curvature is bounded. The full endpoint-certification formulas and their approximation bounds are retained in the supporting theory (UTA1.8-UTA1.9); the biological requirement is simply that the sign of rare-frequency performance be resolved rather than assumed.
+In practice, exactly zero frequency is impossible. A study can therefore use one or more low-frequency treatments and a prospectively justified smoothness bound to translate finite-frequency performance into an endpoint interval. Two nearby rare-frequency treatments can improve that approximation when curvature is bounded. The full endpoint-certification formulas and their approximation bounds are retained in the supporting theory; the biological requirement is simply that the sign of rare-frequency performance be resolved rather than assumed.
 
 Additional frequency treatments have a different purpose: they reveal **why** rare-frequency performance differs from intrinsic architecture value. In the minimal canonical model,
 
@@ -433,7 +433,7 @@ Ecological context adds a second prediction, and a sharper one follows when valu
 
 The *P. rex* literature already establishes the first empirical prerequisite: opposing selection acts on floral exsertion, and the defensive role of water-filled bracts has experimental support (Sun and Huang 2015; Sun, Armbruster, and Huang 2016). It does **not** yet establish why this conflict remains integrated. Doing so would require a design that independently manipulates floral presentation and defensive protection, places their consequences on a common reproductive-fitness scale, and then asks how much fitness an experimentally decoupled arrangement recovers relative to the cost of producing or maintaining that arrangement. Only after a favorable differentiated comparison is demonstrated does it become meaningful to test mutational or developmental reachability and rare-frequency establishment. In this sense, *P. rex* is a motivating biological system, not an empirical result of the present paper.
 
-The finite-population fixation and weak-mutation occupancy results are retained because they show that even after establishment, stronger evolutionary statements require additional process assumptions. They are not the headline biological claim. A shorter empirical application can stop after value, reachability, or rare establishment, depending on the question and available measurements. This keeps the theory subordinate to the biological problem rather than turning every downstream estimand into a required step.
+The finite-population fixation and weak-mutation occupancy results are retained because they show that even after establishment, stronger evolutionary statements require additional process assumptions. They are not the headline biological claim. A shorter empirical application can stop after value, reachability, or rare establishment, depending on the question and available measurements. This keeps the theory subordinate to the biological problem rather than turning every downstream quantity into a required step.
 
 ### Position relative to existing theory
 
