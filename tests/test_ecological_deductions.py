@@ -79,9 +79,9 @@ def test_two_frequency_identification_is_registered() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
-    assert "Delta(p_+)+Delta(p_-)" in manuscript
     assert "UTA1.6" in theory
     assert "UTA1.6" in ledger
+    assert "symmetric frequency treatments estimate the strength and sign" in manuscript
 
 
 def test_three_frequency_curvature_diagnostic_is_registered() -> None:
@@ -90,8 +90,7 @@ def test_three_frequency_curvature_diagnostic_is_registered() -> None:
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.7" in theory
     assert "UTA1.7" in ledger
-    assert "kappa" in manuscript
-    assert "Phi>eta-kappa-h0" in manuscript
+    assert "If the response is nonlinear, more frequencies are needed" in manuscript
     assert "does not inherit the canonical exponential-Moran fixation" in theory
 
 
@@ -101,8 +100,8 @@ def test_arbitrary_shape_endpoint_invasion_is_registered() -> None:
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.8" in theory
     assert "UTA1.8" in ledger
-    assert "Phi=-h_R" in manuscript
-    assert "regardless of how nonlinear the interior frequency response may be" in manuscript
+    assert "does not require committing to a linear or quadratic description" in manuscript
+    assert "Delta_R" in manuscript
 
 
 def test_finite_frequency_endpoint_certification_is_registered() -> None:
@@ -111,8 +110,8 @@ def test_finite_frequency_endpoint_certification_is_registered() -> None:
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.9" in theory
     assert "UTA1.9" in ledger
-    assert "C_R epsilon^2" in manuscript
-    assert "overlap with zero remains unresolved" in manuscript
+    assert "prospectively justified smoothness bound" in manuscript
+    assert "uncertainty that overlaps zero remains unresolved" in manuscript
 
 
 
