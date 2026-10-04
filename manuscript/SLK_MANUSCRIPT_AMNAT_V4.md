@@ -239,7 +239,7 @@ k(E)=k0-c(E-E0),
 c>0.
 ```
 
-With convex recovery, the environment at which differentiation first becomes profitable (`E_V`) necessarily precedes the environment at which sufficiently small release steps become uphill (`E_A`):
+This slice can represent, for example, a resource or developmental context in which maintaining separate functional structures becomes progressively cheaper. With convex recovery, the environment at which differentiation first becomes profitable (`E_V`) necessarily precedes the environment at which sufficiently small release steps become uphill (`E_A`):
 
 ```text
 E_A-E_V
