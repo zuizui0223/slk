@@ -33,7 +33,7 @@ then
 E_V < E_A < E_I,
 ```
 
-which yields the ordered sequence adaptive integration -> historical trapping -> ecological stabilization. If `0<eta<=B_A`, establishment becomes possible before local accessibility and the ecology-only phase disappears; if `eta<0`, rarity favors the differentiated type in the canonical game.
+which yields the ordered sequence adaptive integration -> historical trapping -> ecological stabilization. More generally, ecological stabilization is a distinct final early barrier exactly when `Delta_R(E_A)<0`; if `Delta_R(E_A)>=0`, rare establishment is already possible when local accessibility is gained.
 
 ## Claim mapping
 
