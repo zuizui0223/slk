@@ -699,6 +699,103 @@ This is a small-step path result. Large mutations, recombination, developmental 
 
 ---
 
+## Corollary UTA1.4e — persistence can become easier to overturn before morphology changes
+
+The ordered environmental slice also changes the size of the perturbation required to leave the integrated state before any visible transition occurs.
+
+### Architecture-release threshold
+
+Within the historical-trapping interval,
+
+```text
+k_local < k < k_global,
+```
+
+strict convexity and `R(0)=0` imply that the secant slope
+
+```text
+q(d)=R(d)/d,
+0<d<=dmax,
+```
+
+is strictly increasing from `k_local` toward `k_global`.
+
+Therefore there is a unique positive release size `d_J` satisfying
+
+```text
+R(d_J)/d_J=k.
+```
+
+For a one-step release from the integrated state,
+
+```text
+0<d<d_J  ->  R(d)-kd<0
+d>d_J    ->  R(d)-kd>0.
+```
+
+Thus `d_J` is the minimum one-step architectural release that has positive intrinsic net value relative to the integrated state on the declared path.
+
+As environmental change lowers `k` from `k_global` toward `k_local`,
+
+```text
+d_J: dmax -> 0.
+```
+
+The integrated phenotype can therefore remain unchanged while the structural innovation required to escape it becomes progressively smaller.
+
+### Frequency threshold under coordination-like ecology
+
+For the canonical endpoint pair with `eta>0` and
+
+```text
+0<Phi<eta,
+```
+
+the unstable interior frequency is
+
+```text
+p_C
+=
+(eta-Phi)/(2eta).
+```
+
+Below `p_C`, the divided architecture declines; above `p_C`, it increases. Hence `p_C` is the critical initial frequency required to escape the integrated resident state under deterministic coordination dynamics.
+
+As `Phi` increases toward the rare-invasion boundary,
+
+```text
+Phi -> eta
+```
+
+and
+
+```text
+p_C -> 0.
+```
+
+### Combined ecological interpretation
+
+In the ordered slice `E_V<E_A<E_I`, persistence can therefore erode before the phenotype changes.
+
+```text
+E_V < E < E_A:
+    the divided endpoint pays,
+    but a finite architectural release is still required;
+    positive frequency feedback can additionally require sufficient local abundance.
+
+E_A < E < E_I:
+    the small-step architectural barrier has disappeared,
+    but the divided architecture must still exceed a positive critical frequency p_C.
+
+E > E_I:
+    p_C=0 at the invasion boundary and rare divided types can increase.
+```
+
+This does not make valley crossing or coordination thresholds new mathematical phenomena. The biological prediction is their ordered handoff within one multifunctional-to-divided architecture problem: **the morphology can remain integrated while the magnitude and kind of perturbation needed to reorganize it progressively change.**
+
+
+---
+
 ## Corollary UTA1.5 — conflict strength alone cannot rank the tendency toward differentiation across systems
 
 Under the registered quadratic bridge,
