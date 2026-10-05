@@ -237,6 +237,18 @@ Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that
 
 **Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** Convex recovery makes global profitability cross before local accessibility when environmental change lowers the cost of differentiation and also permits architecture-path hysteresis between forward and reverse change. Strong positive frequency dependence can place rare establishment later still and create priority-dependent alternative states, whereas negative frequency dependence can create coexistence through rare-form advantage. An ecology-only stabilization phase exists only when rare-type disadvantage remains after the historical barrier has disappeared.
 
+### The three states should leave different natural histories
+
+The three persistence states make different predictions for how lineages and populations should be distributed in nature.
+
+**Adaptive integration** should produce continued adjustment within a multifunctional architecture. Selection can move the compromise phenotype as environments change while the underlying integrated organization remains favored. Structural division of labor should appear only when the recoverable fitness gain rises enough, or the cost of maintaining additional architecture falls enough, to reverse the net value comparison. Persistent integration in this state is therefore expected even under substantial and geographically variable conflict.
+
+**Historical or developmental trapping** should produce phylogenetic and temporal legacy effects. Lineages with different ancestral architectures can remain different under the same current environment because forward and reverse transitions occur at different conditions. Environmental reversals should show lag, and recently colonized or recently changed populations can retain an architecture better predicted by their history than by the present environment. Such a mosaic does not require frequency dependence.
+
+**Ecological stabilization** should produce community-dependent architecture. A divided form that is intrinsically favorable can spread in one interaction network but fail when rare in another. Positive frequency dependence predicts priority-dependent patches or sharp boundaries between alternative architectures; negative frequency dependence predicts persistent mixed zones. Changes in pollinator, enemy, competitor, or mate communities can therefore reorganize the geographic distribution of architectures without any change in the underlying functional conflict.
+
+These are predictions about the natural distribution and temporal dynamics of biological organization, not merely different labels for one persistent phenotype.
+
 ### Conflict strength need not predict division of labor
 
 Under the quadratic bridge, `Phi=sL-K`. A lineage with stronger conflict can remain integrated if little of that conflict is released by the available architecture or if separation is costly, while a lineage with weaker conflict can differentiate when release is efficient and cheap. Comparative relationships between conflict strength and specialization can therefore be weak, absent, or even reversed without implying that conflict is biologically unimportant.
