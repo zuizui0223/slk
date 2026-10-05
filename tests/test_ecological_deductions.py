@@ -47,7 +47,7 @@ def test_conflict_strength_is_not_promoted_to_differentiation_rank() -> None:
 
 def test_downstream_population_processes_are_demoted_to_supporting_theory() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8").lower()
-    assert "finite-population fixation and weak-mutation occupancy remain in the supporting theory" in manuscript
+    assert "finite-population fixation and long-run occupancy are retained in the supporting theory" in manuscript
     assert "not additional explanations for multifunctionality" in manuscript
 
 def test_persistent_multifunctionality_three_selective_states_are_registered() -> None:
