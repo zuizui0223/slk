@@ -85,6 +85,6 @@
   <text x="840" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&gt;0, ΔR&lt;0</text>
   <text x="1110" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&gt;0, ΔR&gt;0</text>
 
-  <text x="60" y="1082" class="t xs">If ΔR(E_A) ≥ 0, rare establishment is already possible when the local barrier disappears.</text>
+  <text x="60" y="1082" class="t xs">History: path hysteresis. Ecology: priority effects when η&gt;0; coexistence when η&lt;0.</text>
   <text x="60" y="1108" class="t xs">Main message: ecology determines whether a distinct ecologically stabilized integrated phase exists.</text>
 </svg>
