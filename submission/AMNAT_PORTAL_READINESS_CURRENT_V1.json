@@ -15,22 +15,23 @@
     "initial_archive_deposit_created",
     "initial_archive_reference",
     "preprint_status_NO_or_YES",
-    "reviewer_zip_current_receipt",
     "reviewer_zip_uploaded"
   ],
   "warnings": [],
-  "reviewer_zip_sha256": null,
+  "reviewer_zip_sha256": "b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e",
   "ready_machine_assets": {
     "scientific_package": true,
     "anonymous_review_files": true,
-    "reviewer_zip": false,
+    "reviewer_zip": true,
     "reviewer_zip_route": "EDITORIAL_MANAGER_ZIP",
-    "zenodo_payload": false,
+    "zenodo_payload": true,
     "zenodo_metadata_template": true,
-    "editorial_manager_upload_kit": false,
+    "editorial_manager_upload_kit": true,
     "portal_validator": true,
-    "internal_blockers": "REBUILD_REVIEWER_ZIP_AND_UPLOAD_KIT_AFTER_MANUSCRIPT_REFOCUS"
+    "rendered_layout_qa": "PASS_28_28_WITH_KEY_FIGURES_FULL_SIZE",
+    "internal_blockers": "NONE"
   },
   "claim_ceiling": "SUBMISSION_READINESS_ONLY_NO_SCIENTIFIC_CLAIM_CHANGE",
-  "current_submission_package_status": "STALE_PACKAGE_BLOCKED"
+  "current_submission_package_status": "CURRENT_MACHINE_ASSETS_HUMAN_ACTIONS_PENDING",
+  "reviewer_zip_receipt_current": true
 }
