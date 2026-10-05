@@ -4,22 +4,20 @@
 
 Prepare the archive-deposit step required by *The American Naturalist* without conflating it with reviewer access.
 
-## Current payload status — REBUILD REQUIRED
+## Current payload status — READY
 
-The previously frozen reviewer/archive ZIP was created before the manuscript was reframed around persistent multifunctionality. Its historical checksum remains in the stale receipt for provenance, but that ZIP is **not current for submission and must not be uploaded to Zenodo**.
-
-Current required sequence:
+The biology-refocused package has been rebuilt deterministically and verified.
 
 ```text
-biology-refocused source
--> build anonymous reviewer bundle
--> regenerate deterministic distribution ZIP
--> run bundled tests + anonymity scan + checksum manifest
--> register new source commit / size / SHA256
--> only then create or update the Zenodo draft
+file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+size      59,927 bytes
+SHA256    b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e
+files     17
+identity  PASS
+source    5f6443189c13df6c83a8c7f78bac2c8223e632f2
 ```
 
-The metadata template has already been updated to the new manuscript title and keywords, but its payload checksum is intentionally blank until the new ZIP is frozen.
+This is the current payload for both reviewer-code access and a Zenodo draft. Do not substitute an older pre-refocus ZIP.
 
 ## Why draft first
 
@@ -49,9 +47,17 @@ before publication:
 
 ## Upload payload
 
-No upload payload is currently frozen. Do not use the pre-refocus ZIP or its checksum.
+Use exactly the current deterministic reviewer/archive ZIP:
 
-After regeneration, record the new file, size, SHA256, file count, bundled test result, and identity scan in `submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json`, then copy those values into the Zenodo metadata and handoff.
+```text
+file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+size      59,927 bytes
+SHA256    b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e
+files     17
+identity  PASS
+```
+
+The exact package receipt is `submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json`.
 
 ## Metadata template
 
@@ -100,13 +106,13 @@ Immediately before publishing the Zenodo record:
 ## Current state
 
 ```text
-ARCHIVE_PAYLOAD_READY       false
-PACKAGE_REBUILD_REQUIRED    true
-ZENODO_METADATA_TEMPLATE    ready_without_payload_checksum
+ARCHIVE_PAYLOAD_READY       true
+PACKAGE_REBUILD_REQUIRED    false
+ZENODO_METADATA_TEMPLATE    ready
 ZENODO_DRAFT_CREATED        false
 ZENODO_FILE_UPLOADED        false
 ZENODO_DOI_RESERVED         false
 ZENODO_RECORD_PUBLISHED     false
 ```
 
-The next internal action is package regeneration and verification. Authenticated Zenodo actions remain author-controlled.
+The remaining Zenodo actions require an authenticated author account and author-controlled metadata.
