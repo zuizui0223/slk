@@ -6,7 +6,7 @@
 
 ## Scientific role
 
-Figure 3 makes two biological points. First, profitability, evolutionary accessibility, and establishment are different evolutionary transitions and need not occur at the same environmental condition. Second, ecology determines whether a distinct ecologically stabilized integrated phase exists after the historical barrier has disappeared.
+Figure 3 makes three biological points. First, profitability, evolutionary accessibility, and establishment are different evolutionary transitions and need not occur at the same environmental condition. Second, strict convex recovery can create architecture-path hysteresis, so forward and reverse environmental change can retain different architectures even without frequency dependence. Third, ecology determines whether a distinct ecologically stabilized phase exists and whether the population outcome is priority-dependent alternative states (`eta>0`) or stable coexistence through rare-form advantage (`eta<0`).
 
 For the barrier-turnover slice,
 
