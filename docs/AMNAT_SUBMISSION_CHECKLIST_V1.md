@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         7
 ABSTRACT_WORDS                    168
-TEXT_WORDS_EXCL_LITERATURE_CITED 5457
+TEXT_WORDS_EXCL_LITERATURE_CITED 5746
 FIGURES                             3
 TABLES                              0
 ```
@@ -37,15 +37,15 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — PASS
+### 1. Anonymous review manuscript — SOURCE READY, PACKAGE REBUILD PENDING
 
 The current ecology-first manuscript, title page, and all three figures build successfully through the anonymous-review workflow. The current PDF is 28 pages, double spaced, line numbered, page numbered, and passes the rendered identity scan.
 
 All 28 rendered pages were inspected at overview scale, and the three figure pages were inspected at full size. No clipping, overlap, broken glyphs, or figure-title truncation was found.
 
-Status: `PASS — CURRENT 28-PAGE RENDER LAYOUT QA CLOSED`.
+Status: `PREVIOUS 28-PAGE LAYOUT QA PASS — REBUILD REQUIRED AFTER LATEST ECOLOGICAL PREDICTION EDIT`.
 
-### 2. Anonymous reviewer code/theory package — PASS
+### 2. Anonymous reviewer code/theory package — REBUILD PENDING
 
 The current deterministic reviewer ZIP is frozen and verified:
 
@@ -66,7 +66,7 @@ SHA256    3b8bb9f80c35c998de2eb2a08a039acdbf4188f35d24e6c0adff2caeb678de1c
 files     8
 ```
 
-Status: `PASS — CURRENT SUBMISSION ARTIFACTS REGISTERED`.
+Status: `FAIL-CLOSED UNTIL THE LATEST SOURCE IS REBUILT AND NEW CHECKSUMS ARE REGISTERED`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
