@@ -37,38 +37,36 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — BUILD PASS, MANUAL QA REOPENED
+### 1. Anonymous review manuscript — PASS
 
-The biology-refocused manuscript, title page, and all three figures build successfully through the anonymous-review workflow. The workflow verifies manuscript limits, generates the DOCX/PDF, embeds all three figures, checks line/page numbering, and scans rendered files for identity-bearing text.
+The current ecology-first manuscript, title page, and all three figures build successfully through the anonymous-review workflow. The current PDF is 28 pages, double spaced, line numbered, page numbered, and passes the rendered identity scan.
 
-Because the title, prose, figures, references, and pagination changed after the previous 35-page proofread, that earlier page-by-page QA is **historical evidence only**. It does not certify the refocused render.
+All 28 rendered pages were inspected at overview scale, and the three figure pages were inspected at full size. No clipping, overlap, broken glyphs, or figure-title truncation was found.
 
-Status: `AUTOMATED BUILD PASS — NEW RENDER REQUIRES FINAL HUMAN PAGE-BY-PAGE QA`.
+Status: `PASS — CURRENT 28-PAGE RENDER LAYOUT QA CLOSED`.
 
-### 2. Anonymous reviewer code/theory package — SOURCE BUILD PASS, FROZEN ZIP STALE
+### 2. Anonymous reviewer code/theory package — PASS
 
-The current workflow successfully builds the curated anonymous reviewer bundle from the refocused source. However, the previously frozen distribution ZIP and its SHA256 were generated from an earlier manuscript state.
-
-The historical ZIP receipt is retained for provenance but now has:
+The current deterministic reviewer ZIP is frozen and verified:
 
 ```text
-status                 STALE_AFTER_MANUSCRIPT_REFOCUS_REBUILD_REQUIRED
-current_for_submission false
+file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+size      59,927 bytes
+SHA256    b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e
+files     17
+identity  PASS
 ```
 
-Do **not** upload the old `SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip`, do not deposit it to Zenodo, and do not reuse its SHA256 in Editorial Manager.
-
-Required internal action:
+The current Editorial Manager convenience kit is also frozen:
 
 ```text
-regenerate deterministic reviewer ZIP from refocused source
--> rerun bundled tests / anonymity scan / internal checksum manifest
--> register new ZIP SHA256 + size + source commit
--> rebuild Editorial Manager upload kit
--> rerun final rendered-page QA
+file      SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT.zip
+size      1,527,268 bytes
+SHA256    3b8bb9f80c35c998de2eb2a08a039acdbf4188f35d24e6c0adff2caeb678de1c
+files     8
 ```
 
-Status: `BLOCKED UNTIL REFOCUSED PACKAGE IS REBUILT AND VERIFIED`.
+Status: `PASS — CURRENT SUBMISSION ARTIFACTS REGISTERED`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -106,15 +104,16 @@ Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-The scientific manuscript and automated review-package build pass, but the **submission package is intentionally fail-closed after the biology refocus**. The frozen reviewer ZIP, Zenodo payload checksum, Editorial Manager convenience kit, and previous manual page-by-page QA all belong to the pre-refocus version.
-
-Current internal actions:
+No internal repository or packaging blocker remains. Remaining steps are author-controlled or authenticated external actions:
 
 ```text
-REFOCUSED_REVIEWER_ZIP_REBUILD          REQUIRED
-NEW_ZIP_CHECKSUM_RECEIPT                REQUIRED
-EDITORIAL_MANAGER_UPLOAD_KIT_REBUILD    REQUIRED
-REFOCUSED_RENDER_PAGE_BY_PAGE_QA        REQUIRED
+AUTHOR_METADATA                       REQUIRED
+ACKNOWLEDGMENTS / CONTRIBUTIONS       REQUIRED
+AI_USE_DISCLOSURE                     REQUIRED_AUTHOR_APPROVAL
+PREPRINT / DATA_SHARING FIELDS        REQUIRED
+REVIEWER_ZIP_UPLOAD                   REQUIRED
+INITIAL_ZENODO_DRAFT                  REQUIRED
+MANUSCRIPT / TITLE PAGE UPLOAD        REQUIRED
+EDITORIAL_MANAGER PDF VERIFICATION    REQUIRED
+ALL_AUTHOR_APPROVAL                   REQUIRED
 ```
-
-After those are closed, the remaining author-controlled items are metadata, acknowledgments/contributions, AI-disclosure approval, archive creation, portal upload, and all-author approval.
