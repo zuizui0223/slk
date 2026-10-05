@@ -159,3 +159,17 @@ def test_ecology_only_phase_has_general_rare_type_criterion() -> None:
 
     assert "ΔR(E_A)" in figure
     assert "ecological stabilization" in figure
+
+
+def test_architecture_path_hysteresis_is_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+
+    assert "UTA1.4d" in theory
+    assert "UTA1.4d" in ledger
+    assert "k_S < k_V < k_D" in theory
+    assert "E_H < E_V < E_A" in theory
+    assert "architecture-path hysteresis" in theory
+    assert "evolutionary legacy" in manuscript.lower()
+    assert "frequency-dependent priority effects" in manuscript.lower()
