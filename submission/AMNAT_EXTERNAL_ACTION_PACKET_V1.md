@@ -6,27 +6,37 @@
 SCIENTIFIC_MANUSCRIPT          READY
 FULL_CI                       PASS
 ANONYMOUS_REVIEW_BUILD        PASS
-REVIEWER_DISTRIBUTION_ZIP     STALE_REBUILD_REQUIRED
-EDITORIAL_MANAGER_UPLOAD_KIT  STALE_REBUILD_REQUIRED
-ZENODO_PAYLOAD                STALE_REBUILD_REQUIRED
-FINAL_PAGE_BY_PAGE_QA         REOPENED_AFTER_REFOCUS
-INTERNAL_BLOCKERS             PACKAGE_REBUILD_AND_FINAL_VISUAL_QA
+REVIEWER_DISTRIBUTION_ZIP     READY_CURRENT
+EDITORIAL_MANAGER_UPLOAD_KIT  READY_CURRENT
+ZENODO_PAYLOAD                READY_CURRENT
+RENDERED_LAYOUT_QA            PASS_28_28
+KEY_FIGURES_FULL_SIZE_QA      PASS
+INTERNAL_BLOCKERS             NONE
 ```
 
-The manuscript was substantially reframed after the previous fixed submission ZIP was created. The old ZIP, its SHA256, the old convenience upload kit, and the old 35-page manual QA must not be treated as current.
+Current frozen artifacts:
 
-## Internal actions before any external submission step
+```text
+reviewer ZIP
+  file    SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+  size    59,927 bytes
+  SHA256  b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e
 
-1. regenerate the deterministic anonymous reviewer ZIP from the biology-refocused source;
-2. verify bundled tests, anonymity scan, and internal checksum manifest;
-3. register the new source commit, ZIP SHA256, size, and file count;
-4. rebuild the Editorial Manager convenience kit;
-5. perform final page-by-page QA on the newly rendered manuscript;
-6. only then proceed to Editorial Manager or Zenodo.
+Editorial Manager convenience kit
+  file    SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT.zip
+  size    1,527,268 bytes
+  SHA256  3b8bb9f80c35c998de2eb2a08a039acdbf4188f35d24e6c0adff2caeb678de1c
+
+source commit  5f6443189c13df6c83a8c7f78bac2c8223e632f2
+workflow run   37211106188
+artifact       11306233624
+```
+
+The current review manuscript is 28 pages. All pages were inspected for layout at overview scale, with Figures 1-3 and their surrounding pages inspected at full size. No clipping, overlap, broken glyphs, or identity-bearing text was found.
 
 ## Reviewer access and archive route
 
-Editorial Manager ZIP remains the intended reviewer-access route, and Zenodo remains the intended archive provider. **Neither payload is currently frozen.** Do not upload the historical pre-refocus package.
+Editorial Manager ZIP remains the reviewer-access route, and the same verified anonymous reviewer ZIP is the current Zenodo draft payload. The Zenodo draft itself still requires an authenticated author action.
 
 ## Author-controlled metadata
 
@@ -55,9 +65,9 @@ Before submission the authors must edit this sentence if needed so it exactly ma
 
 ## Local Editorial Manager upload kit
 
-Status: `REBUILD_REQUIRED_AFTER_MANUSCRIPT_REFOCUS`.
+Status: `READY_CURRENT`.
 
-The historical kit receipt is retained for provenance but has `current_for_submission=false`. A replacement kit must be built only after the new reviewer ZIP is frozen.
+Use the current deterministic kit SHA256 `3b8bb9f80c35c998de2eb2a08a039acdbf4188f35d24e6c0adff2caeb678de1c`. The outer convenience ZIP should be unpacked locally; upload its constituent files separately in Editorial Manager.
 
 ## Current readiness receipt
 
@@ -66,8 +76,8 @@ The current unfilled portal template has been evaluated and frozen at:
 ```text
 submission/AMNAT_PORTAL_READINESS_CURRENT_V1.json
 status = BLOCKED
-reviewer ZIP / upload kit / archive payload = REBUILD_REQUIRED
-internal blocker = REBUILD_SUBMISSION_ARTIFACTS_AND_FINAL_VISUAL_QA
+machine assets = CURRENT
+internal blockers = NONE
 human/external missing fields = 13
 ```
 
