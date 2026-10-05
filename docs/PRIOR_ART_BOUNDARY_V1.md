@@ -56,7 +56,7 @@ Burress, Martinez & Wainwright (2020) provide an animal analogue: cichlid oral a
 
 ### Multifunctionality, integration, and phenotypic stability
 
-Schwenk (2001) explicitly connects functional trade-offs and integration to phenotypic stability. Farina, Kane & Hernandez (2019) emphasize that multifunctionality can both constrain and promote morphological evolution, that integration occurs at multiple levels, and that ecological demands can reshape integrated relationships. Evans & Felice (2026) review the broader role of integration and modularity in evolutionary diversification.
+Schwenk & Wagner (2001) explicitly connects functional trade-offs and integration to phenotypic stability. Farina, Kane & Hernandez (2019) emphasize that multifunctionality can both constrain and promote morphological evolution, that integration occurs at multiple levels, and that ecological demands can reshape integrated relationships. Evans & Felice (2026) review the broader role of integration and modularity in evolutionary diversification.
 
 Therefore SLK must **not** claim:
 - that multifunctionality is newly recognized as an evolutionary trait in its own right;
@@ -157,7 +157,7 @@ A defensible positioning paragraph is:
 - Schiffman JS, Ralph PL. 2022. System drift and speciation. *Evolution* 76:236–251.
 - Evans KM, Felice R. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
 - Farina SC, Kane EA, Hernandez LP. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
-- Schwenk K. 2001. Function and the evolution of phenotypic stability: connecting pattern to process. *American Zoologist* 41:552–563.
+- Schwenk K, Wagner GP. 2001. Function and the evolution of phenotypic stability: connecting pattern to process. *American Zoologist* 41:552–563.
 - Burress ED, Martinez CM, Wainwright PC. 2020. Decoupled jaws promote trophic diversity in cichlid fishes. *Evolution* 74:950–961.
 - Castellanos MC, Wilson P, Keller SJ, Wolfe AD, Thomson JD. 2006. Anther evolution: pollen presentation strategies when pollinators differ. *The American Naturalist* 167:288–296.
 - Epperson BK, Clegg MT. 1987. Frequency-dependent variation for outcrossing rate among flower-color morphs of *Ipomoea purpurea*. *Evolution* 41:1302–1311.
