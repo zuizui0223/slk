@@ -143,7 +143,8 @@ def test_natural_systems_anchor_multiple_conflict_resolutions() -> None:
         "Penstemon + Keckiella",
         "Pedicularis rex",
         "Ipomoea + Primula",
-        "Cichlid feeding apparatus",
+        "Multifunctional fish skulls",
+        "cichlids split capture from processing",
     ):
         assert token in figure
 
