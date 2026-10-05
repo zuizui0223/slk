@@ -100,7 +100,11 @@ SLK must therefore **not** claim a first connection between trade-offs and invas
 
 ### Hysteresis and history dependence
 
-Hysteresis, path dependence, and alternative stable states are general dynamical phenomena and are not claimed as new by SLK. Existing specialization theory already distinguishes evolutionary attainability from stable maintenance (Egas, Dieckmann & Sabelis 2004).
+Hysteresis, path dependence, and alternative stable states are general dynamical phenomena and are not claimed as new by SLK. Existing specialization theory already distinguishes evolutionary attainability from stable maintenance (Egas, Dieckmann & Sabelis 2004). More directly, Uchiumi & Sasaki (2020) show multistability and evolutionary hysteresis between perfect division of labour and less specialized states in a mutualistic-symbiosis model: once perfect division of labour has evolved under easy partner acquisition, it can persist after partner acquisition becomes difficult.
+
+Therefore SLK must **not** claim:
+- a first demonstration of hysteresis in the evolution of division of labor;
+- a first multistability result between specialized and unspecialized organizations.
 
 The narrower SLK use is to separate two sources of history dependence that can look similar in a geographic snapshot: architecture-path hysteresis caused by selectively unfavorable intermediates, and frequency-dependent priority effects caused by ecological interactions among already formed architectures.
 
@@ -159,6 +163,7 @@ A defensible positioning paragraph is:
 
 ## Citation targets
 
+- Uchiumi Y, Sasaki A. 2020. Evolution of division of labour in mutualistic symbiosis. *Proceedings of the Royal Society B* 287:20200669.
 - Corn KA, Martinez CM, Burress ED, Wainwright PC. 2021. A multifunction trade-off has contrasting effects on the evolution of form and function. *Systematic Biology* 70:681–693.
 - Conover DO, Schultz ET. 1995. Phenotypic similarity and the evolutionary significance of countergradient variation. *Trends in Ecology & Evolution* 10:248–252.
 - Schiffman JS, Ralph PL. 2022. System drift and speciation. *Evolution* 76:236–251.
