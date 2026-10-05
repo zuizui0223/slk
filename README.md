@@ -40,19 +40,17 @@ Architecture economics, evolutionary history, and ecological interactions theref
 
 ## Biological predictions
 
-The framework makes two primary predictions.
+The framework now makes four natural-history predictions.
 
-**Conflict strength alone should not rank the tendency toward division of labor.** Two systems with different conflict loads can reverse their ordering in differentiation if they differ in how much conflict can be released or in the cost of the alternative architecture.
+**1. Conflict strength alone should not rank the tendency toward division of labor.** A system with stronger conflict can remain integrated if little of that conflict is recoverable or if the divided architecture is costly, whereas weaker conflict can be resolved structurally when release is efficient and cheap.
 
-**The reason for persistence can change before the phenotype does.** If environment progressively lowers the marginal cost of architectural release, strict convexity makes profitability cross before local reachability. With sufficiently strong positive frequency feedback, rare establishment crosses later still. A transect can therefore remain visibly multifunctional while the limiting explanation changes from negative net value, to local inaccessibility, to rare-establishment failure.
+**2. The same integrated morphology can occupy different selective states across environments.** Under the ordered environmental slice, architecture value, local accessibility and rare establishment cross at different conditions. A transect can therefore remain visibly multifunctional while the state maintaining integration shifts from adaptive integration, to historical/developmental trapping, to ecological stabilization.
 
-**Profitability and establishment can occur at different ecological conditions.** Along an environmental gradient, the point where differentiated architecture first has positive net value need not be the point where a rare differentiated type can spread. In the local canonical model the displacement is
+**3. Historical trapping and ecological stabilization predict different geographic mosaics.** Strict convex recovery creates architecture-path hysteresis: forward and reverse environmental change can retain different architectures even when frequency dependence is absent. Positive frequency dependence instead creates resident-frequency priority effects and alternative locally stable architectures; negative frequency dependence predicts stable coexistence or mixed zones.
 
-```text
-E_I - E_V = eta / a.
-```
+**4. Persistence can become easier to overturn before morphology changes.** Within the historical-trapping state, the minimum favorable one-step structural release `d_J` shrinks toward zero as the accessibility boundary is approached. Under positive frequency dependence, the critical initial frequency `p_C=(eta-Phi)/(2eta)` then shrinks toward zero as rare establishment becomes possible. An apparently stable integrated phenotype can therefore become progressively more susceptible to architectural innovation, clustering, immigration or repeated origin before a visible transition occurs.
 
-The sign of frequency dependence determines whether rare establishment is delayed beyond or advanced ahead of the architecture-value crossing.
+The strongest new prediction is not that hysteresis, coexistence or frequency dependence exist; all are established phenomena. It is their ordered placement within one multifunctional-to-divided architecture problem.
 
 ## Running biological example
 
