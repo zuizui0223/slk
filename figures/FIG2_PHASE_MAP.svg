@@ -29,7 +29,7 @@
   <rect x="80" y="185" width="380" height="120" class="case"/>
   <text x="270" y="217" text-anchor="middle" class="species">Shared conflict</text>
   <text x="270" y="247" text-anchor="middle" class="body">pollen rewards pollinators</text>
-  <text x="270" y="273" text-anchor="middle" class="body">but pollen is also the male gamete</text>
+  <text x="270" y="273" text-anchor="middle" class="body">but must remain available for male reproduction</text>
 
   <path d="M270 305 L270 344" class="arrow"/>
 
