@@ -18,7 +18,7 @@
   "reviewer_access": {
     "route": "EDITORIAL_MANAGER_ZIP",
     "zip_filename": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
-    "zip_sha256": "0fc28a51d14ee7d60f31dd07ce8b643f470008e018beda8bc17486d90afc76a0",
+    "zip_sha256": "b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e",
     "uploaded": false,
     "package_status": "CURRENT_VERIFIED_PACKAGE"
   },
