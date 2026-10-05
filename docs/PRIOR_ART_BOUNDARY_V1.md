@@ -98,6 +98,12 @@ Bowers et al. (2005) already combine trade-off geometry with resident-mutant inv
 SLK must therefore **not** claim a first connection between trade-offs and invasion.
 
 
+### Hysteresis and history dependence
+
+Hysteresis, path dependence, and alternative stable states are general dynamical phenomena and are not claimed as new by SLK. Existing specialization theory already distinguishes evolutionary attainability from stable maintenance (Egas, Dieckmann & Sabelis 2004).
+
+The narrower SLK use is to separate two sources of history dependence that can look similar in a geographic snapshot: architecture-path hysteresis caused by selectively unfavorable intermediates, and frequency-dependent priority effects caused by ecological interactions among already formed architectures.
+
 ### Frequency dependence and population phase structure
 
 Positive frequency dependence producing priority effects or bistability, and negative frequency dependence producing rare-type advantage or coexistence, are standard consequences of frequency-dependent selection and evolutionary-game models. SLK must **not** claim these phase types as new mathematics or new ecological principles.
