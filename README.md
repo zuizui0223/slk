@@ -111,7 +111,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 For the flagship argument, the canonical path is deliberately short:
 
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
-2. `figures/FIG1_LOGIC_DIAGRAM.svg` — three evolutionary states behind persistent multifunctionality.
+2. `figures/FIG1_LOGIC_DIAGRAM.svg` — three selective states behind persistent multifunctionality.
 3. `figures/FIG2_PHASE_MAP.svg` — natural examples showing structural partitioning, temporal partitioning, geographic variation, frequency dependence, and ecological re-coupling.
 4. `figures/FIG3_EMPIRICAL_LADDER.svg` — profitability, reachability, rare establishment, and environmental turnover of the state maintaining integration.
 5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
