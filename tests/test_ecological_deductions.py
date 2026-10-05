@@ -50,13 +50,13 @@ def test_downstream_population_processes_are_demoted_to_supporting_theory() -> N
     assert "finite-population fixation and weak-mutation occupancy remain in the supporting theory" in manuscript
     assert "not additional explanations for multifunctionality" in manuscript
 
-def test_persistent_multifunctionality_three_evolutionary_states_are_registered() -> None:
+def test_persistent_multifunctionality_three_selective_states_are_registered() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     theory = THEORY.read_text(encoding="utf-8")
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.10" in theory
     assert "UTA1.10" in ledger
-    assert "Three evolutionary states behind persistent multifunctionality" in manuscript
+    assert "Three selective states behind persistent multifunctionality" in manuscript
     assert "Adaptive integration." in manuscript
     assert "Historical or developmental trapping." in manuscript
     assert "Ecological stabilization of integration." in manuscript
