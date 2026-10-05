@@ -75,7 +75,9 @@ These examples do not demonstrate the full structural transition modeled here, b
 
 ### Division of labor can release a trade-off without producing complete independence
 
-Cichlid feeding systems show the same logic outside flowers. Separate oral and pharyngeal jaws decouple prey capture from prey processing and relax the force–mobility trade-off that constrains a single jaw system. Across Neotropical cichlids, this decoupling is associated with novel trait combinations and greater trophic diversity (Burress, Martinez, and Wainwright 2020). Yet the two jaw systems still show aligned evolutionary responses across feeding guilds. Ecology therefore partially re-couples structures that anatomy has decoupled.
+Fish feeding systems show both sides of the integration problem. Across 44 percomorph species, fishes that use the same cranial apparatus for both suction and biting showed far less diversification of suction-feeding kinematics than suction-only species, consistent with a force–mobility trade-off constraining a multifunctional apparatus; head morphology nevertheless evolved faster in the multifunctional biters (Corn et al. 2021). Multifunctionality can therefore constrain functional evolution without simply freezing morphology.
+
+Cichlids illustrate the contrasting structural solution. Separate oral and pharyngeal jaws decouple prey capture from prey processing and relax the force–mobility trade-off that constrains a single jaw system. Across Neotropical cichlids, this decoupling is associated with novel trait combinations and greater trophic diversity (Burress, Martinez, and Wainwright 2020). Yet the two jaw systems still show aligned evolutionary responses across feeding guilds. Ecology therefore partially re-couples structures that anatomy has decoupled.
 
 Natural systems consequently do not fall neatly into "multifunctional" versus "divided." They occupy combinations of structural partitioning, temporal partitioning, plasticity, and ecological coupling. The theoretical contrast developed here should therefore be read as the axis of **structural release from a shared functional compromise**, not as a claim that evolution chooses only between two discrete organismal designs.
 
@@ -306,6 +308,8 @@ Bowers, R. G., A. Hoyle, A. White, and M. Boots. 2005. The geometric theory of a
 Burress, E. D., C. M. Martinez, and P. C. Wainwright. 2020. Decoupled jaws promote trophic diversity in cichlid fishes. *Evolution* 74:950–961.
 
 Castellanos, M. C., P. Wilson, S. J. Keller, A. D. Wolfe, and J. D. Thomson. 2006. Anther evolution: pollen presentation strategies when pollinators differ. *The American Naturalist* 167:288–296.
+
+Corn, K. A., C. M. Martinez, E. D. Burress, and P. C. Wainwright. 2021. A multifunction trade-off has contrasting effects on the evolution of form and function. *Systematic Biology* 70:681–693.
 
 Dellinger, A. S., S. Artuso, D. M. Fernández-Fernández, and J. Schönenberger. 2021. Stamen dimorphism in bird-pollinated flowers: investigating alternative hypotheses on the evolution of heteranthery. *Evolution* 75:2589–2599.
 
