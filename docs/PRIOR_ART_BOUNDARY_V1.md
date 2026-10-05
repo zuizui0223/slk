@@ -98,6 +98,12 @@ Bowers et al. (2005) already combine trade-off geometry with resident-mutant inv
 SLK must therefore **not** claim a first connection between trade-offs and invasion.
 
 
+### Frequency dependence and population phase structure
+
+Positive frequency dependence producing priority effects or bistability, and negative frequency dependence producing rare-type advantage or coexistence, are standard consequences of frequency-dependent selection and evolutionary-game models. SLK must **not** claim these phase types as new mathematics or new ecological principles.
+
+The residual contribution is their placement inside the structural-resolution problem: the same architecture comparison that is favorable and locally reachable can yield history-dependent integrated/divided alternatives under positive feedback or a mixed-architecture coexistence zone under negative feedback. This population phase is then compared with the upstream architecture-value and accessibility boundaries on the same environmental axis.
+
 ### Frequency-dependent ecology in natural populations
 
 Epperson & Clegg (1987) show that rare white-flowered *Ipomoea purpurea* receive poorer bumble-bee service and lower outcrossing when uncommon. Toräng, Ehrlén & Ågren (2008) show that mutualists and antagonists generate frequency-dependent selection on *Primula farinosa* floral display and that its strength and direction vary among populations and years.
