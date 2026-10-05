@@ -61,13 +61,13 @@ The mathematical theory files retain the fuller witness family and process resul
 
 ## Remaining submission actions
 
-The biology-refocused source passes CI and the anonymous package build. The old frozen reviewer ZIP and upload kit do not.
+The ecology-first source passes CI, the anonymous package build, deterministic packaging, and rendered-layout QA. The remaining actions are external or author controlled.
 
 ```text
-REVIEWER_BUNDLE_ACCESS_ROUTE          REBUILD_REQUIRED_AFTER_REFOCUS
-EDITORIAL_MANAGER_UPLOAD_KIT          REBUILD_REQUIRED_AFTER_REFOCUS
-INITIAL_ARCHIVE_PAYLOAD               REBUILD_REQUIRED_AFTER_REFOCUS
-FINAL_RENDERED_PAGE_QA                REQUIRED_AFTER_REBUILD
+REVIEWER_BUNDLE_ACCESS_ROUTE          EDITORIAL_MANAGER_ZIP_READY
+EDITORIAL_MANAGER_UPLOAD_KIT          READY_CURRENT
+INITIAL_ARCHIVE_PAYLOAD               READY_CURRENT
+RENDERED_LAYOUT_QA                    PASS_28_28
 AUTHOR_METADATA                       REQUIRED
 AI_USE_DISCLOSURE                     REQUIRED_AUTHOR_APPROVAL
 ALL_AUTHOR_APPROVAL                   REQUIRED
@@ -103,9 +103,9 @@ THEORY                  = READY
 FORMAT_LIMITS           = PASS
 FULL_CI                 = PASS
 ANONYMOUS_PACKAGE_BUILD = PASS
-FROZEN_REVIEWER_ZIP     = STALE_REBUILD_REQUIRED
-EM_UPLOAD_KIT           = STALE_REBUILD_REQUIRED
-ZENODO_PAYLOAD          = STALE_REBUILD_REQUIRED
-FINAL_MANUAL_RENDER_QA  = REOPENED
-INTERNAL_BLOCKERS       = REBUILD_AND_VERIFY_SUBMISSION_ARTIFACTS
+FROZEN_REVIEWER_ZIP     = READY_CURRENT
+EM_UPLOAD_KIT           = READY_CURRENT
+ZENODO_PAYLOAD          = READY_CURRENT
+RENDERED_LAYOUT_QA      = PASS_28_28
+INTERNAL_BLOCKERS       = NONE
 ```
