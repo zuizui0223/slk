@@ -30,7 +30,7 @@ architecture + evolutionary history + ecological context
 - **Pedicularis rex:** Xia et al. (2013) show a predator-driven component Allee effect, with stronger predispersal seed predation in sparse patches; Sun et al. (2016) show opposing pollinator- and seed-predator-mediated effects on floral traits across 14 populations, with a geographic mosaic in the antagonist component.
 - **Ipomoea purpurea:** Epperson & Clegg (1987) show lower bumble-bee service and outcrossing for the white morph when rare.
 - **Primula farinosa:** Toräng et al. (2008) show pollinator- and seed-predator-mediated frequency dependence whose strength and direction vary among populations and years.
-- **Neotropical cichlids:** Burress et al. (2020) show relaxed integration between oral and pharyngeal jaws, novel trait combinations and greater trophic diversity, together with aligned ecological responses across feeding guilds.
+- **Integrated versus decoupled fish feeding:** Corn et al. (2021) show that multifunctional suction-plus-biting skulls have strongly constrained kinematic diversification relative to suction-only fishes even while head shape evolves rapidly; Burress et al. (2020) show that oral/pharyngeal jaw decoupling in cichlids releases a force–mobility trade-off, permits novel trait combinations and greater trophic diversity, yet remains partly re-coupled by feeding ecology.
 
 ## Scope
 
