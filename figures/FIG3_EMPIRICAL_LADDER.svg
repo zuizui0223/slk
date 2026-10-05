@@ -42,6 +42,7 @@
   <line x1="930" y1="300" x2="1260" y2="215" class="grid"/>
   <text x="970" y="205" class="t xs">k_local &lt; k &lt; k_global</text>
   <text x="970" y="235" class="t xs">small release steps downhill; endpoint wins</text>
+  <text x="970" y="265" class="t xs">critical one-step release d_J shrinks toward 0 at E_A</text>
 
   <rect x="860" y="435" width="470" height="325" class="box"/>
   <text x="885" y="475" class="t m">C. Can it establish when rare?</text>
@@ -52,8 +53,9 @@
   <line x1="1080" y1="525" x2="1080" y2="690" class="grid"/>
   <line x1="1195" y1="525" x2="1195" y2="690" class="grid"/>
   <text x="1045" y="715" class="t xs">−η</text><text x="1175" y="715" class="t xs">+η</text>
-  <text x="955" y="552" class="t xs">η &gt; 0: priority effects / alternative stable states</text>
-  <text x="955" y="582" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
+  <text x="955" y="545" class="t xs">η &gt; 0: priority effects / alternative stable states</text>
+  <text x="955" y="575" class="t xs">critical frequency p_C=(η−Φ)/(2η) → 0 at E_I</text>
+  <text x="955" y="605" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
   <path d="M980 650 L1230 540" class="arrow"/>
 
   <!-- connecting message -->
