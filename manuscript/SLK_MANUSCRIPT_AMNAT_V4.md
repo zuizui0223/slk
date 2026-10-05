@@ -235,7 +235,7 @@ Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
-**Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** Convex recovery makes global profitability cross before local accessibility when environmental change lowers the cost of differentiation. Strong positive frequency dependence can place rare establishment later still, generating an ecologically stabilized integrated phase after the historical barrier has disappeared. That third phase exists only when rare-type disadvantage is stronger than the architecture barrier; otherwise history remains the last barrier. Populations can therefore remain multifunctional along a gradient while the evolutionary state maintaining integration changes beneath the same gross phenotype.
+**Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** Convex recovery makes global profitability cross before local accessibility when environmental change lowers the cost of differentiation and also permits architecture-path hysteresis between forward and reverse change. Strong positive frequency dependence can place rare establishment later still and create priority-dependent alternative states, whereas negative frequency dependence can create coexistence through rare-form advantage. An ecology-only stabilization phase exists only when rare-type disadvantage remains after the historical barrier has disappeared.
 
 ### Conflict strength need not predict division of labor
 
