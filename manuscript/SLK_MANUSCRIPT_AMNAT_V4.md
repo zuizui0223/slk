@@ -239,6 +239,20 @@ Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that
 
 **Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** Convex recovery makes global profitability cross before local accessibility when environmental change lowers the cost of differentiation and also permits architecture-path hysteresis between forward and reverse change. Strong positive frequency dependence can place rare establishment later still and create priority-dependent alternative states, whereas negative frequency dependence can create coexistence through rare-form advantage. An ecology-only stabilization phase exists only when rare-type disadvantage remains after the historical barrier has disappeared.
 
+### Persistence can become easier to overturn before morphology changes
+
+The integrated phenotype can remain unchanged while the perturbation required to replace it becomes progressively smaller. Inside the historical-trapping state, strict convexity implies a finite minimum one-step structural release, `d_J`, above which a change away from integration has positive intrinsic value. As the environmental cost of differentiation falls toward the local-accessibility boundary, that critical structural jump shrinks toward zero. The lineage can therefore look morphologically stable while increasingly small architectural innovations become selectively viable.
+
+Positive frequency dependence creates a second threshold at the population level. When the divided architecture is intrinsically favorable but cannot invade from rarity, there is an unstable critical initial frequency
+
+```text
+p_C=(eta-Phi)/(2eta).
+```
+
+A divided form introduced below `p_C` declines, whereas one introduced above it increases. As the system approaches the rare-establishment boundary, `p_C` falls to zero. Clustering, repeated origin, local clonal expansion, or immigration can therefore trigger a transition before isolated rare variants would spread.
+
+In the ordered environmental slice, the visible multifunctional phenotype can thus persist while its resistance to reorganization erodes in stages: first the structural innovation required to escape becomes smaller, then the population frequency required for establishment becomes smaller, and finally a rare divided type can invade. **Phenotypic stasis can therefore conceal a progressive loss of evolutionary resistance: persistence becomes easier to overturn before morphology changes.** Valley crossing and coordination thresholds are established ideas; the prediction here is their ordered handoff within the same multifunctional-to-divided architecture problem.
+
 ### The three states should leave different natural histories
 
 The three persistence states make different predictions for how lineages and populations should be distributed in nature.
