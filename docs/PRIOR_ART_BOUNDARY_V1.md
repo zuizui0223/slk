@@ -16,10 +16,10 @@ The novelty claim is not that conflict can favor specialization, nor that specia
 
 ### General theory of division of labor
 
-Rueffler, Hermisson & Wagner (2012) provide direct general theory for when functional specialization and division of labor are favored. They identify positional effects, accelerating performance functions, and synergistic interactions as factors promoting division of labor, and explicitly note that developmental constraints and costs of maintaining differentiated developmental pathways can limit its evolution.
+Rueffler, Hermisson & Wagner (2012) provide direct general theory for when functional specialization and division of labor are favored. Cooper & West (2018) more directly ask why division of labor evolves on some branches of the tree of life but not others in social/cooperative systems, finding strong roles for efficiency benefits of specialization and within-group conflict. Taborsky (2025) reviews broader preconditions and feedbacks, including enduring group membership, performance gains from specialization, and correlated payoffs. They identify positional effects, accelerating performance functions, and synergistic interactions as factors promoting division of labor, and explicitly note that developmental constraints and costs of maintaining differentiated developmental pathways can limit its evolution.
 
 Therefore SLK must **not** claim:
-- a first theory that trade-offs can produce specialization;
+- a first theory that trade-offs can produce specialization;\n- a first general answer to why division of labor evolves in some biological systems but not others;
 - a first benefit-versus-cost condition for division of labor;
 - a first recognition that developmental constraints or maintenance costs can block specialization.
 
@@ -163,6 +163,8 @@ A defensible positioning paragraph is:
 
 ## Citation targets
 
+- Cooper GA, West SA. 2018. Division of labour and the evolution of extreme specialization. *Nature Ecology & Evolution* 2:1161–1167.
+- Taborsky M. 2025. The evolution of division of labour: preconditions and evolutionary feedback. *Philosophical Transactions of the Royal Society B* 380:20230262.
 - Uchiumi Y, Sasaki A. 2020. Evolution of division of labour in mutualistic symbiosis. *Proceedings of the Royal Society B* 287:20200669.
 - Corn KA, Martinez CM, Burress ED, Wainwright PC. 2021. A multifunction trade-off has contrasting effects on the evolution of form and function. *Systematic Biology* 70:681–693.
 - Conover DO, Schultz ET. 1995. Phenotypic similarity and the evolutionary significance of countergradient variation. *Trends in Ecology & Evolution* 10:248–252.
