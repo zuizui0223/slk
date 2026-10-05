@@ -6,7 +6,7 @@
 
 **Keywords:** functional conflict; multifunctionality; division of labor; specialization; evolutionary accessibility; frequency dependence
 
-**Text word count:** 5,749 words excluding Literature Cited, using `scripts/check_amnat_manuscript.py`
+**Text word count:** 6,671 words excluding Literature Cited, using `scripts/check_amnat_manuscript.py`
 
 **Abstract word count:** 168
 
