@@ -51,8 +51,8 @@
   <line x1="1080" y1="525" x2="1080" y2="690" class="grid"/>
   <line x1="1195" y1="525" x2="1195" y2="690" class="grid"/>
   <text x="1045" y="715" class="t xs">−η</text><text x="1175" y="715" class="t xs">+η</text>
-  <text x="955" y="555" class="t xs">frequency feedback splits</text>
-  <text x="955" y="585" class="t xs">the static Φ = 0 crossing</text>
+  <text x="955" y="552" class="t xs">η &gt; 0: priority effects / alternative stable states</text>
+  <text x="955" y="582" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
   <path d="M980 650 L1230 540" class="arrow"/>
 
   <!-- connecting message -->
