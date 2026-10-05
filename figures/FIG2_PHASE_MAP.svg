@@ -89,17 +89,17 @@
   <text x="1230" y="153" text-anchor="middle" class="paneltitle">C. Decoupling is not independence</text>
 
   <rect x="1040" y="205" width="380" height="135" class="case"/>
-  <text x="1230" y="238" text-anchor="middle" class="species">Cichlid feeding apparatus</text>
-  <text x="1230" y="269" text-anchor="middle" class="body">oral jaws capture prey</text>
-  <text x="1230" y="296" text-anchor="middle" class="body">pharyngeal jaws process prey</text>
-  <text x="1230" y="323" text-anchor="middle" class="small">structural functional decoupling</text>
+  <text x="1230" y="238" text-anchor="middle" class="species">Multifunctional fish skulls</text>
+  <text x="1230" y="268" text-anchor="middle" class="body">same apparatus used for suction + biting</text>
+  <text x="1230" y="294" text-anchor="middle" class="body">trade-off constrains feeding kinematics</text>
+  <text x="1230" y="321" text-anchor="middle" class="small">Corn et al. 2021</text>
 
   <path d="M1230 340 L1230 386" class="arrow"/>
 
   <rect x="1040" y="390" width="380" height="145" class="case"/>
-  <text x="1230" y="424" text-anchor="middle" class="strong">trade-off partly released</text>
-  <text x="1230" y="456" text-anchor="middle" class="body">novel trait combinations appear</text>
-  <text x="1230" y="482" text-anchor="middle" class="body">trophic diversity expands</text>
+  <text x="1230" y="424" text-anchor="middle" class="strong">cichlids split capture from processing</text>
+  <text x="1230" y="454" text-anchor="middle" class="body">oral + pharyngeal jaws release the trade-off</text>
+  <text x="1230" y="480" text-anchor="middle" class="body">novel trait combinations and trophic diversity</text>
   <text x="1230" y="511" text-anchor="middle" class="small">Burress et al. 2020</text>
 
   <path d="M1230 535 L1230 580" class="arrow"/>
