@@ -237,7 +237,7 @@ Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
-**Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** Convex recovery makes global profitability cross before local accessibility when environmental change lowers the cost of differentiation and also permits architecture-path hysteresis between forward and reverse change. Strong positive frequency dependence can place rare establishment later still and create priority-dependent alternative states, whereas negative frequency dependence can create coexistence through rare-form advantage. An ecology-only stabilization phase exists only when rare-type disadvantage remains after the historical barrier has disappeared.
+**Figure 3. Profitability, reachability, and ecological establishment can change at different conditions.** Convex recovery makes global profitability cross before local accessibility and permits architecture-path hysteresis. Before the visible transition, the minimum favorable one-step structural release `d_J` shrinks toward zero. Under positive frequency dependence, rare establishment occurs later still and the critical initial frequency `p_C` also shrinks toward zero, while generating priority-dependent alternative states; negative frequency dependence instead produces rare-form advantage and coexistence. An ecology-only stabilization phase exists only when rare-type disadvantage remains after the historical barrier has disappeared.
 
 ### Persistence can become easier to overturn before morphology changes
 
