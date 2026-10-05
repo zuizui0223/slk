@@ -14,40 +14,25 @@ The project draws on several linked theory modules, but the modules are not the 
 
 > **Why does similar functional conflict produce structural division of labor in some systems, temporal partitioning in others, and persistent multifunctionality in still others—and why can ecology move the balance among these resolutions?**
 
-For the persistent-integration branch, SLK separates three evolutionary states.
+For the persistent-integration branch, the same visible multifunctional phenotype can occupy three selective states:
 
 ```text
-documented functional conflict
-          |
-          v
-would division of labor pay?
-          |
-   Phi = R - K
-      /       \
- Phi < 0     Phi > 0
-    |           |
-cause 1         v
-does not pay   can a fitter state be reached?
-                    /       \
-                 no          yes
-                 |            |
-              cause 2         v
-          local barrier     can it establish when rare?
-                                /       \
-                              no         yes
-                              |           |
-                           cause 3    early causes excluded
+adaptive integration
+  Phi < 0
+  integration is the better architecture
+
+historical / developmental trapping
+  Phi > 0, g0 < 0
+  a better divided state exists, but the available path is unfavorable
+
+ecological stabilization
+  Phi > 0, g0 > 0, Delta_R < 0
+  division of labor is favorable and reachable, but fails when rare
 ```
 
-The three causes are:
+Architecture economics, evolutionary history, and ecological interactions therefore maintain the same morphology for different reasons.
 
-1. **Differentiation does not pay.** Conflict is real, but the recoverable benefit `R` is too small relative to architecture cost `K`, so `Phi=R-K<0`.
-2. **A fitter differentiated state is locally difficult to reach.** `Phi>0`, but sufficiently small changes away from integration are selected against.
-3. **A favorable and reachable differentiated type cannot establish when rare.** Frequency-dependent ecology reverses the fitness verdict at low frequency.
-
-These states can look identical if one only observes that the structure remains multifunctional.
-
-![Figure 1. Three causes of persistent multifunctionality under functional conflict.](figures/FIG1_LOGIC_DIAGRAM.svg)
+![Figure 1. Three selective states can maintain persistent multifunctionality.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
 ![Figure 2. Natural systems use different resolutions of functional conflict.](figures/FIG2_PHASE_MAP.svg)
 
@@ -160,12 +145,12 @@ PEDICULARIS_OPERATIONS_DELETION_FOR_MIGRATION_ALLOWED
 EMPIRICAL_COMPANION_160_FILE_MANIFEST_FROZEN
 EMPIRICAL_COMPANION_DESTINATION_VERIFICATION_REQUIRED_BEFORE_PRUNING
 AMNAT_REFOCUSED_REVIEW_PACKAGE_BUILD_PASS
-AMNAT_FULL_PAGE_REVIEW_QA_REOPENED_AFTER_REFOCUS
-AMNAT_REVIEWER_ZIP_REBUILD_REQUIRED
-AMNAT_ZENODO_ARCHIVE_PAYLOAD_REBUILD_REQUIRED
+AMNAT_RENDERED_LAYOUT_QA_PASS_28_28
+AMNAT_REVIEWER_ZIP_READY_CURRENT
+AMNAT_ZENODO_ARCHIVE_PAYLOAD_READY_CURRENT
 AMNAT_PORTAL_READINESS_GATE_REGISTERED
-AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_REBUILD_REQUIRED
-AMNAT_INTERNAL_BLOCKER_REBUILD_SUBMISSION_PACKAGE
+AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_READY_CURRENT
+AMNAT_INTERNAL_BLOCKERS_NONE
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```
 
