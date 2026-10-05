@@ -56,11 +56,11 @@ Burress, Martinez & Wainwright (2020) provide an animal analogue: cichlid oral a
 
 ### Multifunctionality, integration, and phenotypic stability
 
-Schwenk & Wagner (2001) explicitly connects functional trade-offs and integration to phenotypic stability. Farina, Kane & Hernandez (2019) emphasize that multifunctionality can both constrain and promote morphological evolution, that integration occurs at multiple levels, and that ecological demands can reshape integrated relationships. Evans & Felice (2026) review the broader role of integration and modularity in evolutionary diversification.
+Schwenk & Wagner (2001) explicitly connects functional trade-offs and integration to phenotypic stability. Farina, Kane & Hernandez (2019) emphasize that multifunctionality can both constrain and promote morphological evolution, that integration occurs at multiple levels, and that ecological demands can reshape integrated relationships. Corn et al. (2021) provide a direct comparative example: multifunctional suction-plus-biting fish skulls show strongly reduced diversification of feeding kinematics while head morphology evolves faster, demonstrating that a functional trade-off need not translate into morphological stasis. Evans & Felice (2026) review the broader role of integration and modularity in evolutionary diversification.
 
 Therefore SLK must **not** claim:
 - that multifunctionality is newly recognized as an evolutionary trait in its own right;
-- that integration is always a constraint or always an adaptation;
+- that integration is always a constraint or always an adaptation;\n- that functional constraint implies morphological stasis;
 - that ecology or historical contingency influencing integration is a new general principle.
 
 The residual SLK prediction is narrower and dynamic: an unchanged integrated phenotype can move from adaptive integration to historical trapping to ecological stabilization along an environmental gradient before structural differentiation appears.
@@ -159,6 +159,7 @@ A defensible positioning paragraph is:
 
 ## Citation targets
 
+- Corn KA, Martinez CM, Burress ED, Wainwright PC. 2021. A multifunction trade-off has contrasting effects on the evolution of form and function. *Systematic Biology* 70:681–693.
 - Conover DO, Schultz ET. 1995. Phenotypic similarity and the evolutionary significance of countergradient variation. *Trends in Ecology & Evolution* 10:248–252.
 - Schiffman JS, Ralph PL. 2022. System drift and speciation. *Evolution* 76:236–251.
 - Evans KM, Felice R. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
