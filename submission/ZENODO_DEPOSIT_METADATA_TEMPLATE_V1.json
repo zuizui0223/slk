@@ -3,7 +3,7 @@
   "status": "AUTHOR_METADATA_REQUIRED_BEFORE_DEPOSIT",
   "zenodo_resource_type": "software",
   "title": "Reproducibility materials for Why multifunctional structures persist under conflicting selection",
-  "description": "Reproducibility materials accompanying the theory manuscript 'Why multifunctional structures persist under conflicting selection'. The package contains the manuscript source, theory notes, figure sources, executable model/process implementation, claim verifier, regression tests, anonymity audit, and checksum manifest. The manuscript distinguishes three causes of persistent multifunctionality under documented conflict: differentiation may not pay, may be locally inaccessible, or may fail to establish when rare.",
+  "description": "Reproducibility materials accompanying the theory manuscript 'Why multifunctional structures persist under conflicting selection'. The package contains the manuscript source, supporting theory, figure sources, executable model/process implementation, claim verifier, regression tests, anonymity audit, and checksum manifest. The manuscript asks why comparable functional conflicts have different natural resolutions and develops three selective states that can maintain persistent integration: adaptive integration, historical or developmental trapping, and ecological stabilization.",
   "creators": [
     {
       "name": "[AUTHOR NAME REQUIRED]",
@@ -23,8 +23,8 @@
   "license": "[AUTHOR CHOICE — SELECT A LICENSE APPROPRIATE FOR CODE/THEORY MATERIALS]",
   "publication_date": "[SET WHEN RECORD IS PUBLISHED]",
   "upload_file": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
-  "upload_file_sha256": "0fc28a51d14ee7d60f31dd07ce8b643f470008e018beda8bc17486d90afc76a0",
-  "upload_file_size_bytes": 57807,
+  "upload_file_sha256": "b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e",
+  "upload_file_size_bytes": 59927,
   "draft_visibility": "UNPUBLISHED_DRAFT",
   "intended_final_file_visibility": "PUBLIC",
   "reserve_doi_before_publication": "OPTIONAL",
