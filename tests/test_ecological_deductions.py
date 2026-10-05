@@ -173,3 +173,17 @@ def test_architecture_path_hysteresis_is_registered() -> None:
     assert "architecture-path hysteresis" in theory
     assert "evolutionary legacy" in manuscript.lower()
     assert "frequency-dependent priority effects" in manuscript.lower()
+
+
+def test_persistence_erosion_thresholds_are_registered() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+
+    assert "UTA1.4e" in theory
+    assert "UTA1.4e" in ledger
+    assert "R(d_J)/d_J=k" in theory
+    assert "p_C" in theory
+    assert "(eta-Phi)/(2eta)" in theory
+    assert "easier to overturn before morphology changes" in manuscript
+    assert "critical initial frequency" in manuscript
