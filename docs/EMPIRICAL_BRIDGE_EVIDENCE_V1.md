@@ -121,6 +121,36 @@ Mora-Carrera et al. (2019) experimentally compared monomorphic enantiostyly, in 
 
 This is an unusually close organismal analogue of environment-dependent value for a more divided organization. However, it concerns the distribution of style orientation among individuals, not the pollen-feeding versus pollen-transfer functional conflict represented by heteranthery. It is therefore an adjacent architecture experiment, not a direct test of the focal structural division-of-labour mechanism.
 
+
+## F. Volvocine algae — experimental access to a new differentiation route
+
+The volvocine system is the strongest current empirical bridge to the SLK path/accessibility layer.
+
+Davison et al. (2025) showed that the predominantly undifferentiated alga Eudorina elegans develops somatic-like cells after cold shock. Importantly, offspring of stressed colonies also developed somatic-like cells even though they were not directly exposed, demonstrating a shift from a direct cell-level environmental response toward group-level developmental regulation. The associated data are publicly archived on Dryad (DOI 10.5061/dryad.ns1rn8q1h).
+
+A September 2026 bioRxiv experimental-evolution preprint by Davison et al. repeatedly exposed Eudorina lines to cold shock. Twenty-one of 48 lines (44%) subsequently showed a larger fraction of differentiated colonies under baseline conditions, and one lineage evolved obligate somatic differentiation. The preprint therefore directly demonstrates rapid evolutionary modification of a pre-existing plastic developmental route into more constitutive division of labour.
+
+Herron et al. (2014) provide a complementary result in Pleodorina starrii. Experimental selection in still versus mixed environments altered soma investment, while the smallest colony classes retained disproportionately high soma allocations, which the authors interpreted as evidence of developmental constraint on optimization.
+
+### What this gives SLK
+
+The volvocine results make the path layer biologically concrete:
+
+```text
+environmentally inducible differentiation
+-> heritable developmental regulation
+-> experimentally evolved constitutive differentiation
+```
+
+They show that the developmental route to division of labour can be latent, environmentally exposed, and evolutionarily modified.
+
+### What it does not give SLK
+
+These studies do not estimate the SLK local path gradient `g0`, do not demonstrate a fitness valley separating an integrated and divided endpoint, and do not measure rare invasion of the differentiated architecture. The 2026 result is also a preprint rather than a peer-reviewed publication.
+
+Accordingly, the correct role is **PATH-ACCESSIBILITY EMPIRICAL ANCHOR**, not evidence that SLK historical trapping has been observed.
+
+
 ## Cross-system gate matrix
 
 | System | Divided-state value tested? | Accessibility tested? | Frequency / rarity tested? | Direct SLK structural test? | Main role |
@@ -131,6 +161,7 @@ This is an unusually close organismal analogue of environment-dependent value fo
 | Pseudomonas aeruginosa siderophores | yes, value changes across iron environments | no | specialist-specialist NFDS | no | direct value/ecology separation and public raw data |
 | Bacillus thuringiensis LM1212 | partial comparative value | developmental mechanism described | positive-frequency competition | no | shows positive FD near a DoL phenotype but not rare failure |
 | Solanum rostratum enantiostyly | yes, density-dependent reproductive value | no | density, not alternative frequency | adjacent only | organismal analogue of environment-dependent architecture value |
+| Eudorina / Pleodorina soma | partial fitness/development evidence | strong path analogue: plastic route and experimental evolution | no rare-invasion test | adjacent multicellular DoL | path-accessibility anchor; not a `g0` estimate |
 
 The screen therefore still contains **no system that simultaneously measures a specified integrated-versus-divided architecture comparison, the local path away from integration, and the rare invasion performance of that divided architecture across environments**.
 
@@ -196,3 +227,6 @@ That missing test remains the empirical target of SLK.
 - Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium Pseudomonas aeruginosa. Journal of Evolutionary Biology 35:719–730. DOI 10.1111/jeb.14001. Public data: Dryad DOI 10.5061/dryad.2bvq83bs4.
 - Deng C et al. 2015. Division of labour and terminal differentiation in a novel Bacillus thuringiensis strain. ISME Journal 9:286–296. DOI 10.1038/ismej.2014.122.
 - Mora-Carrera E et al. 2019. On the adaptive value of monomorphic versus dimorphic enantiostyly in Solanum rostratum. Annals of Botany 123:205–212. DOI 10.1093/aob/mcy162.
+- Davison DR, Nedelcu AM, De Andre Eneji O, Michod RE. 2025. Plasticity and the evolution of group-level regulation of cellular differentiation in the volvocine algae. Proceedings of the Royal Society B 292:20242477. DOI 10.1098/rspb.2024.2477. Public data: Dryad DOI 10.5061/dryad.ns1rn8q1h.
+- Davison DR, Ruboyianes R, Yu Y, Michod RE, Olson BJSC. 2026. Somatic differentiation evolves rapidly and repeatedly through the modification of developmental plasticity. bioRxiv preprint. DOI 10.64898/2026.09.22.753194.
+- Herron MD, Ghimire S, Vinikoor CR, Michod RE. 2014. Fitness trade-offs and developmental constraints in the evolution of soma: an experimental study in a volvocine alga. Evolutionary Ecology Research 16:203–221.
