@@ -90,6 +90,14 @@ Therefore SLK must **not** claim that evolution generally has multiple limiting 
 
 The narrower SLK result is tied to one multifunctional-to-divided architecture comparison. Under the registered convex cost-lowering slice, endpoint value and small-step accessibility have a derived order (`E_V<E_A`), an ecology-only interval has the explicit condition `Delta_R(E_A)<0`, and the structural and demographic perturbations required to escape persistence can shrink as `d_J->0` and `p_C->0`. The novelty claim is this linked ordering and erosion of resistance within the focal reorganization problem, not the generic existence of multiple adaptive limits.
 
+### Robustness, evolvability, and cryptic variation
+
+Robustness/evolvability theory already studies how phenotypes can remain insensitive to mutation or environment while hidden variation accumulates, and how stress or capacitance can expose selectable phenotypic variation (Masel & Trotter 2010).
+
+Therefore SLK must **not** claim that an unchanged phenotype becoming easier to change is generically new, or that `d_J` and `p_C` measure evolvability.
+
+The SLK quantities answer a different conditional question after a focal alternative architecture has been defined. `d_J` is the minimum one-step structural release with positive intrinsic net value on the declared path; `p_C` is the minimum initial frequency above which the already-specified divided type increases under the canonical positive-frequency feedback. Neither quantity requires stored cryptic genetic variation, a capacitor, or a changing genotype-phenotype map.
+
 ### Evolutionary attainability of specialist states
 
 Egas, Dieckmann & Sabelis (2004) provide direct prior art for the distinction between evolutionary stability and gradual attainability. In their specialist–generalist model, coexistence can be evolutionarily stable yet in most cases cannot be reached through gradual evolution; immigration or large-effect mutations may be required.
@@ -192,6 +200,7 @@ A defensible positioning paragraph is:
 - Corn KA, Martinez CM, Burress ED, Wainwright PC. 2021. A multifunction trade-off has contrasting effects on the evolution of form and function. *Systematic Biology* 70:681–693.
 - Conover DO, Schultz ET. 1995. Phenotypic similarity and the evolutionary significance of countergradient variation. *Trends in Ecology & Evolution* 10:248–252.
 - Chevin LM, Bridle J. 2025. Impacts of limits to adaptation on population and community persistence in a changing environment. *Philosophical Transactions of the Royal Society B* 380:20230322.
+- Masel J, Trotter MV. 2010. Robustness and evolvability. *Trends in Genetics* 26:406–414.
 - Schiffman JS, Ralph PL. 2022. System drift and speciation. *Evolution* 76:236–251.
 - Evans KM, Felice R. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
 - Farina SC, Kane EA, Hernandez LP. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
