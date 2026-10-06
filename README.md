@@ -110,13 +110,14 @@ For the flagship argument, the canonical path is deliberately short:
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
 2. `figures/FIG1_LOGIC_DIAGRAM.svg` — one persistent phenotype mapped to distinct architecture, path, and establishment bottlenecks.
 3. `figures/FIG2_PHASE_MAP.svg` — natural examples showing structural partitioning, temporal partitioning, geographic variation, frequency dependence, and ecological re-coupling.
-4. `figures/FIG3_EMPIRICAL_LADDER.svg` — hidden erosion of evolutionary resistance, path hysteresis, clustered establishment, and environmental turnover of the state maintaining integration.
-5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
-6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem and derived-consequence status.
-8. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
-9. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary.
-10. `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md` — theory-core versus empirical-companion boundary.
+4. `figures/FIG3_EMPIRICAL_LADDER.svg` — hidden erosion of evolutionary resistance, path hysteresis, clustered establishment, and environmental turnover of the bottleneck maintaining integration.
+5. `docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md` — cross-system evidence ledger showing which real systems inform architecture value, developmental access, and rare establishment, while preserving the boundary between analogues and direct SLK gate estimates.
+6. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
+7. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
+8. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem and derived-consequence status.
+9. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
+10. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary.
+11. `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md` — theory-core versus empirical-companion boundary.
 
 Pedicularis execution documents are retained for provenance during migration but are not part of the canonical reader path.
 
@@ -134,6 +135,7 @@ ARCHITECTURE_PATH_HYSTERESIS_REGISTERED
 HIDDEN_RESISTANCE_EROSION_REGISTERED
 FREQUENCY_DEPENDENT_SPATIAL_OUTCOMES_REGISTERED
 NATURAL_SYSTEM_RESOLUTION_SYNTHESIS_REGISTERED
+EMPIRICAL_BRIDGE_EVIDENCE_LEDGER_REGISTERED
 PEDICULARIS_PROSPECTIVE_ANCHOR_REGISTERED
 PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
 PEDICULARIS_OPERATIONS_COMPANION_BOUNDARY_REGISTERED
