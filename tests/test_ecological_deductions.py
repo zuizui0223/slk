@@ -192,6 +192,6 @@ def test_persistence_erosion_thresholds_are_registered() -> None:
 
 def test_environment_changes_the_evolutionary_bottleneck() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
-    assert "innovation limited" in manuscript
+    assert "path limited" in manuscript
     assert "establishment limited" in manuscript
     assert "switch the limiting process from architecture economics" in manuscript
