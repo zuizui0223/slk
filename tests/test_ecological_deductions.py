@@ -300,3 +300,15 @@ def test_volvocine_path_bridge_is_scope_bounded() -> None:
     assert "STRUCTURAL EMPIRICAL BRIDGE FOR VALUE + DEVELOPMENTAL ACCESS" in bridge
     assert "not a full SLK gate closure" in bridge
     assert "2026 result is a preprint" in bridge
+
+
+def test_stutzeri_is_rare_establishment_analogue_not_structural_delta() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
+    assert "Pseudomonas stutzeri" in manuscript
+    assert "increased from rarity under strong nitrite toxicity but not significantly under weak toxicity" in manuscript
+    assert "This is not a structurally divided alternative invading an integrated resident" in manuscript
+    assert "RARE-ESTABLISHMENT EMPIRICAL ANCHOR / GENERALIST-SPECIALIST ANALOGUE" in bridge
+    assert "not an estimate of structural `Delta_R`" in bridge
+    assert "tau=1, P=0.042" in bridge
+    assert "tau=0.67, P=0.31" in bridge
