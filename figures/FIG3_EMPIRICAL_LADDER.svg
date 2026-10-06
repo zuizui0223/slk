@@ -5,7 +5,7 @@
     </style>
     <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#111"/></marker>
   </defs>
-  <text x="60" y="55" class="t h">Figure 3. When division of labor pays, can be reached, and can establish</text>
+  <text x="60" y="55" class="t h">Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes</text>
 
   <!-- Main L-Phi panel -->
   <rect x="60" y="110" width="760" height="650" class="box"/>
@@ -53,7 +53,7 @@
   <line x1="1080" y1="525" x2="1080" y2="690" class="grid"/>
   <line x1="1195" y1="525" x2="1195" y2="690" class="grid"/>
   <text x="1045" y="715" class="t xs">−η</text><text x="1175" y="715" class="t xs">+η</text>
-  <text x="955" y="545" class="t xs">η &gt; 0: priority effects / alternative stable states</text>
+  <text x="955" y="545" class="t xs">η &gt; 0: clustered establishment / priority effects</text>
   <text x="955" y="575" class="t xs">critical frequency p_C=(η−Φ)/(2η) → 0 at E_I</text>
   <text x="955" y="605" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
   <path d="M980 650 L1230 540" class="arrow"/>
