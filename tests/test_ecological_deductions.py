@@ -215,7 +215,7 @@ def test_hidden_bottleneck_turnover_is_the_reader_facing_spine() -> None:
     for token in (
         "Persistent phenotypes can conceal change in their genetic or developmental underpinnings",
         "can the selective bottleneck preventing reorganization change while a multifunctional architecture remains visibly unchanged",
-        "phenotypic stasis can conceal a progressive loss of evolutionary resistance",
+        "phenotypic stasis can conceal loss of evolutionary resistance",
     ):
         assert token in manuscript
     for token in (
@@ -228,10 +228,10 @@ def test_hidden_bottleneck_turnover_is_the_reader_facing_spine() -> None:
 
 def test_system_drift_is_not_confused_with_selective_bottleneck_turnover() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
-    assert "Developmental and system drift" in manuscript
-    assert "selective layer preventing a specified divided alternative from replacing it" in manuscript
-    assert "turnover of phenotype-generating mechanism" in manuscript
-    assert "turnover of the evolutionary bottleneck" in manuscript
+    assert "Developmental/system drift already shows" in manuscript
+    assert "does not prescribe one biological organization" in manuscript
+    assert "which selective layer blocks replacement" in manuscript
+    assert "not hidden change beneath phenotypic stasis in general" in manuscript
 
 
 def test_section_claim_map_matches_current_manuscript_structure() -> None:
