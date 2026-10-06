@@ -149,8 +149,10 @@ The manuscript's contribution is best stated as:
 The central biological predictions are:
 
 - conflict magnitude alone cannot rank lineages by their tendency toward structural division of labor;
-- the same integrated phenotype can have different evolutionary meanings in different environments;
-- community change can move the boundary between integration and division of labor because rare-form establishment depends on ecological interactions;
+- the same integrated phenotype can have different selective meanings in different environments;
+- along an ordered environmental transition, the state maintaining integration can turn from adaptive integration to historical/developmental trapping to ecological stabilization before morphology changes;
+- phenotypic stasis can conceal declining evolutionary resistance: the minimum structural release needed to escape a path trap and the critical initial frequency needed to overcome positive frequency dependence can both shrink before division of labor appears;
+- historical trapping and ecological stabilization can generate superficially similar architecture mosaics but different dynamics: environmental reversal produces architecture-path legacy, positive frequency dependence produces resident-frequency priority effects, and negative frequency dependence produces coexistence;
 - structural decoupling can release one functional trade-off while ecological selection continues to correlate the supposedly separated modules.
 
 The formal threshold atlas, witness family, fixation invariant, and uncertainty machinery support these claims but are not the biological subject of the manuscript.
