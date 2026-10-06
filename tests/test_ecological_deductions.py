@@ -251,3 +251,9 @@ def test_section_claim_map_matches_current_manuscript_structure() -> None:
         assert heading in manuscript
         assert heading.removeprefix("## ") in section_map
     assert "full architecture -> path -> ecology sequence is a conditional biological prediction" in section_map
+
+
+def test_hidden_resistance_is_not_promoted_to_generic_evolvability() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    assert "Nor is it a theory of genetic robustness, evolutionary capacitance, or cryptic genetic variation" in manuscript
+    assert "d_J and p_C quantify how large a structural change or initial abundance must be" in manuscript
