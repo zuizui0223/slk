@@ -312,3 +312,12 @@ def test_stutzeri_is_rare_establishment_analogue_not_structural_delta() -> None:
     assert "not an estimate of structural `Delta_R`" in bridge
     assert "tau=1, P=0.042" in bridge
     assert "tau=0.67, P=0.31" in bridge
+
+
+def test_gate_hierarchy_is_conditional_not_dynamically_independent() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    assert "conditional diagnostics, not dynamically independent mechanisms" in manuscript
+    assert "must be re-evaluated in the new context rather than treated as fixed labels" in manuscript
+    assert "The gate coordinates are conditional on the measured context" in theory
+    assert "does not assume that architecture, path geometry, and ecology evolve independently" in theory
