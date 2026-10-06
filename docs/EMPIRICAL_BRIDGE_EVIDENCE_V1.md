@@ -167,6 +167,34 @@ The same lineage-frequency asymmetry has opposite fitness consequences at differ
 
 This is not an integrated-versus-divided architecture invasion experiment and is not an estimate of `Delta_R`. Its SLK value is methodological and biological: **the sign of rarity can reverse across components of lifetime fitness even within one division-of-labour system**. A rare-establishment verdict therefore has to be defined on the relevant whole-life-cycle fitness scale rather than inferred from a single demographic component.
 
+## H. Pseudomonas stutzeri — environment-dependent establishment of a specialist against a generalist
+
+Dolinšek, Ramoneda & Johnson (2022) provide the closest current experimental bridge to the SLK rare-establishment layer. Their ancestral generalist performs the complete denitrification pathway from nitrate to N2 but transiently releases nitrite. An isogenic specialist, created by a single `narG` loss-of-function mutation, cannot use nitrate and instead consumes the nitrite released by the generalist.
+
+Reciprocal initial-ratio experiments directly tested invasion from rarity. Under strong nitrite toxicity (pH 6.5), initially rare specialists increased over the first three transfers (Mann–Kendall tau=1, P=0.042). Under weak nitrite toxicity (pH 7.5), initially rare specialists did not show a significant increase (tau=0.67, P=0.31). The generalist, by contrast, increased from rarity at both pH values.
+
+Long-term dynamics added a second frequency effect. At pH 6.5, a specialist introduced at an initial specialist:generalist ratio of approximately 6.4e-4 rose about 640-fold to 0.41 over three transfers, but then fell to 0.08 over the next nine transfers. Across treatments, initially specialist-poor communities favored evolved generalist phenotypes that consumed nitrite sooner, eroding the niche on which the specialist depended.
+
+### What this gives SLK
+
+This experiment directly establishes:
+
+```text
+environment
+x
+initial rarity
+->
+specialist establishment and persistence
+```
+
+against a resident generalist background. It therefore provides a much closer ecological-establishment analogue than specialist-specialist frequency dependence.
+
+### What it does not give SLK
+
+The system is an **incomplete cross-feeding split**, not replacement of one integrated architecture by a complete complementary divided collective. The resident generalist retains the full biochemical pathway, and the specialist exploits an intermediate niche created by that generalist. It is therefore not an estimate of structural `Delta_R` for the focal SLK architecture comparison.
+
+Its correct role is **RARE-ESTABLISHMENT EMPIRICAL ANCHOR / GENERALIST-SPECIALIST ANALOGUE**.
+
 ## Empirical coverage matrix
 
 | System | Conflict / trade-off | Divided-state value | Accessibility / route | Frequency / rarity evidence | Same unchanged integrated phenotype across bottlenecks? | SLK role |
@@ -179,6 +207,7 @@ This is not an integrated-versus-divided architecture invasion experiment and is
 | *Solanum rostratum* enantiostyly | reproductive organization | density-dependent advantage of dimorphic arrangement | imposed floral arrays | density, not alternative frequency | no | organismal analogue of environment-dependent architecture value |
 | *Eudorina* / *Pleodorina* soma | germ–soma / motility–fecundity trade-off | environment-responsive soma investment | developmental constraint, plastic route, experimental evolution | no rare-invasion test | no | structural path-accessibility anchor |
 | *Pogonomyrmex* dependent lineages | genetic queen–worker division of labour | already obligatory divided system | fixed genetic caste route | rarity beneficial at founding but detrimental to gyne production at maturity | no | life-stage sign-reversal boundary for rare fitness |
+| *Pseudomonas stutzeri* generalist + nitrite specialist | complete pathway versus cross-feeding specialist | not a complete divided collective | one loss-of-function mutation creates specialist | rare specialist increases at pH 6.5 but not significantly at pH 7.5; long-term fate depends on starting ratio | no | closest rare-establishment analogue against a generalist |
 
 The screen therefore still contains **no system that simultaneously measures a specified integrated-versus-divided architecture comparison, the local path away from integration, and the rare invasion performance of that divided architecture across environments while the resident integrated phenotype remains unchanged**.
 
@@ -203,6 +232,8 @@ Together these systems make the remaining biological gap precise. The missing ev
 That missing test remains the empirical target of SLK.
 
 ## Sources
+
+- Dolinšek J, Ramoneda J, Johnson DR. 2022. Initial community composition determines the long-term dynamics of a microbial cross-feeding interaction by modulating niche availability. ISME Communications 2:77. DOI 10.1038/s43705-022-00160-1.
 
 - Schwander T, Helms Cahan S, Keller L. 2006. Genetic caste determination in Pogonomyrmex harvester ants imposes costs during colony founding. Journal of Evolutionary Biology 19:402–409. DOI 10.1111/j.1420-9101.2005.01023.x.
 - Anderson KE et al. 2009. Modeling the maintenance of a dependent lineage system: the influence of positive frequency-dependent selection on sex ratio. Evolution 63:2142–2152. DOI 10.1111/j.1558-5646.2009.00696.x.
