@@ -1,4 +1,4 @@
-# SLK — Why Multifunctional Structures Persist under Conflicting Selection
+# SLK — Multifunctional Structures Can Persist While Barriers to Division of Labor Change
 
 SLK asks a biological question: **when does functional conflict lead to division of labor, and when does a multifunctional structure persist instead?**
 
