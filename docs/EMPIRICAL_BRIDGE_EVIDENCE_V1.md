@@ -159,6 +159,14 @@ not a full SLK gate closure
 It is not evidence that SLK historical trapping itself has been observed. The 2026 result is a preprint and should remain labelled as such until peer review.
 
 
+## G. Pogonomyrmex dependent lineages — rarity can reverse sign across the life cycle
+
+Dependent-lineage populations of *Pogonomyrmex* harvester ants use a genetically determined reproductive division of labour: within-lineage crosses produce future queens, whereas between-lineage crosses produce workers.
+
+The same lineage-frequency asymmetry has opposite fitness consequences at different life stages. During colony founding, queens of the rarer lineage are more likely to mate with males of the alternate lineage and therefore produce more worker-destined offspring; founding success is consequently negatively frequency dependent. At reproductive maturity, however, gyne production is positively frequency dependent because rare-lineage queens are less likely to acquire the same-lineage sperm required to produce daughter queens. Across 15 populations, gyne production increased significantly with lineage frequency (Schwander et al. 2006; Anderson et al. 2009).
+
+This is not an integrated-versus-divided architecture invasion experiment and is not an estimate of `Delta_R`. Its SLK value is methodological and biological: **the sign of rarity can reverse across components of lifetime fitness even within one division-of-labour system**. A rare-establishment verdict therefore has to be defined on the relevant whole-life-cycle fitness scale rather than inferred from a single demographic component.
+
 ## Empirical coverage matrix
 
 | System | Conflict / trade-off | Divided-state value | Accessibility / route | Frequency / rarity evidence | Same unchanged integrated phenotype across bottlenecks? | SLK role |
@@ -170,6 +178,7 @@ It is not evidence that SLK historical trapping itself has been observed. The 20
 | *Bacillus thuringiensis* LM1212 | toxin/sporulation division of labour | comparative advantage over conventional producer across broad conditions | developmental mechanism described | positive-frequency effects occur, but divided strain not blocked when rare | no | positive-FD boundary case, not establishment failure |
 | *Solanum rostratum* enantiostyly | reproductive organization | density-dependent advantage of dimorphic arrangement | imposed floral arrays | density, not alternative frequency | no | organismal analogue of environment-dependent architecture value |
 | *Eudorina* / *Pleodorina* soma | germ–soma / motility–fecundity trade-off | environment-responsive soma investment | developmental constraint, plastic route, experimental evolution | no rare-invasion test | no | structural path-accessibility anchor |
+| *Pogonomyrmex* dependent lineages | genetic queen–worker division of labour | already obligatory divided system | fixed genetic caste route | rarity beneficial at founding but detrimental to gyne production at maturity | no | life-stage sign-reversal boundary for rare fitness |
 
 The screen therefore still contains **no system that simultaneously measures a specified integrated-versus-divided architecture comparison, the local path away from integration, and the rare invasion performance of that divided architecture across environments while the resident integrated phenotype remains unchanged**.
 
@@ -194,6 +203,9 @@ Together these systems make the remaining biological gap precise. The missing ev
 That missing test remains the empirical target of SLK.
 
 ## Sources
+
+- Schwander T, Helms Cahan S, Keller L. 2006. Genetic caste determination in Pogonomyrmex harvester ants imposes costs during colony founding. Journal of Evolutionary Biology 19:402–409. DOI 10.1111/j.1420-9101.2005.01023.x.
+- Anderson KE et al. 2009. Modeling the maintenance of a dependent lineage system: the influence of positive frequency-dependent selection on sex ratio. Evolution 63:2142–2152. DOI 10.1111/j.1558-5646.2009.00696.x.
 
 - Xia J, Sun S-G, Liu G-H. 2013. Evidence of a component Allee effect driven by predispersal seed predation in a plant (Pedicularis rex, Orobanchaceae). Biology Letters 9:20130387. Public data: Dryad DOI 10.5061/dryad.6cv06.
 - Sun S-G, Huang S-Q. 2015. Rainwater in cupulate bracts repels seed herbivores in a bumblebee-pollinated subalpine flower. AoB PLANTS 7:plv019.
