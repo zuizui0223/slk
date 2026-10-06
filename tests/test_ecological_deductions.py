@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
 THEORY = ROOT / "theory" / "UNIFIED_THRESHOLD_ATLAS_V1.md"
+FIG1 = ROOT / "figures" / "FIG1_LOGIC_DIAGRAM.svg"
 FIG2 = ROOT / "figures" / "FIG2_PHASE_MAP.svg"
 FIG3 = ROOT / "figures" / "FIG3_EMPIRICAL_LADDER.svg"
 LEDGER = ROOT / "docs" / "THEOREM_CLAIM_LEDGER_V1.md"
@@ -56,7 +57,7 @@ def test_persistent_multifunctionality_three_selective_states_are_registered() -
     ledger = LEDGER.read_text(encoding="utf-8")
     assert "UTA1.10" in theory
     assert "UTA1.10" in ledger
-    assert "Three selective states behind persistent multifunctionality" in manuscript
+    assert "Three evolutionary bottlenecks behind one persistent phenotype" in manuscript
     assert "Adaptive integration." in manuscript
     assert "Historical or developmental trapping." in manuscript
     assert "Ecological stabilization of integration." in manuscript
@@ -204,3 +205,20 @@ def test_environment_changes_the_evolutionary_bottleneck() -> None:
     assert "path limited" in manuscript
     assert "establishment limited" in manuscript
     assert "switch the limiting process from architecture economics" in manuscript
+
+
+def test_hidden_bottleneck_turnover_is_the_reader_facing_spine() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    figure = FIG1.read_text(encoding="utf-8")
+    for token in (
+        "Persistent morphology is often read as evidence of a stable evolutionary explanation",
+        "Environmental change can move an unchanged integrated phenotype across these bottlenecks",
+        "phenotypic stasis can conceal a progressive loss of evolutionary resistance",
+    ):
+        assert token in manuscript
+    for token in (
+        "One persistent phenotype can hide different evolutionary bottlenecks",
+        "Same visible phenotype",
+        "Unchanged morphology does not imply an unchanged evolutionary bottleneck or unchanged resistance",
+    ):
+        assert token in figure
