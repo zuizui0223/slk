@@ -74,6 +74,67 @@ It shows that value, accessibility and rare-type performance are experimentally 
 
 The Pseudomonas system divides labour between genetically distinct members of a colony. The focal SLK manuscript models structural release from a multifunctional architecture. The bacterial system is therefore an EMPIRICAL ANALOGUE / POSITIVE CONTROL, not a DIRECT TEST OF STRUCTURAL SLK TURNOVER.
 
+
+## C. Enforced two-function specialization — direct tests of divided-state value and within-divided ecology
+
+### Bacillus subtilis — profitable genetic division of labour
+
+Dragoš et al. (2018) compared a generalist biofilm architecture with engineered specialists that separately produced the two major matrix components EPS and TasA. The genetic specialist pair outperformed the incomplete phenotypic specialization of wild type biofilms. Specialist relative fitness was negatively frequency dependent in vitro and on plant roots, converging to a stable composition of approximately 30% TasA producers; that composition was also the group-productivity maximum.
+
+This is strong experimental evidence that separating two costly functions can increase collective performance and that the resulting specialist composition can be ecologically stabilized.
+
+It is not a direct estimate of SLK Phi or Delta_R because the frequency experiment is competition between the two specialist types after the divided collective has been imposed, not invasion of a whole divided architecture into the generalist resident.
+
+### Pseudomonas aeruginosa — specialization can coexist without profitable division of labour
+
+Mridha & Kümmerli (2022) created the complementary experiment with a generalist wild type producing both siderophores and two engineered specialists producing pyochelin or pyoverdine separately. They manipulated specialist mixing ratios across four iron environments.
+
+The value verdict changed with environment. Specialist mixtures exceeded the generalist in iron-rich medium (t73=12.17, P<0.0001), matched it in plain CAA (t73=1.819, P=0.0730), and under stronger iron limitation fell below the generalist (100 µM bipyridyl: t73=-12.89, P<0.0001; 300 µM: t71=-6.745, P<0.0001).
+
+At the same time, the two specialist types showed negative frequency-dependent relative fitness in every environment. Their estimated stable pyochelin-producer frequencies shifted from 69.80% in iron-rich medium to 38.99%, 22.29%, and 30.09% across the three iron-limited treatments.
+
+The raw workbook is public on Dryad (DOI 10.5061/dryad.2bvq83bs4).
+
+### What the paired comparison contributes
+
+B. subtilis and P. aeruginosa jointly give a particularly clean experimental lesson for SLK:
+
+```text
+specialization / complementary roles
+does not by itself imply
+positive divided-state value.
+```
+
+In B. subtilis, enforced genetic division can outperform the generalist-like organization. In P. aeruginosa, the same broad experimental design yields equal or lower productivity under the conditions where the focal functions matter most, even while specialist coexistence is maintained by negative frequency dependence.
+
+Thus collective value and ecological maintenance of the differentiated components are empirically separable. This is close to the SLK distinction between architecture value and population ecology, but it is not the SLK rare-invasion estimand: frequency dependence among two already-present specialists is not Delta_R of the divided architecture relative to the integrated resident.
+
+## D. Bacillus thuringiensis — positive frequency dependence without an SLK establishment failure
+
+Deng et al. (2015) described LM1212, which divides Cry-toxin production and sporulation between terminally differentiated cell types. Competition against a conventional Cry-producing strain was frequency dependent. The conventional strain's fitness increased with its own frequency, and the relative outcome depended strongly on starting composition.
+
+This is useful because it demonstrates that positive-frequency effects can occur around a biological division-of-labour phenotype. It does **not** close the SLK ecological-stabilization gate: LM1212 still outcompeted the conventional Cry producer over a wide range of starting frequencies. The study therefore cannot be cited as evidence that a divided type is selected against when rare.
+
+## E. Solanum rostratum enantiostyly — environment-dependent value of a more divided reproductive organization
+
+Mora-Carrera et al. (2019) experimentally compared monomorphic enantiostyly, in which an individual bears both left- and right-styled flowers, with manipulated dimorphic arrays in which individuals bear only one orientation. The dimorphic treatment gained an outcrossing/reproductive advantage at high floral density, whereas that advantage disappeared or reversed at low density.
+
+This is an unusually close organismal analogue of environment-dependent value for a more divided organization. However, it concerns the distribution of style orientation among individuals, not the pollen-feeding versus pollen-transfer functional conflict represented by heteranthery. It is therefore an adjacent architecture experiment, not a direct test of the focal structural division-of-labour mechanism.
+
+## Cross-system gate matrix
+
+| System | Divided-state value tested? | Accessibility tested? | Frequency / rarity tested? | Direct SLK structural test? | Main role |
+|---|---|---|---|---|---|
+| Pedicularis rex | no specified divided alternative | no | resident density only | no | natural selection mosaic under persistent integration |
+| Pseudomonas fluorescens M+D | yes, collective benefit | strong analogue: repeated single-mutation access | yes, rare advantage / stable coexistence | no | positive control with all early questions permissive |
+| Bacillus subtilis EPS/TasA | yes, divided pair beats generalist-like organization | no | specialist-specialist NFDS | no | positive divided-state value + ecological composition |
+| Pseudomonas aeruginosa siderophores | yes, value changes across iron environments | no | specialist-specialist NFDS | no | direct value/ecology separation and public raw data |
+| Bacillus thuringiensis LM1212 | partial comparative value | developmental mechanism described | positive-frequency competition | no | shows positive FD near a DoL phenotype but not rare failure |
+| Solanum rostratum enantiostyly | yes, density-dependent reproductive value | no | density, not alternative frequency | adjacent only | organismal analogue of environment-dependent architecture value |
+
+The screen therefore still contains **no system that simultaneously measures a specified integrated-versus-divided architecture comparison, the local path away from integration, and the rare invasion performance of that divided architecture across environments**.
+
+
 ## Current empirical synthesis
 
 The two strongest anchors play different roles.
@@ -92,3 +153,7 @@ That missing test remains the empirical target of SLK.
 - Sun S-G, Huang S-Q. 2015. Rainwater in cupulate bracts repels seed herbivores in a bumblebee-pollinated subalpine flower. AoB PLANTS 7:plv019.
 - Sun S-G, Armbruster WS, Huang S-Q. 2016. Geographic consistency and variation in conflicting selection generated by pollinators and seed predators. Annals of Botany 118:227–237.
 - Kim W, Levy SB, Foster KR. 2016. Rapid radiation in bacteria leads to a division of labour. Nature Communications 7:10508. DOI 10.1038/ncomms10508.
+- Dragoš A et al. 2018. Division of Labor during Biofilm Matrix Production. Current Biology 28:1903–1913.e5. DOI 10.1016/j.cub.2018.04.046.
+- Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium Pseudomonas aeruginosa. Journal of Evolutionary Biology 35:719–730. DOI 10.1111/jeb.14001. Public data: Dryad DOI 10.5061/dryad.2bvq83bs4.
+- Deng C et al. 2015. Division of labour and terminal differentiation in a novel Bacillus thuringiensis strain. ISME Journal 9:286–296. DOI 10.1038/ismej.2014.122.
+- Mora-Carrera E et al. 2019. On the adaptive value of monomorphic versus dimorphic enantiostyly in Solanum rostratum. Annals of Botany 123:205–212. DOI 10.1093/aob/mcy162.
