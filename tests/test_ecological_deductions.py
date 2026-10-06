@@ -9,6 +9,7 @@ FIG1 = ROOT / "figures" / "FIG1_LOGIC_DIAGRAM.svg"
 FIG2 = ROOT / "figures" / "FIG2_PHASE_MAP.svg"
 FIG3 = ROOT / "figures" / "FIG3_EMPIRICAL_LADDER.svg"
 LEDGER = ROOT / "docs" / "THEOREM_CLAIM_LEDGER_V1.md"
+SECTION_MAP = ROOT / "docs" / "SECTION_CLAIM_MAP_V1.md"
 
 pytestmark = pytest.mark.document_sync
 
@@ -222,3 +223,31 @@ def test_hidden_bottleneck_turnover_is_the_reader_facing_spine() -> None:
         "Unchanged morphology does not imply an unchanged evolutionary bottleneck or unchanged resistance",
     ):
         assert token in figure
+
+
+def test_system_drift_is_not_confused_with_selective_bottleneck_turnover() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    assert "Developmental and system drift" in manuscript
+    assert "selective layer preventing a specified divided alternative from replacing it" in manuscript
+    assert "turnover of phenotype-generating mechanism" in manuscript
+    assert "turnover of the evolutionary bottleneck" in manuscript
+
+
+def test_section_claim_map_matches_current_manuscript_structure() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    section_map = SECTION_MAP.read_text(encoding="utf-8")
+    headings = [
+        "## 2. Functional conflict creates the problem, not its resolution",
+        "## 3. Natural systems show multiple resolutions of functional conflict",
+        "## 4. When is retaining multifunctionality favored over a structural alternative?",
+        "## 5. When can evolutionary history preserve multifunctionality?",
+        "## 6. How can ecology stabilize multifunctionality?",
+        "## 7. Three evolutionary bottlenecks behind one persistent phenotype",
+        "## 8. Formal backbone",
+        "## 9. Ecological and evolutionary consequences",
+        "## 10. Discussion",
+    ]
+    for heading in headings:
+        assert heading in manuscript
+        assert heading.removeprefix("## ") in section_map
+    assert "full architecture -> path -> ecology sequence is a conditional biological prediction" in section_map
