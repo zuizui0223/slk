@@ -156,7 +156,7 @@ Phi=+eta
 Phi=-eta.
 ```
 
-The fate of a differentiated architecture is therefore not determined by its intrinsic value alone. Positive frequency dependence can make a favorable new type fail when uncommon—for example when common phenotypes receive more reliable pollinator service, mate recognition, or partner matching. Negative frequency dependence can instead arise when rarity reduces enemy pressure or competition, giving uncommon forms an advantage and promoting coexistence. The natural flower-morph examples above show that both signs occur in real populations. Pollinators, enemies, competitors, mates, and other ecological partners can thus decide whether a structural innovation spreads after it appears.
+The fate of a differentiated architecture is therefore not determined by its intrinsic value alone. Positive frequency dependence can make a favorable new type fail when uncommon—for example when common phenotypes receive more reliable pollinator service, mate recognition, or partner matching. Negative frequency dependence can instead arise when rarity reduces enemy pressure or competition, giving uncommon forms an advantage and promoting coexistence. The natural flower-morph examples above show that both signs occur in real populations. A closer generalist–specialist analogue comes from *Pseudomonas stutzeri*: a nitrite specialist increased from rarity under strong nitrite toxicity but not significantly under weak toxicity, and its long-term persistence depended on starting composition as the generalist evolved improved nitrite use (Dolinšek, Ramoneda, and Johnson 2022). This is not a structurally divided alternative invading an integrated resident, but it directly shows that environment can change rare specialist establishment against a generalist background. Pollinators, enemies, competitors, mates, and other ecological partners can thus decide whether a structural innovation spreads after it appears.
 
 ## 7. Three evolutionary bottlenecks behind one persistent phenotype
 
@@ -346,6 +346,8 @@ Des Marais, D. L., and M. D. Rausher. 2008. Escape from adaptive conflict after 
 Dieckmann, U., and R. Law. 1996. The dynamical theory of coevolution: a derivation from stochastic ecological processes. *Journal of Mathematical Biology* 34:579–612.
 
 Egas, M., U. Dieckmann, and M. W. Sabelis. 2004. Evolution restricts the coexistence of specialists and generalists: the role of trade-off structure. *The American Naturalist* 163:518–531.
+
+Dolinšek, J., J. Ramoneda, and D. R. Johnson. 2022. Initial community composition determines the long-term dynamics of a microbial cross-feeding interaction by modulating niche availability. *ISME Communications* 2:77.
 
 Dragoš, A., H. Kiesewalter, M. Martin, C.-Y. Hsu, R. Hartmann, T. Wechsler, C. Eriksen, S. Brix, K. Drescher, N. Stanley-Wall, R. Kümmerli, and Á. T. Kovács. 2018. Division of labor during biofilm matrix production. *Current Biology* 28:1903–1913.e5.
 
