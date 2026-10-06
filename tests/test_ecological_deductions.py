@@ -263,8 +263,8 @@ def test_hidden_resistance_is_not_promoted_to_generic_evolvability() -> None:
 def test_pseudomonas_is_registered_only_as_positive_control() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
-    assert "An experimental positive control: when value, access, and establishment align" in manuscript
-    assert "This system does not measure `Phi`, `g0`, or `Delta_R` as defined here" in manuscript
+    assert "Experimental controls separate value, access, and ecological maintenance" in manuscript
+    assert "the study does not estimate `Phi`, `g0`, or `Delta_R`" in manuscript
     assert "EMPIRICAL ANALOGUE / POSITIVE CONTROL" in bridge
     assert "not a DIRECT TEST OF STRUCTURAL SLK TURNOVER" in bridge
     assert "Resident-density Allee effect is therefore not Delta_R" in bridge
@@ -289,3 +289,14 @@ def test_volvocine_system_is_path_anchor_not_g0_measurement() -> None:
     assert "PATH-ACCESSIBILITY EMPIRICAL ANCHOR" in bridge
     assert "do not estimate the SLK local path gradient `g0`" in bridge
     assert "Twenty-one of 48 lines (44%)" in bridge
+
+
+def test_volvocine_path_bridge_is_scope_bounded() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
+    assert "Volvocine algae make that last possibility concrete" in manuscript
+    assert "21 of 48 lines evolved more differentiated colonies" in manuscript
+    assert "These studies do not estimate `g_0`" in manuscript
+    assert "STRUCTURAL EMPIRICAL BRIDGE FOR VALUE + DEVELOPMENTAL ACCESS" in bridge
+    assert "not a full SLK gate closure" in bridge
+    assert "2026 result is a preprint" in bridge
