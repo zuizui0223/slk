@@ -1584,6 +1584,8 @@ UTA1.10 is not a theorem that phenotype alone reveals mechanism. It says the opp
 
 The three regimes above are not claimed to be exhaustive causes of persistent integration. Drift, alternative mutation paths, demographic history, developmental constraints, environmental heterogeneity, and other processes can generate additional explanations. UTA1.10 therefore localizes a gate within the declared SLK hierarchy; it does not establish the causal mechanism producing that gate value.
 
+The gate coordinates are conditional on the measured context. Ecology may change the later architectural or developmental route, and architectural change may alter later ecological feedback. When one layer changes another, the downstream coordinate must be estimated again in the updated context. The hierarchy separates decision criteria; it does not assume that architecture, path geometry, and ecology evolve independently.
+
 ## Diagnostic UTA1.11 — interval-valued compatible-state sets
 
 Real applications estimate `Phi`, `g0`, and `Delta_R` with uncertainty. Let closed deterministic intervals `I_Phi`, `I_g`, and `I_Delta` bound those three quantities. Rather than classify an interval by its midpoint, form the Cartesian uncertainty box `B=I_Phi x I_g x I_Delta` and define the box-compatible state set `C_box(B)` as every UTA1.10 state whose sequential sign conditions intersect that box.
