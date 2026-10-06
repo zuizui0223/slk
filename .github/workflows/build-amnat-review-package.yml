@@ -132,7 +132,7 @@ jobs:
           test -s "$TITLE_PDF"
           pdftotext -layout "$MAIN_PDF" "$MAIN_TXT"
           pdftotext -layout "$TITLE_PDF" "$TITLE_TXT"
-          grep -q 'Why multifunctional structures persist under conflicting selection' "$MAIN_TXT"
+          grep -q 'Multifunctional structures can persist while barriers to division of labor change' "$MAIN_TXT"
           grep -q 'fixation' "$MAIN_TXT"
           grep -q 'occupancy' "$MAIN_TXT"
           grep -q 'Major Article' "$TITLE_TXT"
