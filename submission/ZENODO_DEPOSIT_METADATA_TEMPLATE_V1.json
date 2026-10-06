@@ -2,8 +2,8 @@
   "schema_version": "SLK_ZENODO_DEPOSIT_METADATA_TEMPLATE_V1",
   "status": "AUTHOR_METADATA_REQUIRED_BEFORE_DEPOSIT",
   "zenodo_resource_type": "software",
-  "title": "Reproducibility materials for Why multifunctional structures persist under conflicting selection",
-  "description": "Reproducibility materials accompanying the theory manuscript 'Why multifunctional structures persist under conflicting selection'. The package contains the manuscript source, supporting theory, figure sources, executable model/process implementation, claim verifier, regression tests, anonymity audit, and checksum manifest. The manuscript asks why comparable functional conflicts have different natural resolutions and develops three selective states that can maintain persistent integration: adaptive integration, historical or developmental trapping, and ecological stabilization.",
+  "title": "Reproducibility materials for Multifunctional structures can persist while barriers to division of labor change",
+  "description": "Reproducibility materials accompanying the theory manuscript 'Multifunctional structures can persist while barriers to division of labor change'. The package contains the manuscript source, supporting theory, figure sources, executable model/process implementation, claim verifier, regression tests, anonymity audit, and checksum manifest. The manuscript asks how the selective barrier preventing structural division of labor can change while a multifunctional phenotype remains visible, linking architecture value, evolutionary accessibility, and rare establishment to changing resistance to reorganization.",
   "creators": [
     {
       "name": "[AUTHOR NAME REQUIRED]",
