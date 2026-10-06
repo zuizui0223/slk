@@ -79,6 +79,12 @@ Fish feeding systems show both sides of the integration problem. Across 44 perco
 
 Cichlids illustrate the contrasting structural solution. Separate oral and pharyngeal jaws decouple prey capture from prey processing and relax the force–mobility trade-off that constrains a single jaw system. Across Neotropical cichlids, this decoupling is associated with novel trait combinations and greater trophic diversity (Burress, Martinez, and Wainwright 2020). Yet the two jaw systems still show aligned evolutionary responses across feeding guilds. Ecology therefore partially re-couples structures that anatomy has decoupled.
 
+### An experimental positive control: when value, access, and establishment align
+
+An experimental radiation of *Pseudomonas fluorescens* provides a useful positive control for the sequence developed below, although its division of labour occurs between genotypes in a colony rather than between structures within one organism. A mucoid type, M, repeatedly generated a dry morphotype, D, and mixed M+D colonies both spread into new territory and produced more cells than either type alone (Kim, Levy, and Foster 2016). The evolutionary route was unusually short: introducing the same two-nucleotide mutation found in one evolved D lineage recreated the D phenotype, and independently evolved D lineages repeatedly reached similar phenotypes through single mutations affecting the same signalling system. Ecology then stabilized the differentiated collective rather than blocking it: across starting frequencies spanning several orders of magnitude, M and D converged toward an approximately 10:90 ratio and each type had a fitness advantage when rare.
+
+This system does not measure `Phi`, `g0`, or `Delta_R` as defined here, and it does not test the ordered persistence turnover. It shows something narrower but important: the **value of a divided collective, mutational access to its component roles, and rare-type performance can all be separated experimentally in one evolving division-of-labour system**. In this case the early barriers are permissive and division of labour emerges rapidly, providing a biological positive control for the claim that these are distinct evolutionary questions rather than interchangeable descriptions of specialization.
+
 Natural systems consequently do not fall neatly into "multifunctional" versus "divided." They occupy combinations of structural partitioning, temporal partitioning, plasticity, and ecological coupling. The theoretical contrast developed here should therefore be read as the axis of **structural release from a shared functional compromise**, not as a claim that evolution chooses only between two discrete organismal designs.
 
 Taken together, these natural systems already establish three facts: comparable conflicts can have different evolutionary resolutions, ecological partners can redirect those resolutions, and rarity can either help or hinder a phenotype. They do **not** by themselves establish the ordered turnover developed below. Nor does the formal model rank structural division against every temporal, plastic, or alternative structural solution shown in Fig. 2. From this point onward the comparison is deliberately narrower: given one integrated architecture and one specified structurally divided alternative, why can integration persist under documented conflict? The distinctive prediction is that one integrated phenotype can remain outwardly stable while the selective status of that structural alternative changes across environments from negative net value, to path inaccessibility, to rare-establishment failure.
@@ -352,6 +358,8 @@ Guillaume, F., and S. P. Otto. 2012. Gene functional trade-offs and the evolutio
 Ingleby, F. C., I. Flis, and E. H. Morrow. 2015. Sex-biased gene expression and sexual conflict throughout development. *Cold Spring Harbor Perspectives in Biology* 7:a017632.
 
 Kay, K. M., T. Jogesh, D. Tataru, and S. Akiba. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
+
+Kim, W., S. B. Levy, and K. R. Foster. 2016. Rapid radiation in bacteria leads to a division of labour. *Nature Communications* 7:10508.
 
 Masel, J., and M. V. Trotter. 2010. Robustness and evolvability. *Trends in Genetics* 26:406–414.
 
