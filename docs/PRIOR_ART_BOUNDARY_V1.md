@@ -67,6 +67,18 @@ Therefore SLK must **not** claim:
 
 The SLK use of this system is narrower. It is an **empirical positive control** showing that value, accessibility, and rare-type performance are separable empirical questions within one evolving division-of-labour system, and that realized division of labour can follow when all are permissive. Because the bacterial roles are distributed among genotypes in a collective rather than among structures within one organism, the system is not a direct test of the structural bottleneck turnover modeled in the flagship manuscript.
 
+Dragoš et al. (2018) and Mridha & Kümmerli (2022) sharpen another boundary. In engineered *Bacillus subtilis*, complementary EPS/TasA specialists can outperform the native organization and negative frequency dependence stabilizes the productivity-maximizing mixture. In engineered *Pseudomonas aeruginosa*, siderophore specialists can remain stably polymorphic through negative frequency dependence even when they merely match or, under stronger iron limitation, underperform the generalist.
+
+Therefore SLK must also **not** equate stable specialist coexistence with positive value of division of labour. Frequency-dependent maintenance and net architecture/collective value are empirically separable.
+
+### Plastic and developmentally constrained routes to cellular division of labour
+
+Herron et al. (2014) experimentally showed in *Pleodorina starrii* that somatic investment responds to the ecological importance of motility, while small colonies retain soma allocations far from the proposed fitness optimum in a pattern consistent with developmental constraint. Davison et al. (2025) showed that cold shock can induce somatic-like differentiation in *Eudorina elegans* and that this response can become regulated at the group-developmental level. A September 2026 bioRxiv preprint by Davison et al. reports that repeated cold shock increased baseline somatic differentiation in 21 of 48 experimental lines and produced one lineage with obligate somatic differentiation.
+
+These studies provide direct prior art that developmental access to division of labour can be environmentally exposed, plastic, constrained, and evolutionarily modified. SLK must **not** claim the first environmentally opened developmental route to specialization or the first rapid experimental evolution of obligate somatic differentiation.
+
+Their relevance to SLK is narrower: they make the path layer biologically concrete without measuring the SLK local gradient `g0`, and they do not address rare establishment of a divided architecture. The 2026 study remains a preprint and is treated as such.
+
 ### Multifunctionality, integration, and phenotypic stability
 
 Schwenk & Wagner (2001) explicitly connects functional trade-offs and integration to phenotypic stability. Farina, Kane & Hernandez (2019) emphasize that multifunctionality can both constrain and promote morphological evolution, that integration occurs at multiple levels, and that ecological demands can reshape integrated relationships. Corn et al. (2021) provide a direct comparative example: multifunctional suction-plus-biting fish skulls show strongly reduced diversification of feeding kinematics while head morphology evolves faster, demonstrating that a functional trade-off need not translate into morphological stasis. Evans & Felice (2026) review the broader role of integration and modularity in evolutionary diversification.
@@ -231,7 +243,12 @@ A defensible positioning paragraph is:
 - Ingleby FC, Flis I, Morrow EH. 2015. Sex-biased gene expression and sexual conflict throughout development. *Cold Spring Harbor Perspectives in Biology* 7:a017632.
 - Dellinger AS, Artuso S, Fernández-Fernández DM, Schönenberger J. 2021. Stamen dimorphism in bird-pollinated flowers: investigating alternative hypotheses on the evolution of heteranthery. *Evolution* 75:2589–2599.
 - Kay KM, Jogesh T, Tataru D, Akiba S. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
+- Dragoš A, Kiesewalter H, Martin M, et al. 2018. Division of labor during biofilm matrix production. *Current Biology* 28:1903–1913.e5.
+- Herron MD, Ghimire S, Vinikoor CR, Michod RE. 2014. Fitness trade-offs and developmental constraints in the evolution of soma: an experimental study in a volvocine alga. *Evolutionary Ecology Research* 16:203–221.
+- Davison DR, Nedelcu AM, De Andre Eneji O, Michod RE. 2025. Plasticity and the evolution of group-level regulation of cellular differentiation in the volvocine algae. *Proceedings of the Royal Society B* 292:20242477.
+- Davison DR, Ruboyianes R, Yu Y, Michod RE, Olson BJSC. 2026. Somatic differentiation evolves rapidly and repeatedly through the modification of developmental plasticity. bioRxiv preprint. doi:10.64898/2026.09.22.753194.
 - Kim W, Levy SB, Foster KR. 2016. Rapid radiation in bacteria leads to a division of labour. *Nature Communications* 7:10508.
+- Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium *Pseudomonas aeruginosa*. *Journal of Evolutionary Biology* 35:719–730.
 - Richardson LF, Gaunt JA. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299–361.
 - Rueffler C, Hermisson J, Wagner GP. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326–E335.
 - Sun S-G, Huang S-Q. 2015. Rainwater in cupulate bracts repels seed herbivores in a bumblebee-pollinated subalpine flower. *AoB PLANTS* 7:plv019.
