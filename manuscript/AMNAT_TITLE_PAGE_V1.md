@@ -1,8 +1,8 @@
-# Why multifunctional structures persist under conflicting selection
+# Multifunctional structures can persist while barriers to division of labor change
 
 **Article type:** Major Article
 
-**Short title:** Why multifunctional structures persist
+**Short title:** Changing barriers to division of labor
 
 **Keywords:** functional conflict; multifunctionality; division of labor; specialization; evolutionary accessibility; frequency dependence
 
