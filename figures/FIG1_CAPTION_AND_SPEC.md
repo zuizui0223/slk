@@ -1,28 +1,28 @@
-# Figure 1 — three selective states maintaining persistent multifunctionality
+# Figure 1 — one persistent phenotype, three evolutionary bottlenecks
 
 ## Caption
 
-**Figure 1. Three selective states can maintain the same multifunctional phenotype.** Adaptive integration occurs when structural division of labor has negative net value (`Phi<0`). Historical or developmental trapping occurs when a divided endpoint is fitter but sufficiently small changes away from integration are initially selected against (`Phi>0`, `g0<0`). Ecological stabilization occurs when division of labor is favorable and initially reachable but a rare divided type performs poorly (`Phi>0`, `g0>0`, `Delta_R<0`). These states share one visible outcome—persistent multifunctionality—but differ in what would release integration: architecture economics, evolutionary path geometry, or ecological context.
+**Figure 1. One persistent phenotype can hide different evolutionary bottlenecks.** The same visible integrated architecture can persist because the focal divided alternative has negative net value (`Phi<0`), because a higher-value divided endpoint is separated by an unfavorable local path (`Phi>0`, `g0<0`), or because a favorable and reachable divided type performs poorly when rare (`Phi>0`, `g0>0`, `Delta_R<0`). Morphology alone therefore does not identify why integration persists. Architecture economics, evolutionary path geometry, and ecological context can maintain the same phenotype but imply different ways in which persistence can be released.
 
 ## Reader-facing message
 
 ~~~text
 documented functional conflict
         |
-        +--> adaptive integration
-        |    integration is the better architecture
+        +--> architecture bottleneck
+        |    focal divided alternative does not repay its cost
         |
-        +--> historical/developmental trapping
-        |    a better divided state exists, but the path is unfavorable
+        +--> path bottleneck
+        |    a higher-value divided state exists, but the path is unfavorable
         |
-        +--> ecological stabilization
+        +--> establishment bottleneck
              a favorable divided state cannot spread when rare
 
 all three can produce:
 persistent multifunctionality
 ~~~
 
-The figure is a **state map for one biological phenotype**, not a diagnostic workflow or a catalogue of mathematical thresholds.
+The figure is a **many-to-one map from evolutionary bottlenecks to one visible biological phenotype**, not a diagnostic workflow or a catalogue of mathematical thresholds.
 
 ## Biological quantities
 
