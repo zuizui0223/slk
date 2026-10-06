@@ -190,6 +190,14 @@ def test_persistence_erosion_thresholds_are_registered() -> None:
     assert "critical initial frequency" in manuscript
 
 
+def test_structural_resolution_claims_are_candidate_relative() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    assert "given one integrated architecture and one specified structurally divided alternative" in manuscript
+    assert "candidate-relative statement" in manuscript
+    assert "does not show that integration is globally optimal" in manuscript
+    assert "1.36% to 27.42%" in manuscript
+
+
 def test_environment_changes_the_evolutionary_bottleneck() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     assert "path limited" in manuscript
