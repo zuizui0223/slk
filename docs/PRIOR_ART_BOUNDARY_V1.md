@@ -82,6 +82,14 @@ Therefore SLK must **not** claim that phenotypic constancy generally implies hid
 
 The SLK distinction is narrower: its three states concern the **selective status of structural differentiation relative to an integrated phenotype**—whether division of labor is net unfavorable, selectively inaccessible, or ecologically blocked when rare. The predicted turnover is among these selective states, not merely among molecular mechanisms that realize the same phenotype.
 
+### Multiple limits to adaptation
+
+Chevin & Bridle (2025) synthesize a broad literature in which genetic architecture, developmental systems, evolutionary history, demography, and the biotic environment can each limit adaptation and persistence under environmental change.
+
+Therefore SLK must **not** claim that evolution generally has multiple limiting factors, or that the limiting process can change with environmental context, as a first principle.
+
+The narrower SLK result is tied to one multifunctional-to-divided architecture comparison. Under the registered convex cost-lowering slice, endpoint value and small-step accessibility have a derived order (`E_V<E_A`), an ecology-only interval has the explicit condition `Delta_R(E_A)<0`, and the structural and demographic perturbations required to escape persistence can shrink as `d_J->0` and `p_C->0`. The novelty claim is this linked ordering and erosion of resistance within the focal reorganization problem, not the generic existence of multiple adaptive limits.
+
 ### Evolutionary attainability of specialist states
 
 Egas, Dieckmann & Sabelis (2004) provide direct prior art for the distinction between evolutionary stability and gradual attainability. In their specialist–generalist model, coexistence can be evolutionarily stable yet in most cases cannot be reached through gradual evolution; immigration or large-effect mutations may be required.
@@ -183,6 +191,7 @@ A defensible positioning paragraph is:
 - Uchiumi Y, Sasaki A. 2020. Evolution of division of labour in mutualistic symbiosis. *Proceedings of the Royal Society B* 287:20200669.
 - Corn KA, Martinez CM, Burress ED, Wainwright PC. 2021. A multifunction trade-off has contrasting effects on the evolution of form and function. *Systematic Biology* 70:681–693.
 - Conover DO, Schultz ET. 1995. Phenotypic similarity and the evolutionary significance of countergradient variation. *Trends in Ecology & Evolution* 10:248–252.
+- Chevin LM, Bridle J. 2025. Impacts of limits to adaptation on population and community persistence in a changing environment. *Philosophical Transactions of the Royal Society B* 380:20230322.
 - Schiffman JS, Ralph PL. 2022. System drift and speciation. *Evolution* 76:236–251.
 - Evans KM, Felice R. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
 - Farina SC, Kane EA, Hernandez LP. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
