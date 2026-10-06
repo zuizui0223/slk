@@ -55,16 +55,29 @@ The comparison is broader than a two-way contrast. Castellanos et al. (2006) sho
 
 Burress, Martinez & Wainwright (2020) provide an animal analogue: cichlid oral and pharyngeal jaws relax a force–mobility trade-off and expand trophic diversity, yet feeding ecology still drives correlated evolutionary responses in both jaw systems. Anatomical decoupling therefore need not erase ecological coupling.
 
+### Experimental evolution of division of labour
+
+Kim, Levy & Foster (2016) provide direct experimental evidence that division of labour can evolve rapidly when several favorable ingredients coincide. In *Pseudomonas fluorescens*, a derived morphotype repeatedly arose from a mucoid ancestor, mixed M+D collectives outperformed either type alone in total cell production, short mutational routes regenerated the partner phenotype, and negative frequency-dependent selection allowed each type to increase when rare.
+
+Therefore SLK must **not** claim:
+- a first experimental demonstration that division of labour can evolve rapidly;
+- a first demonstration that a divided collective can outperform its component types;
+- a first demonstration that simple mutational changes can make differentiated roles accessible;
+- a first link between division of labour and frequency-dependent coexistence.
+
+The SLK use of this system is narrower. It is an **empirical positive control** showing that value, accessibility, and rare-type performance are separable empirical questions within one evolving division-of-labour system, and that realized division of labour can follow when all are permissive. Because the bacterial roles are distributed among genotypes in a collective rather than among structures within one organism, the system is not a direct test of the structural bottleneck turnover modeled in the flagship manuscript.
+
 ### Multifunctionality, integration, and phenotypic stability
 
 Schwenk & Wagner (2001) explicitly connects functional trade-offs and integration to phenotypic stability. Farina, Kane & Hernandez (2019) emphasize that multifunctionality can both constrain and promote morphological evolution, that integration occurs at multiple levels, and that ecological demands can reshape integrated relationships. Corn et al. (2021) provide a direct comparative example: multifunctional suction-plus-biting fish skulls show strongly reduced diversification of feeding kinematics while head morphology evolves faster, demonstrating that a functional trade-off need not translate into morphological stasis. Evans & Felice (2026) review the broader role of integration and modularity in evolutionary diversification.
 
 Therefore SLK must **not** claim:
 - that multifunctionality is newly recognized as an evolutionary trait in its own right;
-- that integration is always a constraint or always an adaptation;\n- that functional constraint implies morphological stasis;
+- that integration is always a constraint or always an adaptation;
+- that functional constraint implies morphological stasis;
 - that ecology or historical contingency influencing integration is a new general principle.
 
-The residual SLK prediction is narrower and dynamic: an unchanged integrated phenotype can move from adaptive integration to historical trapping to ecological stabilization along an environmental gradient before structural differentiation appears.
+The residual SLK prediction is narrower and dynamic: for one specified integrated-versus-divided comparison, the selective bottleneck opposing replacement can move from architecture value to path accessibility and, conditionally, to rare establishment before structural differentiation appears.
 
 ### Phenotypic similarity across environments is not a new inference
 
@@ -172,7 +185,7 @@ These studies establish a real conflict around floral presentation and protectio
 
 The manuscript's contribution is best stated as:
 
-> Natural systems show that functional conflict can be resolved by structural division of labor, temporal partitioning, persistent integration, or combinations of these strategies. Existing theory explains many conditions favoring specialization and already shows that favorable specialist states need not be gradually attainable. SLK adds an ecological synthesis: persistent integration can itself be adaptive, historically trapped, or ecologically stabilized, and the state maintaining integration can turn over across environments before morphology changes.
+> Natural systems show that functional conflict can be resolved by structural division of labor, temporal partitioning, persistent integration, or combinations of these strategies. Existing theory already covers specialization, evolutionary inaccessibility, multiple adaptive limits, system drift, and frequency-dependent coexistence. SLK asks a narrower dynamical question: for one specified divided alternative to an integrated architecture, which selective layer prevents replacement, and how does the perturbation required to escape persistence change as environment moves the system across the value, accessibility, and establishment boundaries?
 
 The central biological predictions are:
 
@@ -189,7 +202,7 @@ The formal threshold atlas, witness family, fixation invariant, and uncertainty 
 
 A defensible positioning paragraph is:
 
-> Theory already explains many conditions that favor division of labor, including performance curvature, positional effects, synergy, pleiotropic trade-offs, developmental constraints, and the costs of differentiated pathways. Natural systems nevertheless resolve comparable conflicts in several ways: by structural partitioning, temporal regulation, persistent integration, or mixed strategies. We therefore ask why integrated architecture remains one viable evolutionary resolution. It can remain because integration is still the better design, because history blocks access to a better divided design, or because ecological interactions prevent a divided type from establishing when rare. Ecology can consequently change the evolutionary resolution of conflict without first changing the conflict itself.
+> Theory already explains many conditions that favor division of labor, and natural systems resolve comparable conflicts through structural partitioning, temporal regulation, persistent integration, or mixed strategies. We therefore ask why one integrated architecture can persist relative to one specified divided alternative. That alternative may fail because it does not repay its cost, because favorable endpoints are separated by an unfavorable path, or because it cannot establish when rare. Under the declared environmental slice, these bottlenecks have derived and testable ordering conditions, so the same visible organization can persist while the selective layer opposing its replacement and the perturbation required to escape it both change.
 
 ## Citation targets
 
@@ -218,6 +231,7 @@ A defensible positioning paragraph is:
 - Ingleby FC, Flis I, Morrow EH. 2015. Sex-biased gene expression and sexual conflict throughout development. *Cold Spring Harbor Perspectives in Biology* 7:a017632.
 - Dellinger AS, Artuso S, Fernández-Fernández DM, Schönenberger J. 2021. Stamen dimorphism in bird-pollinated flowers: investigating alternative hypotheses on the evolution of heteranthery. *Evolution* 75:2589–2599.
 - Kay KM, Jogesh T, Tataru D, Akiba S. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
+- Kim W, Levy SB, Foster KR. 2016. Rapid radiation in bacteria leads to a division of labour. *Nature Communications* 7:10508.
 - Richardson LF, Gaunt JA. 1927. The deferred approach to the limit. *Philosophical Transactions of the Royal Society of London, Series A* 226:299–361.
 - Rueffler C, Hermisson J, Wagner GP. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326–E335.
 - Sun S-G, Huang S-Q. 2015. Rainwater in cupulate bracts repels seed herbivores in a bumblebee-pollinated subalpine flower. *AoB PLANTS* 7:plv019.
