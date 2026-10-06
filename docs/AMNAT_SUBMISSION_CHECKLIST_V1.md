@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         7
 ABSTRACT_WORDS                    171
-TEXT_WORDS_EXCL_LITERATURE_CITED 6925
+TEXT_WORDS_EXCL_LITERATURE_CITED 6665
 FIGURES                             3
 TABLES                              0
 ```
@@ -104,7 +104,7 @@ Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No internal repository or packaging blocker remains. Remaining steps are author-controlled or authenticated external actions:
+The scientific source is ready, but the deterministic reviewer package must be rebuilt after the latest manuscript and figure edits. Remaining steps are author-controlled or authenticated external actions:
 
 ```text
 AUTHOR_METADATA                       REQUIRED
