@@ -85,6 +85,8 @@ An experimental radiation of *Pseudomonas fluorescens* provides a useful positiv
 
 This system does not measure `Phi`, `g0`, or `Delta_R` as defined here, and it does not test the ordered persistence turnover. It shows something narrower but important: the **value of a divided collective, mutational access to its component roles, and rare-type performance can all be separated experimentally in one evolving division-of-labour system**. In this case the early barriers are permissive and division of labour emerges rapidly, providing a biological positive control for the claim that these are distinct evolutionary questions rather than interchangeable descriptions of specialization.
 
+A complementary pair of enforced-specialization experiments separates collective value from ecological maintenance even more directly. In *Bacillus subtilis*, engineered EPS- and TasA-producing specialists outperformed the incompletely specialized wild-type organization, while negative frequency dependence stabilized a composition of about 30% TasA producers—the same composition that maximized group productivity (Dragoš et al. 2018). In *Pseudomonas aeruginosa*, by contrast, two siderophore specialists only matched the generalist under moderate iron limitation and performed worse under stronger iron limitation, even though negative frequency dependence maintained both specialists (Mridha and Kümmerli 2022). Thus stable specialist coexistence does not itself show that division of labour has positive net value. These experiments concern interactions within an imposed divided collective, not `Delta_R` of that collective invading a generalist resident.
+
 Natural systems consequently do not fall neatly into "multifunctional" versus "divided." They occupy combinations of structural partitioning, temporal partitioning, plasticity, and ecological coupling. The theoretical contrast developed here should therefore be read as the axis of **structural release from a shared functional compromise**, not as a claim that evolution chooses only between two discrete organismal designs.
 
 Taken together, these natural systems already establish three facts: comparable conflicts can have different evolutionary resolutions, ecological partners can redirect those resolutions, and rarity can either help or hinder a phenotype. They do **not** by themselves establish the ordered turnover developed below. Nor does the formal model rank structural division against every temporal, plastic, or alternative structural solution shown in Fig. 2. From this point onward the comparison is deliberately narrower: given one integrated architecture and one specified structurally divided alternative, why can integration persist under documented conflict? The distinctive prediction is that one integrated phenotype can remain outwardly stable while the selective status of that structural alternative changes across environments from negative net value, to path inaccessibility, to rare-establishment failure.
@@ -341,6 +343,8 @@ Dieckmann, U., and R. Law. 1996. The dynamical theory of coevolution: a derivati
 
 Egas, M., U. Dieckmann, and M. W. Sabelis. 2004. Evolution restricts the coexistence of specialists and generalists: the role of trade-off structure. *The American Naturalist* 163:518–531.
 
+Dragoš, A., H. Kiesewalter, M. Martin, C.-Y. Hsu, R. Hartmann, T. Wechsler, C. Eriksen, S. Brix, K. Drescher, N. Stanley-Wall, R. Kümmerli, and Á. T. Kovács. 2018. Division of labor during biofilm matrix production. *Current Biology* 28:1903–1913.e5.
+
 Epperson, B. K., and M. T. Clegg. 1987. Frequency-dependent variation for outcrossing rate among flower-color morphs of *Ipomoea purpurea*. *Evolution* 41:1302–1311.
 
 Evans, K. M., and R. Felice. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
@@ -358,6 +362,8 @@ Kay, K. M., T. Jogesh, D. Tataru, and S. Akiba. 2020. Darwin's vexing contrivanc
 Kim, W., S. B. Levy, and K. R. Foster. 2016. Rapid radiation in bacteria leads to a division of labour. *Nature Communications* 7:10508.
 
 Masel, J., and M. V. Trotter. 2010. Robustness and evolvability. *Trends in Genetics* 26:406–414.
+
+Mridha, S., and R. Kümmerli. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium *Pseudomonas aeruginosa*. *Journal of Evolutionary Biology* 35:719–730.
 
 Rueffler, C., J. Hermisson, and G. P. Wagner. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326–E335.
 
