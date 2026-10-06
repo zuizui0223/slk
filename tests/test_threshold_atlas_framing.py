@@ -24,7 +24,7 @@ def test_submission_title_is_synchronized() -> None:
 def test_figure1_centers_three_selective_states_of_persistence() -> None:
     text = FIG1.read_text(encoding="utf-8")
     for token in (
-        "Three selective states can maintain the same multifunctional phenotype",
+        "One persistent phenotype can hide different evolutionary bottlenecks",
         "Adaptive integration",
         "Historical / developmental",
         "trapping",
@@ -51,7 +51,7 @@ def test_theory_is_preserved_while_submission_is_biology_first() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     audit = AUDIT.read_text(encoding="utf-8")
     assert "persistent multifunctionality" in manuscript
-    assert "Three selective states behind persistent multifunctionality" in manuscript
+    assert "Three evolutionary bottlenecks behind one persistent phenotype" in manuscript
     assert "Full constructive witness families" in manuscript
     assert "UTA1" in audit
     assert "R(d)=d+d^2" in audit
