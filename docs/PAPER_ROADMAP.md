@@ -10,6 +10,8 @@ Working title:
 
 Primary target: **The American Naturalist**.
 
+Canonical empirical evidence ledger: `docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md`.
+
 Biological question:
 
 > When opposing functions genuinely conflict, why does division of labor sometimes evolve and sometimes fail to appear?
@@ -23,11 +25,12 @@ functional conflict
    temporal partitioning
    persistent integration
    mixed / partial decoupling
--> if integration persists, it can be:
-   adaptive
-   historically trapped
-   ecologically stabilized
--> environmental and community change can move the system among these states
+-> for one integrated architecture and one specified divided alternative:
+   architecture-value bottleneck
+   evolutionary-path bottleneck
+   ecological-establishment bottleneck
+-> the limiting bottleneck can change before morphology changes
+-> resistance to reorganization can decline during that stasis
 ```
 
 Core claims:
@@ -42,7 +45,8 @@ Core claims:
 8. natural systems already show alternative resolutions of comparable conflicts: functional heteranthery, temporal pollen presentation, persistent integration under geographically variable antagonism, and partial anatomical decoupling with continued ecological coupling;
 9. field studies of floral frequency dependence show that rarity itself can change reproductive success and that the sign of this effect can vary among populations and years, grounding the ecological-establishment mechanism;
 10. *Pedicularis rex* provides a literature-based example in which the same integrated floral architecture experiences a geographic mosaic in the balance of mutualist and antagonist selection;
-11. finite-population fixation and weak-mutation occupancy remain supporting-theory extensions rather than headline explanations.
+11. finite-population fixation and weak-mutation occupancy remain supporting-theory extensions rather than headline explanations;
+12. the current empirical bridge ledger separates architecture value, developmental access, and rare establishment across real systems, while showing that no existing system yet closes the full ordered turnover for one unchanged integrated architecture.
 
 Flagship exclusions:
 
@@ -57,7 +61,7 @@ Flagship exclusions:
 - general spatial spectral transport;
 - temporal Floquet theory beyond what is required for the flagship argument.
 
-The flagship owns the **ecological theory of alternative resolutions of functional conflict**, with persistent multifunctionality treated as adaptive integration, historical trapping, or ecological stabilization. The mathematical threshold results and process invariants support that biological argument but are not themselves the manuscript's subject.
+The flagship owns the **ecological theory of changing barriers to structural division of labor**: one persistent multifunctional phenotype can be maintained by different selective bottlenecks, and those bottlenecks can turn over while resistance to reorganization declines before morphology changes. Adaptive integration, historical trapping, and ecological stabilization interpret those bottlenecks; they are not the manuscript's primary novelty. The mathematical threshold results and process invariants support that biological argument but are not themselves the manuscript's subject.
 
 ---
 
