@@ -148,7 +148,15 @@ They show that the developmental route to division of labour can be latent, envi
 
 These studies do not estimate the SLK local path gradient `g0`, do not demonstrate a fitness valley separating an integrated and divided endpoint, and do not measure rare invasion of the differentiated architecture. The 2026 result is also a preprint rather than a peer-reviewed publication.
 
-Accordingly, the correct role is **PATH-ACCESSIBILITY EMPIRICAL ANCHOR**, not evidence that SLK historical trapping has been observed.
+Accordingly, the correct role is:
+
+```text
+STRUCTURAL EMPIRICAL BRIDGE FOR VALUE + DEVELOPMENTAL ACCESS
+PATH-ACCESSIBILITY EMPIRICAL ANCHOR
+not a full SLK gate closure
+```
+
+It is not evidence that SLK historical trapping itself has been observed. The 2026 result is a preprint and should remain labelled as such until peer review.
 
 
 ## Cross-system gate matrix
@@ -165,40 +173,6 @@ Accordingly, the correct role is **PATH-ACCESSIBILITY EMPIRICAL ANCHOR**, not ev
 
 The screen therefore still contains **no system that simultaneously measures a specified integrated-versus-divided architecture comparison, the local path away from integration, and the rare invasion performance of that divided architecture across environments**.
 
-
-## C. Volvocine algae — closest structural bridge for value and developmental access
-
-Volvocine algae provide a closer analogue to the flagship structural problem because division of labour occurs among cell types within one multicellular organization.
-
-Herron et al. (2014) experimentally evolved *Pleodorina starrii* under selection on colony size in still and mixed environments. In the largest colony class, still-environment lines evolved a higher proportion of somatic cells than mixed-environment lines, as expected when motility is more valuable. Yet the smallest 4- and 8-celled colonies retained roughly half of their cells as soma even though comparative and hydrodynamic arguments predict an optimum near zero, and the authors inferred a developmental constraint preventing simultaneous optimization across colony sizes.
-
-Davison et al. (2025) then showed that *Eudorina elegans*, previously treated as undifferentiated, produces somatic-like cells after cold shock. The response can occur directly in stressed cells and can also be carried into offspring development, providing a plausible plastic developmental route toward regulated soma.
-
-A September 2026 bioRxiv preprint by Davison et al. experimentally evolved this route. Repeated cold shock caused 21 of 48 lines (44%) to show more differentiated colonies in baseline conditions; 11 lines changed the proportion of somatic cells within differentiated colonies, and one lineage evolved obligate somatic differentiation. The obligately differentiated lineage remained differentiated after the inducing cold-shock regime had ended, and genomic changes were concentrated in regulatory genes linking stress response and soma-associated expression.
-
-### What this gives SLK
-
-The volvocine work is the closest current empirical bridge for the **path layer**:
-
-- ecological context changes the value of somatic investment;
-- developmental organization can prevent apparent optimization;
-- an environmentally induced route to somatic differentiation exists;
-- repeated environmental exposure can modify that route until differentiation becomes constitutive.
-
-This is stronger than treating developmental accessibility as an abstract mutation-size assumption.
-
-### What it does not give SLK
-
-These studies do not estimate the SLK local gradient `g0` or demonstrate a positive endpoint value separated from the resident state by a measured fitness valley. Nor do they manipulate the population frequency of a newly divided architecture, so they do not estimate `Delta_R`.
-
-Their status is therefore:
-
-```text
-STRUCTURAL EMPIRICAL BRIDGE FOR VALUE + DEVELOPMENTAL ACCESS
-not a full SLK gate closure
-```
-
-The 2026 result is a preprint and should remain labelled as such until peer review.
 
 ## Current empirical synthesis
 
