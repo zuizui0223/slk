@@ -174,6 +174,32 @@ It is not evidence that SLK historical trapping itself has been observed. The 20
 The screen therefore still contains **no system that simultaneously measures a specified integrated-versus-divided architecture comparison, the local path away from integration, and the rare invasion performance of that divided architecture across environments**.
 
 
+## D. Enforced microbial specialists — value and maintenance can disagree
+
+Dragoš et al. (2018) engineered complementary EPS- and TasA-producing *Bacillus subtilis* specialists. Group productivity peaked near a mixture containing about 30% TasA producers and exceeded the wild type, while negative frequency-dependent fitness drove the specialist mixture toward the same composition.
+
+Mridha & Kümmerli (2022) provide the contrasting control. Engineered *Pseudomonas aeruginosa* pyochelin and pyoverdine specialists remained stably polymorphic through negative frequency dependence. Yet under moderate iron limitation the mixture only matched the generalist wild type, and under stronger iron limitation specialist communities performed worse.
+
+These experiments directly establish:
+
+```text
+stable specialist coexistence != positive value of specialization
+```
+
+They therefore support SLK's separation of architecture/collective value from ecological maintenance. They do not test whether a divided collective can invade from rarity against a generalist resident and are not estimates of `Delta_R`.
+
+## Empirical coverage matrix
+
+| System | Conflict / trade-off | Value of divided state | Accessibility / route | Rare-type ecology | Same unchanged integrated phenotype across bottlenecks? |
+|---|---|---|---|---|---|
+| *Pedicularis rex* | strong direct field evidence | not measured for a specified divided alternative | not measured | resident-density effects only, not divided-type rarity | no |
+| *Pleodorina* / *Eudorina* | motility–fecundity / germ–soma trade-off | environmentally responsive soma investment | developmental constraint, plastic route, genetic accommodation | not measured | no |
+| *Pseudomonas fluorescens* M+D | collective role complementarity | mixed collective outperforms pure types | short repeated mutational routes | each role favored when rare | no; collective/genotype analogue |
+| engineered *Bacillus subtilis* | matrix-component specialization | positive relative to wild type | imposed | negative frequency dependence | no |
+| engineered *P. aeruginosa* | siderophore specialization | neutral or negative depending on iron limitation | imposed | negative frequency dependence | no |
+
+The table shows why the missing experiment is specific rather than generic: existing systems cover every component, but not the **turnover of the first failing layer for one resident integrated architecture and one defined structural alternative across environments**.
+
 ## Current empirical synthesis
 
 The current evidence no longer rests on one analogue. Four complementary empirical roles are now covered.
@@ -200,7 +226,9 @@ That missing test remains the empirical target of SLK.
 - Herron MD, Ghimire S, Vinikoor CR, Michod RE. 2014. Fitness trade-offs and developmental constraints in the evolution of soma: an experimental study in a volvocine alga. Evolutionary Ecology Research 16:203–221.
 - Davison DR, Nedelcu AM, De Andre Eneji O, Michod RE. 2025. Plasticity and the evolution of group-level regulation of cellular differentiation in the volvocine algae. Proceedings of the Royal Society B 292:20242477. DOI 10.1098/rspb.2024.2477. Public data: Dryad DOI 10.5061/dryad.ns1rn8q1h.
 - Davison DR, Ruboyianes R, Yu Y, Michod RE, Olson BJSC. 2026. Somatic differentiation evolves rapidly and repeatedly through the modification of developmental plasticity. bioRxiv preprint. DOI 10.64898/2026.09.22.753194.
+- Dragoš A, Kiesewalter H, Martin M, et al. 2018. Division of labor during biofilm matrix production. Current Biology 28:1903–1913.e5.
 - Kim W, Levy SB, Foster KR. 2016. Rapid radiation in bacteria leads to a division of labour. Nature Communications 7:10508. DOI 10.1038/ncomms10508.
+- Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium Pseudomonas aeruginosa. Journal of Evolutionary Biology 35:719–730.
 - Dragoš A et al. 2018. Division of Labor during Biofilm Matrix Production. Current Biology 28:1903–1913.e5. DOI 10.1016/j.cub.2018.04.046.
 - Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium Pseudomonas aeruginosa. Journal of Evolutionary Biology 35:719–730. DOI 10.1111/jeb.14001. Public data: Dryad DOI 10.5061/dryad.2bvq83bs4.
 - Deng C et al. 2015. Division of labour and terminal differentiation in a novel Bacillus thuringiensis strain. ISME Journal 9:286–296. DOI 10.1038/ismej.2014.122.
