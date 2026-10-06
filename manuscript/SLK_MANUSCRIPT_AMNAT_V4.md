@@ -1,4 +1,4 @@
-# Why multifunctional structures persist under conflicting selection
+# Multifunctional structures can persist while barriers to division of labor change
 
 ## Abstract
 
