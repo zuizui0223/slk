@@ -3,6 +3,8 @@ import pytest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+README = ROOT / "README.md"
+ROADMAP = ROOT / "docs" / "PAPER_ROADMAP.md"
 MANUSCRIPT = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
 THEORY = ROOT / "theory" / "UNIFIED_THRESHOLD_ATLAS_V1.md"
 FIG1 = ROOT / "figures" / "FIG1_LOGIC_DIAGRAM.svg"
@@ -322,3 +324,17 @@ def test_gate_hierarchy_is_conditional_not_dynamically_independent() -> None:
     assert "must be re-evaluated in the new context rather than treated as fixed labels" in manuscript
     assert "The gate coordinates are conditional on the measured context" in theory
     assert "does not assume that architecture, path geometry, and ecology evolve independently" in theory
+
+
+def test_empirical_bridge_is_on_canonical_reader_path() -> None:
+    readme = README.read_text(encoding="utf-8")
+    roadmap = ROADMAP.read_text(encoding="utf-8")
+    section_map = SECTION_MAP.read_text(encoding="utf-8")
+    bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
+
+    assert "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md" in readme
+    assert "EMPIRICAL_BRIDGE_EVIDENCE_LEDGER_REGISTERED" in readme
+    assert "Canonical empirical evidence ledger" in roadmap
+    assert "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md" in section_map
+    assert "no system that simultaneously measures" in bridge
+    assert "unresolved" in bridge
