@@ -275,8 +275,8 @@ def test_direct_specialist_experiments_separate_value_from_coexistence() -> None
     bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
     assert "Bacillus subtilis" in manuscript
     assert "Pseudomonas aeruginosa" in manuscript
-    assert "stable specialist coexistence does not itself show that division of labour has positive net value" in manuscript
-    assert "not `Delta_R` of that collective invading a generalist resident" in manuscript
+    assert "Stable specialist coexistence therefore does not itself imply positive net value of division of labour" in manuscript
+    assert "not `Delta_R` of a divided collective invading a generalist resident" in manuscript
     assert "Cross-system gate matrix" in bridge
     assert "specialist-specialist NFDS" in bridge
     assert "no system that simultaneously measures" in bridge
