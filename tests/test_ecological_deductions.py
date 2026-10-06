@@ -196,6 +196,7 @@ def test_structural_resolution_claims_are_candidate_relative() -> None:
     assert "candidate-relative statement" in manuscript
     assert "does not show that integration is globally optimal" in manuscript
     assert "1.36% to 27.42%" in manuscript
+    assert "integration can be the best architecture" not in manuscript.lower()
 
 
 def test_environment_changes_the_evolutionary_bottleneck() -> None:
