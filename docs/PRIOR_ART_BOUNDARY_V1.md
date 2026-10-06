@@ -98,6 +98,17 @@ Bowers et al. (2005) already combine trade-off geometry with resident-mutant inv
 SLK must therefore **not** claim a first connection between trade-offs and invasion.
 
 
+### Resilience and tipping-point language
+
+Ecological resilience theory already shows that a system can approach a critical transition while the observed state changes little, and generic early-warning work develops signals such as critical slowing down (Scheffer et al. 2009).
+
+Therefore SLK must **not** claim:
+- a first idea that apparently stable states can lose resilience before a transition;
+- a new generic early-warning signal;
+- critical slowing down, rising variance, or rising autocorrelation from the present architecture model.
+
+The narrower result is architecture-specific. `d_J` and `p_C` are explicit perturbation thresholds for structural reorganization: the minimum favorable one-step release and the minimum initial frequency needed to cross coordination-like ecological feedback. Their ordered decline predicts changing **evolutionary resistance to reorganization**, not a universal statistical warning signal.
+
 ### Hysteresis and history dependence
 
 Hysteresis, path dependence, and alternative stable states are general dynamical phenomena and are not claimed as new by SLK. Existing specialization theory already distinguishes evolutionary attainability from stable maintenance (Egas, Dieckmann & Sabelis 2004). More directly, Uchiumi & Sasaki (2020) show multistability and evolutionary hysteresis between perfect division of labour and less specialized states in a mutualistic-symbiosis model: once perfect division of labour has evolved under easy partner acquisition, it can persist after partner acquisition becomes difficult.
@@ -165,6 +176,7 @@ A defensible positioning paragraph is:
 
 ## Citation targets
 
+- Scheffer M, Bascompte J, Brock WA, et al. 2009. Early-warning signals for critical transitions. *Nature* 461:53–59.
 - Cooper GA, West SA. 2018. Division of labour and the evolution of extreme specialization. *Nature Ecology & Evolution* 2:1161–1167.
 - Taborsky M. 2025. The evolution of division of labour: preconditions and evolutionary feedback. *Philosophical Transactions of the Royal Society B* 380:20230262.
 - Uchiumi Y, Sasaki A. 2020. Evolution of division of labour in mutualistic symbiosis. *Proceedings of the Royal Society B* 287:20200669.
