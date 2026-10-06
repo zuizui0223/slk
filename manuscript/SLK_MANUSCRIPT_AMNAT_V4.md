@@ -148,7 +148,7 @@ Phi=+eta
 Phi=-eta.
 ```
 
-The fate of a differentiated architecture is therefore not determined by its intrinsic value alone. Positive frequency dependence can make a favorable new type fail when uncommon, whereas negative frequency dependence can give rare forms an advantage and promote coexistence. Pollinators, enemies, competitors, mates, and other ecological partners can thus decide whether a structural innovation spreads after it appears.
+The fate of a differentiated architecture is therefore not determined by its intrinsic value alone. Positive frequency dependence can make a favorable new type fail when uncommon—for example when common phenotypes receive more reliable pollinator service, mate recognition, or partner matching. Negative frequency dependence can instead arise when rarity reduces enemy pressure or competition, giving uncommon forms an advantage and promoting coexistence. The natural flower-morph examples above show that both signs occur in real populations. Pollinators, enemies, competitors, mates, and other ecological partners can thus decide whether a structural innovation spreads after it appears.
 
 ## 7. Three selective states behind persistent multifunctionality
 
