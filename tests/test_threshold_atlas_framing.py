@@ -17,7 +17,7 @@ def test_submission_title_is_synchronized() -> None:
     title_page_title = TITLE_PAGE.read_text(encoding="utf-8").splitlines()[0].removeprefix("# ").strip()
     assert manuscript_title == title_page_title
     assert manuscript_title == (
-        "Why multifunctional structures persist under conflicting selection"
+        "Multifunctional structures can persist while barriers to division of labor change"
     )
 
 
