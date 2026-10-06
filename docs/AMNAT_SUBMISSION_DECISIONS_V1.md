@@ -38,7 +38,7 @@ The refocused manuscript is now an evolutionary-ecology paper about why comparab
 
 ```text
 BIOLOGICAL_QUESTION_REFOCUS              PASS
-THREE_STATE_PERSISTENCE_THEORY           PASS
+HIDDEN_BOTTLENECK_TURNOVER_THEORY       PASS
 PEDICULARIS_RUNNING_EXAMPLE_BOUNDARY     PASS
 PRIOR_ART_REPOSITIONING                  PASS
 GENERAL_MARGIN Phi=R-K                   PASS
@@ -48,13 +48,13 @@ ECOLOGICAL_THRESHOLD_DISPLACEMENT         PASS
 CONFLICT_DIFFERENTIATION_DISCORDANCE      PASS
 DOWNSTREAM_FIXATION_OCCUPANCY_SCOPE       PASS
 AMNAT_TITLE_WORDS                          7 PASS
-AMNAT_ABSTRACT_WORDS                     171 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE        6945 PASS
+AMNAT_ABSTRACT_WORDS                     174 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE        6951 PASS
 AMNAT_FIGURES                              3 PASS
 AMNAT_TABLES                               0 PASS
 AMNAT_FIGURE_TABLE_TOTAL                   3 PASS
-FULL_CI                                   PASS
-REFOCUSED_REVIEW_PACKAGE_BUILD            PASS
+FULL_CI                                   REBUILD_PENDING_LATEST_SOURCE
+REFOCUSED_REVIEW_PACKAGE_BUILD            REBUILD_PENDING_LATEST_SOURCE
 ```
 
 The mathematical theory files retain the fuller witness family and process results. Their presence no longer determines the manuscript's subject.
@@ -82,14 +82,14 @@ The portal validator now refuses a reviewer package whose receipt is not both `E
 
 The remaining reviewer question is biological:
 
-> Does the three-state theory explain something beyond established specialization theory, known hysteresis, and the general fact that ecology shapes integration?
+> Does the hidden turnover of evolutionary bottlenecks behind one unchanged phenotype explain something beyond established specialization theory, known hysteresis, and the general fact that ecology shapes integration?
 
 The submission answer is now four concrete predictions:
 
-1. **Conflict strength does not rank organization.** Stronger functional conflict can remain integrated when little conflict is recoverable or division of labor is costly.
-2. **Persistent integration has three selective states.** The same morphology can be adaptive integration, historical/developmental trapping, or ecological stabilization.
-3. **Phenotypic stasis can hide declining evolutionary resistance.** Before morphology changes, the minimum favorable structural release and/or the critical local frequency required for a divided architecture to spread can shrink toward zero.
-4. **The states predict different natural histories.** Path trapping predicts environmental lag and architecture legacy; positive frequency dependence predicts priority-dependent alternative patches; negative frequency dependence predicts mixed zones; weak feedback permits more direct replacement.
+1. **One unchanged phenotype can hide turnover in the limiting evolutionary process.** Across environments, persistence can shift from architecture economics, to path limitation, to ecological establishment before morphology changes.
+2. **Phenotypic stasis can hide declining evolutionary resistance.** Before morphology changes, the minimum favorable structural release and/or the critical local frequency required for a divided architecture to spread can shrink toward zero.
+3. **Conflict strength does not rank organization.** Stronger functional conflict can remain integrated when little conflict is recoverable or division of labor is costly.
+4. **Different bottlenecks predict different natural histories.** Path limitation predicts environmental lag and architecture legacy; positive frequency dependence predicts priority-dependent alternative patches; negative frequency dependence predicts mixed zones; weak feedback permits more direct replacement.
 
 Hysteresis, bistability, coexistence, valley crossing, and frequency dependence are prior art. The residual contribution is their ordered placement within one multifunctional-to-divided architecture problem and the resulting prediction that the selective meaning and fragility of an unchanged integrated phenotype can turn over before visible reorganization.
 
