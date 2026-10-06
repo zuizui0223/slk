@@ -200,7 +200,7 @@ historical trapping:        Phi > 0 and g0 < 0
 ecological stabilization:   Phi > 0, g0 > 0, Delta_R < 0.
 ```
 
-These inequalities are not presented as difficult mathematics. Their biological value is that the same integrated phenotype can sit on different sides of the value, accessibility, and establishment boundaries. Full constructive witness families, generalized frequency responses, finite-population fixation, and weak-mutation results are retained in the supporting theory rather than the main ecological argument.
+These inequalities are not presented as difficult mathematics. Their biological value is that the same integrated phenotype can sit on different sides of the value, accessibility, and establishment boundaries. The layers are **conditional diagnostics, not dynamically independent mechanisms**. Ecology can alter the future developmental or selective path, and path changes can alter later ecological feedback; when that happens, `Phi`, `g0`, and `Delta_R` must be re-evaluated in the new context rather than treated as fixed labels. The *Pseudomonas stutzeri* experiment above is an explicit analogue: starting composition changes selection on the generalist and thereby changes the long-term niche available to the specialist. Full constructive witness families, generalized frequency responses, finite-population fixation, and weak-mutation results are retained in the supporting theory rather than the main ecological argument.
 
 ## 9. Ecological and evolutionary consequences
 
