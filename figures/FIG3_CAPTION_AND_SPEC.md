@@ -1,8 +1,8 @@
-# Figure 3 — profitability, reachability, and establishment
+# Figure 3 — loss of evolutionary resistance before morphological change
 
 ## Reader-facing caption
 
-**Figure 3. Division of labor can become profitable, reachable, and able to establish at different conditions.** (A) The `L-Phi` plane separates persistent compromise from positive net architecture value. (B) Convex recovery can create a range in which the differentiated endpoint is fitter but sufficiently small release steps are still downhill. (C) Frequency-dependent ecology changes not only the establishment threshold but the population outcome: positive feedback can produce history-dependent alternative stable architectures, whereas negative feedback can produce stable coexistence through rare-form advantage. (D) When an environmental gradient lowers marginal architecture cost, profitability precedes local reachability. If positive feedback is strong enough, establishment occurs later still, producing `E_V<E_A<E_I` and a distinct ecological-stabilization phase.
+**Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes.** (A) The `L-Phi` plane separates persistent compromise from positive net architecture value. (B) Convex recovery can create a range in which the differentiated endpoint is fitter but sufficiently small release steps are still downhill. (C) Frequency-dependent ecology changes not only the establishment threshold but the population outcome: positive feedback can require clustered establishment and produce history-dependent alternative stable architectures, whereas negative feedback can produce stable coexistence through rare-form advantage. (D) When an environmental gradient lowers marginal architecture cost, profitability precedes local reachability. If positive feedback is strong enough, establishment occurs later still, producing `E_V<E_A<E_I` and a distinct ecological-stabilization phase.
 
 ## Scientific role
 
