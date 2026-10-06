@@ -14,7 +14,7 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 ```text
 TITLE_WORDS                         7
 ABSTRACT_WORDS                    171
-TEXT_WORDS_EXCL_LITERATURE_CITED 6795
+TEXT_WORDS_EXCL_LITERATURE_CITED 6925
 FIGURES                             3
 TABLES                              0
 ```
