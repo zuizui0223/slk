@@ -32,7 +32,7 @@ A real partial worked example can be added only after an actual identified recei
 PRIMARY_TARGET = The American Naturalist
 ```
 
-The refocused manuscript is now an evolutionary-ecology paper about why comparable functional conflicts have different resolutions in nature. Its central contribution is the three-state account of persistent integration—adaptive integration, historical/developmental trapping, and ecological stabilization—and the prediction that those selective states can turn over across environments before morphology changes. That framing remains appropriate for *The American Naturalist*.
+The refocused manuscript is now an evolutionary-ecology paper about why comparable functional conflicts have different resolutions in nature. Its central contribution is the prediction that the **selective bottleneck preventing structural division of labor can turn over before morphology changes**, while the perturbation required for reorganization can decline. Adaptive integration, historical/developmental trapping, and ecological stabilization are biological interpretations of those bottlenecks rather than the primary novelty. That framing remains appropriate for *The American Naturalist*.
 
 ## Closed scientific items
 
