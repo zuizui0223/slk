@@ -277,8 +277,8 @@ def test_direct_specialist_experiments_separate_value_from_coexistence() -> None
     assert "Pseudomonas aeruginosa" in manuscript
     assert "Stable specialist coexistence therefore does not itself imply positive net value of division of labour" in manuscript
     assert "not `Delta_R` of a divided collective invading a generalist resident" in manuscript
-    assert "Cross-system gate matrix" in bridge
-    assert "specialist-specialist NFDS" in bridge
+    assert "Empirical coverage matrix" in bridge
+    assert "specialist-specialist negative frequency dependence" in bridge
     assert "no system that simultaneously measures" in bridge
 
 
