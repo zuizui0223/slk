@@ -90,9 +90,10 @@
 
   <rect x="1040" y="205" width="380" height="135" class="case"/>
   <text x="1230" y="238" text-anchor="middle" class="species">Multifunctional fish skulls</text>
-  <text x="1230" y="268" text-anchor="middle" class="body">same apparatus used for suction + biting</text>
-  <text x="1230" y="294" text-anchor="middle" class="body">trade-off constrains feeding kinematics</text>
-  <text x="1230" y="321" text-anchor="middle" class="small">Corn et al. 2021</text>
+  <text x="1230" y="266" text-anchor="middle" class="body">same skull used for suction + biting</text>
+  <text x="1230" y="290" text-anchor="middle" class="body">suction-only kinematics diversify &gt;13.5× faster</text>
+  <text x="1230" y="314" text-anchor="middle" class="body">yet head shape evolves faster in biters</text>
+  <text x="1230" y="334" text-anchor="middle" class="small">Corn et al. 2021</text>
 
   <path d="M1230 340 L1230 386" class="arrow"/>
 
