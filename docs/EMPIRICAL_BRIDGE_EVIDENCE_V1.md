@@ -215,7 +215,7 @@ The absence is specific, not generic: existing systems collectively cover every 
 
 ## Current empirical synthesis
 
-The current evidence no longer rests on one analogue. Four complementary empirical roles are now covered.
+The current evidence no longer rests on one analogue. Six complementary empirical roles are now covered.
 
 1. **Natural ecological context — Pedicularis rex.** A persistent integrated structure experiences strong geographic and density-dependent variation in antagonistic selection, but no specified divided alternative has been assayed.
 
@@ -223,7 +223,11 @@ The current evidence no longer rests on one analogue. Four complementary empiric
 
 3. **Developmental access — volvocine algae.** Eudorina and Pleodorina make the route to cellular division of labour experimentally visible: differentiation can be environmentally induced, developmentally constrained, and rapidly made more constitutive by experimental evolution. These studies still do not estimate the SLK local gradient `g0`.
 
-4. **All early questions permissive in one evolving system — Pseudomonas fluorescens.** Collective benefit, repeated short mutational access, and rare-type advantage coincide with rapid realized division of labour.
+4. **Rare establishment against a generalist — Pseudomonas stutzeri.** A one-mutation specialist has environment-dependent invasion from rarity and starting-frequency-dependent long-term persistence. This is the strongest current two-gate analogue linking short access to rare establishment, but it is not a complete divided architecture.
+
+5. **Life-stage dependence of rarity — Pogonomyrmex dependent lineages.** Rarity improves worker production during colony founding but impairs daughter-queen production at maturity, showing why a rare-establishment estimand must use the relevant lifetime-fitness scale.
+
+6. **All early questions permissive in one evolving system — Pseudomonas fluorescens.** Collective benefit, repeated short mutational access, and rare-type advantage coincide with rapid realized division of labour.
 
 Bacillus thuringiensis additionally shows that positive-frequency effects can occur around an evolved division-of-labour phenotype, but it does not provide the missing case in which the divided architecture itself fails when rare against an integrated resident.
 
