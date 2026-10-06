@@ -12,14 +12,14 @@ The project draws on several linked theory modules, but the modules are not the 
 
 ## Central question
 
-> **Why does similar functional conflict produce structural division of labor in some systems, temporal partitioning in others, and persistent multifunctionality in still others—and why can ecology move the balance among these resolutions?**
+> **When does functional conflict favor structural division of labor, and when does a multifunctional structure persist instead—and why can the reason for persistence change across ecological contexts?**
 
 For the persistent-integration branch, the same visible multifunctional phenotype can occupy three selective states:
 
 ```text
 adaptive integration
   Phi < 0
-  integration is the better architecture
+  the focal divided alternative has lower net value
 
 historical / developmental trapping
   Phi > 0, g0 < 0
@@ -30,7 +30,7 @@ ecological stabilization
   division of labor is favorable and reachable, but fails when rare
 ```
 
-Architecture economics, evolutionary history, and ecological interactions therefore maintain the same morphology for different reasons.
+Architecture economics, evolutionary history, and ecological interactions therefore maintain the same morphology for different reasons. The formal comparison is candidate-relative: SLK does not rank structural division against every temporal, plastic, or alternative structural solution.
 
 ![Figure 1. Three selective states can maintain persistent multifunctionality.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
