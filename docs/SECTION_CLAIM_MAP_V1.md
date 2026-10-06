@@ -9,14 +9,14 @@ This document maps the biology-refocused journal manuscript to the canonical the
 | Abstract | C1-C7, UTA1.4c, UTA1.4e, UTA1.5, UTA1.10 | state hidden bottleneck turnover and erosion of resistance | conditional prediction; no completed natural-system turnover claimed |
 | 1. Introduction | C1-C7, UTA1.4c/e, UTA1.10 + prior art | pose persistence of multifunctionality as the biological problem | do not claim first theory of specialization, system drift, hysteresis, or invasion |
 | 2. Functional conflict creates the problem, not its resolution | C1 | separate documented conflict from its evolutionary resolution | conflict magnitude does not identify the favored organization |
-| 3. Natural systems show multiple resolutions of functional conflict | literature synthesis | establish biological reality of structural, temporal, integrated, frequency-dependent, and re-coupled outcomes | component plausibility only; examples do not demonstrate the ordered SLK turnover |
+| 3. Natural systems show multiple resolutions of functional conflict | literature synthesis + `docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md` | establish biological reality of structural, temporal, integrated, frequency-dependent, and re-coupled outcomes, and map empirical systems onto distinct SLK decision layers | component plausibility and cross-system bridges only; no analogue is promoted to a direct gate estimate without a matching estimand |
 | 4. When is retaining multifunctionality favored over a structural alternative? | C2-C5, UTA1.5 | define candidate-relative architecture value, `Phi=R-K`, and conflict/differentiation discordance | `Phi<0` favors integration only relative to the specified divided alternative |
 | 5. When can evolutionary history preserve multifunctionality? | C6, UTA1.4d, UTA1.4e | separate endpoint value from local path accessibility and derive path legacy | small-step path result; no claim of absolute historical impossibility |
 | 6. How can ecology stabilize multifunctionality? | C7, UTA1.2, UTA1.8 | add rare-type establishment and frequency-dependent ecology | canonical linear frequency map is illustrative; endpoint invasion is the general criterion |
 | 7. Three evolutionary bottlenecks behind one persistent phenotype | UTA1.10 | map architecture value, path accessibility, and rare establishment onto one visible outcome | the three bottlenecks are not exhaustive causes of persistence |
 | 8. Formal backbone | UTA1, NE1-NE3 | provide the minimal model needed for the biological argument | fuller fixation/occupancy machinery remains supporting theory |
 | 9. Ecological and evolutionary consequences | UTA1.4c, UTA1.4d, UTA1.4e, UTA1.5 | derive bottleneck turnover, hysteresis, declining resistance, and comparative discordance | `E_V<E_A` follows under the declared cost-lowering convex slice; an ecology-only interval additionally requires `Delta_R(E_A)<0` |
-| 10. Discussion | synthesis + prior-art boundary | distinguish selective-bottleneck turnover from system drift and state empirical status | no claim that phenotypic constancy hiding mechanism change is new; no natural system yet closes the full ordered turnover |
+| 10. Discussion | synthesis + prior-art boundary + empirical bridge ledger | distinguish selective-bottleneck turnover from system drift and state empirical status | no claim that phenotypic constancy hiding mechanism change is new; no natural system yet closes the full ordered turnover |
 
 ## Reader-facing biological spine
 
@@ -93,6 +93,12 @@ positive-frequency ecological interval:
 ```
 
 The headline claim is therefore not merely that identical phenotypes can have different hidden mechanisms. Developmental/system drift already establishes that general possibility. SLK instead predicts that the **selective bottleneck preventing a specified alternative architecture from replacing an unchanged resident architecture can turn over**, while the magnitude and identity of the perturbation required for reorganization also change.
+
+### Empirical evidence surface
+
+`docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md` is the canonical evidence ledger for cross-system support. It separates: field selection mosaics under persistent integration; direct or adjacent architecture-value experiments; developmental-accessibility anchors; rare-establishment analogues against generalist residents; and positive controls in which value, access, and rare-type performance are all permissive.
+
+The ledger is deliberately stricter than a narrative literature review. A system can support one SLK decision layer without being promoted to `Phi`, `g0`, or `Delta_R`, and an unresolved invasion treatment remains unresolved rather than being classified as failure.
 
 ## Natural-history evidence boundary
 
