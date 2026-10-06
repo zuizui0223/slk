@@ -14,7 +14,7 @@ The project draws on several linked theory modules, but the modules are not the 
 
 > **When does functional conflict favor structural division of labor, and when does a multifunctional structure persist instead—and why can the reason for persistence change across ecological contexts?**
 
-For the persistent-integration branch, the same visible multifunctional phenotype can occupy three selective states:
+For the persistent-integration branch, the central result is a many-to-one mapping: the same visible multifunctional phenotype can persist behind three different evolutionary bottlenecks:
 
 ```text
 adaptive integration
@@ -30,7 +30,7 @@ ecological stabilization
   division of labor is favorable and reachable, but fails when rare
 ```
 
-Architecture economics, evolutionary history, and ecological interactions therefore maintain the same morphology for different reasons. The formal comparison is candidate-relative: SLK does not rank structural division against every temporal, plastic, or alternative structural solution.
+Architecture economics, evolutionary history, and ecological interactions can therefore maintain the same morphology for different reasons. Environmental change can switch the limiting bottleneck before morphology changes, and the structural or demographic perturbation required for reorganization can shrink during that stasis. The formal comparison is candidate-relative: SLK does not rank structural division against every temporal, plastic, or alternative structural solution.
 
 ![Figure 1. Three selective states can maintain persistent multifunctionality.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
@@ -44,7 +44,7 @@ The framework now makes four natural-history predictions.
 
 **1. Conflict strength alone should not rank the tendency toward division of labor.** A system with stronger conflict can remain integrated if little of that conflict is recoverable or if the divided architecture is costly, whereas weaker conflict can be resolved structurally when release is efficient and cheap.
 
-**2. The same integrated morphology can occupy different selective states across environments.** Under the ordered environmental slice, architecture value, local accessibility and rare establishment cross at different conditions. A transect can therefore remain visibly multifunctional while the state maintaining integration shifts from adaptive integration, to historical/developmental trapping, to ecological stabilization.
+**2. The same integrated morphology can persist behind different evolutionary bottlenecks across environments.** Under the ordered environmental slice, architecture value, local accessibility and rare establishment cross at different conditions. A transect can therefore remain visibly multifunctional while the state maintaining integration shifts from adaptive integration, to historical/developmental trapping, to ecological stabilization.
 
 **3. Historical trapping and ecological stabilization predict different geographic mosaics.** Strict convex recovery creates architecture-path hysteresis: forward and reverse environmental change can retain different architectures even when frequency dependence is absent. Positive frequency dependence instead creates resident-frequency priority effects and alternative locally stable architectures; negative frequency dependence predicts stable coexistence or mixed zones.
 
