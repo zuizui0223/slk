@@ -44,13 +44,13 @@ The framework now makes four natural-history predictions.
 
 **1. Conflict strength alone should not rank the tendency toward division of labor.** A system with stronger conflict can remain integrated if little of that conflict is recoverable or if the divided architecture is costly, whereas weaker conflict can be resolved structurally when release is efficient and cheap.
 
-**2. The same integrated morphology can persist behind different evolutionary bottlenecks across environments.** Under the ordered environmental slice, architecture value, local accessibility and rare establishment cross at different conditions. A transect can therefore remain visibly multifunctional while the state maintaining integration shifts from adaptive integration, to historical/developmental trapping, to ecological stabilization.
+**2. The same integrated morphology can persist behind different evolutionary bottlenecks across environments.** Under the ordered environmental slice, architecture value, local accessibility and rare establishment cross at different conditions. A transect can therefore remain visibly multifunctional while the limiting process shifts from negative divided-state value, to path inaccessibility, to rare-establishment failure.
 
 **3. Historical trapping and ecological stabilization predict different geographic mosaics.** Strict convex recovery creates architecture-path hysteresis: forward and reverse environmental change can retain different architectures even when frequency dependence is absent. Positive frequency dependence instead creates resident-frequency priority effects and alternative locally stable architectures; negative frequency dependence predicts stable coexistence or mixed zones.
 
 **4. Persistence can become easier to overturn before morphology changes.** Within the historical-trapping state, the minimum favorable one-step structural release `d_J` shrinks toward zero as the accessibility boundary is approached. Under positive frequency dependence, the critical initial frequency `p_C=(eta-Phi)/(2eta)` then shrinks toward zero as rare establishment becomes possible. An apparently stable integrated phenotype can therefore become progressively more susceptible to architectural innovation, clustering, immigration or repeated origin before a visible transition occurs.
 
-The strongest new prediction is not that hysteresis, coexistence or frequency dependence exist; all are established phenomena. It is their ordered placement within one multifunctional-to-divided architecture problem.
+The strongest prediction is not that hysteresis, coexistence or frequency dependence exist; all are established phenomena. It is that the first failing bottleneck can turn over for one unchanged organization while the structural or demographic perturbation needed for reorganization shrinks.
 
 ## Running biological example
 
@@ -67,7 +67,7 @@ The mathematical machinery supports the biological theory rather than replacing 
 1. a common fitness comparison `Phi=R-K` that separates conflict strength from the net value of division of labor;
 2. a demonstration that positive endpoint value can coexist with a local accessibility barrier under convex recovery;
 3. a population-level establishment test showing that frequency-dependent ecology can reverse the endpoint verdict when a differentiated type is rare;
-4. three ways persistent integration can be maintained: adaptive integration, historical/developmental trapping, or ecological stabilization;
+4. three early bottlenecks that can maintain persistent integration—architecture value, evolutionary path, and ecological establishment—with adaptive integration, historical trapping, and ecological stabilization as their biological interpretations;
 5. the comparative prediction that stronger conflict need not imply more differentiation;
 6. the ecological prediction that profitability and rare establishment can be displaced along environmental gradients;
 7. the prediction that ecological context can change the evolutionary resolution of conflict, including cases in which the same phenotype persists for different reasons across environments;
