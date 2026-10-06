@@ -39,7 +39,7 @@ FORBIDDEN_IDENTITY_STRINGS = (
 
 README = """# Anonymous reviewer code/theory package
 
-This package accompanies the manuscript **Why multifunctional structures persist under conflicting selection**.
+This package accompanies the manuscript **Multifunctional structures can persist while barriers to division of labor change**.
 
 ## Scope
 
