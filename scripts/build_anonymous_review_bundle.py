@@ -43,9 +43,9 @@ This package accompanies the manuscript **Why multifunctional structures persist
 
 ## Scope
 
-The submitted paper is a theory/concept paper about why documented functional conflict can end either in division of labor or in persistent multifunctionality. It does not estimate its headline results from a private or external empirical dataset. *Pedicularis rex* is used as a literature-based running example rather than as a new empirical result. Numerical witness values are constructive parameter regimes used to separate alternative biological explanations.
+The submitted paper is an evolutionary-ecology theory paper about why comparable functional conflicts have different natural resolutions and why one multifunctional architecture can persist in different selective states. It does not estimate its headline results from a private or external empirical dataset. The natural-system examples, including *Pedicularis rex*, are literature based rather than new empirical results.
 
-The package therefore contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the threshold/process implementation, an independent Moran-process regression test, and a Python verifier. The main manuscript centers three causes of persistent multifunctionality—negative net value, local inaccessibility, and rare-establishment failure—while the package also retains downstream fixation/occupancy checks and the fuller mathematical derivations. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the mathematical implementation, an independent Moran-process regression test, and a Python verifier. The manuscript centers adaptive integration, historical/developmental trapping, and ecological stabilization, together with the prediction that an unchanged integrated phenotype can lose evolutionary resistance before structural division of labor appears. The fuller theory files retain downstream fixation/occupancy and numerical derivations as supporting results rather than as the biological subject of the paper. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 
