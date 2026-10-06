@@ -268,3 +268,24 @@ def test_pseudomonas_is_registered_only_as_positive_control() -> None:
     assert "EMPIRICAL ANALOGUE / POSITIVE CONTROL" in bridge
     assert "not a DIRECT TEST OF STRUCTURAL SLK TURNOVER" in bridge
     assert "Resident-density Allee effect is therefore not Delta_R" in bridge
+
+
+def test_direct_specialist_experiments_separate_value_from_coexistence() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
+    assert "Bacillus subtilis" in manuscript
+    assert "Pseudomonas aeruginosa" in manuscript
+    assert "stable specialist coexistence does not itself show that division of labour has positive net value" in manuscript
+    assert "not `Delta_R` of that collective invading a generalist resident" in manuscript
+    assert "Cross-system gate matrix" in bridge
+    assert "specialist-specialist NFDS" in bridge
+    assert "no system that simultaneously measures" in bridge
+
+
+def test_volvocine_system_is_path_anchor_not_g0_measurement() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
+    assert "Volvocine algae make that last possibility concrete" in manuscript
+    assert "PATH-ACCESSIBILITY EMPIRICAL ANCHOR" in bridge
+    assert "do not estimate the SLK local path gradient `g0`" in bridge
+    assert "Twenty-one of 48 lines (44%)" in bridge
