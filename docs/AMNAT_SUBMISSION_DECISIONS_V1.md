@@ -80,17 +80,18 @@ The portal validator now refuses a reviewer package whose receipt is not both `E
 
 ## Remaining scientific-editorial risk
 
-The remaining reviewer question is now biological rather than methodological:
+The remaining reviewer question is biological:
 
-> Does the three-state theory explain something beyond the already established facts that integration can constrain or promote evolution, ecology shapes trait integration, and stable phenotypes can hide changing mechanisms?
+> Does the three-state theory explain something beyond established specialization theory, known hysteresis, and the general fact that ecology shapes integration?
 
-The submission answer is deliberately narrow:
+The submission answer is now four concrete predictions:
 
-1. natural systems establish that comparable conflicts have multiple resolutions;
-2. existing theory already covers specialization conditions and evolutionary inaccessibility;
-3. SLK predicts a specific turnover in the **selective status of structural division of labor** under one persistent integrated phenotype: adaptive integration -> historical/developmental trapping -> ecological stabilization;
-4. an ecology-only stabilization phase exists only when positive rare-type frequency dependence exceeds the local architecture barrier, so community ecology is predicted to become the final barrier only in a defined region of parameter space;
-5. conflict magnitude itself need not rank structural differentiation because recoverability and architecture cost can reverse the ordering.
+1. **Conflict strength does not rank organization.** Stronger functional conflict can remain integrated when little conflict is recoverable or division of labor is costly.
+2. **Persistent integration has three selective states.** The same morphology can be adaptive integration, historical/developmental trapping, or ecological stabilization.
+3. **Phenotypic stasis can hide declining evolutionary resistance.** Before morphology changes, the minimum favorable structural release and/or the critical local frequency required for a divided architecture to spread can shrink toward zero.
+4. **The states predict different natural histories.** Path trapping predicts environmental lag and architecture legacy; positive frequency dependence predicts priority-dependent alternative patches; negative frequency dependence predicts mixed zones; weak feedback permits more direct replacement.
+
+Hysteresis, bistability, coexistence, valley crossing, and frequency dependence are prior art. The residual contribution is their ordered placement within one multifunctional-to-divided architecture problem and the resulting prediction that the selective meaning and fragility of an unchanged integrated phenotype can turn over before visible reorganization.
 
 ## Submission state
 
