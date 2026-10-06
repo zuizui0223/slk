@@ -217,6 +217,8 @@ E > E_I
     the three early barriers are removed
 ```
 
+The biological bottleneck therefore changes along the gradient. Before `E_V`, there is no net advantage to structural division. Between `E_V` and `E_A`, reorganization is **innovation limited**: only a sufficiently large structural change, recombination event, or alternative developmental route can escape the local valley. Between `E_A` and `E_I`, small favorable changes are available but reorganization is **establishment limited**: the divided type must become common enough, or enter a sufficiently favorable interaction context, to grow. Beyond `E_I`, even a rare divided type can spread. Environmental change can therefore switch the limiting process from architecture economics, to the production of viable novelty, to ecological establishment without any visible change in the resident morphology.
+
 Thus a chain of populations can look morphologically similar while the evolutionary reason for that morphology changes. **Phenotypic stability across geography does not imply stability of the process maintaining the phenotype.**
 
 Ecology also determines whether a distinct ecologically stabilized phase exists at all. The general criterion is simple: evaluate rare-type performance at the point where the local historical/developmental barrier disappears. If
