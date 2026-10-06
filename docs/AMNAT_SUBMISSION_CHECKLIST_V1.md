@@ -12,7 +12,7 @@ PORTAL_HANDOFF = submission/AMNAT_PORTAL_HANDOFF_V1.md
 Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
-TITLE_WORDS                         7
+TITLE_WORDS                        10
 ABSTRACT_WORDS                    167
 TEXT_WORDS_EXCL_LITERATURE_CITED 7215
 FIGURES                             3
@@ -29,7 +29,7 @@ Status:
 MAJOR_ARTICLE_TEXT_LIMIT        PASS
 ABSTRACT_200_WORD_LIMIT         PASS
 FIGURE_TABLE_LIMIT              PASS   (3 figures + 0 tables = 3 items)
-TITLE_LENGTH_PREFERENCE         PASS   (7 words; concise)
+TITLE_LENGTH_PREFERENCE         PASS   (10 words; concise)
 KEYWORDS_1_TO_6                 PASS   (6)
 ANONYMOUS_TITLE_PAGE            PASS
 AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
