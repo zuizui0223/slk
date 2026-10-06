@@ -306,12 +306,13 @@ def test_stutzeri_is_rare_establishment_analogue_not_structural_delta() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
     assert "Pseudomonas stutzeri" in manuscript
-    assert "increased from rarity under strong nitrite toxicity but not significantly under weak toxicity" in manuscript
+    assert "weak-toxicity trend was non-significant and therefore unresolved rather than evidence of invasion failure" in manuscript
     assert "This is not a structurally divided alternative invading an integrated resident" in manuscript
     assert "RARE-ESTABLISHMENT EMPIRICAL ANCHOR / GENERALIST-SPECIALIST ANALOGUE" in bridge
     assert "not an estimate of structural `Delta_R`" in bridge
     assert "tau=1, P=0.042" in bridge
     assert "tau=0.67, P=0.31" in bridge
+    assert "This treatment is **unresolved**, not evidence that the rare specialist had negative invasion fitness" in bridge
 
 
 def test_gate_hierarchy_is_conditional_not_dynamically_independent() -> None:
