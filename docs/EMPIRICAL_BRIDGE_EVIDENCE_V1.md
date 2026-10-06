@@ -159,46 +159,21 @@ not a full SLK gate closure
 It is not evidence that SLK historical trapping itself has been observed. The 2026 result is a preprint and should remain labelled as such until peer review.
 
 
-## Cross-system gate matrix
-
-| System | Divided-state value tested? | Accessibility tested? | Frequency / rarity tested? | Direct SLK structural test? | Main role |
-|---|---|---|---|---|---|
-| Pedicularis rex | no specified divided alternative | no | resident density only | no | natural selection mosaic under persistent integration |
-| Pseudomonas fluorescens M+D | yes, collective benefit | strong analogue: repeated single-mutation access | yes, rare advantage / stable coexistence | no | positive control with all early questions permissive |
-| Bacillus subtilis EPS/TasA | yes, divided pair beats generalist-like organization | no | specialist-specialist NFDS | no | positive divided-state value + ecological composition |
-| Pseudomonas aeruginosa siderophores | yes, value changes across iron environments | no | specialist-specialist NFDS | no | direct value/ecology separation and public raw data |
-| Bacillus thuringiensis LM1212 | partial comparative value | developmental mechanism described | positive-frequency competition | no | shows positive FD near a DoL phenotype but not rare failure |
-| Solanum rostratum enantiostyly | yes, density-dependent reproductive value | no | density, not alternative frequency | adjacent only | organismal analogue of environment-dependent architecture value |
-| Eudorina / Pleodorina soma | partial fitness/development evidence | strong path analogue: plastic route and experimental evolution | no rare-invasion test | adjacent multicellular DoL | path-accessibility anchor; not a `g0` estimate |
-
-The screen therefore still contains **no system that simultaneously measures a specified integrated-versus-divided architecture comparison, the local path away from integration, and the rare invasion performance of that divided architecture across environments**.
-
-
-## D. Enforced microbial specialists — value and maintenance can disagree
-
-Dragoš et al. (2018) engineered complementary EPS- and TasA-producing *Bacillus subtilis* specialists. Group productivity peaked near a mixture containing about 30% TasA producers and exceeded the wild type, while negative frequency-dependent fitness drove the specialist mixture toward the same composition.
-
-Mridha & Kümmerli (2022) provide the contrasting control. Engineered *Pseudomonas aeruginosa* pyochelin and pyoverdine specialists remained stably polymorphic through negative frequency dependence. Yet under moderate iron limitation the mixture only matched the generalist wild type, and under stronger iron limitation specialist communities performed worse.
-
-These experiments directly establish:
-
-```text
-stable specialist coexistence != positive value of specialization
-```
-
-They therefore support SLK's separation of architecture/collective value from ecological maintenance. They do not test whether a divided collective can invade from rarity against a generalist resident and are not estimates of `Delta_R`.
-
 ## Empirical coverage matrix
 
-| System | Conflict / trade-off | Value of divided state | Accessibility / route | Rare-type ecology | Same unchanged integrated phenotype across bottlenecks? |
-|---|---|---|---|---|---|
-| *Pedicularis rex* | strong direct field evidence | not measured for a specified divided alternative | not measured | resident-density effects only, not divided-type rarity | no |
-| *Pleodorina* / *Eudorina* | motility–fecundity / germ–soma trade-off | environmentally responsive soma investment | developmental constraint, plastic route, genetic accommodation | not measured | no |
-| *Pseudomonas fluorescens* M+D | collective role complementarity | mixed collective outperforms pure types | short repeated mutational routes | each role favored when rare | no; collective/genotype analogue |
-| engineered *Bacillus subtilis* | matrix-component specialization | positive relative to wild type | imposed | negative frequency dependence | no |
-| engineered *P. aeruginosa* | siderophore specialization | neutral or negative depending on iron limitation | imposed | negative frequency dependence | no |
+| System | Conflict / trade-off | Divided-state value | Accessibility / route | Frequency / rarity evidence | Same unchanged integrated phenotype across bottlenecks? | SLK role |
+|---|---|---|---|---|---|---|
+| *Pedicularis rex* | direct pollinator–seed-predator conflict | no specified divided alternative tested | not measured | resident density only, not divided-type rarity | yes for integrated phenotype, but gates unmeasured | natural selection mosaic |
+| *Pseudomonas fluorescens* M+D | complementary collective roles | mixed collective outperforms pure types | repeated short mutational routes | each role favored when rare; stable coexistence | no; genotype/collective analogue | positive control with all early questions permissive |
+| engineered *Bacillus subtilis* EPS/TasA | costly matrix-component specialization | positive relative to wild type | imposed specialists | specialist-specialist negative frequency dependence | no | value positive, maintenance separable |
+| engineered *P. aeruginosa* siderophores | siderophore specialization under iron limitation | positive, neutral, or negative depending on environment | imposed specialists | specialist-specialist negative frequency dependence | no | value varies while coexistence persists |
+| *Bacillus thuringiensis* LM1212 | toxin/sporulation division of labour | comparative advantage over conventional producer across broad conditions | developmental mechanism described | positive-frequency effects occur, but divided strain not blocked when rare | no | positive-FD boundary case, not establishment failure |
+| *Solanum rostratum* enantiostyly | reproductive organization | density-dependent advantage of dimorphic arrangement | imposed floral arrays | density, not alternative frequency | no | organismal analogue of environment-dependent architecture value |
+| *Eudorina* / *Pleodorina* soma | germ–soma / motility–fecundity trade-off | environment-responsive soma investment | developmental constraint, plastic route, experimental evolution | no rare-invasion test | no | structural path-accessibility anchor |
 
-The table shows why the missing experiment is specific rather than generic: existing systems cover every component, but not the **turnover of the first failing layer for one resident integrated architecture and one defined structural alternative across environments**.
+The screen therefore still contains **no system that simultaneously measures a specified integrated-versus-divided architecture comparison, the local path away from integration, and the rare invasion performance of that divided architecture across environments while the resident integrated phenotype remains unchanged**.
+
+The absence is specific, not generic: existing systems collectively cover every component, but not the **turnover of the first failing layer for one resident architecture and one defined structural alternative across environments**.
 
 ## Current empirical synthesis
 
@@ -226,9 +201,7 @@ That missing test remains the empirical target of SLK.
 - Herron MD, Ghimire S, Vinikoor CR, Michod RE. 2014. Fitness trade-offs and developmental constraints in the evolution of soma: an experimental study in a volvocine alga. Evolutionary Ecology Research 16:203–221.
 - Davison DR, Nedelcu AM, De Andre Eneji O, Michod RE. 2025. Plasticity and the evolution of group-level regulation of cellular differentiation in the volvocine algae. Proceedings of the Royal Society B 292:20242477. DOI 10.1098/rspb.2024.2477. Public data: Dryad DOI 10.5061/dryad.ns1rn8q1h.
 - Davison DR, Ruboyianes R, Yu Y, Michod RE, Olson BJSC. 2026. Somatic differentiation evolves rapidly and repeatedly through the modification of developmental plasticity. bioRxiv preprint. DOI 10.64898/2026.09.22.753194.
-- Dragoš A, Kiesewalter H, Martin M, et al. 2018. Division of labor during biofilm matrix production. Current Biology 28:1903–1913.e5.
 - Kim W, Levy SB, Foster KR. 2016. Rapid radiation in bacteria leads to a division of labour. Nature Communications 7:10508. DOI 10.1038/ncomms10508.
-- Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium Pseudomonas aeruginosa. Journal of Evolutionary Biology 35:719–730.
 - Dragoš A et al. 2018. Division of Labor during Biofilm Matrix Production. Current Biology 28:1903–1913.e5. DOI 10.1016/j.cub.2018.04.046.
 - Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium Pseudomonas aeruginosa. Journal of Evolutionary Biology 35:719–730. DOI 10.1111/jeb.14001. Public data: Dryad DOI 10.5061/dryad.2bvq83bs4.
 - Deng C et al. 2015. Division of labour and terminal differentiation in a novel Bacillus thuringiensis strain. ISME Journal 9:286–296. DOI 10.1038/ismej.2014.122.
