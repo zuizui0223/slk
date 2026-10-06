@@ -113,7 +113,7 @@ k_local=R'(0)
 k_global=R(dmax)/dmax.
 ```
 
-For convex recovery, `k_local<=k_global`. Hence the interval
+For convex recovery, `k_local<=k_global`. Biologically, convex recovery means **increasing returns to differentiation**: early partial release recovers little of the conflict, whereas more complete separation releases disproportionately more. This can occur when partial differentiation pays structural or regulatory costs before functions are sufficiently decoupled, or when several coordinated changes are needed before specialization becomes effective. Such increasing-return geometry is already familiar from specialization theory (Rueffler, Hermisson, and Wagner 2012); here it creates the path dependence of persistent multifunctionality. Hence the interval
 
 ```text
 k_local<k<k_global
