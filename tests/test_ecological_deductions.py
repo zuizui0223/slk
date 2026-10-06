@@ -211,8 +211,8 @@ def test_hidden_bottleneck_turnover_is_the_reader_facing_spine() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     figure = FIG1.read_text(encoding="utf-8")
     for token in (
-        "Persistent morphology is often read as evidence of a stable evolutionary explanation",
-        "Environmental change can move an unchanged integrated phenotype across these bottlenecks",
+        "Persistent phenotypes can conceal change in their genetic or developmental underpinnings",
+        "can the selective bottleneck preventing reorganization change while a multifunctional architecture remains visibly unchanged",
         "phenotypic stasis can conceal a progressive loss of evolutionary resistance",
     ):
         assert token in manuscript
