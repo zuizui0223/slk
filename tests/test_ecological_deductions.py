@@ -188,3 +188,10 @@ def test_persistence_erosion_thresholds_are_registered() -> None:
     assert "(eta-Phi)/(2eta)" in theory
     assert "easier to overturn before morphology changes" in manuscript
     assert "critical initial frequency" in manuscript
+
+
+def test_environment_changes_the_evolutionary_bottleneck() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    assert "innovation limited" in manuscript
+    assert "establishment limited" in manuscript
+    assert "switch the limiting process from architecture economics" in manuscript
