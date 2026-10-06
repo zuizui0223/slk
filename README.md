@@ -32,7 +32,7 @@ ecological stabilization
 
 Architecture economics, evolutionary history, and ecological interactions can therefore maintain the same morphology for different reasons. Environmental change can switch the limiting bottleneck before morphology changes, and the structural or demographic perturbation required for reorganization can shrink during that stasis. The formal comparison is candidate-relative: SLK does not rank structural division against every temporal, plastic, or alternative structural solution.
 
-![Figure 1. Three selective states can maintain persistent multifunctionality.](figures/FIG1_LOGIC_DIAGRAM.svg)
+![Figure 1. One persistent phenotype can hide different evolutionary bottlenecks.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
 ![Figure 2. Natural systems use different resolutions of functional conflict.](figures/FIG2_PHASE_MAP.svg)
 
@@ -108,7 +108,7 @@ These modules may be cited by SLK without being promoted to independent manuscri
 For the flagship argument, the canonical path is deliberately short:
 
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
-2. `figures/FIG1_LOGIC_DIAGRAM.svg` — three selective states behind persistent multifunctionality.
+2. `figures/FIG1_LOGIC_DIAGRAM.svg` — one persistent phenotype mapped to distinct architecture, path, and establishment bottlenecks.
 3. `figures/FIG2_PHASE_MAP.svg` — natural examples showing structural partitioning, temporal partitioning, geographic variation, frequency dependence, and ecological re-coupling.
 4. `figures/FIG3_EMPIRICAL_LADDER.svg` — hidden erosion of evolutionary resistance, path hysteresis, clustered establishment, and environmental turnover of the state maintaining integration.
 5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
