@@ -139,6 +139,8 @@ maximized at intermediate residual integration, `s0=1/2`.
 
 A multifunctional structure can therefore persist even when a differentiated endpoint would be fitter, because evolution acts through available intermediates rather than by choosing directly among completed designs. Drift, recombination, large-effect changes, or a new developmental route can alter this historical constraint.
 
+Volvocine algae make that last possibility concrete. In *Eudorina elegans*, cold shock induces somatic-like cells and can shift their regulation from a direct environmental response to a group-level developmental response (Davison et al. 2025). A recent experimental-evolution preprint then exposed related *Eudorina* lines to repeated cold shock: 21 of 48 lines evolved more differentiated colonies under baseline conditions, and one lineage evolved obligate somatic differentiation (Davison et al. 2026). In *Pleodorina starrii*, selection in still versus mixed environments likewise changed investment in soma, while small colonies retained strongly non-optimal soma allocations consistent with developmental constraint (Herron et al. 2014). These studies do not estimate `g_0`, but they show that the developmental route to division of labour can itself be environmentally exposed, constrained, and evolutionarily modified.
+
 Strict convexity also gives historical trapping a geographic signature. Along the same small-step release path, both the integrated and divided endpoints can remain locally stable over a range of architectural costs even though only one is globally better. A lineage that enters this range while integrated can therefore remain integrated, whereas a lineage arriving from the divided side can remain divided. Historical trapping predicts an **evolutionary legacy**: forward and reverse environmental change need not switch architecture at the same condition. This path dependence does not require frequency-dependent ecology.
 
 ## 6. How can ecology stabilize multifunctionality?
@@ -337,6 +339,10 @@ Corn, K. A., C. M. Martinez, E. D. Burress, and P. C. Wainwright. 2021. A multif
 
 Dellinger, A. S., S. Artuso, D. M. Fernández-Fernández, and J. Schönenberger. 2021. Stamen dimorphism in bird-pollinated flowers: investigating alternative hypotheses on the evolution of heteranthery. *Evolution* 75:2589–2599.
 
+Davison, D. R., A. M. Nedelcu, O. De Andre Eneji, and R. E. Michod. 2025. Plasticity and the evolution of group-level regulation of cellular differentiation in the volvocine algae. *Proceedings of the Royal Society B* 292:20242477.
+
+Davison, D. R., R. Ruboyianes, Y. Yu, R. E. Michod, and B. J. S. C. Olson. 2026. Somatic differentiation evolves rapidly and repeatedly through the modification of developmental plasticity. bioRxiv preprint. doi:10.64898/2026.09.22.753194.
+
 Des Marais, D. L., and M. D. Rausher. 2008. Escape from adaptive conflict after duplication in an anthocyanin pathway gene. *Nature* 454:762–765.
 
 Dieckmann, U., and R. Law. 1996. The dynamical theory of coevolution: a derivation from stochastic ecological processes. *Journal of Mathematical Biology* 34:579–612.
@@ -356,6 +362,8 @@ Gigord, L. D. B., M. R. Macnair, and A. Smithson. 2001. Negative frequency-depen
 Guillaume, F., and S. P. Otto. 2012. Gene functional trade-offs and the evolution of pleiotropy. *Genetics* 192:1389–1409.
 
 Ingleby, F. C., I. Flis, and E. H. Morrow. 2015. Sex-biased gene expression and sexual conflict throughout development. *Cold Spring Harbor Perspectives in Biology* 7:a017632.
+
+Herron, M. D., S. Ghimire, C. R. Vinikoor, and R. E. Michod. 2014. Fitness trade-offs and developmental constraints in the evolution of soma: an experimental study in a volvocine alga. *Evolutionary Ecology Research* 16:203–221.
 
 Kay, K. M., T. Jogesh, D. Tataru, and S. Akiba. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
 
