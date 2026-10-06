@@ -36,7 +36,7 @@ Architecture economics, evolutionary history, and ecological interactions theref
 
 ![Figure 2. Natural systems use different resolutions of functional conflict.](figures/FIG2_PHASE_MAP.svg)
 
-![Figure 3. Architecture value, accessibility and establishment can cross under different conditions.](figures/FIG3_EMPIRICAL_LADDER.svg)
+![Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes.](figures/FIG3_EMPIRICAL_LADDER.svg)
 
 ## Biological predictions
 
@@ -110,7 +110,7 @@ For the flagship argument, the canonical path is deliberately short:
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
 2. `figures/FIG1_LOGIC_DIAGRAM.svg` — three selective states behind persistent multifunctionality.
 3. `figures/FIG2_PHASE_MAP.svg` — natural examples showing structural partitioning, temporal partitioning, geographic variation, frequency dependence, and ecological re-coupling.
-4. `figures/FIG3_EMPIRICAL_LADDER.svg` — profitability, reachability, rare establishment, and environmental turnover of the state maintaining integration.
+4. `figures/FIG3_EMPIRICAL_LADDER.svg` — hidden erosion of evolutionary resistance, path hysteresis, clustered establishment, and environmental turnover of the state maintaining integration.
 5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
 6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
 7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem and derived-consequence status.
