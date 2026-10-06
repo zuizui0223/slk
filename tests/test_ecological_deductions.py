@@ -10,6 +10,7 @@ FIG2 = ROOT / "figures" / "FIG2_PHASE_MAP.svg"
 FIG3 = ROOT / "figures" / "FIG3_EMPIRICAL_LADDER.svg"
 LEDGER = ROOT / "docs" / "THEOREM_CLAIM_LEDGER_V1.md"
 SECTION_MAP = ROOT / "docs" / "SECTION_CLAIM_MAP_V1.md"
+EMPIRICAL_BRIDGE = ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md"
 
 pytestmark = pytest.mark.document_sync
 
@@ -257,3 +258,13 @@ def test_hidden_resistance_is_not_promoted_to_generic_evolvability() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     assert "Nor is it a theory of genetic robustness, evolutionary capacitance, or cryptic genetic variation" in manuscript
     assert "d_J and p_C quantify how large a structural change or initial abundance must be" in manuscript
+
+
+def test_pseudomonas_is_registered_only_as_positive_control() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
+    assert "An experimental positive control: when value, access, and establishment align" in manuscript
+    assert "This system does not measure `Phi`, `g0`, or `Delta_R` as defined here" in manuscript
+    assert "EMPIRICAL ANALOGUE / POSITIVE CONTROL" in bridge
+    assert "not a DIRECT TEST OF STRUCTURAL SLK TURNOVER" in bridge
+    assert "Resident-density Allee effect is therefore not Delta_R" in bridge
