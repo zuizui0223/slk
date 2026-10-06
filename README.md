@@ -70,7 +70,8 @@ The mathematical machinery supports the biological theory rather than replacing 
 4. three ways persistent integration can be maintained: adaptive integration, historical/developmental trapping, or ecological stabilization;
 5. the comparative prediction that stronger conflict need not imply more differentiation;
 6. the ecological prediction that profitability and rare establishment can be displaced along environmental gradients;
-7. the prediction that ecological context can change the evolutionary resolution of conflict, including cases in which the same phenotype persists for different reasons across environments.
+7. the prediction that ecological context can change the evolutionary resolution of conflict, including cases in which the same phenotype persists for different reasons across environments;
+8. the prediction that phenotypic stasis can conceal declining evolutionary resistance: the structural jump and/or local frequency needed to trigger reorganization can shrink before morphology changes.
 
 Finite-population fixation and weak-mutation occupancy remain valid **downstream extensions**. Under the specified symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy re-align at `Phi=0`. Those process results are retained because they delimit stronger evolutionary claims, not because they are a fourth explanation for persistent multifunctionality.
 
@@ -80,17 +81,15 @@ SLK does **not** claim a first theory of modularity, specialization, division of
 
 The narrower contribution is to make **the evolutionary resolution of documented functional conflict** the object to be explained: why some systems divide functions structurally, others retain integration, and why the selective state maintaining the same integrated architecture can change with environment before morphology changes.
 
-## Architecture cost K
+## Biological interpretation of architecture cost
 
-`K` is the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. It is comparison-specific rather than a universal physiological quantity. Empirical use must declare comparison states, scale, time horizon, included/excluded cost channels, uncertainty, and how double counting with `R` was prevented. See `docs/K_OPERATIONAL_DEFINITION_V1.md`.
+`K` is the net fitness debit of maintaining the divided architecture relative to the matched integrated comparison. Biologically, it can include additional developmental, regulatory, structural, or maintenance burdens, provided they are not already counted as lost recovered performance. Its role is simple: even severe functional conflict need not favor division of labor when the architecture that resolves it is too expensive.
 
 ## Pedicularis rex as a prospective biological test
 
-*Pedicularis rex* is the focal prospective system because its functional conflict is already biologically documented: greater floral exposure improves pollen receipt but also increases seed predation, while water-filled bracts reduce seed-predator damage. The unresolved question is why this conflict remains structurally integrated and whether populations exposed to different antagonist regimes occupy different evolutionary states.
+*Pedicularis rex* remains the focal prospective system because the functional conflict is already documented: greater floral exposure improves pollen receipt but also increases seed predation, while water-filled bracts reduce seed-predator damage. The unresolved biological question is whether populations exposed to different antagonist and density regimes remain integrated because integration is adaptive, because structural release is historically constrained, or because a divided alternative would be ecologically disadvantaged when rare.
 
-The current claim ceiling is unchanged: the published natural-history evidence motivates the theory, but this repository does not claim a new end-to-end *P. rex* test of adaptive integration, trapping, or ecological stabilization.
-
-Candidate-specific permission, outreach, access, scouting, field-packet, receipt, and handoff machinery is operational support rather than part of the flagship theory contribution. New operational machinery should be developed in a Pedicularis empirical companion unless it changes an SLK estimand, theorem, generic measurement gate, or manuscript claim ceiling. The migration rule is frozen in `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md`.
+No new *P. rex* biological result is claimed here. The field programme belongs to a separate empirical companion; operational permission, outreach, access, and field logistics are not part of the flagship argument.
 
 ## Publication architecture outside the flagship
 
@@ -114,7 +113,7 @@ For the flagship argument, the canonical path is deliberately short:
 4. `figures/FIG3_EMPIRICAL_LADDER.svg` — profitability, reachability, rare establishment, and environmental turnover of the state maintaining integration.
 5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
 6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem, derived-consequence, diagnostic, and empirical-handoff status.
+7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem and derived-consequence status.
 8. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
 9. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary.
 10. `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md` — theory-core versus empirical-companion boundary.
@@ -131,9 +130,9 @@ ONE_FAMILY_WITNESS_SYSTEM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
 ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
 ENVIRONMENTAL_PERSISTENCE_BARRIER_TURNOVER_REGISTERED
-FINITE_FREQUENCY_ENDPOINT_CERTIFICATION_REGISTERED
-UTA1_10_GATE_LOCALIZATION_REGISTERED
-UTA1_11_INTERVAL_COMPATIBLE_STATE_SET_REGISTERED
+ARCHITECTURE_PATH_HYSTERESIS_REGISTERED
+HIDDEN_RESISTANCE_EROSION_REGISTERED
+FREQUENCY_DEPENDENT_SPATIAL_OUTCOMES_REGISTERED
 NATURAL_SYSTEM_RESOLUTION_SYNTHESIS_REGISTERED
 PEDICULARIS_PROSPECTIVE_ANCHOR_REGISTERED
 PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
