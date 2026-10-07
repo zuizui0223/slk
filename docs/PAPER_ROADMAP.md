@@ -47,7 +47,7 @@ Core claims:
 10. *Pedicularis rex* provides a literature-based example in which the same integrated floral architecture experiences a geographic mosaic in the balance of mutualist and antagonist selection;
 11. finite-population fixation and weak-mutation occupancy remain supporting-theory extensions rather than headline explanations;
 12. the current empirical bridge ledger separates architecture value, developmental access, and rare establishment across real systems, while showing that no existing system yet closes the full ordered turnover for one unchanged integrated architecture;
-13. under the canonical positive-frequency extension, partial structural release and initial abundance lie on one architecture-frequency escape frontier, with `d_J` and `p_C` as orthogonal slices.
+13. partial structural release and initial abundance lie on one architecture-frequency escape frontier: the `d_J` and `p_C` slice identities are robust across identity-preserving feedback scalings, while monotonic novelty-abundance compensation is the canonical proportional-scaling prediction.
 
 Flagship exclusions:
 
