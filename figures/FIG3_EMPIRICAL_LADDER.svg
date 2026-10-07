@@ -13,7 +13,7 @@
   <line x1="160" y1="680" x2="760" y2="680" class="axis"/>
   <line x1="160" y1="680" x2="160" y2="210" class="axis"/>
   <text x="430" y="730" class="t m">conflict load L</text>
-  <text x="90" y="470" class="t m" transform="rotate(-90 90 470)">net value of differentiation Φ</text>
+  <text x="90" y="470" class="t m" transform="rotate(-90 90 470)">structural release d</text>
   <line x1="160" y1="450" x2="760" y2="450" class="grid"/>
   <text x="170" y="440" class="t xs">Φ = 0 critical surface</text>
   <line x1="160" y1="210" x2="160" y2="680" class="grid"/>
@@ -45,18 +45,19 @@
   <text x="970" y="265" class="t xs">critical one-step release d_J shrinks toward 0 at E_A</text>
 
   <rect x="860" y="435" width="470" height="325" class="box"/>
-  <text x="885" y="475" class="t m">C. Can it establish when rare?</text>
+  <text x="885" y="475" class="t m">C. What novelty × abundance can establish?</text>
   <line x1="930" y1="690" x2="1260" y2="690" class="axis"/>
   <line x1="930" y1="690" x2="930" y2="515" class="axis"/>
   <text x="1040" y="735" class="t s">net value of differentiation Φ</text>
-  <text x="885" y="620" class="t s" transform="rotate(-90 885 620)">rare establishment</text>
+  <text x="885" y="620" class="t s" transform="rotate(-90 885 620)">required initial frequency p</text>
   <line x1="1080" y1="525" x2="1080" y2="690" class="grid"/>
   <line x1="1195" y1="525" x2="1195" y2="690" class="grid"/>
-  <text x="1045" y="715" class="t xs">−η</text><text x="1175" y="715" class="t xs">+η</text>
-  <text x="955" y="545" class="t xs">η &gt; 0: priority effects; local feedback can favor clusters</text>
-  <text x="955" y="575" class="t xs">critical frequency p_C=(η−Φ)/(2η) → 0 at E_I</text>
-  <text x="955" y="605" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
-  <path d="M980 650 L1230 540" class="arrow"/>
+  <text x="1055" y="715" class="t xs">d_J</text><text x="1165" y="715" class="t xs">dmax</text>
+  <text x="955" y="545" class="t xs">η &gt; 0: p_escape(d)=1/2−[R(d)−kd]/(2η)</text>
+  <text x="955" y="575" class="t xs">d_J: p=1/2 slice; p_C: d=dmax slice</text>
+  <text x="955" y="605" class="t xs">larger favorable release ↔ lower required frequency</text>
+  <text x="955" y="635" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
+  <path d="M980 545 C1080 555, 1160 600, 1230 655" class="arrow"/>
 
   <!-- connecting message -->
   <path d="M785 325 C835 325, 825 245, 855 245" class="arrow"/>
@@ -89,5 +90,5 @@
   <text x="1110" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&gt;0, ΔR&gt;0</text>
 
   <text x="60" y="1082" class="t xs">History: path hysteresis. Ecology: priority effects when η&gt;0; coexistence when η&lt;0.</text>
-  <text x="60" y="1108" class="t xs">Main message: ecology determines whether a distinct ecologically stabilized integrated phase exists.</text>
+  <text x="60" y="1108" class="t xs">Main message: the bottleneck and the joint structural × demographic escape frontier can move before morphology changes.</text>
 </svg>
