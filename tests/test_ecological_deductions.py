@@ -349,3 +349,12 @@ def test_environmental_tradeoff_shifts_are_prior_art_not_slk_novelty() -> None:
     assert "Environmentally reshaped trade-offs" in prior
     assert "must **not** claim that environmental change reshaping a trade-off" in prior
     assert "Delta_R(E_A)<0" in prior
+
+
+def test_value_context_separation_is_not_promoted_as_new() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    prior = (ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md").read_text(encoding="utf-8")
+    assert "Wahl 2002" in manuscript
+    assert "high divided-state value need not imply ecological success in every population context" in manuscript
+    assert "Divided-state performance versus population context" in prior
+    assert "must **not** claim that a high-value divided organization being disadvantaged" in prior
