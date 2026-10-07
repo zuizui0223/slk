@@ -251,17 +251,33 @@ Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that
 
 ### Persistence can become easier to overturn before morphology changes
 
-The integrated phenotype can remain unchanged while the perturbation required to replace it becomes progressively smaller. Inside the historical-trapping state, strict convexity implies a finite minimum one-step structural release, `d_J`, above which a change away from integration has positive intrinsic value. As the environmental cost of differentiation falls toward the local-accessibility boundary, that critical structural jump shrinks toward zero. The lineage can therefore look morphologically stable while increasingly small architectural innovations become selectively viable.
-
-Positive frequency dependence creates a second threshold at the population level. When the divided architecture is intrinsically favorable but cannot invade from rarity, there is an unstable critical initial frequency
+The integrated phenotype can remain unchanged while the perturbation required to replace it becomes progressively smaller. More importantly, the structural and demographic thresholds are coupled rather than independent. Let the intrinsic value of a partial structural release be `F(d)=R(d)-kd`. Under the canonical positive-frequency extension,
 
 ```text
-p_C=(eta-Phi)/(2eta).
+Delta(d,p)=F(d)+eta(2p-1),
 ```
 
-A divided form introduced below `p_C` declines, whereas one introduced above it increases. As the system approaches the rare-establishment boundary, `p_C` falls to zero. Clustering, repeated origin, local clonal expansion, or immigration can therefore trigger a transition before isolated rare variants would spread. Where frequency-dependent interactions operate locally rather than globally, the same threshold predicts **cluster-assisted establishment**: isolated divided variants can disappear while a sufficiently concentrated local group grows. As `p_C` declines toward the establishment boundary, the local concentration or propagule pressure required to initiate that transition also declines. This spatial interpretation is conditional on local interaction structure; the canonical model itself is frequency dependent but not explicitly spatial.
+so growth begins above the **escape frontier**
 
-In the ordered environmental slice, the visible multifunctional phenotype can thus persist while its resistance to reorganization erodes in stages: first the structural innovation required to escape becomes smaller, then the population frequency required for establishment becomes smaller, and finally a rare divided type can invade. **Phenotypic stasis can therefore conceal a progressive loss of evolutionary resistance: persistence becomes easier to overturn before morphology changes.** This resembles the ecological idea that an apparently unchanged state can lose resilience before a regime shift (Scheffer et al. 2009), but the claim here is narrower. We do not derive generic early-warning signals such as critical slowing down. The quantities `d_J` and `p_C` are model-specific reorganization thresholds: one measures how large a structural innovation must be to gain positive intrinsic value, the other how common a favorable divided architecture must become before ecological feedback lets it increase. Morphology can therefore be a lagging indicator of changing evolutionary resistance. Valley crossing, bistability, and ecological resilience are established ideas; the contribution here is their ordered handoff within one multifunctional-to-divided architecture problem.
+```text
+p_escape(d)
+=
+1/2-F(d)/(2eta).
+```
+
+The two thresholds already introduced are slices of this same frontier. At the minimum intrinsically favorable release, `F(d_J)=0`, so `p_escape(d_J)=1/2`; at the completed divided endpoint, `p_escape(dmax)=p_C=(eta-Phi)/(2eta)`. Inside historical trapping, releases smaller than `d_J` have negative intrinsic value and therefore require more than half of the local population under positive frequency feedback, whereas larger favorable releases require progressively less demographic support. For a minority introduction, the minimum viable structural release solves
+
+```text
+R(d_escape)-k d_escape
+=
+eta(1-2p).
+```
+
+Thus **structural novelty and initial abundance can compensate for one another**: a larger favorable architectural change can establish from lower frequency, whereas a modest change can require repeated origin, immigration, clonal expansion, or local clustering. As environmental change lowers architecture cost, the entire frontier moves toward smaller `d` and lower `p`, expanding the combinations capable of escaping integration before morphology changes.
+
+Trait-dependent Allee thresholds, propagule pressure, and evolution of establishment thresholds are established invasion concepts (Kanarek and Webb 2010). The prediction here is narrower: in the declared multifunctional-to-divided model, `d_J` and `p_C` are orthogonal cuts through one architecture-frequency escape surface. Where interactions are local, frequency can be interpreted as local concentration, giving the frontier a conditional cluster-assisted-establishment interpretation; the canonical model itself is not spatial.
+
+The visible multifunctional phenotype can therefore persist while its **joint escape frontier** erodes. Morphology is a lagging indicator not only because `d_J` and `p_C` individually decline, but because an expanding set of structural-change × demographic-support combinations becomes selectively viable. This resembles declining resilience before ecological regime shifts (Scheffer et al. 2009), but it is not a generic early-warning theory and does not derive critical slowing down. Valley crossing, Allee thresholds, propagule pressure, and bistability are prior art; the SLK result is the model-specific frontier linking structural release to demographic support in one defined organizational transition.
 
 ### The three states should leave different natural histories
 
@@ -364,6 +380,8 @@ Guillaume, F., and S. P. Otto. 2012. Gene functional trade-offs and the evolutio
 Ingleby, F. C., I. Flis, and E. H. Morrow. 2015. Sex-biased gene expression and sexual conflict throughout development. *Cold Spring Harbor Perspectives in Biology* 7:a017632.
 
 Herron, M. D., S. Ghimire, C. R. Vinikoor, and R. E. Michod. 2014. Fitness trade-offs and developmental constraints in the evolution of soma: an experimental study in a volvocine alga. *Evolutionary Ecology Research* 16:203–221.
+
+Kanarek, A. R., and C. T. Webb. 2010. Allee effects, adaptive evolution, and invasion success. *Evolutionary Applications* 3:122–135.
 
 Kay, K. M., T. Jogesh, D. Tataru, and S. Akiba. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
 
