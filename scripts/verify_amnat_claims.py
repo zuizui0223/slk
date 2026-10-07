@@ -349,6 +349,26 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # The slice identities and environmental erosion survive other
+    # identity-preserving feedback scalings w(0)=0, w(dmax)=1.
+    def p_escape_scaled(d: float, k_value: float = k_escape) -> float:
+        w = (d / dmax_escape) ** 2
+        return 0.5 - intrinsic_release(d, k_value) / (2 * eta_escape * w)
+
+    assert math.isclose(p_escape_scaled(d_j_escape), 0.5)
+    assert math.isclose(p_escape_scaled(dmax_escape), p_c_escape)
+    assert p_escape_scaled(0.75, 1.4) < p_escape_scaled(0.75, 1.6)
+
+    checks["UTA1_4f_scaling_robust_slices"] = {
+        "scaling": "w(d)=(d/dmax)^2",
+        "p_escape_at_d_J": p_escape_scaled(d_j_escape),
+        "p_escape_at_dmax": p_escape_scaled(dmax_escape),
+        "lower_cost_is_easier": (
+            p_escape_scaled(0.75, 1.4) < p_escape_scaled(0.75, 1.6)
+        ),
+        "pass": True,
+    }
+
     # UTA1.5: stronger conflict need not mean larger architecture margin.
     L_A, s_A, K_A = 3.0, 0.2, 0.8
     L_B, s_B, K_B = 2.0, 0.8, 0.5
