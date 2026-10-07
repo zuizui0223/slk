@@ -38,7 +38,7 @@ def test_ecological_prediction_distinguishes_frequency_feedback_signs() -> None:
     assert "Positive frequency dependence" in manuscript
     assert "negative frequency dependence" in manuscript
     assert "fail when uncommon" in manuscript
-    assert "promote coexistence" in manuscript
+    assert "generate coexistence" in manuscript
 
 
 def test_conflict_strength_is_not_promoted_to_differentiation_rank() -> None:
@@ -53,7 +53,7 @@ def test_conflict_strength_is_not_promoted_to_differentiation_rank() -> None:
 def test_downstream_population_processes_are_demoted_to_supporting_theory() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8").lower()
     assert "finite-population fixation and long-run occupancy are retained in the supporting theory" in manuscript
-    assert "not additional explanations for multifunctionality" in manuscript
+    assert "rather than additional explanations for multifunctionality" in manuscript
 
 def test_persistent_multifunctionality_three_selective_states_are_registered() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
@@ -192,7 +192,7 @@ def test_persistence_erosion_thresholds_are_registered() -> None:
     assert "p_C" in theory
     assert "(eta-Phi)/(2eta)" in theory
     assert "easier to overturn before morphology changes" in manuscript
-    assert "critical initial frequency" in manuscript
+    assert "p_C=(eta-Phi)/(2eta)" in manuscript
 
 
 def test_structural_resolution_claims_are_candidate_relative() -> None:
@@ -232,8 +232,8 @@ def test_system_drift_is_not_confused_with_selective_bottleneck_turnover() -> No
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     assert "Developmental/system drift already shows" in manuscript
     assert "does not prescribe one biological organization" in manuscript
-    assert "which selective layer blocks replacement" in manuscript
-    assert "not hidden change beneath phenotypic stasis in general" in manuscript
+    assert "separates three decision criteria" in manuscript
+    assert "one integrated architecture and one specified divided alternative fixed" in manuscript
 
 
 def test_section_claim_map_matches_current_manuscript_structure() -> None:
@@ -258,8 +258,8 @@ def test_section_claim_map_matches_current_manuscript_structure() -> None:
 
 def test_hidden_resistance_is_not_promoted_to_generic_evolvability() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
-    assert "Nor is it a theory of genetic robustness, evolutionary capacitance, or cryptic genetic variation" in manuscript
-    assert "d_J` and `p_C` are orthogonal slices of one escape frontier" in manuscript
+    assert "This is not generic resilience, propagule-pressure, or evolvability theory" in manuscript
+    assert "d_J` and `p_C` slice identities" in manuscript
 
 
 def test_pseudomonas_is_registered_only_as_positive_control() -> None:
@@ -427,7 +427,7 @@ def test_escape_frontier_is_scope_bounded_against_allee_prior_art() -> None:
     assert "p_escape(d)" in manuscript
     assert "UTA1.4f" in theory
     assert "UTA1.4f" in ledger
-    assert "eta(d/dmax)(2p-1)" in theory
+    assert "eta (d/dmax)(2p-1)" in theory
     assert "dmax/(2eta)" in theory
     assert "Trait-dependent establishment, Allee thresholds, and propagule pressure" in prior
     assert "must **not** claim a first interaction between phenotype and initial abundance" in prior
