@@ -213,6 +213,21 @@ The screen therefore still contains **no system that simultaneously measures a s
 
 The absence is specific, not generic: existing systems collectively cover every component, but not the **turnover of the first failing layer for one resident architecture and one defined structural alternative across environments**.
 
+## Escape-frontier evidence gap
+
+No system in the current screen maps both axes of the new SLK escape frontier for one resident integrated architecture.
+
+Existing studies vary one axis at a time:
+
+- frequency / starting composition is manipulated in *Pseudomonas fluorescens*, *P. stutzeri*, *Bacillus thuringiensis*, and the harvester-ant lineage system;
+- structural or functional specialization is manipulated or experimentally evolved in *Bacillus subtilis*, *P. aeruginosa*, *Solanum rostratum*, *Pleodorina*, and *Eudorina*.
+
+What is missing is a factorial series of **partial structural release x initial frequency** for variants measured against the same integrated resident, ideally repeated across environments. Such a series would estimate the sign boundary directly rather than infer it from separate studies.
+
+The strongest model-specific falsification is sharper still. Under the proportional-feedback, cost-only environmental slice, the measured escape frontier should translate in parallel across environments. A change in frontier shape would reject that mechanism and require a change in recovery geometry and/or ecological feedback.
+
+Thus the empirical gap is no longer merely "measure all three SLK gates." It is also: **map whether structural novelty and demographic support trade off along the predicted frontier, and whether environmental change moves that frontier in the predicted way.**
+
 ## Current empirical synthesis
 
 The current evidence no longer rests on one analogue. Six complementary empirical roles are now covered.
