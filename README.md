@@ -48,7 +48,7 @@ The framework now makes four natural-history predictions.
 
 **3. Historical trapping and ecological stabilization predict different geographic mosaics.** Strict convex recovery creates architecture-path hysteresis: forward and reverse environmental change can retain different architectures even when frequency dependence is absent. Positive frequency dependence instead creates resident-frequency priority effects and alternative locally stable architectures; negative frequency dependence predicts stable coexistence or mixed zones.
 
-**4. Persistence can become easier to overturn before morphology changes.** Within the historical-trapping state, the minimum favorable one-step structural release `d_J` shrinks toward zero as the accessibility boundary is approached. Under positive frequency dependence, the critical initial frequency `p_C=(eta-Phi)/(2eta)` then shrinks toward zero as rare establishment becomes possible. An apparently stable integrated phenotype can therefore become progressively more susceptible to architectural innovation, clustering, immigration or repeated origin before a visible transition occurs.
+**4. Structural novelty and demographic support trade off along one escape frontier.** Under the canonical positive-frequency extension, `p_escape(d)=1/2-[R(d)-kd]/(2eta)`. The structural threshold `d_J` is the `p=1/2` slice and the endpoint frequency threshold `p_C` is the `d=dmax` slice. Larger favorable structural changes therefore require less initial abundance, while clustering, immigration, or repeated origin can compensate for more modest novelty; environmental change can move the whole frontier before morphology changes.
 
 The strongest prediction is not that hysteresis, coexistence or frequency dependence exist; all are established phenomena. It is that the first failing bottleneck can turn over for one unchanged organization while the structural or demographic perturbation needed for reorganization shrinks.
 
@@ -71,7 +71,7 @@ The mathematical machinery supports the biological theory rather than replacing 
 5. the comparative prediction that stronger conflict need not imply more differentiation;
 6. the ecological prediction that profitability and rare establishment can be displaced along environmental gradients;
 7. the prediction that ecological context can change the evolutionary resolution of conflict, including cases in which the same phenotype persists for different reasons across environments;
-8. the prediction that phenotypic stasis can conceal declining evolutionary resistance: the structural jump and/or local frequency needed to trigger reorganization can shrink before morphology changes.
+8. the prediction that phenotypic stasis can conceal a moving architecture-frequency escape frontier: structural novelty and demographic support can compensate for one another, and the viable set of combinations can expand before morphology changes.
 
 Finite-population fixation and weak-mutation occupancy remain valid **downstream extensions**. Under the specified symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy re-align at `Phi=0`. Those process results are retained because they delimit stronger evolutionary claims, not because they are a fourth explanation for persistent multifunctionality.
 
