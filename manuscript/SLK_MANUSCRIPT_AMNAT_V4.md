@@ -273,7 +273,7 @@ R(d_escape)/d_escape-k
 (eta/dmax)(1-2p).
 ```
 
-Thus **structural novelty and initial abundance can compensate for one another**: a larger favorable architectural change can establish from lower frequency, whereas a modest change can require repeated origin, immigration, clonal expansion, or local clustering. As environmental change lowers architecture cost, the entire frontier moves toward smaller `d` and lower `p`, expanding the combinations capable of escaping integration before morphology changes.
+Thus **structural novelty and initial abundance can compensate for one another**: a larger favorable architectural change can establish from lower frequency, whereas a modest change can require repeated origin, immigration, clonal expansion, or local clustering. As environmental change lowers architecture cost, the frontier moves toward easier escape. Under the proportional scaling this is a parallel shift: frontier shape is preserved if only `k` changes, whereas a shape change implies that recovery geometry or ecological feedback changed as well.
 
 Trait-dependent Allee thresholds, propagule pressure, and evolution of establishment thresholds are established invasion concepts (Kanarek and Webb 2010). The prediction here is narrower: in the declared multifunctional-to-divided model, release-proportional ecological feedback preserves the identity limit and makes `d_J` and `p_C` orthogonal cuts through one architecture-frequency escape surface. Where interactions are local, frequency can be interpreted as local concentration, giving the frontier a conditional cluster-assisted-establishment interpretation; the canonical model itself is not spatial.
 
