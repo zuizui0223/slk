@@ -265,7 +265,7 @@ p_escape(d)
 1/2-[dmax/(2eta)][R(d)/d-k].
 ```
 
-The extension scales ecological feedback with structural release, so the frequency effect vanishes as `d->0` and recovers the registered endpoint pair at `d=dmax`. The two thresholds already introduced are slices of this same frontier. At the minimum intrinsically favorable release, `R(d_J)/d_J=k`, so `p_escape(d_J)=1/2`; at the completed divided endpoint, `p_escape(dmax)=p_C=(eta-Phi)/(2eta)`. Inside historical trapping, releases smaller than `d_J` require more than half of the local population under positive feedback, whereas larger favorable releases require progressively less demographic support. For a minority introduction, the minimum viable structural release solves
+The proportional extension scales ecological feedback with structural release, so the frequency effect vanishes as `d->0` and recovers the registered endpoint pair at `d=dmax`. The two thresholds already introduced are slices of this same frontier. These two slice identities, and the downward shift of the frontier as architecture cost falls, remain valid for any positive identity-preserving scaling `w(d)` with `w(0)=0` and `w(dmax)=1`; the proportional choice is what guarantees the monotonic novelty–abundance compensation shown here. At the minimum intrinsically favorable release, `R(d_J)/d_J=k`, so `p_escape(d_J)=1/2`; at the completed divided endpoint, `p_escape(dmax)=p_C=(eta-Phi)/(2eta)`. Inside historical trapping, releases smaller than `d_J` require more than half of the local population under positive feedback, whereas larger favorable releases require progressively less demographic support. For a minority introduction, the minimum viable structural release solves
 
 ```text
 R(d_escape)/d_escape-k
