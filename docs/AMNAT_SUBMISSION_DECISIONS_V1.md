@@ -91,7 +91,7 @@ The submission answer is now four concrete predictions:
 3. **Conflict strength does not rank organization.** Stronger functional conflict can remain integrated when little conflict is recoverable or division of labor is costly.
 4. **Different bottlenecks predict different natural histories.** Path limitation predicts environmental lag and architecture legacy; positive frequency dependence predicts priority-dependent alternative patches; negative frequency dependence predicts mixed zones; weak feedback permits more direct replacement.
 
-Hysteresis, bistability, coexistence, valley crossing, frequency dependence, multiple adaptive limits, and environmentally reshaped trade-offs are prior art. The residual contribution is the linked ordering of value and access, the explicit condition for an establishment-only phase, and the predicted decline of `d_J` and `p_C` before visible reorganization in one defined multifunctional-to-divided transition.
+Hysteresis, bistability, coexistence, valley crossing, frequency dependence, high divided-state performance coexisting with generalist advantage in some population contexts, multiple adaptive limits, and environmentally reshaped trade-offs are prior art. The residual contribution is the linked ordering of value and access, the explicit condition for an establishment-only phase, and the predicted decline of `d_J` and `p_C` before visible reorganization in one defined multifunctional-to-divided transition.
 
 ## Submission state
 
