@@ -46,7 +46,8 @@ Core claims:
 9. field studies of floral frequency dependence show that rarity itself can change reproductive success and that the sign of this effect can vary among populations and years, grounding the ecological-establishment mechanism;
 10. *Pedicularis rex* provides a literature-based example in which the same integrated floral architecture experiences a geographic mosaic in the balance of mutualist and antagonist selection;
 11. finite-population fixation and weak-mutation occupancy remain supporting-theory extensions rather than headline explanations;
-12. the current empirical bridge ledger separates architecture value, developmental access, and rare establishment across real systems, while showing that no existing system yet closes the full ordered turnover for one unchanged integrated architecture.
+12. the current empirical bridge ledger separates architecture value, developmental access, and rare establishment across real systems, while showing that no existing system yet closes the full ordered turnover for one unchanged integrated architecture;
+13. under the canonical positive-frequency extension, partial structural release and initial abundance lie on one architecture-frequency escape frontier, with `d_J` and `p_C` as orthogonal slices.
 
 Flagship exclusions:
 
