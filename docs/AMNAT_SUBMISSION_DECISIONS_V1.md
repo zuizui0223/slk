@@ -82,16 +82,16 @@ The portal validator now refuses a reviewer package whose receipt is not both `E
 
 The remaining reviewer question is biological:
 
-> Does the hidden turnover of evolutionary bottlenecks behind one unchanged phenotype explain something beyond established specialization theory, known hysteresis, and the general fact that ecology shapes integration?
+> Does the ordered handoff among architecture value, path accessibility, and rare establishment explain something beyond established specialization theory, hysteresis, multiple limits to adaptation, and environmentally shifting trade-offs?
 
 The submission answer is now four concrete predictions:
 
-1. **One unchanged phenotype can hide turnover in the limiting evolutionary process.** Across environments, persistence can shift from architecture economics, to path limitation, to ecological establishment before morphology changes.
+1. **The three decision boundaries are not interchangeable.** Under the registered convex cost-lowering slice, architecture value must cross before local accessibility (`E_V<E_A`), whereas an ecology-only persistence phase appears only if rare establishment still fails at `E_A`.
 2. **Phenotypic stasis can hide declining evolutionary resistance.** Before morphology changes, the minimum favorable structural release and/or the critical local frequency required for a divided architecture to spread can shrink toward zero.
 3. **Conflict strength does not rank organization.** Stronger functional conflict can remain integrated when little conflict is recoverable or division of labor is costly.
 4. **Different bottlenecks predict different natural histories.** Path limitation predicts environmental lag and architecture legacy; positive frequency dependence predicts priority-dependent alternative patches; negative frequency dependence predicts mixed zones; weak feedback permits more direct replacement.
 
-Hysteresis, bistability, coexistence, valley crossing, and frequency dependence are prior art. The residual contribution is their ordered placement within one multifunctional-to-divided architecture problem and the resulting prediction that the selective meaning and fragility of an unchanged integrated phenotype can turn over before visible reorganization.
+Hysteresis, bistability, coexistence, valley crossing, frequency dependence, multiple adaptive limits, and environmentally reshaped trade-offs are prior art. The residual contribution is the linked ordering of value and access, the explicit condition for an establishment-only phase, and the predicted decline of `d_J` and `p_C` before visible reorganization in one defined multifunctional-to-divided transition.
 
 ## Submission state
 
@@ -99,7 +99,7 @@ Hysteresis, bistability, coexistence, valley crossing, and frequency dependence 
 TARGET                  = THE_AMERICAN_NATURALIST
 ARTICLE_TYPE            = MAJOR_ARTICLE
 MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V4.md
-SCIENTIFIC_FRAMING      = ECOLOGICAL_RESOLUTIONS_THREE_STATE_THEORY
+SCIENTIFIC_FRAMING      = CHANGING_BARRIERS_TO_DIVISION_OF_LABOR
 THEORY                  = READY
 FORMAT_LIMITS           = PASS
 FULL_CI                 = PASS
