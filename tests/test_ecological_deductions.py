@@ -358,3 +358,13 @@ def test_value_context_separation_is_not_promoted_as_new() -> None:
     assert "high divided-state value need not imply ecological success in every population context" in manuscript
     assert "Divided-state performance versus population context" in prior
     assert "must **not** claim that a high-value divided organization being disadvantaged" in prior
+
+
+def test_changing_tradeoff_invasion_landscapes_are_prior_art() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    prior = (ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md").read_text(encoding="utf-8")
+    assert "Rueffler, Van Dooren, and Metz 2004" in manuscript
+    assert "trade-off–invasion integration" in manuscript
+    assert "changing-fitness-landscape treatment of trade-offs" in prior
+    assert "three-surface relation" not in prior
+    assert "completed divided-state value, a local release criterion" in prior
