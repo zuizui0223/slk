@@ -115,6 +115,14 @@ Therefore SLK must **not** claim that evolution generally has multiple limiting 
 
 The narrower SLK result is tied to one multifunctional-to-divided architecture comparison. Under the registered convex cost-lowering slice, endpoint value and small-step accessibility have a derived order (`E_V<E_A`), an ecology-only interval has the explicit condition `Delta_R(E_A)<0`, and the structural and demographic perturbations required to escape persistence can shrink as `d_J->0` and `p_C->0`. The novelty claim is this linked ordering and erosion of resistance within the focal reorganization problem, not the generic existence of multiple adaptive limits.
 
+### Environmentally reshaped trade-offs
+
+Siepielski et al. (2026) explicitly review how climate warming can alter the occurrence, strength, and expression of trade-offs, and frame these changes as shifting constraints on the optimization of multiple fitness components.
+
+Therefore SLK must **not** claim that environmental change reshaping a trade-off, moving a constraint, or changing the balance among fitness components is new.
+
+The residual SLK claim begins after that general point. For one specified integrated architecture and one specified divided alternative, the model separates net architecture value, local path accessibility, and rare establishment. Under the registered convex cost-lowering slice, value must cross before local accessibility; an establishment-only interval appears only if `Delta_R(E_A)<0`; and the escape thresholds `d_J` and `p_C` can decline before visible reorganization. This ordering and conditional handoff are narrower than generic environmental reshaping of trade-offs.
+
 ### Robustness, evolvability, and cryptic variation
 
 Robustness/evolvability theory already studies how phenotypes can remain insensitive to mutation or environment while hidden variation accumulates, and how stress or capacitance can expose selectable phenotypic variation (Masel & Trotter 2010).
@@ -227,6 +235,7 @@ A defensible positioning paragraph is:
 - Chevin LM, Bridle J. 2025. Impacts of limits to adaptation on population and community persistence in a changing environment. *Philosophical Transactions of the Royal Society B* 380:20230322.
 - Masel J, Trotter MV. 2010. Robustness and evolvability. *Trends in Genetics* 26:406–414.
 - Schiffman JS, Ralph PL. 2022. System drift and speciation. *Evolution* 76:236–251.
+- Siepielski AM, O'Connor M, Shah AA, Mauro AA, Ghalambor CK. 2026. The reshaping of trade-offs under climate warming. *Trends in Ecology & Evolution* 41:556–570. DOI 10.1016/j.tree.2026.03.005.
 - Evans KM, Felice R. 2026. Integration and modularity and their role in speciation and evolutionary diversification. *Nature Reviews Biodiversity* 2:457–466.
 - Farina SC, Kane EA, Hernandez LP. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
 - Schwenk K, Wagner GP. 2001. Function and the evolution of phenotypic stability: connecting pattern to process. *American Zoologist* 41:552–563.
