@@ -259,7 +259,7 @@ def test_section_claim_map_matches_current_manuscript_structure() -> None:
 def test_hidden_resistance_is_not_promoted_to_generic_evolvability() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     assert "Nor is it a theory of genetic robustness, evolutionary capacitance, or cryptic genetic variation" in manuscript
-    assert "d_J and p_C quantify how large a structural change or initial abundance must be" in manuscript
+    assert "d_J` and `p_C` are orthogonal slices of one escape frontier" in manuscript
 
 
 def test_pseudomonas_is_registered_only_as_positive_control() -> None:
@@ -368,3 +368,49 @@ def test_changing_tradeoff_invasion_landscapes_are_prior_art() -> None:
     assert "changing-fitness-landscape treatment of trade-offs" in prior
     assert "three-surface relation" not in prior
     assert "completed divided-state value, a local release criterion" in prior
+
+
+def test_architecture_frequency_escape_frontier_unifies_thresholds() -> None:
+    eta = 0.8
+    k = 1.5
+
+    def recovery(d: float) -> float:
+        return d + d * d
+
+    def intrinsic(d: float, kk: float = k) -> float:
+        return recovery(d) - kk * d
+
+    def p_escape(d: float, kk: float = k) -> float:
+        return 0.5 - intrinsic(d, kk) / (2 * eta)
+
+    d_j = 0.5
+    phi = intrinsic(1.0)
+    p_c = (eta - phi) / (2 * eta)
+
+    assert p_escape(d_j) == pytest.approx(0.5)
+    assert p_escape(1.0) == pytest.approx(p_c)
+    assert p_escape(0.25) > 0.5
+    assert p_escape(0.75) < 0.5
+
+    # Higher initial frequency lowers the release required on the favorable branch.
+    def d_escape(p: float) -> float:
+        y = eta * (1 - 2 * p)
+        return (0.5 + (0.25 + 4 * y) ** 0.5) / 2
+
+    assert d_escape(0.4) < d_escape(0.25)
+
+    # Lower architecture cost shifts the frequency frontier downward.
+    assert p_escape(0.75, 1.4) < p_escape(0.75, 1.6)
+
+
+def test_escape_frontier_is_scope_bounded_against_allee_prior_art() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    theory = THEORY.read_text(encoding="utf-8")
+    prior = (ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md").read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+
+    assert "p_escape(d)" in manuscript
+    assert "UTA1.4f" in theory
+    assert "UTA1.4f" in ledger
+    assert "Trait-dependent establishment, Allee thresholds, and propagule pressure" in prior
+    assert "must **not** claim a first interaction between phenotype and initial abundance" in prior
