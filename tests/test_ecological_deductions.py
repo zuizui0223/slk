@@ -338,3 +338,14 @@ def test_empirical_bridge_is_on_canonical_reader_path() -> None:
     assert "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md" in section_map
     assert "no system that simultaneously measures" in bridge
     assert "unresolved" in bridge
+
+
+def test_environmental_tradeoff_shifts_are_prior_art_not_slk_novelty() -> None:
+    manuscript = MANUSCRIPT.read_text(encoding="utf-8")
+    prior = (ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md").read_text(encoding="utf-8")
+    assert "Siepielski et al. 2026" in manuscript
+    assert "does not claim that environmental change generically shifts constraints or trade-offs" in manuscript
+    assert "strict convexity forces the architecture-value crossing to precede local accessibility" in manuscript
+    assert "Environmentally reshaped trade-offs" in prior
+    assert "must **not** claim that environmental change reshaping a trade-off" in prior
+    assert "Delta_R(E_A)<0" in prior
