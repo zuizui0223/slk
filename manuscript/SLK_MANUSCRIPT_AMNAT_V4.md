@@ -254,7 +254,7 @@ Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that
 The integrated phenotype can remain unchanged while the perturbation required to replace it becomes progressively smaller. More importantly, the structural and demographic thresholds are coupled rather than independent. Let the intrinsic value of a partial structural release be `F(d)=R(d)-kd`. Under the canonical positive-frequency extension,
 
 ```text
-Delta(d,p)=F(d)+eta(2p-1),
+Delta(d,p)=F(d)+eta(d/dmax)(2p-1),
 ```
 
 so growth begins above the **escape frontier**
@@ -262,15 +262,15 @@ so growth begins above the **escape frontier**
 ```text
 p_escape(d)
 =
-1/2-F(d)/(2eta).
+1/2-[dmax/(2eta)][R(d)/d-k].
 ```
 
 The extension scales ecological feedback with structural release, so the frequency effect vanishes as `d->0` and recovers the registered endpoint pair at `d=dmax`. The two thresholds already introduced are slices of this same frontier. At the minimum intrinsically favorable release, `R(d_J)/d_J=k`, so `p_escape(d_J)=1/2`; at the completed divided endpoint, `p_escape(dmax)=p_C=(eta-Phi)/(2eta)`. Inside historical trapping, releases smaller than `d_J` require more than half of the local population under positive feedback, whereas larger favorable releases require progressively less demographic support. For a minority introduction, the minimum viable structural release solves
 
 ```text
-R(d_escape)-k d_escape
+R(d_escape)/d_escape-k
 =
-eta(1-2p).
+(eta/dmax)(1-2p).
 ```
 
 Thus **structural novelty and initial abundance can compensate for one another**: a larger favorable architectural change can establish from lower frequency, whereas a modest change can require repeated origin, immigration, clonal expansion, or local clustering. As environmental change lowers architecture cost, the entire frontier moves toward smaller `d` and lower `p`, expanding the combinations capable of escaping integration before morphology changes.
