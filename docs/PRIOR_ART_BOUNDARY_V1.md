@@ -164,8 +164,8 @@ Propagule pressure and Allee thresholds are established determinants of establis
 
 Therefore SLK must **not** claim a first interaction between phenotype and initial abundance, a first trait-dependent establishment threshold, or a first evolutionary reduction of an Allee threshold.
 
-The narrower SLK result is algebraically tied to its architecture model. Under the declared constant-`eta` extension,
-`p_escape(d)=1/2-[R(d)-kd]/(2eta)`, so the pre-existing structural threshold `d_J` and frequency threshold `p_C` become orthogonal slices of one architecture-frequency surface. This creates a specific compensation law between structural release and demographic support for one multifunctional-to-divided transition. If feedback varies with release size or the path is multidimensional, that frontier must be re-derived.
+The narrower SLK result is algebraically tied to its architecture model. Under the declared identity-preserving extension `Delta(d,p)=R(d)-kd+eta(d/dmax)(2p-1)`,
+`p_escape(d)=1/2-[dmax/(2eta)][R(d)/d-k]`, so the pre-existing structural threshold `d_J` and frequency threshold `p_C` become orthogonal slices of one architecture-frequency surface. This creates a specific compensation law between structural release and demographic support for one multifunctional-to-divided transition. The linear release scaling is a model choice that preserves `d=0` identity and the registered endpoint pair. Other scaling functions or multidimensional paths require a re-derived frontier.
 
 ### Resilience and tipping-point language
 
