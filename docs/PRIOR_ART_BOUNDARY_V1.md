@@ -158,6 +158,15 @@ Therefore SLK must **not** claim that a high-value divided organization being di
 SLK's narrower contribution is to distinguish architecture value, local accessibility, and rare establishment as separately testable criteria for one specified organizational transition, derive the value-before-access ordering under the convex cost-lowering slice, and state the additional condition required for ecology to become the final early bottleneck.
 
 
+### Trait-dependent establishment, Allee thresholds, and propagule pressure
+
+Propagule pressure and Allee thresholds are established determinants of establishment, and Kanarek & Webb (2010) explicitly couple adaptive evolution to a trait controlling the Allee threshold so that evolutionary change can rescue populations that would otherwise fail to establish.
+
+Therefore SLK must **not** claim a first interaction between phenotype and initial abundance, a first trait-dependent establishment threshold, or a first evolutionary reduction of an Allee threshold.
+
+The narrower SLK result is algebraically tied to its architecture model. Under the declared constant-`eta` extension,
+`p_escape(d)=1/2-[R(d)-kd]/(2eta)`, so the pre-existing structural threshold `d_J` and frequency threshold `p_C` become orthogonal slices of one architecture-frequency surface. This creates a specific compensation law between structural release and demographic support for one multifunctional-to-divided transition. If feedback varies with release size or the path is multidimensional, that frontier must be re-derived.
+
 ### Resilience and tipping-point language
 
 Ecological resilience theory already shows that a system can approach a critical transition while the observed state changes little, and generic early-warning work develops signals such as critical slowing down (Scheffer et al. 2009).
@@ -232,7 +241,7 @@ The formal threshold atlas, witness family, fixation invariant, and uncertainty 
 
 A defensible positioning paragraph is:
 
-> Theory already explains many conditions that favor division of labor, and natural systems resolve comparable conflicts through structural partitioning, temporal regulation, persistent integration, or mixed strategies. We therefore ask why one integrated architecture can persist relative to one specified divided alternative. That alternative may fail because it does not repay its cost, because favorable endpoints are separated by an unfavorable path, or because it cannot establish when rare. Under the declared environmental slice, these bottlenecks have derived and testable ordering conditions, so the same visible organization can persist while the selective layer opposing its replacement and the perturbation required to escape it both change.
+> Theory already explains many conditions that favor division of labor, and natural systems resolve comparable conflicts through structural partitioning, temporal regulation, persistent integration, or mixed strategies. We therefore ask why one integrated architecture can persist relative to one specified divided alternative. That alternative may fail because it does not repay its cost, because favorable endpoints are separated by an unfavorable path, or because it cannot establish when rare. Under the declared environmental slice, these bottlenecks have derived and testable ordering conditions. Under the canonical positive-frequency extension, structural release and initial abundance additionally form one escape frontier, so the same visible organization can persist while both the selective layer opposing replacement and the combinations capable of escaping it change.
 
 ## Citation targets
 
@@ -262,6 +271,7 @@ A defensible positioning paragraph is:
 - Guillaume F, Otto SP. 2012. Gene functional trade-offs and the evolution of pleiotropy. *Genetics* 192:1389–1409.
 - Ingleby FC, Flis I, Morrow EH. 2015. Sex-biased gene expression and sexual conflict throughout development. *Cold Spring Harbor Perspectives in Biology* 7:a017632.
 - Dellinger AS, Artuso S, Fernández-Fernández DM, Schönenberger J. 2021. Stamen dimorphism in bird-pollinated flowers: investigating alternative hypotheses on the evolution of heteranthery. *Evolution* 75:2589–2599.
+- Kanarek AR, Webb CT. 2010. Allee effects, adaptive evolution, and invasion success. *Evolutionary Applications* 3:122–135. DOI 10.1111/j.1752-4571.2009.00112.x.
 - Kay KM, Jogesh T, Tataru D, Akiba S. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
 - Dragoš A, Kiesewalter H, Martin M, et al. 2018. Division of labor during biofilm matrix production. *Current Biology* 28:1903–1913.e5.
 - Herron MD, Ghimire S, Vinikoor CR, Michod RE. 2014. Fitness trade-offs and developmental constraints in the evolution of soma: an experimental study in a volvocine alga. *Evolutionary Ecology Research* 16:203–221.
