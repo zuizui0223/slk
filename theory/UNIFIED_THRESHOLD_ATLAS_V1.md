@@ -798,7 +798,7 @@ This does not make valley crossing or coordination thresholds new mathematical p
 
 ## Corollary UTA1.4f — structural release and initial frequency lie on one escape frontier
 
-UTA1.4e treated structural release and establishment frequency as two successive perturbation thresholds. Under one additional canonical assumption they are slices of a single two-dimensional boundary.
+UTA1.4e treated structural release and establishment frequency as two successive perturbation thresholds. They can be placed on one coupled boundary only if the extension preserves the identity limit: when structural release vanishes, the differentiated variant becomes the integrated type and any architecture-specific ecological difference must also vanish.
 
 Let
 
@@ -809,64 +809,45 @@ R(d)-kd,
 0<d<=dmax,
 ```
 
-be the intrinsic net value of a partial structural release `d` relative to the integrated state. Extend the registered positive frequency-feedback pair to each partial-release variant by assuming the same local coordination coefficient `eta>0` over the focal release family:
+be the intrinsic net value of a partial structural release `d` relative to the integrated state. Use the identity-preserving canonical extension:
 
 ```text
 Delta(d,p;k)
 =
 F(d;k)
 +
-eta(2p-1).
+eta (d/dmax)(2p-1),
+eta>0.
 ```
 
-This is a declared canonical extension. It does not assert that ecological feedback is independent of release size in nature.
+At `d=dmax` this recovers `Delta=Phi+eta(2p-1)`, whereas `Delta(d,p)->0` as `d->0` for every `p`. The linear scaling of feedback with release is a declared minimal extension, not a universal ecological law.
 
 ### Escape frontier
 
-For `eta>0`, the zero-growth boundary is
+For `d>0`, define `q(d)=R(d)/d`. Then
+
+```text
+sign Delta(d,p;k)
+=
+sign [q(d)-k+(eta/dmax)(2p-1)].
+```
+
+The zero-growth boundary is
 
 ```text
 p_escape(d;k)
 =
-1/2
--
-F(d;k)/(2eta)
-=
-1/2
--
-[R(d)-kd]/(2eta).
+1/2-[dmax/(2eta)][q(d)-k].
 ```
 
-Hence
-
-```text
-p > p_escape(d;k)
-    -> the release variant increases,
-
-p < p_escape(d;k)
-    -> the release variant declines.
-```
-
-The mathematical boundary can lie outside the physical interval `[0,1]`. Its location then has an immediate interpretation:
-
-```text
-p_escape <= 0
-    -> the variant can increase from rarity,
-
-0 < p_escape < 1
-    -> establishment requires a finite initial frequency,
-
-p_escape >= 1
-    -> the variant cannot increase even when initially very common
-       under the declared pair mapping.
-```
+Above the boundary the release variant increases; below it, it declines. A boundary outside `[0,1]` means no interior frequency threshold exists.
 
 ### The two earlier thresholds are orthogonal slices
 
-Within the historical-trapping interval, UTA1.4e defines `d_J` by
+UTA1.4e defines `d_J` by
 
 ```text
-F(d_J;k)=0.
+q(d_J)=k.
 ```
 
 Therefore
@@ -878,7 +859,7 @@ p_escape(d_J;k)=1/2.
 At the completed divided endpoint,
 
 ```text
-F(dmax;k)=Phi,
+q(dmax)-k=Phi/dmax,
 ```
 
 so
@@ -905,154 +886,81 @@ the d=dmax slice of the escape frontier.
 
 The structural-jump threshold and the frequency threshold are therefore not two unrelated warning quantities in this canonical model. They are orthogonal cuts through one coupled architecture-frequency surface.
 
-### Geometry inside historical trapping
+### Structural-demographic compensation
 
-Assume strictly convex `R` and
+For strictly convex `R` with `R(0)=0`, `q(d)` is strictly increasing. Therefore
 
 ```text
-k_local < k < k_global.
+partial p_escape / partial d < 0.
 ```
 
-Then `F(0;k)=0`, `F'(0;k)<0`, and `F(dmax;k)>0`. The intrinsic path first moves downhill, reaches a unique minimum `d_M`, and then rises through the unique positive zero `d_J`.
-
-Because
+Within historical trapping, `k_local<k<k_global`,
 
 ```text
-p_escape(d;k)
+lim d->0 p_escape(d;k)
 =
-1/2-F(d;k)/(2eta),
+1/2+dmax(k-k_local)/(2eta)
+>
+1/2.
 ```
 
-the escape frontier is strictly concave in `d` and reaches its maximum at the least favorable intrinsic intermediate `d_M`. In particular,
+The frontier crosses one half at `d_J` and reaches `p_C` at `dmax`:
 
 ```text
-0<d<d_J
-    -> F(d;k)<0
-    -> p_escape(d;k)>1/2,
-
-d=d_J
-    -> p_escape=1/2,
-
-d>d_J
-    -> F(d;k)>0
-    -> p_escape(d;k)<1/2.
+0<d<d_J  -> p_escape(d)>1/2
+d=d_J    -> p_escape(d)=1/2
+d>d_J    -> p_escape(d)<1/2.
 ```
-
-A partially released architecture inside the intrinsic valley can therefore require majority-level introduction under positive frequency feedback, whereas a sufficiently large structural jump can establish from a minority.
-
-This does not mean that larger release is universally better. The result follows from the declared strictly convex recovery path and constant-`eta` extension.
 
 ### Minority-frequency structural threshold
 
-For a fixed initial frequency
+For fixed `0<=p<=1/2`, escape requires
 
 ```text
-0<=p<=1/2,
+q(d)>k+(eta/dmax)(1-2p).
 ```
 
-define
+If `Phi>eta(1-2p)`, a unique `d_escape(p;k)` satisfies equality. The special cases are
 
 ```text
-y_p
-=
-eta(1-2p)
->=0.
+p=1/2  -> d_escape=d_J
+p->0   -> full-endpoint escape requires Phi>=eta
+d=dmax -> p_escape=p_C.
 ```
 
-Escape requires
-
-```text
-F(d;k)>y_p.
-```
-
-On the increasing branch beyond `d_J`, if
-
-```text
-Phi>y_p,
-```
-
-there is a unique minimum release `d_escape(p;k)` satisfying
-
-```text
-R(d_escape)-k d_escape
-=
-eta(1-2p).
-```
-
-Then
-
-```text
-d>d_escape(p;k)
-    -> increase at initial frequency p,
-
-d<d_escape(p;k)
-    -> decline at initial frequency p
-```
-
-within the declared branch.
-
-The special cases recover the earlier criteria:
-
-```text
-p=1/2
-    -> d_escape=d_J,
-
-p->0
-    -> escape requires F(d;k)>=eta,
-
-d=dmax
-    -> rare endpoint invasion requires Phi>=eta.
-```
-
-Where the interior threshold exists,
+Where `q` is differentiable,
 
 ```text
 partial d_escape / partial p
 =
--2eta /
-[R'(d_escape)-k]
+-[2eta/dmax]/q'(d_escape)
 <
 0.
 ```
 
-Thus a higher initial frequency reduces the structural release required for establishment, while a larger favorable structural release reduces the initial frequency required for establishment.
-
 ### Environmental erosion of the frontier
 
-Under the registered cost-lowering slice
-
-```text
-k(E)
-=
-k0-c(E-E0),
-c>0,
-```
-
-the frequency frontier shifts as
+Under `k(E)=k0-c(E-E0)`, `c>0`,
 
 ```text
 partial p_escape(d,E) / partial E
 =
--cd/(2eta)
+-c dmax/(2eta)
 <
-0
+0,
 ```
 
-for every `d>0`.
-
-For a fixed minority frequency with an interior structural threshold,
+and, for an interior `d_escape`,
 
 ```text
 partial d_escape / partial E
 =
--
-c d_escape /
-[R'(d_escape)-k(E)]
+-c/q'(d_escape)
 <
 0.
 ```
 
-Environmental change therefore expands the set of architecture-frequency combinations that can escape the integrated resident before any morphological transition is required.
+Lower architecture cost expands the set of structural-release x initial-frequency combinations that can escape before visible reorganization.
 
 ### Biological interpretation
 
@@ -1074,7 +982,7 @@ This is stronger than saying separately that `d_J` and `p_C` decline. It predict
 
 Trait-dependent establishment thresholds, propagule pressure, Allee effects, and eco-evolutionary changes in Allee thresholds are established topics. UTA1.4f does not claim a first general interaction between phenotype and abundance.
 
-Its SLK-specific result is the exact frontier generated when the registered convex architecture-release model is coupled to the registered constant-`eta` frequency feedback. If ecological feedback varies with release size, if multiple release paths exist, or if local abundance is spatially structured, a different frontier must be derived. The result is therefore a model-specific derived ecological prediction, not a universal law.
+Its SLK-specific result is the exact frontier generated when the registered convex architecture-release model is coupled to the declared release-proportional positive feedback. This scaling preserves the `d->0` identity limit and the registered endpoint pair. Other scaling functions `w(d)` with `w(0)=0` and `w(dmax)=1`, multidimensional release paths, or explicit spatial interactions generally require a new frontier. The result is therefore model-specific, not universal.
 
 ---
 
