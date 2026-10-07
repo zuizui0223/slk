@@ -410,6 +410,13 @@ def test_architecture_frequency_escape_frontier_unifies_thresholds() -> None:
     assert p_escape(0.75, 1.6) == pytest.approx(0.40625)
     assert p_escape(0.75, 1.4) < p_escape(0.75, 1.6)
 
+    # Cost-only environmental change is a parallel frontier translation
+    # under proportional feedback scaling.
+    shift_at_small_release = p_escape(0.25, 1.4) - p_escape(0.25, 1.6)
+    shift_at_large_release = p_escape(0.75, 1.4) - p_escape(0.75, 1.6)
+    assert shift_at_small_release == pytest.approx(-0.125)
+    assert shift_at_large_release == pytest.approx(-0.125)
+
 
 def test_escape_frontier_is_scope_bounded_against_allee_prior_art() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
