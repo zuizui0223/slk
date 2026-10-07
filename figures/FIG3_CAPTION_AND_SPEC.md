@@ -2,11 +2,11 @@
 
 ## Reader-facing caption
 
-**Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes.** (A) The `L-Phi` plane separates persistent compromise from positive net architecture value. (B) Convex recovery can create a range in which the differentiated endpoint is fitter but sufficiently small release steps are still downhill. (C) Frequency-dependent ecology changes not only the establishment threshold but the population outcome: positive feedback can produce history-dependent alternative stable architectures and, if interactions are local, cluster-assisted establishment, whereas negative feedback can produce stable coexistence through rare-form advantage. (D) When an environmental gradient lowers marginal architecture cost, profitability precedes local reachability. If positive feedback is strong enough, establishment occurs later still, producing `E_V<E_A<E_I` and a distinct ecological-stabilization phase.
+**Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes.** (A) The `L-Phi` plane separates persistent compromise from positive net architecture value. (B) Convex recovery can create a range in which the differentiated endpoint is fitter but sufficiently small release steps are still downhill. (C) Under positive frequency feedback, structural release and initial abundance lie on one escape frontier, `p_escape(d)=1/2-[R(d)-kd]/(2eta)`: `d_J` is its `p=1/2` slice and `p_C` its `d=dmax` slice. Larger favorable structural changes therefore require less demographic support. Negative feedback instead favors rare forms and coexistence. (D) When an environmental gradient lowers marginal architecture cost, profitability precedes local reachability and the escape frontier shifts toward easier reorganization; if positive feedback is strong enough, establishment occurs later still, producing `E_V<E_A<E_I`.
 
 ## Scientific role
 
-Figure 3 makes five biological points. First, profitability, evolutionary accessibility, and establishment are different evolutionary transitions and need not occur at the same environmental condition. Second, strict convex recovery can create architecture-path hysteresis, so forward and reverse environmental change can retain different architectures even without frequency dependence. Third, persistence can lose robustness before morphology changes: the minimum favorable one-step structural release `d_J` shrinks toward zero at the accessibility boundary, and under positive frequency dependence the critical initial frequency `p_C=(eta-Phi)/(2eta)` shrinks toward zero at rare establishment. Fourth, the limiting process changes along the gradient: the historical-trapping interval is path limited, whereas the ecology-only interval is establishment limited. Fifth, ecology determines whether the population outcome is priority-dependent alternative states (`eta>0`) or stable coexistence through rare-form advantage (`eta<0`).
+Figure 3 makes six biological points. First, profitability, evolutionary accessibility, and establishment are different evolutionary transitions and need not occur at the same environmental condition. Second, strict convex recovery can create architecture-path hysteresis, so forward and reverse environmental change can retain different architectures even without frequency dependence. Third, structural novelty and demographic support are coupled: under the canonical positive-feedback extension, `d_J` and `p_C` are orthogonal slices through one architecture-frequency escape frontier. Fourth, lowering architecture cost shifts that frontier so that progressively smaller structural changes and/or lower initial frequencies can escape before morphology changes. Fifth, the limiting process changes along the gradient: the historical-trapping interval is path limited, whereas the ecology-only interval is establishment limited. Sixth, ecology determines whether the population outcome is priority-dependent alternative states (`eta>0`) or stable coexistence through rare-form advantage (`eta<0`).
 
 For the barrier-turnover slice,
 
@@ -39,13 +39,13 @@ which yields the ordered sequence adaptive integration -> historical trapping ->
 
 - Panel A: C1-C5.
 - Panel B: C6.
-- Panel C: C7.
+- Panel C: C7 + UTA1.4f.
 - Panel D: ecological barrier-turnover corollary UTA1.4c.
 - Fixation/occupancy are downstream extensions and are not part of the three core explanations in Figure 1.
 
 ## Anti-overclaim rule
 
-Panel D is exact for the declared affine `Phi(E)` and locally constant `eta` slice. For smooth non-affine functions it is a local first-order prediction, not a universal constant spacing. Negative-frequency feedback allowing rare invasion with `Phi<0` does not mean the differentiated endpoint is intrinsically superior; in the registered deterministic pair game it identifies the coexistence route. Likewise, positive `eta` delaying rare invasion does not prove permanent historical absence of differentiation.
+Panel C's escape frontier is exact only for the declared one-dimensional release path with release-invariant `eta`. Panel D is exact for the declared affine `Phi(E)` and locally constant `eta` slice. For smooth non-affine functions it is a local first-order prediction, not a universal constant spacing. Negative-frequency feedback allowing rare invasion with `Phi<0` does not mean the differentiated endpoint is intrinsically superior; in the registered deterministic pair game it identifies the coexistence route. Likewise, positive `eta` delaying rare invasion does not prove permanent historical absence of differentiation.
 
 
 ## Spatial-scope note
