@@ -147,6 +147,14 @@ Bowers et al. (2005) already combine trade-off geometry with resident-mutant inv
 
 SLK must therefore **not** claim a first connection between trade-offs and invasion.
 
+### Divided-state performance versus population context
+
+Wahl (2002) explicitly models generalists and specialists in division-of-labour groups and finds that highly specialized groups can maximize group fitness while generalists retain a distinct advantage in small groups.
+
+Therefore SLK must **not** claim that a high-value divided organization being disadvantaged in a particular population context is a new qualitative possibility.
+
+SLK's narrower contribution is to distinguish architecture value, local accessibility, and rare establishment as separately testable criteria for one specified organizational transition, derive the value-before-access ordering under the convex cost-lowering slice, and state the additional condition required for ecology to become the final early bottleneck.
+
 
 ### Resilience and tipping-point language
 
@@ -230,6 +238,7 @@ A defensible positioning paragraph is:
 - Cooper GA, West SA. 2018. Division of labour and the evolution of extreme specialization. *Nature Ecology & Evolution* 2:1161–1167.
 - Taborsky M. 2025. The evolution of division of labour: preconditions and evolutionary feedback. *Philosophical Transactions of the Royal Society B* 380:20230262.
 - Uchiumi Y, Sasaki A. 2020. Evolution of division of labour in mutualistic symbiosis. *Proceedings of the Royal Society B* 287:20200669.
+- Wahl LM. 2002. Evolving the division of labour: generalists, specialists and task allocation. *Journal of Theoretical Biology* 219:371–388. DOI 10.1006/jtbi.2002.3133.
 - Corn KA, Martinez CM, Burress ED, Wainwright PC. 2021. A multifunction trade-off has contrasting effects on the evolution of form and function. *Systematic Biology* 70:681–693.
 - Conover DO, Schultz ET. 1995. Phenotypic similarity and the evolutionary significance of countergradient variation. *Trends in Ecology & Evolution* 10:248–252.
 - Chevin LM, Bridle J. 2025. Impacts of limits to adaptation on population and community persistence in a changing environment. *Philosophical Transactions of the Royal Society B* 380:20230322.
