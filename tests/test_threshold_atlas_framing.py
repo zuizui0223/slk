@@ -21,16 +21,16 @@ def test_submission_title_is_synchronized() -> None:
     )
 
 
-def test_figure1_centers_three_selective_states_of_persistence() -> None:
+def test_figure1_distinguishes_bottlenecks_behind_one_phenotype() -> None:
     text = FIG1.read_text(encoding="utf-8")
     for token in (
         "One persistent phenotype can hide different evolutionary bottlenecks",
-        "Adaptive integration",
-        "Historical / developmental",
-        "trapping",
-        "Ecological stabilization",
+        "Architecture bottleneck",
+        "Evolutionary path",
+        "Establishment bottleneck",
+        "Same visible phenotype",
         "persistent multifunctionality",
-        "architecture, history, and ecology",
+        "Unchanged morphology does not imply an unchanged evolutionary bottleneck",
     ):
         assert token in text
 
