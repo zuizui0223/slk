@@ -796,6 +796,288 @@ This does not make valley crossing or coordination thresholds new mathematical p
 
 ---
 
+## Corollary UTA1.4f — structural release and initial frequency lie on one escape frontier
+
+UTA1.4e treated structural release and establishment frequency as two successive perturbation thresholds. Under one additional canonical assumption they are slices of a single two-dimensional boundary.
+
+Let
+
+```text
+F(d;k)
+=
+R(d)-kd,
+0<d<=dmax,
+```
+
+be the intrinsic net value of a partial structural release `d` relative to the integrated state. Extend the registered positive frequency-feedback pair to each partial-release variant by assuming the same local coordination coefficient `eta>0` over the focal release family:
+
+```text
+Delta(d,p;k)
+=
+F(d;k)
++
+eta(2p-1).
+```
+
+This is a declared canonical extension. It does not assert that ecological feedback is independent of release size in nature.
+
+### Escape frontier
+
+For `eta>0`, the zero-growth boundary is
+
+```text
+p_escape(d;k)
+=
+1/2
+-
+F(d;k)/(2eta)
+=
+1/2
+-
+[R(d)-kd]/(2eta).
+```
+
+Hence
+
+```text
+p > p_escape(d;k)
+    -> the release variant increases,
+
+p < p_escape(d;k)
+    -> the release variant declines.
+```
+
+The mathematical boundary can lie outside the physical interval `[0,1]`. Its location then has an immediate interpretation:
+
+```text
+p_escape <= 0
+    -> the variant can increase from rarity,
+
+0 < p_escape < 1
+    -> establishment requires a finite initial frequency,
+
+p_escape >= 1
+    -> the variant cannot increase even when initially very common
+       under the declared pair mapping.
+```
+
+### The two earlier thresholds are orthogonal slices
+
+Within the historical-trapping interval, UTA1.4e defines `d_J` by
+
+```text
+F(d_J;k)=0.
+```
+
+Therefore
+
+```text
+p_escape(d_J;k)=1/2.
+```
+
+At the completed divided endpoint,
+
+```text
+F(dmax;k)=Phi,
+```
+
+so
+
+```text
+p_escape(dmax;k)
+=
+(eta-Phi)/(2eta)
+=
+p_C.
+```
+
+Thus
+
+```text
+d_J
+=
+the p=1/2 slice of the escape frontier,
+
+p_C
+=
+the d=dmax slice of the escape frontier.
+```
+
+The structural-jump threshold and the frequency threshold are therefore not two unrelated warning quantities in this canonical model. They are orthogonal cuts through one coupled architecture-frequency surface.
+
+### Geometry inside historical trapping
+
+Assume strictly convex `R` and
+
+```text
+k_local < k < k_global.
+```
+
+Then `F(0;k)=0`, `F'(0;k)<0`, and `F(dmax;k)>0`. The intrinsic path first moves downhill, reaches a unique minimum `d_M`, and then rises through the unique positive zero `d_J`.
+
+Because
+
+```text
+p_escape(d;k)
+=
+1/2-F(d;k)/(2eta),
+```
+
+the escape frontier is strictly concave in `d` and reaches its maximum at the least favorable intrinsic intermediate `d_M`. In particular,
+
+```text
+0<d<d_J
+    -> F(d;k)<0
+    -> p_escape(d;k)>1/2,
+
+d=d_J
+    -> p_escape=1/2,
+
+d>d_J
+    -> F(d;k)>0
+    -> p_escape(d;k)<1/2.
+```
+
+A partially released architecture inside the intrinsic valley can therefore require majority-level introduction under positive frequency feedback, whereas a sufficiently large structural jump can establish from a minority.
+
+This does not mean that larger release is universally better. The result follows from the declared strictly convex recovery path and constant-`eta` extension.
+
+### Minority-frequency structural threshold
+
+For a fixed initial frequency
+
+```text
+0<=p<=1/2,
+```
+
+define
+
+```text
+y_p
+=
+eta(1-2p)
+>=0.
+```
+
+Escape requires
+
+```text
+F(d;k)>y_p.
+```
+
+On the increasing branch beyond `d_J`, if
+
+```text
+Phi>y_p,
+```
+
+there is a unique minimum release `d_escape(p;k)` satisfying
+
+```text
+R(d_escape)-k d_escape
+=
+eta(1-2p).
+```
+
+Then
+
+```text
+d>d_escape(p;k)
+    -> increase at initial frequency p,
+
+d<d_escape(p;k)
+    -> decline at initial frequency p
+```
+
+within the declared branch.
+
+The special cases recover the earlier criteria:
+
+```text
+p=1/2
+    -> d_escape=d_J,
+
+p->0
+    -> escape requires F(d;k)>=eta,
+
+d=dmax
+    -> rare endpoint invasion requires Phi>=eta.
+```
+
+Where the interior threshold exists,
+
+```text
+partial d_escape / partial p
+=
+-2eta /
+[R'(d_escape)-k]
+<
+0.
+```
+
+Thus a higher initial frequency reduces the structural release required for establishment, while a larger favorable structural release reduces the initial frequency required for establishment.
+
+### Environmental erosion of the frontier
+
+Under the registered cost-lowering slice
+
+```text
+k(E)
+=
+k0-c(E-E0),
+c>0,
+```
+
+the frequency frontier shifts as
+
+```text
+partial p_escape(d,E) / partial E
+=
+-cd/(2eta)
+<
+0
+```
+
+for every `d>0`.
+
+For a fixed minority frequency with an interior structural threshold,
+
+```text
+partial d_escape / partial E
+=
+-
+c d_escape /
+[R'(d_escape)-k(E)]
+<
+0.
+```
+
+Environmental change therefore expands the set of architecture-frequency combinations that can escape the integrated resident before any morphological transition is required.
+
+### Biological interpretation
+
+The model predicts a direct compensation between two routes to reorganization:
+
+```text
+larger structural novelty
+<-> lower required local abundance,
+
+smaller structural novelty
+<-> higher required local abundance.
+```
+
+Repeated origin, immigration, clonal expansion, or spatial clustering can therefore compensate for a structurally modest innovation, whereas a sufficiently large favorable innovation can compensate for low initial abundance. As the environment lowers architecture cost, the entire escape frontier moves so that less structural novelty and/or less demographic support is required.
+
+This is stronger than saying separately that `d_J` and `p_C` decline. It predicts the **joint combinations** of structural and demographic perturbation that can reorganize a persistent multifunctional phenotype.
+
+### Claim boundary
+
+Trait-dependent establishment thresholds, propagule pressure, Allee effects, and eco-evolutionary changes in Allee thresholds are established topics. UTA1.4f does not claim a first general interaction between phenotype and abundance.
+
+Its SLK-specific result is the exact frontier generated when the registered convex architecture-release model is coupled to the registered constant-`eta` frequency feedback. If ecological feedback varies with release size, if multiple release paths exist, or if local abundance is spatially structured, a different frontier must be derived. The result is therefore a model-specific derived ecological prediction, not a universal law.
+
+---
+
 ## Corollary UTA1.5 — conflict strength alone cannot rank the tendency toward differentiation across systems
 
 Under the registered quadratic bridge,
