@@ -334,6 +334,12 @@ def verify() -> dict[str, object]:
     assert math.isclose(p_escape_higher_cost, 0.40625)
     assert p_escape_lower_cost < p_escape_higher_cost
 
+    shift_small_release = p_escape(0.25, 1.4) - p_escape(0.25, 1.6)
+    shift_large_release = p_escape(0.75, 1.4) - p_escape(0.75, 1.6)
+    assert math.isclose(shift_small_release, -0.125)
+    assert math.isclose(shift_large_release, -0.125)
+    assert math.isclose(shift_small_release, shift_large_release)
+
     checks["UTA1_4f_architecture_frequency_escape_frontier"] = {
         "k": k_escape,
         "eta": eta_escape,
@@ -346,6 +352,8 @@ def verify() -> dict[str, object]:
         "d_escape_at_p_0_40": d_escape_high_frequency,
         "p_escape_at_d_0_75_k_1_6": p_escape_higher_cost,
         "p_escape_at_d_0_75_k_1_4": p_escape_lower_cost,
+        "parallel_shift_small_release": shift_small_release,
+        "parallel_shift_large_release": shift_large_release,
         "pass": True,
     }
 
