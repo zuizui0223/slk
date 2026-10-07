@@ -424,3 +424,37 @@ def test_escape_frontier_is_scope_bounded_against_allee_prior_art() -> None:
     assert "dmax/(2eta)" in theory
     assert "Trait-dependent establishment, Allee thresholds, and propagule pressure" in prior
     assert "must **not** claim a first interaction between phenotype and initial abundance" in prior
+
+
+def test_escape_frontier_slice_identities_survive_identity_preserving_rescaling() -> None:
+    eta = 0.8
+    k = 1.5
+    dmax = 1.0
+
+    def recovery(d: float) -> float:
+        return d + d * d
+
+    def intrinsic(d: float) -> float:
+        return recovery(d) - k * d
+
+    def p_escape_w(d: float) -> float:
+        w = (d / dmax) ** 2
+        return 0.5 - intrinsic(d) / (2 * eta * w)
+
+    d_j = 0.5
+    phi = intrinsic(dmax)
+    p_c = (eta - phi) / (2 * eta)
+
+    assert p_escape_w(d_j) == pytest.approx(0.5)
+    assert p_escape_w(dmax) == pytest.approx(p_c)
+
+    # Lowering architecture cost shifts the generalized frontier downward
+    # at every positive release size, independent of the proportional choice.
+    d = 0.75
+    w = (d / dmax) ** 2
+
+    def p_at_cost(kk: float) -> float:
+        f = recovery(d) - kk * d
+        return 0.5 - f / (2 * eta * w)
+
+    assert p_at_cost(1.4) < p_at_cost(1.6)
