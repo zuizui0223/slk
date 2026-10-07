@@ -886,6 +886,81 @@ the d=dmax slice of the escape frontier.
 
 The structural-jump threshold and the frequency threshold are therefore not two unrelated warning quantities in this canonical model. They are orthogonal cuts through one coupled architecture-frequency surface.
 
+### General identity-preserving feedback scaling
+
+The two slice identities do not require linear feedback scaling. Let
+
+```text
+Delta_w(d,p;k)
+=
+F(d;k)
++
+eta w(d)(2p-1),
+```
+
+where
+
+```text
+w(0)=0,
+w(dmax)=1,
+w(d)>0 for d>0.
+```
+
+Then for every `d>0` the escape frontier is
+
+```text
+p_escape,w(d;k)
+=
+1/2
+-
+F(d;k)/[2eta w(d)].
+```
+
+Because `F(d_J;k)=0` and `F(dmax;k)=Phi`,
+
+```text
+p_escape,w(d_J;k)=1/2,
+p_escape,w(dmax;k)=p_C
+```
+
+for every admissible `w`. Thus the interpretation of `d_J` and `p_C` as orthogonal slices is **scaling-robust within the identity-preserving class**.
+
+Under the cost-lowering environmental slice,
+
+```text
+partial p_escape,w(d,E) / partial E
+=
+-
+c d /
+[2eta w(d)]
+<
+0
+```
+
+for every `d>0`. Hence environmental improvement shifts the frontier pointwise toward easier escape for every admissible positive scaling function.
+
+What is not generic is monotonic compensation with release size. In the general class,
+
+```text
+partial p_escape,w / partial d < 0
+```
+
+holds exactly where
+
+```text
+partial [F(d;k)/w(d)] / partial d > 0.
+```
+
+The release-proportional choice `w(d)=d/dmax` makes
+
+```text
+F(d;k)/w(d)
+=
+dmax[q(d)-k],
+```
+
+which is strictly increasing under strict convexity. The canonical proportional scaling therefore guarantees the monotonic novelty-abundance compensation used below; other admissible scalings retain the two slice identities and environmental erosion but need not preserve monotonic frontier shape.
+
 ### Structural-demographic compensation
 
 For strictly convex `R` with `R(0)=0`, `q(d)` is strictly increasing. Therefore
