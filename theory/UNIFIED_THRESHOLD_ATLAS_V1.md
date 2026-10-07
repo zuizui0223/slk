@@ -1022,10 +1022,22 @@ partial p_escape(d,E) / partial E
 =
 -c dmax/(2eta)
 <
-0,
+0.
 ```
 
-and, for an interior `d_escape`,
+Because this derivative does not depend on `d`, the proportional-scaling frontier undergoes a **parallel vertical translation** when environment changes architecture cost alone:
+
+```text
+p_escape(d,E2)-p_escape(d,E1)
+=
+-c dmax(E2-E1)/(2eta).
+```
+
+Its shape is preserved. Therefore a measured change in frontier shape across environments falsifies the cost-only, fixed-`R), fixed-`eta` proportional slice and implies that recovery geometry and/or ecological feedback also changed.
+
+For a general identity-preserving scaling `w(d)`, environmental improvement still shifts the frontier downward pointwise, but the shift need not be parallel.
+
+For an interior `d_escape`,
 
 ```text
 partial d_escape / partial E
