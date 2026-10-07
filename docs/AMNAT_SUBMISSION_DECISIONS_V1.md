@@ -87,7 +87,7 @@ The remaining reviewer question is biological:
 The submission answer is now four concrete predictions:
 
 1. **The three decision boundaries are not interchangeable.** Under the registered convex cost-lowering slice, architecture value must cross before local accessibility (`E_V<E_A`), whereas an ecology-only persistence phase appears only if rare establishment still fails at `E_A`.
-2. **Structural novelty and demographic support form one escape frontier.** Under the canonical positive-frequency extension, `d_J` and `p_C` are orthogonal slices of `p_escape(d)`, so larger favorable structural release can compensate for lower initial abundance and environmental change can shift the whole frontier before morphology changes.
+2. **Structural novelty and demographic support form one escape frontier.** The `d_J` and `p_C` slice identities and environmental erosion hold across identity-preserving feedback scalings; under the canonical proportional scaling, larger favorable structural release can compensate monotonically for lower initial abundance.
 3. **Conflict strength does not rank organization.** Stronger functional conflict can remain integrated when little conflict is recoverable or division of labor is costly.
 4. **Different bottlenecks predict different natural histories.** Path limitation predicts environmental lag and architecture legacy; positive frequency dependence predicts priority-dependent alternative patches; negative frequency dependence predicts mixed zones; weak feedback permits more direct replacement.
 
