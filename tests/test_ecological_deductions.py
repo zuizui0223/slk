@@ -465,3 +465,11 @@ def test_escape_frontier_slice_identities_survive_identity_preserving_rescaling(
         return 0.5 - f / (2 * eta * w)
 
     assert p_at_cost(1.4) < p_at_cost(1.6)
+
+
+def test_empirical_bridge_registers_escape_frontier_gap() -> None:
+    bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
+    assert "Escape-frontier evidence gap" in bridge
+    assert "partial structural release x initial frequency" in bridge
+    assert "translate in parallel across environments" in bridge
+    assert "A change in frontier shape would reject that mechanism" in bridge
