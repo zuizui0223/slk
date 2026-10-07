@@ -53,7 +53,7 @@
   <line x1="1080" y1="525" x2="1080" y2="690" class="grid"/>
   <line x1="1195" y1="525" x2="1195" y2="690" class="grid"/>
   <text x="1055" y="715" class="t xs">d_J</text><text x="1165" y="715" class="t xs">dmax</text>
-  <text x="955" y="545" class="t xs">η &gt; 0: p_escape(d)=1/2−[R(d)−kd]/(2η)</text>
+  <text x="955" y="545" class="t xs">η &gt; 0: p_escape(d)=1/2−(dmax/2η)[R(d)/d−k]</text>
   <text x="955" y="575" class="t xs">d_J: p=1/2 slice; p_C: d=dmax slice</text>
   <text x="955" y="605" class="t xs">larger favorable release ↔ lower required frequency</text>
   <text x="955" y="635" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
