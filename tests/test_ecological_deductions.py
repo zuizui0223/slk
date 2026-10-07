@@ -377,29 +377,37 @@ def test_architecture_frequency_escape_frontier_unifies_thresholds() -> None:
     def recovery(d: float) -> float:
         return d + d * d
 
+    dmax = 1.0
+
     def intrinsic(d: float, kk: float = k) -> float:
         return recovery(d) - kk * d
 
+    def secant(d: float) -> float:
+        return recovery(d) / d
+
     def p_escape(d: float, kk: float = k) -> float:
-        return 0.5 - intrinsic(d, kk) / (2 * eta)
+        return 0.5 - (dmax / (2 * eta)) * (secant(d) - kk)
 
     d_j = 0.5
-    phi = intrinsic(1.0)
+    phi = intrinsic(dmax)
     p_c = (eta - phi) / (2 * eta)
 
     assert p_escape(d_j) == pytest.approx(0.5)
-    assert p_escape(1.0) == pytest.approx(p_c)
-    assert p_escape(0.25) > 0.5
-    assert p_escape(0.75) < 0.5
+    assert p_escape(dmax) == pytest.approx(p_c)
+    assert p_escape(0.25) == pytest.approx(0.65625)
+    assert p_escape(0.75) == pytest.approx(0.34375)
 
     # Higher initial frequency lowers the release required on the favorable branch.
     def d_escape(p: float) -> float:
-        y = eta * (1 - 2 * p)
-        return (0.5 + (0.25 + 4 * y) ** 0.5) / 2
+        return 0.5 + eta * (1 - 2 * p) / dmax
 
-    assert d_escape(0.4) < d_escape(0.25)
+    assert d_escape(0.25) == pytest.approx(0.9)
+    assert d_escape(0.40) == pytest.approx(0.66)
+    assert d_escape(0.40) < d_escape(0.25)
 
     # Lower architecture cost shifts the frequency frontier downward.
+    assert p_escape(0.75, 1.4) == pytest.approx(0.28125)
+    assert p_escape(0.75, 1.6) == pytest.approx(0.40625)
     assert p_escape(0.75, 1.4) < p_escape(0.75, 1.6)
 
 
@@ -412,5 +420,7 @@ def test_escape_frontier_is_scope_bounded_against_allee_prior_art() -> None:
     assert "p_escape(d)" in manuscript
     assert "UTA1.4f" in theory
     assert "UTA1.4f" in ledger
+    assert "eta(d/dmax)(2p-1)" in theory
+    assert "dmax/(2eta)" in theory
     assert "Trait-dependent establishment, Allee thresholds, and propagule pressure" in prior
     assert "must **not** claim a first interaction between phenotype and initial abundance" in prior
