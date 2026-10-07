@@ -290,6 +290,55 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.4f: partial structural release and initial frequency lie on
+    # one canonical escape frontier.
+    k_escape = 1.5
+    eta_escape = 0.8
+    d_j_escape = 0.5
+
+    def intrinsic_release(d: float, k_value: float = k_escape) -> float:
+        return architecture.recovery(d) - k_value * d
+
+    def p_escape(d: float, k_value: float = k_escape) -> float:
+        return 0.5 - intrinsic_release(d, k_value) / (2 * eta_escape)
+
+    phi_escape = intrinsic_release(architecture.dmax)
+    p_c_escape = (eta_escape - phi_escape) / (2 * eta_escape)
+
+    assert math.isclose(intrinsic_release(d_j_escape), 0.0)
+    assert math.isclose(p_escape(d_j_escape), 0.5)
+    assert math.isclose(p_escape(architecture.dmax), p_c_escape)
+    assert p_escape(0.25) > 0.5
+    assert p_escape(0.75) < 0.5
+
+    def d_escape_at_frequency(p_value: float) -> float:
+        target = eta_escape * (1 - 2 * p_value)
+        # For R(d)=d+d^2 and k=1.5, F(d)=d^2-0.5d.
+        return (0.5 + math.sqrt(0.25 + 4 * target)) / 2
+
+    d_escape_low_frequency = d_escape_at_frequency(0.25)
+    d_escape_high_frequency = d_escape_at_frequency(0.40)
+    assert d_escape_high_frequency < d_escape_low_frequency
+
+    p_escape_higher_cost = p_escape(0.75, 1.6)
+    p_escape_lower_cost = p_escape(0.75, 1.4)
+    assert p_escape_lower_cost < p_escape_higher_cost
+
+    checks["UTA1_4f_architecture_frequency_escape_frontier"] = {
+        "k": k_escape,
+        "eta": eta_escape,
+        "d_J": d_j_escape,
+        "Phi": phi_escape,
+        "p_C": p_c_escape,
+        "p_escape_at_d_J": p_escape(d_j_escape),
+        "p_escape_at_dmax": p_escape(architecture.dmax),
+        "d_escape_at_p_0_25": d_escape_low_frequency,
+        "d_escape_at_p_0_40": d_escape_high_frequency,
+        "p_escape_at_d_0_75_k_1_6": p_escape_higher_cost,
+        "p_escape_at_d_0_75_k_1_4": p_escape_lower_cost,
+        "pass": True,
+    }
+
     # UTA1.5: stronger conflict need not mean larger architecture margin.
     L_A, s_A, K_A = 3.0, 0.2, 0.8
     L_B, s_B, K_B = 2.0, 0.8, 0.5
