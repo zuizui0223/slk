@@ -467,6 +467,40 @@ def test_escape_frontier_slice_identities_survive_identity_preserving_rescaling(
     assert p_at_cost(1.4) < p_at_cost(1.6)
 
 
+def test_partial_division_can_invade_when_complete_division_fails() -> None:
+    # Identity-preserving nonlinear ecological feedback can reverse
+    # monotone novelty-versus-abundance compensation.
+    eta = 0.8
+    k = 1.5
+    p_initial = 0.15
+
+    def intrinsic(d: float) -> float:
+        return d + d**2 - k * d
+
+    def weight(d: float) -> float:
+        return d**4
+
+    def p_escape(d: float) -> float:
+        return 0.5 - intrinsic(d) / (2 * eta * weight(d))
+
+    def selection(d: float, p: float) -> float:
+        return intrinsic(d) + eta * weight(d) * (2 * p - 1)
+
+    assert weight(0) == 0
+    assert weight(1) == 1
+    assert intrinsic(1) > intrinsic(0.75)
+    assert p_escape(0.5) == pytest.approx(0.5)
+    assert p_escape(1) == pytest.approx(0.1875)
+    assert p_escape(0.75) == pytest.approx(0.12962962962962962)
+    assert p_escape(0.75) < p_initial < p_escape(1)
+    assert selection(0.75, p_initial) == pytest.approx(0.0103125)
+    assert selection(1, p_initial) == pytest.approx(-0.06)
+
+    theory = THEORY.read_text(encoding="utf-8")
+    assert "more divided can be intrinsically fitter but less invadable" in theory
+    assert "Delta_w(0.75,0.15)=+0.0103125" in theory
+
+
 def test_empirical_bridge_registers_escape_frontier_gap() -> None:
     bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
     assert "Escape-frontier evidence gap" in bridge
