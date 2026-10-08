@@ -153,9 +153,12 @@ def test_common_linear_cost_shift_preserves_selection_and_positive_cost() -> Non
 
 
 def test_paper_distinguishes_reference_access_from_rare_access() -> None:
-    manuscript = (ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md").read_text(
-        encoding="utf-8"
-    )
+    manuscript_path = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
+    if not manuscript_path.exists():
+        # Anonymous reviewer package preserves the manuscript without its
+        # source-tree path, avoiding any need to expose repository metadata.
+        manuscript_path = ROOT / "MANUSCRIPT_SOURCE.md"
+    manuscript = manuscript_path.read_text(encoding="utf-8")
     theory = (ROOT / "theory" / "UNIFIED_THRESHOLD_ATLAS_V1.md").read_text(
         encoding="utf-8"
     )
