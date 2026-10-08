@@ -1037,6 +1037,55 @@ This is a **model witness**, not an empirical claim. In nature it could occur if
 
 The robust results are the two slice identities and downward movement with falling architecture cost. The monotone compensation law is conditional on the feedback scaling, and `d_J` plus `p_C` alone cannot identify the frontier's interior.
 
+#### A bounded window of selectively viable partial differentiation
+
+The witness above yields a stronger conditional prediction than a pair of contrasting morphs: for some introduction frequencies there is a **bounded interval of structural differentiation** that increases against the integrated resident, while both less and more differentiated introductions decline.
+
+For the same `R(d)=d+d^2`, `k=1.5`, `dmax=1`, `eta=0.8`, and `w(d)=d^4`, write `b=eta(1-2p)` for `0<=p<1/2`. Selection has the sign of
+
+```text
+Delta_w(d,p)
+=
+d [d-1/2-b d^3],
+d>0.
+```
+
+Define `h(d)=d-1/2-bd^3`. It is strictly concave on `(0,1]`, with `h(0)=-1/2`. An interior positive band with failure at full division exists if and only if
+
+```text
+1/2 < b < 16/27,
+```
+
+equivalently for `eta=4/5),
+
+```text
+7/54 < p < 3/16.
+```
+
+**Proof.** The fully divided endpoint declines exactly when `h(1)=1/2-b<0`, i.e. `b>1/2`. The unique interior maximum occurs at `d_m=1/sqrt(3b)`; since `b>1/2`, it lies inside `(0,1)`. At the maximum, `h(d_m)=2d_m/3-1/2`. This is positive precisely when `d_m>3/4`, or `b<16/27`. Strict concavity and negative values at both ends then imply exactly two crossings `0<d_-<d_m<d_+<1`, with positive selection only for `d_-<d<d_+`. At the boundaries of the stated open `p` interval, either the maximum merely touches zero or the fully divided endpoint is neutral; neither satisfies the strict two-sided failure claim.
+
+For `p=0.15`, `b=0.56`, and
+
+```text
+d_m=0.77151675
+d_-=0.66377949
+d_+=0.87445261.
+```
+
+Hence at that introduction frequency,
+
+```text
+0<d<0.66377949:          Delta_w(d,p)<0
+
+0.66377949<d<0.87445261: Delta_w(d,p)>0
+
+0.87445261<d<=1:         Delta_w(d,p)<0.
+```
+
+All comparisons are **separate two-type resident–variant experiments** indexed by `d`. The bounded positive band does not establish that an interior `d` is an evolutionarily stable degree of specialization against other partial variants, or that evolution will reach it by small mutations. It instead predicts a testable **introduction-window mismatch**: the most intrinsically profitable architecture need not be the one that establishes from a fixed founding frequency when ecological partner-dependence grows sufficiently steeply with specialization.
+
+
+
 ### Structural-demographic compensation
 
 For strictly convex `R` with `R(0)=0`, `q(d)` is strictly increasing. Therefore
