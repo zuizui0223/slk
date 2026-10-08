@@ -104,6 +104,25 @@ def test_pgf_solution_agrees_with_independent_forward_kolmogorov_ode() -> None:
     assert isclose(y, pre_switch_pgf(s, t, b, d), abs_tol=1e-10)
 
 
+
+def test_relative_advantage_does_not_imply_absolute_demographic_growth() -> None:
+    relative = G_POST
+    resident_stationary = 0.0
+    resident_declining = -0.5
+    mutant_stationary_background = resident_stationary + relative
+    mutant_declining_background = resident_declining + relative
+    assert mutant_stationary_background > 0.0
+    assert mutant_declining_background < 0.0
+    assert isclose(mutant_stationary_background-resident_stationary, relative)
+    assert isclose(mutant_declining_background-resident_declining, relative)
+    b_mutant_declining = 0.8
+    d_mutant_declining = b_mutant_declining - mutant_declining_background
+    assert d_mutant_declining > b_mutant_declining
+    # Ultimate nonextinction probability of a subcritical linear birth-death
+    # lineage is zero, even though it wins in relative frequency.
+    q_ultimate = min(1.0, d_mutant_declining/b_mutant_declining)
+    assert isclose(q_ultimate, 1.0)
+
 def test_scientific_claims_require_separate_absolute_demography_and_prior_art() -> None:
     theory = (ROOT / "theory" / "STOCHASTIC_PARTNER_ASSEMBLY_V1.md").read_text(
         encoding="utf-8"
@@ -115,6 +134,7 @@ def test_scientific_claims_require_separate_absolute_demography_and_prior_art() 
         "death",
         "P_eventual_persistence",
         "P_alive_at_switch",
+        "relative advantage need not give absolute persistence",
         "Goldberg & Friedman (2021",
         "not a novel result in birth–death theory",
         "two-phase approximation",
