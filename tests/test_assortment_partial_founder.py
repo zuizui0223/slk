@@ -232,7 +232,7 @@ def test_literature_audit_marks_both_causal_directions_not_slk_gate_closure() ->
         "d Delta_match/dp",
         "d Delta_complement/dp",
         "final spatial snapshot is insufficient",
-        "not** a division-of-labour comparison",
+        "**not** two complementary specialist roles",
     ):
         assert token in theory, token
     for token in (
