@@ -1,6 +1,6 @@
 # SLK manuscript section-to-claim map V3
 
-This document maps the biology-refocused journal manuscript to the canonical theorem-claim ledger. The manuscript is organized around a biological result: one persistent multifunctional phenotype can be maintained by different evolutionary bottlenecks, and the limiting bottleneck can turn over before morphology changes. The theory supports that claim; it is not the manuscript's subject.
+This document maps the biology-refocused journal manuscript to the canonical theorem-claim ledger. The manuscript is organized around a biological question: why does multifunctionality persist under conflict, and how can the selective obstacles to a specified divided candidate change before morphology does? The candidate-specific ordering alone does not prove persistence against partial alternatives. The theory supports that claim; it is not the manuscript's subject.
 
 ## Section map
 
@@ -42,7 +42,7 @@ can the divided type increase when rare?                  Delta_R
 the three early bottlenecks are excluded
 ```
 
-All three failures can produce the same visible outcome: persistent multifunctionality.
+All three candidate-specific failures can be compatible with an observed integrated phenotype; actual persistence additionally depends on accessible partial alternatives and evolutionary history.
 
 ## Environmental turnover claim
 
@@ -60,7 +60,7 @@ E_V < E_A.
 
 This ordering is a derived consequence of the recovery geometry, not an imposed ordering of labels.
 
-A distinct ecology-only persistence interval occurs only when
+A distinct endpoint ecology-only exclusion interval occurs only when
 
 ```text
 Delta_R(E_A) < 0.
@@ -78,7 +78,7 @@ which yields
 E_V < E_A < E_I.
 ```
 
-Thus the full architecture -> path -> ecology sequence is a conditional biological prediction, not a universal law.
+Thus this architecture -> path -> ecology ordering describes three conditional candidate comparisons, not a proven sequence of stable integrated populations.
 
 ## Escape-frontier claim
 
@@ -87,7 +87,7 @@ Under the registered constant-positive-feedback extension,
 ```text
 p_escape(d)
 =
-1/2-[R(d)-kd]/(2eta).
+1/2-[dmax/(2eta)]*[R(d)/d-k],  d>0.
 ```
 
 The earlier thresholds become orthogonal slices:
@@ -97,9 +97,9 @@ p_escape(d_J)=1/2
 p_escape(dmax)=p_C.
 ```
 
-Thus structural novelty and demographic support can compensate for one another. Lowering architecture cost shifts the whole frontier toward smaller release and/or lower initial frequency before visible structural reorganization.
+Thus structural novelty and demographic support can compensate for one another. Lowering architecture cost shifts this conditional frequency frontier, but observed reorganization depends on mutation supply and the fitness of accessible degrees.
 
-The headline claim is therefore not merely that identical phenotypes can have different hidden mechanisms or that traits interact with propagule pressure. Those are established ideas. SLK predicts that the **selective bottleneck preventing a specified alternative architecture from replacing an unchanged resident architecture can turn over**, while the viable combinations of architectural and demographic perturbation expand along a model-specific escape frontier.
+The headline claim is therefore not merely that identical phenotypes can have different hidden mechanisms or that traits interact with propagule pressure. Those are established ideas. SLK predicts that **the candidate-specific selective boundary can change even before any completed divided form appears**, while a model-specific architecture-frequency frontier shifts. These facts alone do not ensure the resident phenotype remains unchanged.
 
 ### Empirical evidence surface
 
@@ -118,7 +118,7 @@ The manuscript's natural systems establish component facts:
 - multifunctional architectures can experience geographic selection mosaics;
 - anatomical decoupling can remain ecologically re-coupled.
 
-They do not establish that one natural lineage has already crossed all three SLK bottlenecks in order. That remains the prospective empirical test.
+They do not establish an ordered series of three integrated-resident persistence mechanisms in a natural lineage, nor exclusion of all accessible partial variants. That remains the prospective empirical test.
 
 ## Theory support retained outside the manuscript foreground
 
