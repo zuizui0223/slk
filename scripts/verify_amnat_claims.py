@@ -415,6 +415,49 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.4f: partial differentiation alone grows within a bounded
+    # structural interval at one fixed founding frequency.
+    p_window = 0.15
+    b_window = eta_escape * (1 - 2 * p_window)
+    p_window_lower = 7 / 54
+    p_window_upper = 3 / 16
+
+    def window_growth(d: float) -> float:
+        return delta_superlinear(d, p_window)
+
+    def window_root(left: float, right: float) -> float:
+        left_value = window_growth(left)
+        assert left_value * window_growth(right) < 0
+        for _ in range(70):
+            midpoint = (left + right) / 2
+            if left_value * window_growth(midpoint) > 0:
+                left = midpoint
+                left_value = window_growth(left)
+            else:
+                right = midpoint
+        return (left + right) / 2
+
+    assert 0.5 < b_window < 16 / 27
+    assert p_window_lower < p_window < p_window_upper
+    d_window_peak = 1 / math.sqrt(3 * b_window)
+    d_window_min = window_root(0.6, d_window_peak)
+    d_window_max = window_root(d_window_peak, 1.0)
+    assert math.isclose(d_window_min, 0.6637794898247931)
+    assert math.isclose(d_window_max, 0.8744526100516654)
+    assert window_growth(0.6) < 0 < window_growth(0.75)
+    assert window_growth(1.0) < 0
+    checks["UTA1_4f_bounded_partial_establishment_window"] = {
+        "initial_frequency": p_window,
+        "frequency_interval": [p_window_lower, p_window_upper],
+        "d_min": d_window_min,
+        "d_at_max_selection_bracket": d_window_peak,
+        "d_max": d_window_max,
+        "Delta_d_0_60": window_growth(0.6),
+        "Delta_d_0_75": window_growth(0.75),
+        "Delta_d_1_00": window_growth(1.0),
+        "pass": True,
+    }
+
     # UTA1.5: stronger conflict need not mean larger architecture margin.
     L_A, s_A, K_A = 3.0, 0.2, 0.8
     L_B, s_B, K_B = 2.0, 0.8, 0.5
