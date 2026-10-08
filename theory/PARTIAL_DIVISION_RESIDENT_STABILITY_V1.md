@@ -60,6 +60,46 @@ In the witness, `J(d)=0.4d+2.35d^2` is strictly increasing, while `H(d)=0.1d-0.3
 
 The result is a local and global **single-rare-mutant invasion** conclusion, not a theorem about polymorphic coalitions, fluctuating environments, finite-population fixation, or mutation supply.
 
+## A second *symmetric* model: smooth mismatch permits onward specialization
+
+The arrest of partial division under `A_0` is caused by an ecological mismatch penalty that is **first order** in even tiny differences between already differentiated forms. This is not forced by any of the binary S-versus-d experiments. Consider an alternative symmetric, nonnegative mismatch cost:
+
+```text
+M_q(u,v)
+= |w(u)-w(v)|^q / [w(u)+w(v)]^(q-1),
+  when w(u)+w(v)>0;
+M_q(0,0)=0,
+A_q(u,v)=F(u)-eta M_q(u,v).
+```
+
+For `q=1`, `M_1(u,v)=|w(u)-w(v)|`, recovering the preceding cusp-cost model. For `q=2`, `M_2=(w(u)-w(v))^2/[w(u)+w(v)]`, which is smooth at any resident `v>0` where `w(v)>0`.
+
+The key identity holds for **every q>=1**:
+
+```text
+M_q(d,0)=w(d), M_q(d,d)=0.
+```
+
+Accordingly, the models have exactly the same `S`–`d` payoff matrices, at every frequency and every structural degree. But their infinitesimal invasion behavior against a resident `v>0` differs:
+
+```text
+I_q(v+epsilon|v)
+ = F(v+epsilon)-F(v)-eta M_q(v+epsilon,v).
+
+For q=1 and epsilon>0:
+  lim I_1(v+epsilon|v)/epsilon = F'(v)-eta w'(v)=H'(v).
+
+For q>1 and v>0:
+  M_q(v+epsilon,v)=O(|epsilon|^q),
+  lim I_q(v+epsilon|v)/epsilon = F'(v).
+```
+
+Because `F'(v)=0.25+2v>0` throughout the witness, **every partial resident `v in (0,1)` can be invaded by a sufficiently nearby *more differentiated* mutant under q=2**, while nearby downward mutants are disfavored. Under `q=1`, by contrast, any resident `v>=1/7` resists both directions. Thus the same symmetric matching idea, but with **linear versus superlinear onset of the cost of mismatching already-specialized types**, gives arrest versus a possible gradual route toward full specialization.
+
+This is not an assertion of guaranteed global convergence of a stochastic evolutionary process. The smooth example establishes an open direction of favorable small mutations from each interior resident; whether successive successful mutants are supplied and establish over evolutionary time is an additional population-genetic question.
+
+The `q=2` smooth mismatch model provides the cleanest demonstration of why `S`–`d` assays cannot decide partial stability **without assuming directional competitive dominance**. The following `lambda` example is retained to show a stronger, additional possibility: a fully divided mutant can even invade an already established partial form *directly*, when asymmetric interactions among differentiated forms are allowed.
+
 ## A counterexample with exactly the same S-versus-d evidence
 
 Add a directional effect of encounters between two already differentiated forms:
