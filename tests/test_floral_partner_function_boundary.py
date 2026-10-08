@@ -45,7 +45,7 @@ def test_morphological_retention_is_explicitly_unproven() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "Visitor identity can uncouple anther dimorphism" in text
+    assert "Pollinator roles can differ even within one bee species" in text
     assert "remains an untested evolutionary hypothesis" in text
     assert "untested bridge hypothesis" in ledger.lower()
     assert "not demonstrated by juxtaposing" in ledger.lower()
