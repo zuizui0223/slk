@@ -1063,7 +1063,7 @@ p_escape,m(d_opt)<p_C=p_escape,m(D)
 
 creates a nonempty founding-frequency interval in which an intermediate partially divided variant can grow against an integrated resident but the completely divided variant declines. If `p_escape,m(d_opt)<0`, the observable interval is truncated at zero; a positive interior optimum still exists mathematically. This assertion concerns separate two-type introduction comparisons, not simultaneous competition among partial variants.
 
-For the registered witness `R(d)=d+d^2`, `k=1.5`, and `D=1`, `J=0.5) and therefore
+For the registered witness `R(d)=d+d^2`, `k=1.5`, and `D=1`, `J=0.5` and therefore
 
 ```text
 m_crit=3.
