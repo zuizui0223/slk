@@ -211,7 +211,7 @@ log[p_min/p_0]
           -B(r_crit-r_0) } < 0.
 ```
 
-The loss deepens in direct proportion to the partner-organization timescale `tau`. Even when the eventual contact structure makes an innovation favorable, **slow partner assembly can expose it to transient decline long enough that a finite founding population is lost before rescue**. Deterministic linearized frequency never literally reaches zero; extinction probability is not identified without a specified demographic stochastic process.
+The loss deepens in direct proportion to the partner-organization timescale `tau`. Even when the eventual contact structure makes an innovation favorable, **slow partner assembly can expose it to transient decline long enough that a finite founding population is lost before rescue**. Deterministic linearized frequency never literally reaches zero; extinction probability is not identified without a specified demographic stochastic process. The assumed favorable trajectory `r(t)` is itself conditional on a surviving lineage or multi-individual founder cluster supplying same-type contacts: it cannot be imposed independently on an extinct lineage, and a solitary initial cell does not acquire nonzero assortativity merely by writing `r_infty>0`.
 
 For the already registered `A=117/98`, `B=711/490`, `r_0=0`, and hypothetical `r_infty=0.4`, `r_crit=14/79`. A rapid and a slow self-organization trajectory reach the same long-run contact regime but have different minimum-frequency losses. The values of `tau` and `r_infty` are synthetic, *not inferred from microbial imaging*.
 
