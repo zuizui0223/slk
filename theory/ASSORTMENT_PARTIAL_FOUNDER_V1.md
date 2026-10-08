@@ -176,6 +176,51 @@ Thus **the realized selection-versus-frequency slope is not determined only by p
 
 This adjustment narrows, rather than extends, the SLK claim: founder geometry is a mechanism candidate and a manipulable covariate, whereas ecological self-organization can make that geometry an outcome.
 
+## Timing of partner self-organization can create a transient establishment bottleneck
+
+The existing frequency frontier assumes contact organization is already in place. A biological introduction must instead survive while partner arrangements form. A minimal **timescale witness** clarifies the difference; it is not a mechanistic model of bacterial spatial growth.
+
+Hold `p` sufficiently close to zero that mutant growth can be linearized, retain the matching-cost pair `A=F(u)-F(v)>0` and `B=eta M(u,v)>A`, and suppose homotypic encounter assortment relaxes from an initially unfavorable arrangement `r_0` toward a favorable `r_infty` with timescale `tau>0`:
+
+```text
+r(t)=r_infty+(r_0-r_infty)exp(-t/tau),
+d log p /dt ~= g(t)=A-B[1-r(t)].
+```
+
+If `r_0<r_crit=1-A/B<r_infty`, the **instantaneous sign of rare-mutant selection** switches from negative to positive at
+
+```text
+t_cross
+  =tau log[(r_infty-r_0)/(r_infty-r_crit)].
+```
+
+The approximate relative mutant frequency before strong nonlinear frequency effects is
+
+```text
+log[p(t)/p(0)]
+ ~= [A-B(1-r_infty)]t
+   +B(r_0-r_infty)tau[1-exp(-t/tau)].
+```
+
+Hence the minimum founder frequency at the crossing is
+
+```text
+log[p_min/p_0]
+ ~= tau { [A-B(1-r_infty)]
+            log[(r_infty-r_0)/(r_infty-r_crit)]
+          -B(r_crit-r_0) } < 0.
+```
+
+The loss deepens in direct proportion to the partner-organization timescale `tau`. Even when the eventual contact structure makes an innovation favorable, **slow partner assembly can expose it to transient decline long enough that a finite founding population is lost before rescue**. Deterministic linearized frequency never literally reaches zero; extinction probability is not identified without a specified demographic stochastic process.
+
+For the already registered `A=117/98`, `B=711/490`, `r_0=0`, and hypothetical `r_infty=0.4`, `r_crit=14/79`. A rapid and a slow self-organization trajectory reach the same long-run contact regime but have different minimum-frequency losses. The values of `tau` and `r_infty` are synthetic, *not inferred from microbial imaging*.
+
+For a complementary cross-role collective, the favorable ecological rearrangement may be **decreasing homotypic assortment**, rather than increasing it. An analogous transient barrier occurs if sufficiently fast formation of *unlike-role* access is needed before a rare specialized role declines. The appropriate sign and scale depend on which cell/organ/organism is the functional unit; do not reuse the same `r(t)` trajectory for both biological polarities.
+
+**Biological test:** introduce the same complementary pair at the same initial frequency and total density, experimentally vary only their initial spatial arrangement (and independently the conditions affecting rearrangement speed), then track both early fitness and encounter topology across time. Under the stated timescale witness, an initial period of negative growth can precede positive growth *without any change in intrinsic specialist cost*. Testing actual survival requires replicate populations and a stochastic or individual-based demographic model, not only the above deterministic selection trajectory.
+
+This is a **conditional ecological timing mechanism**, not evidence that the SLK three-gate turnover has been observed in any existing system, nor a claim to originate rescue by self-organization or time-dependent selection.
+
 ## Strong boundary on what can be inferred
 
 - The pairwise formula does not establish spatial population growth, invasion-wave speed, fixation probability, coexistence, mutation supply, or long-run evolutionary transition.
