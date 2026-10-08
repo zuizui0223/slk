@@ -600,6 +600,24 @@ The latter interval exists only when `eta>B_A`. If `0<eta<B_A`, the invasion bou
 
 This is a prediction about the ordering of measured barriers under the declared environmental slice. It does not assert that historical evolution follows only small mutations, that large-effect changes are impossible, or that passing all three early criteria guarantees realized differentiation.
 
+### Rare-path audit: the intrinsic accessibility crossing is not always the realized rare-mutant crossing
+
+The preceding `g0(E)=R'(0)-k(E)` is the *intrinsic/reference-ecology* gradient. To interpret `E_A<E<E_I` as a phase where small *rare* mutants can actually spread while the completed divided type cannot, the ecological response to an incipient partial division must also be specified. In the identity-preserving feedback extension `Delta_w(d,p;E)=R(d)-k(E)d+eta w(d)(2p-1)`, assume `R` and `w` have finite right derivatives at zero. The true initial slope for a nearly integrated type introduced at rarity is
+
+```text
+g_rare(E)
+= lim_{d->0+} Delta_w(d,0;E)/d
+= g0(E) - eta w'_+(0).
+```
+
+Consequently `Phi>0, g0>0, Delta_R<0` is a valid **conditional diagnostic** of intrinsic accessibility plus endpoint rare-establishment failure; by itself it is **not** evidence that an incipient rare mutant enjoys positive selection. This is an important path–ecology coupling, not a fourth independent persistence mechanism.
+
+For proportional feedback `w(d)=d/dmax`, `g_rare(E)=g0(E)-eta/dmax`. Under `k(E)=k0-c(E-E0)`, the *rare* small-step crossing moves from `E_A` to `E_A,rare=E_A+eta/(c dmax)`. Strictly convex recovery implies `k_global>k_local`, so `E_A,rare>E_I` for the constant-`eta` witness: fully divided types may already invade from rarity while tiny steps still decline. Thus the ordered reference gate sequence `E_V<E_A<E_I` **does not by itself imply an evolutionary route of small rare mutations**.
+
+For superlinear feedback `w(d)=(d/dmax)^m` with `m>1`, `w'_+(0)=0`, so `g_rare=g0`. The reference and rare small-step crossings agree, while endpoint invasion remains `Delta_R=Phi-eta`. A genuine intermediate phase can then have small partial divisions that invade from rarity although complete division cannot. In the same explicit witness `R(d)=d+d^2`, `dmax=1`, `k(E)=3-E`, `eta=1.5`, the reference boundaries are `E_V=1`, `E_A=2`, and `E_I=2.5`. At `E=2.25`, proportional feedback gives `g_rare=-1.25` and `Delta_w(1,0)=-0.25`, but quadratic feedback gives `g_rare=0.25` and `Delta_w(d,0)=0.25d-0.5d^2>0` for `0<d<0.5`, even though `Delta_w(1,0)=-0.25`.
+
+**Biological prediction (conditional):** if dependence on matching partners or complementary roles begins linearly with the first small functional separation, ecological rarity can prolong the path barrier beyond the endpoint-invasion crossing. If this dependence rises only after appreciable specialization, intermediate partial divisions can spread before fully differentiated forms. Their eventual fate still requires dynamics across intermediate architectures and cannot be inferred from these local slopes. This feedback-shape distinction is a model consequence, not a new empirical finding.
+
 ---
 
 ## Corollary UTA1.4d — strict convex recovery creates architecture-path hysteresis
