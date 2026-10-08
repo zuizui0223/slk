@@ -235,7 +235,7 @@ Ecology also determines whether a distinct ecologically stabilized phase exists 
 Delta_R(E_A) < 0,
 ```
 
-then the divided architecture has become locally reachable but still cannot establish from rarity, so ecology becomes the final early barrier. If `Delta_R(E_A)>0`, establishment is already possible when local accessibility is gained, so no ecology-only interval begins at `E_A`; `Delta_R(E_A)=0` makes the two boundaries coincide. A later ecology-only interval would require non-monotonic ecological feedback and lies outside the ordered monotone slice considered here.
+then intrinsic small-step release is favorable but the completed divided form still cannot invade from rarity; whether rare partial forms invade depends on the feedback shape. If `Delta_R(E_A)>0`, establishment is already possible when local accessibility is gained, so no ecology-only interval begins at `E_A`; `Delta_R(E_A)=0` makes the two boundaries coincide. A later ecology-only interval would require non-monotonic ecological feedback and lies outside the ordered monotone slice considered here.
 
 In the canonical frequency-feedback model, define the architecture barrier on the same payoff scale as
 
@@ -245,7 +245,7 @@ B_A = Phi(E_A).
 
 Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that lowers marginal architecture cost, `B_A=dmax(k_global-k_local)`. Thus the earlier condition identifies a distinct **endpoint rare-establishment barrier** after intrinsic accessibility has been gained; the evolutionary accessibility of rare intermediates additionally depends on their ecological context.
 
-**Rare-path qualification.** The reference gradient `g_0` omits frequency feedback. For `Delta_w=R(d)-kd+eta w(d)(2p-1)`, the actual local gradient is `g_0-eta w'(0+)` at rarity. Under proportional feedback, rare intermediates can still be disfavored after `E_A`; under superlinear feedback (`w'(0+)=0`), partial division can invade while full division cannot. **Partner dependence across degrees of specialization matters.** Neither case proves a realized trajectory.
+**Rare-path qualification.** The reference `g_0` omits rarity feedback. For `Delta_w=R(d)-kd+eta w(d)(2p-1)`, the actual local gradient is `g_0-eta w'(0+)` at rarity. When `eta>B_A`, rare partial division becomes invasible before complete division precisely if `w'(0+)<(1-B_A/eta)/dmax`; the order reverses above this threshold and coincides at equality. **Partner dependence at the onset of specialization**, not only its eventual strength, changes which degree of division first spreads. Neither order proves a realized trajectory.
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
