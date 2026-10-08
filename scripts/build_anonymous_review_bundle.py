@@ -22,6 +22,7 @@ FILES = {
     "theory/ASSORTMENT_PARTIAL_FOUNDER_V1.md": "theory/ASSORTMENT_PARTIAL_FOUNDER_V1.md",
     "theory/NON_EQUIVALENCE_THEOREM_V1.md": "theory/NON_EQUIVALENCE_THEOREM_V1.md",
     "docs/INV1_EXECUTABLE_VALIDATION_V1.md": "docs/INV1_EXECUTABLE_VALIDATION_V1.md",
+    "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md": "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md",
     "figures/FIG1_LOGIC_DIAGRAM.svg": "figures/FIG1_LOGIC_DIAGRAM.svg",
     "figures/FIG2_PHASE_MAP.svg": "figures/FIG2_PHASE_MAP.svg",
     "figures/FIG3_EMPIRICAL_LADDER.svg": "figures/FIG3_EMPIRICAL_LADDER.svg",
@@ -50,7 +51,7 @@ This package accompanies the manuscript **Multifunctional structures can persist
 
 The submitted paper is an evolutionary-ecology theory paper about why comparable functional conflicts have different natural resolutions and why one multifunctional architecture can persist in different selective states. It does not estimate its headline results from a private or external empirical dataset. The natural-system examples, including *Pedicularis rex*, are literature based rather than new empirical results.
 
-The package contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the mathematical implementation, an independent Moran-process regression test, and a Python verifier. The manuscript centers adaptive integration, historical/developmental trapping, and ecological stabilization, together with the prediction that an unchanged integrated phenotype can lose evolutionary resistance before structural division of labor appears. The fuller theory files retain downstream fixation/occupancy and numerical derivations as supporting results rather than as the biological subject of the paper. The matched-assay partial-division models and associated tests reproduce the distinction between rare-mutant resistance, finite-frequency escape, and onward specialization without claiming empirical confirmation. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the mathematical implementation, a curated literature-based empirical evidence ledger, an independent Moran-process regression test, and a Python verifier. The manuscript centers adaptive integration, historical/developmental trapping, and ecological stabilization, together with the prediction that an unchanged integrated phenotype can lose evolutionary resistance before structural division of labor appears. The fuller theory files retain downstream fixation/occupancy and numerical derivations as supporting results rather than as the biological subject of the paper. The matched-assay partial-division models and associated tests reproduce the distinction between rare-mutant resistance, finite-frequency escape, and onward specialization without claiming empirical confirmation. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 
