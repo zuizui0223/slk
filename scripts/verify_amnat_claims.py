@@ -458,6 +458,39 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.4f: power-law partner dependence generates an interior
+    # most-invadable architecture only above a critical steepness.
+    def critical_feedback_exponent(jump: float, max_release: float = 1.0) -> float:
+        return (2 * max_release - jump) / (max_release - jump)
+
+    def power_frontier(d: float, m: float, jump: float) -> float:
+        return 0.5 - (dmax_escape**m / (2 * eta_escape)) * (
+            (d - jump) * d**(1 - m)
+        )
+
+    assert math.isclose(critical_feedback_exponent(0.5), 3.0)
+    assert math.isclose(critical_feedback_exponent(0.25), 7 / 3)
+    assert math.isclose(critical_feedback_exponent(0.75), 5.0)
+    d_opt_m4 = 0.5 * (4 - 1) / (4 - 2)
+    assert math.isclose(d_opt_m4, 0.75)
+    assert math.isclose(power_frontier(d_opt_m4, 4, 0.5), 0.12962962962962962)
+    assert power_frontier(d_opt_m4, 4, 0.5) < power_frontier(1.0, 4, 0.5)
+    assert critical_feedback_exponent(0.7) > 4
+    assert critical_feedback_exponent(0.5) < 4
+    assert power_frontier(0.75, 4, 0.7) > power_frontier(1.0, 4, 0.7)
+
+    checks["UTA1_4f_critical_feedback_steepness"] = {
+        "witness": "R(d)=d+d^2; w(d)=d^m; eta=0.8",
+        "d_J": 0.5,
+        "m_critical": critical_feedback_exponent(0.5),
+        "m_example": 4,
+        "d_opt": d_opt_m4,
+        "p_opt": power_frontier(d_opt_m4, 4, 0.5),
+        "p_full": power_frontier(1.0, 4, 0.5),
+        "crossing_k": 5 / 3,
+        "pass": True,
+    }
+
     # UTA1.5: stronger conflict need not mean larger architecture margin.
     L_A, s_A, K_A = 3.0, 0.2, 0.8
     L_B, s_B, K_B = 2.0, 0.8, 0.5
