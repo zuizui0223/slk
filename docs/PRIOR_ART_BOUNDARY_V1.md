@@ -131,6 +131,14 @@ Therefore SLK must **not** claim that an unchanged phenotype becoming easier to 
 
 The SLK quantities answer a different conditional question after a focal alternative architecture has been defined. `d_J` is the minimum one-step structural release with positive intrinsic net value on the declared path; `p_C` is the minimum initial frequency above which the already-specified divided type increases under the canonical positive-frequency feedback. Neither quantity requires stored cryptic genetic variation, a capacitor, or a changing genotype-phenotype map.
 
+### Completed-endpoint exclusion versus actual persistence
+
+The main theory contrasts one specified completed divided alternative with an integrated resident. Failure of that endpoint to invade at rarity is **not** a population-wide resistance certificate when partial degrees are accessible. This follows directly from classical local invasion stability reasoning. No novel general theory of adaptive dynamics, evolutionary constraint or phenotypic stasis is asserted. Within the registered continuous SLK extension, proportional identity-preserving feedback plus convex recovery allows the completed endpoint to bound every partial invader; with superlinear feedback, a positive intrinsic initial gradient ensures tiny rare partial variants can invade even when full division fails.
+
+Accordingly the conditional environment sequence `E_V<E_A<E_I` is a sequence of **reference decision boundaries**. It cannot be promoted to a demonstrated ecological progression of three persistent resident states unless mutational accessibility of partial variants and their effective rare performance are also resolved. This limitation is central to the novelty ceiling and prevents the generality of broad persistence claims from outrunning the mathematical witness.
+
+Direct broad antecedents include Taborsky (2025; DOI 10.1098/rstb.2023.0262), Wahl (2002; DOI 10.1006/jtbi.2002.3133), and Futuyma (2010; DOI 10.1111/j.1558-5646.2010.00960.x). The surviving distinctive *SLK-specific* result is the explicit relative ordering of these conditional surfaces in a declared architecture comparison, not a first discovery that selection, adaptation and phenotypic stasis can disagree.
+
 ### Evolutionary attainability of specialist states
 
 Egas, Dieckmann & Sabelis (2004) provide direct prior art for the distinction between evolutionary stability and gradual attainability. In their specialist–generalist model, coexistence can be evolutionarily stable yet in most cases cannot be reached through gradual evolution; immigration or large-effect mutations may be required.
