@@ -28,9 +28,9 @@ def test_figure1_distinguishes_bottlenecks_behind_one_phenotype() -> None:
         "Architecture bottleneck",
         "Evolutionary path",
         "Establishment bottleneck",
-        "Same visible phenotype",
-        "persistent multifunctionality",
-        "Unchanged morphology does not imply an unchanged evolutionary bottleneck",
+        "Same resident architecture (conditional)",
+        "all accessible partial variants need testing",
+        "Endpoint exclusion alone does not establish resistance to accessible partial mutants",
     ):
         assert token in text
 

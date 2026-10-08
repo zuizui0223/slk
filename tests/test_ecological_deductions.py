@@ -218,13 +218,13 @@ def test_hidden_bottleneck_turnover_is_the_reader_facing_spine() -> None:
     for token in (
         "Persistent phenotypes can conceal change in their genetic or developmental underpinnings",
         "can the selective bottleneck preventing reorganization change while a multifunctional architecture remains visibly unchanged",
-        "phenotypic stasis can conceal loss of evolutionary resistance",
+        "endpoint exclusion alone cannot certify resident stasis",
     ):
         assert token in manuscript
     for token in (
         "One persistent phenotype can hide different evolutionary bottlenecks",
-        "Same visible phenotype",
-        "Unchanged morphology does not imply an unchanged evolutionary bottleneck or unchanged resistance",
+        "Same resident architecture (conditional)",
+        "Endpoint exclusion alone does not establish resistance to accessible partial mutants",
     ):
         assert token in figure
 
@@ -233,7 +233,7 @@ def test_system_drift_is_not_confused_with_selective_bottleneck_turnover() -> No
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     assert "Developmental/system drift already shows" in manuscript
     assert "The natural systems reviewed above show structural, temporal, and integrated resolutions of conflict" in manuscript
-    assert "separates three decision criteria" in manuscript
+    assert "relates three candidate-specific criteria" in manuscript
     assert "one integrated architecture and one specified divided alternative fixed" in manuscript
 
 
@@ -254,7 +254,7 @@ def test_section_claim_map_matches_current_manuscript_structure() -> None:
     for heading in headings:
         assert heading in manuscript
         assert heading.removeprefix("## ") in section_map
-    assert "full architecture -> path -> ecology sequence is a conditional biological prediction" in section_map
+    assert "architecture -> path -> ecology ordering describes three conditional candidate comparisons" in section_map
 
 
 def test_hidden_resistance_is_not_promoted_to_generic_evolvability() -> None:
@@ -346,7 +346,7 @@ def test_environmental_tradeoff_shifts_are_prior_art_not_slk_novelty() -> None:
     prior = (ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md").read_text(encoding="utf-8")
     assert "Siepielski et al. 2026" in manuscript
     assert "does not claim that environmental change generically shifts constraints or trade-offs" in manuscript
-    assert "strict convexity forces the architecture-value crossing to precede local accessibility" in manuscript
+    assert "strict convexity makes endpoint profitability precede intrinsic local accessibility" in manuscript
     assert "Environmentally reshaped trade-offs" in prior
     assert "must **not** claim that environmental change reshaping a trade-off" in prior
     assert "Delta_R(E_A)<0" in prior

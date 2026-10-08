@@ -20,7 +20,7 @@
   </defs>
 
   <text x="700" y="48" text-anchor="middle" class="title">One persistent phenotype can hide different evolutionary bottlenecks</text>
-  <text x="700" y="79" text-anchor="middle" class="subtitle">Morphology can stay unchanged while the process preventing structural reorganization changes</text>
+  <text x="700" y="79" text-anchor="middle" class="subtitle">The same integrated form can exclude a specified divided alternative for different reasons</text>
 
   <rect x="390" y="112" width="620" height="92" class="box"/>
   <text x="700" y="147" text-anchor="middle" class="head">Documented functional conflict</text>
@@ -45,15 +45,15 @@
   <text x="700" y="386" text-anchor="middle" class="mid">Phi &gt; 0,  g0 &lt; 0</text>
   <text x="700" y="420" text-anchor="middle" class="body">a divided endpoint is fitter, but available</text>
   <text x="700" y="447" text-anchor="middle" class="body">small changes initially move downhill</text>
-  <text x="700" y="488" text-anchor="middle" class="mid">integration persists because of the path</text>
+  <text x="700" y="488" text-anchor="middle" class="mid">local route to full division is disfavored</text>
   <text x="700" y="520" text-anchor="middle" class="tiny">a new developmental or mutational route can release the trap</text>
 
   <rect x="975" y="302" width="370" height="250" class="state"/>
   <text x="1160" y="340" text-anchor="middle" class="head">Establishment bottleneck</text>
   <text x="1160" y="374" text-anchor="middle" class="mid">Phi &gt; 0,  g0 &gt; 0,  Delta_R &lt; 0</text>
-  <text x="1160" y="411" text-anchor="middle" class="body">division of labor is favorable and reachable,</text>
-  <text x="1160" y="439" text-anchor="middle" class="body">but a rare divided type performs poorly</text>
-  <text x="1160" y="485" text-anchor="middle" class="mid">integration persists because of ecology</text>
+  <text x="1160" y="411" text-anchor="middle" class="body">complete division has positive intrinsic value,</text>
+  <text x="1160" y="439" text-anchor="middle" class="body">but full division fails when rare</text>
+  <text x="1160" y="485" text-anchor="middle" class="mid">full-D invasion is ecologically blocked</text>
   <text x="1160" y="520" text-anchor="middle" class="tiny">community change can release ecological stabilization</text>
 
   <path d="M240 552 C240 640 500 660 615 670" class="line"/>
@@ -61,10 +61,10 @@
   <path d="M1160 552 C1160 640 900 660 785 670" class="line"/>
 
   <rect x="485" y="654" width="430" height="105" class="outcome"/>
-  <text x="700" y="694" text-anchor="middle" class="head">Same visible phenotype</text>
-  <text x="700" y="729" text-anchor="middle" class="mid">persistent multifunctionality</text>
+  <text x="700" y="694" text-anchor="middle" class="head">Same resident architecture (conditional)</text>
+  <text x="700" y="729" text-anchor="middle" class="mid">all accessible partial variants need testing</text>
 
   <rect x="220" y="798" width="960" height="62" class="box"/>
-  <text x="700" y="824" text-anchor="middle" class="mid">Unchanged morphology does not imply an unchanged evolutionary bottleneck or unchanged resistance.</text>
-  <text x="700" y="848" text-anchor="middle" class="tiny">Figure 3 asks when environment shifts the bottleneck—and how resistance erodes before morphology changes.</text>
+  <text x="700" y="824" text-anchor="middle" class="mid">Endpoint exclusion alone does not establish resistance to accessible partial mutants.</text>
+  <text x="700" y="848" text-anchor="middle" class="tiny">Figure 3 maps candidate thresholds, not a guaranteed sequence of resident population states.</text>
 </svg>

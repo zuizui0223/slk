@@ -6,10 +6,10 @@
 SCIENTIFIC_MANUSCRIPT          READY
 FULL_CI                       PASS
 ANONYMOUS_REVIEW_BUILD        PASS
-REVIEWER_DISTRIBUTION_ZIP     READY_CURRENT
-EDITORIAL_MANAGER_UPLOAD_KIT  READY_CURRENT
-ZENODO_PAYLOAD                READY_CURRENT
-RENDERED_LAYOUT_QA            PASS_28_28
+REVIEWER_DISTRIBUTION_ZIP     STALE_TRACKED_RECEIPT
+EDITORIAL_MANAGER_UPLOAD_KIT  STALE_TRACKED_RECEIPT
+ZENODO_PAYLOAD                STALE_TRACKED_RECEIPT
+RENDERED_LAYOUT_QA            PREVIOUS_SOURCE_ONLY
 KEY_FIGURES_FULL_SIZE_QA      PASS
 INTERNAL_BLOCKERS             NONE
 ```
@@ -65,9 +65,9 @@ Before submission the authors must edit this sentence if needed so it exactly ma
 
 ## Local Editorial Manager upload kit
 
-Status: `READY_CURRENT`.
+Status: `STALE_TRACKED_RECEIPT — DO NOT USE PRIOR CHECKSUMS FOR THE CURRENT MANUSCRIPT`.
 
-Use the current deterministic kit SHA256 `3b8bb9f80c35c998de2eb2a08a039acdbf4188f35d24e6c0adff2caeb678de1c`. The outer convenience ZIP should be unpacked locally; upload its constituent files separately in Editorial Manager.
+The listed deterministic kit checksum belongs to a superseded source commit. Rebuild and verify the current-head package before portal upload. The outer convenience ZIP should be unpacked locally; upload its constituent files separately in Editorial Manager.
 
 ## Current readiness receipt
 
@@ -76,8 +76,8 @@ The current unfilled portal template has been evaluated and frozen at:
 ```text
 submission/AMNAT_PORTAL_READINESS_CURRENT_V1.json
 status = BLOCKED
-machine assets = CURRENT
-internal blockers = NONE
+machine assets = REQUIRE_CURRENT_HEAD_VERIFICATION
+internal blockers = STALE_TRACKED_PACKAGE_METADATA
 human/external missing fields = 13
 ```
 

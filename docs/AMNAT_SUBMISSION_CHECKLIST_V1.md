@@ -13,8 +13,8 @@ Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
 TITLE_WORDS                        11
-ABSTRACT_WORDS                    189
-TEXT_WORDS_EXCL_LITERATURE_CITED 7410
+ABSTRACT_WORDS                    169
+TEXT_WORDS_EXCL_LITERATURE_CITED 7423
 FIGURES                             3
 TABLES                              0
 ```
@@ -43,7 +43,7 @@ The current ecology-first manuscript, title page, and all three figures build su
 
 All 28 rendered pages were inspected at overview scale, and the three figure pages were inspected at full size. No clipping, overlap, broken glyphs, or figure-title truncation was found.
 
-Status: `PREVIOUS 28-PAGE LAYOUT QA PASS — REBUILD REQUIRED AFTER LATEST ECOLOGICAL PREDICTION EDIT`.
+Status: `PREVIOUS LAYOUT QA APPLIES TO AN OLDER FIGURE — VERIFY CURRENT HEAD CI PACKAGE BEFORE UPLOAD`.
 
 ### 2. Anonymous reviewer code/theory package — REBUILD PENDING
 
