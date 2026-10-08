@@ -149,6 +149,29 @@ def test_smooth_symmetric_mismatch_allows_continued_small_step_specialization() 
         assert isclose(observed_gradient, 0.25 + 2.0 * resident, abs_tol=0.001)
 
 
+
+def test_smooth_mismatch_has_a_stepping_stone_threshold_for_full_division() -> None:
+    # New full D cannot invade S or the first partial founder, but can
+    # invade a sufficiently advanced partial resident.
+    assert smooth_invasion(1.0, 0.0, 2.0) < 0
+    assert smooth_invasion(1.0, D_STAR, 2.0) < 0
+    left, right = 0.2, 0.5
+    assert smooth_invasion(1.0, left, 2.0) < 0
+    assert smooth_invasion(1.0, right, 2.0) > 0
+    for _ in range(65):
+        mid = (left + right) / 2.0
+        if smooth_invasion(1.0, mid, 2.0) > 0:
+            right = mid
+        else:
+            left = mid
+    threshold = (left + right) / 2.0
+    assert isclose(threshold, 0.28615302603084614, abs_tol=1e-12)
+    assert threshold > 2.0 / 7.0
+    assert threshold < 0.3
+    assert smooth_invasion(1.0, 0.3, 2.0) > 0
+    assert smooth_invasion(0.3, 0.0, 2.0) < 0
+    assert smooth_invasion(0.3, 0.25, 2.0) > 0
+
 def test_cusp_and_smooth_payoffs_disagree_after_partial_becomes_resident() -> None:
     assert smooth_invasion(D_STAR, 0.0, 2.0) > 0
     assert smooth_invasion(1.0, 0.0, 2.0) < 0
