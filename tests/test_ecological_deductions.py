@@ -496,7 +496,20 @@ def test_partial_division_can_invade_when_complete_division_fails() -> None:
     assert selection(0.75, p_initial) == pytest.approx(0.0103125)
     assert selection(1, p_initial) == pytest.approx(-0.06)
 
+    # Ecological feedback must grow faster than intrinsic value for
+    # a more divided form to need a greater initial frequency.
+    def intrinsic_elasticity(d: float) -> float:
+        return (2 * d - 0.5) / (d - 0.5)
+
+    ecological_elasticity = 4.0
+    assert intrinsic_elasticity(0.7) > ecological_elasticity
+    assert intrinsic_elasticity(0.75) == pytest.approx(ecological_elasticity)
+    assert intrinsic_elasticity(0.8) < ecological_elasticity
+    assert p_escape(0.75) < p_escape(0.7)
+    assert p_escape(0.75) < p_escape(0.8)
+
     theory = THEORY.read_text(encoding="utf-8")
+    assert "epsilon_w(d)>epsilon_F(d)" in theory
     assert "more divided can be intrinsically fitter but less invadable" in theory
     assert "Delta_w(0.75,0.15)=+0.0103125" in theory
 
