@@ -26,6 +26,8 @@ FILES = {
     "docs/INV1_EXECUTABLE_VALIDATION_V1.md": "docs/INV1_EXECUTABLE_VALIDATION_V1.md",
     "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md": "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md",
     "docs/SECTION_CLAIM_MAP_V1.md": "docs/SECTION_CLAIM_MAP_V1.md",
+    "docs/FLORAL_PARTNER_FUNCTION_SWITCH_V1.md": "docs/FLORAL_PARTNER_FUNCTION_SWITCH_V1.md",
+    "docs/FLORAL_INTERACTION_MODULE_AUDIT_V1.md": "docs/FLORAL_INTERACTION_MODULE_AUDIT_V1.md",
     "figures/FIG1_LOGIC_DIAGRAM.svg": "figures/FIG1_LOGIC_DIAGRAM.svg",
     "figures/FIG2_PHASE_MAP.svg": "figures/FIG2_PHASE_MAP.svg",
     "figures/FIG3_EMPIRICAL_LADDER.svg": "figures/FIG3_EMPIRICAL_LADDER.svg",
@@ -38,6 +40,7 @@ FILES = {
     "tests/test_stochastic_partner_assembly.py": "tests/test_stochastic_partner_assembly.py",
     "tests/test_endpoint_exclusion_vs_persistence.py": "tests/test_endpoint_exclusion_vs_persistence.py",
     "tests/test_candidate_persistence_figures.py": "tests/test_candidate_persistence_figures.py",
+    "tests/test_floral_partner_function_boundary.py": "tests/test_floral_partner_function_boundary.py",
     "pytest.ini": "pytest.ini",
 }
 
@@ -57,7 +60,7 @@ This package accompanies the manuscript **Multifunctional structures can persist
 
 The submitted paper is an evolutionary-ecology theory paper about why comparable functional conflicts have different natural resolutions and how candidate-specific barriers to a completed divided alternative can differ, without assuming the integrated resident excludes every accessible partial variant. It does not estimate its headline results from a private or external empirical dataset. The natural-system examples, including *Pedicularis rex*, are literature based rather than new empirical results.
 
-The package contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the mathematical implementation, a curated literature-based empirical evidence ledger, an independent Moran-process regression test, and a Python verifier. The manuscript separates negative completed-endpoint value, unfavorable intrinsic release paths, and rare-endpoint exclusion as candidate-specific criteria. Actual integrated-resident persistence additionally requires examining accessible partial forms and their evolutionary realization. The fuller theory files retain downstream fixation/occupancy and numerical derivations as supporting results rather than as the biological subject of the paper. The matched-assay partial-division models and associated tests reproduce the distinction between rare-mutant resistance, finite-frequency escape, and onward specialization without claiming empirical confirmation. The conditional delayed-assembly extension separately demonstrates that absolute demographic turnover affects lineage survival even under identical net selective differences; it does not infer empirical extinction rates. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the mathematical implementation, a curated literature-based empirical evidence ledger, an independent Moran-process regression test, and a Python verifier. The manuscript separates negative completed-endpoint value, unfavorable intrinsic release paths, and rare-endpoint exclusion as candidate-specific criteria. Actual integrated-resident persistence additionally requires examining accessible partial forms and their evolutionary realization. The fuller theory files retain downstream fixation/occupancy and numerical derivations as supporting results rather than as the biological subject of the paper. The matched-assay partial-division models and associated tests reproduce the distinction between rare-mutant resistance, finite-frequency escape, and onward specialization without claiming empirical confirmation. The conditional delayed-assembly extension separately demonstrates that absolute demographic turnover affects lineage survival even under identical net selective differences; it does not infer empirical extinction rates. The floral partner-switching evidence note separates already documented anther handling and mechanical roles from the untested hypothesis that a secondary function maintains dimorphism after pollen partitioning weakens. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 
@@ -65,7 +68,7 @@ From the root of this extracted package, run:
 
 ```bash
 python scripts/verify_amnat_claims.py --output CLAIM_VERIFICATION_RECEIPT.json
-python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py tests/test_stochastic_partner_assembly.py tests/test_endpoint_exclusion_vs_persistence.py tests/test_candidate_persistence_figures.py
+python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py tests/test_stochastic_partner_assembly.py tests/test_endpoint_exclusion_vs_persistence.py tests/test_candidate_persistence_figures.py tests/test_floral_partner_function_boundary.py
 ```
 
 A successful run writes a JSON receipt with `all_checks_pass: true`.
