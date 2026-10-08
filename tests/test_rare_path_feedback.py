@@ -104,8 +104,12 @@ def test_critical_onset_slope_continuously_changes_invasion_order() -> None:
     e_endpoint = 2.5
     for alpha in (0.0, 0.1, 0.3, alpha_crit, 0.6, 1.0):
         e_partial = 2.0 + ETA * alpha / DMAX
-        assert (e_partial < e_endpoint) == (alpha < alpha_crit)
-        assert (e_partial > e_endpoint) == (alpha > alpha_crit)
+        if isclose(alpha, alpha_crit):
+            assert isclose(e_partial, e_endpoint, abs_tol=1e-12)
+        elif alpha < alpha_crit:
+            assert e_partial < e_endpoint
+        else:
+            assert e_partial > e_endpoint
         assert isclose(mixed_feedback_selection(1.0, 0.0, e_endpoint, alpha), 0.0)
         h = 1e-8
         numeric = mixed_feedback_selection(h, 0.0, e_partial, alpha) / h
@@ -156,7 +160,7 @@ def test_paper_distinguishes_reference_access_from_rare_access() -> None:
         encoding="utf-8"
     )
     assert "actual local gradient is `g_0-eta w'(0+)`" in manuscript
-    assert "rare intermediates can still be disfavored after `E_A`" in manuscript
+    assert "rare partial division becomes invasible before complete division" in manuscript
     assert "g_rare(E)" in theory
     assert "E_A,rare=E_A+eta/(c dmax)" in theory
     assert "not a new empirical finding" in theory
