@@ -25,6 +25,7 @@ def test_peer_review_can_verify_flower_function_evidence() -> None:
         "10.1111/plb.13673",
         "10.1111/1442-1984.70070",
         "10.1111/evo.14260",
+        "10.1007/s00442-022-05246-0",
     ):
         assert doi in ledger
         assert doi in note
@@ -32,6 +33,8 @@ def test_peer_review_can_verify_flower_function_evidence() -> None:
     assert "0 of 33" in ledger
     assert "0 of 31" in ledger
     assert "193 h video" in note
+    assert "larger bees transfer more pollen with free anthers" in ledger
+    assert "Direct intervention evidence" in note
 
 
 def test_morphological_retention_is_explicitly_unproven() -> None:
