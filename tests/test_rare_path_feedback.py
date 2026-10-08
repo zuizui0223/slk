@@ -81,6 +81,73 @@ def test_near_zero_numeric_limit_matches_analytic_local_gradient() -> None:
             assert isclose(numeric, analytic, abs_tol=2e-8)
 
 
+
+def mixed_feedback_selection(d: float, frequency: float, environment: float, alpha: float) -> float:
+    """Feedback with a tunable linear onset and a quadratic remainder."""
+    assert 0.0 <= alpha <= 1.0
+    w = alpha * (d / DMAX) + (1.0 - alpha) * (d / DMAX) ** 2
+    return intrinsic(d, environment) + ETA * w * (2 * frequency - 1)
+
+
+def onset_threshold(eta: float = ETA) -> float:
+    """alpha_crit = 1 - B_A/eta for the normalized quadratic witness."""
+    k_local = 1.0
+    k_global = 2.0
+    b_access = DMAX * (k_global - k_local)
+    return 1.0 - b_access / eta
+
+
+def test_critical_onset_slope_continuously_changes_invasion_order() -> None:
+    alpha_crit = onset_threshold()
+    assert isclose(alpha_crit, 1.0 / 3.0)
+
+    e_endpoint = 2.5
+    for alpha in (0.0, 0.1, 0.3, alpha_crit, 0.6, 1.0):
+        e_partial = 2.0 + ETA * alpha / DMAX
+        assert (e_partial < e_endpoint) == (alpha < alpha_crit)
+        assert (e_partial > e_endpoint) == (alpha > alpha_crit)
+        assert isclose(mixed_feedback_selection(1.0, 0.0, e_endpoint, alpha), 0.0)
+        h = 1e-8
+        numeric = mixed_feedback_selection(h, 0.0, e_partial, alpha) / h
+        assert isclose(numeric, 0.0, abs_tol=2e-8)
+
+
+def test_mixed_feedback_partial_only_invasion_has_finite_window() -> None:
+    environment = 2.25
+    alpha = 0.1
+    for d in (0.01, 0.1, 0.25):
+        assert mixed_feedback_selection(d, 0.0, environment, alpha) > 0
+        assert isclose(
+            mixed_feedback_selection(d, 0.0, environment, alpha),
+            0.1 * d - 0.35 * d * d,
+            abs_tol=1e-12,
+        )
+    assert isclose(mixed_feedback_selection(2.0 / 7.0, 0.0, environment, alpha), 0.0, abs_tol=1e-12)
+    for d in (0.3, 0.75, 1.0):
+        assert mixed_feedback_selection(d, 0.0, environment, alpha) < 0
+
+
+def test_large_linear_onset_removes_partial_only_invasion() -> None:
+    environment = 2.25
+    alpha = 0.6
+    for d in (0.01, 0.2, 0.6, 1.0):
+        expected = -0.65 * d + 0.4 * d * d
+        assert isclose(mixed_feedback_selection(d, 0.0, environment, alpha), expected, abs_tol=1e-12)
+        assert expected < 0.0
+
+
+def test_common_linear_cost_shift_preserves_selection_and_positive_cost() -> None:
+    # An apparently negative cost at the proportional formal crossing can
+    # be removed without altering payoffs by adding the same linear term
+    # to structural recovery and architectural cost.
+    assert isclose(cost(3.5), -0.5)
+    assert isclose(4.0 - 3.5, 0.5)
+    for e in (1.5, 2.25, 3.0, 3.5):
+        for d in (0.01, 0.25, 0.75, 1.0):
+            shifted_intrinsic = (2.0 * d + d * d) - (4.0 - e) * d
+            assert isclose(shifted_intrinsic, intrinsic(d, e), abs_tol=1e-12)
+
+
 def test_paper_distinguishes_reference_access_from_rare_access() -> None:
     manuscript = (ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md").read_text(
         encoding="utf-8"
@@ -93,3 +160,5 @@ def test_paper_distinguishes_reference_access_from_rare_access() -> None:
     assert "g_rare(E)" in theory
     assert "E_A,rare=E_A+eta/(c dmax)" in theory
     assert "not a new empirical finding" in theory
+    assert "alpha < 1-B_A/eta" in theory
+    assert "s_crit" in theory
