@@ -166,9 +166,9 @@ Continued integration does not imply one evolutionary condition. The same multif
 
 **Historical or developmental trapping.** When `Phi>0` but the local release gradient `g_0=R'(0)-k` is negative, a differentiated endpoint would be fitter if present but sufficiently small changes away from integration are selected against. A new developmental route, recombination, large-effect change, or altered path cost can therefore change the outcome without any change in the endpoint comparison itself.
 
-**Ecological stabilization of integration.** When differentiation is favorable and initially reachable but `Delta_R<0`, a rare differentiated type performs poorly in its ecological background. Ecological interactions can exclude that endpoint, but persistence requires all accessible partial variants to fail invasion. Community change can remove or reverse this barrier.
+**Ecological exclusion of completed division.** When differentiation is favorable and initially reachable but `Delta_R<0`, a rare differentiated type performs poorly in its ecological background. Ecological interactions can exclude that endpoint, but persistence requires all accessible partial variants to fail invasion. Community change can remove or reverse this barrier.
 
-A fourth state, `Phi>0`, `g_0>0`, and `Delta_R>0`, removes these three early barriers but still does not guarantee fixation or historical realization. The biological distinction is therefore not merely between "specialized" and "unspecialized." An integrated structure can be the favored architecture, a historically trapped architecture, or an architecture stabilized by its ecological context. The same morphology can consequently have different evolutionary meanings in different populations or environments.
+A fourth state, `Phi>0`, `g_0>0`, and `Delta_R>0`, removes these three early barriers but still does not guarantee fixation or historical realization. The biological distinction is therefore not merely between "specialized" and "unspecialized." Integration may be intrinsically favored, historically trapped, or resistant to a specified completed alternative because of its ecological context. The same morphology can consequently have different evolutionary meanings in different populations or environments.
 
 ## 8. Formal backbone
 
