@@ -63,6 +63,29 @@ def test_figure_3_uses_correct_axes_and_candidate_relative_claim() -> None:
     assert "partial mutants need separate checks" in artwork
 
 
+def test_frequency_feedback_sign_alone_does_not_imply_coexistence_or_bistability() -> None:
+    artwork = FIG3.read_text(encoding="utf-8")
+    manuscript = manuscript_text()
+    assert "alternative states if η&gt;0 and |Φ|&lt;η" in artwork
+    assert "coexistence if η&lt;0 and |Φ|&lt;|η|" in artwork
+    assert "both architectures invade from rarity" in manuscript
+
+    def selection(phi: float, eta: float, p: float) -> float:
+        return phi + eta * (2.0*p-1.0)
+
+    # For eta>0, both states repel a rare alternative only for |phi|<eta.
+    assert selection(0.25, 0.8, 0.0) < 0.0 < selection(0.25, 0.8, 1.0)
+    # Positive feedback alone may instead yield unconditional D advantage.
+    assert selection(1.2, 0.8, 0.0) > 0.0
+    assert selection(1.2, 0.8, 1.0) > 0.0
+
+    # For eta<0, the two morphs can coexist when each increases from rarity.
+    assert selection(0.25, -0.8, 0.0) > 0.0 > selection(0.25, -0.8, 1.0)
+    # Negative feedback alone is also insufficient.
+    assert selection(1.2, -0.8, 0.0) > 0.0
+    assert selection(1.2, -0.8, 1.0) > 0.0
+
+
 def test_claim_map_uses_the_proportional_feedback_escape_equation() -> None:
     claim_map = SECTION_MAP.read_text(encoding="utf-8")
     assert "1/2-[dmax/(2eta)]*[R(d)/d-k]" in claim_map
