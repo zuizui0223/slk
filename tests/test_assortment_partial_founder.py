@@ -118,6 +118,58 @@ def test_assortment_does_not_rescue_an_isolated_mutant_by_assumption() -> None:
     assert "globally rare but internally clustered propagules" in source
 
 
+
+def complementary_role_selection(p: float, r: float, intrinsic_gap: float = -0.25, benefit: float = 1.0) -> float:
+    """Unlike-type contacts support both role specialists."""
+    _, _, _, _ = conditional_encounters(p, r)
+    return intrinsic_gap + benefit * (1.0 - r) * (1.0 - 2.0*p)
+
+
+@pytest.mark.parametrize("p", [0.1, 0.25, 0.5, 0.75, 0.9])
+def test_partner_matching_and_complementarity_reverse_assortment_effects(p: float) -> None:
+    # Full D versus partial P has a mismatch loss when unlike;
+    # the separate cross-role game has a BENEFIT from unlike encounters.
+    m_low = direct_selection(1.0, PARTIAL, p, 0.0)
+    m_high = direct_selection(1.0, PARTIAL, p, 0.5)
+    c_low = complementary_role_selection(p, 0.0)
+    c_high = complementary_role_selection(p, 0.5)
+    if p < 0.5:
+        assert m_high > m_low
+        assert c_high < c_low
+    elif p > 0.5:
+        assert m_high < m_low
+        assert c_high > c_low
+    else:
+        assert isclose(m_low, m_high, abs_tol=1e-12)
+        assert isclose(c_low, c_high, abs_tol=1e-12)
+
+
+def test_cross_role_benefit_needs_heterotypic_contacts() -> None:
+    # This is a within-divided-collective model and NOT S->D invasion.
+    assert isclose(complementary_role_selection(0.1, 0.0), 0.55)
+    assert isclose(complementary_role_selection(0.1, 0.8), -0.09)
+    assert complementary_role_selection(0.001, 0.0) > 0
+    assert complementary_role_selection(0.001, 0.8) < 0
+    assert isclose(complementary_role_selection(0.375, 0.0), 0.0)
+    assert isclose(complementary_role_selection(0.25, 0.5), 0.0)
+    assert isclose(complementary_role_selection(0.001, 0.75), -0.0005, abs_tol=1e-12)
+
+
+def test_contact_polarity_distinguishes_functional_scale() -> None:
+    source = (ROOT / "theory" / "ASSORTMENT_PARTIAL_FOUNDER_V1.md").read_text(
+        encoding="utf-8"
+    )
+    for token in (
+        "Complementary spatial organization",
+        "Within-flower structural division",
+        "does **not** automatically represent microbial division",
+        "Delta_complement",
+        "p_star(r)",
+        "not invasion of a complete divided organization",
+        "Effective encounter topology",
+    ):
+        assert token in source
+
 def test_assortment_extension_is_registered_as_conditional_only() -> None:
     source = (ROOT / "theory" / "ASSORTMENT_PARTIAL_FOUNDER_V1.md").read_text(
         encoding="utf-8"
