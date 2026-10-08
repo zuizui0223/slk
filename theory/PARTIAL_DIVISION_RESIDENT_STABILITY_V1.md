@@ -104,7 +104,7 @@ I_2(1|v)
 =0.
 ```
 
-In the present witness this threshold lies *just above* `2/7≈0.285714`, the highest degree capable of directly invading `S`. Thus an intermediate degree that cannot itself establish directly from integration can nevertheless become established by sequential replacement and then open the door to complete division. This ordering and numerical proximity are **witness-specific**. `I_2(1|v)>0` for residents immediately above the lower crossing, while `I_2(1|1)=0` trivially because the mutant equals the resident; do not treat the endpoint equality as a second distinct invasion event.
+In the present witness this threshold lies *just above* `2/7≈0.285714`, the neutral upper boundary of degrees that can invade `S`. Thus an intermediate degree that cannot itself establish directly from integration can nevertheless become established by sequential replacement and then open the door to complete division. This ordering and numerical proximity are **witness-specific**. `I_2(1|v)>0` for residents immediately above the lower crossing, while `I_2(1|1)=0` trivially because the mutant equals the resident; do not treat the endpoint equality as a second distinct invasion event.
 
 This is not an assertion of guaranteed global convergence of a stochastic evolutionary process. The smooth example establishes an open direction of favorable small mutations from each interior resident; whether successive successful mutants are supplied and establish over evolutionary time is an additional population-genetic question.
 
