@@ -260,6 +260,20 @@ The new SLK two-phase founder example is consequently **theoretical only**: it f
 
 **Remaining empirical gap:** no cited study jointly measures (1) realized variation in an architecture from integrated to partial/fully divided, (2) partner-availability dynamics, (3) independent birth and death of the focal rare architecture, and (4) the resulting conditional establishment probability in the same biological system. The present evolutionary theory manuscript need not acquire these data before publication, but it must not claim that they already exist.
 
+## Floral partner-dependent functional reweighting — observed roles versus untested maintenance
+
+Two field studies offer especially direct evidence that floral function depends on **the combination of floral architecture and pollinator behavior**, not stamen dimensions alone.
+
+**Senna arnottiana** (Rego, Monzón & Mesquita-Neto 2024): in three populations, large native bees preferentially manipulated short feeding stamens, whereas introduced *Bombus terrestris* used short and long stamens indiscriminately and contacted stigmas at lower rates. **Observed:** pollinator-specific loss of stamen handling selectivity and lower stigma contact for the invasive bee. **Not established:** genomic/morphological evolution, lost whole-lifetime fitness benefit of the dimorphic architecture, persistence by an alternative function, or any SLK threshold estimate.
+
+**Bredia hirsuta** (Fukano & Denda 2026): Okinawa fieldwork found stable ventral gripping of short stamens by *Amegilla dulcifera* while long stamen tips and stigma contacted the dorsal abdomen. Fluorescent stigma powder supported distinct contact zones. Stamen removal showed **12 of 39 buzzes with slipping** when entire long stamens were removed, versus **0 of 33** control visits and **0 of 31** when long anthers alone were removed while filaments remained. **Observed:** a mechanical support role as well as plausible pollen-role separation. **Not established:** selection maintaining stamen dimorphism across pollinator turnover, genetic pollen paternity by stamen class, or a structural SLK candidate-relative `Phi`.
+
+**Merianieae** (Dellinger et al. 2021): species with alternative non-pollen floral rewards and passerine pollination can retain or repeatedly evolve stamen dimorphism, with staggered resource presentation. This is already **direct published prior art** for changes in functional roles and independent origin of differentiated anatomy; do not call its functional repurposing a SLK first discovery.
+
+The **untested bridge hypothesis** is that secondary mechanical support or altered timing could sometimes compensate for diminished pollen-reward/pollen-transfer segregation after pollinator replacement. This is not demonstrated by juxtaposing `Senna` and `Bredia`: they are different lineages and ecosystems. Testing requires measuring fitness contributions of the additional function and the actual evolutionary trajectory of the organ morphology, while controlling accessible alternative morphologies and pollinator context.
+
+Full record with competing explanations and explicit falsifiers: `docs/FLORAL_PARTNER_FUNCTION_SWITCH_V1.md`.
+
 ## Current empirical synthesis
 
 The current evidence no longer rests on one analogue. Six complementary empirical roles are now covered.
@@ -283,6 +297,11 @@ Together these systems make the remaining biological gap precise. The missing ev
 That missing test remains the empirical target of SLK.
 
 ## Sources
+
+- Rego JO, Monzón VH, Mesquita-Neto JN. 2024. The invasive bumblebee *Bombus terrestris* disrupts the adaptive function of heteranthery by indiscriminately visiting the pollinating and feeding anthers of *Senna arnottiana* flowers. *Plant Biology* 26:821–831. DOI 10.1111/plb.13673.
+- Fukano T, Denda T. 2026. Consistent buzz-pollination posture suggests division of labour between dimorphic stamens in *Bredia hirsuta* on Okinawa-Jima Island, Japan. *Plant Species Biology* 41:e70070. DOI 10.1111/1442-1984.70070.
+- Dellinger AS, Artuso S, Fernández-Fernández DM, Schönenberger J. 2021. Stamen dimorphism in bird-pollinated flowers: investigating alternative hypotheses on the evolution of heteranthery. *Evolution* 75:2589–2599. DOI 10.1111/evo.14260.
+
 
 - Dolinšek J, Ramoneda J, Johnson DR. 2022. Initial community composition determines the long-term dynamics of a microbial cross-feeding interaction by modulating niche availability. ISME Communications 2:77. DOI 10.1038/s43705-022-00160-1.
 
