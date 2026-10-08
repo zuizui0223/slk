@@ -377,6 +377,44 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.4f nonlinear-feedback witness: more intrinsic release can
+    # require more demographic support, despite identical endpoint slices.
+    def superlinear_weight(d: float) -> float:
+        return d**4
+
+    def p_escape_superlinear(d: float) -> float:
+        return 0.5 - intrinsic_release(d) / (2 * eta_escape * superlinear_weight(d))
+
+    def delta_superlinear(d: float, p: float) -> float:
+        return intrinsic_release(d) + eta_escape * superlinear_weight(d) * (2 * p - 1)
+
+    partial_release = 0.75
+    complete_release = architecture.dmax
+    initial_frequency = 0.15
+    assert math.isclose(superlinear_weight(0.0), 0.0)
+    assert math.isclose(superlinear_weight(complete_release), 1.0)
+    assert intrinsic_release(complete_release) > intrinsic_release(partial_release)
+    assert math.isclose(p_escape_superlinear(d_j_escape), 0.5)
+    assert math.isclose(p_escape_superlinear(complete_release), p_c_escape)
+    assert math.isclose(p_escape_superlinear(partial_release), 0.12962962962962962)
+    assert p_escape_superlinear(partial_release) < initial_frequency < p_c_escape
+    assert math.isclose(delta_superlinear(partial_release, initial_frequency), 0.0103125)
+    assert math.isclose(delta_superlinear(complete_release, initial_frequency), -0.06)
+
+    checks["UTA1_4f_nonlinear_feedback_invasion_reversal"] = {
+        "scaling": "w(d)=d^4",
+        "partial_release": partial_release,
+        "completed_release": complete_release,
+        "p_initial": initial_frequency,
+        "partial_intrinsic": intrinsic_release(partial_release),
+        "completed_intrinsic": intrinsic_release(complete_release),
+        "p_escape_partial": p_escape_superlinear(partial_release),
+        "p_escape_completed": p_escape_superlinear(complete_release),
+        "Delta_partial": delta_superlinear(partial_release, initial_frequency),
+        "Delta_completed": delta_superlinear(complete_release, initial_frequency),
+        "pass": True,
+    }
+
     # UTA1.5: stronger conflict need not mean larger architecture margin.
     L_A, s_A, K_A = 3.0, 0.2, 0.8
     L_B, s_B, K_B = 2.0, 0.8, 0.5
