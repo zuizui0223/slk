@@ -114,7 +114,7 @@ def test_assortment_does_not_rescue_an_isolated_mutant_by_assumption() -> None:
     source = (ROOT / "theory" / "ASSORTMENT_PARTIAL_FOUNDER_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "do **not rescue an isolated single mutant**" in source
+    assert "do not rescue an isolated single mutant**" in source
     assert "globally rare but internally clustered propagules" in source
 
 
