@@ -86,6 +86,23 @@ P_alive_at_switch(n0,T)
 
 These are not the same quantity. Even a lineage that survives the adverse phase can go extinct after contacts become favorable, because favorable **net** growth does not eliminate individual mortality. Nor does eventual nonextinction of this unbounded branching process imply fixation, spatial wave invasion, coexistence, or the persistence of the full complementary collective.
 
+## A stronger ecological boundary: a relative advantage need not give absolute persistence
+
+Even the **sign** of the favorable post-assembly birth–death growth rate is not identified from SLK's pairwise frequency selection difference. Write `Delta_R=g_D-g_P`, where `g_D` is the rare mutant's absolute net growth rate and `g_P` the resident's net growth on the same demographic scale. For the previous post-contact difference `Delta_R=0.323265306...`:
+
+```text
+Case 1: resident demographically stationary:
+    g_P=0, g_D=+0.323265306...;
+    positive-probability nonextinction is possible when b_D>d_D.
+
+Case 2: resident demographic decline:
+    g_P=-0.5, g_D=-0.176734694...;
+    the new divided architecture increases *in relative frequency*
+    while both lineages have negative absolute growth.
+```
+
+For example, in Case 2 `b_D=0.8, d_D=0.976734693...` gives `b_D-d_D=-0.176734693...` and an ultimate extinction probability of one in the declared unbounded birth–death model, despite **exactly the same positive relative fitness difference** as Case 1. This is not a new or surprising theorem; it guards against treating frequency-based invasion as demographic rescue during shared environmental deterioration. The favorable-case post-assembly survival formula above explicitly assumes a **resident demographic baseline permitting g_D>0**.
+
 ## Same evolutionary value and mean decline, different survival
 
 Keep the previous structural and ecological `g_pre`, `g_post` fixed. Let the **post** environment be identical in both cases:
