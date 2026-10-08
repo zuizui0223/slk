@@ -514,6 +514,54 @@ def test_partial_division_can_invade_when_complete_division_fails() -> None:
     assert "Delta_w(0.75,0.15)=+0.0103125" in theory
 
 
+def test_viable_partial_division_is_a_bounded_introduction_window() -> None:
+    # A positive band of partial releases can be flanked on BOTH sides
+    # by negative invasion selection, even with strictly convex recovery.
+    eta = 0.8
+    p = 0.15
+    b = eta * (1 - 2 * p)
+
+    def selection(d: float, frequency: float = p) -> float:
+        return d * (d - 0.5 - eta * (1 - 2 * frequency) * d**3)
+
+    assert 0.5 < b < 16 / 27
+    assert 7 / 54 < p < 3 / 16
+    d_peak = (1 / (3 * b)) ** 0.5
+    assert d_peak == pytest.approx(0.77151674981046)
+    assert selection(0.6) < 0
+    assert selection(d_peak) > 0
+    assert selection(1.0) < 0
+
+    def crossing(lo: float, hi: float) -> float:
+        sign_at_lo = selection(lo)
+        assert sign_at_lo * selection(hi) < 0
+        for _ in range(70):
+            mid = (lo + hi) / 2
+            if sign_at_lo * selection(mid) > 0:
+                lo = mid
+                sign_at_lo = selection(lo)
+            else:
+                hi = mid
+        return (lo + hi) / 2
+
+    d_min = crossing(0.6, d_peak)
+    d_max = crossing(d_peak, 1.0)
+    assert d_min == pytest.approx(0.6637794898247931)
+    assert d_max == pytest.approx(0.8744526100516654)
+    assert selection(d_min) == pytest.approx(0, abs=1e-12)
+    assert selection(d_max) == pytest.approx(0, abs=1e-12)
+    assert selection(0.75) == pytest.approx(0.0103125)
+    # Below the lower frequency boundary, not even the optimal partial
+    # release establishes; above the upper, full division establishes.
+    assert selection(d_peak, 0.10) < 0
+    assert selection(1.0, 0.20) > 0
+
+    theory = THEORY.read_text(encoding="utf-8")
+    assert "A bounded window of selectively viable partial differentiation" in theory
+    assert "7/54 < p < 3/16" in theory
+    assert "does not establish that an interior" in theory
+
+
 def test_empirical_bridge_registers_escape_frontier_gap() -> None:
     bridge = EMPIRICAL_BRIDGE.read_text(encoding="utf-8")
     assert "Escape-frontier evidence gap" in bridge
