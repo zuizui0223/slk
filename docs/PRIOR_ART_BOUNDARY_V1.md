@@ -158,6 +158,12 @@ Therefore SLK must **not** claim that a high-value divided organization being di
 SLK's narrower contribution is to distinguish architecture value, local accessibility, and rare establishment as separately testable criteria for one specified organizational transition, derive the value-before-access ordering under the convex cost-lowering slice, and state the additional condition required for ecology to become the final early bottleneck.
 
 
+### Partner-dependent specialization and matched-specialist bistability
+
+Carlson, Akçay & Morsky (2023) model ecological partner specificity and show that cooperative specialization can support matched specialist equilibria, bistability, and generalists along spatial boundaries. This is direct prior theory for the ecological principle that increasingly specialized interactions can depend on finding compatible partners.
+
+SLK must **not** claim that specialist partner matching, generalist–specialist bistability, or rarity-dependent mutualist availability are new ecological mechanisms. Its narrower conditional result concerns a separately specified structural-release coordinate: with quadratic recovery and power-law partner dependence, the most-invadable degree of division moves to the interior precisely when `m>(2dmax-d_J)/(dmax-d_J)`. This is a model-specific comparison of introductions into an integrated resident, not a general prediction about all mutualist networks.
+
 ### Trait-dependent establishment, Allee thresholds, and propagule pressure
 
 Propagule pressure and Allee thresholds are established determinants of establishment, and Kanarek & Webb (2010) explicitly couple adaptive evolution to a trait controlling the Allee threshold so that evolutionary change can rescue populations that would otherwise fail to establish.
@@ -263,6 +269,7 @@ A defensible positioning paragraph is:
 - Farina SC, Kane EA, Hernandez LP. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
 - Schwenk K, Wagner GP. 2001. Function and the evolution of phenotypic stability: connecting pattern to process. *American Zoologist* 41:552–563.
 - Burress ED, Martinez CM, Wainwright PC. 2020. Decoupled jaws promote trophic diversity in cichlid fishes. *Evolution* 74:950–961.
+- Carlson C, Akçay E, Morsky B. 2023. The evolution of partner specificity in mutualisms. *Evolution* 77:881–892. DOI 10.1093/evolut/qpac056.
 - Castellanos MC, Wilson P, Keller SJ, Wolfe AD, Thomson JD. 2006. Anther evolution: pollen presentation strategies when pollinators differ. *The American Naturalist* 167:288–296.
 - Epperson BK, Clegg MT. 1987. Frequency-dependent variation for outcrossing rate among flower-color morphs of *Ipomoea purpurea*. *Evolution* 41:1302–1311.
 - Toräng P, Ehrlén J, Ågren J. 2008. Mutualists and antagonists mediate frequency-dependent selection on floral display. *Ecology* 89:1564–1572.
