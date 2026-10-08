@@ -243,6 +243,78 @@ def test_literature_audit_marks_both_causal_directions_not_slk_gate_closure() ->
     ):
         assert token in evidence, token
 
+
+def rare_growth_at_time(t: float, tau: float, r_initial: float = 0.0, r_final: float = 0.4) -> float:
+    """Transient rare-mutant selection while matching contacts form."""
+    import math
+
+    r = r_final + (r_initial - r_final) * math.exp(-t/tau)
+    a = intrinsic(1.0)-intrinsic(PARTIAL)
+    b = ETA*mismatch(1.0, PARTIAL)
+    return a-b*(1.0-r)
+
+
+def rare_growth_crossing(tau: float, r_initial: float = 0.0, r_final: float = 0.4) -> float:
+    import math
+
+    a = intrinsic(1.0)-intrinsic(PARTIAL)
+    b = ETA*mismatch(1.0, PARTIAL)
+    rcrit = 1.0-a/b
+    assert r_initial < rcrit < r_final
+    return tau * math.log((r_final-r_initial)/(r_final-rcrit))
+
+
+def integrated_rare_growth(t: float, tau: float, r_initial: float = 0.0, r_final: float = 0.4) -> float:
+    import math
+
+    a = intrinsic(1.0)-intrinsic(PARTIAL)
+    b = ETA*mismatch(1.0, PARTIAL)
+    return (a-b*(1.0-r_final))*t + b*(r_initial-r_final)*tau*(1.0-math.exp(-t/tau))
+
+
+def test_delayed_favorable_encounters_cause_transient_rare_decline() -> None:
+    import math
+
+    assert rare_growth_at_time(0.0, 1.0) < 0.0
+    assert rare_growth_at_time(50.0, 1.0) > 0.0
+    for tau in (0.1, 1.0, 5.0, 10.0):
+        crossing = rare_growth_crossing(tau)
+        assert isclose(rare_growth_at_time(crossing, tau), 0.0, abs_tol=1e-12)
+        assert rare_growth_at_time(0.95*crossing, tau) < 0
+        assert rare_growth_at_time(1.05*crossing, tau) > 0
+        log_fraction = integrated_rare_growth(crossing, tau)
+        assert log_fraction < 0.0
+        assert 0.0 < math.exp(log_fraction) < 1.0
+        # The frequency trajectory is minimized exactly at the
+        # change from negative to positive instantaneous rare growth.
+        assert integrated_rare_growth(0.95*crossing, tau) > log_fraction
+        assert integrated_rare_growth(1.05*crossing, tau) > log_fraction
+    # Same eventual favorable contact composition, but slower
+    # assembly deepens the temporary founder decline.
+    assert integrated_rare_growth(rare_growth_crossing(10.0), 10.0) < integrated_rare_growth(
+        rare_growth_crossing(1.0), 1.0
+    )
+    assert isclose(
+        integrated_rare_growth(rare_growth_crossing(10.0), 10.0),
+        10.0*integrated_rare_growth(rare_growth_crossing(1.0), 1.0),
+        abs_tol=1e-12,
+    )
+
+
+def test_rare_assembly_timing_is_not_promoted_to_empirical_estimate() -> None:
+    source = (ROOT / "theory" / "ASSORTMENT_PARTIAL_FOUNDER_V1.md").read_text(
+        encoding="utf-8"
+    )
+    for marker in (
+        "t_cross",
+        "log[p_min/p_0]",
+        "time-dependent selection",
+        "Deterministic linearized frequency never literally reaches zero",
+        "not inferred from microbial imaging",
+        "slow partner assembly",
+    ):
+        assert marker in source
+
 def test_assortment_extension_is_registered_as_conditional_only() -> None:
     source = (ROOT / "theory" / "ASSORTMENT_PARTIAL_FOUNDER_V1.md").read_text(
         encoding="utf-8"
