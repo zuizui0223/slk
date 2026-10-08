@@ -170,6 +170,79 @@ def test_contact_polarity_distinguishes_functional_scale() -> None:
     ):
         assert token in source
 
+
+def endogenous_assortment(p: float, center: float, slope: float) -> float:
+    """A bounded example of partner sorting that depends on local frequency."""
+    import math
+
+    return 0.2 + 0.7 / (1.0 + math.exp(-slope * (p - center)))
+
+
+def matched_selection_with_sorting(p: float) -> float:
+    return direct_selection(1.0, PARTIAL, p, endogenous_assortment(p, 0.8, 40.0))
+
+
+def complementary_selection_with_sorting(p: float) -> float:
+    return complementary_role_selection(p, endogenous_assortment(p, 0.2, -40.0))
+
+
+def test_endogenous_sorting_changes_realized_frequency_gradient() -> None:
+    step = 1e-5
+    # With r fixed, matching creates positive frequency dependence.
+    p_high = 0.8
+    r_high = endogenous_assortment(p_high, 0.8, 40.0)
+    assert direct_selection(1.0, PARTIAL, p_high + step, r_high) > direct_selection(
+        1.0, PARTIAL, p_high - step, r_high
+    )
+    # But a rapid increase of partner sorting with p can reverse the
+    # observed selection-frequency slope, without reversing the effect
+    # of a controlled r intervention at fixed p.
+    assert matched_selection_with_sorting(p_high + step) < matched_selection_with_sorting(
+        p_high - step
+    )
+    assert direct_selection(1.0, PARTIAL, p_high, r_high + 0.01) < direct_selection(
+        1.0, PARTIAL, p_high, r_high
+    )
+
+    # Fixed r in the unlike-role complementarity model creates a
+    # negative frequency slope; endogenous sorting can reverse it.
+    p_low = 0.2
+    r_low = endogenous_assortment(p_low, 0.2, -40.0)
+    assert complementary_role_selection(p_low + step, r_low) < complementary_role_selection(
+        p_low - step, r_low
+    )
+    assert complementary_selection_with_sorting(p_low + step) > complementary_selection_with_sorting(
+        p_low - step
+    )
+    assert complementary_role_selection(p_low, r_low + 0.01) < complementary_role_selection(
+        p_low, r_low
+    )
+
+
+def test_literature_audit_marks_both_causal_directions_not_slk_gate_closure() -> None:
+    theory = (ROOT / "theory" / "ASSORTMENT_PARTIAL_FOUNDER_V1.md").read_text(
+        encoding="utf-8"
+    )
+    evidence = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(
+        encoding="utf-8"
+    )
+    for token in (
+        "van Gestel et al. (2014",
+        "Momeni, Brileya, Fields & Shou (2013",
+        "d Delta_match/dp",
+        "d Delta_complement/dp",
+        "final spatial snapshot is insufficient",
+        "not** a division-of-labour comparison",
+    ):
+        assert token in theory, token
+    for token in (
+        "Two causal arrows are already experimentally documented",
+        "founder density was manipulated",
+        "reverse causal direction",
+        "does not establish whether arrangement caused",
+    ):
+        assert token in evidence, token
+
 def test_assortment_extension_is_registered_as_conditional_only() -> None:
     source = (ROOT / "theory" / "ASSORTMENT_PARTIAL_FOUNDER_V1.md").read_text(
         encoding="utf-8"
