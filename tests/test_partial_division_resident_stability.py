@@ -179,6 +179,56 @@ def test_cusp_and_smooth_payoffs_disagree_after_partial_becomes_resident() -> No
     assert smooth_invasion(D_STAR + 1e-5, D_STAR, 2.0) > 0
     assert smooth_invasion(1.0, D_STAR, 2.0) < 0
 
+
+def mutant_frequency_threshold(u: float, v: float, exponent: float = 1.0) -> float:
+    mismatch = smooth_mismatch(u, v, exponent)
+    assert mismatch > 0.0
+    return 0.5 - (intrinsic(u) - intrinsic(v)) / (2.0 * ETA * mismatch)
+
+
+def s_vs_partial_pair_selection(u: float, v: float, p: float, exponent: float = 1.0) -> float:
+    return intrinsic(u) - intrinsic(v) + ETA * smooth_mismatch(u, v, exponent) * (2.0*p - 1.0)
+
+
+def test_exact_finite_introduction_overcomes_rare_resistance_of_partial_resident() -> None:
+    u, v = 1.0, D_STAR
+    assert isclose(intrinsic(u)-intrinsic(v), 117.0/98.0, abs_tol=1e-12)
+    assert isclose(ETA*smooth_mismatch(u, v, 1.0), 711.0/490.0, abs_tol=1e-12)
+    assert isclose(smooth_invasion(u, v, 1.0), -9.0/35.0, abs_tol=1e-12)
+    p_critical = mutant_frequency_threshold(u, v, 1.0)
+    assert isclose(p_critical, 7.0/79.0, abs_tol=1e-12)
+    assert s_vs_partial_pair_selection(u, v, 0.05) < 0.0
+    assert isclose(s_vs_partial_pair_selection(u, v, p_critical), 0.0, abs_tol=1e-12)
+    assert s_vs_partial_pair_selection(u, v, 0.10) > 0.0
+
+
+def test_uninvadable_partial_degree_has_no_uniform_founding_frequency_margin() -> None:
+    for delta in (0.5, 0.1, 0.01, 1e-3, 1e-5):
+        u = D_STAR + delta
+        expected_rare = -(7.0/20.0)*delta*delta
+        expected_frequency = 49.0*delta/(150.0+378.0*delta)
+        assert isclose(smooth_invasion(u, D_STAR, 1.0), expected_rare, abs_tol=1e-12)
+        assert isclose(mutant_frequency_threshold(u, D_STAR, 1.0), expected_frequency, abs_tol=2e-11)
+        assert expected_frequency > 0.0
+        assert s_vs_partial_pair_selection(u, D_STAR, expected_frequency*1.5) > 0.0
+    assert mutant_frequency_threshold(D_STAR+1e-5, D_STAR) < 0.000004
+
+
+def test_fixed_finite_coalition_does_not_increase_arbitrarily_close_to_rarity() -> None:
+    resident = D_STAR
+    types = (0.25, 0.50)
+    proportions = (0.4, 0.6)
+    assert all(smooth_invasion(u, resident, 1.0) < 0.0 for u in types)
+
+    def average_payoff(focal: float, epsilon: float) -> float:
+        return (1.0-epsilon)*payoff(focal, resident) + epsilon*sum(
+            q*payoff(focal, u) for q, u in zip(proportions, types)
+        )
+
+    for epsilon in (1e-8, 1e-6, 1e-4):
+        for u in types:
+            assert average_payoff(u, epsilon) < average_payoff(resident, epsilon)
+
 def test_theory_documents_explicit_conditional_scope() -> None:
     source = (
         ROOT / "theory" / "PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md"
@@ -187,6 +237,8 @@ def test_theory_documents_explicit_conditional_scope() -> None:
         "A_0(u,v)",
         "M_q(d,0)=w(d)",
         "q=2",
+        "p_escape(1|1/7) = 7/79",
+        "49 delta/(150+378 delta)",
         "I_lambda(1|d_*)",
         "lambda=21/10=2.1",
         "not stability conclusions",
