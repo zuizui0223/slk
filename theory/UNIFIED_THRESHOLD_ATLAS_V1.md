@@ -961,6 +961,38 @@ dmax[q(d)-k],
 
 which is strictly increasing under strict convexity. The canonical proportional scaling therefore guarantees the monotonic novelty-abundance compensation used below; other admissible scalings retain the two slice identities and environmental erosion but need not preserve monotonic frontier shape.
 
+#### Smooth counterexample: saturating ecological feedback
+
+A strictly convex recovery function does not by itself ensure monotone structural-demographic compensation. Take the registered witness family
+
+```text
+dmax=1,
+R(d)=d+d^2,
+k=1.5,
+eta=0.8,
+```
+
+but replace proportional feedback with a smooth saturating function
+
+```text
+w(d)
+=
+[1-exp(-10d)]/[1-exp(-10)].
+```
+
+This preserves `w(0)=0`, `w(1)=1`, and positive increasing ecological feedback for every `d>0`. It therefore satisfies both the integrated-identity limit and the original divided endpoint game. Yet the derived frontier gives approximately
+
+```text
+p_escape,w(0.10)=0.53955
+p_escape,w(0.20)=0.54337
+p_escape,w(0.50)=0.50000
+p_escape,w(1.00)=0.18750.
+```
+
+A release of 0.20 thus requires a *higher*, not lower, founding frequency than a release of 0.10. The two endpoint/slice identities still hold: `d_J=0.5` and `p_C=0.1875`. The nonmonotonic interior is created entirely by how quickly ecological feedback saturates with structural differentiation.
+
+Consequently, observing the same `d_J` and `p_C` does **not** identify the interior of the architecture-frequency frontier. The **slice identities and pointwise environmental relaxation are robust**, while the **monotone exchange rate between structural novelty and abundance is conditional on feedback scaling**. A biological analogue would be partner matching or social recognition that responds strongly to a small structural difference and then saturates; that is a mechanistic hypothesis, not an empirical result established here.
+
 ### Structural-demographic compensation
 
 For strictly convex `R` with `R(0)=0`, `q(d)` is strictly increasing. Therefore
@@ -1033,7 +1065,7 @@ p_escape(d,E2)-p_escape(d,E1)
 -c dmax(E2-E1)/(2eta).
 ```
 
-Its shape is preserved. Therefore a measured change in frontier shape across environments falsifies the cost-only, fixed-`R), fixed-`eta` proportional slice and implies that recovery geometry and/or ecological feedback also changed.
+Its shape is preserved. Therefore a measured change in frontier shape across environments falsifies the cost-only, fixed-`R`, fixed-`eta` proportional slice and implies that recovery geometry and/or ecological feedback also changed.
 
 For a general identity-preserving scaling `w(d)`, environmental improvement still shifts the frontier downward pointwise, but the shift need not be parallel.
 
@@ -1069,7 +1101,7 @@ This is stronger than saying separately that `d_J` and `p_C` decline. It predict
 
 Trait-dependent establishment thresholds, propagule pressure, Allee effects, and eco-evolutionary changes in Allee thresholds are established topics. UTA1.4f does not claim a first general interaction between phenotype and abundance.
 
-Its SLK-specific result is the exact frontier generated when the registered convex architecture-release model is coupled to the declared release-proportional positive feedback. This scaling preserves the `d->0` identity limit and the registered endpoint pair. Other scaling functions `w(d)` with `w(0)=0` and `w(dmax)=1`, multidimensional release paths, or explicit spatial interactions generally require a new frontier. The result is therefore model-specific, not universal.
+Its SLK-specific result is the exact frontier generated when the registered convex architecture-release model is coupled to the declared release-proportional positive feedback. This scaling preserves the `d->0` identity limit and the registered endpoint pair. Other scaling functions `w(d)` with `w(0)=0` and `w(dmax)=1`, multidimensional release paths, or explicit spatial interactions generally require a new frontier. The frontier is a family of **separate resident-versus-one-variant, two-type introductions** indexed by release size `d`. It does not specify the dynamics of several different `d` variants coexisting simultaneously, a continuous evolutionary trajectory in the `(d,p)` plane, or an invasion-wave geometry. For very small `d`, the selection difference approaches zero even when the limiting value of `p_escape` is finite, so the deterministic sign should not be mistaken for a strong selective advantage. The result is therefore model-specific, not universal.
 
 ---
 
