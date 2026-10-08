@@ -18,8 +18,9 @@
   "reviewer_access": {
     "route": "EDITORIAL_MANAGER_ZIP",
     "zip_filename": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
-    "zip_sha256": "ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b",
-    "uploaded": false
+    "zip_sha256": "b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e",
+    "uploaded": false,
+    "package_status": "CURRENT_VERIFIED_PACKAGE"
   },
   "archive": {
     "provider": "ZENODO",

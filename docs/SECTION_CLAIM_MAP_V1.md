@@ -1,84 +1,137 @@
-# SLK manuscript section-to-claim map V1
+# SLK manuscript section-to-claim map V3
 
-This document maps both manuscript surfaces onto the canonical theorem-claim ledger:
-
-- `manuscript/SLK_MANUSCRIPT_V0.md` — internal audit surface with C/G/INV labels;
-- `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing surface; it promotes the same claim ceiling into the unified critical-surface atlas and one-family witness construction.
+This document maps the biology-refocused journal manuscript to the canonical theorem-claim ledger. The manuscript is organized around a biological result: one persistent multifunctional phenotype can be maintained by different evolutionary bottlenecks, and the limiting bottleneck can turn over before morphology changes. The theory supports that claim; it is not the manuscript's subject.
 
 ## Section map
 
-| Manuscript section | Claim IDs | Claim class | Primary role | Must not overclaim |
-|---|---|---|---|---|
-| Abstract | C1-C9, UTA1, UTA1.10, INV1 | mixed | summarize transport, gate localization, critical surfaces, and invariant | do not imply end-to-end empirical validation or universality outside registered model classes |
-| 1. Introduction | C1-C9, UTA1, UTA1.10, INV1 overview | synthesis + prior-art boundary | motivate estimand transport, observational non-identifiability, critical surfaces and re-alignment | do not claim first theory of modularity, specialization, accessibility, games or weak mutation |
-| 2. Identifying the conflict budget | C1 | empirical handoff | define valid entry receipt `L` | multifunctionality alone does not identify `L` |
-| 3. Persistent compromise and architecture crossing | C2, C4 | definition/classification | define `R`, operational `K`, `Phi=R-K`, and middle world | no historical persistence claim; no undefined omnibus `K` |
-| 4. Differentiation recovers only released conflict | C3-C5 | general definition + quadratic corollary + model result | use `Phi=R-K` generally; derive `R=sL` only in quadratic bridge | do not promote `R=sL` to arbitrary landscapes; `Phi>0` does not mean differentiation evolves |
-| 5. Global value can exceed local accessibility | C6 | theorem/model result | separate endpoint optimality from sufficiently small selectively uphill release | requires declared path/mutation neighborhood; no claim of absolute historical unreachability |
-| 6. Population feedback splits architecture boundary | C7 | theorem/model result | separate intrinsic payoff from rare invasion | requires declared pair game / feedback |
-| 7. Fixation is another estimand | C8 | process-specific theorem | distinguish rare invasion, reciprocal fixation ordering, absolute fixation advantage | Moran-specific unless generalized |
-| 8. Weak-mutation occupancy and fixation-occupancy invariant | C9, INV1 | process-specific theorem + invariant | separate occupancy from accessibility/absolute fixation while proving reciprocal-fixation alignment | requires symmetric rare mutation + registered fixation kernel |
-| 9. Unified critical-surface atlas and constructive witnesses | UTA1, NE1-NE5, INV1 | composite-model synthesis | place all realization criteria on explicit surfaces and derive all split witnesses in one recovery family | do not claim surfaces are universal outside registered assumptions |
-| 10. Ecological deductions from threshold ordering | UTA1.4, UTA1.4b, UTA1.5, UTA1.6, UTA1.7, UTA1.8, UTA1.9, UTA1.10, UTA1.11 | derived consequences + method adaptation + diagnostic synthesis | predict environmental displacement, gate-localized failures/exclusions, and uncertainty-aware compatible-state sets | affine environmental formula is exact only for the registered slice; discordance is diagnostic, not proof of one mechanism |
-| 11. Empirical measurement programme | G1-G9 internally | empirical gates / journal measurement ladder | give sequential validation design | no completed biological chain claimed |
-| 12. Discussion | C1-C9, UTA1, UTA1.4-1.5, UTA1.10-1.11, INV1 | synthesis + novelty boundary | state what gate localization adds and what prior theory already owns | preserve all claim ceilings |
+| Manuscript section | Claim IDs / evidence role | Primary biological role | Claim ceiling |
+|---|---|---|---|
+| Abstract | C1-C7, UTA1.4c, UTA1.4e-f, UTA1.5, UTA1.10 | state hidden bottleneck turnover and the joint architecture-frequency escape frontier | conditional prediction; no completed natural-system turnover claimed |
+| 1. Introduction | C1-C7, UTA1.4c/e, UTA1.10 + prior art | pose persistence of multifunctionality as the biological problem | do not claim first theory of specialization, system drift, hysteresis, or invasion |
+| 2. Functional conflict creates the problem, not its resolution | C1 | separate documented conflict from its evolutionary resolution | conflict magnitude does not identify the favored organization |
+| 3. Natural systems show multiple resolutions of functional conflict | literature synthesis + `docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md` | establish biological reality of structural, temporal, integrated, frequency-dependent, and re-coupled outcomes, and map empirical systems onto distinct SLK decision layers | component plausibility and cross-system bridges only; no analogue is promoted to a direct gate estimate without a matching estimand |
+| 4. When is retaining multifunctionality favored over a structural alternative? | C2-C5, UTA1.5 | define candidate-relative architecture value, `Phi=R-K`, and conflict/differentiation discordance | `Phi<0` favors integration only relative to the specified divided alternative |
+| 5. When can evolutionary history preserve multifunctionality? | C6, UTA1.4d, UTA1.4e | separate endpoint value from local path accessibility and derive path legacy | small-step path result; no claim of absolute historical impossibility |
+| 6. How can ecology stabilize multifunctionality? | C7, UTA1.2, UTA1.8 | add rare-type establishment and frequency-dependent ecology | canonical linear frequency map is illustrative; endpoint invasion is the general criterion |
+| 7. Three evolutionary bottlenecks behind one persistent phenotype | UTA1.10 | map architecture value, path accessibility, and rare establishment onto one visible outcome | the three bottlenecks are not exhaustive causes of persistence |
+| 8. Formal backbone | UTA1, NE1-NE3 | provide the minimal model needed for the biological argument | fuller fixation/occupancy machinery remains supporting theory |
+| 9. Ecological and evolutionary consequences | UTA1.4c, UTA1.4d, UTA1.4e, UTA1.4f, UTA1.5 | derive bottleneck turnover, hysteresis, the architecture-frequency escape frontier, and comparative discordance | `E_V<E_A` follows under the declared cost-lowering convex slice; frontier slice identities and environmental erosion hold across positive identity-preserving feedback scalings, while monotonic novelty-abundance compensation additionally uses proportional scaling |
+| 10. Discussion | synthesis + prior-art boundary + empirical bridge ledger | distinguish selective-bottleneck turnover from system drift and state empirical status | no claim that phenotypic constancy hiding mechanism change is new; no natural system yet closes the full ordered turnover |
 
-## Reader-facing theorem order
+## Reader-facing biological spine
 
 ```text
-C1  valid conflict receipt L
- ↓
-C2  persistent compromise class
- ↓
-C4  general architecture margin Phi=R-K
- ↙
-C3  quadratic bridge R=sL (model-specific corollary)
- ↓
-C5  global architecture value
- ↓
-C6  local accessibility split
- ↓
-C7  invasion split
- ↓
-C8  fixation criteria split
- ↓
-C9  weak-mutation occupancy
- ↘
-UTA1 exact critical-surface atlas + preserved endpoint contrast
- ↓
-UTA1.4 ecological threshold displacement
- ↓
-UTA1.4b feedback-gradient amplification / crossing loss
- ↓
-UTA1.6 two-frequency identification of Phi and eta
- ↓
-UTA1.7 three-frequency curvature diagnostic / repaired invasion surfaces
- ↓
-UTA1.8 arbitrary-shape endpoint invasion result
- ↓
-UTA1.9 finite-frequency endpoint certification
- ↓
-UTA1.10 persistent integration is non-identifying; sign sequence localizes the changed gate
- ↓
-UTA1.11 interval uncertainty -> compatible-state set; nested bounds only shrink it
- ↓
-UTA1.5 conflict does not rank differentiation across systems
- ↘
-INV1 reciprocal fixation ordering <=> occupancy ordering
+documented functional conflict
+        |
+        v
+does the focal divided architecture repay its cost?       Phi = R-K
+        |
+        +-- no -> architecture-value bottleneck
+        |
+        v
+is movement toward the higher-value state locally uphill? g0 = R'(0)-k
+        |
+        +-- no -> evolutionary-path bottleneck
+        |
+        v
+can the divided type increase when rare?                  Delta_R
+        |
+        +-- no -> ecological-establishment bottleneck
+        |
+        v
+the three early bottlenecks are excluded
 ```
 
-The master atlas is registered in `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`; the formal constructive witnesses are registered in `theory/NON_EQUIVALENCE_THEOREM_V1.md`. The operational definition of `K` is registered in `docs/K_OPERATIONAL_DEFINITION_V1.md`; prior-art claim boundaries are registered in `docs/PRIOR_ART_BOUNDARY_V1.md` and the journal-facing nine-reference coverage receipt in `docs/AMNAT_LITERATURE_COVERAGE_V1.md`.
+All three failures can produce the same visible outcome: persistent multifunctionality.
+
+## Environmental turnover claim
+
+Along the registered cost-lowering environmental slice,
+
+```text
+k(E)=k0-c(E-E0), c>0
+```
+
+strict convexity forces
+
+```text
+E_V < E_A.
+```
+
+This ordering is a derived consequence of the recovery geometry, not an imposed ordering of labels.
+
+A distinct ecology-only persistence interval occurs only when
+
+```text
+Delta_R(E_A) < 0.
+```
+
+For the canonical constant-`eta` pair this is equivalent to
+
+```text
+eta > dmax (k_global-k_local),
+```
+
+which yields
+
+```text
+E_V < E_A < E_I.
+```
+
+Thus the full architecture -> path -> ecology sequence is a conditional biological prediction, not a universal law.
+
+## Escape-frontier claim
+
+Under the registered constant-positive-feedback extension,
+
+```text
+p_escape(d)
+=
+1/2-[R(d)-kd]/(2eta).
+```
+
+The earlier thresholds become orthogonal slices:
+
+```text
+p_escape(d_J)=1/2
+p_escape(dmax)=p_C.
+```
+
+Thus structural novelty and demographic support can compensate for one another. Lowering architecture cost shifts the whole frontier toward smaller release and/or lower initial frequency before visible structural reorganization.
+
+The headline claim is therefore not merely that identical phenotypes can have different hidden mechanisms or that traits interact with propagule pressure. Those are established ideas. SLK predicts that the **selective bottleneck preventing a specified alternative architecture from replacing an unchanged resident architecture can turn over**, while the viable combinations of architectural and demographic perturbation expand along a model-specific escape frontier.
+
+### Empirical evidence surface
+
+`docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md` is the canonical evidence ledger for cross-system support. It separates: field selection mosaics under persistent integration; direct or adjacent architecture-value experiments; developmental-accessibility anchors; rare-establishment analogues against generalist residents; and positive controls in which value, access, and rare-type performance are all permissive.
+
+The ledger is deliberately stricter than a narrative literature review. A system can support one SLK decision layer without being promoted to `Phi`, `g0`, or `Delta_R`, and an unresolved invasion treatment remains unresolved rather than being classified as failure.
+
+## Natural-history evidence boundary
+
+The manuscript's natural systems establish component facts:
+
+- functional conflict has structural and temporal resolutions;
+- structural differentiation need not equal functional division of labor;
+- ecological partners can alter presentation and selection;
+- rarity can be advantageous or disadvantageous;
+- multifunctional architectures can experience geographic selection mosaics;
+- anatomical decoupling can remain ecologically re-coupled.
+
+They do not establish that one natural lineage has already crossed all three SLK bottlenecks in order. That remains the prospective empirical test.
+
+## Theory support retained outside the manuscript foreground
+
+The full theory repository still contains:
+
+- NE4-NE5 fixation/occupancy witnesses;
+- INV1;
+- UTA1.4b environmental feedback-gradient extensions;
+- UTA1.6-UTA1.9 frequency-response identification and endpoint-certification machinery;
+- UTA1.11 interval-compatible state propagation.
+
+These remain valid support and downstream extensions. Their presence does not make them the biological subject of the manuscript.
 
 ## Manuscript rule
 
-Every future substantive claim added to either manuscript surface must do one of three things:
-
-1. map to an existing C/G/INV identifier;
-2. be explicitly classified as interpretation/synthesis;
-3. receive a new identifier in `docs/THEOREM_CLAIM_LEDGER_V1.md` before being promoted as a primary result.
-
-The journal-facing manuscript must never exceed the claim ceiling of the audit surface. Purely editorial prose and citation expansion may differ between the two surfaces.
-
-Any use of `R=sL` must explicitly state the quadratic partial-release assumptions or cite the registered corollary. Any empirical use of `K` must satisfy the operational receipt.
-
-This prevents manuscript prose from outrunning the registered theory.
+Any substantive future manuscript claim must map to an existing claim ID, be explicitly marked literature synthesis or interpretation, or receive a new ledger ID before promotion. The journal-facing manuscript may simplify notation but may not strengthen the registered theory, the natural-history evidence, or the empirical ceiling.

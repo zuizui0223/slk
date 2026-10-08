@@ -112,7 +112,7 @@ The exact placement should follow the journal's current instruction that scienti
 
 - anonymous review manuscript PDF/DOCX generated from the canonical source;
 - anonymous title page;
-- reviewer-access data/code package: `SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip` is verified and ready for Editorial Manager upload (SHA256 `ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b`);
+- reviewer-access data/code package: `SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip`, current SHA256 `b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e`;
 - initial private/non-public archive deposit in a curated repository;
 - permanent archive DOI/publication plan;
 - any journal-required source files;
@@ -121,16 +121,20 @@ The exact placement should follow the journal's current instruction that scienti
 ## Final gate
 
 ```text
-SCIENTIFIC_PACKAGE = READY
-DOUBLE_ANONYMITY = READY
+SCIENTIFIC_MANUSCRIPT = READY
+AUTOMATED_REVIEW_BUILD = PASS
+DOUBLE_ANONYMITY_SOURCE_CHECK = PASS
+RENDERED_LAYOUT_QA = PASS_28_28
 COVER_LETTER = NOT_REQUIRED
 REVIEWER_DATA_CODE_ACCESS = EDITORIAL_MANAGER_ZIP_READY
-INITIAL_DATA_CODE_ARCHIVE_DEPOSIT = REQUIRED_AT_SUBMISSION
-PERMANENT_DATA_CODE_ARCHIVE_DOI = REQUIRED_FOR_PUBLICATION
+EDITORIAL_MANAGER_UPLOAD_KIT = READY_CURRENT
+ZENODO_ARCHIVE_PAYLOAD = READY_CURRENT
 AUTHOR_METADATA = REQUIRED_EXTERNAL_ACTION
 ACKNOWLEDGMENTS_AND_CONTRIBUTIONS = REQUIRED_EXTERNAL_ACTION
-REVIEWER_AND_AE_FIELDS = AUTHOR_CONTROLLED
 AI_DISCLOSURE = REQUIRED_AUTHOR_APPROVAL
+INITIAL_ARCHIVE_DEPOSIT = REQUIRED_EXTERNAL_ACTION
 ALL_AUTHOR_APPROVAL = REQUIRED_EXTERNAL_ACTION
 PORTAL_UPLOAD = REQUIRED_EXTERNAL_ACTION
 ```
+
+The reviewer ZIP and upload kit are current. The portal readiness validator remains fail-closed until the human-controlled fields and upload steps are completed.

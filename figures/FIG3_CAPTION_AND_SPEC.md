@@ -1,137 +1,53 @@
-# Figure 3 — empirical measurement ladder
+# Figure 3 — loss of evolutionary resistance before morphological change
 
-## Caption
+## Reader-facing caption
 
-**Figure 3. A sequential empirical programme for testing SLK.** Each gate introduces a distinct estimand required for a stronger biological claim. G1 establishes opposing functional geometry on a shared phenotypic coordinate; G2 estimates or bounds the conflict load `L`; G3 quantifies recoverable loss `s` or `R`; G4 places architecture cost `K` on the same fitness scale; and G5 evaluates the global architecture margin `Phi=R-K`. G6 then asks whether sufficiently small changes toward the globally superior architecture are selectively uphill along a declared release path. G7 estimates rare-frequency performance and population feedback needed for invasion claims. G8 specifies a finite-population fixation process, while G9 specifies mutation connectivity for weak-mutation occupancy. Failure at a later gate does not invalidate an earlier result; it simply limits the strongest claim that can be made. No single biological system is currently claimed by SLK to have passed G1–G9 end to end.
+**Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes.** (A) The `L-Phi` plane separates persistent compromise from positive net architecture value. (B) Convex recovery can create a range in which the differentiated endpoint is fitter but sufficiently small release steps are still downhill. (C) Under positive frequency feedback, structural release and initial abundance lie on one escape frontier, `p_escape(d)=1/2-[dmax/(2eta)][R(d)/d-k]`: `d_J` is its `p=1/2` slice and `p_C` its `d=dmax` slice. Larger favorable structural changes therefore require less demographic support. Negative feedback instead favors rare forms and coexistence. (D) When an environmental gradient lowers marginal architecture cost, profitability precedes local reachability and the escape frontier shifts toward easier reorganization; if positive feedback is strong enough, establishment occurs later still, producing `E_V<E_A<E_I`.
 
-## Purpose
+## Scientific role
 
-Figure 3 is the empirical counterpart to Figures 1 and 2.
+Figure 3 makes six biological points. First, profitability, evolutionary accessibility, and establishment are different evolutionary transitions and need not occur at the same environmental condition. Second, strict convex recovery can create architecture-path hysteresis, so forward and reverse environmental change can retain different architectures even without frequency dependence. Third, structural novelty and demographic support are coupled: `d_J` and `p_C` are orthogonal slices through one architecture-frequency escape frontier for any positive identity-preserving feedback scaling. Fourth, lowering architecture cost shifts that frontier toward easier escape across this class; under the canonical proportional scaling, cost-only change produces a parallel translation, while larger favorable structural release monotonically lowers the required initial frequency. Fifth, the limiting process changes along the gradient: the historical-trapping interval is path limited, whereas the ecology-only interval is establishment limited. Sixth, ecology determines whether the population outcome is priority-dependent alternative states (`eta>0`) or stable coexistence through rare-form advantage (`eta<0`).
 
-- Figure 1: inferential logic — where criteria split and where they re-align.
-- Figure 2: coordinate geometry — which criteria share a phase space and which require new coordinates.
-- Figure 3: measurement logic — what an empirical study must measure to move from one claim level to the next.
-
-## Gate table
-
-| Gate | Primary estimand | Minimal design/data need | Strongest justified claim if passed |
-|---|---|---|---|
-| G1 | shared-axis causal conflict | manipulations or contrasts that isolate opposing function-specific effects on one coordinate | a real conflict exists |
-| G2 | `L` | common fitness scale and valid conflict receipt | conflict magnitude is estimated/bounded |
-| G3 | `s` or `R` | matched shared vs differentiated comparison | recoverable compromise loss is quantified |
-| G4 | `K` | operational architecture-cost definition on same scale | architecture cost is quantified |
-| G5 | `Phi=R-K` | G2–G4 on compatible scales | persistent compromise (`Phi<0`) or global differentiated advantage (`Phi>0`) |
-| G6 | small-step accessibility | mutation/release neighborhood or stepwise intervention path | sufficiently small changes toward the target are selectively uphill/downhill on the declared path |
-| G7 | invasion / feedback | finite rare-D/resident-D assays with endpoint certification; 2–3+ frequency treatments when feedback mechanism/shape is interpreted | invasion phase is certified or left unresolved; internal frequency-response structure is diagnosed only to the measured resolution |
-| G8 | fixation | explicit stochastic finite-population process | reciprocal fixation ordering and/or absolute fixation advantage |
-| G9 | occupancy | mutation graph and mutation kernel | weak-mutation monomorphic stationary occupancy |
-
-## Anti-shortcut rule
-
-No later gate may be inferred solely from an earlier endpoint comparison. In particular:
+For the barrier-turnover slice,
 
 ```text
-Phi>0
-!= evidence of local accessibility
-!= evidence of rare invasion
-!= evidence of fixation
-!= evidence of stationary occupancy.
+k(E)=k0-c(E-E0),  c>0
 ```
 
-Likewise, passing G7 does not determine G8 without a fixation model, and G8 does not determine G9 without a mutation graph/kernel. Under the registered symmetric rare-mutation exponential-Moran model, reciprocal fixation ordering and stationary occupancy ordering coincide, but this is a process-level invariant rather than a generic shortcut.
-
-
-## Prospective ecological-gradient test
-
-UTA1.4 can be tested by repeating the architecture-value and invasion measurements across an ecological coordinate `E`.
-
-Minimal design:
+with fixed convex recovery and fixed `eta`,
 
 ```text
-estimate Phi(E) across contexts
--> locate E_V where Phi crosses 0
--> estimate eta or rare-frequency performance across the same contexts
--> locate E_I where rare-D invasion crosses 0
--> compare observed E_I-E_V with eta / (dPhi/dE).
+E_A-E_V=(k_global-k_local)/c
+E_I-E_V=eta/(c dmax).
 ```
 
-Under the affine registered slice, the prediction is exact:
+If
 
 ```text
-E_I-E_V=eta/a.
+eta > dmax(k_global-k_local),
 ```
 
-For smooth non-affine systems, use the local slope `dPhi/dE` at the architecture-value crossing and treat the formula as a first-order prediction.
-
-
-## Two-frequency identification design
-
-Within the registered canonical pair,
+then
 
 ```text
-Delta(p)=Phi+eta(2p-1).
+E_V < E_A < E_I,
 ```
 
-Choose symmetric frequencies `p_-=1/2-q` and `p_+=1/2+q`. Then
+which yields the ordered sequence adaptive integration -> historical trapping -> ecological stabilization. More generally, ecological stabilization is a distinct final early barrier exactly when `Delta_R(E_A)<0`; if `Delta_R(E_A)>0`, rare establishment is already possible when local accessibility is gained, while equality makes the two boundaries coincide. Later re-entry under non-monotonic feedback is outside the displayed monotone slice.
 
-```text
-Phi=[Delta(p_+)+Delta(p_-)]/2
-eta=[Delta(p_+)-Delta(p_-)]/(4q).
-```
+## Claim mapping
 
-Repeating this crossed frequency design across ecological contexts `E` provides direct estimates of `Phi(E)` and `eta(E)`, which can be used to locate `E_V`, `E_I`, and estimate the local slopes required by UTA1.4b. This identification is conditional on the registered linear-in-frequency pair. Add a balanced-frequency treatment `p=1/2` to test that assumption: with independently measured `Phi`, the three treatments identify `h0`, `eta`, and quadratic curvature `kappa`. Nonzero `h0` or `kappa` rejects the minimal canonical mapping but still yields repaired invasion surfaces under UTA1.7.
+- Panel A: C1-C5.
+- Panel B: C6.
+- Panel C: C7 + UTA1.4f.
+- Panel D: ecological barrier-turnover corollary UTA1.4c.
+- Fixation/occupancy are downstream extensions and are not part of the three core explanations in Figure 1.
 
+## Anti-overclaim rule
 
-## Shape-robust endpoint invasion design
-
-The most general G7 invasion receipt does not require a linear or quadratic frequency fit. With independently measured `Phi`, estimate the endpoint selection limits
-
-```text
-Delta_rare = lim_{p->0} Delta(p)
-Delta_residentD = lim_{p->1} Delta(p).
-```
-
-Then
-
-```text
-h_R = Delta_rare-Phi
-h_D = Delta_residentD-Phi
-```
-
-and invasion is determined directly by the signs of `Delta_rare` and `Delta_residentD`.
-
-Additional interior frequency treatments have a different role: they identify or test the ecological mechanism generating those endpoint offsets. Two symmetric treatments estimate the canonical `eta`; adding `p=1/2` identifies `h0` and quadratic curvature `kappa`; further frequencies test whether the quadratic approximation is adequate.
-
-Thus G7 separates **invasion identification** from **frequency-response mechanism identification**.
+Panel C's escape frontier is exact only for the declared one-dimensional release path with feedback amplitude `eta(d/dmax)`, which vanishes at `d=0` and equals `eta` at `d=dmax`. The plotted monotone novelty–abundance compensation is conditional on this release-proportional scaling. More general identity-preserving feedback can make the frontier nonmonotone: under `w(d)=d^4`, a partially divided type may increase from a minority frequency even when a fully divided type with higher intrinsic payoff declines. The frontier compares separate two-type introductions, not simultaneous dynamics of all release variants. Panel D is exact for the declared affine `Phi(E)` and locally constant `eta` slice. For smooth non-affine functions it is a local first-order prediction, not a universal constant spacing. Negative-frequency feedback allowing rare invasion with `Phi<0` does not mean the differentiated endpoint is intrinsically superior; in the registered deterministic pair game it identifies the coexistence route. Likewise, positive `eta` delaying rare invasion does not prove permanent historical absence of differentiation.
 
 
-## Finite-frequency endpoint certification
+## Spatial-scope note
 
-Exact endpoint frequencies are not required. For rare-D invasion, first choose a feasible small frequency `epsilon`.
-
-Under a local Lipschitz bound `M_R`,
-
-```text
-Delta_R
-in
-[Delta(epsilon)-M_R epsilon,
- Delta(epsilon)+M_R epsilon].
-```
-
-For a stronger second-order design, measure at `epsilon` and `2epsilon`. If local curvature satisfies `|Delta''|<=C_R`,
-
-```text
-Delta_R_hat
-=
-2Delta(epsilon)-Delta(2epsilon)
-
-|Delta_R_hat-Delta_R|
-<=
-C_R epsilon^2.
-```
-
-When measured effects have uncertainty intervals, widen the endpoint interval by the same deterministic remainder. The analogous design applies near `p=1`.
-
-A lower endpoint above zero certifies invasion. An upper endpoint below zero certifies non-invasion. An interval that overlaps zero is **unresolved**, not a biological negative.
-
-This provides a prospective frequency-resolution rule for G7 rather than requiring ideal `p=0` or `p=1` treatments.
+The canonical frequency model is not explicitly spatial. Statements about clustered establishment are therefore conditional: if the relevant frequency-dependent interaction is local, the critical frequency `p_C` becomes a local concentration threshold. No claim is made here for a derived spatial wave speed, nucleation radius, or universal spatial critical cluster size.

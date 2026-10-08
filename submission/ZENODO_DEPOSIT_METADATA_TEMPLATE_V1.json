@@ -2,8 +2,8 @@
   "schema_version": "SLK_ZENODO_DEPOSIT_METADATA_TEMPLATE_V1",
   "status": "AUTHOR_METADATA_REQUIRED_BEFORE_DEPOSIT",
   "zenodo_resource_type": "software",
-  "title": "Reproducibility materials for From functional conflict to evolutionary architecture: thresholds for differentiation",
-  "description": "Reproducibility materials accompanying the theory manuscript 'From functional conflict to evolutionary architecture: thresholds for differentiation'. The package contains the manuscript source, theory notes, figure sources, executable threshold/process implementation, claim verifier, regression test, anonymity audit, and checksum manifest needed to reproduce the registered constructive witness regimes and process checks.",
+  "title": "Reproducibility materials for Multifunctional structures can persist while barriers to division of labor change",
+  "description": "Reproducibility materials accompanying the theory manuscript 'Multifunctional structures can persist while barriers to division of labor change'. The package contains the manuscript source, supporting theory, figure sources, executable model/process implementation, claim verifier, regression tests, anonymity audit, and checksum manifest. The manuscript asks how the selective barrier preventing structural division of labor can change while a multifunctional phenotype remains visible, linking architecture value, evolutionary accessibility, and rare establishment to changing resistance to reorganization.",
   "creators": [
     {
       "name": "[AUTHOR NAME REQUIRED]",
@@ -13,27 +13,27 @@
   ],
   "keywords": [
     "functional conflict",
-    "trait architecture",
-    "modularity",
+    "multifunctionality",
+    "division of labor",
+    "specialization",
     "evolutionary accessibility",
-    "fixation",
-    "weak mutation"
+    "frequency dependence"
   ],
   "language": "eng",
   "license": "[AUTHOR CHOICE — SELECT A LICENSE APPROPRIATE FOR CODE/THEORY MATERIALS]",
   "publication_date": "[SET WHEN RECORD IS PUBLISHED]",
   "upload_file": "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip",
-  "upload_file_sha256": "ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b",
-  "upload_file_size_bytes": 58096,
+  "upload_file_sha256": "b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e",
+  "upload_file_size_bytes": 59927,
   "draft_visibility": "UNPUBLISHED_DRAFT",
   "intended_final_file_visibility": "PUBLIC",
   "reserve_doi_before_publication": "OPTIONAL",
   "related_article_doi": "[ADD AFTER ARTICLE DOI EXISTS]",
   "notes": [
+    "The upload payload is the current deterministic reviewer/archive ZIP built from the biology-refocused manuscript.",
     "Use a Zenodo draft at initial submission; do not publish solely to create reviewer access.",
     "Reviewer access can use the separate Editorial Manager ZIP route.",
     "Before publication, confirm creators, license, final files, related article metadata, and DOI state.",
-    "If the final archived object changes materially, regenerate and reverify the ZIP checksum before publication.",
-    "The canonical distribution ZIP is deterministic and contains only the 16 manifest-listed payload files plus SHA256SUMS.txt; no cache or bytecode files are included."
+    "If the final archived object changes materially, regenerate and reverify the ZIP checksum before publication."
   ]
 }

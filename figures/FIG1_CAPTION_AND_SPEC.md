@@ -1,78 +1,46 @@
-# Figure 1 — unified critical-surface transport
+# Figure 1 — one persistent phenotype, three evolutionary bottlenecks
 
 ## Caption
 
-**Figure 1. One architecture comparison crosses different evolutionary thresholds.** SLK transports the same declared architecture comparison from identified shared-coordinate conflict through endpoint architecture value, small-step selective accessibility, frequency-dependent invasion, finite-population fixation, and symmetric rare-mutation occupancy. Each added mechanism introduces its own critical surface: sufficiently small release switches at k=k_local; global endpoint value at Phi=0, equivalently k=k_global; rare invasion at Phi=eta; resistance to reverse invasion at Phi=-eta; reciprocal fixation ordering at Phi=0; and absolute fixation advantage over neutrality at 3Phi=eta under weak selection. Under the registered exponential-Moran process with connected symmetric rare mutation, reciprocal fixation ordering and monomorphic occupancy re-align exactly on the same Phi=0 surface. The left panel shows that all five flagship non-implications can be constructed inside one convex recovery family, R(d)=d+d^2 and K(d)=kd, by varying only k and eta. The arrows are estimand handoffs, not logical implications.
+**Figure 1. One persistent phenotype can hide different evolutionary bottlenecks.** The same visible integrated architecture can persist because the focal divided alternative has negative net value (`Phi<0`), because a higher-value divided endpoint is separated by an unfavorable local path (`Phi>0`, `g0<0`), or because a favorable and reachable divided type performs poorly when rare (`Phi>0`, `g0>0`, `Delta_R<0`). Morphology alone therefore does not identify why integration persists. Architecture economics, evolutionary path geometry, and ecological context can maintain the same phenotype but imply different ways in which persistence can be released.
 
 ## Reader-facing message
 
 ~~~text
-identified conflict
-      |
-      v
-global endpoint value            Phi=0
-      |
-      v
-small-step accessibility         k=k_local
-      |
-      v
-rare invasion                    Phi=+/-eta
-      |
-      v
-finite-population fixation       Phi=0; 3Phi=eta under weak selection
-      |
-      v
-rare-mutation occupancy          Phi=0
+documented functional conflict
+        |
+        +--> architecture bottleneck
+        |    focal divided alternative does not repay its cost
+        |
+        +--> path bottleneck
+        |    a higher-value divided state exists, but the path is unfavorable
+        |
+        +--> establishment bottleneck
+             a favorable divided state cannot spread when rare
+
+all three can produce:
+persistent multifunctionality
 ~~~
 
-The figure is a **critical-surface transport map**, not a claim that every stage has a different threshold.
+The figure is a **many-to-one map from evolutionary bottlenecks to one visible biological phenotype**, not a diagnostic workflow or a catalogue of mathematical thresholds.
 
-## Exact re-alignment
-
-For the registered canonical pair and exponential-Moran / symmetric rare-mutation process,
+## Biological quantities
 
 ~~~text
-rho_D/rho_S = exp[beta(N-2)Phi]
-Pi_D/Pi_S   = exp[beta(N-2)Phi]
+L       conflict load on a common fitness scale
+R       fitness recovered by the differentiated architecture
+K       architecture-specific cost
+Phi     R-K, net value of differentiation
+g0      R'(0)-k, local gradient away from the integrated state
+Delta_R selection difference experienced by a rare differentiated type
 ~~~
 
-so
+## Interpretation
 
-~~~text
-global endpoint D>S
-iff
-reciprocal fixation favors D
-iff
-symmetric rare-mutation occupancy favors D
-iff
-Phi>0.
-~~~
+The phenotype is many-to-one with respect to evolutionary state. Persistent integration can be favored directly, preserved by an inaccessible route to a fitter divided architecture, or stabilized by ecological interactions that disadvantage a differentiated type when rare. Those states differ in how they should respond when architecture, developmental routes, or interacting communities change.
 
-This shared surface is conditional on the declared equal-diagonal-feedback canonical mapping, fixation process, and mutation assumptions.
-
-## One-family witness system
-
-Use
-
-~~~text
-d in [0,1]
-R(d)=d+d^2
-K(d)=k d
-k_local=1
-k_global=2
-Phi=2-k.
-~~~
-
-Then varying only k and eta yields all five registered separations:
-
-1. conflict without positive endpoint value;
-2. positive endpoint value without sufficiently small selectively uphill release;
-3. positive value plus small-step accessibility without rare invasion;
-4. rare invasion without reciprocal fixation superiority;
-5. absolute fixation advantage over neutrality without greater symmetric rare-mutation occupancy.
-
-The explicit parameter values remain registered in theory/UNIFIED_THRESHOLD_ATLAS_V1.md and theory/NON_EQUIVALENCE_THEOREM_V1.md.
+The route with `Phi>0, g0>0, Delta_R>0` removes the three early barriers represented in the figure but does not imply that differentiation must fix or persist historically.
 
 ## Scope
 
-The figure does not depict continuous-architecture branching, edgewise topology, spatial migration, or temporal Floquet dynamics. Those remain PAYOFF extensions outside the SLK flagship. The local-accessibility surface refers specifically to sufficiently small selectively uphill steps along the declared release path and does not imply absolute historical unreachability.
+Finite-population fixation and weak-mutation occupancy remain valid downstream results in the theory, but they are intentionally omitted from the main causal branches because they do not constitute separate explanations for why the observed multifunctional architecture initially persists.

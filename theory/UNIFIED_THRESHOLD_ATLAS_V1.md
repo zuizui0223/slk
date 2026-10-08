@@ -458,6 +458,842 @@ Thus ecological feedback has two separable effects on realized differentiation: 
 
 ---
 
+## Corollary UTA1.4c — the limiting reason for persistent integration can turn over along an environmental gradient
+
+The previous environmental results compare architecture value with invasion. The local accessibility boundary can be placed on the same environmental axis when the environment changes the marginal price of architectural release.
+
+Hold the convex recovery function `R(d)`, `dmax`, and the canonical frequency-feedback term `eta` fixed, and let
+
+```text
+k(E)=k0-c(E-E0),
+c>0.
+```
+
+Thus increasing `E` makes architectural release progressively cheaper. Define
+
+```text
+k_local  = R'(0),
+k_global = R(dmax)/dmax,
+Phi(E)   = dmax [k_global-k(E)],
+g0(E)    = k_local-k(E).
+```
+
+Let `E_V` be the architecture-value crossing, `E_A` the small-step accessibility crossing, and `E_I` the rare-D invasion crossing:
+
+```text
+k(E_V)=k_global,
+k(E_A)=k_local,
+Phi(E_I)=eta.
+```
+
+Then
+
+```text
+E_A-E_V
+=
+(k_global-k_local)/c,
+```
+
+and
+
+```text
+E_I-E_V
+=
+eta/(c dmax).
+```
+
+For strictly convex recovery,
+
+```text
+k_local<k_global,
+```
+
+so
+
+```text
+E_V<E_A.
+```
+
+If coordination-like frequency feedback is strong enough that
+
+```text
+eta
+>
+dmax (k_global-k_local),
+```
+
+then
+
+```text
+E_V<E_A<E_I.
+```
+
+Along increasing `E`, the identity of the first failing early criterion therefore changes in a fixed order:
+
+```text
+E < E_V:
+    Phi<0
+    -> differentiation does not pay
+
+E_V < E < E_A:
+    Phi>0, g0<0
+    -> differentiation pays but small release is locally downhill
+
+E_A < E < E_I:
+    Phi>0, g0>0, Delta_R<0
+    -> value and initial reachability pass, but rare establishment fails
+
+E > E_I:
+    Phi>0, g0>0, Delta_R>0
+    -> these three early failure explanations are excluded.
+```
+
+### Ecological interpretation
+
+A set of populations can therefore show the **same integrated phenotype for different evolutionary reasons** along one environmental gradient. Before any visible differentiation appears, the limiting explanation can turn over from architecture value, to local reachability, to rare establishment.
+
+More generally, a distinct ecology-only persistence interval exists whenever rare establishment still fails at the local-accessibility crossing,
+
+```text
+Delta_R(E_A)<0.
+```
+
+For the canonical pair with constant `eta`, define the architecture barrier on the same payoff scale as
+
+```text
+B_A = Phi(E_A).
+```
+
+Then
+
+```text
+Delta_R(E_A)<0
+iff
+eta>B_A.
+```
+
+Under the present cost-lowering environmental slice,
+
+```text
+B_A
+=
+Phi(E_A)
+=
+dmax (k_global-k_local).
+```
+
+The width of the local-accessibility-limited interval is
+
+```text
+E_A-E_V=(k_global-k_local)/c,
+```
+
+while the width of the rare-establishment-limited interval is
+
+```text
+E_I-E_A
+=
+[eta/dmax-(k_global-k_local)]/c.
+```
+
+The latter interval exists only when `eta>B_A`. If `0<eta<B_A`, the invasion boundary is crossed before the local-accessibility boundary, so no ecology-only interval begins when the local barrier disappears; `eta=B_A` makes the accessibility and invasion boundaries coincide. If `eta<0`, rarity favors the differentiated type in the canonical game and the invasion crossing lies on the opposite side of the value crossing. More generally, `Delta_R(E_A)<0` guarantees a local ecology-only interval after `E_A` by continuity, whereas `Delta_R(E_A)>0` rules out such an interval immediately after `E_A` but does not forbid a later re-entry under non-monotonic frequency feedback.
+
+This is a prediction about the ordering of measured barriers under the declared environmental slice. It does not assert that historical evolution follows only small mutations, that large-effect changes are impossible, or that passing all three early criteria guarantees realized differentiation.
+
+---
+
+## Corollary UTA1.4d — strict convex recovery creates architecture-path hysteresis
+
+The accessibility result has a further consequence when evolution proceeds by sufficiently small moves along the same one-dimensional release path.
+
+Let
+
+```text
+F(d;k)=R(d)-kd,
+d in [0,dmax],
+```
+
+with differentiable strictly convex `R(d)`. Define
+
+```text
+k_S   = R'(0)          = k_local,
+k_V   = R(dmax)/dmax   = k_global,
+k_D   = R'(dmax).
+```
+
+Strict convexity gives the tangent-secant ordering
+
+```text
+k_S < k_V < k_D.
+```
+
+The integrated endpoint `S:d=0` is locally selectively stable against sufficiently small release when
+
+```text
+k>k_S,
+```
+
+whereas the divided endpoint `D:d=dmax` is locally selectively stable against sufficiently small reverse moves when
+
+```text
+k<k_D.
+```
+
+Hence both endpoints are locally stable throughout
+
+```text
+k_S < k < k_D,
+```
+
+even though their global ranking switches at `k=k_V`.
+
+Under a small-step hill-climbing interpretation of the declared path:
+
+```text
+starting from S while k decreases:
+    S remains locally trapped until k crosses k_S
+
+starting from D while k increases:
+    D remains locally trapped until k crosses k_D.
+```
+
+The same current value of `k` can therefore support different realized architectures solely because of evolutionary history, even when frequency-dependent ecology is absent.
+
+For the environmental slice
+
+```text
+k(E)=k0-c(E-E0),
+c>0,
+```
+
+let `E_H` denote the reverse-path boundary defined by
+
+```text
+k(E_H)=k_D,
+```
+
+and retain `E_V` and `E_A` for the global-value and forward local-accessibility crossings. Then
+
+```text
+E_H < E_V < E_A,
+```
+
+with path-hysteresis width
+
+```text
+E_A-E_H
+=
+[k_D-k_S]/c
+=
+[R'(dmax)-R'(0)]/c.
+```
+
+### Biological interpretation
+
+Historical/developmental trapping therefore predicts a **legacy effect**: populations entering the same present environment from opposite architectural histories can remain integrated or divided even when their current ecological conditions are identical.
+
+This architecture-path hysteresis is distinct from the coordination bistability generated by positive frequency dependence in UTA1.2. The former arises because intermediate structural change is selectively downhill; the latter arises because population fitness depends on resident frequency. They can coexist, but neither should be inferred from a static geographic mosaic alone.
+
+This is a small-step path result. Large mutations, recombination, developmental reorganization, drift, or alternative release paths can bypass the local hysteresis.
+
+
+---
+
+## Corollary UTA1.4e — persistence can become easier to overturn before morphology changes
+
+The ordered environmental slice also changes the size of the perturbation required to leave the integrated state before any visible transition occurs.
+
+### Architecture-release threshold
+
+Within the historical-trapping interval,
+
+```text
+k_local < k < k_global,
+```
+
+strict convexity and `R(0)=0` imply that the secant slope
+
+```text
+q(d)=R(d)/d,
+0<d<=dmax,
+```
+
+is strictly increasing from `k_local` toward `k_global`.
+
+Therefore there is a unique positive release size `d_J` satisfying
+
+```text
+R(d_J)/d_J=k.
+```
+
+For a one-step release from the integrated state,
+
+```text
+0<d<d_J  ->  R(d)-kd<0
+d>d_J    ->  R(d)-kd>0.
+```
+
+Thus `d_J` is the minimum one-step architectural release that has positive intrinsic net value relative to the integrated state on the declared path.
+
+As environmental change lowers `k` from `k_global` toward `k_local`,
+
+```text
+d_J: dmax -> 0.
+```
+
+The integrated phenotype can therefore remain unchanged while the structural innovation required to escape it becomes progressively smaller.
+
+### Frequency threshold under coordination-like ecology
+
+For the canonical endpoint pair with `eta>0` and
+
+```text
+0<Phi<eta,
+```
+
+the unstable interior frequency is
+
+```text
+p_C
+=
+(eta-Phi)/(2eta).
+```
+
+Below `p_C`, the divided architecture declines; above `p_C`, it increases. Hence `p_C` is the critical initial frequency required to escape the integrated resident state under deterministic coordination dynamics.
+
+As `Phi` increases toward the rare-invasion boundary,
+
+```text
+Phi -> eta
+```
+
+and
+
+```text
+p_C -> 0.
+```
+
+### Combined ecological interpretation
+
+In the ordered slice `E_V<E_A<E_I`, persistence can therefore erode before the phenotype changes.
+
+```text
+E_V < E < E_A:
+    the divided endpoint pays,
+    but a finite architectural release is still required;
+    positive frequency feedback can additionally require sufficient local abundance.
+
+E_A < E < E_I:
+    the small-step architectural barrier has disappeared,
+    but the divided architecture must still exceed a positive critical frequency p_C.
+
+E > E_I:
+    p_C=0 at the invasion boundary and rare divided types can increase.
+```
+
+This does not make valley crossing or coordination thresholds new mathematical phenomena. The biological prediction is their ordered handoff within one multifunctional-to-divided architecture problem: **the morphology can remain integrated while the magnitude and kind of perturbation needed to reorganize it progressively change.**
+
+
+---
+
+## Corollary UTA1.4f — structural release and initial frequency lie on one escape frontier
+
+UTA1.4e treated structural release and establishment frequency as two successive perturbation thresholds. They can be placed on one coupled boundary only if the extension preserves the identity limit: when structural release vanishes, the differentiated variant becomes the integrated type and any architecture-specific ecological difference must also vanish.
+
+Let
+
+```text
+F(d;k)
+=
+R(d)-kd,
+0<d<=dmax,
+```
+
+be the intrinsic net value of a partial structural release `d` relative to the integrated state. Use the identity-preserving canonical extension:
+
+```text
+Delta(d,p;k)
+=
+F(d;k)
++
+eta (d/dmax)(2p-1),
+eta>0.
+```
+
+At `d=dmax` this recovers `Delta=Phi+eta(2p-1)`, whereas `Delta(d,p)->0` as `d->0` for every `p`. The linear scaling of feedback with release is a declared minimal extension, not a universal ecological law.
+
+### Escape frontier
+
+For `d>0`, define `q(d)=R(d)/d`. Then
+
+```text
+sign Delta(d,p;k)
+=
+sign [q(d)-k+(eta/dmax)(2p-1)].
+```
+
+The zero-growth boundary is
+
+```text
+p_escape(d;k)
+=
+1/2-[dmax/(2eta)][q(d)-k].
+```
+
+Above the boundary the release variant increases; below it, it declines. A boundary outside `[0,1]` means no interior frequency threshold exists.
+
+### The two earlier thresholds are orthogonal slices
+
+UTA1.4e defines `d_J` by
+
+```text
+q(d_J)=k.
+```
+
+Therefore
+
+```text
+p_escape(d_J;k)=1/2.
+```
+
+At the completed divided endpoint,
+
+```text
+q(dmax)-k=Phi/dmax,
+```
+
+so
+
+```text
+p_escape(dmax;k)
+=
+(eta-Phi)/(2eta)
+=
+p_C.
+```
+
+Thus
+
+```text
+d_J
+=
+the p=1/2 slice of the escape frontier,
+
+p_C
+=
+the d=dmax slice of the escape frontier.
+```
+
+The structural-jump threshold and the frequency threshold are therefore not two unrelated warning quantities in this canonical model. They are orthogonal cuts through one coupled architecture-frequency surface.
+
+### General identity-preserving feedback scaling
+
+The two slice identities do not require linear feedback scaling. Let
+
+```text
+Delta_w(d,p;k)
+=
+F(d;k)
++
+eta w(d)(2p-1),
+```
+
+where
+
+```text
+w(0)=0,
+w(dmax)=1,
+w(d)>0 for d>0.
+```
+
+Then for every `d>0` the escape frontier is
+
+```text
+p_escape,w(d;k)
+=
+1/2
+-
+F(d;k)/[2eta w(d)].
+```
+
+Because `F(d_J;k)=0` and `F(dmax;k)=Phi`,
+
+```text
+p_escape,w(d_J;k)=1/2,
+p_escape,w(dmax;k)=p_C
+```
+
+for every admissible `w`. Thus the interpretation of `d_J` and `p_C` as orthogonal slices is **scaling-robust within the identity-preserving class**.
+
+Under the cost-lowering environmental slice,
+
+```text
+partial p_escape,w(d,E) / partial E
+=
+-
+c d /
+[2eta w(d)]
+<
+0
+```
+
+for every `d>0`. Hence environmental improvement shifts the frontier pointwise toward easier escape for every admissible positive scaling function.
+
+What is not generic is monotonic compensation with release size. In the general class,
+
+```text
+partial p_escape,w / partial d < 0
+```
+
+holds exactly where
+
+```text
+partial [F(d;k)/w(d)] / partial d > 0.
+```
+
+The release-proportional choice `w(d)=d/dmax` makes
+
+```text
+F(d;k)/w(d)
+=
+dmax[q(d)-k],
+```
+
+which is strictly increasing under strict convexity. The canonical proportional scaling therefore guarantees the monotonic novelty-abundance compensation used below; other admissible scalings retain the two slice identities and environmental erosion but need not preserve monotonic frontier shape.
+
+For `F(d;k)>0` and differentiable positive `w(d)`, define elasticities
+
+```text
+epsilon_F(d)
+=
+d F'(d;k)/F(d;k),
+
+epsilon_w(d)
+=
+d w'(d)/w(d).
+```
+
+Then
+
+```text
+partial p_escape,w / partial d
+=
+[F(d;k)/(2eta w(d)d)]
+[epsilon_w(d)-epsilon_F(d)].
+```
+
+Therefore the required starting frequency **increases with further specialization**, despite positive and rising intrinsic value, precisely when
+
+```text
+epsilon_w(d)>epsilon_F(d).
+```
+
+This is an ecological mechanism criterion: the coordination or partner-dependence penalty intensifies with differentiation faster than the intrinsic benefit of structural release. If the inequality is reversed, increased structural release lowers the establishment threshold. It is a prediction about separate two-type introductions, not a mixed-variant dynamical path.
+
+#### Critical ecological steepness for an interior establishment optimum
+
+The interior of the frontier can change its qualitative shape at a precise ecological threshold. Consider the quadratic strictly convex recovery family
+
+```text
+R(d)=a d+b d^2,
+b>0,
+0<d<=D=dmax,
+a<k<a+bD.
+```
+
+Define the intrinsic-jump barrier `J=d_J=(k-a)/b`, so `0<J<D`, and use a release-dependent coordination effect
+
+```text
+w_m(d)=(d/D)^m,
+m>=1.
+```
+
+The zero-growth frequency is
+
+```text
+p_escape,m(d)
+=
+1/2
+-
+[b D^m/(2eta)](d-J)d^(1-m).
+```
+
+**Power-law feedback threshold.** Put
+
+```text
+m_crit
+=
+(2D-J)/(D-J)
+=
+(2-J/D)/(1-J/D).
+```
+
+For `1<=m<=m_crit`, the required founding frequency decreases monotonically over `0<d<D` (at equality its derivative is zero only at the completed endpoint). For `m>m_crit`, it decreases and then increases, attaining a unique interior minimum at
+
+```text
+d_opt
+=
+[(m-1)/(m-2)] J,
+J<d_opt<D.
+```
+
+**Proof.** Direct differentiation yields
+
+```text
+d p_escape,m / d d
+=
+-
+[b D^m/(2eta d^m)]
+[(2-m)d+(m-1)J].
+```
+
+For `1<=m<=2`, the expression in square brackets is positive over `d>0`; for `m>2` it changes sign at `d_opt=(m-1)J/(m-2)`. That turning point is inside `(J,D)` precisely when `m>(2D-J)/(D-J)`. The derivative is then negative before `d_opt` and positive after it. Strict interior optimality follows.
+
+When the completed endpoint is intrinsically favorable yet blocked from rarity,
+
+```text
+0<F(D)=bD(D-J)<eta,
+```
+
+we have `0<p_C<1/2`. For `m>m_crit`, the strict inequality
+
+```text
+p_escape,m(d_opt)<p_C=p_escape,m(D)
+```
+
+creates a nonempty founding-frequency interval in which an intermediate partially divided variant can grow against an integrated resident but the completely divided variant declines. If `p_escape,m(d_opt)<0`, the observable interval is truncated at zero; a positive interior optimum still exists mathematically. This assertion concerns separate two-type introduction comparisons, not simultaneous competition among partial variants.
+
+For the registered witness `R(d)=d+d^2`, `k=1.5`, and `D=1`, `J=0.5` and therefore
+
+```text
+m_crit=3.
+```
+
+Thus `m=2` gives a monotonically decreasing frontier, `m=3` places the minimum at complete differentiation, and `m=4` creates `d_opt=0.75` and the bounded partial-establishment window derived below.
+
+The threshold itself responds to architecture economics. Writing `x=J/D`,
+
+```text
+m_crit(x)=(2-x)/(1-x),
+d m_crit/dx=1/(1-x)^2>0.
+```
+
+When differentiation needs a larger minimum structural jump to repay its costs, ecological feedback must rise **more steeply** with differentiation to make incomplete division easier to establish than complete division. Under a cost-lowering environment, `J(E)=[k(E)-a]/b` falls, hence `m_crit(E)` also falls. For a fixed `m>2`, an interior optimum emerges once
+
+```text
+k(E)<a+bD[(m-2)/(m-1)].
+```
+
+This is a conditional **environmental change in the most invadable degree of structural division**, even while every fixed partial-release variant benefits from the reduction in architecture cost. The steepness exponent `m` and the quadratic recovery form are explicit assumptions, not universal traits of natural differentiation.
+
+#### Counterexample: more divided can be intrinsically fitter but less invadable
+
+The slice identities and cost-lowering environmental shift do **not** imply that larger structural release always establishes from lower frequency. Consider the same strictly convex witness family
+
+```text
+dmax=1,
+R(d)=d+d^2,
+k=1.5,
+eta=0.8,
+```
+
+but let ecological coordination strengthen superlinearly with structural differentiation:
+
+```text
+w(d)=d^4.
+```
+
+This smooth, increasing function preserves `w(0)=0`, `w(1)=1`, and the integrated identity limit. The escape frontier becomes
+
+```text
+p_escape,w(d)
+=
+1/2-(d-0.5)/(1.6 d^3).
+```
+
+For `d>0.5`, intrinsic value `F(d)=d(d-0.5)` strictly increases. Here `epsilon_w=4` and `epsilon_F=(2d-0.5)/(d-0.5)` become equal at `d=0.75`; above that point ecological feedback has the greater elasticity. The frontier therefore attains its **minimum** at `d=0.75`, not at the completely divided endpoint:
+
+```text
+d=0.75: F=0.1875, p_escape=0.12962963
+
+d=1.00: F=0.5000, p_escape=0.18750000.
+```
+
+Indeed, in two separate resident-versus-variant introduction assays at initial frequency `p=0.15`,
+
+```text
+Delta_w(0.75,0.15)=+0.0103125
+
+Delta_w(1.00,0.15)=-0.0600000.
+```
+
+The partially divided variant increases, whereas the fully divided variant decreases despite its larger intrinsic payoff. Both variants share the original `d_J=0.5` and the same full-endpoint threshold `p_C=0.1875`. The reversal is entirely due to nonlinear ecological feedback that grows disproportionately with the degree of specialization.
+
+This is a **model witness**, not an empirical claim. In nature it could occur if stronger specialization increasingly requires access to matching partners, compatible mates, or sufficiently common complementary roles. It predicts a potentially measurable intermediate degree of differentiation that is *easiest to establish* even when the completed divided form has higher intrinsic value.
+
+The robust results are the two slice identities and downward movement with falling architecture cost. The monotone compensation law is conditional on the feedback scaling, and `d_J` plus `p_C` alone cannot identify the frontier's interior.
+
+#### A bounded window of selectively viable partial differentiation
+
+The witness above yields a stronger conditional prediction than a pair of contrasting morphs: for some introduction frequencies there is a **bounded interval of structural differentiation** that increases against the integrated resident, while both less and more differentiated introductions decline.
+
+For the same `R(d)=d+d^2`, `k=1.5`, `dmax=1`, `eta=0.8`, and `w(d)=d^4`, write `b=eta(1-2p)` for `0<=p<1/2`. Selection has the sign of
+
+```text
+Delta_w(d,p)
+=
+d [d-1/2-b d^3],
+d>0.
+```
+
+Define `h(d)=d-1/2-bd^3`. It is strictly concave on `(0,1]`, with `h(0)=-1/2`. An interior positive band with failure at full division exists if and only if
+
+```text
+1/2 < b < 16/27,
+```
+
+equivalently for `eta=4/5),
+
+```text
+7/54 < p < 3/16.
+```
+
+**Proof.** The fully divided endpoint declines exactly when `h(1)=1/2-b<0`, i.e. `b>1/2`. The unique interior maximum occurs at `d_m=1/sqrt(3b)`; since `b>1/2`, it lies inside `(0,1)`. At the maximum, `h(d_m)=2d_m/3-1/2`. This is positive precisely when `d_m>3/4`, or `b<16/27`. Strict concavity and negative values at both ends then imply exactly two crossings `0<d_-<d_m<d_+<1`, with positive selection only for `d_-<d<d_+`. At the boundaries of the stated open `p` interval, either the maximum merely touches zero or the fully divided endpoint is neutral; neither satisfies the strict two-sided failure claim.
+
+For `p=0.15`, `b=0.56`, and
+
+```text
+d_m=0.77151675
+d_-=0.66377949
+d_+=0.87445261.
+```
+
+Hence at that introduction frequency,
+
+```text
+0<d<0.66377949:          Delta_w(d,p)<0
+
+0.66377949<d<0.87445261: Delta_w(d,p)>0
+
+0.87445261<d<=1:         Delta_w(d,p)<0.
+```
+
+All comparisons are **separate two-type resident–variant experiments** indexed by `d`. The bounded positive band does not establish that an interior `d` is an evolutionarily stable degree of specialization against other partial variants, or that evolution will reach it by small mutations. It instead predicts a testable **introduction-window mismatch**: the most intrinsically profitable architecture need not be the one that establishes from a fixed founding frequency when ecological partner-dependence grows sufficiently steeply with specialization.
+
+
+
+### Structural-demographic compensation
+
+For strictly convex `R` with `R(0)=0`, `q(d)` is strictly increasing. Therefore
+
+```text
+partial p_escape / partial d < 0.
+```
+
+Within historical trapping, `k_local<k<k_global`,
+
+```text
+lim d->0 p_escape(d;k)
+=
+1/2+dmax(k-k_local)/(2eta)
+>
+1/2.
+```
+
+The frontier crosses one half at `d_J` and reaches `p_C` at `dmax`:
+
+```text
+0<d<d_J  -> p_escape(d)>1/2
+d=d_J    -> p_escape(d)=1/2
+d>d_J    -> p_escape(d)<1/2.
+```
+
+### Minority-frequency structural threshold
+
+For fixed `0<=p<=1/2`, escape requires
+
+```text
+q(d)>k+(eta/dmax)(1-2p).
+```
+
+If `Phi>eta(1-2p)`, a unique `d_escape(p;k)` satisfies equality. The special cases are
+
+```text
+p=1/2  -> d_escape=d_J
+p->0   -> full-endpoint escape requires Phi>=eta
+d=dmax -> p_escape=p_C.
+```
+
+Where `q` is differentiable,
+
+```text
+partial d_escape / partial p
+=
+-[2eta/dmax]/q'(d_escape)
+<
+0.
+```
+
+### Environmental erosion of the frontier
+
+Under `k(E)=k0-c(E-E0)`, `c>0`,
+
+```text
+partial p_escape(d,E) / partial E
+=
+-c dmax/(2eta)
+<
+0.
+```
+
+Because this derivative does not depend on `d`, the proportional-scaling frontier undergoes a **parallel vertical translation** when environment changes architecture cost alone:
+
+```text
+p_escape(d,E2)-p_escape(d,E1)
+=
+-c dmax(E2-E1)/(2eta).
+```
+
+Its shape is preserved. Therefore a measured change in frontier shape across environments falsifies the cost-only, fixed-`R`, fixed-`eta` proportional slice and implies that recovery geometry and/or ecological feedback also changed.
+
+For a general identity-preserving scaling `w(d)`, environmental improvement still shifts the frontier downward pointwise, but the shift need not be parallel.
+
+For an interior `d_escape`,
+
+```text
+partial d_escape / partial E
+=
+-c/q'(d_escape)
+<
+0.
+```
+
+Lower architecture cost expands the set of structural-release x initial-frequency combinations that can escape before visible reorganization.
+
+### Biological interpretation
+
+The model predicts a direct compensation between two routes to reorganization:
+
+```text
+larger structural novelty
+<-> lower required local abundance,
+
+smaller structural novelty
+<-> higher required local abundance.
+```
+
+Repeated origin, immigration, clonal expansion, or spatial clustering can therefore compensate for a structurally modest innovation, whereas a sufficiently large favorable innovation can compensate for low initial abundance. As the environment lowers architecture cost, the entire escape frontier moves so that less structural novelty and/or less demographic support is required.
+
+This is stronger than saying separately that `d_J` and `p_C` decline. It predicts the **joint combinations** of structural and demographic perturbation that can reorganize a persistent multifunctional phenotype.
+
+### Claim boundary
+
+Trait-dependent establishment thresholds, propagule pressure, Allee effects, and eco-evolutionary changes in Allee thresholds are established topics. UTA1.4f does not claim a first general interaction between phenotype and abundance.
+
+Its SLK-specific result is the exact frontier generated when the registered convex architecture-release model is coupled to the declared release-proportional positive feedback. This scaling preserves the `d->0` identity limit and the registered endpoint pair. Other scaling functions `w(d)` with `w(0)=0` and `w(dmax)=1`, multidimensional release paths, or explicit spatial interactions generally require a new frontier. The frontier is a family of **separate resident-versus-one-variant, two-type introductions** indexed by release size `d`. It does not specify the dynamics of several different `d` variants coexisting simultaneously, a continuous evolutionary trajectory in the `(d,p)` plane, or an invasion-wave geometry. For very small `d`, the selection difference approaches zero even when the limiting value of `p_escape` is finite, so the deterministic sign should not be mistaken for a strong selective advantage. The result is therefore model-specific, not universal.
+
+---
+
 ## Corollary UTA1.5 — conflict strength alone cannot rank the tendency toward differentiation across systems
 
 Under the registered quadratic bridge,
@@ -1245,6 +2081,8 @@ With estimation uncertainty, an interval crossing zero inherits the same unresol
 UTA1.10 is not a theorem that phenotype alone reveals mechanism. It says the opposite: persistent integration is **non-identifying** without the upstream measurements. Once `Phi`, the local release gradient, and the rare-frequency margin are measured in sequence, the first sign change localizes the decision layer at which the declared architecture comparison stops carrying forward.
 
 The three regimes above are not claimed to be exhaustive causes of persistent integration. Drift, alternative mutation paths, demographic history, developmental constraints, environmental heterogeneity, and other processes can generate additional explanations. UTA1.10 therefore localizes a gate within the declared SLK hierarchy; it does not establish the causal mechanism producing that gate value.
+
+The gate coordinates are conditional on the measured context. Ecology may change the later architectural or developmental route, and architectural change may alter later ecological feedback. When one layer changes another, the downstream coordinate must be estimated again in the updated context. The hierarchy separates decision criteria; it does not assume that architecture, path geometry, and ecology evolve independently.
 
 ## Diagnostic UTA1.11 — interval-valued compatible-state sets
 

@@ -1,40 +1,39 @@
-# SLK Am Nat literature coverage V1
+# SLK Am Nat literature coverage V2
 
 ## Purpose
 
-Verify that the journal-facing manuscript covers the closest antecedents registered in `docs/PRIOR_ART_COMPARISON_MATRIX_V1.md` rather than presenting the integrated transport as isolated-arrow novelty.
+Verify that the biology-refocused manuscript is positioned against the literatures that actually bear on its central question: why documented functional conflict can remain multifunctional rather than being resolved by division of labor.
 
-## Coverage
+## Main-manuscript cited set
 
 ```text
-REGISTERED_CLOSEST_ANTECEDENTS = 10
-CITED_IN_AMNAT_V4             = 10
-COVERAGE                       = 10/10
+BIOLOGY_FIRST_MAIN_REFERENCES = 13
+ALL_13_CITED_IN_TEXT          = true
+UNCITED_ENTRIES_IN_LITERATURE_CITED = 0
 ```
 
-| Antecedent | Manuscript role | Citation status |
+| Literature role | References | What is already known / why cited |
 |---|---|---|
-| Wagner & Altenberg 1996 | genotype–phenotype map, evolvability, interference/modularity | CITED |
-| Kashtan & Alon 2005 | modularity under modularly varying goals | CITED |
-| Espinosa-Soto & Wagner 2010 | specialization driving modularity / reduced interference | CITED |
-| Rueffler, Hermisson & Wagner 2012 | existing general theory of specialization/division of labor | CITED |
-| Dieckmann & Law 1996 | rare local mutation and invasion-fitness tradition | CITED |
-| Bowers et al. 2005 | geometric integration of trade-off and resident-mutant invasion boundaries | CITED |
-| Weinreich et al. 2006 | fitter endpoint does not imply accessible mutational path | CITED |
-| Taylor et al. 2004 | invasion/fixation distinctions in finite populations | CITED |
-| Fudenberg et al. 2006 | weak-mutation finite-population long-run dynamics | CITED |
-| Richardson & Gaunt 1927 | two-scale extrapolation / leading-error cancellation used by the finite-frequency certificate | CITED |
+| documented conflict in the running system | Sun & Huang 2015; Sun, Armbruster & Huang 2016 | rainwater defense and opposing pollinator/seed-predator selection in *Pedicularis rex* |
+| floral division of labor and its alternatives | Vallejo-Marín et al. 2009; Kay et al. 2020 | heteranthery can reflect division of labor, but morphology alone does not prove that mechanism |
+| molecular escape from conflict | Des Marais & Rausher 2008 | gene duplication can release a multifunctional gene from adaptive conflict |
+| sex-specific decoupling | Ingleby, Flis & Morrow 2015 | sex-biased regulation is a route for resolving shared-genome conflict |
+| general theory of specialization / pleiotropy | Rueffler, Hermisson & Wagner 2012; Guillaume & Otto 2012 | specialization is not automatic; performance functions, trade-offs, robustness, constraints and fitness mapping matter |
+| evolutionary reachability and ecological establishment | Dieckmann & Law 1996; Bowers et al. 2005; Egas, Dieckmann & Sabelis 2004 | endpoint desirability, gradual attainability and invasion are distinct questions; stable specialist states can be unreachable by gradual evolution |
+| downstream finite-population extensions | Taylor et al. 2004; Fudenberg et al. 2006 | invasion, fixation and weak-mutation long-run dynamics are established process-specific theory |
 
-## Result
+## Residual positioning
 
-`manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` now states the occupied conceptual and numerical-method territory before presenting the SLK contribution. The claim is restricted to the architecture-specific estimand transport, the one-family critical-surface atlas, and the empirical measurement ladder; the registered fixation–occupancy equality is retained as a consistency result rather than advertised as independent novelty.
+The manuscript therefore does not claim a first theory of specialization, a first accessibility barrier, or a first invasion/fixation distinction. Its residual contribution is the measurement-based diagnosis of persistent multifunctionality into failure of value, local reachability, or rare establishment, plus the prediction that the identity of the limiting barrier can turn over along an environmental gradient before morphology changes.
 
-The bibliography details were externally cross-checked before registration. This receipt concerns coverage and framing; it does not claim that ten references exhaust every relevant literature.
+## Supporting-theory prior art not required in the streamlined main bibliography
+
+The repository retains broader prior-art records for modularity/evolvability theory, fitness-landscape accessibility, and Richardson extrapolation because these support historical derivations or technical extensions. They need not all remain in the streamlined main manuscript once the corresponding technical material is moved out of the journal-facing narrative.
 
 ## Submission status
 
 ```text
-PRIOR_ART_MATRIX_TO_MANUSCRIPT_COVERAGE = PASS
-LITERATURE_CITED_CORE_SET                = COMPLETE_FOR_REGISTERED_MATRIX
-EXHAUSTIVE_FIELD_REVIEW                  = NOT_CLAIMED
+BIOLOGY_FIRST_POSITIONING_COVERAGE = PASS
+MAIN_BIBLIOGRAPHY_ALL_ENTRIES_CITED = PASS
+EXHAUSTIVE_FIELD_REVIEW = NOT_CLAIMED
 ```

@@ -222,6 +222,275 @@ def verify() -> dict[str, object]:
         "pass": True,
     }
 
+    # UTA1.4c: the identity of the limiting early barrier can turn over
+    # along one environmental gradient while the observed architecture
+    # remains integrated.
+    dmax = 1.0
+    k_local_turn = 1.0
+    k_global_turn = 2.0
+    k0_turn = 3.0
+    c_turn = 1.0
+    e0_turn = 0.0
+    eta_turn = 1.5
+
+    e_v_turn = e0_turn + (k0_turn - k_global_turn) / c_turn
+    e_a_turn = e0_turn + (k0_turn - k_local_turn) / c_turn
+    e_i_turn = e_v_turn + eta_turn / (c_turn * dmax)
+
+    assert eta_turn > dmax * (k_global_turn - k_local_turn)
+    assert e_v_turn < e_a_turn < e_i_turn
+
+    def turnover_state(e_value: float) -> tuple[float, float, float]:
+        k_value = k0_turn - c_turn * (e_value - e0_turn)
+        phi_value = dmax * (k_global_turn - k_value)
+        g0_value = k_local_turn - k_value
+        delta_rare_value = phi_value - eta_turn
+        return phi_value, g0_value, delta_rare_value
+
+    phi_low, g0_low, dr_low = turnover_state(0.5)
+    phi_value, g0_value, dr_value = turnover_state(1.5)
+    phi_access, g0_access, dr_access = turnover_state(2.25)
+    phi_pass, g0_pass, dr_pass = turnover_state(3.0)
+
+    assert phi_low < 0
+    assert phi_value > 0 and g0_value < 0
+    assert phi_access > 0 and g0_access > 0 and dr_access < 0
+    assert phi_pass > 0 and g0_pass > 0 and dr_pass > 0
+
+    checks["UTA1_4c_environmental_barrier_turnover"] = {
+        "E_V": e_v_turn,
+        "E_A": e_a_turn,
+        "E_I": e_i_turn,
+        "eta": eta_turn,
+        "convexity_gap": k_global_turn - k_local_turn,
+        "value_limited_example": {
+            "E": 0.5,
+            "Phi": phi_low,
+            "g0": g0_low,
+            "Delta_R": dr_low,
+        },
+        "accessibility_limited_example": {
+            "E": 1.5,
+            "Phi": phi_value,
+            "g0": g0_value,
+            "Delta_R": dr_value,
+        },
+        "establishment_limited_example": {
+            "E": 2.25,
+            "Phi": phi_access,
+            "g0": g0_access,
+            "Delta_R": dr_access,
+        },
+        "early_gates_pass_example": {
+            "E": 3.0,
+            "Phi": phi_pass,
+            "g0": g0_pass,
+            "Delta_R": dr_pass,
+        },
+        "pass": True,
+    }
+
+    # UTA1.4f: partial structural release and initial frequency lie on
+    # one canonical escape frontier.
+    k_escape = 1.5
+    eta_escape = 0.8
+    d_j_escape = 0.5
+
+    dmax_escape = architecture.dmax
+
+    def intrinsic_release(d: float, k_value: float = k_escape) -> float:
+        return architecture.recovery(d) - k_value * d
+
+    def secant_release(d: float) -> float:
+        return architecture.recovery(d) / d
+
+    def p_escape(d: float, k_value: float = k_escape) -> float:
+        return 0.5 - (dmax_escape / (2 * eta_escape)) * (
+            secant_release(d) - k_value
+        )
+
+    phi_escape = intrinsic_release(dmax_escape)
+    p_c_escape = (eta_escape - phi_escape) / (2 * eta_escape)
+
+    assert math.isclose(intrinsic_release(d_j_escape), 0.0)
+    assert math.isclose(p_escape(d_j_escape), 0.5)
+    assert math.isclose(p_escape(dmax_escape), p_c_escape)
+    assert math.isclose(p_escape(0.25), 0.65625)
+    assert math.isclose(p_escape(0.75), 0.34375)
+
+    def d_escape_at_frequency(p_value: float) -> float:
+        # q(d)=R(d)/d=1+d for the witness family.
+        return 0.5 + (eta_escape / dmax_escape) * (1 - 2 * p_value)
+
+    d_escape_low_frequency = d_escape_at_frequency(0.25)
+    d_escape_high_frequency = d_escape_at_frequency(0.40)
+    assert math.isclose(d_escape_low_frequency, 0.9)
+    assert math.isclose(d_escape_high_frequency, 0.66)
+    assert d_escape_high_frequency < d_escape_low_frequency
+
+    p_escape_higher_cost = p_escape(0.75, 1.6)
+    p_escape_lower_cost = p_escape(0.75, 1.4)
+    assert math.isclose(p_escape_lower_cost, 0.28125)
+    assert math.isclose(p_escape_higher_cost, 0.40625)
+    assert p_escape_lower_cost < p_escape_higher_cost
+
+    shift_small_release = p_escape(0.25, 1.4) - p_escape(0.25, 1.6)
+    shift_large_release = p_escape(0.75, 1.4) - p_escape(0.75, 1.6)
+    assert math.isclose(shift_small_release, -0.125)
+    assert math.isclose(shift_large_release, -0.125)
+    assert math.isclose(shift_small_release, shift_large_release)
+
+    checks["UTA1_4f_architecture_frequency_escape_frontier"] = {
+        "k": k_escape,
+        "eta": eta_escape,
+        "d_J": d_j_escape,
+        "Phi": phi_escape,
+        "p_C": p_c_escape,
+        "p_escape_at_d_J": p_escape(d_j_escape),
+        "p_escape_at_dmax": p_escape(architecture.dmax),
+        "d_escape_at_p_0_25": d_escape_low_frequency,
+        "d_escape_at_p_0_40": d_escape_high_frequency,
+        "p_escape_at_d_0_75_k_1_6": p_escape_higher_cost,
+        "p_escape_at_d_0_75_k_1_4": p_escape_lower_cost,
+        "parallel_shift_small_release": shift_small_release,
+        "parallel_shift_large_release": shift_large_release,
+        "pass": True,
+    }
+
+    # The slice identities and environmental erosion survive other
+    # identity-preserving feedback scalings w(0)=0, w(dmax)=1.
+    def p_escape_scaled(d: float, k_value: float = k_escape) -> float:
+        w = (d / dmax_escape) ** 2
+        return 0.5 - intrinsic_release(d, k_value) / (2 * eta_escape * w)
+
+    assert math.isclose(p_escape_scaled(d_j_escape), 0.5)
+    assert math.isclose(p_escape_scaled(dmax_escape), p_c_escape)
+    assert p_escape_scaled(0.75, 1.4) < p_escape_scaled(0.75, 1.6)
+
+    checks["UTA1_4f_scaling_robust_slices"] = {
+        "scaling": "w(d)=(d/dmax)^2",
+        "p_escape_at_d_J": p_escape_scaled(d_j_escape),
+        "p_escape_at_dmax": p_escape_scaled(dmax_escape),
+        "lower_cost_is_easier": (
+            p_escape_scaled(0.75, 1.4) < p_escape_scaled(0.75, 1.6)
+        ),
+        "pass": True,
+    }
+
+    # UTA1.4f nonlinear-feedback witness: more intrinsic release can
+    # require more demographic support, despite identical endpoint slices.
+    def superlinear_weight(d: float) -> float:
+        return d**4
+
+    def p_escape_superlinear(d: float) -> float:
+        return 0.5 - intrinsic_release(d) / (2 * eta_escape * superlinear_weight(d))
+
+    def delta_superlinear(d: float, p: float) -> float:
+        return intrinsic_release(d) + eta_escape * superlinear_weight(d) * (2 * p - 1)
+
+    partial_release = 0.75
+    complete_release = architecture.dmax
+    initial_frequency = 0.15
+    assert math.isclose(superlinear_weight(0.0), 0.0)
+    assert math.isclose(superlinear_weight(complete_release), 1.0)
+    assert intrinsic_release(complete_release) > intrinsic_release(partial_release)
+    assert math.isclose(p_escape_superlinear(d_j_escape), 0.5)
+    assert math.isclose(p_escape_superlinear(complete_release), p_c_escape)
+    assert math.isclose(p_escape_superlinear(partial_release), 0.12962962962962962)
+    assert p_escape_superlinear(partial_release) < initial_frequency < p_c_escape
+    assert math.isclose(delta_superlinear(partial_release, initial_frequency), 0.0103125)
+    assert math.isclose(delta_superlinear(complete_release, initial_frequency), -0.06)
+
+    checks["UTA1_4f_nonlinear_feedback_invasion_reversal"] = {
+        "scaling": "w(d)=d^4",
+        "partial_release": partial_release,
+        "completed_release": complete_release,
+        "p_initial": initial_frequency,
+        "partial_intrinsic": intrinsic_release(partial_release),
+        "completed_intrinsic": intrinsic_release(complete_release),
+        "p_escape_partial": p_escape_superlinear(partial_release),
+        "p_escape_completed": p_escape_superlinear(complete_release),
+        "Delta_partial": delta_superlinear(partial_release, initial_frequency),
+        "Delta_completed": delta_superlinear(complete_release, initial_frequency),
+        "pass": True,
+    }
+
+    # UTA1.4f: partial differentiation alone grows within a bounded
+    # structural interval at one fixed founding frequency.
+    p_window = 0.15
+    b_window = eta_escape * (1 - 2 * p_window)
+    p_window_lower = 7 / 54
+    p_window_upper = 3 / 16
+
+    def window_growth(d: float) -> float:
+        return delta_superlinear(d, p_window)
+
+    def window_root(left: float, right: float) -> float:
+        left_value = window_growth(left)
+        assert left_value * window_growth(right) < 0
+        for _ in range(70):
+            midpoint = (left + right) / 2
+            if left_value * window_growth(midpoint) > 0:
+                left = midpoint
+                left_value = window_growth(left)
+            else:
+                right = midpoint
+        return (left + right) / 2
+
+    assert 0.5 < b_window < 16 / 27
+    assert p_window_lower < p_window < p_window_upper
+    d_window_peak = 1 / math.sqrt(3 * b_window)
+    d_window_min = window_root(0.6, d_window_peak)
+    d_window_max = window_root(d_window_peak, 1.0)
+    assert math.isclose(d_window_min, 0.6637794898247931)
+    assert math.isclose(d_window_max, 0.8744526100516654)
+    assert window_growth(0.6) < 0 < window_growth(0.75)
+    assert window_growth(1.0) < 0
+    checks["UTA1_4f_bounded_partial_establishment_window"] = {
+        "initial_frequency": p_window,
+        "frequency_interval": [p_window_lower, p_window_upper],
+        "d_min": d_window_min,
+        "d_at_max_selection_bracket": d_window_peak,
+        "d_max": d_window_max,
+        "Delta_d_0_60": window_growth(0.6),
+        "Delta_d_0_75": window_growth(0.75),
+        "Delta_d_1_00": window_growth(1.0),
+        "pass": True,
+    }
+
+    # UTA1.4f: power-law partner dependence generates an interior
+    # most-invadable architecture only above a critical steepness.
+    def critical_feedback_exponent(jump: float, max_release: float = 1.0) -> float:
+        return (2 * max_release - jump) / (max_release - jump)
+
+    def power_frontier(d: float, m: float, jump: float) -> float:
+        return 0.5 - (dmax_escape**m / (2 * eta_escape)) * (
+            (d - jump) * d**(1 - m)
+        )
+
+    assert math.isclose(critical_feedback_exponent(0.5), 3.0)
+    assert math.isclose(critical_feedback_exponent(0.25), 7 / 3)
+    assert math.isclose(critical_feedback_exponent(0.75), 5.0)
+    d_opt_m4 = 0.5 * (4 - 1) / (4 - 2)
+    assert math.isclose(d_opt_m4, 0.75)
+    assert math.isclose(power_frontier(d_opt_m4, 4, 0.5), 0.12962962962962962)
+    assert power_frontier(d_opt_m4, 4, 0.5) < power_frontier(1.0, 4, 0.5)
+    assert critical_feedback_exponent(0.7) > 4
+    assert critical_feedback_exponent(0.5) < 4
+    assert power_frontier(0.75, 4, 0.7) > power_frontier(1.0, 4, 0.7)
+
+    checks["UTA1_4f_critical_feedback_steepness"] = {
+        "witness": "R(d)=d+d^2; w(d)=d^m; eta=0.8",
+        "d_J": 0.5,
+        "m_critical": critical_feedback_exponent(0.5),
+        "m_example": 4,
+        "d_opt": d_opt_m4,
+        "p_opt": power_frontier(d_opt_m4, 4, 0.5),
+        "p_full": power_frontier(1.0, 4, 0.5),
+        "crossing_k": 5 / 3,
+        "pass": True,
+    }
+
     # UTA1.5: stronger conflict need not mean larger architecture margin.
     L_A, s_A, K_A = 3.0, 0.2, 0.8
     L_B, s_B, K_B = 2.0, 0.8, 0.5

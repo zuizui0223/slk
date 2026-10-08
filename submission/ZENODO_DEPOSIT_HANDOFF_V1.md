@@ -2,16 +2,22 @@
 
 ## Purpose
 
-Prepare the archive-deposit step required by The American Naturalist without conflating it with reviewer access.
+Prepare the archive-deposit step required by *The American Naturalist* without conflating it with reviewer access.
 
-The reviewer-access route is already ready as an Editorial Manager ZIP:
+## Current payload status — READY
+
+The biology-refocused package has been rebuilt deterministically and verified.
 
 ```text
-SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-SHA256 ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
+file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+size      59,927 bytes
+SHA256    b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e
+files     17
+identity  PASS
+source    5f6443189c13df6c83a8c7f78bac2c8223e632f2
 ```
 
-The same verified, cache-free deterministic ZIP is suitable as the file payload for a Zenodo draft. Zenodo recommends ZIP packaging for deposits with many files, and a software record can contain a single compressed source/reproducibility package.
+This is the current payload for both reviewer-code access and a Zenodo draft. Do not substitute an older pre-refocus ZIP.
 
 ## Why draft first
 
@@ -41,22 +47,17 @@ before publication:
 
 ## Upload payload
 
-Use exactly:
+Use exactly the current deterministic reviewer/archive ZIP:
 
 ```text
 file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
-size      58,096 bytes
-SHA256    ee30f9a3f0982ef0a6d84b6900aa296c70135d0e6ff210f8bf0410267abdd08b
+size      59,927 bytes
+SHA256    b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e
 files     17
-tests     13 passed / 0 failed
 identity  PASS
 ```
 
-The exact package receipt is:
-
-```text
-submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json
-```
+The exact package receipt is `submission/AMNAT_REVIEWER_ZIP_RECEIPT_V1.json`.
 
 ## Metadata template
 
@@ -106,6 +107,7 @@ Immediately before publishing the Zenodo record:
 
 ```text
 ARCHIVE_PAYLOAD_READY       true
+PACKAGE_REBUILD_REQUIRED    false
 ZENODO_METADATA_TEMPLATE    ready
 ZENODO_DRAFT_CREATED        false
 ZENODO_FILE_UPLOADED        false
@@ -113,4 +115,4 @@ ZENODO_DOI_RESERVED         false
 ZENODO_RECORD_PUBLISHED     false
 ```
 
-The remaining actions require an authenticated Zenodo account and author-controlled metadata.
+The remaining Zenodo actions require an authenticated author account and author-controlled metadata.

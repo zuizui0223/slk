@@ -39,13 +39,13 @@ FORBIDDEN_IDENTITY_STRINGS = (
 
 README = """# Anonymous reviewer code/theory package
 
-This package accompanies the manuscript **From functional conflict to evolutionary architecture: thresholds for differentiation**.
+This package accompanies the manuscript **Multifunctional structures can persist while barriers to division of labor change**.
 
 ## Scope
 
-The submitted paper is a theory/concept paper. It does not estimate its headline results from a private or external empirical dataset. Numerical values in the witness table are constructive parameter regimes used to demonstrate logical non-implications. The three figures are theory diagrams/phase summaries.
+The submitted paper is an evolutionary-ecology theory paper about why comparable functional conflicts have different natural resolutions and why one multifunctional architecture can persist in different selective states. It does not estimate its headline results from a private or external empirical dataset. The natural-system examples, including *Pedicularis rex*, are literature based rather than new empirical results.
 
-The package therefore contains the exact manuscript source, the unified threshold-atlas theorem, the supporting core/non-equivalence theory notes, the three submitted figure sources, the authoritative standard-library threshold/process implementation, an independent Moran-process regression test, and a Python verifier for the common witness family, five separation regimes, ecological threshold displacement, two- and three-frequency feedback identification, curvature diagnostics, arbitrary-shape endpoint invasion, finite-frequency endpoint certification, comparative conflict-differentiation discordance, critical surfaces, and fixation-occupancy invariant. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the mathematical implementation, an independent Moran-process regression test, and a Python verifier. The manuscript centers adaptive integration, historical/developmental trapping, and ecological stabilization, together with the prediction that an unchanged integrated phenotype can lose evolutionary resistance before structural division of labor appears. The fuller theory files retain downstream fixation/occupancy and numerical derivations as supporting results rather than as the biological subject of the paper. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 

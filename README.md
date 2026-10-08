@@ -1,129 +1,95 @@
-# SLK — From Shared Conflict to Evolutionary Architecture
+# SLK — Multifunctional Structures Can Persist While Barriers to Division of Labor Change
 
-SLK is the active integrated flagship theory programme connecting four previously separate repositories:
+SLK asks a biological question: **when does functional conflict lead to division of labor, and when does a multifunctional structure persist instead?**
 
-- [`sch`](https://github.com/zuizui0223/sch): identifies whether a shared-coordinate functional conflict exists and estimates its compromise load `L`.
-- [`balance`](https://github.com/zuizui0223/balance): classifies and characterizes the persistent-compromise region `L > 0, Phi < 0`.
-- [`slk`](https://github.com/zuizui0223/slk): owns the architecture-value objects `R`, `K`, and `Phi=R-K`, the registered quadratic bridge `R=sL`, and the transport hierarchy from architecture value to accessibility, invasion, fixation, and occupancy.
-- [`bita`](https://github.com/zuizui0223/bita): is orthogonal to the architecture-value boundary and asks what ecological mechanism is identified by a measured trait interaction.
-- [`payoff`](https://github.com/zuizui0223/payoff): supplies source mathematical results used by later SLK realization steps and retains broader continuous, spatial, temporal, and topological extensions.
+The project draws on several linked theory modules, but the modules are not the subject of the paper. Their roles are:
 
-The frozen programme spine is:
-
-```text
-SCH      identifies L
-BALANCE classifies L > 0, Phi < 0
-SLK      defines/tests R, K, and Phi = R - K
-         with R = sL only as the registered quadratic bridge
-SLK      transports Phi through accessibility -> invasion -> fixation -> occupancy
-BITA     separately maps trait interaction -> identified set -> mechanism allocation
-```
+- [`sch`](https://github.com/zuizui0223/sch): establishes whether opposing functions genuinely conflict on a shared phenotypic coordinate and supplies the conflict quantity `L`.
+- [`balance`](https://github.com/zuizui0223/balance): develops diagnostics for the region in which conflict is real but differentiated architecture is not yet favored.
+- [`slk`](https://github.com/zuizui0223/slk): asks why documented conflict can remain unresolved by division of labor.
+- [`bita`](https://github.com/zuizui0223/bita): separately asks which ecological mechanism generates an observed trait interaction.
+- [`payoff`](https://github.com/zuizui0223/payoff): retains broader mathematical extensions used when later population or dynamical questions require them.
 
 ## Central question
 
-> When multiple biological functions are forced to share one phenotypic coordinate, when is differentiation worth its architecture-specific cost, and when does that global advantage actually become an evolutionary outcome?
+> **When does functional conflict favor structural division of labor, and when does a multifunctional structure persist instead—and why can the reason for persistence change across ecological contexts?**
 
-## Core hierarchy
-
-```text
-shared functional conflict
-        |
-        v
-conflict load L
-        |
-        v
-recoverable benefit R
-        |
-        +-- quadratic bridge only: R = sL
-        |
-        v
-architecture margin Phi = R - K
-        |
-        +-- L > 0, Phi < 0: persistent compromise / BALANCE
-        +-- Phi = 0: SLK architecture-value critical surface
-        +-- Phi > 0: differentiated comparison globally favored
-        |
-        v
-local accessibility
-        |
-        +-- globally favored but locally inaccessible
-        |
-        v
-population transport
-        |
-        +-- rare invasion
-        +-- fixation
-        +-- weak-mutation occupancy
-```
-
-The flagship is not a claim that every adjacent criterion differs. It contains both sharp splits and a process-level invariant:
+For the persistent-integration branch, the central result is a many-to-one mapping: the same visible multifunctional phenotype can persist behind three different evolutionary bottlenecks:
 
 ```text
-L>0                         !=> Phi>0
-Phi>0                       !=> local accessibility
-accessible + Phi>0          !=> rare invasion
-rare invasion               !=> reciprocal fixation superiority
-absolute fixation advantage !=> greater weak-mutation occupancy
+adaptive integration
+  Phi < 0
+  the focal divided alternative has lower net value
 
-but, under the registered symmetric rare-mutation exponential-Moran process,
+historical / developmental trapping
+  Phi > 0, g0 < 0
+  a better divided state exists, but the available path is unfavorable
 
-reciprocal fixation ordering <=> stationary monomorphic occupancy ordering.
+ecological stabilization
+  Phi > 0, g0 > 0, Delta_R < 0
+  division of labor is favorable and reachable, but fails when rare
 ```
 
-![Figure 1. Unified critical-surface transport from conflict to evolutionary outcome.](figures/FIG1_LOGIC_DIAGRAM.svg)
+Architecture economics, evolutionary history, and ecological interactions can therefore maintain the same morphology for different reasons. Environmental change can switch the limiting bottleneck before morphology changes, and the structural or demographic perturbation required for reorganization can shrink during that stasis. The formal comparison is candidate-relative: SLK does not rank structural division against every temporal, plastic, or alternative structural solution.
 
-![Figure 2. Architecture-value phase map with accessibility and invasion insets.](figures/FIG2_PHASE_MAP.svg)
+![Figure 1. One persistent phenotype can hide different evolutionary bottlenecks.](figures/FIG1_LOGIC_DIAGRAM.svg)
 
-![Figure 3. Empirical measurement ladder for SLK.](figures/FIG3_EMPIRICAL_LADDER.svg)
+![Figure 2. Natural systems use different resolutions of functional conflict.](figures/FIG2_PHASE_MAP.svg)
 
-The three figures have distinct jobs. Figure 1 shows the unified critical-surface transport, the one-family witness system, and the exact `Phi=0` re-alignment. Figure 2 shows the coordinate geometry and why small-step accessibility and invasion cannot be collapsed into the `L-Phi` plane. Figure 3 shows the empirical gate sequence required to justify progressively stronger biological claims.
+![Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes.](figures/FIG3_EMPIRICAL_LADDER.svg)
 
-## What SLK owns
+## Biological predictions
 
-SLK owns the cross-repository theory needed for the integrated hierarchy:
+The framework now makes four natural-history predictions.
 
-1. the architecture-value definition `Phi=R-K` for a declared matched comparison;
-2. the registered quadratic partial-release bridge `R=sL` as a model-specific corollary, not a universal identity;
-3. the distinction between global architecture value and local evolutionary accessibility;
-4. the minimal transport from architecture value to invasion, fixation, and occupancy;
-5. the unified critical-surface atlas showing where small-step release, endpoint value, invasion, fixation, and occupancy change boundary or re-align while preserving the declared endpoint contrast;
-6. the ecological threshold-displacement corollary `E_I-E_V=eta/a`, which predicts where realized differentiation should lag behind or precede intrinsic architecture value along environmental gradients;
-7. the comparative prediction that conflict magnitude alone cannot rank differentiation when recoverability or architecture cost varies;
-8. the three-frequency diagnostic that tests canonical frequency-map adequacy and repairs invasion thresholds when curvature is present;
-9. the arbitrary-shape endpoint result showing that deterministic invasion requires only rare-D and resident-D ecological offsets even when the interior frequency response is nonlinear;
-10. the finite-frequency certification result adapting near-endpoint approximation to bounded invasion sign decisions with explicit unresolved states;
-11. the UTA1.10 gate-localization diagnostic: persistent integration is observationally non-identifying; strict measured signs of `Phi`, the local release gradient, and rare invasion localize a first failing layer, while all three positive signs exclude those early failure explanations without implying that differentiation must be realized;
-12. the UTA1.11 uncertainty diagnostic: marginal intervals define a conservative Cartesian box of compatible early-gate states, and genuinely nested valid boxes can only shrink that outer set rather than forcing a midpoint classification;
-13. the cumulative empirical-gate logic `G1-G9` that states what additional evidence is required for stronger biological claims.
+**1. Conflict strength alone should not rank the tendency toward division of labor.** A system with stronger conflict can remain integrated if little of that conflict is recoverable or if the divided architecture is costly, whereas weaker conflict can be resolved structurally when release is efficient and cheap.
 
-SCH and BALANCE supply upstream identified objects and classifications; BITA remains a separate mechanism-identification programme. The flagship never uses `Phi>0` as shorthand for "differentiation evolves". Every later stage has its own gate.
+**2. The same integrated morphology can persist behind different evolutionary bottlenecks across environments.** Under the ordered environmental slice, architecture value, local accessibility and rare establishment cross at different conditions. A transect can therefore remain visibly multifunctional while the limiting process shifts from negative divided-state value, to path inaccessibility, to rare-establishment failure.
+
+**3. Historical trapping and ecological stabilization predict different geographic mosaics.** Strict convex recovery creates architecture-path hysteresis: forward and reverse environmental change can retain different architectures even when frequency dependence is absent. Positive frequency dependence instead creates resident-frequency priority effects and alternative locally stable architectures; negative frequency dependence predicts stable coexistence or mixed zones.
+
+**4. Structural novelty and demographic support trade off along one escape frontier.** Under the canonical positive-frequency extension, `p_escape(d)=1/2-[dmax/(2eta)][R(d)/d-k]` under a release-proportional feedback extension that vanishes at `d=0`. The structural threshold `d_J` is the `p=1/2` slice and the endpoint frequency threshold `p_C` is the `d=dmax` slice. Larger favorable structural changes therefore require less initial abundance, while clustering, immigration, or repeated origin can compensate for more modest novelty; environmental change can move the whole frontier before morphology changes.
+
+The strongest prediction is not that hysteresis, coexistence or frequency dependence exist; all are established phenomena. It is that the first failing bottleneck can turn over for one unchanged organization while the structural or demographic perturbation needed for reorganization shrinks.
+
+## Running biological example
+
+The manuscript uses *Pedicularis rex* as a literature-based running example. Existing work documents opposing pollinator- and seed-predator-mediated selection on floral exsertion and experimentally supports a defensive role of water held by cup-like bracts. That establishes the biological motivation—real conflict in a multifunctional structure—but it does **not** yet identify why integration persists.
+
+The important biological point is that the balance of this conflict already varies geographically: seed-predator effects change strongly among populations while the pollinator side is more consistent. The same integrated floral architecture can therefore occupy different selective environments across the species' range.
+
+No new *P. rex* biological result is claimed by this repository.
+
+## What the theory contributes
+
+The mathematical machinery supports the biological theory rather than replacing it. The main contributions are:
+
+1. a common fitness comparison `Phi=R-K` that separates conflict strength from the net value of division of labor;
+2. a demonstration that positive endpoint value can coexist with a local accessibility barrier under convex recovery;
+3. a population-level establishment test showing that frequency-dependent ecology can reverse the endpoint verdict when a differentiated type is rare;
+4. three early bottlenecks that can maintain persistent integration—architecture value, evolutionary path, and ecological establishment—with adaptive integration, historical trapping, and ecological stabilization as their biological interpretations;
+5. the comparative prediction that stronger conflict need not imply more differentiation;
+6. the ecological prediction that profitability and rare establishment can be displaced along environmental gradients;
+7. the prediction that ecological context can change the evolutionary resolution of conflict, including cases in which the same phenotype persists for different reasons across environments;
+8. the prediction that phenotypic stasis can conceal a moving architecture-frequency escape frontier: structural novelty and demographic support can compensate for one another, and the viable set of combinations can expand before morphology changes.
+
+Finite-population fixation and weak-mutation occupancy remain valid **downstream extensions**. Under the specified symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy re-align at `Phi=0`. Those process results are retained because they delimit stronger evolutionary claims, not because they are a fourth explanation for persistent multifunctionality.
 
 ## Prior-art boundary
 
-SLK does **not** claim to originate modularity/evolvability theory, functional specialization/division-of-labor theory, mutational accessibility, geometric integration of trade-offs with invasion boundaries, invasion-versus-fixation distinctions, weak-mutation long-run population theory, or Richardson-type extrapolation. The registered prior-art boundary therefore treats the component mathematics and process results as antecedents rather than priority claims.
+SLK does **not** claim a first theory of modularity, specialization, division of labor, pleiotropy, mutational accessibility, invasion fitness, fixation, or weak-mutation dynamics. Existing specialization theory already shows that whether division of labor is favored depends on performance curvature, trade-off structure, positional effects, synergy, and fitness mapping. Gene duplication, sexual dimorphism, and floral heteranthery provide established biological routes by which shared functions can become decoupled.
 
-The narrower contribution is the **architecture-specific estimand transport** from an identified shared-coordinate conflict budget through recoverable benefit and architecture value to evolutionary realization. Its main diagnostic payoff is UTA1.10-UTA1.11: the same persistent integrated phenotype can arise because architecture value is negative, because the initial release direction is downhill, or because rare establishment fails; strict signs localize or exclude those early explanations, while interval uncertainty is carried forward as a conservative box-compatible outer state set rather than collapsed to a midpoint label. The one-family atlas, process-consistency surface, and G1-G9 ladder make that localization auditable without treating the component algebra or set propagation as new.
+The narrower contribution is to make **the evolutionary resolution of documented functional conflict** the object to be explained: why some systems divide functions structurally, others retain integration, and why the selective state maintaining the same integrated architecture can change with environment before morphology changes.
 
-## Architecture cost K
+## Biological interpretation of architecture cost
 
-`K` is the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. It is comparison-specific rather than a universal physiological quantity. Empirical use must declare comparison states, scale, time horizon, included/excluded cost channels, uncertainty, and how double counting with `R` was prevented. See `docs/K_OPERATIONAL_DEFINITION_V1.md`.
+`K` is the net fitness debit of maintaining the divided architecture relative to the matched integrated comparison. Biologically, it can include additional developmental, regulatory, structural, or maintenance burdens, provided they are not already counted as lost recovered performance. Its role is simple: even severe functional conflict need not favor division of labor when the architecture that resolves it is too expensive.
 
-## Empirical anchor and repository boundary
+## Pedicularis rex as a prospective biological test
 
-The first prospectively registered same-system empirical anchor is `Pedicularis rex`. Its role is to test whether the abstract ladder can be closed in one biological system:
+*Pedicularis rex* remains the focal prospective system because the functional conflict is already documented: greater floral exposure improves pollen receipt but also increases seed predation, while water-filled bracts reduce seed-predator damage. The unresolved biological question is whether populations exposed to different antagonist and density regimes remain integrated because integration is adaptive, because structural release is historically constrained, or because a divided alternative would be ecologically disadvantaged when rare.
 
-```text
-identified conflict
--> L
--> R
--> K
--> Phi
--> stronger realization claims only with their additional measurements
-```
-
-The current biological claim ceiling is unchanged: **no real Pedicularis G1-G5 receipt has yet been produced**. Design readiness is not empirical closure.
-
-Candidate-specific permission, outreach, access, scouting, field-packet, receipt, and handoff machinery is operational support rather than part of the flagship theory contribution. New operational machinery should be developed in a Pedicularis empirical companion unless it changes an SLK estimand, theorem, generic measurement gate, or manuscript claim ceiling. The migration rule is frozen in `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md`.
+No new *P. rex* biological result is claimed here. The field programme belongs to a separate empirical companion; operational permission, outreach, access, and field logistics are not part of the flagship argument.
 
 ## Publication architecture outside the flagship
 
@@ -142,15 +108,16 @@ These modules may be cited by SLK without being promoted to independent manuscri
 For the flagship argument, the canonical path is deliberately short:
 
 1. `manuscript/SLK_MANUSCRIPT_AMNAT_V4.md` — current journal-facing manuscript.
-2. `figures/FIG1_LOGIC_DIAGRAM.svg` — unified critical-surface transport and witness logic.
-3. `figures/FIG2_PHASE_MAP.svg` — architecture value, realization coordinates, and ecological threshold displacement.
-4. `figures/FIG3_EMPIRICAL_LADDER.svg` — cumulative empirical claim ladder.
-5. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — master atlas, constructive witnesses, and UTA1.10-UTA1.11 diagnostics.
-6. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
-7. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem, derived-consequence, diagnostic, and empirical-handoff status.
-8. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
-9. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary.
-10. `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md` — theory-core versus empirical-companion boundary.
+2. `figures/FIG1_LOGIC_DIAGRAM.svg` — one persistent phenotype mapped to distinct architecture, path, and establishment bottlenecks.
+3. `figures/FIG2_PHASE_MAP.svg` — natural examples showing structural partitioning, temporal partitioning, geographic variation, frequency dependence, and ecological re-coupling.
+4. `figures/FIG3_EMPIRICAL_LADDER.svg` — hidden erosion of evolutionary resistance, path hysteresis, clustered establishment, and environmental turnover of the bottleneck maintaining integration.
+5. `docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md` — cross-system evidence ledger showing which real systems inform architecture value, developmental access, and rare establishment, while preserving the boundary between analogues and direct SLK gate estimates.
+6. `theory/UNIFIED_THRESHOLD_ATLAS_V1.md` — full supporting mathematics, including witness families, environmental predictions, and downstream process results.
+7. `theory/SLK_CORE_THEORY_V1.md` — minimal mathematical spine.
+8. `docs/THEOREM_CLAIM_LEDGER_V1.md` — theorem and derived-consequence status.
+9. `docs/INV1_EXECUTABLE_VALIDATION_V1.md` — independent process validation.
+10. `docs/PRIOR_ART_BOUNDARY_V1.md` — novelty boundary.
+11. `docs/REPOSITORY_SCOPE_BOUNDARY_V1.md` — theory-core versus empirical-companion boundary.
 
 Pedicularis execution documents are retained for provenance during migration but are not part of the canonical reader path.
 
@@ -163,10 +130,12 @@ UNIFIED_CRITICAL_SURFACE_ATLAS_REGISTERED
 ONE_FAMILY_WITNESS_SYSTEM_REGISTERED
 FIXATION_OCCUPANCY_INVARIANT_REGISTERED
 ECOLOGICAL_THRESHOLD_DISPLACEMENT_REGISTERED
-FINITE_FREQUENCY_ENDPOINT_CERTIFICATION_REGISTERED
-UTA1_10_GATE_LOCALIZATION_REGISTERED
-UTA1_11_INTERVAL_COMPATIBLE_STATE_SET_REGISTERED
-EMPIRICAL_G1_G9_CLAIM_LADDER_REGISTERED
+ENVIRONMENTAL_PERSISTENCE_BARRIER_TURNOVER_REGISTERED
+ARCHITECTURE_PATH_HYSTERESIS_REGISTERED
+HIDDEN_RESISTANCE_EROSION_REGISTERED
+FREQUENCY_DEPENDENT_SPATIAL_OUTCOMES_REGISTERED
+NATURAL_SYSTEM_RESOLUTION_SYNTHESIS_REGISTERED
+EMPIRICAL_BRIDGE_EVIDENCE_LEDGER_REGISTERED
 PEDICULARIS_PROSPECTIVE_ANCHOR_REGISTERED
 PEDICULARIS_REAL_DATA_G1_G5_RECEIPTS_ZERO
 PEDICULARIS_OPERATIONS_COMPANION_BOUNDARY_REGISTERED
@@ -174,11 +143,12 @@ PEDICULARIS_OPERATIONS_FLAGSHIP_GROWTH_CI_BLOCKED
 PEDICULARIS_OPERATIONS_DELETION_FOR_MIGRATION_ALLOWED
 EMPIRICAL_COMPANION_160_FILE_MANIFEST_FROZEN
 EMPIRICAL_COMPANION_DESTINATION_VERIFICATION_REQUIRED_BEFORE_PRUNING
-AMNAT_FULL_PAGE_REVIEW_QA_PASS
-AMNAT_REVIEWER_ZIP_READY
-AMNAT_ZENODO_ARCHIVE_PAYLOAD_READY
+AMNAT_REFOCUSED_REVIEW_PACKAGE_BUILD_PASS
+AMNAT_RENDERED_LAYOUT_QA_PASS_28_28
+AMNAT_REVIEWER_ZIP_READY_CURRENT
+AMNAT_ZENODO_ARCHIVE_PAYLOAD_READY_CURRENT
 AMNAT_PORTAL_READINESS_GATE_REGISTERED
-AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_READY
+AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_READY_CURRENT
 AMNAT_INTERNAL_BLOCKERS_NONE
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```

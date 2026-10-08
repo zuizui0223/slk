@@ -4,17 +4,15 @@
 
 Freeze the remaining scope decisions after theory ownership, journal-prose conversion, prior-art coverage, formula consistency, review-file generation, anonymous reviewer packaging, and visual QA have been closed.
 
-## Decision 1 — keep one explicit population-process exemplar
+## Decision 1 — keep fixation and occupancy out of the biological main line
 
 ```text
-ADD_SECOND_POPULATION_PROCESS_BEFORE_SUBMISSION = false
+FIXATION_OCCUPANCY_ROLE = SUPPORTING_THEORY_ONLY
 ```
 
-The fixation/occupancy results remain tied to the registered exponential Moran / connected symmetric rare-mutation process. Their role is not to claim universal population genetics. Their role is to demonstrate that transporting the same architecture-value object into a declared stochastic population process can create new separations and can also force an exact invariant.
+The paper now ends its biological explanation at rare establishment. Finite-population fixation and weak-mutation occupancy remain mathematically valid downstream results, but they are not additional causes of persistent multifunctionality and should not compete with the ecology in the main narrative.
 
-Adding a second process before submission would broaden the paper without repairing the main reviewer risk, which is whether UTA1.10-UTA1.11 gate localization and conservative uncertainty propagation provide enough biological leverage beyond familiar component theories. Generality is therefore claimed through the upstream `Phi=R-K` architecture-value layer; the later fixation/occupancy formulas remain explicitly process specific.
-
-Revisit only if review specifically demands process robustness.
+Revisit only if review specifically asks for downstream population-process consequences.
 
 ## Decision 2 — do not manufacture a Pedicularis worked result
 
@@ -24,7 +22,7 @@ ADD_PARTIAL_PEDICULARIS_WORKED_RESULT_TO_MAIN_TEXT = false
 
 The Pedicularis G1-G5 programme is prospectively registered but has no completed biological G1-G5 receipt. It must therefore not be used as a worked empirical result merely to make the theory look more validated.
 
-Figure 3 provides the empirical measurement ladder. Pedicularis remains the first prospective application, but the submission manuscript keeps the explicit statement that no single biological system has completed the full ladder.
+Pedicularis is now used as a literature-based natural system: opposing pollinator and seed-predator selection, geographic variation in antagonism, and predator-driven density dependence establish the ecological problem without manufacturing a new empirical SLK result.
 
 A real partial worked example can be added only after an actual identified receipt exists and its claim ceiling is clear.
 
@@ -32,98 +30,68 @@ A real partial worked example can be added only after an actual identified recei
 
 ```text
 PRIMARY_TARGET = The American Naturalist
-ECOLOGY_LETTERS_REASSESSMENT = requires_real_same_system_G1_G5_receipt
 ```
 
-The current paper is strongest as a conceptual/theoretical ecology paper: an architecture-specific estimand transport, a unified critical-surface atlas, ecological threshold-displacement and conflict–differentiation discordance predictions, one-family constructive split witnesses, a process-level consistency invariant, and an empirical measurement ladder. That profile fits an Am Nat theory contribution better than a broad empirical-synthesis claim.
+The refocused manuscript is now an evolutionary-ecology paper about why comparable functional conflicts have different resolutions in nature. Its central contribution is the prediction that the **selective bottleneck preventing structural division of labor can turn over before morphology changes**, while the perturbation required for reorganization can decline. Adaptive integration, historical/developmental trapping, and ecological stabilization are biological interpretations of those bottlenecks rather than the primary novelty. That framing remains appropriate for *The American Naturalist*.
 
-The submission framing must emphasize biological theory and falsifiable measurement consequences, not software governance, repository integration, or bookkeeping.
-
-## Closed pre-submission items
+## Closed scientific items
 
 ```text
-THEORY_OWNERSHIP                         CLOSED
-GENERAL_MARGIN Phi=R-K                  CLOSED
-QUADRATIC_BRIDGE_SCOPE R=sL             CLOSED
-JOURNAL_PROSE_CONVERSION                 CLOSED
-REGISTERED_PRIOR_ART_COVERAGE           10/10 PASS
-CORE_LITERATURE_CITED                    CLOSED
-THEOREM_FORMULA_CONSISTENCY              PASS_AFTER_REPAIR
-UNIFIED_THRESHOLD_ATLAS                  PASS
-CROSS_LEVEL_PHI_COMPATIBILITY            PASS
-ECOLOGICAL_THRESHOLD_DISPLACEMENT        PASS
-ECOLOGICAL_FEEDBACK_GRADIENT             PASS
-TWO_FREQUENCY_PHI_ETA_IDENTIFICATION      PASS
-THREE_FREQUENCY_CURVATURE_DIAGNOSTIC     PASS
-GENERALIZED_INVASION_SURFACES            PASS
-ARBITRARY_SHAPE_ENDPOINT_INVASION        PASS
-FINITE_FREQUENCY_ENDPOINT_BOUNDS         PASS
-SAMPLING_PLUS_APPROXIMATION_INTERVAL     PASS
-CONFLICT_DIFFERENTIATION_DISCORDANCE     PASS
-GATE_LOCALIZATION_DIAGNOSTIC_UTA1_10      PASS
-INTERVAL_COMPATIBLE_STATE_SET_UTA1_11      PASS
-FIGURE_2_ECOLOGICAL_PANEL                PASS
-FIGURE_1_THRESHOLD_ATLAS                 PASS
-WITNESS_ARITHMETIC                       PASS
-FIGURE_1_GENERALITY                      REPAIRED
-CLAIM_PROVENANCE_OWNERSHIP               REPAIRED
-AMNAT_TITLE_WORDS                         9 PASS
-AMNAT_ABSTRACT_WORDS                    191 PASS
-AMNAT_TEXT_WORDS_EXCL_LITERATURE       6131 PASS
-AMNAT_FIGURES                             3 PASS
-AMNAT_TABLES                              3 PASS
-AMNAT_FIGURE_TABLE_TOTAL                  6 PASS
-FULL_CI_PY311_PY312                      PASS_571_571
-REVIEW_MANUSCRIPT_PDF                    35 PAGES PASS
-ANONYMOUS_TITLE_PAGE_PDF                  1 PAGE PASS
-DOUBLE_SPACING_LINE_PAGE_NUMBERS         PASS
-ANONYMOUS_REVIEWER_BUNDLE                PASS_17_FILES_CACHE_FREE
-IDENTITY_SCAN                             PASS
-CLAIM_VERIFIER_NE1_NE5_UTA1_11            PASS
-FIXATION_OCCUPANCY_INVARIANT_GRID        PROCESS_DERIVED PASS
-MORAN_PROCESS_CANONICAL_GRID              PASS
-CANONICAL_MAPPING_GUARD                   PASS
-NUMERICAL_TOLERANCE_POLICY                PASS
-FIGURE_1_MANUAL_QA                       PASS
-FIGURE_3_MANUAL_QA                       PASS
-ANON_REVIEW_MORAN_TEST                  13/13 PASS
-INV1_PROCESS_COMPARISONS                336 PASS
-CANONICAL_MAPPING_GUARD                 PASS
-UTA1_10_DIAGNOSTIC_TABLE_MANUAL_QA       PASS_PAGES_25_27_EXCLUSION_STATE
-UTA1_11_INTERVAL_BOX_MANUAL_QA            PASS_PAGES_27_28_OUTER_SET_CAVEAT
-FINAL_FULL_PAGE_PROOFREAD                 PASS_35_35
+BIOLOGICAL_QUESTION_REFOCUS              PASS
+HIDDEN_BOTTLENECK_TURNOVER_THEORY       PASS
+PEDICULARIS_RUNNING_EXAMPLE_BOUNDARY     PASS
+PRIOR_ART_REPOSITIONING                  PASS
+GENERAL_MARGIN Phi=R-K                   PASS
+LOCAL_ACCESSIBILITY_SEPARATION            PASS
+RARE_ESTABLISHMENT_SEPARATION             PASS
+ECOLOGICAL_THRESHOLD_DISPLACEMENT         PASS
+CONFLICT_DIFFERENTIATION_DISCORDANCE      PASS
+DOWNSTREAM_FIXATION_OCCUPANCY_SCOPE       PASS
+AMNAT_TITLE_WORDS                         11 PASS
+AMNAT_ABSTRACT_WORDS                     189 PASS
+AMNAT_TEXT_WORDS_EXCL_LITERATURE        7410 PASS
+AMNAT_FIGURES                              3 PASS
+AMNAT_TABLES                               0 PASS
+AMNAT_FIGURE_TABLE_TOTAL                   3 PASS
+FULL_CI                                   REBUILD_PENDING_LATEST_SOURCE
+REFOCUSED_REVIEW_PACKAGE_BUILD            REBUILD_PENDING_LATEST_SOURCE
 ```
+
+The mathematical theory files retain the fuller witness family and process results. Their presence no longer determines the manuscript's subject.
 
 ## Remaining submission actions
 
-The current UTA1.10-UTA1.11 source plus the Bowers et al. prior-art boundary passes Python 3.11/3.12 CI (571/571), review-package build, rendered identity scan, executable claim verification, targeted QA of the diagnostic table and interval-box caveat, and full rendered page-by-page QA (35/35). The identity-bearing GitHub URL must not be placed in the anonymous manuscript; the generated reviewer bundle should instead be uploaded directly through the journal system or through an anonymous reviewer-accessible deposit.
-
-Remaining actions are controlled outside the scientific package:
+The ecology-first source passes CI, the anonymous package build, deterministic packaging, and rendered-layout QA. The remaining actions are external or author controlled.
 
 ```text
+REVIEWER_BUNDLE_ACCESS_ROUTE          REBUILD_PENDING_LATEST_SOURCE
+EDITORIAL_MANAGER_UPLOAD_KIT          REBUILD_PENDING_LATEST_SOURCE
+INITIAL_ARCHIVE_PAYLOAD               REBUILD_PENDING_LATEST_SOURCE
+RENDERED_LAYOUT_QA                    REBUILD_PENDING_LATEST_SOURCE
 AUTHOR_METADATA                       REQUIRED
 AI_USE_DISCLOSURE                     REQUIRED_AUTHOR_APPROVAL
 ALL_AUTHOR_APPROVAL                   REQUIRED
-PORTAL_INPUT_VALIDATOR                READY
-EDITORIAL_MANAGER_UPLOAD_KIT          READY
-REVIEWER_BUNDLE_ACCESS_ROUTE          EDITORIAL_MANAGER_ZIP_READY
-INITIAL_ARCHIVE_DEPOSIT               PAYLOAD_READY_AUTHENTICATED_DEPOSIT_PENDING
+INITIAL_ARCHIVE_DEPOSIT               REQUIRED
 PORTAL_UPLOAD                         REQUIRED
-PERMANENT_ARCHIVE_DOI                 METADATA_TEMPLATE_READY_DOI_PENDING
+PERMANENT_ARCHIVE_DOI                 REQUIRED_FOR_PUBLICATION
 ```
+
+The portal validator now refuses a reviewer package whose receipt is not both `EDITORIAL_MANAGER_ZIP_READY` and `current_for_submission=true`.
 
 ## Remaining scientific-editorial risk
 
-The remaining reviewer question is:
+The remaining reviewer question is biological:
 
-> Does carrying one identified architecture comparison across familiar component theories generate enough biological leverage to justify the synthesis, once the component algebra is explicitly not claimed as new?
+> Does the ordered handoff among architecture value, path accessibility, and rare establishment explain something beyond established specialization theory, hysteresis, multiple limits to adaptation, and environmentally shifting trade-offs?
 
-The submission answer must center on four deductions:
+The submission answer is now four concrete predictions:
 
-1. persistent integration is observationally non-identifying: `Phi<0`, a downhill local release gradient, and failure of rare establishment can produce the same macroscopic absence of differentiation;
-2. because the upstream architecture comparison is held fixed, strict signs localize the first changed layer, while interval uncertainty yields the full compatible-state set; nested valid bounds can only remove candidates and therefore quantify what added precision resolves;
-3. environmental threshold displacement and conflict–architecture discordance provide comparative settings in which these gate changes can be tested rather than inferred from phenotype alone;
-4. separation is not universal: the registered process supplies a fixation–occupancy consistency surface, so an observed disagreement also has a diagnostic interpretation.
+1. **The three decision boundaries are not interchangeable.** Under the registered convex cost-lowering slice, architecture value must cross before local accessibility (`E_V<E_A`), whereas an ecology-only persistence phase appears only if rare establishment still fails at `E_A`.
+2. **Structural novelty and demographic support form one escape frontier.** The `d_J` and `p_C` slice identities and environmental erosion hold across identity-preserving feedback scalings; under the canonical proportional scaling, larger favorable structural release can compensate monotonically for lower initial abundance.
+3. **Conflict strength does not rank organization.** Stronger functional conflict can remain integrated when little conflict is recoverable or division of labor is costly.
+4. **Different bottlenecks predict different natural histories.** Path limitation predicts environmental lag and architecture legacy; positive frequency dependence predicts priority-dependent alternative patches; negative frequency dependence predicts mixed zones; weak feedback permits more direct replacement.
+
+Hysteresis, bistability, coexistence, valley crossing, frequency dependence, trade-off geometry with resident-dependent invasion boundaries, high divided-state performance coexisting with generalist advantage in some population contexts, multiple adaptive limits, and environmentally reshaped trade-offs are prior art. The residual contribution is the relation among three separately defined zero surfaces for one specified multifunctional-to-divided transition: strict convexity orders value before local access, `Delta_R(E_A)<0` determines whether an establishment-only phase exists, and the canonical extension joins structural release and initial abundance into an architecture-frequency escape frontier before visible reorganization.
 
 ## Submission state
 
@@ -131,15 +99,14 @@ The submission answer must center on four deductions:
 TARGET                  = THE_AMERICAN_NATURALIST
 ARTICLE_TYPE            = MAJOR_ARTICLE
 MANUSCRIPT              = SLK_MANUSCRIPT_AMNAT_V4.md
+SCIENTIFIC_FRAMING      = CHANGING_BARRIERS_TO_DIVISION_OF_LABOR
 THEORY                  = READY
-JOURNAL_PROSE           = READY
-PRIOR_ART_CORE          = READY
-FORMULA_CONSISTENCY     = PASS
 FORMAT_LIMITS           = PASS
-ANONYMOUS_REVIEW_FILES  = READY_CURRENT_BOWERS_35_PAGE
-REVIEWER_CODE_PACKAGE   = READY_17_FILE_DETERMINISTIC
-EMPIRICAL_CLAIM_CEILING = THEORY_ONLY / NO_END_TO_END_G1_G9
-INTERNAL_BLOCKERS       = NONE
-EXTERNAL_ACTIONS        = AUTHOR_INPUT + AUTHENTICATED_ZENODO_DRAFT + EDITORIAL_MANAGER_UPLOAD + APPROVAL + PUBLICATION_DOI
-MAIN_OPEN_RISK          = UTA1_10_11_DIAGNOSTIC_BIOLOGICAL_PAYOFF
+FULL_CI                 = PASS
+ANONYMOUS_PACKAGE_BUILD = PASS
+FROZEN_REVIEWER_ZIP     = STALE_AFTER_LATEST_SOURCE_EDIT
+EM_UPLOAD_KIT           = STALE_AFTER_LATEST_SOURCE_EDIT
+ZENODO_PAYLOAD          = STALE_AFTER_LATEST_SOURCE_EDIT
+RENDERED_LAYOUT_QA      = REBUILD_PENDING
+INTERNAL_BLOCKERS       = REBUILD_LATEST_SOURCE_PACKAGE
 ```

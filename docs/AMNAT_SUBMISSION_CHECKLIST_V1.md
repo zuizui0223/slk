@@ -12,10 +12,11 @@ PORTAL_HANDOFF = submission/AMNAT_PORTAL_HANDOFF_V1.md
 Automated count from `scripts/check_amnat_manuscript.py`:
 
 ```text
-TITLE_WORDS                         9
-ABSTRACT_WORDS                    191
-TEXT_WORDS_EXCL_LITERATURE_CITED 6131
+TITLE_WORDS                        11
+ABSTRACT_WORDS                    189
+TEXT_WORDS_EXCL_LITERATURE_CITED 7410
 FIGURES                             3
+TABLES                              0
 ```
 
 ## Current journal-limit checks
@@ -27,8 +28,8 @@ Status:
 ```text
 MAJOR_ARTICLE_TEXT_LIMIT        PASS
 ABSTRACT_200_WORD_LIMIT         PASS
-FIGURE_TABLE_LIMIT              PASS   (3 figures + 3 in-text tables = 6 items)
-TITLE_LENGTH_PREFERENCE         PASS   (9 words; journal suggests ~8–10)
+FIGURE_TABLE_LIMIT              PASS   (3 figures + 0 tables = 3 items)
+TITLE_LENGTH_PREFERENCE         PASS   (11 words; concise)
 KEYWORDS_1_TO_6                 PASS   (6)
 ANONYMOUS_TITLE_PAGE            PASS
 AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
@@ -36,49 +37,36 @@ AUTHORS_REMOVED_FROM_MANUSCRIPT PASS
 
 ## Submission package state
 
-### 1. Anonymous review manuscript — PASS
+### 1. Anonymous review manuscript — SOURCE READY, PACKAGE REBUILD PENDING
 
-The CI-built review manuscript is generated directly from the canonical V4 source. The Bowers et al. (2005) prior-art expansion was rebuilt from main commit `b4285a244ebdb8f7adab0f2e9eb42a8d8dc92fe4` in workflow run `36441156403` / artifact `10978421671`.
+The current ecology-first manuscript, title page, and all three figures build successfully through the anonymous-review workflow. The current PDF is 28 pages, double spaced, line numbered, page numbered, and passes the rendered identity scan.
+
+All 28 rendered pages were inspected at overview scale, and the three figure pages were inspected at full size. No clipping, overlap, broken glyphs, or figure-title truncation was found.
+
+Status: `PREVIOUS 28-PAGE LAYOUT QA PASS — REBUILD REQUIRED AFTER LATEST ECOLOGICAL PREDICTION EDIT`.
+
+### 2. Anonymous reviewer code/theory package — REBUILD PENDING
+
+The current deterministic reviewer ZIP is frozen and verified:
 
 ```text
-MAIN_REVIEW_PDF_PAGES         35
-ANONYMOUS_TITLE_PDF_PAGES      1
-DOUBLE_SPACED                  true
-LINE_NUMBERS                   true
-PAGE_NUMBERS                   true
-EMBEDDED_FIGURES               3
-RENDERED_IDENTITY_SCAN         PASS
-PRIOR_ART_CORE_REFERENCES      10/10 PASS
-REVIEWER_BUNDLE_CLEAN_FILES    17
-REVIEWER_BUNDLE_CACHE_FILES     0
-FULL_PAGE_BY_PAGE_PROOFREAD    PASS_35_35
+file      SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip
+size      59,927 bytes
+SHA256    b0589f1d1b3fb1191d46bd42c375e2bb4e55f0d625fec26a605c12292e17ee8e
+files     17
+identity  PASS
 ```
 
-The 35-page Bowers-expanded PDF passed page-by-page visual review. The current main render is pixel-identical across all 35 pages to the inspected pull-request render, and extracted-text checks found no identity strings, unresolved placeholders, merge markers, or broken glyphs. The ten registered core references are present in Literature Cited.
+The current Editorial Manager convenience kit is also frozen:
 
-Status: `PASS FOR CURRENT GENERATED FILES — FULL PAGE QA CLOSED`.
+```text
+file      SLK_AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT.zip
+size      1,527,268 bytes
+SHA256    3b8bb9f80c35c998de2eb2a08a039acdbf4188f35d24e6c0adff2caeb678de1c
+files     8
+```
 
-### 2. Anonymous reviewer code/theory package — PASS INTERNALLY, REVIEW ACCESS ROUTE REQUIRED
-
-The review bundle is curated rather than being a repository dump. It contains:
-
-- the exact anonymous manuscript and title-page sources;
-- `theory/SLK_CORE_THEORY_V1.md`;
-- `theory/UNIFIED_THRESHOLD_ATLAS_V1.md`;
-- `theory/NON_EQUIVALENCE_THEOREM_V1.md`;
-- the three submitted SVG figure sources;
-- `code/verify_amnat_claims.py`;
-- a precomputed `CLAIM_VERIFICATION_RECEIPT.json`;
-- `ANONYMITY_AUDIT.txt`;
-- `SHA256SUMS.txt`.
-
-The verifier recomputes the common convex recovery family, all five registered witness regimes, the critical surfaces, and the fixation–occupancy invariant. The invariant grid contains 112 comparisons with maximum absolute error 0.0. The bundle identity scan passes and excludes repository history, remote URLs, and author metadata.
-
-Current journal instructions distinguish reviewer access from archiving. At first submission, reviewers/editors may receive the material through either a private/anonymized repository link or a ZIP uploaded directly to Editorial Manager. Separately, the journal requires the data/code archive deposit at initial submission; that deposit may remain private for peer review. A permanent DOI/public archive is required for publication.
-
-The identity-bearing GitHub repository URL must not be inserted into the anonymous manuscript. Use the exact curated anonymous bundle for either reviewer-access route.
-
-Status: `PASS INTERNALLY — DETERMINISTIC CACHE-FREE 17-FILE REVIEWER ZIP VERIFIED; EDITORIAL MANAGER ZIP ROUTE READY; INITIAL ARCHIVE DEPOSIT AND PERMANENT DOI STILL REQUIRED`.
+Status: `FAIL-CLOSED UNTIL THE LATEST SOURCE IS REBUILT AND NEW CHECKSUMS ARE REGISTERED`.
 
 ### 3. Author metadata outside the anonymous manuscript
 
@@ -110,29 +98,22 @@ Status: `AUTHOR-CONTROLLED PORTAL FIELDS`.
 
 ### 7. Reference-format final polish
 
-Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. V4 has the registered ten-paper core prior-art set, including the Richardson-extrapolation antecedent, in alphabetical order. Production-style punctuation can be normalized later if requested.
+Initial review does not require exact production reference style as long as author/year citations and an alphabetical Literature Cited are present. The biology-refocused V4 uses a literature-based natural-history synthesis spanning floral division of labor, temporal pollen presentation, geographic mosaics of mutualist–antagonist selection, frequency dependence, organismal integration, and cichlid jaw decoupling. Technical process results that no longer support the biological main line remain in the supporting theory rather than the journal-facing narrative.
 
 Status: `PASS FOR INITIAL REVIEW`.
 
 ## Current blocker
 
-No internal scientific-package, rendered-manuscript, or mechanical-format blocker remains. The current UTA1.10-UTA1.11 source with the Bowers et al. prior-art boundary produces a double-spaced, line-numbered, page-numbered anonymous review manuscript and a curated deterministic reviewer bundle with executable claim verification; all 35 rendered pages passed full-page QA.
-
-Remaining actions are external/human controlled:
+The scientific source is ready, but the deterministic reviewer package must be rebuilt after the latest manuscript and figure edits. Remaining steps are author-controlled or authenticated external actions:
 
 ```text
 AUTHOR_METADATA                       REQUIRED
-REVIEWER_DATA_CODE_ACCESS_ROUTE       EDITORIAL_MANAGER_ZIP_READY
-INITIAL_DATA_CODE_ARCHIVE_DEPOSIT      PAYLOAD_READY_AUTHENTICATED_DEPOSIT_PENDING
-PERMANENT_DATA_CODE_ARCHIVE_DOI        METADATA_TEMPLATE_READY_DOI_PENDING
-ACKNOWLEDGMENTS_IN_AUTHOR_COMMENTS     REQUIRED
-AUTHOR_CONTRIBUTIONS_IN_COMMENTS       REQUIRED
-AI_USE_DISCLOSURE                      REQUIRED_AUTHOR_APPROVAL
-SUGGESTED_REVIEWER_FIELDS              AUTHOR_CONTROLLED
-ASSOCIATE_EDITOR_SUGGESTION            AUTHOR_CONTROLLED
-PREPRINT_AND_DATA_SHARING_FIELDS       REQUIRED_PORTAL_RESPONSES
-ALL_AUTHOR_APPROVAL                    REQUIRED
-PORTAL_FILE_UPLOAD                     REQUIRED
+ACKNOWLEDGMENTS / CONTRIBUTIONS       REQUIRED
+AI_USE_DISCLOSURE                     REQUIRED_AUTHOR_APPROVAL
+PREPRINT / DATA_SHARING FIELDS        REQUIRED
+REVIEWER_ZIP_UPLOAD                   REQUIRED
+INITIAL_ZENODO_DRAFT                  REQUIRED
+MANUSCRIPT / TITLE PAGE UPLOAD        REQUIRED
+EDITORIAL_MANAGER PDF VERIFICATION    REQUIRED
+ALL_AUTHOR_APPROVAL                   REQUIRED
 ```
-
-Scientific reviewer risk is now whether UTA1.10-UTA1.11 gate localization—together with fail-closed compatible-state uncertainty propagation—provides enough biological leverage beyond the deliberately non-novel component algebra, not format compliance.

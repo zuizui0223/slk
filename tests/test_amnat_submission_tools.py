@@ -5,6 +5,8 @@ from docx.oxml.ns import qn
 from docx.shared import RGBColor
 
 from scripts.build_anonymous_review_bundle import build
+from scripts.build_amnat_distribution_zip import build_distribution
+from scripts.build_amnat_editorial_manager_kit import build_upload_kit
 from scripts.format_amnat_review_docx import format_document
 from scripts.verify_amnat_claims import verify
 
@@ -17,6 +19,14 @@ def test_registered_slk_claims_recompute() -> None:
     assert inv["derived_from_moran_process"] is True
     assert inv["derived_from_rare_mutation_chain"] is True
     assert inv["max_relative_error"] < 1e-10
+    turnover = receipt["checks"]["UTA1_4c_environmental_barrier_turnover"]
+    assert turnover["E_V"] < turnover["E_A"] < turnover["E_I"]
+    assert turnover["value_limited_example"]["Phi"] < 0
+    assert turnover["accessibility_limited_example"]["Phi"] > 0
+    assert turnover["accessibility_limited_example"]["g0"] < 0
+    assert turnover["establishment_limited_example"]["Phi"] > 0
+    assert turnover["establishment_limited_example"]["g0"] > 0
+    assert turnover["establishment_limited_example"]["Delta_R"] < 0
     assert receipt["checks"]["CANONICAL_MAPPING_GUARD"]["guard_raised"] is True
     diag = receipt["checks"]["UTA1_10_persistent_integration_gate_localization"]
     assert diag["negative_architecture_value"]["Phi"] < 0
@@ -80,3 +90,68 @@ def test_formatter_adds_line_and_page_number_fields() -> None:
     assert "w:suppressLineNumbers" in footer_xml
     assert doc.styles["Normal"].paragraph_format.line_spacing == 2
     assert doc.styles["Heading 1"].font.color.rgb == RGBColor(0, 0, 0)
+
+
+def test_reviewer_distribution_zip_is_byte_reproducible(tmp_path: Path) -> None:
+    first_dir = tmp_path / "first_bundle"
+    second_dir = tmp_path / "second_bundle"
+    first_zip = tmp_path / "first.zip"
+    second_zip = tmp_path / "second.zip"
+    first_receipt = tmp_path / "first_receipt.json"
+    second_receipt = tmp_path / "second_receipt.json"
+
+    first = build_distribution(
+        bundle_dir=first_dir,
+        output_zip=first_zip,
+        receipt_path=first_receipt,
+        rebuild_bundle=True,
+    )
+    second = build_distribution(
+        bundle_dir=second_dir,
+        output_zip=second_zip,
+        receipt_path=second_receipt,
+        rebuild_bundle=True,
+    )
+
+    assert first_zip.read_bytes() == second_zip.read_bytes()
+    assert first["reviewer_zip_sha256"] == second["reviewer_zip_sha256"]
+    assert first["reviewer_zip_file_count"] == 17
+    assert first["cache_files_included"] is False
+    assert first["bundle_identity_audit"] == "identity_scan=PASS"
+    assert first["sorted_paths"] is True
+
+
+def test_editorial_manager_upload_kit_is_deterministic(tmp_path: Path) -> None:
+    generated = tmp_path / "generated"
+    rendered = generated / "rendered"
+    rendered.mkdir(parents=True)
+
+    fake_files = {
+        generated / "SLK_AMNAT_REVIEW_MANUSCRIPT.docx": b"manuscript-docx",
+        generated / "SLK_AMNAT_ANONYMOUS_TITLE_PAGE.docx": b"title-docx",
+        rendered / "SLK_AMNAT_REVIEW_MANUSCRIPT.pdf": b"manuscript-pdf",
+        rendered / "SLK_AMNAT_ANONYMOUS_TITLE_PAGE.pdf": b"title-pdf",
+        generated / "SLK_AMNAT_REVIEWER_DATA_CODE_BUNDLE_FINAL.zip": b"reviewer-zip",
+        generated / "AMNAT_REVIEW_PACKAGE_QA.txt": b"qa-pass",
+    }
+    for path, payload in fake_files.items():
+        path.write_bytes(payload)
+
+    first = build_upload_kit(
+        generated_dir=generated,
+        staging_dir=tmp_path / "stage1",
+        output_zip=tmp_path / "kit1.zip",
+        receipt_path=tmp_path / "kit1.json",
+    )
+    second = build_upload_kit(
+        generated_dir=generated,
+        staging_dir=tmp_path / "stage2",
+        output_zip=tmp_path / "kit2.zip",
+        receipt_path=tmp_path / "kit2.json",
+    )
+
+    assert (tmp_path / "kit1.zip").read_bytes() == (tmp_path / "kit2.zip").read_bytes()
+    assert first["kit_sha256"] == second["kit_sha256"]
+    assert first["kit_file_count"] == 8
+    assert first["reviewer_bundle_sha256"] == second["reviewer_bundle_sha256"]
+    assert first["internal_sha256_manifest_passed"] is True

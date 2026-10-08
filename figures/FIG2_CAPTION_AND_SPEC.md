@@ -1,62 +1,37 @@
-# Figure 2 — phase map and ecological threshold displacement
+# Figure 2 — natural evolutionary resolutions of functional conflict
 
-## Reader-facing caption
+## Caption
 
-**Figure 2. Architecture value and evolutionary realization occupy different coordinates and can cross at different ecological thresholds.**
-(A) The `L-Phi` plane classifies architecture value. `L>0, Phi<0` is persistent compromise, whereas `Phi>0` means the declared differentiated endpoint is globally favored. The `Phi=0` crossing is therefore an architecture-value boundary, not an evolutionary transition boundary. (B) Small-step accessibility introduces a release-path coordinate `d`; for convex recovery, `k_local<k<k_global` creates a region in which sufficiently small release steps are selectively downhill even though complete release has positive payoff. (C) Population feedback introduces `eta`, splitting the static architecture crossing into rare-invasion thresholds at `Phi=±eta`. (D) If an ecological coordinate `E` changes architecture value as `Phi(E)=a(E-E_V)`, the rare-invasion crossing is displaced to `E_I=E_V+eta/a`. Positive `eta` delays rare invasion beyond the environment where differentiation already pays; negative `eta` allows rare invasion before intrinsic endpoint value becomes positive and produces the coexistence ordering in the registered pair game. The distance `eta/a` is therefore a testable ecological separation between value and establishment.
+**Figure 2. Natural systems use multiple evolutionary resolutions to functional conflict.** (A) In pollen-reward flowers, the same conflict between pollen as pollinator food and pollen retained for male reproduction can be reduced by different strategies. *Solanum rostratum* shows functional heteranthery, with feeding anthers preferentially handled by bees and pollinating anthers contributing disproportionately to pollen export, while the same species also releases pollen gradually across successive buzzes. In *Clarkia*, superficially similar heteranthery does not divide feeding and pollinating functions; delayed dehiscence instead staggers pollen presentation. (B) Ecological partners alter which solution is favored. Bee-adapted *Penstemon* and *Keckiella* species release pollen more gradually than hummingbird-adapted relatives; *Pedicularis rex* retains an integrated floral architecture while seed-predator-mediated selection varies geographically; and natural plant populations show that pollinators and antagonists can make reproductive success frequency dependent, changing whether rare phenotypes are penalized or favored. (C) Functional decoupling need not create evolutionary independence. In Neotropical cichlids, oral and pharyngeal jaws release a force–mobility trade-off and expand trophic diversity, yet feeding ecology still drives aligned evolutionary responses in the two jaw systems. Together these cases show that functional conflict does not prescribe one architecture: structural partitioning, temporal partitioning, persistent integration, and mixed states all occur in nature.
 
-## Scientific role
+## Biological message
 
-Figure 2 makes two points.
+The figure is not an empirical measurement ladder. Its role is to establish the natural-history premise of the paper:
 
-First, the full SLK hierarchy cannot be projected onto a single `L-Phi` plane. Different biological questions require different coordinates:
+~~~text
+similar functional conflict
+        |
+        +--> structural division of labor
+        +--> temporal partitioning
+        +--> persistent multifunctionality
+        +--> combinations / partial decoupling
 
-```text
-architecture value:       L, R, K, Phi
-small-step construction:  release-path geometry, k_local
-population establishment: eta
-ecological displacement:  environmental slope dPhi/dE
-finite population:        N, beta, fixation process
-long-run occupancy:       mutation graph/kernel
-```
+which resolution persists
+        =
+architecture + evolutionary history + ecological context
+~~~
 
-Second, those distinct coordinates generate a comparative ecological prediction rather than merely a bookkeeping distinction. Along a common environmental axis, the architecture-value transition and the invasion transition can occur at different locations.
+## Evidence represented
 
-For the registered affine environmental slice,
+- **Solanum rostratum:** Vallejo-Marín et al. (2009) experimentally support feeding-versus-pollinating anther division of labor; Vallejo-Marín & Lundgren (2026) show gradual pollen release under real bumble-bee buzzes.
+- **Clarkia:** Kay et al. (2020) find no support for feeding-versus-pollinating division of labor; heteranthery instead supports staggered pollen presentation.
+- **Merianieae:** Dellinger et al. (2021) show across 63 species that heteranthery repeatedly evolved in food-body- and nectar-rewarding lineages after the classic pollen dilemma was removed; passerine foraging supports staggered stamen removal as an alternative function.
+- **Penstemon / Keckiella:** Castellanos et al. (2006) show phylogenetically replicated shifts in pollen presentation associated with bee versus hummingbird pollination.
+- **Pedicularis rex:** Xia et al. (2013) show a predator-driven component Allee effect, with stronger predispersal seed predation in sparse patches; Sun et al. (2016) show opposing pollinator- and seed-predator-mediated effects on floral traits across 14 populations, with a geographic mosaic in the antagonist component.
+- **Ipomoea purpurea:** Epperson & Clegg (1987) show lower bumble-bee service and outcrossing for the white morph when rare.
+- **Primula farinosa:** Toräng et al. (2008) show pollinator- and seed-predator-mediated frequency dependence whose strength and direction vary among populations and years.
+- **Integrated versus decoupled fish feeding:** Corn et al. (2021) show that multifunctional suction-plus-biting skulls have strongly constrained kinematic diversification relative to suction-only fishes even while head shape evolves rapidly; Burress et al. (2020) show that oral/pharyngeal jaw decoupling in cichlids releases a force–mobility trade-off, permits novel trait combinations and greater trophic diversity, yet remains partly re-coupled by feeding ecology.
 
-```text
-Phi(E)=a(E-E_V),  a>0
-```
+## Scope
 
-one obtains
-
-```text
-E_I = E_V + eta/a
-E_R = E_V - eta/a.
-```
-
-Therefore:
-
-```text
-eta>0
--> E_R < E_V < E_I
--> coordination interval
--> differentiation can pay before a rare differentiated type can establish
-
-eta<0
--> E_I < E_V < E_R
--> coexistence interval
--> a rare differentiated type can invade while its intrinsic endpoint margin is still negative.
-```
-
-## Claim mapping
-
-- Panel A: C1-C5.
-- Panel B: C6.
-- Panel C: C7.
-- Panel D: ecological corollary UTA1.4.
-- Fixation/occupancy remain in Figure 1 because they require explicit stochastic process assumptions.
-
-## Anti-overclaim rule
-
-Panel D is exact for the declared affine `Phi(E)` and locally constant `eta` slice. For smooth non-affine functions it is a local first-order prediction, not a universal constant spacing. Negative-frequency feedback allowing rare invasion with `Phi<0` does not mean the differentiated endpoint is intrinsically superior; in the registered deterministic pair game it identifies the coexistence route. Likewise, positive `eta` delaying rare invasion does not prove permanent historical absence of differentiation.
+These examples do not claim that every natural system has been assigned to one of the model's three formal states. They establish the broader ecological facts that motivate the theory: comparable conflicts have multiple evolutionary resolutions; ecological partners alter selection on those resolutions; and anatomical decoupling does not eliminate ecological coupling.

@@ -6,43 +6,63 @@
 
 Working title:
 
-**From functional conflict to evolutionary architecture: thresholds for differentiation**
+**Multifunctional structures can persist while barriers to division of labor change**
 
 Primary target: **The American Naturalist**.
 
-Core spine:
+Canonical empirical evidence ledger: `docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md`.
+
+Biological question:
+
+> When opposing functions genuinely conflict, why does division of labor sometimes evolve and sometimes fail to appear?
+
+Core biological spine:
 
 ```text
-L -> R -> Phi -> accessibility -> invasion -> fixation -> occupancy
-                                                + INV1
+functional conflict
+-> multiple natural resolutions
+   structural partitioning
+   temporal partitioning
+   persistent integration
+   mixed / partial decoupling
+-> for one integrated architecture and one specified divided alternative:
+   architecture-value bottleneck
+   evolutionary-path bottleneck
+   ecological-establishment bottleneck
+-> the limiting bottleneck can change before morphology changes
+-> resistance to reorganization can decline during that stasis
 ```
 
 Core claims:
 
-1. `L` separates multifunctionality from identified shared-coordinate conflict.
-2. `L>0, Phi<0` is a real persistent-compromise state, not absence of conflict.
-3. `Phi=R-K` is the architecture-value crossing, with `R=sL` retained only as the quadratic partial-release bridge.
-4. UTA1 places small-step release, endpoint value, invasion, fixation, and occupancy on explicit critical surfaces within one registered composite model.
-5. all five flagship non-implications are realized inside one convex recovery family rather than disconnected witnesses.
-6. the endpoint architecture contrast `Phi` is preserved through the registered canonical pair, reciprocal fixation ratio, and symmetric rare-mutation occupancy ratio.
-7. along `Phi(E)=a(E-E_V)`, ecology displaces the rare-invasion threshold by `E_I-E_V=eta/a`, so realized differentiation can lag behind or precede intrinsic architecture value;
-8. when `eta(E)=eta_0+b(E-E_V)`, the feedback slope changes the displacement to `eta_0/(a-b)` and can amplify or remove a forward invasion crossing;
-9. under the quadratic bridge, conflict magnitude alone cannot rank differentiation across systems when recoverability or architecture cost varies;
-10. deterministic invasion remains exact for arbitrary interior frequency-response shape when expressed through rare-D and resident-D endpoint ecological offsets;
-11. finite-frequency endpoint assays certify invasion with `O(epsilon)` Lipschitz bounds or `O(epsilon^2)` two-point curvature bounds, with sampling uncertainty carried into the endpoint interval;
-12. under the registered symmetric rare-mutation exponential-Moran process, reciprocal fixation ordering and stationary monomorphic occupancy ordering re-align exactly (`INV1`).
+1. persistent multifunctionality under documented conflict is not a single biological state;
+2. one cause is negative net architecture value: differentiation recovers too little fitness or costs too much (`Phi<0`);
+3. a second cause is local inaccessibility: a differentiated endpoint can have `Phi>0` while sufficiently small changes away from integration are initially selected against;
+4. a third cause is rare-establishment failure: a favorable and initially reachable differentiated type can still have `Delta_R<0` because of frequency-dependent ecology;
+5. conflict magnitude alone cannot rank systems by their tendency toward division of labor when recoverability or architecture cost varies;
+6. along a gradient that lowers marginal architecture cost, strict convexity orders profitability before local reachability, and sufficiently strong positive frequency feedback can place rare establishment later still (`E_V<E_A<E_I`), so the limiting reason for persistent multifunctionality turns over before morphology changes;
+7. along environmental gradients, the profitability crossing and rare-establishment crossing can be displaced, with `E_I-E_V=eta/a` in the local affine canonical model;
+8. natural systems already show alternative resolutions of comparable conflicts: functional heteranthery, temporal pollen presentation, persistent integration under geographically variable antagonism, and partial anatomical decoupling with continued ecological coupling;
+9. field studies of floral frequency dependence show that rarity itself can change reproductive success and that the sign of this effect can vary among populations and years, grounding the ecological-establishment mechanism;
+10. *Pedicularis rex* provides a literature-based example in which the same integrated floral architecture experiences a geographic mosaic in the balance of mutualist and antagonist selection;
+11. finite-population fixation and weak-mutation occupancy remain supporting-theory extensions rather than headline explanations;
+12. the current empirical bridge ledger separates architecture value, developmental access, and rare establishment across real systems, while showing that no existing system yet closes the full ordered turnover for one unchanged integrated architecture;
+13. partial structural release and initial abundance lie on one architecture-frequency escape frontier: the `d_J` and `p_C` slice identities are robust across identity-preserving feedback scalings, while monotonic novelty-abundance compensation is the canonical proportional-scaling prediction.
 
 Flagship exclusions:
 
+- claims that functional conflict automatically produces division of labor;
+- claims that morphology alone demonstrates functional specialization;
+- a new empirical result for *Pedicularis rex* before the relevant experiments are completed;
 - contextual-versus-pure-function optimum identification details;
 - full middle-world certification machinery, reserve/depth/topology and hysteresis;
 - post-differentiation ecological route identification;
 - continuous architecture and branching;
 - edgewise modularization and topology theory;
 - general spatial spectral transport;
-- temporal Floquet theory beyond what is required for the flagship spine.
+- temporal Floquet theory beyond what is required for the flagship argument.
 
-The flagship owns the cross-repository estimand transport, the unified critical-surface atlas, its ecological threshold-displacement mappings, and the claim-ceiling logic, not every technical extension developed in the source repositories. Items 7–11 above are derived predictions, diagnostics, or method adaptations rather than standalone mathematical novelty; INV1 is retained as a process-consistency result.
+The flagship owns the **ecological theory of changing barriers to structural division of labor**: one persistent multifunctional phenotype can be maintained by different selective bottlenecks, and those bottlenecks can turn over while resistance to reorganization declines before morphology changes. Adaptive integration, historical trapping, and ecological stabilization interpret those bottlenecks; they are not the manuscript's primary novelty. The mathematical threshold results and process invariants support that biological argument but are not themselves the manuscript's subject.
 
 ---
 
@@ -182,7 +202,7 @@ The publication programme is organized by **independent scientific question**, n
 
 ```text
 SCH       asks whether conflict has actually been identified.
-SLK       asks what must happen before identified conflict becomes evolutionary architecture.
+SLK       asks why documented conflict can remain multifunctional or become divided among functions.
 BITA      asks whether an observed interaction has actually identified its ecological mechanism.
 PAYOFF-B  asks one sharp dynamical question about anti-phase environmental switching.
 ```
