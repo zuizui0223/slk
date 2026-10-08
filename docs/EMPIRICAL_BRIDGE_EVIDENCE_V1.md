@@ -250,6 +250,16 @@ The proposed assortment extension must not confuse *matching with the same archi
 
 This audit therefore **does not add empirical support for the complete ordered SLK barrier turnover**. It narrows ecological interpretation: a specialist collective can require heterotypic coupling, while a compatible specialist partnership can require matched pairing. The sign of spatial structure depends on the *functional direction of exchange* rather than geographic aggregation alone.
 
+## Stochastic establishment: existing cooperative rescue results versus SLK model witnesses
+
+Goldberg & Friedman (2021; *PLOS Computational Biology* 17:e1008732, DOI 10.1371/journal.pcbi.1008732) are the closest prior-art warning against interpreting the eventual benefit of a cooperating or mutually dependent population as evidence that it will establish during environmental change. Their theoretical and simulation study found that a critical population requirement narrows the evolutionary rescue window, while two-species mutualism adds dependencies on adaptation of both partners and resource competition. The paper studies cooperative and mutualistic rescue under deterioration, **not** an experimentally demonstrated turnover among SLK's structural value, rare-path, and establishment gates in an unchanged integrated phenotype.
+
+Kim, Levy & Foster (2016; *Nature Communications* 7:10508, DOI 10.1038/ncomms10508) document a different relevant natural-history sequence: mixed M+D *Pseudomonas fluorescens* colonies spread without waiting for the D partner to evolve de novo, whereas a pure M colony's collective spreading starts only after new D variants arise. This is **role-availability timing**, but the study does not identify stochastic loss of an introduced new full-division architecture during a contact-assembly lag. It also supports negative frequency dependence among complementary colony partners, not the positive-frequency mismatch witness that SLK uses for conditional calculations.
+
+The new SLK two-phase founder example is consequently **theoretical only**: it fixes the intrinsic full-versus-partial payoff and the mean pre/post net-selection differences, adds explicit absolute per-capita birth and death rates, and shows different probabilities of eventual founder lineage survival under the same expected decline. It must be described as a declared demographic extension, not reanalysis of these empirical papers. In particular, the observed `P. fluorescens` delay should not be interpreted as a measured extinction hazard.
+
+**Remaining empirical gap:** no cited study jointly measures (1) realized variation in an architecture from integrated to partial/fully divided, (2) partner-availability dynamics, (3) independent birth and death of the focal rare architecture, and (4) the resulting conditional establishment probability in the same biological system. The present evolutionary theory manuscript need not acquire these data before publication, but it must not claim that they already exist.
+
 ## Current empirical synthesis
 
 The current evidence no longer rests on one analogue. Six complementary empirical roles are now covered.
@@ -290,6 +300,7 @@ That missing test remains the empirical target of SLK.
 - Momeni B, Waite AJ, Shou W. 2013. Spatial self-organization favors heterotypic cooperation over cheating. eLife 2:e00960. DOI 10.7554/eLife.00960.
 - Kalamara M, Spacapan M, Mandic-Mulec I, Stanley-Wall NR. 2018. Social behaviours by Bacillus subtilis: quorum sensing, kin discrimination and beyond. Molecular Microbiology 110:863–878. DOI 10.1111/mmi.14127.
 - Vallejo-Marín M, Manson JS, Thomson JD, Barrett SCH. 2009. Division of labour within flowers: heteranthery, a floral strategy to reconcile contrasting pollen fates. Journal of Evolutionary Biology 22:828–839. DOI 10.1111/j.1420-9101.2009.01693.x.
+- Goldberg Y, Friedman J. 2021. Positive interactions within and between populations decrease the likelihood of evolutionary rescue. PLOS Computational Biology 17:e1008732. DOI 10.1371/journal.pcbi.1008732.
 - Kim W, Levy SB, Foster KR. 2016. Rapid radiation in bacteria leads to a division of labour. Nature Communications 7:10508. DOI 10.1038/ncomms10508.
 - Dragoš A et al. 2018. Division of Labor during Biofilm Matrix Production. Current Biology 28:1903–1913.e5. DOI 10.1016/j.cub.2018.04.046.
 - Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium Pseudomonas aeruginosa. Journal of Evolutionary Biology 35:719–730. DOI 10.1111/jeb.14001. Public data: Dryad DOI 10.5061/dryad.2bvq83bs4.

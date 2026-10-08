@@ -20,6 +20,7 @@ FILES = {
     "theory/UNIFIED_THRESHOLD_ATLAS_V1.md": "theory/UNIFIED_THRESHOLD_ATLAS_V1.md",
     "theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md": "theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md",
     "theory/ASSORTMENT_PARTIAL_FOUNDER_V1.md": "theory/ASSORTMENT_PARTIAL_FOUNDER_V1.md",
+    "theory/STOCHASTIC_PARTNER_ASSEMBLY_V1.md": "theory/STOCHASTIC_PARTNER_ASSEMBLY_V1.md",
     "theory/NON_EQUIVALENCE_THEOREM_V1.md": "theory/NON_EQUIVALENCE_THEOREM_V1.md",
     "docs/INV1_EXECUTABLE_VALIDATION_V1.md": "docs/INV1_EXECUTABLE_VALIDATION_V1.md",
     "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md": "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md",
@@ -32,6 +33,7 @@ FILES = {
     "tests/test_rare_path_feedback.py": "tests/test_rare_path_feedback.py",
     "tests/test_partial_division_resident_stability.py": "tests/test_partial_division_resident_stability.py",
     "tests/test_assortment_partial_founder.py": "tests/test_assortment_partial_founder.py",
+    "tests/test_stochastic_partner_assembly.py": "tests/test_stochastic_partner_assembly.py",
     "pytest.ini": "pytest.ini",
 }
 
@@ -51,7 +53,7 @@ This package accompanies the manuscript **Multifunctional structures can persist
 
 The submitted paper is an evolutionary-ecology theory paper about why comparable functional conflicts have different natural resolutions and why one multifunctional architecture can persist in different selective states. It does not estimate its headline results from a private or external empirical dataset. The natural-system examples, including *Pedicularis rex*, are literature based rather than new empirical results.
 
-The package contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the mathematical implementation, a curated literature-based empirical evidence ledger, an independent Moran-process regression test, and a Python verifier. The manuscript centers adaptive integration, historical/developmental trapping, and ecological stabilization, together with the prediction that an unchanged integrated phenotype can lose evolutionary resistance before structural division of labor appears. The fuller theory files retain downstream fixation/occupancy and numerical derivations as supporting results rather than as the biological subject of the paper. The matched-assay partial-division models and associated tests reproduce the distinction between rare-mutant resistance, finite-frequency escape, and onward specialization without claiming empirical confirmation. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
+The package contains the exact manuscript source, supporting theory notes, the three submitted figure sources, the mathematical implementation, a curated literature-based empirical evidence ledger, an independent Moran-process regression test, and a Python verifier. The manuscript centers adaptive integration, historical/developmental trapping, and ecological stabilization, together with the prediction that an unchanged integrated phenotype can lose evolutionary resistance before structural division of labor appears. The fuller theory files retain downstream fixation/occupancy and numerical derivations as supporting results rather than as the biological subject of the paper. The matched-assay partial-division models and associated tests reproduce the distinction between rare-mutant resistance, finite-frequency escape, and onward specialization without claiming empirical confirmation. The conditional delayed-assembly extension separately demonstrates that absolute demographic turnover affects lineage survival even under identical net selective differences; it does not infer empirical extinction rates. A precomputed `CLAIM_VERIFICATION_RECEIPT.json` is included and can be regenerated locally.
 
 ## Reproduce the registered numerical checks
 
@@ -59,7 +61,7 @@ From the root of this extracted package, run:
 
 ```bash
 python scripts/verify_amnat_claims.py --output CLAIM_VERIFICATION_RECEIPT.json
-python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py
+python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py tests/test_stochastic_partner_assembly.py
 ```
 
 A successful run writes a JSON receipt with `all_checks_pass: true`.
