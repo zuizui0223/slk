@@ -231,7 +231,7 @@ def test_hidden_bottleneck_turnover_is_the_reader_facing_spine() -> None:
 def test_system_drift_is_not_confused_with_selective_bottleneck_turnover() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     assert "Developmental/system drift already shows" in manuscript
-    assert "does not prescribe one biological organization" in manuscript
+    assert "The natural systems reviewed above show structural, temporal, and integrated resolutions of conflict" in manuscript
     assert "separates three decision criteria" in manuscript
     assert "one integrated architecture and one specified divided alternative fixed" in manuscript
 
