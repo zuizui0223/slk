@@ -228,6 +228,28 @@ The strongest model-specific falsification is sharper still. Under the proportio
 
 Thus the empirical gap is no longer merely "measure all three SLK gates." It is also: **map whether structural novelty and demographic support trade off along the predicted frontier, and whether environmental change moves that frontier in the predicted way.**
 
+## Ecological-contact polarity audit (supplementary, not new gate closure)
+
+The proposed assortment extension must not confuse *matching with the same architecture* and *receiving the complementary product of another specialist*. These are biologically different interaction mechanisms, and spatial segregation alone cannot tell which one occurs.
+
+### Two causal arrows are already experimentally documented
+
+**Space changes selection — van Gestel et al. (2014).** In *Bacillus subtilis* colony biofilms, low densities of founding cells led to stronger lineage segregation; EPS-producing cells then outcompeted EPS-deficient nonproducers. At high initial founder densities, strains remained comparatively mixed and the nonproducers gained a competitive advantage. The study combined fluorescently tagged experimental populations and spatial modeling, and additionally varied EPS production. This is a particularly strong example that **founder demography → emergent assortment → producer/cheater competition** can change selection. It is *not* a division-of-labour comparison: EPS producers and nonproducers are cooperators and exploiters, not complementary specialists dividing EPS versus TasA tasks. Also, founder density was manipulated to generate spatial structure, so a strict matched-density, different-assortment comparison is a **new experimental control**, not a description of what the original paper already did. Source: van Gestel et al. 2014, *ISME Journal* 8:2069–2079, DOI 10.1038/ismej.2014.52.
+
+**Ecological interaction generates space — Momeni, Brileya, Fields & Shou (2013).** Strong reciprocal metabolic cooperation generated spatial intermixing, including vertically successive layers, in experimentally designed yeast cross-feeders and a methane-producing community. This is evidence that **partner-dependent growth → spatial intermixing**, the reverse causal direction from treating assortment as an externally set parameter. Separately, Momeni, Waite & Shou (2013) showed that self-organized heterotypic cooperation can spatially separate a cooperating pair from cheaters. These are ecological cooperation and cross-feeding examples, not integrated-to-divided-architecture invasion experiments. Sources: *eLife* 2:e00230, DOI 10.7554/eLife.00230; *eLife* 2:e00960, DOI 10.7554/eLife.00960.
+
+**Consequence for SLK:** the observed pair of trait distribution and spatial arrangement does not establish whether arrangement caused the selective advantage, the selective advantage created the arrangement, or both acted jointly. The current parameter `r` is therefore a **conditional encounter descriptor**, not a generally exogenous cause. Estimating `r` from a late-stage image and assigning it to the original introduction would reverse the causal order when self-organization is rapid.
+
+**Pseudomonas fluorescens (Kim, Levy & Foster 2016):** the M and D types self-organize with spatial segregation and a thin mucoid M layer beneath the expanding D type. Direct front-manipulation with M versus nonmucoid M* or D demonstrates that the cross-type physical arrangement permits spreading. The two roles are reciprocally favored when rare and converge near a characteristic mix. This is **positive evidence for complementary spatial organization with negative frequency dependence**, not evidence for homotypic assortment rescuing a rare differentiated collective.
+
+**Bacillus subtilis (Dragoš et al. 2018; Kalamara et al. 2018 review):** EPS/TasA engineered specialists exchange extracellular components and exhibit negative frequency-dependent fitness, including on plant roots. Spatially mixed EPS nonproducers can exploit producer EPS; segregating them can remove that benefit. These data anchor **access to unlike-role products** and the importance of effective contact or diffusion, not a general prediction that clonal clustering helps all specialist populations.
+
+**Solanum rostratum (Vallejo-Marín et al. 2009; Mora-Carrera et al. 2019):** heteranthery divides feeding and pollen-transfer roles *within flowers*, whereas enantiostyly manipulates right- versus left-styled floral organization across flowers/individuals. The latter's density response concerns reproductive value under pollination limitation, not the frequency of a structurally divided floral mutant interacting with a partial-division resident. Do not project a microbial contact-assortment parameter onto a within-flower functional unit without a concrete pollen-transfer mechanism.
+
+**Pedicularis rex:** pollinator/predator selection and resident-density changes provide no estimate of inter-architecture contact polarity. The quantitative density/predation effect cannot be reused as an experimental test of divided-type founder assortment.
+
+This audit therefore **does not add empirical support for the complete ordered SLK barrier turnover**. It narrows ecological interpretation: a specialist collective can require heterotypic coupling, while a compatible specialist partnership can require matched pairing. The sign of spatial structure depends on the *functional direction of exchange* rather than geographic aggregation alone.
+
 ## Current empirical synthesis
 
 The current evidence no longer rests on one analogue. Six complementary empirical roles are now covered.
@@ -263,6 +285,11 @@ That missing test remains the empirical target of SLK.
 - Herron MD, Ghimire S, Vinikoor CR, Michod RE. 2014. Fitness trade-offs and developmental constraints in the evolution of soma: an experimental study in a volvocine alga. Evolutionary Ecology Research 16:203–221.
 - Davison DR, Nedelcu AM, De Andre Eneji O, Michod RE. 2025. Plasticity and the evolution of group-level regulation of cellular differentiation in the volvocine algae. Proceedings of the Royal Society B 292:20242477. DOI 10.1098/rspb.2024.2477. Public data: Dryad DOI 10.5061/dryad.ns1rn8q1h.
 - Davison DR, Ruboyianes R, Yu Y, Michod RE, Olson BJSC. 2026. Somatic differentiation evolves rapidly and repeatedly through the modification of developmental plasticity. bioRxiv preprint. DOI 10.64898/2026.09.22.753194.
+- van Gestel J, Weissing FJ, Kuipers OP, Kovács ÁT. 2014. Density of founder cells affects spatial pattern formation and cooperation in Bacillus subtilis biofilms. ISME Journal 8:2069–2079. DOI 10.1038/ismej.2014.52.
+- Momeni B, Brileya KA, Fields MW, Shou W. 2013. Strong inter-population cooperation leads to partner intermixing in microbial communities. eLife 2:e00230. DOI 10.7554/eLife.00230.
+- Momeni B, Waite AJ, Shou W. 2013. Spatial self-organization favors heterotypic cooperation over cheating. eLife 2:e00960. DOI 10.7554/eLife.00960.
+- Kalamara M, Spacapan M, Mandic-Mulec I, Stanley-Wall NR. 2018. Social behaviours by Bacillus subtilis: quorum sensing, kin discrimination and beyond. Molecular Microbiology 110:863–878. DOI 10.1111/mmi.14127.
+- Vallejo-Marín M, Manson JS, Thomson JD, Barrett SCH. 2009. Division of labour within flowers: heteranthery, a floral strategy to reconcile contrasting pollen fates. Journal of Evolutionary Biology 22:828–839. DOI 10.1111/j.1420-9101.2009.01693.x.
 - Kim W, Levy SB, Foster KR. 2016. Rapid radiation in bacteria leads to a division of labour. Nature Communications 7:10508. DOI 10.1038/ncomms10508.
 - Dragoš A et al. 2018. Division of Labor during Biofilm Matrix Production. Current Biology 28:1903–1913.e5. DOI 10.1016/j.cub.2018.04.046.
 - Mridha S, Kümmerli R. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium Pseudomonas aeruginosa. Journal of Evolutionary Biology 35:719–730. DOI 10.1111/jeb.14001. Public data: Dryad DOI 10.5061/dryad.2bvq83bs4.
