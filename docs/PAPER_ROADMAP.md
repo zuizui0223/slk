@@ -51,6 +51,7 @@ Core claims:
 14. the rare-mutant local gradient must include the degree-dependent onset of ecological feedback; partial division can be less or more invasible than full division under otherwise identical endpoint payoffs;
 15. **supplementary countermodels only**: integrated-resident tests cannot decide whether partial division arrests or enables onward specialization; resident-specific mismatch shape and finite introduction frequency alter later invasion without changing the original integration-versus-variant curves.
 16. **supplementary assortment model only**: interaction-neighborhood composition can shift the founding-frequency barrier of complete division against a persistent partial resident, while positive-frequency bistability, assortative matching, and spatial rescue remain recognized prior art; do not present the illustrative 7/79 or 14/79 fractions as natural-system estimates.
+17. **supplementary stochastic founder model only**: identical structural payoff, net relative selection, contact-assembly timing and deterministic mean decline do not identify founder lineage survival without absolute birth and death rates; this is classical stochastic ecology and is not a claim of new rescue theory or an observed natural transition.
 
 Flagship exclusions:
 
