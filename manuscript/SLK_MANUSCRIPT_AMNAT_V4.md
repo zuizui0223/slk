@@ -225,7 +225,7 @@ E > E_I
     the three early barriers are removed
 ```
 
-The biological bottleneck therefore changes along the gradient. Before `E_V`, there is no net advantage to structural division. Between `E_V` and `E_A`, reorganization is **path limited**: only a sufficiently large structural change, recombination event, or alternative developmental route can escape the local valley. Between `E_A` and `E_I`, small departures become intrinsically favorable but the completed divided form is **establishment limited**: it must become common enough, or enter a sufficiently favorable interaction context, to grow. Whether a rare *partial* departure also grows depends on how ecological feedback scales with the degree of structural release. Beyond `E_I`, even a rare divided type can spread. Environmental change can therefore switch the limiting process from architecture economics, to the production of viable novelty, to ecological establishment without any visible change in the resident morphology.
+Before `E_V`, division has no net advantage. Between `E_V` and `E_A`, reorganization is **path limited**: large changes or alternative developmental routes must cross a local valley. Between `E_A` and `E_I`, small intrinsic gains are possible, but complete division remains **establishment limited** at rarity. Beyond `E_I`, rare fully divided types can spread. Environmental change can therefore switch the limiting process from architecture economics to viable novelty and ecological establishment without any visible change in resident morphology.
 
 Thus a chain of populations can look morphologically similar while the evolutionary reason for that morphology changes. **Phenotypic stability across geography does not imply stability of the process maintaining the phenotype.**
 
@@ -245,7 +245,7 @@ B_A = Phi(E_A).
 
 Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that lowers marginal architecture cost, `B_A=dmax(k_global-k_local)`. Thus the earlier condition identifies a distinct **endpoint rare-establishment barrier** after intrinsic accessibility has been gained; the evolutionary accessibility of rare intermediates additionally depends on their ecological context.
 
-**Rare-path qualification.** The gradient `g_0` omits frequency feedback. For an initially rare partial release `d` under `Delta_w=R(d)-kd+eta w(d)(2p-1)`, its actual local gradient is `g_0-eta w'(0+)`. Proportional feedback can block small rare steps after `E_A`; superlinear feedback with `w'(0+)=0` permits partial release to increase while full division fails at rarity. **The shape of ecological partner dependence matters, not only its strength.** Neither case guarantees a realized trajectory.
+**Rare-path qualification.** The reference gradient `g_0` omits frequency feedback. For `Delta_w=R(d)-kd+eta w(d)(2p-1)`, the actual local gradient is `g_0-eta w'(0+)` at rarity. Under proportional feedback, rare intermediates can still be disfavored after `E_A`; under superlinear feedback (`w'(0+)=0`), partial division can invade while full division cannot. **Partner dependence across degrees of specialization matters.** Neither case proves a realized trajectory.
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
