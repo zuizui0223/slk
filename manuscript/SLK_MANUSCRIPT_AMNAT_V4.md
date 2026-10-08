@@ -218,14 +218,14 @@ E_V < E < E_A
     differentiation would pay, but integration is historically trapped
 
 E_A < E < E_I
-    differentiation pays and is reachable,
-    but ecology prevents establishment from rarity
+    small structural release becomes intrinsically favorable,
+    but the completed divided form fails to invade when rare
 
 E > E_I
     the three early barriers are removed
 ```
 
-The biological bottleneck therefore changes along the gradient. Before `E_V`, there is no net advantage to structural division. Between `E_V` and `E_A`, reorganization is **path limited**: only a sufficiently large structural change, recombination event, or alternative developmental route can escape the local valley. Between `E_A` and `E_I`, small favorable changes are available but reorganization is **establishment limited**: the divided type must become common enough, or enter a sufficiently favorable interaction context, to grow. Beyond `E_I`, even a rare divided type can spread. Environmental change can therefore switch the limiting process from architecture economics, to the production of viable novelty, to ecological establishment without any visible change in the resident morphology.
+Before `E_V`, division has no net advantage. Between `E_V` and `E_A`, reorganization is **path limited**: large changes or alternative developmental routes must cross a local valley. Between `E_A` and `E_I`, small intrinsic gains are possible, but complete division remains **establishment limited** at rarity. Beyond `E_I`, rare fully divided types can spread. Environmental change can therefore switch the limiting process from architecture economics to viable novelty and ecological establishment without any visible change in resident morphology.
 
 Thus a chain of populations can look morphologically similar while the evolutionary reason for that morphology changes. **Phenotypic stability across geography does not imply stability of the process maintaining the phenotype.**
 
@@ -235,7 +235,7 @@ Ecology also determines whether a distinct ecologically stabilized phase exists 
 Delta_R(E_A) < 0,
 ```
 
-then the divided architecture has become locally reachable but still cannot establish from rarity, so ecology becomes the final early barrier. If `Delta_R(E_A)>0`, establishment is already possible when local accessibility is gained, so no ecology-only interval begins at `E_A`; `Delta_R(E_A)=0` makes the two boundaries coincide. A later ecology-only interval would require non-monotonic ecological feedback and lies outside the ordered monotone slice considered here.
+then intrinsic small-step release is favorable but the completed divided form still cannot invade from rarity; whether rare partial forms invade depends on the feedback shape. If `Delta_R(E_A)>0`, establishment is already possible when local accessibility is gained, so no ecology-only interval begins at `E_A`; `Delta_R(E_A)=0` makes the two boundaries coincide. A later ecology-only interval would require non-monotonic ecological feedback and lies outside the ordered monotone slice considered here.
 
 In the canonical frequency-feedback model, define the architecture barrier on the same payoff scale as
 
@@ -243,7 +243,9 @@ In the canonical frequency-feedback model, define the architecture barrier on th
 B_A = Phi(E_A).
 ```
 
-Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that lowers marginal architecture cost, `B_A=dmax(k_global-k_local)`. Thus the earlier condition is a special case of a more general biological statement: **ecology becomes the final barrier to division of labor exactly when a newly reachable divided type is still selected against because it is rare.**
+Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that lowers marginal architecture cost, `B_A=dmax(k_global-k_local)`. Thus the earlier condition identifies a distinct **endpoint rare-establishment barrier** after intrinsic accessibility has been gained; the evolutionary accessibility of rare intermediates additionally depends on their ecological context.
+
+**Rare-path qualification.** The reference `g_0` omits rarity feedback. For `Delta_w=R(d)-kd+eta w(d)(2p-1)`, the actual local gradient is `g_0-eta w'(0+)` at rarity. When `eta>B_A`, rare partial division becomes invasible before complete division precisely if `w'(0+)<(1-B_A/eta)/dmax`; the order reverses above this threshold and coincides at equality. **Partner dependence at the onset of specialization**, not only its eventual strength, changes which degree of division first spreads. Neither order proves a realized trajectory.
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
