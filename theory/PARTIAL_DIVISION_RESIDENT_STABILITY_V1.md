@@ -60,6 +60,48 @@ In the witness, `J(d)=0.4d+2.35d^2` is strictly increasing, while `H(d)=0.1d-0.3
 
 The result is a local and global **single-rare-mutant invasion** conclusion, not a theorem about polymorphic coalitions, fluctuating environments, finite-population fixation, or mutation supply.
 
+## Rare-mutant resistance is not resistance to finite introduction
+
+Both mismatch models have exactly the same fitness difference for a focal pair `u,v` at every introduction frequency `p` of `u`, once their respective symmetric mismatch magnitudes `M(u,v)>0` are specified:
+
+```text
+Delta(u,p | v)
+  = [F(u)-F(v)] + eta M(u,v)(2p-1).
+
+p_escape(u|v)
+  = 1/2 - [F(u)-F(v)]/[2 eta M(u,v)].
+```
+
+When `0<p_escape<1`, the pair has an unstable internal frequency threshold: `u` loses from rarity against `v`, but increases if introduced above `p_escape`. For `u>v` in this witness, `F(u)>F(v)`, and when rare invasion fails the positive threshold lies below one half. This is **positive frequency-dependent bistability** in an explicitly declared pairwise resident context, not unconditional stability of a partial phenotype.
+
+For the cusp-like symmetric mismatch `M_1=|w(u)-w(v)|`, resident `v=d_*=1/7`, and complete mutant `u=1`:
+
+```text
+F(1)-F(1/7) = 117/98,
+eta M_1(1,1/7) = 711/490,
+
+Delta(1,0 | 1/7) = -9/35,
+p_escape(1|1/7) = 7/79 = 0.0886075949...
+```
+
+Therefore a complete specialist initially making up more than **8.86% of this two-architecture population** is favored under the same model in which a single rare complete specialist cannot invade the partially divided resident. This exact percentage is a **model-witness threshold**, not an empirical estimate or a prediction for any specific natural organism. If the underlying deterministic two-type frequency dynamics are replicator-like, frequencies above the unstable boundary increase toward full division, while those below decline. Drift, demography, spatial clustering, recombination, and immigration require explicit extensions.
+
+The absence of a uniform resilience margin is sharper still. Put `u=d_*+delta` with `0<delta<=6/7`. Direct substitution gives
+
+```text
+Delta(u,0 | d_*) = -(7/20) delta^2,
+p_escape(d_*+delta | d_*)
+  = 49 delta/(150+378 delta).
+```
+
+Although **every** distinct rare mutant is selected against the monomorphic `d_*` resident in the cusp model, its founding-frequency threshold tends to **zero** as the mutant's phenotypic distance `delta` tends to zero. This distinction is important: pointwise uninvadability of each rare type does not provide a nonzero frequency threshold that protects the resident uniformly against all nearby types. The ecological meaning is an increasingly weak barrier to *slightly further differentiation*, not evidence of realized evolution.
+
+### Fixed finite coalitions cannot bypass strictly negative rarity fitness arbitrarily close to zero
+
+For completeness, fix a finite set of mutant phenotypes `u_i != v` with `I(u_i|v)<0` individually and hold their internal relative composition `q_i` fixed. With total mutant frequency `epsilon` in a finite continuous payoff game, the difference in fitness between each mutant and the resident is continuous and equals `I(u_i|v)` at `epsilon=0`. Thus there exists a common sufficiently small positive `epsilon_0` such that all mutant types decline relative to the resident for `0<epsilon<epsilon_0`. A coalition of fixed variants therefore does not magically overcome the rare-establishment gate **at arbitrarily low total frequency**.
+
+This statement does *not* supply a uniform `epsilon_0` for arbitrarily many mutants approaching `v` or for mechanisms with discontinuous collective assembly. Finite founding clusters can still cross the frequency frontier, and the smooth-mismatch evolutionary relay below changes the resident between mutation events. These are separate biological mechanisms.
+
 ## A second *symmetric* model: smooth mismatch permits onward specialization
 
 The arrest of partial division under `A_0` is caused by an ecological mismatch penalty that is **first order** in even tiny differences between already differentiated forms. This is not forced by any of the binary S-versus-d experiments. Consider an alternative symmetric, nonnegative mismatch cost:
