@@ -145,6 +145,37 @@ These examples make a substantive ecological point: a photograph showing *segreg
 
 The core SLK manuscript should use these as **different ecological resolutions and boundary cases**, not collapse them into one universal specialization/assortment parameter. The supplementary spatial theorem is applicable only after specifying what a 'matching partner' means biologically.
 
+## Reciprocal causation: encounters can determine fitness, and fitness can generate encounters
+
+The encounter coefficient `r` above is a **conditional descriptor**, not an assumed evolutionary cause. Strong cooperation can change spatial patterning through preferential growth at functional interfaces, whereas independently imposed founder arrangements can change subsequent competition. Both causal arrows are empirically established, but neither is an empirical test of the SLK integrated→partial→complete sequence.
+
+- **Founder organization → fitness:** van Gestel et al. (2014, DOI 10.1038/ismej.2014.52) experimentally altered the initial density of *B. subtilis* EPS-producing and nonproducing founders. Lower initial density produced greater segregation and favored producers; high density produced mixing and favored nonproducers. This involves producer–cheater competition, **not** two complementary specialist roles and not a completed divided architecture invading an integrated resident. Since density and emerging spatial structure changed together, do not describe it as an experiment that independently fixed density while varying r.
+- **Partner fitness → emergent organization:** Momeni, Brileya, Fields & Shou (2013, DOI 10.7554/eLife.00230) showed that strong reciprocal cooperation can drive experimentally observed spatial intermixing/layering in engineered yeast and a methanogenic community. Momeni, Waite & Shou (2013, DOI 10.7554/eLife.00960) showed heterotypic spatial self-organization supporting cooperation against cheaters. These are strong counterexamples to treating late-stage contact patterns as preexisting ecological conditions.
+
+If `r=r(p)` is an *emergent* relationship along the same frequency gradient, the matched-cost response becomes
+
+```text
+Delta_match(p)=A+B[1-r(p)](2p-1),
+
+d Delta_match/dp
+ = 2B[1-r(p)] - B(2p-1)r'(p).
+```
+
+For complementary mutualism,
+
+```text
+Delta_complement(p)=A+b[1-r(p)](1-2p),
+
+d Delta_complement/dp
+ = -2b[1-r(p)] - b(1-2p)r'(p).
+```
+
+Thus **the realized selection-versus-frequency slope is not determined only by partner polarity** when partner sorting changes with frequency. In particular, the frequency-derivative sign may differ from its constant-`r` prediction. The symmetry crossing `partial Delta/partial r=0` at `p=1/2` remains a conditional statement for the declared payoff model when `p` is experimentally held fixed, but an observational scan across naturally sorted populations does not isolate this causal contrast. Under joint `r(p)`, `p=1/2` is not a universal threshold for a transition in morphology, density, or population stability.
+
+**Discriminating design:** at fixed total founding density and fixed D frequency, randomize *initial* arrangements to vary contact topology; independently alter conditions controlling metabolic exchange or partner benefit. Track the encounter matrix over time **before and after** relative growth changes, and separately measure resident identity (integrated S or established partial P). Only this design can ask whether spatial organization directly alters D establishment or whether successful D lineages reorganize their partners after establishment. Pre-registered interventions are needed for causal direction; a final spatial snapshot is insufficient.
+
+This adjustment narrows, rather than extends, the SLK claim: founder geometry is a mechanism candidate and a manipulable covariate, whereas ecological self-organization can make that geometry an outcome.
+
 ## Strong boundary on what can be inferred
 
 - The pairwise formula does not establish spatial population growth, invasion-wave speed, fixation probability, coexistence, mutation supply, or long-run evolutionary transition.
