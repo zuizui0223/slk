@@ -96,6 +96,16 @@ For q>1 and v>0:
 
 Because `F'(v)=0.25+2v>0` throughout the witness, **every partial resident `v in (0,1)` can be invaded by a sufficiently nearby *more differentiated* mutant under q=2**, while nearby downward mutants are disfavored. Under `q=1`, by contrast, any resident `v>=1/7` resists both directions. Thus the same symmetric matching idea, but with **linear versus superlinear onset of the cost of mismatching already-specialized types**, gives arrest versus a possible gradual route toward full specialization.
 
+A more concrete **ecological stepping-stone** effect follows from this smooth model. Full differentiation does not invade `S` (`I_2(1|0)=-0.25`) or the initially favorable resident `d_*=1/7` (`I_2(1|1/7)≈-0.165379`). But as successive favorable small-step replacements increase the resident degree, the full endpoint becomes invasible once the resident exceeds the nontrivial root `v_threshold≈0.2861530260` of
+
+```text
+I_2(1|v)
+=F(1)-F(v)-eta [1-w(v)]^2/[1+w(v)]
+=0.
+```
+
+In the present witness this threshold lies *just above* `2/7≈0.285714`, the highest degree capable of directly invading `S`. Thus an intermediate degree that cannot itself establish directly from integration can nevertheless become established by sequential replacement and then open the door to complete division. This ordering and numerical proximity are **witness-specific**. `I_2(1|v)>0` for residents immediately above the lower crossing, while `I_2(1|1)=0` trivially because the mutant equals the resident; do not treat the endpoint equality as a second distinct invasion event.
+
 This is not an assertion of guaranteed global convergence of a stochastic evolutionary process. The smooth example establishes an open direction of favorable small mutations from each interior resident; whether successive successful mutants are supplied and establish over evolutionary time is an additional population-genetic question.
 
 The `q=2` smooth mismatch model provides the cleanest demonstration of why `S`–`d` assays cannot decide partial stability **without assuming directional competitive dominance**. The following `lambda` example is retained to show a stronger, additional possibility: a fully divided mutant can even invade an already established partial form *directly*, when asymmetric interactions among differentiated forms are allowed.
