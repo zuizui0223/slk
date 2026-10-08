@@ -17,7 +17,7 @@ An unusually strong *natural* comparison is already present across two Okinawan 
 | Same bee species | Floral context | Observed contact/behavior | Permissible inference |
 |---|---|---|---|
 | *Amegilla dulcifera* on *Melastoma candidum* (Hachiman, Uejo & Denda 2024) | Larger flowers with differentiated stamens | Buzzes one anther or a few anthers, with limited stigma contact/pollination reported for this bee; *Xylocopa flavifrons* is the principal effective visitor | A bee's functional role is not fixed by its species identity |
-| *Amegilla dulcifera* on *Bredia hirsuta* (Fukano & Denda 2026) | Small flowers with closely spaced differentiated stamens | Buzzes the flower while gripping short stamens and long-stamen filaments, with consistent dorsal stigma contact | Flower geometry and grip configuration plausibly change *the same bee's* role from a poor to an effective pollinator |
+| *Amegilla dulcifera* on *Bredia hirsuta* (Fukano & Denda 2026) | Small flowers with closely spaced differentiated stamens | Buzzes the flower while gripping short stamens and long-stamen filaments, with consistent dorsal stigma contact | Flower geometry and grip configuration plausibly change *the same bee's* observed role from anther-buzzing visitor with limited stigma contact to consistent stigma-contacting flower buzzer |
 
 This is an **observational cross-plant contrast**, not a reciprocal transplant of a bee among randomized floral architectures. Unmeasured effects of floral rewards, phenology, bee condition, community context or flower identity prevent assigning the change exclusively to flower size or stamen position.
 
@@ -25,9 +25,9 @@ Primary sources:
 - Hachiman S, Uejo M, Denda T. 2024. Division of labour between dimorphic stamens in *Melastoma candidum* (Melastomataceae): role of stamen strength in the biomechanics of pollination. *Journal of Pollination Ecology* 37:284–302. DOI 10.26786/1920-7603(2024)810.
 - Fukano T, Denda T. 2026. Consistent buzz-pollination posture suggests division of labour between dimorphic stamens in *Bredia hirsuta* (Melastomataceae) on Okinawa-Jima Island, Japan. *Plant Species Biology* 41:e70070. DOI 10.1111/1442-1984.70070.
 
-## Bredia: factorial organ removal maps behavior without proving ancestral specialization
+## Bredia: component-removal contrasts map behavior without proving ancestral specialization
 
-The 2026 paper manipulated **short stamens** (S), **long-stamen filaments** (LF), and **long-stamen anthers** (LA) independently. The experimentally observed event counts are:
+The 2026 paper compared six selected combinations of **short stamens** (S), **long-stamen filaments** (LF), and **long-stamen anthers** (LA); it did not run a complete three-factor factorial experiment. The experimentally observed event counts are:
 
 | Treatment | S | LF | LA | Visits | Slips during buzzing | Fall at departure | Ventral stigma contact |
 |---|:---:|:---:|:---:|---:|---:|---:|---:|
