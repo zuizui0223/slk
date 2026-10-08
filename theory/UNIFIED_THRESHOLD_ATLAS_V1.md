@@ -990,6 +990,102 @@ epsilon_w(d)>epsilon_F(d).
 
 This is an ecological mechanism criterion: the coordination or partner-dependence penalty intensifies with differentiation faster than the intrinsic benefit of structural release. If the inequality is reversed, increased structural release lowers the establishment threshold. It is a prediction about separate two-type introductions, not a mixed-variant dynamical path.
 
+#### Critical ecological steepness for an interior establishment optimum
+
+The interior of the frontier can change its qualitative shape at a precise ecological threshold. Consider the quadratic strictly convex recovery family
+
+```text
+R(d)=a d+b d^2,
+b>0,
+0<d<=D=dmax,
+a<k<a+bD.
+```
+
+Define the intrinsic-jump barrier `J=d_J=(k-a)/b`, so `0<J<D`, and use a release-dependent coordination effect
+
+```text
+w_m(d)=(d/D)^m,
+m>=1.
+```
+
+The zero-growth frequency is
+
+```text
+p_escape,m(d)
+=
+1/2
+-
+[b D^m/(2eta)](d-J)d^(1-m).
+```
+
+**Power-law feedback threshold.** Put
+
+```text
+m_crit
+=
+(2D-J)/(D-J)
+=
+(2-J/D)/(1-J/D).
+```
+
+For `1<=m<=m_crit`, the required founding frequency decreases monotonically over `0<d<D` (at equality its derivative is zero only at the completed endpoint). For `m>m_crit`, it decreases and then increases, attaining a unique interior minimum at
+
+```text
+d_opt
+=
+[(m-1)/(m-2)] J,
+J<d_opt<D.
+```
+
+**Proof.** Direct differentiation yields
+
+```text
+d p_escape,m / d d
+=
+-
+[b D^m/(2eta d^m)]
+[(2-m)d+(m-1)J].
+```
+
+For `1<=m<=2`, the expression in square brackets is positive over `d>0`; for `m>2` it changes sign at `d_opt=(m-1)J/(m-2)`. That turning point is inside `(J,D)` precisely when `m>(2D-J)/(D-J)`. The derivative is then negative before `d_opt` and positive after it. Strict interior optimality follows.
+
+When the completed endpoint is intrinsically favorable yet blocked from rarity,
+
+```text
+0<F(D)=bD(D-J)<eta,
+```
+
+we have `0<p_C<1/2`. For `m>m_crit`, the strict inequality
+
+```text
+p_escape,m(d_opt)<p_C=p_escape,m(D)
+```
+
+creates a nonempty founding-frequency interval in which an intermediate partially divided variant can grow against an integrated resident but the completely divided variant declines. If `p_escape,m(d_opt)<0`, the observable interval is truncated at zero; a positive interior optimum still exists mathematically. This assertion concerns separate two-type introduction comparisons, not simultaneous competition among partial variants.
+
+For the registered witness `R(d)=d+d^2`, `k=1.5`, and `D=1`, `J=0.5) and therefore
+
+```text
+m_crit=3.
+```
+
+Thus `m=2` gives a monotonically decreasing frontier, `m=3` places the minimum at complete differentiation, and `m=4` creates `d_opt=0.75` and the bounded partial-establishment window derived below.
+
+The threshold itself responds to architecture economics. Writing `x=J/D`,
+
+```text
+m_crit(x)=(2-x)/(1-x),
+d m_crit/dx=1/(1-x)^2>0.
+```
+
+When differentiation needs a larger minimum structural jump to repay its costs, ecological feedback must rise **more steeply** with differentiation to make incomplete division easier to establish than complete division. Under a cost-lowering environment, `J(E)=[k(E)-a]/b` falls, hence `m_crit(E)` also falls. For a fixed `m>2`, an interior optimum emerges once
+
+```text
+k(E)<a+bD[(m-2)/(m-1)].
+```
+
+This is a conditional **environmental change in the most invadable degree of structural division**, even while every fixed partial-release variant benefits from the reduction in architecture cost. The steepness exponent `m` and the quadratic recovery form are explicit assumptions, not universal traits of natural differentiation.
+
 #### Counterexample: more divided can be intrinsically fitter but less invadable
 
 The slice identities and cost-lowering environmental shift do **not** imply that larger structural release always establishes from lower frequency. Consider the same strictly convex witness family
