@@ -514,6 +514,46 @@ def test_partial_division_can_invade_when_complete_division_fails() -> None:
     assert "Delta_w(0.75,0.15)=+0.0103125" in theory
 
 
+def test_feedback_steepness_threshold_for_interior_establishment_optimum() -> None:
+    # R(d)=a*d+b*d*d with J=(k-a)/b, positive eta, w=(d/D)**m.
+    # An interior minimum of required founding frequency exists
+    # iff m > (2*D-J)/(D-J).
+    D = 1.0
+    eta = 0.8
+
+    def critical_power(J: float) -> float:
+        return (2 * D - J) / (D - J)
+
+    def optimum(J: float, m: float) -> float:
+        return (m - 1) * J / (m - 2)
+
+    def frontier(d: float, m: float, J: float) -> float:
+        return 0.5 - (D**m / (2 * eta)) * (d - J) * d**(1 - m)
+
+    J = 0.5
+    assert critical_power(J) == pytest.approx(3.0)
+    assert optimum(J, 3.0) == pytest.approx(1.0)
+    assert optimum(J, 4.0) == pytest.approx(0.75)
+    assert frontier(0.75, 4, J) == pytest.approx(0.12962962962962962)
+    assert frontier(1.0, 4, J) == pytest.approx(0.1875)
+
+    # The threshold steepens as the minimum viable intrinsic jump grows.
+    assert critical_power(0.25) == pytest.approx(7 / 3)
+    assert critical_power(0.75) == pytest.approx(5.0)
+
+    # For m=4, lowering k past 5/3 takes J below 2/3:
+    # the most invadable degree shifts inside the release interval.
+    assert critical_power(0.7) > 4
+    assert critical_power(0.5) < 4
+    assert frontier(0.75, 4, 0.7) > frontier(1.0, 4, 0.7)
+    assert frontier(0.75, 4, 0.5) < frontier(1.0, 4, 0.5)
+
+    theory = THEORY.read_text(encoding="utf-8")
+    assert "Critical ecological steepness for an interior establishment optimum" in theory
+    assert "m_crit(x)=(2-x)/(1-x)" in theory
+    assert "k(E)<a+bD[(m-2)/(m-1)]" in theory
+
+
 def test_viable_partial_division_is_a_bounded_introduction_window() -> None:
     # A positive band of partial releases can be flanked on BOTH sides
     # by negative invasion selection, even with strictly convex recovery.
