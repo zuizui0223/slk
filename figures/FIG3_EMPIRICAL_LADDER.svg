@@ -56,7 +56,7 @@
   <text x="955" y="545" class="t xs">η &gt; 0: p_escape(d)=1/2−(dmax/2η)[R(d)/d−k]</text>
   <text x="955" y="575" class="t xs">d_J: p=1/2 slice; p_C: d=dmax slice</text>
   <text x="955" y="605" class="t xs">proportional feedback: larger d ↔ lower required p</text>
-  <text x="955" y="635" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
+  <text x="955" y="635" class="t xs">η &lt; 0: coexistence requires |Φ| &lt; |η|</text>
   <path d="M980 545 C1080 555, 1160 600, 1230 655" class="arrow"/>
 
   <!-- connecting message -->
@@ -89,6 +89,6 @@
   <text x="840" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&gt;0, ΔR&lt;0</text>
   <text x="1110" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&gt;0, ΔR&gt;0</text>
 
-  <text x="60" y="1082" class="t xs">History: path hysteresis. Ecology: priority effects when η&gt;0; coexistence when η&lt;0.</text>
+  <text x="60" y="1082" class="t xs">Ecology: alternative states if η&gt;0 and |Φ|&lt;η; coexistence if η&lt;0 and |Φ|&lt;|η|.</text>
   <text x="60" y="1108" class="t xs">Endpoint barrier order alone does not prove resident stasis; test accessible partial variants.</text>
 </svg>
