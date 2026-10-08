@@ -961,9 +961,9 @@ dmax[q(d)-k],
 
 which is strictly increasing under strict convexity. The canonical proportional scaling therefore guarantees the monotonic novelty-abundance compensation used below; other admissible scalings retain the two slice identities and environmental erosion but need not preserve monotonic frontier shape.
 
-#### Smooth counterexample: saturating ecological feedback
+#### Counterexample: more divided can be intrinsically fitter but less invadable
 
-A strictly convex recovery function does not by itself ensure monotone structural-demographic compensation. Take the registered witness family
+The slice identities and cost-lowering environmental shift do **not** imply that larger structural release always establishes from lower frequency. Consider the same strictly convex witness family
 
 ```text
 dmax=1,
@@ -972,26 +972,41 @@ k=1.5,
 eta=0.8,
 ```
 
-but replace proportional feedback with a smooth saturating function
+but let ecological coordination strengthen superlinearly with structural differentiation:
 
 ```text
-w(d)
+w(d)=d^4.
+```
+
+This smooth, increasing function preserves `w(0)=0`, `w(1)=1`, and the integrated identity limit. The escape frontier becomes
+
+```text
+p_escape,w(d)
 =
-[1-exp(-10d)]/[1-exp(-10)].
+1/2-(d-0.5)/(1.6 d^3).
 ```
 
-This preserves `w(0)=0`, `w(1)=1`, and positive increasing ecological feedback for every `d>0`. It therefore satisfies both the integrated-identity limit and the original divided endpoint game. Yet the derived frontier gives approximately
+For `d>0.5`, intrinsic value `F(d)=d(d-0.5)` strictly increases, but the frontier attains its **minimum** at `d=0.75`, not at the completely divided endpoint:
 
 ```text
-p_escape,w(0.10)=0.53955
-p_escape,w(0.20)=0.54337
-p_escape,w(0.50)=0.50000
-p_escape,w(1.00)=0.18750.
+d=0.75: F=0.1875, p_escape=0.12962963
+
+d=1.00: F=0.5000, p_escape=0.18750000.
 ```
 
-A release of 0.20 thus requires a *higher*, not lower, founding frequency than a release of 0.10. The two endpoint/slice identities still hold: `d_J=0.5` and `p_C=0.1875`. The nonmonotonic interior is created entirely by how quickly ecological feedback saturates with structural differentiation.
+Indeed, in two separate resident-versus-variant introduction assays at initial frequency `p=0.15`,
 
-Consequently, observing the same `d_J` and `p_C` does **not** identify the interior of the architecture-frequency frontier. The **slice identities and pointwise environmental relaxation are robust**, while the **monotone exchange rate between structural novelty and abundance is conditional on feedback scaling**. A biological analogue would be partner matching or social recognition that responds strongly to a small structural difference and then saturates; that is a mechanistic hypothesis, not an empirical result established here.
+```text
+Delta_w(0.75,0.15)=+0.0103125
+
+Delta_w(1.00,0.15)=-0.0600000.
+```
+
+The partially divided variant increases, whereas the fully divided variant decreases despite its larger intrinsic payoff. Both variants share the original `d_J=0.5` and the same full-endpoint threshold `p_C=0.1875`. The reversal is entirely due to nonlinear ecological feedback that grows disproportionately with the degree of specialization.
+
+This is a **model witness**, not an empirical claim. In nature it could occur if stronger specialization increasingly requires access to matching partners, compatible mates, or sufficiently common complementary roles. It predicts a potentially measurable intermediate degree of differentiation that is *easiest to establish* even when the completed divided form has higher intrinsic value.
+
+The robust results are the two slice identities and downward movement with falling architecture cost. The monotone compensation law is conditional on the feedback scaling, and `d_J` plus `p_C` alone cannot identify the frontier's interior.
 
 ### Structural-demographic compensation
 
