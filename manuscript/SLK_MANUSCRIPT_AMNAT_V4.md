@@ -166,7 +166,7 @@ Continued integration does not imply one evolutionary condition. The same multif
 
 **Historical or developmental trapping.** When `Phi>0` but the local release gradient `g_0=R'(0)-k` is negative, a differentiated endpoint would be fitter if present but sufficiently small changes away from integration are selected against. A new developmental route, recombination, large-effect change, or altered path cost can therefore change the outcome without any change in the endpoint comparison itself.
 
-**Ecological stabilization of integration.** When differentiation is favorable and initially reachable but `Delta_R<0`, a rare differentiated type performs poorly in its ecological background. Competitors, mutualists, enemies, mates, or other frequency-dependent interactions can then maintain integration even though structural separation is intrinsically favorable. Community change can remove or reverse this barrier.
+**Ecological stabilization of integration.** When differentiation is favorable and initially reachable but `Delta_R<0`, a rare differentiated type performs poorly in its ecological background. Ecological interactions can exclude that endpoint, but persistence requires all accessible partial variants to fail invasion. Community change can remove or reverse this barrier.
 
 A fourth state, `Phi>0`, `g_0>0`, and `Delta_R>0`, removes these three early barriers but still does not guarantee fixation or historical realization. The biological distinction is therefore not merely between "specialized" and "unspecialized." An integrated structure can be the favored architecture, a historically trapped architecture, or an architecture stabilized by its ecological context. The same morphology can consequently have different evolutionary meanings in different populations or environments.
 
@@ -206,7 +206,7 @@ These inequalities are not presented as difficult mathematics. Their biological 
 
 ### The same phenotype can change evolutionary meaning before it changes form
 
-The three states need not occupy different species. They can occur along one environmental or geographic gradient while the visible architecture remains integrated.
+These candidate-relative states can occur along one environmental gradient; actual resident persistence also depends on partial variants.
 
 Let an ecological coordinate `E` progressively lower the marginal cost of differentiation. Under convex recovery there is first a point `E_V` where the differentiated endpoint becomes more valuable than integration, and a later point `E_A` where small changes away from integration become selectively uphill. This first ordering is forced by the convex recovery geometry under the shared cost-lowering gradient rather than imposed by labeling the states. If positive frequency dependence is strong enough, a third crossing `E_I` occurs later still, when a rare differentiated type can finally establish:
 
@@ -225,9 +225,9 @@ E > E_I
     the three early barriers are removed
 ```
 
-Before `E_V`, division has no net advantage. Between `E_V` and `E_A`, reorganization is **path limited**: large changes or alternative developmental routes must cross a local valley. Between `E_A` and `E_I`, small intrinsic gains are possible, but complete division remains **establishment limited** at rarity. Beyond `E_I`, rare fully divided types can spread. Environmental change can therefore switch the limiting process from architecture economics to viable novelty and ecological establishment without any visible change in resident morphology.
+Before `E_V`, division has no net advantage. Between `E_V` and `E_A`, reorganization is **path limited**: large changes or alternative developmental routes must cross a local valley. Between `E_A` and `E_I`, small intrinsic gains are possible, but complete division remains **establishment limited** at rarity. Beyond `E_I`, rare fully divided types can spread. Environmental change can reorder these candidate-specific barriers before morphology changes, without guaranteeing resident stasis.
 
-Thus a chain of populations can look morphologically similar while the evolutionary reason for that morphology changes. **Phenotypic stability across geography does not imply stability of the process maintaining the phenotype.**
+Morphologically similar populations can exclude full division for different reasons. **Phenotypic stability does not identify which partial variants could invade.**
 
 Ecology also determines whether a distinct ecologically stabilized phase exists at all. The general criterion is simple: evaluate rare-type performance at the point where the local historical/developmental barrier disappears. If
 
@@ -245,11 +245,11 @@ B_A = Phi(E_A).
 
 Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that lowers marginal architecture cost, `B_A=dmax(k_global-k_local)`. Thus the earlier condition identifies a distinct **endpoint rare-establishment barrier** after intrinsic accessibility has been gained; the evolutionary accessibility of rare intermediates additionally depends on their ecological context.
 
-**Rare-path qualification.** The reference `g_0` omits rarity feedback. For `Delta_w=R(d)-kd+eta w(d)(2p-1)`, the actual local gradient is `g_0-eta w'(0+)` at rarity. When `eta>B_A`, rare partial division becomes invasible before complete division precisely if `w'(0+)<(1-B_A/eta)/dmax`; the order reverses above this threshold and coincides at equality. **Partner dependence at the onset of specialization**, not only its eventual strength, changes which degree of division first spreads. Neither order proves a realized trajectory. Identical comparisons against integration can permit partial-division resistance to rare mutants, frequency-triggered escape, or onward specialization, depending on interactions among divided forms.
+**Rare-path qualification.** The reference `g_0` omits rarity feedback. For `Delta_w=R(d)-kd+eta w(d)(2p-1)`, the actual local gradient is `g_0-eta w'(0+)` at rarity. When `eta>B_A`, rare partial division becomes invasible before complete division precisely if `w'(0+)<(1-B_A/eta)/dmax`; the order reverses above this threshold and coincides at equality. **Partner dependence at the onset of specialization** changes which degree first spreads. Under proportional feedback with convex recovery, endpoint exclusion excludes all rare partial variants; with superlinear feedback, tiny partial variants may invade despite endpoint exclusion. Thus **endpoint exclusion does not certify persistence of integration** when partial variants are accessible. Neither ordering proves a realized trajectory. Identical comparisons against integration can permit partial-division resistance to rare mutants, frequency-triggered escape, or onward specialization, depending on interactions among divided forms.
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
-**Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes.** Convex recovery makes global profitability cross before local accessibility and permits architecture-path hysteresis. Under positive frequency feedback, structural release `d` and initial frequency `p` lie on one escape frontier, with `d_J` and `p_C` as orthogonal slices; lowering architecture cost shifts this frontier toward easier reorganization. Negative frequency dependence instead produces rare-form advantage and coexistence. An ecology-only stabilization phase exists only when rare-type disadvantage remains after the historical barrier has disappeared.
+**Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes.** Convex recovery makes global profitability cross before local accessibility and permits architecture-path hysteresis. Under positive frequency feedback, structural release `d` and initial frequency `p` lie on one escape frontier, with `d_J` and `p_C` as orthogonal slices; lowering architecture cost shifts this frontier toward easier reorganization. Negative frequency dependence instead produces rare-form advantage and coexistence. An endpoint ecology-only interval need not imply stable integration if accessible partial variants invade.
 
 ### Persistence can become easier to overturn before morphology changes
 
