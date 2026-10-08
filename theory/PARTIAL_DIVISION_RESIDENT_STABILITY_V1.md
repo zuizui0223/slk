@@ -153,13 +153,13 @@ This is a theory-only **conditional counterexample / model comparison**. It does
 
 ## Relation to established evolutionary theory
 
-This is **not** a claim to have discovered ESS, convergence stability, adaptive dynamics, multistability, evolutionary hysteresis, or mixed generalist-specialist organization. Established theory explicitly distinguishes evolutionary uninvadability from convergence stability (Waxman and Gavrilets 2005/2007 review), and models of division of labour already predict extreme specialization, stable generalist/specialist group configurations, and contingent multistability under partner acquisition (Cooper & West 2018; Uchiumi & Sasaki 2020). The specific contribution of this comparison is a **matched-assay counterexample**: every integration-versus-candidate frequency curve can be held fixed while the later evolutionary fate of an established partial architecture changes.
+This is **not** a claim to have discovered ESS, convergence stability, adaptive dynamics, multistability, evolutionary hysteresis, or mixed generalist-specialist organization. Established theory explicitly distinguishes evolutionary uninvadability from convergence stability (Waxman and Gavrilets 2005), and models of division of labour already predict extreme specialization, stable generalist/specialist group configurations, and contingent multistability under partner acquisition (Cooper & West 2018; Uchiumi & Sasaki 2020). The specific contribution of this comparison is a **matched-assay counterexample**: every integration-versus-candidate frequency curve can be held fixed while the later evolutionary fate of an established partial architecture changes.
 
-- Waxman D, Gavrilets S. 2005. 20 questions on adaptive dynamics. *Journal of Evolutionary Biology* 18:1139–1154. (Background on what invasion fitness can and cannot determine.)
-- Abrams PA. 2005. 'Adaptive dynamics' vs. 'adaptive dynamics'. *Journal of Evolutionary Biology* 18:1162–1165. (Scope of evolutionary path interpretation.)
+- Waxman D, Gavrilets S. 2005. 20 questions on adaptive dynamics. *Journal of Evolutionary Biology* 18:1139–1154. https://doi.org/10.1111/j.1420-9101.2005.00948.x (Background on what invasion fitness can and cannot determine.)
+- Abrams PA. 2005. 'Adaptive dynamics' vs. 'adaptive dynamics'. *Journal of Evolutionary Biology* 18:1162–1165. https://doi.org/10.1111/j.1420-9101.2004.00843.x (Scope of evolutionary path interpretation.)
 - Cooper GA, West SA. 2018. Division of labour and the evolution of extreme specialization. *Nature Ecology & Evolution* 2:1161–1167. https://doi.org/10.1038/s41559-018-0564-9
 - Uchiumi Y, Sasaki A. 2020. Evolution of division of labour in mutualistic symbiosis. *Proceedings of the Royal Society B* 287:20200669. https://doi.org/10.1098/rspb.2020.0669
-- Carlson SM, Akçay E, Morsky B. 2023. The evolution of partner specificity in mutualisms. *Evolution* 77:881–? (For matched-partner bistability; check complete bibliographic metadata before use in a submitted bibliography.)
+- Carlson C, Akçay E, Morsky B. 2023. The evolution of partner specificity in mutualisms. *Evolution* 77:881–892. https://doi.org/10.1093/evolut/qpac056 (For matched-partner bistability.)
 
 ## Minimal discriminating biological test
 
