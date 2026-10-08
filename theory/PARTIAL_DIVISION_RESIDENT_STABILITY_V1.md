@@ -207,11 +207,25 @@ This is a theory-only **conditional counterexample / model comparison**. It does
 
 This is **not** a claim to have discovered ESS, convergence stability, adaptive dynamics, multistability, evolutionary hysteresis, or mixed generalist-specialist organization. Established theory explicitly distinguishes evolutionary uninvadability from convergence stability (Waxman and Gavrilets 2005), and models of division of labour already predict extreme specialization, stable generalist/specialist group configurations, and contingent multistability under partner acquisition (Cooper & West 2018; Uchiumi & Sasaki 2020). The specific contribution of this comparison is a **matched-assay counterexample**: every integration-versus-candidate frequency curve can be held fixed while the later evolutionary fate of an established partial architecture changes.
 
+Three more directly relevant precedents narrow the scope of any claimed conceptual advance:
+
+- Wahl (2002) explicitly modeled evolving mixtures of generalists and specialists, stable task allocation, and a continuous division-of-labour extension. Therefore **stable incomplete division of labour is established prior art**, not a new biological prediction in isolation.
+- D'Orazio & Waite (2008) showed that error-prone, inefficient generalists can stably coexist with specialists under incomplete division of labour. Thus the persistence of multifunctional participants among specialized ones is also prior art; a *monomorphic resident's intermediate trait degree* is not automatically equivalent to such within-group polymorphic organization.
+- Komarova, Urwin & Wodarz (2012) showed theoretically that cooperative division of labour and cheating can speed the emergence of complex fully mutated phenotypes across a fitness valley. Thus calling **partial division a stepping stone** is not a first-discovery claim. Their mechanism is product sharing and cheating in spatial/aerial asexual populations, not the present invariant `S`–`d` payoff-comparison construction.
+- Ribeck & Lenski (2015) emphasized that accurate frequency-dependent fitness measurement must account for changes during competition, and analyzed the form of frequency dependence in microbial cross-feeding. Thus the claim that *the shape of frequency dependence matters* is also prior art.
+
+**Remaining narrow result:** for two explicit multi-architecture payoff extensions, all binary integrated-resident comparisons (including full frequency-response curves for every partial degree) are identical while selective consequences for partial residents differ. The exact (7/79) founder threshold and the smooth-mismatch relay threshold are transparent **model witnesses**, not generally valid new natural laws.
+
 - Waxman D, Gavrilets S. 2005. 20 questions on adaptive dynamics. *Journal of Evolutionary Biology* 18:1139–1154. https://doi.org/10.1111/j.1420-9101.2005.00948.x (Background on what invasion fitness can and cannot determine.)
 - Abrams PA. 2005. 'Adaptive dynamics' vs. 'adaptive dynamics'. *Journal of Evolutionary Biology* 18:1162–1165. https://doi.org/10.1111/j.1420-9101.2004.00843.x (Scope of evolutionary path interpretation.)
 - Cooper GA, West SA. 2018. Division of labour and the evolution of extreme specialization. *Nature Ecology & Evolution* 2:1161–1167. https://doi.org/10.1038/s41559-018-0564-9
 - Uchiumi Y, Sasaki A. 2020. Evolution of division of labour in mutualistic symbiosis. *Proceedings of the Royal Society B* 287:20200669. https://doi.org/10.1098/rspb.2020.0669
 - Carlson C, Akçay E, Morsky B. 2023. The evolution of partner specificity in mutualisms. *Evolution* 77:881–892. https://doi.org/10.1093/evolut/qpac056 (For matched-partner bistability.)
+
+- Wahl LM. 2002. Evolving the division of labour: generalists, specialists and task allocation. *Journal of Theoretical Biology* 219:371–388. https://doi.org/10.1006/jtbi.2002.3133
+- D'Orazio AE, Waite TA. 2008. Incomplete division of labor: error-prone multitaskers coexist with specialists. *Journal of Theoretical Biology* 250:449–460. https://doi.org/10.1016/j.jtbi.2007.09.040
+- Komarova NL, Urwin E, Wodarz D. 2012. Accelerated crossing of fitness valleys through division of labor and cheating in asexual populations. *Scientific Reports* 2:917. https://doi.org/10.1038/srep00917
+- Ribeck N, Lenski RE. 2015. Modeling and quantifying frequency-dependent fitness in microbial populations with cross-feeding interactions. *Evolution* 69:1313–1320. https://doi.org/10.1111/evo.12645
 
 ## Minimal discriminating biological test
 
