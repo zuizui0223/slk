@@ -107,12 +107,63 @@ def test_directional_resident_interaction_allows_small_step_continuation() -> No
             assert rare_invasion(resident - 1e-5, resident, 3.0) < 0
 
 
+
+def smooth_mismatch(u: float, v: float, exponent: float) -> float:
+    left = dependence(u)
+    right = dependence(v)
+    if isclose(left + right, 0.0, abs_tol=0.0):
+        return 0.0
+    return abs(left - right) ** exponent / (left + right) ** (exponent - 1.0)
+
+
+def smooth_payoff(u: float, v: float, exponent: float) -> float:
+    return intrinsic(u) - ETA * smooth_mismatch(u, v, exponent)
+
+
+def smooth_invasion(u: float, resident: float, exponent: float) -> float:
+    return smooth_payoff(u, resident, exponent) - smooth_payoff(
+        resident, resident, exponent
+    )
+
+
+@pytest.mark.parametrize("exponent", [1.0, 1.5, 2.0, 4.0])
+def test_symmetric_mismatch_models_preserve_all_s_vs_d_assays(
+    exponent: float,
+) -> None:
+    for d in (0.01, D_STAR, 0.25, 0.5, 1.0):
+        assert isclose(smooth_mismatch(d, 0.0, exponent), dependence(d))
+        assert isclose(smooth_mismatch(d, d, exponent), 0.0)
+        for p in (0.0, 0.1, 0.5, 0.9, 1.0):
+            test_w_d = p * smooth_payoff(d, d, exponent) + (1-p) * smooth_payoff(d, 0.0, exponent)
+            test_w_s = p * smooth_payoff(0.0, d, exponent) + (1-p) * smooth_payoff(0.0, 0.0, exponent)
+            expected = intrinsic(d) + ETA * dependence(d) * (2*p-1)
+            assert isclose(test_w_d - test_w_s, expected, abs_tol=1e-12)
+
+
+def test_smooth_symmetric_mismatch_allows_continued_small_step_specialization() -> None:
+    step = 1e-6
+    for resident in (0.001, 0.01, 0.05, D_STAR, 0.2, 0.5, 0.9, 0.99):
+        assert smooth_invasion(resident + step, resident, 2.0) > 0
+        assert smooth_invasion(resident - step, resident, 2.0) < 0
+        observed_gradient = smooth_invasion(resident + step, resident, 2.0) / step
+        assert isclose(observed_gradient, 0.25 + 2.0 * resident, abs_tol=0.001)
+
+
+def test_cusp_and_smooth_payoffs_disagree_after_partial_becomes_resident() -> None:
+    assert smooth_invasion(D_STAR, 0.0, 2.0) > 0
+    assert smooth_invasion(1.0, 0.0, 2.0) < 0
+    assert smooth_invasion(D_STAR + 1e-5, D_STAR, 1.0) < 0
+    assert smooth_invasion(D_STAR + 1e-5, D_STAR, 2.0) > 0
+    assert smooth_invasion(1.0, D_STAR, 2.0) < 0
+
 def test_theory_documents_explicit_conditional_scope() -> None:
     source = (
         ROOT / "theory" / "PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md"
     ).read_text(encoding="utf-8")
     for term in (
         "A_0(u,v)",
+        "M_q(d,0)=w(d)",
+        "q=2",
         "I_lambda(1|d_*)",
         "lambda=21/10=2.1",
         "not stability conclusions",
