@@ -94,6 +94,57 @@ The focal prediction is not merely that clumping helps invasion. It is that (a) 
 
 **Data needed:** local census and spatial arrangement, observed interaction matrix/partner identities, density/resources, complete-cycle growth of D relative to the relevant resident. A density-only treatment (as in existing *Pedicularis rex* observations) does **not** identify this D–P encounter mechanism. Nor does a D-in-S experiment identify invasion against an already established P.
 
+## Biological polarity test: matching versus complementarity
+
+**Not all divisions of labour benefit from like-with-like assortment.** The homogeneous-mismatch model above represents an ecology in which encounters with a different architecture carry a cost relative to same-architecture encounters. That assumption is meaningful in some matched-partner coordination or architecture-compatibility settings. It does **not** automatically represent microbial division of labour between complementary roles. For microbes producing different extracellular products, benefits may depend on contact, overlap or effective exchange with **unlike** specialists.
+
+A deliberately opposed interaction game isolates this sign change without changing the encounter matrix. For two complementary role types `u` and `v`, let both gain the same benefit `b>0` from an encounter with the *other* role, instead of paying a cross-architecture mismatch penalty. With intrinsic role-fitness difference `A=F(u)-F(v)`,
+
+```text
+W_u=F(u)+b (1-r)(1-p),
+W_v=F(v)+b (1-r)p,
+Delta_complement(u,p|v,r)=A+b(1-r)(1-2p).
+```
+
+Compare it with the earlier mismatch/compatibility game, `Delta_match=A+B(1-r)(2p-1)`. For `p<1/2`,
+
+```text
+partial Delta_match/partial r=+B(1-2p)>0,
+partial Delta_complement/partial r=-b(1-2p)<0.
+```
+
+Thus **exactly the same increase in assortative encounters can promote invasion under partner-matching costs but suppress it when the new specialist instead needs complementary partners**. Both models cross at `p=1/2` in the *relative-selection effect* of changing r, but the direction of crossing reverses. This sign reversal is a direct and unsurprising consequence of the payoff premises, not a universal or first-discovery theorem.
+
+A simple illustrative cross-role witness takes `A=-1/4`, `b=1`. Then at `p=0.1`, `Delta_complement=0.55` for random encounters (`r=0`), yet `Delta_complement=-0.09` at `r=0.8`. The rare-role invasion condition `A+b(1-r)>0` requires `r<3/4`. For `r<3/4`, the negative-frequency game has an internal stable fraction
+
+```text
+p_star(r)=1/2+A/[2b(1-r)]
+         =1/2-1/[8(1-r)].
+```
+
+At `r=0`, `p_star=0.375`. At `r=0.5`, `p_star=0.25`. At `r>=0.75`, the rare complementary role does not increase. This **complementarity** calculation is about two role types *within a divided collective*, not invasion of a complete divided organization into an integrated resident; do not promote its `p_star` to the original SLK `p_escape` estimand.
+
+### Actual natural-history evidence constrains which polarity is plausible
+
+- **Complementary spatial organization — directly observed:** Kim, Levy & Foster (2016, *Nature Communications* 7:10508, DOI 10.1038/ncomms10508) showed that `Pseudomonas fluorescens` M and D morphotypes spatially differentiate, but D spreads across a thin M layer. Introducing M, not D or a non-mucoid control, at the advancing front sustains spreading. Crucially, the two types are reciprocally favored when rare and converge toward an approximately 10:90 composition. This directly supports spatially structured **cross-role dependence**, not an `r`-dependent positive-frequency barrier for a divided architecture.
+- **Role exchange across biofilms — experimentally supported:** Dragoš et al. (2018, *Current Biology* 28:1903–1913.e5, DOI 10.1016/j.cub.2018.04.046) showed that *Bacillus subtilis* EPS/TasA genetic specialists complement each other and are stabilized by negative frequency dependence, including on plant roots. Related work summarized by Kalamara et al. (2018, *Microbiology* 164:1455–1472) reports that EPS nonproducers benefit when spatially mixed with EPS-producing neighbors but lose that competitive advantage when spatially segregated. This supports the importance of **heterotypic access to public goods**, not an assumption that more same-role clustering always helps.
+- **Within-flower structural division — different spatial scale:** Vallejo-Marín et al. (2009, *Journal of Evolutionary Biology* 22:828–839, DOI 10.1111/j.1420-9101.2009.01693.x) demonstrated preferential handling of feeding anthers and disproportionate export from pollinating anthers in *Solanum rostratum*. This is primarily division of functions **within a flower**, so spatial assortment among whole plants is not automatically the proximate ecological variable. Its environmental dependence may instead involve pollinator handling and pollen transfer. Mora-Carrera et al. (2019, *Annals of Botany* 123:205–216) tested an adjacent **individual-level** monomorphic/dimorphic style-orientation system and found a density-dependent benefit of dimorphism; that experiment does not isolate the contact-assortment parameter r.
+- **Resident-density effects only:** The documented *Pedicularis rex* density-related seed-predation effects cannot identify which specialist contact polarity operates, because neither alternative architecture nor heterotypic encounters were experimentally introduced.
+
+These examples make a substantive ecological point: a photograph showing *segregated patches* cannot by itself determine the sign of selection for division of labour. **Effective encounter topology**, including thin layered interfaces, accessibility of shared extracellular goods, pollinator transfer, and cross-role dependence, must be interpreted at the functional unit of division.
+
+### Appropriate empirical role of each biological system
+
+| System | Unit of division | Existing observation | Inference permitted for SLK |
+|---|---|---|---|
+| *P. fluorescens* M+D | collective genotypes | layering, cross-role spreading, negative frequency dependence | direct anchor for complementary spatial self-organization; **not** the matching-cost S→D threshold |
+| *B. subtilis* EPS/TasA | collective genotypes | reciprocal public-good specialization and root/biofilm coexistence | direct anchor for complementarity, not full S→D invasion |
+| *S. rostratum* heteranthery | anthers within flower | role-specific pollen handling/export | direct conflict-resolution natural history; plant-scale assortativity is unmeasured |
+| *S. rostratum* enantiostyly | flowers across individuals | environment- and density-dependent architecture benefit | adjacent organismal example of context-dependent value; no direct estimate of r |
+| *P. rex* | integrated plant reproductive architecture | pollinator/seed-predator conflict and resident-density mosaic | selection mosaic only; neither alternative-architecture invasion nor partner topology identified |
+
+The core SLK manuscript should use these as **different ecological resolutions and boundary cases**, not collapse them into one universal specialization/assortment parameter. The supplementary spatial theorem is applicable only after specifying what a 'matching partner' means biologically.
+
 ## Strong boundary on what can be inferred
 
 - The pairwise formula does not establish spatial population growth, invasion-wave speed, fixation probability, coexistence, mutation supply, or long-run evolutionary transition.
