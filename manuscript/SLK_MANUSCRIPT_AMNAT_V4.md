@@ -63,6 +63,8 @@ A broader phylogenetic comparison shows that even the evolutionary meaning of th
 
 The temporal solution itself varies with pollinator ecology. Across *Penstemon* and *Keckiella*, transitions between hymenopteran and hummingbird pollination are associated with predictable changes in pollen presentation. After accounting for phylogeny, bee-adapted species dispense pollen more gradually, whereas hummingbird-adapted relatives present it more simultaneously; a species pair that appeared exceptional achieved comparable dosing through the timing of anther maturation (Castellanos et al. 2006). The relevant evolutionary outcome therefore depends not only on the plant's internal functional conflict but also on how efficiently its ecological partner removes, grooms, and delivers pollen.
 
+Visitor identity can uncouple anther dimorphism from pollen partitioning. In *Senna arnottiana*, introduced *Bombus terrestris* handled both anther types indiscriminately and contacted stigmas less often than native large bees (Rego et al. 2024). In Okinawan *Bredia hirsuta*, stamen-removal experiments showed that differentiated stamens also support bee posture during buzzing (Fukano and Denda 2026). Whether such additional functions preserve dimorphism after its pollen-partitioning benefit weakens remains an untested evolutionary hypothesis.
+
 The same ecological principle appears at the level of variation within a species. In *Pedicularis rex*, greater corolla exsertion increases pollen receipt but also seed predation. Pollinator-mediated effects were comparatively consistent across the 14 populations studied, whereas seed-predator effects formed a geographic mosaic (Sun, Armbruster, and Huang 2016). In an independent bract-manipulation study, background seed predation ranged from 1.36% to 27.42% across six field populations; draining the water-filled bracts increased seed predation without changing legitimate pollinator visitation (Sun and Huang 2015). In a separate two-year study, sparse patches experienced stronger predispersal seed predation and lower realized fecundity, producing a predator-driven component Allee effect (Xia, Sun, and Liu 2013). The same integrated floral architecture can therefore experience markedly different balances of mutualism and antagonism across geography and population context without first changing its gross morphology.
 
 ### Rare forms can be helped or blocked by ecological interactions
@@ -379,6 +381,8 @@ Evans, K. M., and R. Felice. 2026. Integration and modularity and their role in 
 
 Farina, S. C., E. A. Kane, and L. P. Hernandez. 2019. Multifunctional structures and multistructural functions: integration in the evolution of biomechanical systems. *Integrative and Comparative Biology* 59:338–345.
 
+Fukano, T., and T. Denda. 2026. Consistent buzz-pollination posture suggests division of labour between dimorphic stamens in *Bredia hirsuta* (Melastomataceae) on Okinawa-Jima Island, Japan. *Plant Species Biology* 41:e70070. doi:10.1111/1442-1984.70070.
+
 Gigord, L. D. B., M. R. Macnair, and A. Smithson. 2001. Negative frequency-dependent selection maintains a dramatic flower color polymorphism in the rewardless orchid *Dactylorhiza sambucina*. *Proceedings of the National Academy of Sciences USA* 98:6253–6255.
 
 Guillaume, F., and S. P. Otto. 2012. Gene functional trade-offs and the evolution of pleiotropy. *Genetics* 192:1389–1409.
@@ -396,6 +400,8 @@ Kim, W., S. B. Levy, and K. R. Foster. 2016. Rapid radiation in bacteria leads t
 Masel, J., and M. V. Trotter. 2010. Robustness and evolvability. *Trends in Genetics* 26:406–414.
 
 Mridha, S., and R. Kümmerli. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium *Pseudomonas aeruginosa*. *Journal of Evolutionary Biology* 35:719–730.
+
+Rego, J. O., V. H. Monzón, and J. N. Mesquita-Neto. 2024. The invasive bumblebee *Bombus terrestris* disrupts the adaptive function of heteranthery by indiscriminately visiting the pollinating and feeding anthers of *Senna arnottiana* flowers. *Plant Biology* 26:821–831. doi:10.1111/plb.13673.
 
 Rueffler, C., T. J. M. Van Dooren, and J. A. J. Metz. 2004. Adaptive walks on changing landscapes: Levins' approach extended. *Theoretical Population Biology* 65:165–178.
 
