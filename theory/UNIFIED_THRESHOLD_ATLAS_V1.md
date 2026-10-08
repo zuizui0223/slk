@@ -961,6 +961,35 @@ dmax[q(d)-k],
 
 which is strictly increasing under strict convexity. The canonical proportional scaling therefore guarantees the monotonic novelty-abundance compensation used below; other admissible scalings retain the two slice identities and environmental erosion but need not preserve monotonic frontier shape.
 
+For `F(d;k)>0` and differentiable positive `w(d)`, define elasticities
+
+```text
+epsilon_F(d)
+=
+d F'(d;k)/F(d;k),
+
+epsilon_w(d)
+=
+d w'(d)/w(d).
+```
+
+Then
+
+```text
+partial p_escape,w / partial d
+=
+[F(d;k)/(2eta w(d)d)]
+[epsilon_w(d)-epsilon_F(d)].
+```
+
+Therefore the required starting frequency **increases with further specialization**, despite positive and rising intrinsic value, precisely when
+
+```text
+epsilon_w(d)>epsilon_F(d).
+```
+
+This is an ecological mechanism criterion: the coordination or partner-dependence penalty intensifies with differentiation faster than the intrinsic benefit of structural release. If the inequality is reversed, increased structural release lowers the establishment threshold. It is a prediction about separate two-type introductions, not a mixed-variant dynamical path.
+
 #### Counterexample: more divided can be intrinsically fitter but less invadable
 
 The slice identities and cost-lowering environmental shift do **not** imply that larger structural release always establishes from lower frequency. Consider the same strictly convex witness family
@@ -986,7 +1015,7 @@ p_escape,w(d)
 1/2-(d-0.5)/(1.6 d^3).
 ```
 
-For `d>0.5`, intrinsic value `F(d)=d(d-0.5)` strictly increases, but the frontier attains its **minimum** at `d=0.75`, not at the completely divided endpoint:
+For `d>0.5`, intrinsic value `F(d)=d(d-0.5)` strictly increases. Here `epsilon_w=4` and `epsilon_F=(2d-0.5)/(d-0.5)` become equal at `d=0.75`; above that point ecological feedback has the greater elasticity. The frontier therefore attains its **minimum** at `d=0.75`, not at the completely divided endpoint:
 
 ```text
 d=0.75: F=0.1875, p_escape=0.12962963
