@@ -1,0 +1,118 @@
+# SLK — partial division after establishment: evolutionary arrest is not identified by invasion from integration
+
+## Biological question
+
+A partially divided architecture can increase when rare against an integrated resident, even while the completely divided architecture declines. Does that partial form then stop evolution toward complete division, or can specialization continue once partial forms become common?
+
+**Result:** both histories are compatible with exactly the same frequency response for every pair `{integrated S, divided variant d}`. Fitness against an integrated resident identifies establishment, not the evolutionary fate of partial division after it has replaced integration. The distinction depends on interactions between *two nonzero degrees of differentiation*.
+
+## Starting point: the existing and tested SLK family
+
+Let `d in [0,1]` denote structural division and `S=0`. With the existing rare-path witness at `E=2.25`,
+
+```text
+F(d) = 0.25 d + d^2,
+w(d) = 0.1 d + 0.9 d^2,
+eta = 1.5,
+Delta(d,p | S) = F(d) + eta w(d)(2p-1).
+```
+
+Here `p` is the frequency of variant `d` in a two-type population of `S` and `d`. The rare-invasion payoff is
+
+```text
+H(d)=Delta(d,0 | S)=F(d)-eta w(d)
+    =0.1d-0.35d^2.
+```
+
+Thus `d in (0,2/7)` invades integration, `d=1` fails (`H(1)=-1/4`), and `d_*=1/7` maximizes rare invasion from S (`H(d_*)=1/140>0`). These are **invasion statements**, not stability conclusions.
+
+## A consistent multi-architecture interaction model
+
+Assign each focal architecture `u` an intrinsic fitness `F(u)` and a symmetric mismatch cost whenever it encounters an architecture `v` with a different degree of dependence `w(v)`:
+
+```text
+A_0(u,v)=F(u)-eta |w(u)-w(v)|.
+```
+
+This is one **extra ecological assumption**, not something identified by the original two-type selection difference. In a population of S and d, the frequency-weighted payoffs are
+
+```text
+W_d(p)=F(d)-eta (1-p)w(d),
+W_S(p)=-eta p w(d),
+W_d(p)-W_S(p)=F(d)+eta w(d)(2p-1).
+```
+
+So this extension exactly recovers all existing S-versus-d selection curves, not merely the rare endpoint. The invasion fitness of a rare mutant `u` against a monomorphic resident `v` is now
+
+```text
+I_0(u|v)=A_0(u,v)-A_0(v,v)
+        =F(u)-F(v)-eta |w(u)-w(v)|.
+```
+
+If `u>v` and `w` increases, `I_0(u|v)=H(u)-H(v)`, where `H=F-eta w`. If `u<v`, `I_0(u|v)=J(u)-J(v)`, where `J=F+eta w`.
+
+In the witness, `J(d)=0.4d+2.35d^2` is strictly increasing, while `H(d)=0.1d-0.35d^2` has a strict maximum at `d_*=1/7`. Consequently:
+
+- For every resident `v in [1/7,1]`, all `u<v` have `I_0(u|v)<0` (since J increases), and all `u>v` have `I_0(u|v)<0` (since H decreases after 1/7).
+- Thus **every** monomorphic resident degree `v in [1/7,1]` is strictly uninvadable by a single rare, different degree under this specific symmetric mismatch model.
+- Among very small positive variants introduced into S, larger degrees are favored until `d_*=1/7`. Under successive sufficiently small successful substitutions from S, `d_*` is a possible evolutionary arrest point; it is **not a unique global optimum**. Large introductions and different histories can settle at other resistant degrees, including full division.
+- In the S–`d_*` two-type competition, `Delta(d_*,0|S)>0` and its slope in p is positive, so after successful initial invasion it is favored at every frequency and can replace S. This still does not prove it is universally evolutionarily or ecologically stable under other interaction models.
+
+The result is a local and global **single-rare-mutant invasion** conclusion, not a theorem about polymorphic coalitions, fluctuating environments, finite-population fixation, or mutation supply.
+
+## A counterexample with exactly the same S-versus-d evidence
+
+Add a directional effect of encounters between two already differentiated forms:
+
+```text
+A_lambda(u,v)=F(u)-eta |w(u)-w(v)|+lambda u v (u-v).
+```
+
+For `u=0` or `v=0`, the added term vanishes; it also vanishes in monomorphic populations (`u=v`). Therefore **all** S-versus-d pairwise comparisons at **all frequencies** are exactly identical for every `lambda`, and resident baseline fitness is still `F(v)`.
+
+But for `u,v>0` the rare-mutant difference becomes
+
+```text
+I_lambda(u|v)
+  =F(u)-F(v)-eta |w(u)-w(v)|+lambda u v (u-v).
+```
+
+At the same `d_*=1/7`, the completely divided mutant's invasion fitness is
+
+```text
+I_lambda(1|d_*)
+=H(1)-H(d_*)+lambda d_*(1-d_*)
+=-9/35+(6/49)lambda.
+```
+
+This crosses zero at `lambda=21/10=2.1`. Thus `lambda=0` makes `d_*` strictly resistant, but `lambda=3` makes `d=1` invade `d_*` from rarity, even though `d=1` still **cannot** invade S from rarity.
+
+More strongly, for `lambda=3` every resident `v in [0,1)` can be invaded by a sufficiently close larger `u=v+epsilon`, since the one-sided upward invasion gradient is
+
+```text
+lim_{epsilon->0+} I_3(v+epsilon|v)/epsilon
+  =H'(v)+3v^2
+  =0.1-0.7v+3v^2
+ >=0.1-0.49/12 > 0.
+```
+
+Lower-degree rare mutants cannot invade such a resident because `J` is increasing and the added term is negative when `u<v`. Thus the same initial partial-only invasion observation admits a model where a chain of increasingly specialized, nearby invaders can reach full division, rather than stop at a partially divided state.
+
+The `lambda u v(u-v)` interaction is an illustrative asymmetry favoring the more differentiated competitor in encounters between already-differentiated architectures. It is **not** asserted to be a universal ecological mechanism or measured effect.
+
+## What is actually learned
+
+The positive finding is about biological process and limits of inference:
+
+1. Partial differentiation can be a self-maintaining architecture under partner-mismatch costs; completion need not follow initial invasion.
+2. The identical S-versus-d invasion and frequency data can also permit onward evolution to full specialization.
+3. To distinguish arrest from onward specialization, experiments must compare the fitness of a higher-degree newcomer against an **established partial resident**, not only against the original integrated type.
+4. The intermediate-resident interaction is a biological cause, not simply another way to classify the original endpoint threshold.
+
+This is a theory-only **conditional counterexample / model comparison**. It does not establish that one of these outcomes occurs in plants, microbial consortia, or animals, nor does it prove population-level long-run convergence. It is not a novelty claim about evolutionary stability, adaptive dynamics, coordination games, or priority effects; those theoretical elements are prior art.
+
+## Minimal discriminating biological test
+
+At the same environment and background community, compare established nearly monomorphic resident types `S`, `d_*`, and `d=1`. Introduce rare `d_*` into S, rare full D into S, and crucially rare full D into `d_*`. Both models predict the first two outcomes (partial grows; full declines). They differ on the third: symmetric mismatch cost excludes full D from a resident `d_*`, whereas `lambda=3` permits it. Measure **relative lifetime or complete-cycle growth**, not merely visitor frequency or a single-stage fitness component.
+
+This three-resident comparison distinguishes the two explicit models but is not sufficient to identify all possible multi-architecture ecological interactions.
