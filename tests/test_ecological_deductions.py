@@ -64,7 +64,7 @@ def test_persistent_multifunctionality_three_selective_states_are_registered() -
     assert "Three evolutionary bottlenecks behind one persistent phenotype" in manuscript
     assert "Adaptive integration." in manuscript
     assert "Historical or developmental trapping." in manuscript
-    assert "Ecological stabilization of integration." in manuscript
+    assert "Ecological exclusion of completed division." in manuscript
     assert "Phi > 0 and g0 < 0" in manuscript
     assert "Phi > 0, g0 > 0, Delta_R < 0" in manuscript
     assert "does not guarantee fixation or historical realization" in manuscript
@@ -208,7 +208,8 @@ def test_environment_changes_the_evolutionary_bottleneck() -> None:
     manuscript = MANUSCRIPT.read_text(encoding="utf-8")
     assert "path limited" in manuscript
     assert "establishment limited" in manuscript
-    assert "switch the limiting process from architecture economics" in manuscript
+    assert "reorder these candidate-specific barriers before morphology changes" in manuscript
+    assert "endpoint exclusion does not certify persistence of integration" in manuscript
 
 
 def test_hidden_bottleneck_turnover_is_the_reader_facing_spine() -> None:
