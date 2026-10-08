@@ -21,6 +21,7 @@ FILES = {
     "theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md": "theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md",
     "theory/ASSORTMENT_PARTIAL_FOUNDER_V1.md": "theory/ASSORTMENT_PARTIAL_FOUNDER_V1.md",
     "theory/STOCHASTIC_PARTNER_ASSEMBLY_V1.md": "theory/STOCHASTIC_PARTNER_ASSEMBLY_V1.md",
+    "theory/ENDPOINT_EXCLUSION_VS_PERSISTENCE_V1.md": "theory/ENDPOINT_EXCLUSION_VS_PERSISTENCE_V1.md",
     "theory/NON_EQUIVALENCE_THEOREM_V1.md": "theory/NON_EQUIVALENCE_THEOREM_V1.md",
     "docs/INV1_EXECUTABLE_VALIDATION_V1.md": "docs/INV1_EXECUTABLE_VALIDATION_V1.md",
     "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md": "docs/EMPIRICAL_BRIDGE_EVIDENCE_V1.md",
@@ -34,6 +35,7 @@ FILES = {
     "tests/test_partial_division_resident_stability.py": "tests/test_partial_division_resident_stability.py",
     "tests/test_assortment_partial_founder.py": "tests/test_assortment_partial_founder.py",
     "tests/test_stochastic_partner_assembly.py": "tests/test_stochastic_partner_assembly.py",
+    "tests/test_endpoint_exclusion_vs_persistence.py": "tests/test_endpoint_exclusion_vs_persistence.py",
     "pytest.ini": "pytest.ini",
 }
 
@@ -61,7 +63,7 @@ From the root of this extracted package, run:
 
 ```bash
 python scripts/verify_amnat_claims.py --output CLAIM_VERIFICATION_RECEIPT.json
-python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py tests/test_stochastic_partner_assembly.py
+python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py tests/test_stochastic_partner_assembly.py tests/test_endpoint_exclusion_vs_persistence.py
 ```
 
 A successful run writes a JSON receipt with `all_checks_pass: true`.
