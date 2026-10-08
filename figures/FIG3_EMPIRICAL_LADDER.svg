@@ -5,7 +5,7 @@
     </style>
     <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#111"/></marker>
   </defs>
-  <text x="60" y="55" class="t h">Figure 3. Multifunctionality can lose evolutionary resistance before morphology changes</text>
+  <text x="60" y="55" class="t h">Figure 3. Candidate barriers can change before an integrated phenotype does</text>
 
   <!-- Main L-Phi panel -->
   <rect x="60" y="110" width="760" height="650" class="box"/>
@@ -13,7 +13,7 @@
   <line x1="160" y1="680" x2="760" y2="680" class="axis"/>
   <line x1="160" y1="680" x2="160" y2="210" class="axis"/>
   <text x="430" y="730" class="t m">conflict load L</text>
-  <text x="90" y="470" class="t m" transform="rotate(-90 90 470)">structural release d</text>
+  <text x="90" y="470" class="t m" transform="rotate(-90 90 470)">net value Φ</text>
   <line x1="160" y1="450" x2="760" y2="450" class="grid"/>
   <text x="170" y="440" class="t xs">Φ = 0 critical surface</text>
   <line x1="160" y1="210" x2="160" y2="680" class="grid"/>
@@ -21,8 +21,8 @@
 
   <text x="225" y="330" class="t m">Differentiated architecture pays</text>
   <text x="250" y="360" class="t s">Φ &gt; 0: recovered benefit exceeds architecture cost</text>
-  <text x="250" y="545" class="t m">Persistent multifunctional compromise</text>
-  <text x="235" y="575" class="t s">L &gt; 0, Φ &lt; 0: persistent compromise</text>
+  <text x="250" y="545" class="t m">Integration preferred over completed division</text>
+  <text x="235" y="575" class="t s">L &gt; 0, Φ &lt; 0: full D has negative net value</text>
   <text x="180" y="235" class="t s">documented conflict supplies L</text>
 
   <rect x="565" y="270" width="210" height="110" class="box"/>
@@ -48,14 +48,14 @@
   <text x="885" y="475" class="t m">C. What novelty × abundance can establish?</text>
   <line x1="930" y1="690" x2="1260" y2="690" class="axis"/>
   <line x1="930" y1="690" x2="930" y2="515" class="axis"/>
-  <text x="1040" y="735" class="t s">net value of differentiation Φ</text>
+  <text x="1040" y="735" class="t s">structural release d</text>
   <text x="885" y="620" class="t s" transform="rotate(-90 885 620)">required initial frequency p</text>
   <line x1="1080" y1="525" x2="1080" y2="690" class="grid"/>
   <line x1="1195" y1="525" x2="1195" y2="690" class="grid"/>
   <text x="1055" y="715" class="t xs">d_J</text><text x="1165" y="715" class="t xs">dmax</text>
   <text x="955" y="545" class="t xs">η &gt; 0: p_escape(d)=1/2−(dmax/2η)[R(d)/d−k]</text>
   <text x="955" y="575" class="t xs">d_J: p=1/2 slice; p_C: d=dmax slice</text>
-  <text x="955" y="605" class="t xs">larger favorable release ↔ lower required frequency</text>
+  <text x="955" y="605" class="t xs">proportional feedback: larger d ↔ lower required p</text>
   <text x="955" y="635" class="t xs">η &lt; 0: rare-form advantage / coexistence</text>
   <path d="M980 545 C1080 555, 1160 600, 1230 655" class="arrow"/>
 
@@ -66,9 +66,9 @@
 
   <!-- Environmental turnover of the limiting persistence barrier -->
   <rect x="60" y="800" width="1270" height="250" class="box"/>
-  <text x="85" y="840" class="t m">D. The reason for persistence can change before the phenotype does</text>
+  <text x="85" y="840" class="t m">D. Candidate-specific boundaries can cross before morphology changes</text>
   <text x="85" y="872" class="t xs">Let environment E lower architecture cost: k(E)=k0−c(E−E0), c&gt;0, with strict convex recovery.</text>
-  <text x="85" y="898" class="t xs">Ecological stabilization exists if ΔR(E_A)&lt;0; canonically, η &gt; B_A = Φ(E_A).</text>
+  <text x="85" y="898" class="t xs">Endpoint ecology-only interval: ΔR(E_A)&lt;0; partial mutants need separate checks.</text>
 
   <line x1="150" y1="950" x2="1240" y2="950" class="axis"/>
   <line x1="420" y1="922" x2="420" y2="978" class="grid"/>
@@ -81,8 +81,8 @@
 
   <text x="235" y="928" text-anchor="middle" class="t xs">adaptive integration</text>
   <text x="560" y="928" text-anchor="middle" class="t xs">historical trapping</text>
-  <text x="840" y="928" text-anchor="middle" class="t xs">ecological stabilization</text>
-  <text x="1110" y="928" text-anchor="middle" class="t xs">division of labor can establish</text>
+  <text x="840" y="928" text-anchor="middle" class="t xs">ecological stabilization of full D</text>
+  <text x="1110" y="928" text-anchor="middle" class="t xs">rare full D can invade</text>
 
   <text x="235" y="1030" text-anchor="middle" class="t xs">Φ&lt;0</text>
   <text x="560" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&lt;0</text>
@@ -90,5 +90,5 @@
   <text x="1110" y="1030" text-anchor="middle" class="t xs">Φ&gt;0, g₀&gt;0, ΔR&gt;0</text>
 
   <text x="60" y="1082" class="t xs">History: path hysteresis. Ecology: priority effects when η&gt;0; coexistence when η&lt;0.</text>
-  <text x="60" y="1108" class="t xs">Main message: the bottleneck and the joint structural × demographic escape frontier can move before morphology changes.</text>
+  <text x="60" y="1108" class="t xs">Endpoint barrier order alone does not prove resident stasis; test accessible partial variants.</text>
 </svg>
