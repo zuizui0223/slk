@@ -19,6 +19,7 @@ FILES = {
     "theory/SLK_CORE_THEORY_V1.md": "theory/SLK_CORE_THEORY_V1.md",
     "theory/UNIFIED_THRESHOLD_ATLAS_V1.md": "theory/UNIFIED_THRESHOLD_ATLAS_V1.md",
     "theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md": "theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md",
+    "theory/ASSORTMENT_PARTIAL_FOUNDER_V1.md": "theory/ASSORTMENT_PARTIAL_FOUNDER_V1.md",
     "theory/NON_EQUIVALENCE_THEOREM_V1.md": "theory/NON_EQUIVALENCE_THEOREM_V1.md",
     "docs/INV1_EXECUTABLE_VALIDATION_V1.md": "docs/INV1_EXECUTABLE_VALIDATION_V1.md",
     "figures/FIG1_LOGIC_DIAGRAM.svg": "figures/FIG1_LOGIC_DIAGRAM.svg",
@@ -29,6 +30,7 @@ FILES = {
     "tests/test_moran_process_invariant.py": "tests/test_moran_process_invariant.py",
     "tests/test_rare_path_feedback.py": "tests/test_rare_path_feedback.py",
     "tests/test_partial_division_resident_stability.py": "tests/test_partial_division_resident_stability.py",
+    "tests/test_assortment_partial_founder.py": "tests/test_assortment_partial_founder.py",
     "pytest.ini": "pytest.ini",
 }
 
@@ -56,7 +58,7 @@ From the root of this extracted package, run:
 
 ```bash
 python scripts/verify_amnat_claims.py --output CLAIM_VERIFICATION_RECEIPT.json
-python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py
+python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py
 ```
 
 A successful run writes a JSON receipt with `all_checks_pass: true`.
