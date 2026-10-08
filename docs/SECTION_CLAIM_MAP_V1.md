@@ -132,6 +132,10 @@ The full theory repository still contains:
 
 These remain valid support and downstream extensions. Their presence does not make them the biological subject of the manuscript.
 
+## Endpoint-exclusion versus resident-persistence audit
+
+The manuscript's three labels `Phi`, `g0`, and `Delta_R` diagnose the status of a **specified completed** divided alternative. They do not prove that an integrated population remains dynamically stable against all accessible partial variants. The continuous model demonstrates both outcomes: proportional feedback and convex recovery transmit full-endpoint exclusion to every partial degree, while superlinear feedback allows partial invasion despite failure of the full endpoint. Thus the `E_V<E_A<E_I` ordering is an ordering of reference criteria; evidence of unchanged realized morphology also requires ecological fitness of reachable partial alternatives and the evolutionary history of their appearance. Proof and test: `theory/ENDPOINT_EXCLUSION_VS_PERSISTENCE_V1.md` and `tests/test_endpoint_exclusion_vs_persistence.py`.
+
 ## Manuscript rule
 
 Any substantive future manuscript claim must map to an existing claim ID, be explicitly marked literature synthesis or interpretation, or receive a new ledger ID before promotion. The journal-facing manuscript may simplify notation but may not strengthen the registered theory, the natural-history evidence, or the empirical ceiling.
