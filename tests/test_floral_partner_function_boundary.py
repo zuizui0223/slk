@@ -80,10 +80,10 @@ def test_flower_module_audit_separates_behavior_mechanics_and_evolutionary_histo
     ):
         assert source in audit
     assert "same flower was visited repeatedly" in audit
-    assert "long stamens without short stamens" in audit.lower()
+    assert "long stamens present without short stamens" in audit.lower()
     assert "repeatedly de novo" in audit or "often arisen de novo" in audit
     assert "not literal observed events" in audit
-    assert "the *same* bee" in audit
+    assert "a bee's functional role is not fixed" in audit.lower()
     assert "anther-buzzes in *Melastoma candidum*" in manuscript_text
     assert "an untested evolutionary hypothesis" in manuscript_text
 
@@ -95,7 +95,8 @@ def test_separate_de_novo_origin_from_secondary_function_retention() -> None:
     ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "repeatedly **de novo**" in note or "repeatedly **de novo**" in ledger
+    assert "repeatedly evolved **de novo**" in note
+    assert "arose **repeatedly de novo**" in ledger
     assert "rather than predominantly persisting" in ledger
     assert "same* bee" in ledger or "same** bee" in ledger
     assert "does not establish that both classes" in note or "does not establish that both classes" in ledger
