@@ -218,14 +218,14 @@ E_V < E < E_A
     differentiation would pay, but integration is historically trapped
 
 E_A < E < E_I
-    differentiation pays and is reachable,
-    but ecology prevents establishment from rarity
+    small structural release becomes intrinsically favorable,
+    but the completed divided form fails to invade when rare
 
 E > E_I
     the three early barriers are removed
 ```
 
-The biological bottleneck therefore changes along the gradient. Before `E_V`, there is no net advantage to structural division. Between `E_V` and `E_A`, reorganization is **path limited**: only a sufficiently large structural change, recombination event, or alternative developmental route can escape the local valley. Between `E_A` and `E_I`, small favorable changes are available but reorganization is **establishment limited**: the divided type must become common enough, or enter a sufficiently favorable interaction context, to grow. Beyond `E_I`, even a rare divided type can spread. Environmental change can therefore switch the limiting process from architecture economics, to the production of viable novelty, to ecological establishment without any visible change in the resident morphology.
+The biological bottleneck therefore changes along the gradient. Before `E_V`, there is no net advantage to structural division. Between `E_V` and `E_A`, reorganization is **path limited**: only a sufficiently large structural change, recombination event, or alternative developmental route can escape the local valley. Between `E_A` and `E_I`, small departures become intrinsically favorable but the completed divided form is **establishment limited**: it must become common enough, or enter a sufficiently favorable interaction context, to grow. Whether a rare *partial* departure also grows depends on how ecological feedback scales with the degree of structural release. Beyond `E_I`, even a rare divided type can spread. Environmental change can therefore switch the limiting process from architecture economics, to the production of viable novelty, to ecological establishment without any visible change in the resident morphology.
 
 Thus a chain of populations can look morphologically similar while the evolutionary reason for that morphology changes. **Phenotypic stability across geography does not imply stability of the process maintaining the phenotype.**
 
@@ -243,7 +243,9 @@ In the canonical frequency-feedback model, define the architecture barrier on th
 B_A = Phi(E_A).
 ```
 
-Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that lowers marginal architecture cost, `B_A=dmax(k_global-k_local)`. Thus the earlier condition is a special case of a more general biological statement: **ecology becomes the final barrier to division of labor exactly when a newly reachable divided type is still selected against because it is rare.**
+Then `Delta_R(E_A)<0` is equivalent to `eta>B_A`. For the explicit gradient that lowers marginal architecture cost, `B_A=dmax(k_global-k_local)`. Thus the earlier condition identifies a distinct **endpoint rare-establishment barrier** after intrinsic accessibility has been gained; the evolutionary accessibility of rare intermediates additionally depends on their ecological context.
+
+There is an important ecological qualification to this ordering. The accessibility gradient `g_0` is calculated before frequency-dependent feedback, whereas evolution from a rare intermediate experiences that feedback. For a partial release `d`, write its selection difference as `R(d)-kd+eta w(d)(2p-1)`, where `p` is its frequency, `w(0)=0` and `w(dmax)=1`. At rarity the actual local gradient is `g_0-eta w'(0+)`. If dependence on compatible partners begins immediately with even slight specialization (proportional `w`), rare intermediates can still be disfavored after `E_A`; full division can even become invasible before the smallest structural steps do. If partner dependence rises only after appreciable specialization (superlinear `w`, with zero slope at the origin), small rare departures may spread while fully divided forms remain excluded. **The shape of ecological dependence on specialization, not only its strength, determines whether partial division offers an evolutionary escape route.** These are conditional model outcomes, not an observed natural sequence or a guarantee that intermediates progress to full division.
 
 ![](../figures/FIG3_EMPIRICAL_LADDER.svg)
 
