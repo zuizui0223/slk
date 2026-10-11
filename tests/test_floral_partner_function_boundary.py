@@ -45,8 +45,8 @@ def test_morphological_retention_is_explicitly_unproven() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "Pollinator roles can differ even within one bee species" in text
-    assert "remains an untested evolutionary hypothesis" in text
+    assert "Divided pollen roles can depend on shared floral mechanics" in text
+    assert "mechanical support maintains dimorphism after pollen partitioning weakens remains untested" in text
     assert "untested bridge hypothesis" in ledger.lower()
     assert "not demonstrated by juxtaposing" in ledger.lower()
     assert "proposed natural-history hypothesis" in note
@@ -84,9 +84,24 @@ def test_flower_module_audit_separates_behavior_mechanics_and_evolutionary_histo
     assert "repeatedly de novo" in audit or "often arisen de novo" in audit
     assert "not literal observed events" in audit
     assert "a bee's functional role is not fixed" in audit.lower()
-    assert "anther-buzzes in *Melastoma candidum*" in manuscript_text
+    assert "changes buzzing behavior between *Bredia* and *Melastoma candidum*" in manuscript_text
     assert "an untested evolutionary hypothesis" in manuscript_text
 
+
+def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
+    audit = (ROOT / "docs" / "FLORAL_INTERACTION_MODULE_AUDIT_V1.md").read_text(encoding="utf-8")
+    for marker in (
+        "treatment B versus treatment D",
+        "12/39 (30.77%)",
+        "0/31 (0%)",
+        "13/39 (33.33%)",
+        "not a controlled manipulation of complete life-cycle plant fitness",
+        "whether the same visits exhibited slipping and ventral contact",
+    ):
+        assert marker.lower() in audit.lower()
+    assert 12/39 > 0/31
+    assert 13/39 > 0/31
+    assert "removing long-stamen filaments produced slipping and ventral stigma contact" in manuscript()
 
 def test_separate_de_novo_origin_from_secondary_function_retention() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
