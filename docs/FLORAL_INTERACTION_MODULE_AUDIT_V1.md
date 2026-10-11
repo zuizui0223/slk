@@ -46,6 +46,23 @@ Source: Fukano & Denda 2026, Table 1 and text of Results §§3.3–3.4.
 
 The four candidate floral functions must be treated separately: (i) attracting the bee, (ii) supporting buzzing, (iii) exporting pollen to an outcross mate, and (iv) permitting safe exit/stigma contact. Loss of one does not logically imply loss of all.
 
+## The most informative observed component contrast: B versus D
+
+The cleanest **within-study intervention contrast** for the mechanical role of the *long-stamen filament* is **treatment B versus treatment D**. Both retain the short stamens and remove the long-stamen anthers; they differ in whether the long-stamen filaments remain:
+
+| Treatment | Short stamens | Long filaments | Long anthers | Slipping/visits | Ventral stigma contact/visits |
+|---|---|---|---|---:|---:|
+| B | present | absent | absent | 12/39 (30.77%) | 13/39 (33.33%) |
+| D | present | present | absent | 0/31 (0%) | 0/31 (0%) |
+
+The descriptive contrasts are **30.77 and 33.33 percentage points**, respectively. Because the long anthers are absent in **both** treatments, the B–D difference directly singles out the **presence of the long-stamen filaments** as a candidate cause of altered buzzing posture and the location of stigma contact, rather than attributing the mechanical effect to a pollen-bearing long anther. These are intervention comparisons under the original study's flower samples, **not a controlled manipulation of complete life-cycle plant fitness**. Effects are not guaranteed to be attributable solely to stiffness; filaments also alter gripping geometry and sensory guidance. Visit-level event frequencies are descriptive, not independent plant-level replication.
+
+A second contrast is **A versus D**: with short stamens and long filaments preserved, removing the long anthers left slipping and ventral contact at **zero in both** treatments (A: 0/33; D: 0/31). However, departure falls were 0/33 in A versus 2/31 in D, so stability during buzzing is **not** the same as stability during takeoff. The evidence supports a partly separable mechanical contribution from the long-stamen filament, but does **not** imply that a flower lacking its pollen-exporting anthers has unchanged reproductive success.
+
+A third contrast is **A versus C**: removing only the short stamens did **not** induce recorded slipping (C: 0/26). Consequently the observed buzz-stability effect does **not** require both short and long stamen classes to be present. This rules out the strong claim that integration of *both* classes is indispensable. Rather, it suggests that one anatomically differentiated structure may simultaneously support bee mechanics and a spatial pollen-transfer role while the physical deployment of those roles remains interconnected.
+
+**Non-identifiable from the table:** whether the same visits exhibited slipping and ventral contact; whether the B–D contrast changes outcross pollen dispersal, siring success, or seed set; whether mechanical support historically maintained dimorphism across visitor shifts. Thus the defensible claim is **functional segregation can rely on retained mechanical connections**, while the evolutionary-maintenance explanation remains a proposed test.
+
 ## Senna and Solanum: what the experimental interventions actually establish
 
 - Rego, Monzón & Mesquita-Neto (2024, DOI 10.1111/plb.13673) surveyed three *Senna arnottiana* populations; large native bees tended to manipulate short feeding anthers and introduced *Bombus terrestris* used both classes indiscriminately and contacted the stigma less often. **Partner-dependent disruption of the usual feeding/pollinating division is directly observed**; measured visitor behavior does not demonstrate long-term selection to maintain or erase dimorphism.
