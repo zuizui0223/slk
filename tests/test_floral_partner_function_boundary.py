@@ -45,8 +45,8 @@ def test_morphological_retention_is_explicitly_unproven() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "Divided pollen roles can depend on shared floral mechanics" in text
-    assert "mechanical support maintains dimorphism after pollen partitioning weakens remains untested" in text
+    assert "Mechanical support can remain when pollen-bearing anthers are removed" in text
+    assert "Supporting filaments may persist without dimorphic anthers; maintenance of dimorphism remains untested" in text
     assert "untested bridge hypothesis" in ledger.lower()
     assert "not demonstrated by juxtaposing" in ledger.lower()
     assert "proposed natural-history hypothesis" in note
@@ -85,7 +85,7 @@ def test_flower_module_audit_separates_behavior_mechanics_and_evolutionary_histo
     assert "not literal observed events" in audit
     assert "a bee's functional role is not fixed" in audit.lower()
     assert "changes buzzing behavior between *Bredia* and *Melastoma candidum*" in manuscript_text
-    assert "mechanical support maintains dimorphism after pollen partitioning weakens remains untested" in manuscript_text
+    assert "Supporting filaments may persist without dimorphic anthers; maintenance of dimorphism remains untested" in manuscript_text
 
 
 def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
