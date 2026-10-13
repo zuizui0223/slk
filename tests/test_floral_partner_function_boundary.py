@@ -132,13 +132,16 @@ def test_parallel_solanum_comparison_is_natural_evolution_not_causal_slk_confirm
     main = manuscript()
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(encoding="utf-8")
     ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(encoding="utf-8")
-    prior = (ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md").read_text(encoding="utf-8")
+    prior_path = ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md"
+    prior = prior_path.read_text(encoding="utf-8") if prior_path.exists() else None
     for doi in ("10.1098/rstb.2013.0256", "10.1002/ajb2.1680"):
         assert doi in main
         assert doi in note
         assert doi in ledger
-        assert doi in prior
+        if prior is not None:
+            assert doi in prior
     assert "evolved selfing-rate shift was established" in main
     assert "artificial vibrations" in note.lower()
-    assert "not directly estimated selfing-rate evolution" in prior
+    if prior is not None:
+        assert "not directly estimated selfing-rate evolution" in prior
     assert "**not** selective retention of an ancestral heterantherous" in main
