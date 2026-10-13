@@ -53,11 +53,13 @@ The natural-history record already rejects a simple rule in which stronger confl
 
 ### The same pollen conflict can be divided in space, divided in time, or both
 
-Pollen-reward flowers provide the clearest natural comparison because the underlying conflict is unusually explicit: pollen must both reward pollinators and remain available for male reproduction. Yet structural division is far from inevitable. A phylogenetic survey found heteranthery in at least 12 angiosperm orders but emphasized its relative scarcity despite the widespread occurrence of pollen-collecting bees and nectarless flowers. Across angiosperm families, heteranthery was phylogenetically associated with the absence of nectaries, buzz pollination, and enantiostyly, directly linking structural differentiation to pollination ecology and floral architecture (Vallejo-Marín et al. 2010). The conditions permitting this form of division of labor are therefore restrictive rather than a generic consequence of pollen conflict. In *Solanum rostratum*, feeding anthers are preferentially handled by bumble bees whereas pollinating anthers export proportionally more pollen, supporting genuine functional division of labor (Vallejo-Marín et al. 2009). Yet the same species also dispenses pollen gradually across successive bumble-bee visits, releasing on average only about 2–4% of the available pollen per second of buzzing (Vallejo-Marín and Lundgren 2026). Structural differentiation and temporal regulation therefore coexist quantitatively in one natural system rather than representing mutually exclusive endpoints.
+Pollen-reward flowers pose a direct conflict: pollen must both feed visitors and fertilize other flowers. Heteranthery occurs in at least 12 angiosperm orders but remains relatively uncommon; across families it is associated with nectar absence, buzz pollination, and enantiostyly (Vallejo-Marín et al. 2010). In *Solanum rostratum*, bumble bees preferentially handle feeding anthers while pollinating anthers export more pollen (Vallejo-Marín et al. 2009). Yet each second of buzzing releases only about 2–4% of available pollen on average (Vallejo-Marín and Lundgren 2026). Spatial partitioning and temporal dosing therefore coexist within one flower.
+
+Related flowers show coordinated evolutionary modification rather than a fixed structural solution. Across three paired large- and small-flowered taxa in *Solanum* section *Androceras*, small-flowered forms repeatedly showed weaker anther differentiation, reduced herkogamy, altered pollen allocation, and lower pollen:ovule ratios (Vallejo-Marín et al. 2014). Simulated bee-like vibrations released pollen faster from small-flowered taxa (Kemp and Vallejo-Marín 2021). The morphology is consistent with increased selfing, but neither the causal pollinator environment nor an evolved selfing-rate shift was established by these comparisons.
 
 *Clarkia* reaches a different resolution. Its two anther whorls look like a classic division-of-labor system, but pollen from both whorls is collected and exported by bees in similar functional roles. Instead, delayed dehiscence of one whorl produces staggered pollen presentation (Kay et al. 2020). Thus morphological differentiation need not mean functional partitioning, and the same broad pollen-consumption conflict can be alleviated without assigning one organ type exclusively to reward and another to reproduction.
 
-A broader phylogenetic comparison shows that even the evolutionary meaning of the same differentiated morphology can change. Across 63 species of Merianieae, heteranthery was not restricted to pollen-rewarding bee-pollinated flowers. It evolved repeatedly de novo in lineages offering food bodies or nectar, where the classic pollen dilemma had been removed; field observations of passerine-pollinated species instead supported staggered removal of different stamen types through anthesis (Dellinger et al. 2021). Structural differentiation can therefore be retained or re-evolved for a different functional solution after the ecological problem that originally motivated a division-of-labor interpretation has changed.
+Across 63 Merianieae species, heteranthery repeatedly evolved *de novo* in passerine-pollinated lineages offering food bodies rather than pollen; birds removed different stamen types at different times during anthesis (Dellinger et al. 2021). This shows a new origin of differentiated anatomy under altered rewards, **not** selective retention of an ancestral heterantherous flower.
 
 ### Ecological partners change which resolution is favored
 
@@ -397,6 +399,8 @@ Kanarek, A. R., and C. T. Webb. 2010. Allee effects, adaptive evolution, and inv
 
 Kay, K. M., T. Jogesh, D. Tataru, and S. Akiba. 2020. Darwin's vexing contrivance: a new hypothesis for why some flowers have two kinds of anther. *Proceedings of the Royal Society B* 287:20202593.
 
+Kemp, J. E., and M. Vallejo-Marín. 2021. Pollen dispensing schedules in buzz-pollinated plants: experimental comparison of species with contrasting floral morphologies. *American Journal of Botany* 108:993–1005. doi:10.1002/ajb2.1680.
+
 Kim, W., S. B. Levy, and K. R. Foster. 2016. Rapid radiation in bacteria leads to a division of labour. *Nature Communications* 7:10508.
 
 Masel, J., and M. V. Trotter. 2010. Robustness and evolvability. *Trends in Genetics* 26:406–414.
@@ -430,6 +434,8 @@ Toräng, P., J. Ehrlén, and J. Ågren. 2008. Mutualists and antagonists mediate
 Uchiumi, Y., and A. Sasaki. 2020. Evolution of division of labour in mutualistic symbiosis. *Proceedings of the Royal Society B* 287:20200669.
 
 Vallejo-Marín, M., E. M. Da Silva, R. D. Sargent, and S. C. H. Barrett. 2010. Trait correlates and functional significance of heteranthery in flowering plants. *New Phytologist* 188:418–425.
+
+Vallejo-Marín, M., C. Walker, P. Friston-Reilly, L. Solís-Montero, and B. Igic. 2014. Recurrent modification of floral morphology in heterantherous *Solanum* reveals a parallel shift in reproductive strategy. *Philosophical Transactions of the Royal Society B* 369:20130256. doi:10.1098/rstb.2013.0256.
 
 Vallejo-Marín, M., and A. Lundgren. 2026. Gradual pollen release in a buzz-pollinated plant: investigating pollen presentation theory under bee visitation. *Functional Ecology* 40:476–485.
 
