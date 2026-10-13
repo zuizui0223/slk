@@ -36,6 +36,22 @@ After pollinator change, suppose the large and small stamens are still visibly d
 
 These scenarios are **not mutually exclusive**: mechanical support, staggered presentation, reward differentiation, and developmental inertia can coexist. A flower may preserve the same visible organ categories while functions and selective consequences change, but the proposed persistence mechanism needs a *candidate-relative fitness comparison* rather than inferred conservation.
 
+## The missing competitor: keep the filament scaffold, reduce anther dimorphism
+
+The *Bredia* intervention sharpened the evolutionary hypothesis. **Retention of a mechanically useful long-stamen filament is not the same as retention of a specialized pollen-bearing long anther.** In treatment D, long anthers were removed while their filaments remained, and buzzing stayed stable (0 slipping events in 31 visits). That flower was surgically manipulated, **not** an evolved scaffold-preserving isomorphic type; its pollen and lifetime reproductive performance were not established. But the result means that an evolutionary model cannot simply assume that reducing anther differentiation necessarily destroys all mechanical support.
+
+A third candidate architecture must be considered alongside the intact differentiated flower and a completely unsupported simplified one: a **reduced-anther-dimorphism flower retaining equivalent mechanical support**. This candidate may be less costly, equivalent in mechanics, developmentally unavailable, or worse in reproductive success. All remain empirical questions.
+
+In the explicit conditional four-architecture illustration in `theory/FLORAL_SCAFFOLD_BYPASS_V1.md`, `pi_z` denotes residual pollen-role benefit, `mu_z` support benefit, `gamma_z` their additional interaction, and `c_a` the extra cost of maintaining differentiated pollen-bearing anthers. The complete differentiated flower beats the scaffold-preserving reduced-anther alternative only when
+
+```text
+pi_z + gamma_z > c_a.
+```
+
+**The mechanical benefit `mu_z` cancels from this direct comparison.** If the original pollen-partitioning advantage vanishes and an independently useful scaffold could be retained cheaply, mechanical support may select for **filament preservation but against anther dimorphism**. If pollen differentiation provides an additional reproductive advantage *because* a scaffold is present, a positive `gamma_z` could instead favor keeping both. The published Bredia manipulation measures **neither** of these complete-fitness comparisons, nor does it show that the scaffold-preserving alternative is evolutionarily accessible.
+
+This creates a biologically consequential difference between H1 (*selective retention of the complete differentiated floral architecture*) and H2 (*historical persistence while a mechanically functional simplified architecture is not available*). It can be tested using anther differentiation and support manipulations that leave pollen supply comparable, plus male and female reproductive endpoints under alternative visitor communities. Behavior during buzzing alone cannot identify `gamma_z`.
+
 ## Decisive contrasts, not just another morphological correlation
 
 At a fixed floral architecture and matched flower age, compare two visitor functional types: one preferentially handling reward stamens and another foraging indiscriminately. For both, quantify **anther-class-specific pollen removal, grooming, body placement, stigma contact, pollen transfer to other flowers, and eventual fitness proxies**. Record morphology independently of function.
