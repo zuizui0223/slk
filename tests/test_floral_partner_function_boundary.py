@@ -141,4 +141,4 @@ def test_parallel_solanum_comparison_is_natural_evolution_not_causal_slk_confirm
     assert "evolved selfing-rate shift was established" in main
     assert "artificial vibrations" in note.lower()
     assert "not directly estimated selfing-rate evolution" in prior
-    assert "not selective retention of an ancestral heterantherous" in main
+    assert "**not** selective retention of an ancestral heterantherous" in main
