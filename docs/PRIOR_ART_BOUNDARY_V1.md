@@ -58,6 +58,8 @@ The **unresolved evolutionary hypothesis** is that secondary functions can prese
 
 Vallejo-Marín et al. (2009) experimentally support a division-of-labor interpretation of heteranthery in *Solanum rostratum*, where different anthers contribute differently to pollen feeding and pollen export.
 
+Parallel reductions in heteranthery and anther–stigma separation across three large/small-flowered *Solanum* section *Androceras* pairs are **already documented** (Vallejo-Marín et al. 2014, DOI 10.1098/rstb.2013.0256). Faster pollen dispensing from small-flowered taxa under simulated bee vibrations is also existing empirical work (Kemp & Vallejo-Marín 2021, DOI 10.1002/ajb2.1680). SLK cannot claim first discovery of either morphological de-specialization or coupled changes in pollen release. The inferred shift toward selfing is a proposed reproductive interpretation, not directly estimated selfing-rate evolution or causal evidence of pollinator-driven replacement in these studies.
+
 Kay et al. (2020) are an equally important caution: in *Clarkia*, heteranthery was better supported as staggered pollen presentation than as division of labor. Morphological differentiation therefore does not by itself demonstrate that conflicting functions have been partitioned.
 
 
