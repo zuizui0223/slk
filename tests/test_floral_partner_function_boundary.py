@@ -45,8 +45,8 @@ def test_morphological_retention_is_explicitly_unproven() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "Divided pollen roles can depend on shared floral mechanics" in text
-    assert "mechanical support maintains dimorphism after pollen partitioning weakens remains untested" in text
+    assert "Floral specialization may erode unevenly" in text
+    assert "support-bearing filaments persist remains untested" in text
     assert "untested bridge hypothesis" in ledger.lower()
     assert "not demonstrated by juxtaposing" in ledger.lower()
     assert "proposed natural-history hypothesis" in note
@@ -84,8 +84,8 @@ def test_flower_module_audit_separates_behavior_mechanics_and_evolutionary_histo
     assert "repeatedly de novo" in audit or "often arisen de novo" in audit
     assert "not literal observed events" in audit
     assert "a bee's functional role is not fixed" in audit.lower()
-    assert "changes buzzing behavior between *Bredia* and *Melastoma candidum*" in manuscript_text
-    assert "mechanical support maintains dimorphism after pollen partitioning weakens remains untested" in manuscript_text
+    assert "buzzes differently on *Bredia* and *Melastoma candidum*" in manuscript_text
+    assert "support-bearing filaments persist remains untested" in manuscript_text
 
 
 def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
@@ -101,7 +101,7 @@ def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
         assert marker.lower() in audit.lower()
     assert 12/39 > 0/31
     assert 13/39 > 0/31
-    assert "removing long-stamen filaments produced slipping and ventral stigma contact" in manuscript()
+    assert "filaments retained after long-anther removal supported stable buzzing" in manuscript()
 
 def test_separate_de_novo_origin_from_secondary_function_retention() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
