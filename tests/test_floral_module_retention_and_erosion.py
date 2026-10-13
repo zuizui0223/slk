@@ -89,7 +89,7 @@ def test_primary_evidence_is_not_relabelled_as_heritable_staminode() -> None:
         "q_A=9/16",
         "q_F=9/11",
         "the same observed slipping contrast",
-        "not a heritable natural staminode-like phenotype",
+        "not evidence that this phenotype already occurs as a heritable",
         "not a new discovery that sterile stamens can be functional",
     ):
         assert token.lower() in theory.lower(), token
