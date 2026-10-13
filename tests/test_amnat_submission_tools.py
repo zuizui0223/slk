@@ -83,9 +83,12 @@ def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:
     assert (out / "docs" / "SECTION_CLAIM_MAP_V1.md").is_file()
     assert (out / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").is_file()
     assert (out / "docs" / "FLORAL_INTERACTION_MODULE_AUDIT_V1.md").is_file()
+    assert (out / "theory" / "FLORAL_MODULE_RETENTION_AND_EROSION_V1.md").is_file()
+    assert (out / "tests" / "test_floral_module_retention_and_erosion.py").is_file()
     assert (out / "tests" / "test_floral_partner_function_boundary.py").is_file()
     assert (out / "docs" / "INV1_EXECUTABLE_VALIDATION_V1.md").is_file()
     assert (out / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").is_file()
+    assert (out / "docs" / "PRIOR_ART_BOUNDARY_V1.md").is_file()
     assert (out / "ANONYMITY_AUDIT.txt").read_text(encoding="utf-8").startswith("identity_scan=PASS")
     assert (out / "SHA256SUMS.txt").is_file()
     readme = (out / "README.md").read_text(encoding="utf-8")
@@ -111,6 +114,7 @@ def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:
             "tests/test_endpoint_exclusion_vs_persistence.py",
             "tests/test_candidate_persistence_figures.py",
             "tests/test_floral_partner_function_boundary.py",
+            "tests/test_floral_module_retention_and_erosion.py",
         ],
         cwd=out,
         capture_output=True,
@@ -159,7 +163,7 @@ def test_reviewer_distribution_zip_is_byte_reproducible(tmp_path: Path) -> None:
 
     assert first_zip.read_bytes() == second_zip.read_bytes()
     assert first["reviewer_zip_sha256"] == second["reviewer_zip_sha256"]
-    assert first["reviewer_zip_file_count"] == 32
+    assert first["reviewer_zip_file_count"] == 35
     assert first["cache_files_included"] is False
     assert first["bundle_identity_audit"] == "identity_scan=PASS"
     assert first["sorted_paths"] is True

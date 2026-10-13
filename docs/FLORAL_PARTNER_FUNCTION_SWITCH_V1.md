@@ -44,6 +44,12 @@ For the mechanical hypothesis, distinguish removing a long stamen in its entiret
 
 For the evolutionary question, use populations with differing visitor communities and phylogenetic or repeated temporal comparisons to ask whether stamen dimorphism, role separation, and mechanical support move together or separately; account for population history and gene flow. A present-day pollinator effect does not itself demonstrate evolutionary selection for the anatomical state.
 
+## Anther tissue can regress while its former filament remains
+
+The mechanically informative *Bredia* comparison is not 'dimorphic versus monomorphic' in one number. With short stamens preserved, the experiment contrasts **complete removal of long stamens** against **removal of only long anthers with supporting filaments retained**. Both cases lack long-anther pollen, but buzzing posture differs. A still-untested outcome after partner turnover is therefore **partial architectural erosion**: pollen-specialized long anther tissue regresses while the mechanically useful long filament persists. This is distinct from complete retention of fertile heteranthery.
+
+A staminode-like remnant is **not an SLK first-discovery claim**. Walker-Larsen & Harder (2000, DOI 10.2307/2656866) review it, and Walker-Larsen & Harder (2001, DOI 10.1111/j.0014-3820.2001.tb00782.x) experimentally found visitor-dependent secondary staminode roles in *Penstemon*. The *Bredia* manipulations do not yet estimate reproductive fitness for a heritable intermediate. For an evolutionary inference, the comparison must distinguish the complete architecture, a pollen-reduced but support-preserving intermediate, and a reduced structure without that support; show which difference in complete-cycle fitness changes with the pollinator community; and separately establish ancestry and accessibility. Detailed conditional model: `theory/FLORAL_MODULE_RETENTION_AND_EROSION_V1.md`.
+
 ## Explicit SLK connection and claim ceiling
 
 The focal SLK net architecture value `Phi = R-K` is **not a constant trait label**: the recoverable reward/transfer fitness and costs of an alternative architecture are conditional on pollinator behavior and extra functions supplied by existing organs. A two-function model can omit support/pose interactions and thus misidentify the biological reason morphology remains differentiated. This is an ecological hypothesis for how a trait may be **structurally retained while function is rewired**.
