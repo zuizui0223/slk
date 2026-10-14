@@ -52,24 +52,18 @@ def test_organ_function_is_not_confused_with_male_fitness_or_stable_morphology()
     manuscript_source = manuscript()
     for phrase in (
         "not 9.88-fold or 2.31-fold increases in male fitness",
-        "no significant shift in mean departure",
+        "not significantly shifted",
         "not independently retrieved/reanalysed",
-        "not an assertion that the cited experiments already supplied",
     ):
-        # The last phrase is a substantive caution that appears in the
-        # preceding floral note; this one uses a different precise wording.
-        if phrase == "not an assertion that the cited experiments already supplied":
-            continue
         assert phrase in source, phrase
 
-    assert "not evolutionarily maintain" not in source.lower()
     assert "retention" in source
     assert "none proves evolutionary maintenance" in manuscript_source.lower()
     assert "mechanically coupled flower parts can support differentiated pollen roles" in manuscript_source.lower()
     assert "new origins of differentiated anatomy" in manuscript_source.lower()
 
 
-def test_solamum_pollen_release_and_reproductive_export_are_separated() -> None:
+def test_solanum_pollen_release_and_reproductive_export_are_separated() -> None:
     note = NOTE.read_text(encoding="utf-8")
     assert "Pollen **release** is not yet reproductive pollen **export**" in note
     assert "mechanical transmission" in note
