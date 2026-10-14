@@ -60,7 +60,7 @@ def test_organ_function_is_not_confused_with_male_fitness_or_stable_morphology()
 
     assert "retention" in source
     assert "evolutionary retention remains untested" in manuscript_source.lower()
-    assert "mechanical coupling changes different stages of pollen delivery" in manuscript_source.lower()
+    assert "mechanically coupled flower parts affect pollen handling" in manuscript_source.lower()
     assert "new origin of differentiated anatomy" in manuscript_source.lower()
 
 
