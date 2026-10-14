@@ -45,8 +45,8 @@ def test_morphological_retention_is_explicitly_unproven() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "Mechanical support can remain when pollen-bearing anthers are removed" in text
-    assert "Supporting filaments may persist without dimorphic anthers; maintenance of dimorphism remains untested" in text
+    assert "Mechanical coupling changes different stages of pollen delivery" in text
+    assert "maintain a supporting scaffold without necessarily selecting to retain differentiated pollen-bearing anthers" in text
     assert "untested bridge hypothesis" in ledger.lower()
     assert "not demonstrated by juxtaposing" in ledger.lower()
     assert "proposed natural-history hypothesis" in note
@@ -84,8 +84,8 @@ def test_flower_module_audit_separates_behavior_mechanics_and_evolutionary_histo
     assert "repeatedly de novo" in audit or "often arisen de novo" in audit
     assert "not literal observed events" in audit
     assert "a bee's functional role is not fixed" in audit.lower()
-    assert "changes buzzing behavior between *Bredia* and *Melastoma candidum*" in manuscript_text
-    assert "Supporting filaments may persist without dimorphic anthers; maintenance of dimorphism remains untested" in manuscript_text
+    assert "behaves differently on *Bredia* and *Melastoma*" in manuscript_text
+    assert "evolutionary retention remains untested" in manuscript_text
 
 
 def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
@@ -101,7 +101,7 @@ def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
         assert marker.lower() in audit.lower()
     assert 12/39 > 0/31
     assert 13/39 > 0/31
-    assert "removing long-stamen filaments produced slipping and ventral stigma contact" in manuscript()
+    assert "long-stamen filaments without their anthers stabilize bee buzzing" in manuscript()
 
 def test_separate_de_novo_origin_from_secondary_function_retention() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
@@ -140,8 +140,21 @@ def test_parallel_solanum_comparison_is_natural_evolution_not_causal_slk_confirm
         assert doi in ledger
         if prior is not None:
             assert doi in prior
-    assert "evolved selfing-rate shift was established" in main
+    assert "field outcrossing rates" in main
     assert "artificial vibrations" in note.lower()
     if prior is not None:
-        assert "not directly estimated selfing-rate evolution" in prior
+        assert "not measured natural selfing rates" in prior
     assert "**not** selective retention of an ancestral heterantherous" in main
+
+
+def test_autonomous_selfing_capacity_does_not_imply_measured_field_mating_rate() -> None:
+    main = manuscript()
+    note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(encoding="utf-8")
+    for item in (main, note, ledger):
+        assert "Rubini Pisano" in item
+    assert "10.1093/aob/mcag186" in note
+    assert "10.1093/aob/mcag186" in ledger
+    assert "inconclusive" in note.lower()
+    assert "not an informative negative test" in ledger
+    assert "field outcrossing rates" in main
