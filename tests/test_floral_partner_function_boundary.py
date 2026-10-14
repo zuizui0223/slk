@@ -158,3 +158,25 @@ def test_autonomous_selfing_capacity_does_not_imply_measured_field_mating_rate()
     assert "inconclusive" in note.lower()
     assert "not an informative negative test" in ledger
     assert "field outcrossing rates" in main
+
+
+def test_solanum_residual_pollen_allocation_and_coordination_shift_are_not_slk_gate_results() -> None:
+    """Guard primary-source biology without confusing phenotypic covariance and evolutionary selection."""
+    main = manuscript()
+    note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(encoding="utf-8")
+    prior = ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md"
+    for source in (main, note, ledger):
+        assert "50–67%" in source
+        assert "39–41%" in source
+        assert "anther–stigma" in source
+        assert "Rubini Pisano" in source
+    assert "field outcrossing rates" in main
+    assert "pollen discounting" in main
+    assert "phenotypic" in note.lower()
+    assert "not a zero-pollen or fully uniform-anther state" in ledger
+    if prior.is_file():
+        text = prior.read_text(encoding="utf-8")
+        assert "Neither the quantitative pollen reallocation" in text
+        assert "Porcher & Lande 2005" in text
+    assert 0 < 0.39 <= 0.41 < 0.50 <= 0.67 < 1
