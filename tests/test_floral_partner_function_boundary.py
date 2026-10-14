@@ -85,7 +85,7 @@ def test_flower_module_audit_separates_behavior_mechanics_and_evolutionary_histo
     assert "not literal observed events" in audit
     assert "a bee's functional role is not fixed" in audit.lower()
     assert "behaves differently on *Bredia* and *Melastoma candidum*" in manuscript_text
-    assert "evolutionary retention remains untested" in manuscript_text
+    assert "maintenance of dimorphism remains untested" in manuscript_text
 
 
 def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
