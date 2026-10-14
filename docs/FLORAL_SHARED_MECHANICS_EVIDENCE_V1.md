@@ -61,7 +61,7 @@ In *Bredia*, long filaments with long anthers removed help stabilize live-bee po
 
 Therefore two distinct evolutionary possibilities must remain in the candidate set: (i) mechanical coupling genuinely complements differentiated anthers, and keeping both is favored; or (ii) the plant preserves a filament or petal-based **scaffold while reducing the specialization of pollen-producing anther tissue**. The latter is a possible anatomical *bypass* of an assumption that full dimorphism is the only way to keep the mechanical benefit.
 
-The sibling **SLK PR #117** (`biology/scaffold-bypass-test-20261014`) separately registers a conditional fitness comparison between full heteranthery and a viable architecture retaining a support scaffold but not differentiated pollen-bearing anthers. The present evidence audit supplies complementary **empirical mechanisms**, not another proof of that model. Neither branch supplies a natural population in which such an ancestral-to-descendant transition has been followed or the full-cycle reproductive fitness of those alternatives measured.
+A separate conditional fitness comparison could distinguish full heteranthery from an architecture retaining a support scaffold but not differentiated pollen-bearing anthers. This evidence audit identifies **empirical mechanisms** motivating that counterfactual but supplies neither its complete-cycle fitness comparison nor a demonstrated evolutionary transition. None of the cited studies follows the ancestral-to-descendant structural change while measuring reproductive fitness of both architectures.
 
 ## A discriminating ecological hypothesis for incomplete division of labour
 
