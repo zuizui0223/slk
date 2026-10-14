@@ -55,7 +55,7 @@ The natural-history record already rejects a simple rule in which stronger confl
 
 Pollen-reward flowers pose a direct conflict: pollen must both feed visitors and fertilize other flowers. Heteranthery occurs in at least 12 angiosperm orders but remains relatively uncommon; across families it is associated with nectar absence, buzz pollination, and enantiostyly (Vallejo-Marín et al. 2010). In *Solanum rostratum*, bumble bees preferentially handle feeding anthers while pollinating anthers export more pollen (Vallejo-Marín et al. 2009). Yet each second of buzzing releases only about 2–4% of available pollen on average (Vallejo-Marín and Lundgren 2026). Spatial partitioning and temporal dosing therefore coexist within one flower.
 
-Related flowers show coordinated evolutionary modification rather than a fixed structural solution. Across three pairs of large- and small-flowered taxa in *Solanum* section *Androceras*, small-flowered forms repeatedly showed weaker anther differentiation, reduced herkogamy, altered pollen allocation, and lower pollen:ovule ratios (Vallejo-Marín et al. 2014). Simulated bee-like vibrations released pollen faster from small-flowered taxa (Kemp and Vallejo-Marín 2021). The morphology is consistent with increased selfing, but neither the causal pollinator environment nor an evolved selfing-rate shift was established by these comparisons.
+Related flowers show a different evolutionary route. Across three pairs in *Solanum* section *Androceras*, smaller-flowered taxa have reduced anther dimorphism, herkogamy, and pollen:ovule ratios (Vallejo-Marín et al. 2014), and dispense pollen faster under experimental vibrations (Kemp and Vallejo-Marín 2021). Later controlled pollinations found no autonomous seed production in the large-flowered taxa, but confirmed it in two small-flowered taxa; the third small-flowered taxon failed to set seed under greenhouse conditions (Rubini Pisano et al. 2026). Reduced structural specialization can therefore accompany greater capacity for pollinator-independent reproduction, without establishing field outcrossing rates or the causal selective history.
 
 *Clarkia* reaches a different resolution. Its two anther whorls look like a classic division-of-labor system, but pollen from both whorls is collected and exported by bees in similar functional roles. Instead, delayed dehiscence of one whorl produces staggered pollen presentation (Kay et al. 2020). Thus morphological differentiation need not mean functional partitioning, and the same broad pollen-consumption conflict can be alleviated without assigning one organ type exclusively to reward and another to reproduction.
 
@@ -65,7 +65,7 @@ Across 63 Merianieae species, heteranthery repeatedly evolved *de novo* in passe
 
 The temporal solution itself varies with pollinator ecology. Across *Penstemon* and *Keckiella*, transitions between hymenopteran and hummingbird pollination are associated with predictable changes in pollen presentation. After accounting for phylogeny, bee-adapted species dispense pollen more gradually, whereas hummingbird-adapted relatives present it more simultaneously; a species pair that appeared exceptional achieved comparable dosing through the timing of anther maturation (Castellanos et al. 2006). The relevant evolutionary outcome therefore depends not only on the plant's internal functional conflict but also on how efficiently its ecological partner removes, grooms, and delivers pollen.
 
-Mechanical support can remain when pollen-bearing anthers are removed. In *Bredia hirsuta*, removing long-stamen filaments produced slipping and ventral stigma contact; removing long anthers while retaining their filaments did not (Fukano and Denda 2026). *Amegilla dulcifera* also changes buzzing behavior between *Bredia* and *Melastoma candidum* (Hachiman et al. 2024). Introduced *Bombus terrestris* uses both anther types indiscriminately in *Senna arnottiana* (Rego et al. 2024). Supporting filaments may persist without dimorphic anthers; maintenance of dimorphism remains untested.
+Mechanical coupling changes different stages of pollen delivery without guaranteeing reproductive benefit. Joining anthers increased transmitted vibration in three *Solanum* species but pollen release in only two (Vallejo-Marín et al. 2022). A modified *Chamaecrista* petal directed pollen from both anther classes onto a stigma-facing region of an artificial bee (Monteiro et al. 2025). In *Bredia hirsuta*, long-stamen filaments without their anthers stabilize bee buzzing (Fukano and Denda 2026). *Amegilla* behaves differently on *Bredia* and *Melastoma* (Hachiman et al. 2024), while invasive *Bombus* handles both *Senna* anther classes indiscriminately (Rego et al. 2024). These mechanisms can maintain a supporting scaffold without necessarily selecting to retain differentiated pollen-bearing anthers; evolutionary retention remains untested.
 
 The same ecological principle appears at the level of variation within a species. In *Pedicularis rex*, greater corolla exsertion increases pollen receipt but also seed predation. Pollinator-mediated effects were comparatively consistent across the 14 populations studied, whereas seed-predator effects formed a geographic mosaic (Sun, Armbruster, and Huang 2016). In an independent bract-manipulation study, background seed predation ranged from 1.36% to 27.42% across six field populations; draining the water-filled bracts increased seed predation without changing legitimate pollinator visitation (Sun and Huang 2015). In a separate two-year study, sparse patches experienced stronger predispersal seed predation and lower realized fecundity, producing a predator-driven component Allee effect (Xia, Sun, and Liu 2013). The same integrated floral architecture can therefore experience markedly different balances of mutualism and antagonism across geography and population context without first changing its gross morphology.
 
@@ -405,6 +405,8 @@ Kim, W., S. B. Levy, and K. R. Foster. 2016. Rapid radiation in bacteria leads t
 
 Masel, J., and M. V. Trotter. 2010. Robustness and evolvability. *Trends in Genetics* 26:406–414.
 
+Monteiro, T. R., R. V. S. Gonçalves, F. J. Telles, G. J. Barônio, A. Nogueira, and V. L. G. Brito. 2025. A modified petal and stamen dimorphism interact to enhance pollen placement by a buzz-pollinated flower. *Annals of Botany* 135:669–680. doi:10.1093/aob/mcae210.
+
 Mridha, S., and R. Kümmerli. 2022. Enforced specialization fosters mutual cheating and not division of labour in the bacterium *Pseudomonas aeruginosa*. *Journal of Evolutionary Biology* 35:719–730.
 
 Rego, J. O., V. H. Monzón, and J. N. Mesquita-Neto. 2024. The invasive bumblebee *Bombus terrestris* disrupts the adaptive function of heteranthery by indiscriminately visiting the pollinating and feeding anthers of *Senna arnottiana* flowers. *Plant Biology* 26:821–831. doi:10.1111/plb.13673.
@@ -414,6 +416,8 @@ Rueffler, C., T. J. M. Van Dooren, and J. A. J. Metz. 2004. Adaptive walks on ch
 Rueffler, C., T. J. M. Van Dooren, and J. A. J. Metz. 2006. The evolution of resource specialization through frequency-dependent and frequency-independent mechanisms. *The American Naturalist* 167:81–93.
 
 Rueffler, C., J. Hermisson, and G. P. Wagner. 2012. Evolution of functional specialization and division of labor. *Proceedings of the National Academy of Sciences USA* 109:E326–E335.
+
+Rubini Pisano, A., M. Vallejo-Marín, S. Benitez-Vieyra, and J. Fornoni. 2026. The transition from outcrossing to selfing involves convergent patterns of flower trait covariation. *Annals of Botany*. doi:10.1093/aob/mcag186.
 
 Scheffer, M., J. Bascompte, W. A. Brock, V. Brovkin, S. R. Carpenter, V. Dakos, H. Held, E. H. van Nes, M. Rietkerk, and G. Sugihara. 2009. Early-warning signals for critical transitions. *Nature* 461:53–59.
 
@@ -436,6 +440,8 @@ Uchiumi, Y., and A. Sasaki. 2020. Evolution of division of labour in mutualistic
 Vallejo-Marín, M., E. M. Da Silva, R. D. Sargent, and S. C. H. Barrett. 2010. Trait correlates and functional significance of heteranthery in flowering plants. *New Phytologist* 188:418–425.
 
 Vallejo-Marín, M., C. Walker, P. Friston-Reilly, L. Solís-Montero, and B. Igic. 2014. Recurrent modification of floral morphology in heterantherous *Solanum* reveals a parallel shift in reproductive strategy. *Philosophical Transactions of the Royal Society B* 369:20130256. doi:10.1098/rstb.2013.0256.
+
+Vallejo-Marín, M., C. E. Pereira Nunes, and A. L. Russell. 2022. Anther cones increase pollen release in buzz-pollinated *Solanum* flowers. *Evolution* 76:931–945. doi:10.1111/evo.14485.
 
 Vallejo-Marín, M., and A. Lundgren. 2026. Gradual pollen release in a buzz-pollinated plant: investigating pollen presentation theory under bee visitation. *Functional Ecology* 40:476–485.
 
