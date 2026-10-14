@@ -53,6 +53,16 @@ The three studies establish distinct real effects of **organ-to-organ or plant-t
 
 **Not supported:** ecological coupling invariably maintains a dimorphic architecture; mechanical linkage is always adaptive; removal of the petal necessarily reduces paternity 9.88-fold; the published experiments determine SLK's intrinsic value `Phi`, local accessibility `g0`, or rare architectural invasion `Delta_R`. There is no demonstration of an ordered three-barrier turnover in a natural lineage.
 
+## Mechanical usefulness may select for the scaffold, not the differentiated pollen source
+
+This is the strongest caution from bringing the new studies together. **A useful supporting module is not proof that a pollen-bearing specialized anther must be retained.**
+
+In *Bredia*, long filaments with long anthers removed help stabilize live-bee posture relative to removing both, so the **support structure** may be functionally useful without the **long-anther pollen source**. In *Chamaecrista*, the cucculus can route pollen from either anther class to the bee's stigma-contact side, so the **pollen transport route** is not intrinsically owned by a dedicated pollinating anther type. In *Solanum*, increased vibrational coupling is not enough to guarantee increased pollen release, even before asking about successful export.
+
+Therefore two distinct evolutionary possibilities must remain in the candidate set: (i) mechanical coupling genuinely complements differentiated anthers, and keeping both is favored; or (ii) the plant preserves a filament or petal-based **scaffold while reducing the specialization of pollen-producing anther tissue**. The latter is a possible anatomical *bypass* of an assumption that full dimorphism is the only way to keep the mechanical benefit.
+
+The sibling **SLK PR #117** (`biology/scaffold-bypass-test-20261014`) separately registers a conditional fitness comparison between full heteranthery and a viable architecture retaining a support scaffold but not differentiated pollen-bearing anthers. The present evidence audit supplies complementary **empirical mechanisms**, not another proof of that model. Neither branch supplies a natural population in which such an ancestral-to-descendant transition has been followed or the full-cycle reproductive fitness of those alternatives measured.
+
 ## A discriminating ecological hypothesis for incomplete division of labour
 
 Treat **pollen-role partition** and **mechanical coupling** as different biological axes, not opposite ends of the same scalar. For the same flower and pollinator community, three observables have different meanings:
