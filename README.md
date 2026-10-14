@@ -60,6 +60,12 @@ The important biological point is that the balance of this conflict already vari
 
 No new *P. rex* biological result is claimed by this repository.
 
+## Floral ecological extension — structural division is not the only reproductive route
+
+Published comparisons across three pairs of *Solanum* section *Androceras* taxa show reduced anther dimorphism, reduced separation of pollen-bearing organs from the stigma, and altered pollen allocation in small-flowered relatives (Vallejo-Marín et al. 2014). Those relatives also release pollen faster under standardized artificial buzzes (Kemp and Vallejo-Marín 2021). Controlled crosses in the same taxa found autonomous seed production in two small-flowered taxa and none of the three large-flowered taxa; the remaining small-flowered taxon did not reproduce adequately in the greenhouse and is inconclusive (Rubini Pisano et al. 2026, DOI 10.1093/aob/mcag186). These results establish **capacity for pollinator-independent reproduction**, not actual natural selfing rates, the selective reason that floral forms diverged, or an SLK three-gate evolutionary sequence.
+
+Separate *Solanum* (2022), *Chamaecrista* (2025) and *Bredia* (2026) experiments demonstrate that floral organs can share mechanical transport and grip functions even when their pollen-handling roles differ. Enhanced vibration, pollen deposition on an artificial bee, and stable buzzing are different endpoints from realized male or female reproductive fitness. An accessible flower retaining mechanical support but reducing anther differentiation is therefore a legitimate evolutionary candidate. Its fitness and historical accessibility remain unmeasured; supporting filaments do not by themselves explain retention of differentiated pollen-producing anthers. See `docs/FLORAL_PARTNER_FUNCTION_SWITCH_V1.md`, `docs/FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md`, and `theory/FLORAL_SCAFFOLD_BYPASS_V1.md`.
+
 ## What the theory contributes
 
 The mathematical machinery supports the biological theory rather than replacing it. The main contributions are:
@@ -143,15 +149,17 @@ PEDICULARIS_OPERATIONS_FLAGSHIP_GROWTH_CI_BLOCKED
 PEDICULARIS_OPERATIONS_DELETION_FOR_MIGRATION_ALLOWED
 EMPIRICAL_COMPANION_160_FILE_MANIFEST_FROZEN
 EMPIRICAL_COMPANION_DESTINATION_VERIFICATION_REQUIRED_BEFORE_PRUNING
-AMNAT_REFOCUSED_REVIEW_PACKAGE_BUILD_PASS
-AMNAT_RENDERED_LAYOUT_QA_PASS_28_28
-AMNAT_REVIEWER_ZIP_READY_CURRENT
-AMNAT_ZENODO_ARCHIVE_PAYLOAD_READY_CURRENT
+AMNAT_LATEST_HEAD_TEST_AND_BUNDLE_CI_PASS
+AMNAT_RENDERED_LAYOUT_PREVIOUS_QA_NOT_FROZEN_CURRENT
+AMNAT_REVIEWER_ZIP_LATEST_CI_BUILT_TRACKED_RECEIPT_STALE
+AMNAT_ZENODO_ARCHIVE_TRACKED_RECEIPT_STALE
 AMNAT_PORTAL_READINESS_GATE_REGISTERED
-AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_READY_CURRENT
-AMNAT_INTERNAL_BLOCKERS_NONE
+AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_TRACKED_RECEIPT_STALE
+AMNAT_HUMAN_PORTAL_FIELDS_ARCHIVE_AND_REFREEZE_OUTSTANDING
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```
+
+The source branch passed its latest Python 3.11/3.12 and anonymous-bundle CI checks at commit `e09cf67a6154` before this README-only clarification. This does **not** update the frozen local checksum receipts for the reviewer ZIP, Editorial Manager kit, or archive deposit. Build artifacts, deposited archives, and an actual journal submission are separate steps; no journal submission is claimed.
 
 ## Journal decision rule
 
