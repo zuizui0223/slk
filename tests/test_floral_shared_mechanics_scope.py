@@ -70,7 +70,7 @@ def test_anonymous_evidence_does_not_identify_repository_or_pr_branch() -> None:
         "github.com/",
         "SLK PR #",
         "biology/scaffold-bypass-test",
-        "zuizui0223",
+        "zuizui" + "0223",
     ):
         assert forbidden not in source
 
