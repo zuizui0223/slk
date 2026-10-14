@@ -83,6 +83,8 @@ def test_anonymous_bundle_is_curated_and_scanned(tmp_path: Path) -> None:
     assert (out / "docs" / "SECTION_CLAIM_MAP_V1.md").is_file()
     assert (out / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").is_file()
     assert (out / "docs" / "FLORAL_INTERACTION_MODULE_AUDIT_V1.md").is_file()
+    assert (out / "docs" / "FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md").is_file()
+    assert (out / "tests" / "test_floral_shared_mechanics_scope.py").is_file()
     assert (out / "theory" / "FLORAL_SCAFFOLD_BYPASS_V1.md").is_file()
     assert (out / "scripts" / "floral_scaffold_bypass.py").is_file()
     assert (out / "tests" / "test_floral_scaffold_bypass.py").is_file()
@@ -163,7 +165,7 @@ def test_reviewer_distribution_zip_is_byte_reproducible(tmp_path: Path) -> None:
 
     assert first_zip.read_bytes() == second_zip.read_bytes()
     assert first["reviewer_zip_sha256"] == second["reviewer_zip_sha256"]
-    assert first["reviewer_zip_file_count"] == 35
+    assert first["reviewer_zip_file_count"] == 37
     assert first["cache_files_included"] is False
     assert first["bundle_identity_audit"] == "identity_scan=PASS"
     assert first["sorted_paths"] is True
