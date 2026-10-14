@@ -39,7 +39,8 @@ def test_three_mechanical_routes_are_supported_at_the_correct_biological_level()
         assert doi in LEDGER.read_text(encoding="utf-8")
 
     assert "three" in source.lower()
-    assert "two species" in source.lower() or "only two" in source.lower()
+    assert "S. elaeagnifolium" in source
+    assert "S. sisymbriifolium" in source
     assert "S. pyracanthos" in source
     assert "P=0.169" in source
     assert "9.88" in source
