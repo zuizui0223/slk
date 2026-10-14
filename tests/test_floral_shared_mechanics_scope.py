@@ -64,6 +64,17 @@ def test_organ_function_is_not_confused_with_male_fitness_or_stable_morphology()
     assert "new origins of differentiated anatomy" in manuscript_source.lower()
 
 
+def test_anonymous_evidence_does_not_identify_repository_or_pr_branch() -> None:
+    source = NOTE.read_text(encoding="utf-8")
+    for forbidden in (
+        "github.com/",
+        "SLK PR #",
+        "biology/scaffold-bypass-test",
+        "zuizui0223",
+    ):
+        assert forbidden not in source
+
+
 def test_solanum_pollen_release_and_reproductive_export_are_separated() -> None:
     note = NOTE.read_text(encoding="utf-8")
     assert "Pollen **release** is not yet reproductive pollen **export**" in note
