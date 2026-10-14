@@ -260,6 +260,18 @@ The new SLK two-phase founder example is consequently **theoretical only**: it f
 
 **Remaining empirical gap:** no cited study jointly measures (1) realized variation in an architecture from integrated to partial/fully divided, (2) partner-availability dynamics, (3) independent birth and death of the focal rare architecture, and (4) the resulting conditional establishment probability in the same biological system. The present evolutionary theory manuscript need not acquire these data before publication, but it must not claim that they already exist.
 
+## Published mechanistic evidence: pollen-role differentiation and shared floral mechanics
+
+**Three-species *Solanum* anther-joining intervention (Vallejo-Marín, Pereira Nunes & Russell 2022, DOI 10.1111/evo.14485):** experimentally joining the anthers increased nonfocal vibrational velocity in **all three species**. It increased pollen **release** in *S. elaeagnifolium* and *S. sisymbriifolium* (approximately 1,500–2,300 additional grains in published comparisons), but not significantly in *S. pyracanthos* (reported `P=0.169`) despite increased vibration transfer. **Direct support:** inter-organ mechanics can affect one step of the pollen pathway, with a species-dependent downstream response. **Not demonstrated:** outcross export or paternity, a floral division-of-labour trade-off, or evolution of stable anther linkage. Independent public raw data are archived at Dryad 10.5061/dryad.s1rn8pk9p; **this SLK entry is a primary-literature audit, not a reanalysis of those CSVs**. This paper is distinct from the Wilkins et al. 2022 body-size / free-versus-joined architecture experiment below.
+
+**Petal-mediated pollen routing (*Chamaecrista latistipula*, Monteiro et al. 2025, DOI 10.1093/aob/mcae210):** a modified cucculus and open/closed pores of small and large stamens were independently manipulated in a **2 × 3 design** with standardized **artificial bee** vibrations. Keeping the cucculus in place increased pollen-covered density on the bee-mimic's adjacent lateral stigma-contact region **9.88×** and its ventral region **2.31×**, compared with a deflected cucculus. In an intact-cucculus comparison, small-anther-only pollen yielded **1.59×** the adjacent lateral density of large-anther-only pollen. **Direct support:** pollen from the nominal feeding anther class can also reach a stigma-facing body region via an auxiliary petal; organ type alone does not identify pollen destination. **Not demonstrated:** that small stamens have higher export efficiency per original pollen grain (they also provide more pollen); 9.88× greater **accuracy** or paternity (it is density, not paternity); statistically established positive cucculus × anther-class synergy; or free-flying bee fitness. The study reported no significant shift in mean departure from the stigma optimum, but a relatively small (approximately 10%) reduction in placement imprecision.
+
+**Convergent comparison with *Bredia*:** long-stamen filaments alter live-visitor grip and stigma contact even when the long anther pollen source is absent; in contrast, *Solanum* cone joining tests vibration/pollen release and *Chamaecrista* petal manipulation tests body-site allocation. These are **three different steps in the reproductive pathway**, not alternative measurements of the same dependent variable. Positive evidence for a particular component is not evidence for ultimate pollen or seed fitness.
+
+**Biological claim ceiling:** functional division among pollen sources does not require mechanically independent organs, but neither does mechanical integration invariably improve floral fitness. The choice of pollinator, pollen source, floral support geometry, and actual reproductive recipient can alter whether structural partitioning releases the shared conflict. A natural history of evolutionary **retention** by a secondary function remains unobserved in these case comparisons.
+
+Detailed source-by-source scope ledger: `docs/FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md`.
+
 ## Floral partner-dependent functional reweighting — observed roles versus untested maintenance
 
 Two field studies offer especially direct evidence that floral function depends on **the combination of floral architecture and pollinator behavior**, not stamen dimensions alone.
@@ -303,6 +315,9 @@ Together these systems make the remaining biological gap precise. The missing ev
 That missing test remains the empirical target of SLK.
 
 ## Sources
+
+- Vallejo-Marín M, Pereira Nunes CE, Russell AL. 2022. Anther cones increase pollen release in buzz-pollinated *Solanum* flowers. *Evolution* 76:931–945. DOI 10.1111/evo.14485. Public raw data: Dryad DOI 10.5061/dryad.s1rn8pk9p.
+- Monteiro TR, Gonçalves RVS, Telles FJ, Barônio GJ, Nogueira A, Brito VLG. 2025 (online 2024). A modified petal and stamen dimorphism interact to enhance pollen placement by a buzz-pollinated flower. *Annals of Botany* 135:669–680. DOI 10.1093/aob/mcae210.
 
 - Wilkins RV, Mayberry MM, Vallejo-Marín M, Russell AL. 2022. Hold tight or loosen up? Functional consequences of a shift in anther architecture depend substantially on bee body size. *Oecologia* 200:119–131. DOI 10.1007/s00442-022-05246-0.
 - Rego JO, Monzón VH, Mesquita-Neto JN. 2024. The invasive bumblebee *Bombus terrestris* disrupts the adaptive function of heteranthery by indiscriminately visiting the pollinating and feeding anthers of *Senna arnottiana* flowers. *Plant Biology* 26:821–831. DOI 10.1111/plb.13673.
