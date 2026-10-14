@@ -28,6 +28,7 @@ FILES = {
     "docs/SECTION_CLAIM_MAP_V1.md": "docs/SECTION_CLAIM_MAP_V1.md",
     "docs/FLORAL_PARTNER_FUNCTION_SWITCH_V1.md": "docs/FLORAL_PARTNER_FUNCTION_SWITCH_V1.md",
     "docs/FLORAL_INTERACTION_MODULE_AUDIT_V1.md": "docs/FLORAL_INTERACTION_MODULE_AUDIT_V1.md",
+    "docs/FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md": "docs/FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md",
     "figures/FIG1_LOGIC_DIAGRAM.svg": "figures/FIG1_LOGIC_DIAGRAM.svg",
     "figures/FIG2_PHASE_MAP.svg": "figures/FIG2_PHASE_MAP.svg",
     "figures/FIG3_EMPIRICAL_LADDER.svg": "figures/FIG3_EMPIRICAL_LADDER.svg",
@@ -41,6 +42,7 @@ FILES = {
     "tests/test_endpoint_exclusion_vs_persistence.py": "tests/test_endpoint_exclusion_vs_persistence.py",
     "tests/test_candidate_persistence_figures.py": "tests/test_candidate_persistence_figures.py",
     "tests/test_floral_partner_function_boundary.py": "tests/test_floral_partner_function_boundary.py",
+    "tests/test_floral_shared_mechanics_scope.py": "tests/test_floral_shared_mechanics_scope.py",
     "pytest.ini": "pytest.ini",
 }
 
@@ -68,7 +70,7 @@ From the root of this extracted package, run:
 
 ```bash
 python scripts/verify_amnat_claims.py --output CLAIM_VERIFICATION_RECEIPT.json
-python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py tests/test_stochastic_partner_assembly.py tests/test_endpoint_exclusion_vs_persistence.py tests/test_candidate_persistence_figures.py tests/test_floral_partner_function_boundary.py
+python -m pytest -q -c pytest.ini tests/test_moran_process_invariant.py tests/test_rare_path_feedback.py tests/test_partial_division_resident_stability.py tests/test_assortment_partial_founder.py tests/test_stochastic_partner_assembly.py tests/test_endpoint_exclusion_vs_persistence.py tests/test_candidate_persistence_figures.py tests/test_floral_partner_function_boundary.py tests/test_floral_shared_mechanics_scope.py
 ```
 
 A successful run writes a JSON receipt with `all_checks_pass: true`.
