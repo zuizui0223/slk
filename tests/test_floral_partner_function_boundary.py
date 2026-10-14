@@ -45,8 +45,8 @@ def test_morphological_retention_is_explicitly_unproven() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "Mechanical coupling changes different stages of pollen delivery" in text
-    assert "maintain a supporting scaffold without necessarily selecting to retain differentiated pollen-bearing anthers" in text
+    assert "Mechanically coupled flower parts affect pollen handling" in text
+    assert "Supporting filaments may persist without dimorphic anthers" in text
     assert "untested bridge hypothesis" in ledger.lower()
     assert "not demonstrated by juxtaposing" in ledger.lower()
     assert "proposed natural-history hypothesis" in note
@@ -84,7 +84,7 @@ def test_flower_module_audit_separates_behavior_mechanics_and_evolutionary_histo
     assert "repeatedly de novo" in audit or "often arisen de novo" in audit
     assert "not literal observed events" in audit
     assert "a bee's functional role is not fixed" in audit.lower()
-    assert "behaves differently on *Bredia* and *Melastoma*" in manuscript_text
+    assert "behaves differently on *Bredia* and *Melastoma candidum*" in manuscript_text
     assert "evolutionary retention remains untested" in manuscript_text
 
 
@@ -101,7 +101,7 @@ def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
         assert marker.lower() in audit.lower()
     assert 12/39 > 0/31
     assert 13/39 > 0/31
-    assert "long-stamen filaments without their anthers stabilize bee buzzing" in manuscript()
+    assert "long filaments stabilize buzzing even without their anthers" in manuscript()
 
 def test_separate_de_novo_origin_from_secondary_function_retention() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
