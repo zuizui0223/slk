@@ -198,4 +198,5 @@ def test_hand_self_compatibility_does_not_identify_autonomous_pollen_transfer() 
     assert "no comparable field mating-system estimates" in note
     assert "manual self-pollination" in ledger
     assert "t=0.70–0.94" in note
-    assert "not a new incompatibility mutation" in ledger
+    assert "not the acquisition of self-compatibility" in main
+    assert "a new incompatibility mutation" in ledger
