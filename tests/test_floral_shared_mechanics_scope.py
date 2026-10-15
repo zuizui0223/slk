@@ -82,3 +82,35 @@ def test_solanum_pollen_release_and_reproductive_export_are_separated() -> None:
     assert "species-dependent downstream response" in LEDGER.read_text(encoding="utf-8")
     assert "No study cited here directly identifies" not in note  # standalone scope language
     assert "three-barrier turnover" in note
+
+
+def test_two_solanum_pollen_fate_routes_do_not_imply_equivalent_reproductive_fitness() -> None:
+    """Protect the measured pollen-fate contrast and its limited ecological interpretation."""
+    source = NOTE.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    main = manuscript()
+    for marker in (
+        "10.26786/1920-7603(2025)836",
+        "62.99%", "19.07%", "27.65%", "65.92%",
+        "six", "nine", "P=0.221",
+        "not an equivalence test",
+        "species order preceding",
+        "not evolutionary alternatives",
+    ):
+        if marker == "not evolutionary alternatives":
+            assert "not matched derived alternatives" in source
+        else:
+            assert marker.lower() in source.lower(), marker
+    assert "10.26786/1920-7603(2025)836" in ledger
+    assert "not establish equivalence" in ledger
+    assert "Vasquez-Castro et al. 2025" in main
+    assert "neither an evolutionary transition nor a whole-life fitness comparison" in main
+    assert "Stigma deposition" not in main or "without a statistically detected efficiency difference" in main
+    # The published destination fractions form a near-complete pollen budget;
+    # the small mismatch is allowable due to separately averaged/rounded categories.
+    rostratum = (62.99, 27.65, 8.54, 0.86)
+    dulcamara = (19.07, 65.92, 14.01, 1.00)
+    assert abs(sum(rostratum) - 100.0) < 0.1
+    assert abs(sum(dulcamara) - 100.0) < 0.1
+    assert rostratum[0] > dulcamara[0]
+    assert rostratum[1] < dulcamara[1]
