@@ -39,6 +39,25 @@ Fukano & Denda (2026), *Plant Species Biology* **41:e70070**, DOI **10.1111/1442
 
 This supports the role of long-stamen **filaments**, independently of long anther pollen release, in shaping *buzzing posture*. It does **not** prove that both anther classes must always be mechanically present: long stamens alone (treatment C) also had **0/26 slips**. Counts refer to repeated **visits**, not independent flowers and not lifetime seed production. See `docs/FLORAL_INTERACTION_MODULE_AUDIT_V1.md` for the complete six-treatment evidence table.
 
+## Independent pollen-fate assay — architecture changes where pollen is lost, not demonstrably how much reaches stigmas
+
+Vasquez-Castro, Morel, Garcia-Simpson & Vallejo-Marín (2025), *Journal of Pollination Ecology* 39:246–260, DOI **10.26786/1920-7603(2025)836**, directly tracked the fate of pollen removed by captive *Bombus terrestris* from **two different species**: heterantherous, enantiostylous *Solanum rostratum* and *S. dulcamara*, with morphologically uniform anthers joined into a cone. Each controlled trial exposed a donor to the bee and then **four recipient stigmas**, with recipients' anther pores blocked. There were **six** completed trials for *S. rostratum* and **nine** for *S. dulcamara* (**15 donor trials**, 60 sequential recipient flowers). The 60 recipients are repeated observations nested within 15 trials, not 60 independent architecture comparisons.
+
+| Outcome as percentage of pollen removed from the donor | *S. rostratum* (heteranthery) | *S. dulcamara* (joined anther cone) |
+|---|---:|---:|
+| Pollen dislodged onto collection plate/ground | **62.99%** | **19.07%** |
+| Pollen in bee corbiculae (harvested by bee) | **27.65%** | **65.92%** |
+| Pollen still on bee body at the end of the trial | 8.54% | 14.01% |
+| Pollen deposited on four recipient stigmas | approximately **1%** | approximately **1%** |
+
+Ground-loss and corbicular differences were statistically detectable (reported `P=0.001` and `P=0.011`, respectively). The difference in stigma-deposition efficiency (PTE, fraction of *removed* pollen reaching the four measured stigmas) was **not statistically detected** (`P=0.221`), **not an equivalence test**. The abstract and discussion report `0.86% S. rostratum / 1.00% S. dulcamara`; the species order preceding these numbers in a Results sentence differs. We therefore use **approximately 1%** for both in the biological comparison rather than treating this textual inconsistency as a resolved source-level species difference. The four-recipient design truncates carryover: extending a fitted curve to 20 recipients was projected to increase cumulative PTE by roughly **25.7%** relative to that window; this was a model extrapolation, not 20-visit experimental observation.
+
+**Ecological implication:** similar measured stigma-transfer fractions can conceal distinct **pollen loss pathways**. Pollen spilled onto the ground does not reward the visitor, whereas pollen groomed into corbiculae is captured by the bee. The two routes differ in plant–pollinator resource economics even when the short-range measured export fraction is similar. A flower with apparently clearer anther-role division is *not necessarily more efficient at overall pollen transfer under every visitor*; the visitor's grip, size, and handling can alter the balance among pollen harvest, waste, and available pollen for transfer. This is a *synthesis of published data*, not evidence that floral coupling, structural specialization, or pollinator reward was evolutionarily selected or caused differences in future visitation.
+
+**Hard limits:** The two species are not matched derived alternatives within one lineage; anatomy, flower size, bee-fit, pollen supply, and mating system differ. This experiment manipulates **pollen pathway/recipient accessibility**, not a free-versus-differentiated anther genotype; it does **not** assign each lost grain to a particular anther class, measure seed fitness or paternity, or estimate `Phi`, `g0` or rare invasion `Delta_R`. Bee grooming or pollen transport after departing the donor was incompletely measured. The confined arena, artificial flower orientation and use of one captive bee species cannot establish field population selection, nor does failure to detect a PTE difference demonstrate that the two architectures are equivalent.
+
+Source: Vasquez-Castro CA, Morel E, Garcia-Simpson B, Vallejo-Marín M. 2025. The fate of pollen in two morphologically contrasting buzz-pollinated *Solanum* flowers. *Journal of Pollination Ecology* 39:246–260. DOI 10.26786/1920-7603(2025)836.
+
 ## The shared positive ecological conclusion — and its limit
 
 The three studies establish distinct real effects of **organ-to-organ or plant-to-pollinator coupling**:
