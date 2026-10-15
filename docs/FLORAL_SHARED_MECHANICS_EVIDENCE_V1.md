@@ -58,6 +58,24 @@ Ground-loss and corbicular differences were statistically detectable (reported `
 
 Source: Vasquez-Castro CA, Morel E, Garcia-Simpson B, Vallejo-Marín M. 2025. The fate of pollen in two morphologically contrasting buzz-pollinated *Solanum* flowers. *Journal of Pollination Ecology* 39:246–260. DOI 10.26786/1920-7603(2025)836.
 
+## Within-species bee–flower fit: more received pollen need not mean more mature seeds
+
+Solís-Montero & Vallejo-Marín (2017), *Ecology and Evolution* 7:2706–2715, DOI **10.1002/ece3.2897**, examined pollinator-size matching **within the heterantherous species *Solanum rostratum*** rather than treating different species as randomized architectural alternatives. They surveyed variation in floral size/herkogamy in six native Mexican populations, then exposed controlled arrays (35 blocks, ten potted plants per array) to captive *Bombus terrestris* workers of varying size. Each array contained flowers from two populations and was visited by one bee during a 20-minute exposure; multiple flowers/visits are nested observations, not independent evolutionary replicates.
+
+The declared **size-matching index** was separation between the pollinating anther and stigma **minus** bee abdomen width (`SMI = DPAST - BAW`). Negative values mean the bee abdomen is wider than the gap between sexual organs; positive values mean it is narrower.
+
+| Biological response in *S. rostratum* | Reported SMI coefficient | Evidence | Ecological meaning |
+|---|---:|---|---|
+| Pollen grains deposited on recipient stigmas | **−0.068** | `P<0.001` | A wider bee abdomen relative to the organ gap predicts **more pollen receipt** |
+| Probability of fruit production | −0.186 | `P=0.094` | Directionally similar to receipt, but **not statistically detected** |
+| Seeds per fruit | **+0.214** | `P<0.001` | The **opposite** direction: narrower bee abdomen relative to the gap predicts **more mature seeds per fruit** |
+
+This is a strong natural-organism analogy for **stage-dependent reproductive consequences of floral architecture × pollinator morphology**: pollen deposition is not a monotone substitute for mature seed yield. The authors offered mechanistic possibilities (excess pollen clogging a small stigma, or deposition of geitonogamous self-pollen followed by inbreeding depression). The experiment did **not** determine the self:outcross pollen ratio, pollen-donor paternity, male function or the causal postpollination mechanism. Seed number per fruit is not necessarily total lifetime female fitness, especially when fruit production itself did not change significantly.
+
+The 2017 within-species bee-fit result and the 2025 two-species pollen-fate comparison concern **different experiments and reproductive stages**. Read together, they show why an apparent advantage at pollen release, transport, stigma arrival, fruit initiation or mature seed production cannot automatically be moved to another endpoint or interpreted as selection preserving a particular architectural module. Both are **prior published biology**, not a newly demonstrated SLK `Phi`, `g0`, `Delta_R` crossing or natural evolutionary transition.
+
+Source: Solís-Montero L, Vallejo-Marín M. 2017. Does the morphological fit between flowers and pollinators affect pollen deposition? An experimental test in a buzz-pollinated species with anther dimorphism. *Ecology and Evolution* 7:2706–2715. DOI 10.1002/ece3.2897.
+
 ## The shared positive ecological conclusion — and its limit
 
 The three studies establish distinct real effects of **organ-to-organ or plant-to-pollinator coupling**:
