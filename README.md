@@ -60,6 +60,16 @@ The important biological point is that the balance of this conflict already vari
 
 No new *P. rex* biological result is claimed by this repository.
 
+## Floral ecological extension — structural division is not the only reproductive route
+
+Across three paired large/small-flowered lineages of *Solanum* section *Androceras*, the single pollinating anther's share of pollen falls from **50–67%** to **39–41%**: differentiation weakens but is not erased (Vallejo-Marín et al. 2014). The small-flowered taxa also dispense pollen faster under simulated buzzing (Kemp and Vallejo-Marín 2021). Manual self-pollination worked in both large- and small-flowered taxa, but autonomous seed production occurred in two small-flowered taxa and none of their three large-flowered comparators; the remaining small-flowered result was inconclusive because it failed to fruit even with hand pollination (Rubini Pisano et al. 2026, DOI 10.1093/aob/mcag186). This distinguishes self-compatible reproduction from the geometry or other mechanisms that permit pollen to reach the stigma without a visitor. Crucially, phenotypic covariation between the two anther classes and between corolla and sexual organs weakens, while selected anther–stigma associations strengthen. This suggests **functional reallocation of floral coordination**, not a general loss of all integration. The study documents seed-autonomy capacity and trait covariance, not wild selfing rates, selection causing the morphological transition, or an SLK three-gate turnover. Pollen and seed discounting, as well as inbreeding depression, still matter to selfing's full fitness value (Porcher and Lande 2005, DOI 10.1111/j.1420-9101.2005.00905.x).
+
+Separate *Solanum* (2022), *Chamaecrista* (2025) and *Bredia* (2026) experiments demonstrate that floral organs can share mechanical transport and grip functions even when their pollen-handling roles differ. Enhanced vibration, pollen deposition on an artificial bee, and stable buzzing are different endpoints from realized male or female reproductive fitness. An accessible flower retaining mechanical support but reducing anther differentiation is therefore a legitimate evolutionary candidate. Its fitness and historical accessibility remain unmeasured; supporting filaments do not by themselves explain retention of differentiated pollen-producing anthers. See `docs/FLORAL_PARTNER_FUNCTION_SWITCH_V1.md`, `docs/FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md`, and `theory/FLORAL_SCAFFOLD_BYPASS_V1.md`.
+
+**Where pollen goes matters, not just how much disappears.** A 2025 controlled *Bombus terrestris* study found different pollen-loss routes for heterantherous *Solanum rostratum* versus coned-anther *S. dulcamara*: respectively about 63% versus 19% of removed pollen fell to the ground, while about 28% versus 66% entered bee corbiculae. Only ~1% of removed pollen was deposited on four subsequent stigmas in either species, without a statistically detected PTE difference (Vasquez-Castro et al. 2025, DOI 10.26786/1920-7603(2025)836). The small two-species trial does **not** establish equivalence, a cause-specific architecture effect, genetic paternity, or an observed evolutionary transition. It shows that similar measured pollen-transfer endpoints can hide very different bee reward and pollen-waste pathways; see `docs/FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md` for the quantitative primary-source audit.
+
+**Pollen receipt need not predict seed maturation, even within one species.** Under controlled *S. rostratum* bee visits, larger abdomens relative to anther–stigma separation predicted more stigma pollen, whereas smaller relative abdomens were associated with more seeds per fruit; fruit set had no significant association (Solís-Montero and Vallejo-Marín 2017, DOI 10.1002/ece3.2897). The experiment did not distinguish excess-pollen effects from geitonogamous pollen or inbreeding depression. Together, the 2017 and 2025 studies make floral division a question about distinct ecological outcomes, not a one-dimensional quantity of pollen moved.
+
 ## What the theory contributes
 
 The mathematical machinery supports the biological theory rather than replacing it. The main contributions are:
@@ -143,15 +153,17 @@ PEDICULARIS_OPERATIONS_FLAGSHIP_GROWTH_CI_BLOCKED
 PEDICULARIS_OPERATIONS_DELETION_FOR_MIGRATION_ALLOWED
 EMPIRICAL_COMPANION_160_FILE_MANIFEST_FROZEN
 EMPIRICAL_COMPANION_DESTINATION_VERIFICATION_REQUIRED_BEFORE_PRUNING
-AMNAT_REFOCUSED_REVIEW_PACKAGE_BUILD_PASS
-AMNAT_RENDERED_LAYOUT_QA_PASS_28_28
-AMNAT_REVIEWER_ZIP_READY_CURRENT
-AMNAT_ZENODO_ARCHIVE_PAYLOAD_READY_CURRENT
+AMNAT_LATEST_HEAD_TEST_AND_BUNDLE_CI_PASS
+AMNAT_RENDERED_LAYOUT_PREVIOUS_QA_NOT_FROZEN_CURRENT
+AMNAT_REVIEWER_ZIP_LATEST_CI_BUILT_TRACKED_RECEIPT_STALE
+AMNAT_ZENODO_ARCHIVE_TRACKED_RECEIPT_STALE
 AMNAT_PORTAL_READINESS_GATE_REGISTERED
-AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_READY_CURRENT
-AMNAT_INTERNAL_BLOCKERS_NONE
+AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_TRACKED_RECEIPT_STALE
+AMNAT_HUMAN_PORTAL_FIELDS_ARCHIVE_AND_REFREEZE_OUTSTANDING
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```
+
+The source branch passed its latest Python 3.11/3.12 and anonymous-bundle CI checks at commit `e09cf67a6154` before this README-only clarification. This does **not** update the frozen local checksum receipts for the reviewer ZIP, Editorial Manager kit, or archive deposit. Build artifacts, deposited archives, and an actual journal submission are separate steps; no journal submission is claimed.
 
 ## Journal decision rule
 
