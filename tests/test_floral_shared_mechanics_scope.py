@@ -114,3 +114,23 @@ def test_two_solanum_pollen_fate_routes_do_not_imply_equivalent_reproductive_fit
     assert abs(sum(dulcamara) - 100.0) < 0.1
     assert rostratum[0] > dulcamara[0]
     assert rostratum[1] < dulcamara[1]
+
+
+def test_within_solanum_bee_size_predicts_opposing_pollen_and_seed_endpoints() -> None:
+    """Pollen receipt, fruit set and seeds per fruit cannot be treated as one response."""
+    note = NOTE.read_text(encoding="utf-8")
+    ledger = LEDGER.read_text(encoding="utf-8")
+    main = manuscript()
+    for source in (note, ledger):
+        assert "10.1002/ece3.2897" in source
+        assert "0.068" in source and "0.214" in source
+        assert "P=0.094" in source
+        assert "seeds per fruit" in source
+    assert "Solís-Montero and Vallejo-Marín 2017" in main
+    assert "more pollen deposited but fewer seeds per fruit" in main
+    assert "fruit-set effect was nonsignificant" in main
+    assert "not a monotone substitute for mature seed yield" in note
+    assert "self:outcross pollen ratio" in note
+    # Associations have opposite slopes by the paper's declared index convention.
+    assert -0.068 < 0 < 0.214
+    assert 0.094 > 0.05
