@@ -180,3 +180,22 @@ def test_solanum_residual_pollen_allocation_and_coordination_shift_are_not_slk_g
         assert "Neither the quantitative pollen reallocation" in text
         assert "Porcher & Lande 2005" in text
     assert 0 < 0.39 <= 0.41 < 0.50 <= 0.67 < 1
+
+
+def test_hand_self_compatibility_does_not_identify_autonomous_pollen_transfer() -> None:
+    """The same compatible reproductive tissues need not receive self pollen autonomously."""
+    main = manuscript()
+    note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(encoding="utf-8")
+    assert "both flower-size groups are self-compatible under hand pollination" in main
+    assert "autonomous pollen delivery" in main
+    assert "all six taxa" in note
+    assert "AI_s" in note and "AI_f" in note
+    for lineage in ("Pacificum:", "Androceras:", "Violaceiflorum:"):
+        assert lineage in note
+    for taxon in ("S. grayi", "S. heterodoxum", "S. fructu-tecto"):
+        assert taxon in note
+    assert "no comparable field mating-system estimates" in note
+    assert "manual self-pollination" in ledger
+    assert "t=0.70–0.94" in note
+    assert "not a new incompatibility mutation" in ledger
