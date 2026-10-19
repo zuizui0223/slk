@@ -242,7 +242,13 @@ def _bootstrap(
         by_species[row["species"]].append(row)
     species = list(by_species)
     if not species:
-        raise ValueError("cannot bootstrap an empty matched study sample")
+        return {
+            "unit": "species-cluster resampling; no eligible repeated groups",
+            "seed": seed,
+            "iterations": 0,
+            "fraction_ge_0_5": None,
+            "median_effect_range": None,
+        }
     rng = _rng_xorshift(seed)
     values = []
     medians = []
@@ -387,7 +393,12 @@ def main() -> None:
     if args.groups:
         args.groups.parent.mkdir(parents=True, exist_ok=True)
         with args.groups.open("w", encoding="utf-8", newline="") as file:
-            writer = csv.DictWriter(file, fieldnames=list(groups[0]))
+            fields = [
+                "species", "author", "publication_year", "doi", "contexts",
+                "sites", "known_years", "min_effect", "max_effect",
+                "range_log_response_ratio", "spans_zero",
+            ]
+            writer = csv.DictWriter(file, fieldnames=fields)
             writer.writeheader()
             writer.writerows(groups)
 
