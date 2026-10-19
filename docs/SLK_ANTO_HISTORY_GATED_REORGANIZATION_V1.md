@@ -51,6 +51,35 @@ With a decreasing architecture debit `k(t)=max(0,12/5-t/5)` and `eta=3/2`, the s
 
 **Hidden-competence consequence.** Identical individual and pairwise retention frequencies of necessary resources can leave `theta=P(111)` in `[0,1/4]`; the late example with no reacquisition then has a sharp conditional qualified-event interval `[0,4.582218%]` under ANTO's grouped-incomplete-state assumptions. This is a Fréchet/linear-transition **model interval, not statistical confidence or a global plant parameter**.
 
+## v2 extension: silent preparedness without pre-window visible expression
+
+The original timing example above permits visible expression before a favorable selective window. This is a real biological assumption, because expression itself could be selected against. The **separate** [ANTO v2 silent-priming extension](https://github.com/zuizui0223/anto/blob/theory/slk-anto-ecological-opportunity-window-20261019/docs/SLK_ANTO_SILENT_PRIMING_WINDOW_V2.md) tests the complementary condition: **zero visible expression throughout the ecologically nonqualifying period**, while retained but unused developmental modules become more readily inducible.
+
+A structurally competent, unexpressed lineage has two hypothetical hidden regulatory-readiness states, unprimed U and primed P. In each nonqualifying generation, U becomes P at rate `b`, while either state loses the entire required toolkit at rate `d`. The genuinely qualifying SLK context arrives for three generations. Activation then has probability `a_U` from U and `a_P` from P, with conditional expressed-state continuation `r`.
+
+For initial complete-toolkit fraction `theta`, the probability of a **three-consecutive-visible-expression coincidence, not actual establishment**, after `m` nonqualifying generations is exactly:
+
+```
+Q(m) = theta*r² * [
+    a_U*(1-b-d)^m
+    + a_P*((1-d)^m-(1-b-d)^m)
+].
+```
+
+The biologically interpretable one-step timing switch is:
+
+```
+Q(1)>Q(0)  <=>  b*(a_P-a_U)>a_U*d    [theta*r>0].
+```
+
+The mechanism is a *competition between silent readiness and irreversible loss*. If a priming effect is real and exceeds the resource-erosion debit, some delay improves subsequent expression opportunity **without any visible precursor**. With positive d the effect is temporary, not an indefinitely increasing evolutionary gain. In a fixed illustrative exact model, the peak occurs after nine nonqualifying generations (**2.7238%** versus **0.8000%** with immediate qualifying conditions), followed by a decline. If `b=0` or `a_P=a_U`, later opportunities instead decay as `(1-d)^m`. These are **conditional constructed rates**, not natural generation estimates.
+
+**A stronger same-present-phenotype distinction:** With the same selected candidate, same present SLK environment, same white visible history and exactly the same **retained complete toolkit fraction**, `b=0.15` versus `b=0` yields **2.7238% versus 0.5540%** qualifying three-snapshot events after nine generations. The hidden primed fraction differs, so a coding-gene-only assay omits a causally relevant present regulatory state. It does not contradict state sufficiency when that hidden state is actually measured.
+
+**Experimentally falsifiable identifiability signature:** With separately measured toolkit survival `S=1-d` and matched cohorts pre-exposed for `m=0,1,2` generations before identical three-generation positive SLK conditions, let `y_m=Q(m)/Q(0)`, `v1=y1-S`, `v2=y2-S²`. Conditional on nonzero `v1` and fixed shared rates, `b=2S-v2/v1` and `a_P/a_U=1+v1/b`. A one-delay assay confounds priming frequency with activation efficacy; the third cohort can break that ambiguity. A further `m=3` cohort tests whether the constant-rate model is wrong. This is algebraic structural identification, not a powered field sampling design.
+
+**Scope firewall:** This extension is *not* a new SLK fourth ecological-selective bottleneck, nor evidence of plant evolutionary reactivation. Priming may be transient developmental plasticity; its inheritance, actual target trait function, and genotyped ancestry are unmeasured. All Cirsium experimental use belongs to aza3. The published tissue-specific *Cirsium japonicum* source in ANTO v6 suggests only a possibility of nonfloral pathway preservation, not priming and not an SLK payoff difference.
+
 ## Distinct biological mechanisms remain distinct
 
 The same visible integrated morphology can persist with an unfavorable differentiated candidate, a local release obstacle, rarity-dependent exclusion, a vanished joint toolkit, or any combination. ANTO's hidden-state incompetence is **not** a fourth SLK selection-sign threshold; it changes the *supply and structural feasibility* of a declared phenotype, whereas SLK's signs concern **selection relative to a specified alternative**.
