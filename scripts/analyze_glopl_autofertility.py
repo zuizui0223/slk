@@ -303,9 +303,9 @@ def _source_handling_sensitivity(
             not in ("true","t","1")
         ],
         "exclude_abs_effect_gt_3": [
-            r for r in pollen if math.isfinite(
-                _numeric(r["PL_Effect_Size"]) or math.nan
-            ) and abs(float(r["PL_Effect_Size"])) <= 3.0
+            r for r in pollen
+            if _numeric(r["PL_Effect_Size"]) is not None
+            and abs(float(r["PL_Effect_Size"])) <= 3.0
         ],
     }
     out={}
