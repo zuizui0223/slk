@@ -248,6 +248,97 @@ The mismatch terms cancel because `sum_{i=1}^{N-1} (2i-N)=0`. The reciprocal fix
 
 Prior art: Ohtsuki H, Bordalo P, Nowak MA. 2007. The one-third law of evolutionary dynamics. *Journal of Theoretical Biology* 249:289–295. DOI 10.1016/j.jtbi.2007.07.005 (the one-third law is a separate **weak-selection limiting result**, not asserted to hold exactly for the exponential-fitness example above).
 
+## A finite ecological window: identical long-run architecture odds but different routes and waiting times
+
+A deterministic invasion boundary is not the same question as **how far specialization progresses before an ecological context changes**. The already derived four-entry exponential-Moran fixation probabilities give a minimal, *strong-mutation-weak-selection is NOT required* rare-mutation substitution chain across three monomorphic architectural states:
+
+```text
+S = 0 (integrated),   P = d_* = 1/7 (partial),   D = 1 (complete).
+```
+
+Assume mutation is **rare compared with within-population absorption**: one substitution resolves before another arrives. For each permitted directed evolutionary transition `i -> j`, an attempted new mutant is supplied at rate `mu_ij`, and its fixation probability is `rho_(j|i)` from the previously defined **self-excluding four-entry exponential Moran process**. The origin-fixation transition rate is
+
+```text
+Q_ij = mu_ij * rho_(j|i)          for i != j.
+```
+
+This is a standard origin-fixation chain, not a new theory of evolutionary waiting times (Sella & Hirsh 2005; McCandlish 2011, DOI 10.1111/j.1558-5646.2011.01236.x). In particular, McCandlish explicitly distinguishes stationary probabilities from approach-to-equilibrium dynamics on mutational networks. Here the **biological question** is how partial division changes the next specialization step while all initial integrated-resident assays are invariant to ecological mismatch curvature `q`.
+
+### Long-run architectural occupancy under symmetric mutation opportunities
+
+For any pair of degrees `u,v`, the fixation odds from the declared four-entry mismatch model obey
+
+```text
+rho_(u|v)/rho_(v|u) = exp[beta*(N-1)*(F(u)-F(v))].
+```
+
+This ratio is exactly independent of `q`. For a finite, **connected** set of architectural states with **symmetric** permitted mutation rates (`mu_ij=mu_ji`; zero for both directions on missing edges), the rare-mutation substitution chain is reversible and satisfies detailed balance with
+
+```text
+pi_i = exp[beta*(N-1)*F(i)] /
+       sum_j exp[beta*(N-1)*F(j)].
+```
+
+Thus identical intrinsic `F` predicts identical *asymptotic* monomorphic architecture occupancy at all `q` in this family, **even when mutational connectivity excludes direct S-to-D transitions**. The equality does **not** survive arbitrary asymmetric mutation rates, altered four-entry payoffs, finite mutation supply producing polymorphism, or changed intrinsic `F`. Nor does it imply the same transition rates, the same time to specialization, or the same route through intermediate states.
+
+### First passage through a partial-specialization resident
+
+For three monomorphic states, define the rates **before multiplying by a shared, sufficiently small mutation supply `mu`**:
+
+```text
+a = rho_(P|S),    b = rho_(D|S),
+c = rho_(S|P),    d = rho_(D|P).
+```
+
+If all three undirected mutation edges are available with equal directional supply `mu`, the two-state transient generator (before the *first* appearance of a fixed D state) is
+
+```text
+Q_transient/mu = [[-(a+b), a],
+                  [c, -(c+d)]].
+```
+
+Direct solution of the first-step recursions gives the dimensionless mean **first-passage time from integrated S to the first fixed D population**
+
+```text
+mu * E[T_(S->D)] = (a+c+d)/(a*d + b*(c+d)).
+```
+
+The probability that the *first* fixation of D enters from P rather than directly from S is `a*d/[a*d+b*(c+d)]`. This is a route-of-first-arrival probability, not the fraction of time subsequently spent in P. When large S-to-D structural mutations are developmentally inaccessible, set **`b=0` in the transition graph only** (not in the fitness model): then every route to D must pass through P, and
+
+```text
+mu * E[T_(S->D)] = (a+c+d)/(a*d).
+```
+
+A finite ecological window may close before D is reached. Let `tau=mu*t`, `g=sqrt((a+b-c-d)^2+4*a*c)`, and `r_slow, r_fast=(a+b+c+d ∓ g)/2`. The **exact** probability of having reached a fixed D at least once by that normalized horizon is
+
+```text
+P(hit D by tau) = 1 -
+  [(r_fast-b)/g]*exp(-r_slow*tau)
+  -[(b-r_slow)/g]*exp(-r_fast*tau).
+```
+
+This is a *first-hitting* probability that treats D as absorbing **only for the first-passage calculation**; the full reversible origin-fixation chain permits later reversions.
+
+### Three-state SLK numerical witness: partial division as a temporal gate
+
+Take the same `F(d)=d/4+d^2`, `w(d)=d/10+9d^2/10`, `eta=1.5`, `N=100`, and `beta=1`. Keep mutation opportunities symmetric and restrict mutation graph accessibility to **S <-> P <-> D**, so direct S-to-D mutation is *not supplied* (`b=0`) while pairwise S-to-D fitness remains defined and identical at all `q`.
+
+| Quantity (same initial S-versus-d assays) | `q=1` | `q=4` |
+|---|---:|---:|
+| `rho_(P|S)=a` | 0.029404746476 | 0.029404746476 |
+| `rho_(S|P)=c` | 0.000113611977 | 0.000113611977 |
+| `rho_(D|P)=d` | 0.023423120313 | 0.117256955418 |
+| `mu E[T_(S->D)]` | **76.86592882** | **42.56934471** |
+| `P(hit D by mu*t=40)` | **0.28137875** | **0.59108238** |
+
+These are **not** generation counts and `mu=1` is **not** assumed biologically: the displayed waiting-time and finite-window values are expressed in *mutation-opportunity units*, valid under `mu` small enough that each population fixation/loss episode ends before the next eligible mutant arrives. For instance an ecological opportunity lasting `t=40/mu` time units would have a model first-completion probability of about **28% versus 59%** under the two alternative interaction curvatures, even though all integration-resident assays and eventual stationary probabilities agree. If rare long-distance architecture changes S-to-D are supplied too, the same calculation (with `b=rho_(D|S)`) yields `mu E[T]=40.37744337` for `q=1` versus `22.40262892` for `q=4`, demonstrating explicit **dependence on mutational access** as well as specialist-specialist ecology.
+
+This means *two lineages with identical current fitness ranking and the same asymptotic preference for full division could occupy different architectural states throughout a finite environmental window*. One may appear indefinitely partially specialized on observational timescales although the equilibrium occupancy is overwhelmingly fully specialized. The ecological window duration and the mutation topology are distinct hypotheses; no time scale, demographic size, selection intensity, q or mutation network was inferred for a natural lineage.
+
+**Scope / prior-art boundary.** Time-dependent fitness landscape evolution, reversible origin-fixation dynamics and mutational-network bottlenecks are established theory (Sella & Hirsh 2005; McCandlish 2011). SLK's limited numerical contribution is the **specified partial-specialization witness**: q-independent original assays and stationary occupancy coexist with q-dependent specialist-to-specialist substitution rates and finite-time completion, making evolutionary stasis **history- and time-horizon dependent** even before invoking phenotype-specific costs that change with environment. This is not a fourth universal SLK gate or field validation of a real trajectory.
+
+Citation: McCandlish DM. 2011. Visualizing fitness landscapes. *Evolution* 65:1544–1558. DOI 10.1111/j.1558-5646.2011.01236.x. (Reversible origin-fixation landscapes, stationary distributions, and their transient dynamics.)
+
 ## A counterexample with exactly the same S-versus-d evidence
 
 Add a directional effect of encounters between two already differentiated forms:
