@@ -45,6 +45,8 @@ jobs:
                 "matched_strict_context_species_overlap",
                 "species_with_both_SC_FS_and_AF_FS",
                 "trait_coverage","species_level_rank_correlations",
+                "paired_SC_AF_comparison", "family_aggregation_sensitivity",
+                "life_history_strata", "source_processing_sensitivities",
                 "strict_context_association"]
           print(json.dumps({k:r[k] for k in keys},indent=2))
           PY
