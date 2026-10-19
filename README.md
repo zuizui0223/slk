@@ -40,7 +40,7 @@ Architecture economics, evolutionary history, and ecological interactions can th
 
 ## Biological predictions
 
-The framework now makes four natural-history predictions.
+The framework now makes five conditional natural-history predictions.
 
 **1. Conflict strength alone should not rank the tendency toward division of labor.** A system with stronger conflict can remain integrated if little of that conflict is recoverable or if the divided architecture is costly, whereas weaker conflict can be resolved structurally when release is efficient and cheap.
 
@@ -49,6 +49,8 @@ The framework now makes four natural-history predictions.
 **3. Historical trapping and ecological stabilization predict different geographic mosaics.** Strict convex recovery creates architecture-path hysteresis: forward and reverse environmental change can retain different architectures even when frequency dependence is absent. Positive frequency dependence instead creates resident-frequency priority effects and alternative locally stable architectures; negative frequency dependence predicts stable coexistence or mixed zones.
 
 **4. Structural novelty and demographic support trade off along one escape frontier.** Under the canonical positive-frequency extension, `p_escape(d)=1/2-[dmax/(2eta)][R(d)/d-k]` under a release-proportional feedback extension that vanishes at `d=0`. The structural threshold `d_J` is the `p=1/2` slice and the endpoint frequency threshold `p_C` is the `d=dmax` slice. Larger favorable structural changes therefore require less initial abundance, while clustering, immigration, or repeated origin can compensate for more modest novelty; environmental change can move the whole frontier before morphology changes.
+
+**5. Partial division can change the ecological prospects of further specialization.** All integrated-versus-variant fitness comparisons may be identical while an established partially differentiated type either resists further rare specialization or permits a relay or direct two-step completion. In the registered symmetric mismatch witness, an initial partial degree `d=1/7` permits rare full division only above a **model-specific** mismatch exponent `q=3.985803...`; below it, further intermediate residents or sufficient founding frequency may be needed. The numerical boundary is not an observed or universal evolutionary threshold.
 
 The strongest original SLK prediction is the **candidate-specific turnover of the first failing bottleneck** and a shifting structure–frequency escape frontier before completed division appears. An additional biological implication is that *partial division changes the ecology faced by later variants*: under two explicitly different mismatch structures, every integrated-versus-divided assay is identical while established partial differentiation either resists onward specialization or enables a chain toward complete division. This is a conditional mechanism already derived in the supporting theory, not a general new theorem about stable specialization and not a verified trajectory in nature. See `theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md`.
 
