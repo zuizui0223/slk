@@ -540,6 +540,8 @@ def _first_hit_scaled_mean(a: float, b: float, c: float, d: float) -> float:
 def _first_hit_closed_probability(a: float, b: float, c: float, d: float,
                                   normalized_horizon: float) -> float:
     """Exact CDF of first entry to D; later return substitutions are irrelevant."""
+    if normalized_horizon == 0:
+        return 0.0  # exact boundary; avoid +/- 1e-16 cancellation artifacts
     g = sqrt((a+b-c-d)**2 + 4*a*c)
     assert g > 0
     r_slow = (a+b+c+d-g)/2
