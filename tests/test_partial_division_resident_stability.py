@@ -1,6 +1,6 @@
 """Model witnesses: invasion from integration does not decide partial-resident stability."""
 
-from math import isclose, log
+from math import exp, isclose, log
 from pathlib import Path
 
 import pytest
@@ -380,3 +380,141 @@ def test_theory_qualifies_direct_completion_threshold_and_its_prior_art() -> Non
             assert "**not** the first discovery" in source.lower()
         else:
             assert token in source, token
+
+
+def finite_mismatch_pair_fixation_from_closed_sum(
+    mutant: float, resident: float, exponent: float, n: int, beta: float
+) -> float:
+    """Exact one-mutant exponential Moran fixation, excluding self encounters."""
+    assert n >= 3 and beta > 0 and exponent >= 1
+    gap = intrinsic(mutant) - intrinsic(resident)
+    mismatch = ETA * smooth_mismatch(mutant, resident, exponent)
+    terms = [
+        -beta * (j * gap + mismatch * j * (j + 1 - n) / (n - 1))
+        for j in range(n)
+    ]
+    peak = max(terms)
+    return exp(-peak) / sum(exp(t - peak) for t in terms)
+
+
+def finite_mismatch_pair_fixation_from_transitions(
+    mutant: float, resident: float, exponent: float, n: int, beta: float
+) -> float:
+    """Independent exact birth/death ratio implementation of the 4-payoff game."""
+    gap = intrinsic(mutant) - intrinsic(resident)
+    mismatch = ETA * smooth_mismatch(mutant, resident, exponent)
+    products_log = [0.0]
+    cumulative = 0.0
+    for i in range(1, n):
+        # Pi are expected encounter payoffs, not raw fitness observations.
+        pi_mutant = intrinsic(mutant) - mismatch * (n - i) / (n - 1)
+        pi_resident = intrinsic(resident) - mismatch * i / (n - 1)
+        weight_m = i * exp(beta * pi_mutant)
+        weight_r = (n - i) * exp(beta * pi_resident)
+        t_plus = weight_m / (weight_m + weight_r) * (n - i) / n
+        t_minus = weight_r / (weight_m + weight_r) * i / n
+        assert t_plus > 0 and t_minus > 0
+        # The self-exclusion correction survives; do not use Delta(0).
+        assert isclose(pi_mutant - pi_resident,
+                       gap + mismatch * (2*i-n)/(n-1), abs_tol=1e-12)
+        cumulative += log(t_minus / t_plus)
+        products_log.append(cumulative)
+    peak = max(products_log)
+    return exp(-peak) / sum(exp(x - peak) for x in products_log)
+
+
+@pytest.mark.parametrize("exponent", (1.0, 2.0, 3.0, 4.0, 5.0))
+@pytest.mark.parametrize("n", (20, 100))
+@pytest.mark.parametrize("beta", (0.1, 1.0))
+def test_finite_four_payoff_moran_replays_independent_fixation_formula(
+    exponent: float, n: int, beta: float
+) -> None:
+    for mutant, resident in ((D_STAR, 0.0), (1.0, 0.0),
+                             (1.0, D_STAR), (D_STAR, 1.0)):
+        expected = finite_mismatch_pair_fixation_from_closed_sum(
+            mutant, resident, exponent, n, beta
+        )
+        observed = finite_mismatch_pair_fixation_from_transitions(
+            mutant, resident, exponent, n, beta
+        )
+        assert isclose(expected, observed, rel_tol=1e-11, abs_tol=1e-12)
+
+
+def test_finite_moran_fixation_is_continuous_at_direct_completion_boundary() -> None:
+    n, beta = 100, 0.1
+    q_star = 1.0 + log(65.0 / 79.0) / log(237.0 / 253.0)
+    q_values = (1.0, 2.0, 3.0, q_star - 0.001,
+                q_star, q_star + 0.001, 4.0, 5.0)
+    fixation_values = [
+        finite_mismatch_pair_fixation_from_closed_sum(
+            1.0, D_STAR, q, n, beta
+        ) for q in q_values
+    ]
+    assert all(x < y for x, y in zip(fixation_values, fixation_values[1:]))
+    assert fixation_values[0] > 1.0 / n  # opposed when rare, but fixation is possible
+    assert smooth_invasion(1.0, D_STAR, 1.0) < 0
+    assert smooth_invasion(1.0, D_STAR, 4.0) > 0
+    assert isclose(fixation_values[0], 0.027876352004896413, abs_tol=1e-12)
+    assert isclose(fixation_values[-2], 0.03848215517968246, abs_tol=1e-12)
+    assert isclose(fixation_values[-1], 0.04200871838101656, abs_tol=1e-12)
+    assert fixation_values[4] > fixation_values[3]
+    assert fixation_values[5] > fixation_values[4]
+
+
+def test_all_integration_assays_keep_same_finite_moran_probabilities() -> None:
+    """The initial S-vs-d tests are invariant, even for finite population fixation."""
+    n, beta = 100, 0.1
+    for mutant in (D_STAR, 1.0):
+        base = finite_mismatch_pair_fixation_from_closed_sum(mutant, 0.0, 1.0, n, beta)
+        for exponent in (1.0, 1.5, 2.0, 3.0, 4.0, 7.0):
+            observed = finite_mismatch_pair_fixation_from_closed_sum(
+                mutant, 0.0, exponent, n, beta
+            )
+            assert isclose(observed, base, abs_tol=1e-12)
+    assert isclose(
+        finite_mismatch_pair_fixation_from_closed_sum(D_STAR, 0.0, 1.0, n, beta),
+        0.012025785305009848,
+        abs_tol=1e-12,
+    )
+    assert isclose(
+        finite_mismatch_pair_fixation_from_closed_sum(1.0, 0.0, 1.0, n, beta),
+        0.028918435811972974,
+        abs_tol=1e-12,
+    )
+
+
+@pytest.mark.parametrize("exponent", (1.0, 2.0, 4.0, 5.0))
+@pytest.mark.parametrize("n", (20, 100))
+def test_symmetric_mismatch_retains_stationary_odds_but_changes_turnover(
+    exponent: float, n: int
+) -> None:
+    beta = 0.1
+    forward = finite_mismatch_pair_fixation_from_closed_sum(
+        1.0, D_STAR, exponent, n, beta
+    )
+    backward = finite_mismatch_pair_fixation_from_closed_sum(
+        D_STAR, 1.0, exponent, n, beta
+    )
+    gap = intrinsic(1.0) - intrinsic(D_STAR)
+    assert isclose(forward / backward, exp(beta*(n-1)*gap), rel_tol=1e-10)
+    assert 0 < backward < forward < 1
+    # The 4-entry asymmetric focal payoff is not the canonical 3-entry game.
+    x = ETA * smooth_mismatch(1.0, D_STAR, exponent)
+    assert not isclose(intrinsic(1.0)-x, intrinsic(D_STAR)-x)
+
+
+def test_finite_stochastic_fitness_receipt_preserves_known_prior_art() -> None:
+    source = (
+        ROOT / "theory" / "PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md"
+    ).read_text(encoding="utf-8")
+    for marker in (
+        "10.1016/j.jtbi.2007.07.005",
+        "not a fixation threshold",
+        "rho_u|v / rho_v|u",
+        "strictly increases",
+        "0.027876352",
+        "0.038482155",
+        "do not form the equal-off-diagonal three-entry canonical game",
+        "rate of turnover",
+    ):
+        assert marker in source, marker
