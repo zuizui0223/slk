@@ -80,6 +80,44 @@ The mechanism is a *competition between silent readiness and irreversible loss*.
 
 **Scope firewall:** This extension is *not* a new SLK fourth ecological-selective bottleneck, nor evidence of plant evolutionary reactivation. Priming may be transient developmental plasticity; its inheritance, actual target trait function, and genotyped ancestry are unmeasured. All Cirsium experimental use belongs to aza3. The published tissue-specific *Cirsium japonicum* source in ANTO v6 suggests only a possibility of nonfloral pathway preservation, not priming and not an SLK payoff difference.
 
+## v3: why revived phenotype supply is not ecological rescue
+
+The [ANTO v3 absolute-demography companion](https://github.com/zuizui0223/anto/blob/theory/slk-anto-ecological-opportunity-window-20261019/docs/SLK_ANTO_ABSOLUTE_DEMOGRAPHY_V3.md) closes **one limited additional gate**, not the whole biological question: given an expressed candidate that is **explicitly assumed heritable**, can a small descendant lineage still exist at a declared ecological census deadline?
+
+The central SLK warning is important here: **the candidate's relative advantage over a resident does not identify absolute growth**. A positive candidate-specific SLK margin `Delta_R>0` in a fixed resident comparison cannot alone be converted to a plant population's capacity for demographic recovery. In particular, if the resident background is already declining, relative selection may favor a variant even while both populations shrink. One should not claim standard ecological invasion into a stable resident equilibrium from such a declining-background comparison.
+
+To demonstrate this biological distinction without claiming any measured plant parameter, ANTO v3 retains the identical v2 hidden U/P competence trajectory and uses an *extra* offspring mechanism: each expressed **heritable** D founder yields 0, 1 or 2 descendants per generation, `Binomial(2,q_D)`. The unsimulated resident benchmark has `Binomial(2,q_S)`; two alternate backgrounds have the exact same D/S expected offspring ratio `13/11`:
+
+| Source-independent illustrative context | q_S | q_D | Mean D offspring | Long-run D lineage nonextinction if conditions remain unchanged |
+|---|---:|---:|---:|---:|
+| Absolute-supercritical | 0.55 | 0.65 | 1.30 | 120/169 ≈ 71.01% |
+| Absolute-subcritical | 0.33 | 0.39 | 0.78 | 0% |
+
+The infinite-time branching formula above is an elementary established result, not the finite-census statistic. With 40 **hypothetical independent initial lineages**, census at generation 14, and threshold of ≥4 D descendants in **at least one** lineage, the exact model with 65-digit polynomial numerical evaluation gives:
+
+| Evolutionary timing | Supercritical finite-census event | Subcritical finite-census event |
+|---|---:|---:|
+| Environmental selection becomes qualifying after 6 unfavorable generations | **64.68%** | 1.02% |
+| Qualifying after 9 unfavorable generations | 55.08% | 1.62% |
+
+These percentages do **not** estimate true establishment, population rescue, or genetic fixation. The subcritical world has **zero eventual nonextinction** in the assumed permanent environment even though four descendants can transiently appear by census, so the latter must not be called a successful reversal.
+
+### The two-clock ecological prediction
+
+Under a fixed deadline H, let `A(m)` be the fraction of lineages generating a hypothetical heritable D founder after m unfavorable generations, and `B_q(H-m,k)` the probability that an activated lineage reaches k descendants within the remaining time. The n-founder threshold event is `1-(1-A(m)*B_q(H-m,k))^n`. For positive denominators, shifting the switch later increases that event exactly when
+
+```
+A(m+1)/A(m) > B_q(H-m,k)/B_q(H-m-1,k).
+```
+
+The first ratio captures history-dependent competence/activation. The second captures the **cost or benefit of less time for demographic expansion**. Hence the best deadline for observation need not be the same as the best historical time to make a phenotypic founder. In this constructed example `A(m)` peaks at **m=9**, but the supercritical threshold event peaks **earlier at m=6**. The subcritical transient threshold peaks at m=9 without implying survival.
+
+A real ecological SLK × ANTO experiment therefore must not stop at colour induction, flowering, pollen deposition or positive relative growth. It must additionally measure heritability and independent *absolute reproductive performance* in the specified ecological context. Even these observations cannot automatically infer Moran fixation or the original SLK symmetric occupancy invariant; the offspring model here is a separate branching process, not that canonical population game.
+
+### Scientific originality and limitation
+
+The distinction between relative selection, founder supply, and demographic persistence is prior art in evolutionary rescue theory, and SLK already recognizes absolute-demography limitations. The contribution of this interface is a **specific, falsifiable multi-clock biological prediction** that can be experimentally distinguished from phenotype-only historic memory: same developmental capability and relative functional advantage can conceal different prospective lineage fates. There is no direct positive plant test of this joint claim today. ANTO owns the code, SLK owns the causal architecture interpretation, and aza3 still exclusively owns Cirsium empirical sampling and genetics.
+
 ## Distinct biological mechanisms remain distinct
 
 The same visible integrated morphology can persist with an unfavorable differentiated candidate, a local release obstacle, rarity-dependent exclusion, a vanished joint toolkit, or any combination. ANTO's hidden-state incompetence is **not** a fourth SLK selection-sign threshold; it changes the *supply and structural feasibility* of a declared phenotype, whereas SLK's signs concern **selection relative to a specified alternative**.
