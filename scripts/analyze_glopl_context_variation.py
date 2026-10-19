@@ -45,7 +45,14 @@ RANGE_LIMIT = 0.5
 
 
 def _csv_rows_from_bytes(data: bytes) -> list[dict[str, str]]:
-    content = data.decode("utf-8-sig")
+    # The canonical 2018 Git blob contains Latin-1 non-UTF8 bytes (e.g.
+    # Portuguese author/treatment labels). Check raw bytes *before* decoding.
+    # Taxon keys, categorical protocol flags and numeric response data are
+    # ASCII; this fallback leaves the analytical columns unchanged.
+    try:
+        content = data.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        content = data.decode("latin-1")
     reader = csv.DictReader(io.StringIO(content))
     missing = sorted(set(REQUIRED_COLUMNS) - set(reader.fieldnames or ()))
     if missing:
