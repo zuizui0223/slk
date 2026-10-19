@@ -194,6 +194,60 @@ The ecological distinction is **not simply whether a partially differentiated mo
 
 **Scientific ceiling and prior art.** Smoothness of invasion fitness, the form of partner-competition kernels, convergence, and trait-substitution sequences are established subjects of evolutionary ecology (Waxman & Gavrilets 2005; Boldin & Diekmann 2014, DOI 10.1007/s00285-013-0725-z). This calculation is **not** the first discovery that interaction regularity affects evolution. Its narrower contribution is an **exact, reproducible switching boundary inside the specific SLK matched-assay family**: all initial integrated-resident assays can be identical while the ecological state reached after partial specialization admits a finite-founder-only escape, an intermediate relay, or an immediate rare-invasion route to completed division. These are illustrative model predictions; there is no fitted ecological `q` and no observed cross-taxon two-step evolutionary transition.
 
+## Finite populations: the deterministic direct-completion boundary is not a fixation threshold
+
+The exact `q_critical` result classifies **deterministic growth from infinitesimal rarity**, not the probability that one rare complete specialist eventually fixes in a finite population. Classic frequency-dependent evolutionary-game theory already distinguishes these endpoints: in coordination games a type can be disfavored when rare while fixation from one individual remains possible, and even exceed the neutral `1/N` benchmark (Ohtsuki et al. 2007, DOI 10.1016/j.jtbi.2007.07.005). The following is a **process-specific application** of that established result to the same SLK conditional witness, not a novel fixation-process theorem.
+
+Fix two viable architectures `u,v` and their symmetric positive mismatch `m=M_q(u,v)`. In the pairwise ecological payoff specification, a focal individual with architecture `u` receives `A(u,u)=F(u)` against its own type and `A(u,v)=F(u)-eta*m` against `v`. The reverse focal payoffs are `A(v,u)=F(v)-eta*m` and `A(v,v)=F(v)`. **These four entries do not form the equal-off-diagonal three-entry canonical game** used for the separate `INV1` reference calculation; applying that reference game's fixation ratio to this pair would silently change the fitness process.
+
+Under a fixed finite population `N>=3`, uniformly random encounters **without self-interaction**, exponential reproductive weights `exp(beta*payoff)`, `beta>0`, and uniform random death, when `i` of `N` individuals are the focal `u` type,
+
+```text
+B   = F(u)-F(v),              X = eta * M_q(u,v),
+pi_u(i) = F(u) - X*(N-i)/(N-1),
+pi_v(i) = F(v) - X*i/(N-1),
+
+Delta_i = pi_u(i)-pi_v(i)
+        = B + X*(2i-N)/(N-1).
+
+T_minus(i)/T_plus(i) = exp(-beta * Delta_i).
+```
+
+The finite-population Moran fixation probability of **one** focal mutant is therefore exactly
+
+```text
+rho_u|v =
+  1 / sum_{j=0}^{N-1} exp[-beta * A_j],
+
+A_j = j*B + X*j*(j+1-N)/(N-1).
+```
+
+The expression is finite, strictly positive and continuous in `q` for `u!=v>0` and finite `N,beta`. Hence the deterministic `q_critical=3.985803...` produces **no discontinuous jump in fixation probability**. For the declared `eta>0`, `M_q(u,v)` strictly decreases with `q` when both types are positive and distinct; all nontrivial terms in the denominator then decrease, so `rho_u|v` **strictly increases** with `q` at fixed `N,beta,B`. This continuous stochastic improvement occurs even *below* the deterministic direct-completion boundary.
+
+The numerical finite-population example uses the **previously registered** `F(d)=d/4+d²`, `w(d)=d/10+9d²/10`, `eta=1.5`, complete mutant `u=1` and first partial resident `v=1/7`, with `N=100`, `beta=0.1`:
+
+| Mismatch shape `q` | Deterministic rare-invasion margin `I_q(1|1/7)` | Exact one-mutant fixation `rho` |
+|---:|---:|---:|
+| 1 | -0.257142857 | 0.027876352 |
+| 2 | -0.165378721 | 0.031383661 |
+| 3 | -0.079417850 | 0.034930 (rounded) |
+| 4 | +0.001106761 | 0.038482155 |
+| 5 | +0.076538905 | 0.042008718 |
+
+The neutral reference is `1/N=0.01`. Even at `q=1`, a complete specialist selected **against at rarity** has fixation probability `2.79%` in this particular process because its higher intrinsic payoff becomes valuable once its frequency rises. This is not a model of dispersal, mutation supply, genetic linkage, individual plant survival, or observed lineage evolution. It **does not** invalidate negative rarity invasion: rarity invasion and one-founder fixation are distinct quantities.
+
+A further exact identity from the symmetric mismatch `M_q(u,v)=M_q(v,u)` is
+
+```text
+rho_u|v / rho_v|u = exp[ beta*(N-1)*(F(u)-F(v)) ].
+```
+
+The mismatch terms cancel because `sum_{i=1}^{N-1} (2i-N)=0`. The reciprocal fixation ratio is therefore independent of `q` *under this four-entry payoff and update process*, although **both absolute fixation probabilities and the rate of turnover change with `q`**. For `u=1, v=1/7, N=100, beta=0.1`, the ratio is about `135861.02335` in every `q` case. Under additional **symmetric rare-mutation** assumptions, long-run monomorphic occupancy odds share this same ratio, but expected substitution waiting times do not. This resembles but **is not numerically interchangeable with** the distinct canonical `INV1` identity with its different game/payoff map.
+
+**Biological consequence, with a hard ceiling.** The first partial structure can alter both the *deterministic* opportunity for additional specialization and the *finite-population probability* of eventual replacement. The former has the sharp `q_critical` invasion boundary; the latter has a continuous probabilistic transition depending on `N`, `beta`, and the frequency path. Therefore the SLK ecological statement must remain **“rare completed division declines or increases”**, not **“completed division cannot evolve”**. No natural system supplies these `N,` `beta,` or `q` parameter estimates, and a mutation-limited waiting time or evolutionary history cannot be inferred from the one-mutant fixation calculation without an explicit mutation process.
+
+Prior art: Ohtsuki H, Bordalo P, Nowak MA. 2007. The one-third law of evolutionary dynamics. *Journal of Theoretical Biology* 249:289–295. DOI 10.1016/j.jtbi.2007.07.005 (the one-third law is a separate **weak-selection limiting result**, not asserted to hold exactly for the exponential-fitness example above).
+
 ## A counterexample with exactly the same S-versus-d evidence
 
 Add a directional effect of encounters between two already differentiated forms:
