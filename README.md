@@ -50,7 +50,7 @@ The framework now makes four natural-history predictions.
 
 **4. Structural novelty and demographic support trade off along one escape frontier.** Under the canonical positive-frequency extension, `p_escape(d)=1/2-[dmax/(2eta)][R(d)/d-k]` under a release-proportional feedback extension that vanishes at `d=0`. The structural threshold `d_J` is the `p=1/2` slice and the endpoint frequency threshold `p_C` is the `d=dmax` slice. Larger favorable structural changes therefore require less initial abundance, while clustering, immigration, or repeated origin can compensate for more modest novelty; environmental change can move the whole frontier before morphology changes.
 
-The strongest prediction is not that hysteresis, coexistence or frequency dependence exist; all are established phenomena. It is that the first failing bottleneck can turn over for one unchanged organization while the structural or demographic perturbation needed for reorganization shrinks.
+The strongest original SLK prediction is the **candidate-specific turnover of the first failing bottleneck** and a shifting structure–frequency escape frontier before completed division appears. An additional biological implication is that *partial division changes the ecology faced by later variants*: under two explicitly different mismatch structures, every integrated-versus-divided assay is identical while established partial differentiation either resists onward specialization or enables a chain toward complete division. This is a conditional mechanism already derived in the supporting theory, not a general new theorem about stable specialization and not a verified trajectory in nature. See `theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md`.
 
 ## Running biological example
 
