@@ -656,3 +656,174 @@ def test_three_state_finite_history_has_prior_art_and_clear_time_units() -> None
             assert "distinguishes stationary probabilities" in source
         else:
             assert statement in source, statement
+
+
+def _transient_snapshot_closed(a: float, b: float, c: float, d: float,
+                               horizon: float) -> tuple[float, float, float]:
+    """Closed-form probabilities of S, P (no previous D), or first D."""
+    if horizon == 0:
+        return 1.0, 0.0, 0.0
+    g = sqrt((a+b-c-d)**2 + 4*a*c)
+    r_slow = (a+b+c+d-g)/2
+    r_fast = (a+b+c+d+g)/2
+    slow, fast = exp(-r_slow*horizon), exp(-r_fast*horizon)
+    sprob = ((r_fast-(a+b))*slow + ((a+b)-r_slow)*fast)/g
+    pprob = a*(slow-fast)/g
+    return sprob, pprob, 1.0-sprob-pprob
+
+
+def _transient_snapshot_uniformization(a: float,b: float,c: float,d: float,
+                                       horizon: float) -> tuple[float, float, float]:
+    """Independent Poisson uniformization for the 2 transient states."""
+    if horizon == 0:
+        return 1.0, 0.0, 0.0
+    rate = max(a+b,c+d)
+    assert rate > 0
+    pss,psp = 1-(a+b)/rate,a/rate
+    pps,ppp = c/rate,1-(c+d)/rate
+    state_s,state_p = 1.0,0.0
+    weight = exp(-rate*horizon)
+    sprob,pprob = weight,0.0
+    for j in range(1,401):
+        state_s,state_p = state_s*pss+state_p*pps,state_s*psp+state_p*ppp
+        weight *= rate*horizon/j
+        sprob += weight*state_s
+        pprob += weight*state_p
+    return sprob,pprob,1.0-sprob-pprob
+
+
+@pytest.mark.parametrize("exponent", [1.0, 2.0, 4.0, 5.0])
+@pytest.mark.parametrize("direct", [False, True])
+def test_fixed_ecological_window_snapshot_matches_independent_markov_calculation(
+    exponent: float, direct: bool
+) -> None:
+    a,b,c,d = _partial_history_rates(exponent,100,1.0,direct=direct)
+    for horizon in (0.0,0.5,5.0,20.0,40.0,100.0):
+        analytic = _transient_snapshot_closed(a,b,c,d,horizon)
+        independent = _transient_snapshot_uniformization(a,b,c,d,horizon)
+        assert all(0 <= z <= 1 for z in analytic)
+        assert isclose(sum(analytic),1.0,abs_tol=1e-12)
+        for x,y in zip(analytic,independent):
+            assert isclose(x,y,rel_tol=1e-9,abs_tol=1e-12)
+        assert isclose(analytic[2],
+                       _first_hit_closed_probability(a,b,c,d,horizon),
+                       rel_tol=1e-9,abs_tol=1e-12)
+
+
+def _random_window_closed(a: float,b: float,c: float,d: float,
+                          hazard: float) -> tuple[float,float,float]:
+    """Destination when an independent exponential partner regime terminates."""
+    assert hazard > 0
+    den=(a+b+hazard)*(c+d+hazard)-a*c
+    return (
+        hazard*(c+d+hazard)/den,
+        hazard*a/den,
+        (b*(c+d+hazard)+a*d)/den,
+    )
+
+
+def _random_window_competing_risks(a: float,b: float,c: float,d: float,
+                                   hazard: float) -> tuple[float,float,float]:
+    """Independent first-event recursion, not the closed determinant formula."""
+    Srate=a+b+hazard
+    Prate=c+d+hazard
+    # From P, return to S with probability c/Prate; repeat at S.
+    recycle=(a/Srate)*(c/Prate)
+    S_end=(hazard/Srate)/(1-recycle)
+    P_end=(a/Srate)*(hazard/Prate)/(1-recycle)
+    D_first=(b/Srate+(a/Srate)*(d/Prate))/(1-recycle)
+    return S_end,P_end,D_first
+
+
+@pytest.mark.parametrize("direct", [False, True])
+@pytest.mark.parametrize("hazard", [0.005,0.025,0.1,1.0])
+@pytest.mark.parametrize("exponent", [1.0,2.0,4.0,5.0])
+def test_random_window_endings_match_independent_competing_risk_recursions(
+    direct: bool,hazard:float,exponent:float
+) -> None:
+    a,b,c,d=_partial_history_rates(exponent,100,1.0,direct=direct)
+    theoretical=_random_window_closed(a,b,c,d,hazard)
+    independent=_random_window_competing_risks(a,b,c,d,hazard)
+    assert isclose(sum(theoretical),1.0,abs_tol=1e-12)
+    for x,y in zip(theoretical,independent):
+        assert 0 < x < 1
+        assert isclose(x,y,rel_tol=1e-10,abs_tol=1e-12)
+    if not direct:
+        assert isclose(theoretical[2]/theoretical[1],d/hazard,
+                       rel_tol=1e-12)
+
+
+def test_ecological_window_enriches_partial_specialization_despite_same_equilibrium() -> None:
+    """Unfinished partial lineages accumulate when completion is slower."""
+    q1 = _partial_history_rates(1.0,100,1.0)
+    q4 = _partial_history_rates(4.0,100,1.0)
+    s1,p1,d1=_transient_snapshot_closed(*q1,40.0)
+    s4,p4,d4=_transient_snapshot_closed(*q4,40.0)
+    assert isclose(s1,0.30934498256487464,abs_tol=1e-11)
+    assert isclose(s4,0.30879120902279444,abs_tol=1e-11)
+    assert isclose(p1,0.4092762643787228,abs_tol=1e-11)
+    assert isclose(p4,0.10012640764715294,abs_tol=1e-11)
+    assert isclose(d1,0.2813787530564026,abs_tol=1e-11)
+    assert isclose(d4,0.5910823833300526,abs_tol=1e-11)
+    assert p1>4*p4 and d4>2*d1
+    assert abs(s1-s4)<0.001
+    assert all(isclose(x,y,abs_tol=1e-12) for x,y in
+               zip(q1[:3],q4[:3]))  # same S-origin rates, b=0
+
+    hazard=0.025
+    end1=_random_window_closed(*q1,hazard)
+    end4=_random_window_closed(*q4,hazard)
+    for z,targets in (
+        (end1,(0.4601008159920624,0.27874039328678424,0.26115879072115333)),
+        (end4,(0.45971700815241506,0.09494843156531393,0.44533456028227086))
+    ):
+        for actual,expected in zip(z,targets):
+            assert isclose(actual,expected,abs_tol=1e-10)
+    assert isclose(end1[2]/end1[1],q1[-1]/hazard,rel_tol=1e-12)
+    assert isclose(end4[2]/end4[1],q4[-1]/hazard,rel_tol=1e-12)
+
+
+def test_environmental_turnover_threshold_differs_from_deterministic_invasion_threshold() -> None:
+    """Dominant completed-versus-unfinished outcome can switch while rare growth is negative."""
+    hazard=0.025
+    lo,hi=1.0,2.0
+    for _ in range(80):
+        mid=(lo+hi)/2
+        d=_partial_history_rates(mid,100,1.0)[-1]
+        if d<hazard:
+            lo=mid
+        else:
+            hi=mid
+    q_window=(lo+hi)/2
+    q_deterministic=1+log(65.0/79.0)/log(237.0/253.0)
+    assert isclose(q_window,1.0838083659710573,abs_tol=1e-11)
+    assert q_window < q_deterministic
+    assert smooth_invasion(1.0,D_STAR,q_window)<0
+    probs=_random_window_closed(*_partial_history_rates(q_window,100,1.0),hazard)
+    assert isclose(probs[2]/probs[1],1.0,abs_tol=1e-11)
+    # Supplying direct D mutations invalidates the simple completion-to-P ratio.
+    for q in (1.0,4.0):
+        without=_random_window_closed(*_partial_history_rates(q,100,1.0),hazard)
+        with_direct=_random_window_closed(
+            *_partial_history_rates(q,100,1.0,direct=True),hazard
+        )
+        assert with_direct[2]>without[2]
+        assert not isclose(with_direct[2]/with_direct[1],
+                           _partial_history_rates(q,100,1.0)[-1]/hazard)
+
+
+def test_ecological_window_biological_scope_and_prior_art_guards() -> None:
+    source=(ROOT/"theory"/"PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md").read_text(encoding="utf-8")
+    for phrase in (
+        "0.40927626",
+        "0.10012641",
+        "0.26115879",
+        "0.44533456",
+        "q_window=1.08380836597",
+        "d/h",
+        "same in S and P",
+        "not a general biological law",
+        "replicate evolutionary histories",
+        "not an invented evolutionary mechanism",
+    ):
+        assert phrase in source,phrase
