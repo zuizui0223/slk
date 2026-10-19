@@ -198,6 +198,137 @@ def _spearman_audit(
     }
 
 
+
+def _paired_trait_comparison(rows: list[dict]) -> dict:
+    """Compare AF and SC *on identical species*, avoiding unequal-sample bias."""
+    subset = [
+        r for r in rows if r["af_fruit_set"] is not None
+        and r["sc_fruit_set"] is not None
+    ]
+    base = {
+        "matched_species": len(subset),
+        "matched_families": len({r["family"] for r in subset}),
+        "common_subset_af": _spearman_audit([
+            (r["af_fruit_set"],r["fruit_set_pollen_limitation_lnRR"])
+            for r in subset
+        ],seed=3001),
+        "common_subset_sc": _spearman_audit([
+            (r["sc_fruit_set"],r["fruit_set_pollen_limitation_lnRR"])
+            for r in subset
+        ],seed=3002),
+        "af_sc_rank_association": _spearman_audit([
+            (r["af_fruit_set"],r["sc_fruit_set"]) for r in subset
+        ],seed=3003),
+    }
+    if len(subset) >= 6:
+        def contrast(values: list[dict]) -> float | None:
+            af=_spearman([r["af_fruit_set"] for r in values],
+                         [r["fruit_set_pollen_limitation_lnRR"] for r in values])
+            sc=_spearman([r["sc_fruit_set"] for r in values],
+                         [r["fruit_set_pollen_limitation_lnRR"] for r in values])
+            return sc-af if sc is not None and af is not None else None
+        delta=contrast(subset)
+        rng=random.Random(314159)
+        boot=[]
+        for _ in range(3000):
+            x=[subset[rng.randrange(len(subset))] for i in subset]
+            c=contrast(x)
+            if c is not None:
+                boot.append(c)
+        boot.sort()
+        base["paired_rho_sc_minus_rho_af"] = delta
+        base["paired_bootstrap_95pct"] = (
+            [boot[int(.025*(len(boot)-1))],boot[int(.975*(len(boot)-1))]]
+            if len(boot)>200 else None
+        )
+        base["comparison_inference"] = (
+            "Paired species bootstrap of rank-correlation contrast; "
+            "no causal or independent trait-effect claim."
+        )
+    return base
+
+
+def _family_level_correlations(rows: list[dict]) -> dict:
+    """Coarse sensitivity only; family-level aggregation is not a phylogeny."""
+    by_family=defaultdict(list)
+    for r in rows:
+        if r["family"] not in (None,"","NA"):
+            by_family[r["family"]].append(r)
+    out={}
+    for key in ("af_fruit_set","sc_fruit_set"):
+        pairs=[]
+        for records in by_family.values():
+            eligible=[r for r in records if r[key] is not None]
+            if eligible:
+                pairs.append((
+                    median(r[key] for r in eligible),
+                    median(r["fruit_set_pollen_limitation_lnRR"] for r in eligible),
+                ))
+        out[key]={
+            "families":len(pairs),
+            "rho":_spearman([p[0] for p in pairs],[p[1] for p in pairs])
+                   if len(pairs)>2 else None,
+            "scope":"sensitivity to dominant plant families, not a phylogenetic regression",
+        }
+    return out
+
+
+def _life_history_strata(rows: list[dict]) -> dict:
+    result={}
+    for k,label in ((0,"perennial"),(1,"annual_biennial")):
+        cohort=[r for r in rows if r["annual_biennial"]==k]
+        result[label]={
+            "species":len(cohort),
+            "af":_spearman_audit([
+                (r["af_fruit_set"],r["fruit_set_pollen_limitation_lnRR"])
+                for r in cohort if r["af_fruit_set"] is not None
+            ],seed=700+k,nperm=1999,nbootstrap=500),
+            "sc":_spearman_audit([
+                (r["sc_fruit_set"],r["fruit_set_pollen_limitation_lnRR"])
+                for r in cohort if r["sc_fruit_set"] is not None
+            ],seed=702+k,nperm=1999,nbootstrap=500),
+        }
+    return result
+
+
+def _source_handling_sensitivity(
+    pollen: list[dict], breeding: dict[str,dict]
+) -> dict:
+    variants={
+        "exclude_emasculated_yes": [
+            r for r in pollen if r.get("Emasculated_treatment","").lower()!="yes"
+        ],
+        "exclude_zero_count_corrections": [
+            r for r in pollen if r.get("Constant_added","").lower()
+            not in ("true","t","1")
+        ],
+        "exclude_abs_effect_gt_3": [
+            r for r in pollen if math.isfinite(
+                _numeric(r["PL_Effect_Size"]) or math.nan
+            ) and abs(float(r["PL_Effect_Size"])) <= 3.0
+        ],
+    }
+    out={}
+    for label,data in variants.items():
+        v=_species_gopl_effects(data)
+        subset=[]
+        for sp in set(v) & set(breeding):
+            d=breeding[sp]
+            subset.append({
+                "pl":v[sp]["pollen_limitation_lnRR"],
+                "af":d["Autofertility_index_FS"],
+                "sc":d["Self-compatibility_index_FS"],
+            })
+        vals={}
+        for trait in ("af","sc"):
+            pairs=[(r[trait],r["pl"]) for r in subset if r[trait] is not None]
+            vals[trait]={"n":len(pairs),"spearman":_spearman(
+                [r[0] for r in pairs],[r[1] for r in pairs]
+            ) if len(pairs)>=3 else None}
+        out[label]={"species_any_trait":len(subset),**vals}
+    return out
+
+
 def analyze(raw_glopl: bytes, raw_breeding: bytes) -> tuple[dict, list[dict]]:
     if _git_blob_sha(raw_glopl) != UPSTREAM_BLOB_SHA:
         raise ValueError("GloPL input does not match pinned Git blob")
@@ -282,6 +413,12 @@ def analyze(raw_glopl: bytes, raw_breeding: bytes) -> tuple[dict, list[dict]]:
             ">1_GloPL_study": sum(r["gopl_studies"]>1 for r in merged),
         },
         "species_level_rank_correlations": correlation,
+        "paired_SC_AF_comparison": _paired_trait_comparison(merged),
+        "family_aggregation_sensitivity": _family_level_correlations(merged),
+        "life_history_strata": _life_history_strata(merged),
+        "source_processing_sensitivities": _source_handling_sensitivity(
+            pollen, breeding
+        ),
         "strict_context_association": {
             "af_vs_within_species_range":
                 _spearman_audit(strict_af,seed=418),
