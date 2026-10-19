@@ -1,6 +1,6 @@
 """Model witnesses: invasion from integration does not decide partial-resident stability."""
 
-from math import isclose
+from math import isclose, log
 from pathlib import Path
 
 import pytest
@@ -273,3 +273,110 @@ def test_main_manuscript_preserves_partial_arrest_vs_completion_fork() -> None:
     assert isclose(smooth_invasion(1.0, 0.30, 2.0), 0.017959946, abs_tol=1e-8)
     assert smooth_invasion(D_STAR + 1e-5, D_STAR, 1.0) < 0.0
     assert smooth_invasion(D_STAR + 1e-5, D_STAR, 2.0) > 0.0
+
+
+def test_first_partial_founder_has_exact_direct_completion_curvature_boundary() -> None:
+    """Closed-form comparison changes only specialist–specialist mismatch."""
+    assert isclose(dependence(D_STAR), 8.0 / 245.0, abs_tol=1e-14)
+    assert isclose(intrinsic(1.0) - intrinsic(D_STAR), 117.0 / 98.0, abs_tol=1e-14)
+    q_critical = 1.0 + log(65.0 / 79.0) / log(237.0 / 253.0)
+    assert isclose(q_critical, 3.98580331443734, abs_tol=1e-12)
+
+    def closed_form(q: float) -> float:
+        return 117.0 / 98.0 - (711.0 / 490.0) * (237.0 / 253.0) ** (q - 1.0)
+
+    assert isclose(closed_form(q_critical), 0.0, abs_tol=1e-12)
+    for q in (1.0, 1.05, 1.1, 1.5, 2.0, 3.0, q_critical, 4.0, 5.0):
+        assert isclose(
+            smooth_invasion(1.0, D_STAR, q), closed_form(q), abs_tol=1e-12
+        )
+        assert isclose(smooth_invasion(D_STAR, 0.0, q), 1.0 / 140.0, abs_tol=1e-12)
+        assert isclose(smooth_invasion(1.0, 0.0, q), -0.25, abs_tol=1e-12)
+        # More than just endpoints: every S–d selection curve is identical.
+        for d in (0.05, D_STAR, 0.24, 0.6, 1.0):
+            for p in (0.0, 0.1, 0.5, 0.9, 1.0):
+                observed = (
+                    p * smooth_payoff(d, d, q)
+                    + (1.0 - p) * smooth_payoff(d, 0.0, q)
+                    - p * smooth_payoff(0.0, d, q)
+                    - (1.0 - p) * smooth_payoff(0.0, 0.0, q)
+                )
+                expected = intrinsic(d) + ETA * dependence(d) * (2.0 * p - 1.0)
+                assert isclose(observed, expected, abs_tol=1e-12)
+
+    assert smooth_invasion(1.0, D_STAR, q_critical - 0.001) < 0
+    assert smooth_invasion(1.0, D_STAR, q_critical + 0.001) > 0
+
+
+def test_mismatch_curvature_changes_founder_threshold_then_allows_two_step_route() -> None:
+    """Early founder success is invariant; completion is conditional on resident ecology."""
+    assert isclose(smooth_invasion(1.0, D_STAR, 1.0), -9.0 / 35.0, abs_tol=1e-12)
+    for q, expected_p in (
+        (1.0, 7.0 / 79.0),
+        (2.0, 0.060834268012604824),
+        (3.0, 0.031185948553540163),
+    ):
+        assert smooth_invasion(1.0, D_STAR, q) < 0.0
+        critical_p = mutant_frequency_threshold(1.0, D_STAR, q)
+        assert isclose(critical_p, expected_p, abs_tol=1e-12)
+        assert s_vs_partial_pair_selection(1.0, D_STAR, critical_p * 0.5, q) < 0
+        assert s_vs_partial_pair_selection(1.0, D_STAR, critical_p + 0.05, q) > 0
+
+    for q in (4.0, 5.0):
+        # Both separate pairwise substitutions have positive relative fitness
+        # at all tested frequencies if first partial and later full mutants appear.
+        assert mutant_frequency_threshold(1.0, D_STAR, q) < 0
+        for p in (0.0, 0.001, 0.01, 0.1, 0.5, 0.99, 1.0):
+            assert s_vs_partial_pair_selection(D_STAR, 0.0, p, q) > 0
+            assert s_vs_partial_pair_selection(1.0, D_STAR, p, q) > 0
+        assert smooth_invasion(1.0, 0.0, q) < 0
+
+    assert isclose(smooth_invasion(1.0, D_STAR, 4.0), 0.0011067606016059717, abs_tol=1e-12)
+    assert isclose(smooth_invasion(1.0, D_STAR, 5.0), 0.0765389054502259, abs_tol=1e-12)
+
+
+def test_curvature_dependence_of_minimum_resident_degree_enabling_completion() -> None:
+    """Numeric first crossing v(q), not a general monotonicity theorem."""
+    expected = (
+        (1.1, 0.9025056150614044),
+        (1.5, 0.43146179809559637),
+        (2.0, 0.28615302603084614),
+        (3.0, 0.18556385618903565),
+        (4.0, 0.1424076082307703),
+        (5.0, 0.11731821627431274),
+    )
+    thresholds = []
+    for q, witness_v in expected:
+        low, high = 0.00000001, 1.0 - 1e-9
+        assert smooth_invasion(1.0, low, q) < 0
+        assert smooth_invasion(1.0, high, q) > 0
+        for _ in range(75):
+            mid = (low + high) / 2.0
+            if smooth_invasion(1.0, mid, q) > 0:
+                high = mid
+            else:
+                low = mid
+        root = (low + high) / 2.0
+        thresholds.append(root)
+        assert isclose(root, witness_v, abs_tol=1e-10)
+        assert smooth_invasion(1.0, max(0.0, root - 1e-4), q) < 0
+        assert smooth_invasion(1.0, min(1.0, root + 1e-4), q) > 0
+    assert all(a > b for a, b in zip(thresholds, thresholds[1:]))
+
+
+def test_theory_qualifies_direct_completion_threshold_and_its_prior_art() -> None:
+    source = (ROOT / "theory" / "PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md").read_text(encoding="utf-8")
+    for token in (
+        "log(65/79)/log(237/253)",
+        "3.98580331443734",
+        "q>q_critical",
+        "M_q(d,0)=w(d)",
+        "0.060834268",
+        "sequential",
+        "10.1007/s00285-013-0725-z",
+        "not a general new theorem",
+    ):
+        if token == "not a general new theorem":
+            assert "not the first discovery" in source.lower()
+        else:
+            assert token in source, token
