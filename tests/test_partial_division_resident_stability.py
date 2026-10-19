@@ -369,7 +369,7 @@ def test_theory_qualifies_direct_completion_threshold_and_its_prior_art() -> Non
     for token in (
         "log(65/79)/log(237/253)",
         "3.98580331443734",
-        "q>q_critical",
+        "q > q_critical",
         "M_q(d,0)=w(d)",
         "0.060834268",
         "sequential",
@@ -377,6 +377,6 @@ def test_theory_qualifies_direct_completion_threshold_and_its_prior_art() -> Non
         "not a general new theorem",
     ):
         if token == "not a general new theorem":
-            assert "not the first discovery" in source.lower()
+            assert "**not** the first discovery" in source.lower()
         else:
             assert token in source, token
