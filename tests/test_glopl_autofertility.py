@@ -28,9 +28,9 @@ def fake_breeding_workbook() -> bytes:
     ]
     data=[
         columns,
-        ["A_2000","Example_A","Asteraceae","0.3","NA","0.1","NA","0"],
-        ["B_2000","Example_B","Asteraceae","0.5","NA","0.5","NA","1"],
-        ["C_2000","Example_C","Asteraceae","0.9","NA","0.9","NA","0"],
+        ["A_2000","Example_alba","Asteraceae","0.3","NA","0.1","NA","0"],
+        ["B_2000","Example_beta","Asteraceae","0.5","NA","0.5","NA","1"],
+        ["C_2000","Example_ceras","Asteraceae","0.9","NA","0.9","NA","0"],
         ["D_2000","Unmatched_species","Fabaceae","0.8","NA","0.7","NA","0"],
     ]
     def colname(i):
@@ -53,10 +53,10 @@ def fake_breeding_workbook() -> bytes:
 def fake_glopl_bytes():
     matrix=[]
     for sp,effect,year in (
-        ("Example_A",0.9,"2000"),
-        ("Example_A",1.1,"2001"),  # median per context -> study aggregate
-        ("Example_B",0.5,"2000"),
-        ("Example_C",0.1,"2000"),
+        ("Example_alba",0.9,"2000"),
+        ("Example_alba",1.1,"2001"),  # median per context -> study aggregate
+        ("Example_beta",0.5,"2000"),
+        ("Example_ceras",0.1,"2000"),
     ):
         r={name:"NA" for name in REQUIRED_COLUMNS}
         r.update({
@@ -104,8 +104,8 @@ def test_exact_species_macro_uses_individual_species_as_units(monkeypatch):
     glopl=fake_glopl_bytes()
     monkeypatch.setattr(macro,"UPSTREAM_BLOB_SHA",_git_blob_sha(glopl))
     traits=macro.extract_breeding_traits(fake_breeding_workbook())
-    assert set(traits) >= {"Example A","Example B","Example C"}
-    assert traits["Example B"]["Autofertility_index_FS"] == 0.5
+    assert set(traits) >= {"Example alba","Example beta","Example ceras"}
+    assert traits["Example beta"]["Autofertility_index_FS"] == 0.5
     result, rows=macro.analyze(glopl,fake_breeding_workbook())
     assert result["fruit_set_study_protocol_exact_species_overlap"] == 3
     assert result["species_with_both_SC_FS_and_AF_FS"] == 3
@@ -114,4 +114,4 @@ def test_exact_species_macro_uses_individual_species_as_units(monkeypatch):
     assert result["trait_coverage"]["af_fruit_set"] == 3
     assert result["species_level_rank_correlations"]["af_fruit_set"]["rho"] is None
     assert result["strict_context_association"]["af_vs_within_species_range"]["rho"] is None
-    assert next(r for r in rows if r["species"]=="Example A")["gopl_contexts"] == 2
+    assert next(r for r in rows if r["species"]=="Example alba")["gopl_contexts"] == 2
