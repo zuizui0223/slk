@@ -31,6 +31,7 @@ from audit_glopl_breeding_overlap import (
     BREEDING_URL, BREEDING_DOI, download, normalize_species, read_xlsx,
 )
 
+EXPECTED_BREEDING_SHA256 = "cb17009ae65c4f6cb2d28b21239714782600d0904effa77c5635249d28e62fc0"
 SHEET = "xl/worksheets/sheet2.xml"
 TRAITS = (
     "Autofertility_index_FS",
@@ -201,6 +202,12 @@ def analyze(raw_glopl: bytes, raw_breeding: bytes) -> tuple[dict, list[dict]]:
     if _git_blob_sha(raw_glopl) != UPSTREAM_BLOB_SHA:
         raise ValueError("GloPL input does not match pinned Git blob")
     pollen = _csv_rows_from_bytes(raw_glopl)
+    breeding_sha = hashlib.sha256(raw_breeding).hexdigest()
+    if breeding_sha != EXPECTED_BREEDING_SHA256:
+        raise ValueError(
+            "breeding XLSX source SHA256 drift: "
+            f"{breeding_sha} != {EXPECTED_BREEDING_SHA256}"
+        )
     breeding = extract_breeding_traits(raw_breeding)
     vals = _species_gopl_effects(pollen)
     strict_groups = _analysis_groups(_collapse([
