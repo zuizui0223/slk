@@ -246,3 +246,30 @@ def test_theory_documents_explicit_conditional_scope() -> None:
         "established partial resident",
     ):
         assert term in source
+
+
+def test_main_manuscript_preserves_partial_arrest_vs_completion_fork() -> None:
+    """Check the same integration assays lead to opposite downstream outcomes."""
+    source = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
+    if not source.exists():
+        source = ROOT / "MANUSCRIPT_SOURCE.md"
+    manuscript = source.read_text(encoding="utf-8")
+    for statement in (
+        "Partial division can alter the ecological fate of further specialization",
+        "identical fitness differences for every integrated-versus-divided pair",
+        "partial division may arrest evolution",
+        "−0.24850",
+        "+0.01796",
+        "not simulated or observed long-term lineage outcomes",
+        "Wahl 2002; Uchiumi and Sasaki 2020",
+    ):
+        assert statement in manuscript, statement
+    # The numerical witness is conditional, not a fitted natural-system estimate.
+    assert isclose(smooth_invasion(D_STAR, 0.0, 1.0), 1.0 / 140.0, abs_tol=1e-12)
+    for shape in (1.0, 2.0):
+        assert isclose(smooth_invasion(1.0, 0.0, shape), -0.25, abs_tol=1e-12)
+        assert smooth_invasion(0.30, 0.0, shape) < 0.0
+    assert isclose(smooth_invasion(1.0, 0.30, 1.0), -0.24850, abs_tol=1e-12)
+    assert isclose(smooth_invasion(1.0, 0.30, 2.0), 0.017959946, abs_tol=1e-8)
+    assert smooth_invasion(D_STAR + 1e-5, D_STAR, 1.0) < 0.0
+    assert smooth_invasion(D_STAR + 1e-5, D_STAR, 2.0) > 0.0
