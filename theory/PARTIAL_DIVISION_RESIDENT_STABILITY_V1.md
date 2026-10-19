@@ -250,7 +250,7 @@ Prior art: Ohtsuki H, Bordalo P, Nowak MA. 2007. The one-third law of evolutiona
 
 ## A finite ecological window: identical long-run architecture odds but different routes and waiting times
 
-A deterministic invasion boundary is not the same question as **how far specialization progresses before an ecological context changes**. The already derived four-entry exponential-Moran fixation probabilities give a minimal, *strong-mutation-weak-selection is NOT required* rare-mutation substitution chain across three monomorphic architectural states:
+A deterministic invasion boundary is not the same question as **how far specialization progresses before an ecological context changes**. The already derived four-entry exponential-Moran fixation probabilities give a minimal origin-fixation substitution chain across three monomorphic architectural states. The approximation requires **rare mutation** but does **not** require weak selection:
 
 ```text
 S = 0 (integrated),   P = d_* = 1/7 (partial),   D = 1 (complete).
