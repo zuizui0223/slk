@@ -1,0 +1,53 @@
+name: GloPL × global breeding-system coverage audit
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - biology/scaffold-bypass-test-20261014
+    paths:
+      - scripts/audit_glopl_breeding_overlap.py
+      - tests/test_glopl_breeding_overlap.py
+      - .github/workflows/glopl-breeding-overlap.yml
+
+permissions:
+  contents: read
+
+jobs:
+  coverage-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check species parser and XLSX reader using synthetic fixture
+        run: |
+          python -m pip install -q pytest
+          python -m pytest -q tests/test_glopl_breeding_overlap.py
+      - name: Download published breeding-system supplementary data and count exact species overlap
+        run: |
+          python scripts/audit_glopl_breeding_overlap.py --out \
+            "$RUNNER_TEMP/GLOPL_BREEDING_OVERLAP_AUDIT.json"
+      - name: Summarize overlap and source integrity
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          r=json.loads((Path(os.environ["RUNNER_TEMP"])/"GLOPL_BREEDING_OVERLAP_AUDIT.json").read_text())
+          for s in r["sheets"]:
+              print("WORKSHEET:",s["sheet_path"])
+              print("GloPL overlap:",s["all_glopl_matched_species"])
+              print("FS+Sup+flower overlap:",s["fruit_set_protocol_matched_species"])
+              print("Matched site/year pilot overlap:",s["strict_context_pilot_matched_species"])
+              print("TOP COLUMN:",s["top_candidate_species_column_index_0_based"])
+          print("BREEDING SHA256:",r["breeding_sha256"])
+          PY
+      - name: Archive only derived overlap metadata, not the input workbook
+        uses: actions/upload-artifact@v4
+        with:
+          name: slk-glopl-autofertility-coverage
+          path: ${{ runner.temp }}/GLOPL_BREEDING_OVERLAP_AUDIT.json
+          if-no-files-found: error
