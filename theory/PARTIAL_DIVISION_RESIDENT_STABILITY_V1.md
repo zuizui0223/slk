@@ -152,6 +152,48 @@ This is not an assertion of guaranteed global convergence of a stochastic evolut
 
 The `q=2` smooth mismatch model provides the cleanest demonstration of why `S`–`d` assays cannot decide partial stability **without assuming directional competitive dominance**. The following `lambda` example is retained to show a stronger, additional possibility: a fully divided mutant can even invade an already established partial form *directly*, when asymmetric interactions among differentiated forms are allowed.
 
+## A second biological threshold: when the *first* partial founder directly unlocks complete division
+
+The cusp-versus-smooth result can be sharpened without changing **any** measurement against the integrated phenotype. This calculation concerns the same already-declared symmetric mismatch family `M_q`; it introduces no additional interaction function. For every `q>=1`, all selection curves in a population of integration `S=0` and any partial/full architecture `d` are **exactly identical at every frequency** because `M_q(d,0)=w(d)` and `M_q(d,d)=0`.
+
+Focus on the already favored first partial founder `v=d_*=1/7` and ask whether a rare complete specialist `u=1` can invade **that new resident**, without requiring additional intermediate morphologies. In the registered `F(d)=d/4+d²`, `w(d)=d/10+9d²/10`, `eta=3/2` witness,
+
+```text
+w(1/7)=8/245,                    F(1)-F(1/7)=117/98,
+w(1)-w(1/7)=237/245,            w(1)+w(1/7)=253/245,
+
+I_q(1 | 1/7) =
+   117/98 - (711/490) * (237/253)^(q-1).
+
+I_q(1 | 1/7) > 0  exactly when
+
+q > q_critical
+  = 1 + log(65/79)/log(237/253)
+  = 3.98580331443734... .
+```
+
+The ratio `237/253` is strictly between zero and one, so `I_q(1 | 1/7)` increases **strictly** with `q`; there is exactly one crossing in this one-parameter family. At equality the full specialist is *neutral when rare*, not positively invasible. This is a threshold in the **shape of ecological mismatch costs between already differentiated residents**, not a change in intrinsic fitness or a claim that any natural population has `q=4`.
+
+| Mismatch exponent `q` | Rare full specialist against established `d=1/7` | Finite-introduction frequency boundary `p_critical` | Interpretation |
+|---:|---:|---:|---|
+| 1 | -0.257142857 | 0.088607595 = 7/79 | Rare complete division excluded; it gains when introduced above 8.86% |
+| 2 | -0.165378721 | 0.060834268 | Direct rare invasion excluded; gradual onward changes can invade |
+| 3 | -0.079417850 | 0.031185949 | Direct rare invasion excluded; founder barrier smaller |
+| 4 | +0.001106761 | below 0 | Full specialist can already invade the *first* partial resident when rare |
+| 5 | +0.076538905 | below 0 | Same direct two-step route with a larger deterministic margin |
+
+Here `p_critical=1/2-[F(1)-F(d_*)]/[2 eta M_q(1,d_*)]` whenever the value lies in `(0,1)`. When the formal threshold becomes negative, **no positive founding-frequency threshold remains** in this pairwise selection comparison. The relative selection difference is increasing in founder frequency under the declared positive mismatch interaction, so a positive rare-invasion margin stays positive for all `p in [0,1]` (apart from the trivial zero-mutant endpoint as a population state).
+
+This yields three **conditional ecological fates of the same initially favored partial structure**:
+
+1. **First-order mismatch (`q=1`):** the `d_*` resident resists each different rare mutant in the declared single-mutant model. Yet a sufficiently concentrated full-specialist introduction can still cross the known `7/79` threshold; “resistance when rare” must not be called absolute permanence.
+2. **Smooth-but-not-yet-direct completion (`1<q<q_critical`):** at each positive partial resident `v>0`, sufficiently nearby further division is favored because mismatch costs are `o(|u-v|)` while intrinsic value has `F'(v)>0`. The full specialist remains excluded **from rare introduction at the first founder `d_*`** and requires a further resident shift, a sufficiently large founding frequency, or another mechanism. Such possible substitutions do not establish realized evolutionary completion.
+3. **Direct two-step route (`q>q_critical`):** `d_*` invades `S` from rarity, and the full specialist subsequently invades `d_*` from rarity. Both pairwise selection differences remain positive as the invading type becomes common. A sequential `S -> d_* -> D` trajectory is therefore *permitted under a rare-mutation, pairwise-replacement interpretation* without introducing yet another partial degree. It is not evidence that mutation supply, actual establishment or whole-population dynamics follow this trajectory in nature.
+
+The ecological distinction is **not simply whether a partially differentiated morphology exists**: it is whether two already differentiated architectures experience sufficiently weak incremental mismatch penalties for specialization to continue. The model also produces a continuum in the *minimum partially differentiated resident degree allowing direct full-specialist invasion*: for `q=1.1, 1.5, 2, 3, 4` the model's numerical first crossing in `v in (0,1)` is approximately `0.902506, 0.431462, 0.286153, 0.185564, 0.142408`. These numbers apply only to the registered fixed `F,w,eta` witness. In particular, `q=2` recovers the independently checked `0.286153026...` relay threshold already established above; `q=4` puts that crossing just *below* `d_*=1/7`.
+
+**Scientific ceiling and prior art.** Smoothness of invasion fitness, the form of partner-competition kernels, convergence, and trait-substitution sequences are established subjects of evolutionary ecology (Waxman & Gavrilets 2005; Boldin & Diekmann 2014, DOI 10.1007/s00285-013-0725-z). This calculation is **not** the first discovery that interaction regularity affects evolution. Its narrower contribution is an **exact, reproducible switching boundary inside the specific SLK matched-assay family**: all initial integrated-resident assays can be identical while the ecological state reached after partial specialization admits a finite-founder-only escape, an intermediate relay, or an immediate rare-invasion route to completed division. These are illustrative model predictions; there is no fitted ecological `q` and no observed cross-taxon two-step evolutionary transition.
+
 ## A counterexample with exactly the same S-versus-d evidence
 
 Add a directional effect of encounters between two already differentiated forms:
@@ -216,6 +258,7 @@ Three more directly relevant precedents narrow the scope of any claimed conceptu
 
 **Remaining narrow result:** for two explicit multi-architecture payoff extensions, all binary integrated-resident comparisons (including full frequency-response curves for every partial degree) are identical while selective consequences for partial residents differ. The exact (7/79) founder threshold and the smooth-mismatch relay threshold are transparent **model witnesses**, not generally valid new natural laws.
 
+- Boldin B, Diekmann O. 2014. An extension of the classification of evolutionary singular strategies in Adaptive Dynamics. *Journal of Mathematical Biology* 69:905–940. https://doi.org/10.1007/s00285-013-0725-z (General prior art: invadability can depend on regularity of invasion fitness; not an SLK model analysis.)
 - Waxman D, Gavrilets S. 2005. 20 questions on adaptive dynamics. *Journal of Evolutionary Biology* 18:1139–1154. https://doi.org/10.1111/j.1420-9101.2005.00948.x (Background on what invasion fitness can and cannot determine.)
 - Abrams PA. 2005. 'Adaptive dynamics' vs. 'adaptive dynamics'. *Journal of Evolutionary Biology* 18:1162–1165. https://doi.org/10.1111/j.1420-9101.2004.00843.x (Scope of evolutionary path interpretation.)
 - Cooper GA, West SA. 2018. Division of labour and the evolution of extreme specialization. *Nature Ecology & Evolution* 2:1161–1167. https://doi.org/10.1038/s41559-018-0564-9
