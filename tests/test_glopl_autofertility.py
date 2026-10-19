@@ -103,6 +103,10 @@ def test_independent_permutation_is_reproducible_and_not_large_sample_theory():
 def test_exact_species_macro_uses_individual_species_as_units(monkeypatch):
     glopl=fake_glopl_bytes()
     monkeypatch.setattr(macro,"UPSTREAM_BLOB_SHA",_git_blob_sha(glopl))
+    monkeypatch.setattr(
+        macro, "EXPECTED_BREEDING_SHA256",
+        __import__("hashlib").sha256(fake_breeding_workbook()).hexdigest(),
+    )
     traits=macro.extract_breeding_traits(fake_breeding_workbook())
     assert set(traits) >= {"Example alba","Example beta","Example ceras"}
     assert traits["Example beta"]["Autofertility_index_FS"] == 0.5
