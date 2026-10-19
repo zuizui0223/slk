@@ -339,6 +339,84 @@ This means *two lineages with identical current fitness ranking and the same asy
 
 Citation: McCandlish DM. 2011. Visualizing fitness landscapes. *Evolution* 65:1544–1558. DOI 10.1111/j.1558-5646.2011.01236.x. (Reversible origin-fixation landscapes, stationary distributions, and their transient dynamics.)
 
+## An ecological opportunity window can accumulate incomplete division without an intermediate adaptive peak
+
+The three-architecture chain makes a more direct biological prediction about **which morphology a finite-lived pollinator, prey or partner regime leaves behind**. Even without changing any intrinsic architecture payoff, populations can temporarily accumulate partially differentiated forms because later specialization has not yet succeeded. This is **transient enrichment**, not a theorem that partial division is the long-run fitness optimum.
+
+### Fixed environmental duration: where the unfinished lineages accumulate
+
+Use the previously defined `S<->P<->D` graph with no directly supplied `S->D` mutation and start in S. For first-arrival analysis only, treat D as absorbing after the *first* completed substitution. With `tau=mu*t`, `a=rho_(P|S)`, `c=rho_(S|P)`, and `d=rho_(D|P)`, define
+
+```text
+g = sqrt((a-c-d)^2 + 4*a*c),
+r_- = (a+c+d-g)/2,  r_+ = (a+c+d+g)/2.
+
+Pr(S and never yet D at tau)
+ = [(r_+-a)*exp(-r_-*tau)+(a-r_-)*exp(-r_+*tau)]/g,
+
+Pr(P and never yet D at tau)
+ = a*[exp(-r_-*tau)-exp(-r_+*tau)]/g,
+
+Pr(ever first reached D by tau)
+ = 1 - Pr(S and never yet D) - Pr(P and never yet D).
+```
+
+At `N=100`, `beta=1`, and a **fixed opportunity duration** `tau=40`:
+
+| Mutational-history category, starting from S | `q=1` | `q=4` |
+|---|---:|---:|
+| Still S, never yet reached D | 0.30934498 | 0.30879121 |
+| Currently P, never yet reached D | **0.40927626** | **0.10012641** |
+| Has reached a fixed D at least once | **0.28137875** | **0.59108238** |
+
+The near-equal S fraction occurs because S-to-P fixation is identical across q and returns P-to-S are rare in this numerical witness. What differs most is the **transient accumulation of partial specialists**. The D column is a *first-hit event probability*, **not** necessarily the probability D is currently fixed if later reversions are permitted by the full model. Treating S/P/D as an exhaustive snapshot of actual present-day morph frequencies without checking reversion would be incorrect. These are proportions across independent **replicate evolutionary histories initialized in S**, not percentages of flowers within one population.
+
+### Random environmental ending: competition between onward evolution and loss of opportunity
+
+Rather than prespecifying `tau`, suppose the favorable interaction regime terminates independently at constant hazard `lambda`, while eligible mutants are supplied at fixed rare rate `mu`. Define the **dimensionless turnover hazard** `h=lambda/mu > 0`. The process ends on environmental change unless D was fixed first. With only S-P-D neighbor mutations supplied, first-step competing-risk recursions yield, for `K=(a+h)(c+d+h)-a*c`,
+
+```text
+Pr(end while S without ever D) = h*(c+d+h)/K,
+Pr(end while P without ever D) = h*a/K,
+Pr(reach fixed D before environment ends) = a*d/K.
+```
+
+These probabilities sum exactly to one. A separate calculation integrates the fixed-duration transient S/P occupancy against the exponential density `h*exp(-h*tau)` and gives the same result.
+
+A particularly simple, **conditional ecological window identity** follows:
+
+```text
+Pr(reach D before window ends) /
+Pr(window ends in P with no prior D)
+    = d/h
+    = mu*rho_(D|P)/lambda.
+```
+
+The ratio cancels `a` and `c` only because completion is possible **solely through P** and the environment-ending hazard is the same in S and P. It says that the relative representation of a completed first arrival versus a stalled partial lineage at turnover depends on the **onward successful-substitution rate versus the environmental switching rate**, not on how the lineage initially reached P. It is an elementary constant-rate Markov competing-risk identity, **not a general biological law**.
+
+A random environmental duration with the **same mean normalized opportunity** as `tau=40` has `h=1/40=0.025` and produces:
+
+| Terminal category (or completed-first-arrival event) | `q=1` | `q=4` |
+|---|---:|---:|
+| Environmental regime ends with S (without prior D) | 0.46010082 | 0.45971701 |
+| Regime ends with P (without prior D) | **0.27874039** | **0.09494843** |
+| First fixed D occurs before regime ends | **0.26115879** | **0.44533456** |
+| First-completion : unfinished-P odds | **0.936925** | **4.690278** |
+
+For this *chosen* `h=0.025`, the equality of complete-arrival and unfinished-partial probabilities occurs at `d(q)=h`, numerically `q_window=1.08380836597`. That crossing is **not** the deterministic rare-invasion threshold `q_critical=3.98580331444`; at `q_window` the full specialist still has a *negative* deterministic rare-growth margin. In a finite population, positive stochastic fixation makes the two questions different. Neither critical value is a universal ecological constant; changing `N, beta, mu, lambda`, mutation topology or the interactions alters the prediction.
+
+With a supplied direct `S->D` route of coefficient `b=rho_(D|S)`, the same `K=(a+b+h)(c+d+h)-a*c` gives
+
+```text
+Pr(end S without D) = h*(c+d+h)/K,
+Pr(end P without D) = h*a/K,
+Pr(reach D first) = [b*(c+d+h)+a*d]/K,
+```
+
+and the simple `d/h` ratio **no longer holds**. At `h=0.025`, direct S-to-D opportunities change first-completion probability from **0.261159 to 0.503027** for `q=1` and from **0.445335 to 0.626809** for `q=4`. This explicitly demonstrates that an apparently stable partial structure can reflect both **how ecological partners interact with more specialized newcomers** and **which developmental/mutational routes actually exist**.
+
+**Natural-history interpretation and evidence ceiling.** In a cross-population or phylogenetic sample observed at finite time, excess intermediate specialization can indicate slow onward transitions without identifying an equilibrium adaptive peak. However, ecological turnover rates, encounter-dependent mismatch functions, lineage ages, historical state frequencies, mutation accessibility and paternity/fitness measurements must be grounded independently before applying this deduction to real flowers or microbial partners. The model provides a qualitative hypothesis about **time-limited accumulation of incomplete differentiation**, not evidence that the phenomenon caused the observed *Solanum*, *Bredia* or *Pedicularis* morphologies. Competing ecological hazards and Markov first-passage calculations are established prior art, so the new result is an explicit conditional architectural interpretation in the SLK witness, **not an invented evolutionary mechanism or a new probability theorem**.
+
 ## A counterexample with exactly the same S-versus-d evidence
 
 Add a directional effect of encounters between two already differentiated forms:
