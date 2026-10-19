@@ -1,6 +1,6 @@
 """Model witnesses: invasion from integration does not decide partial-resident stability."""
 
-from math import exp, isclose, log
+from math import exp, isclose, log, sqrt
 from pathlib import Path
 
 import pytest
@@ -518,3 +518,140 @@ def test_finite_stochastic_fitness_receipt_preserves_known_prior_art() -> None:
         "rate of turnover",
     ):
         assert marker in source, marker
+
+
+def _partial_history_rates(exponent: float, n: int, beta: float,
+                           *, direct: bool = False) -> tuple[float, float, float, float]:
+    """Successful substitution coefficients before common rare rate mu."""
+    partial = D_STAR
+    a = finite_mismatch_pair_fixation_from_closed_sum(partial, 0.0, exponent, n, beta)
+    b = (finite_mismatch_pair_fixation_from_closed_sum(1.0, 0.0, exponent, n, beta)
+         if direct else 0.0)
+    c = finite_mismatch_pair_fixation_from_closed_sum(0.0, partial, exponent, n, beta)
+    d = finite_mismatch_pair_fixation_from_closed_sum(1.0, partial, exponent, n, beta)
+    return a, b, c, d
+
+
+def _first_hit_scaled_mean(a: float, b: float, c: float, d: float) -> float:
+    """Closed two-transient-state first-passage time, in 1/mu units."""
+    return (a + c + d) / (a*d + b*(c+d))
+
+
+def _first_hit_closed_probability(a: float, b: float, c: float, d: float,
+                                  normalized_horizon: float) -> float:
+    """Exact CDF of first entry to D; later return substitutions are irrelevant."""
+    g = sqrt((a+b-c-d)**2 + 4*a*c)
+    assert g > 0
+    r_slow = (a+b+c+d-g)/2
+    r_fast = (a+b+c+d+g)/2
+    surviving = ((r_fast-b)/g)*exp(-r_slow*normalized_horizon) + (
+        (b-r_slow)/g
+    )*exp(-r_fast*normalized_horizon)
+    return 1.0 - surviving
+
+
+def _first_hit_independent_poisson_uniformization(
+    a: float, b: float, c: float, d: float, normalized_horizon: float
+) -> float:
+    """Independent forward CTMC calculation using the substochastic matrix."""
+    rate = max(a+b, c+d)
+    if rate <= 0:
+        return 0.0
+    p_ss, p_sp = 1-(a+b)/rate, a/rate
+    p_ps, p_pp = c/rate, 1-(c+d)/rate
+    p0, p1 = 1.0, 0.0  # initial integrated state
+    poisson = exp(-rate*normalized_horizon)
+    survival = poisson*(p0+p1)
+    for k in range(1, 201):
+        p0, p1 = p0*p_ss+p1*p_ps, p0*p_sp+p1*p_pp
+        poisson *= (rate*normalized_horizon)/k
+        survival += poisson*(p0+p1)
+    return 1.0 - survival
+
+
+@pytest.mark.parametrize("exponent", (1.0, 2.0, 3.0, 4.0, 5.0))
+@pytest.mark.parametrize("direct", (False, True))
+def test_first_arrival_matches_independent_transient_ctmc(
+    exponent: float, direct: bool
+) -> None:
+    a, b, c, d = _partial_history_rates(exponent, 100, 1.0, direct=direct)
+    assert a > 0 and c > 0 and d > 0
+    assert (b > 0) == direct
+    for horizon in (0.0, 2.0, 20.0, 40.0, 80.0, 200.0):
+        closed = _first_hit_closed_probability(a, b, c, d, horizon)
+        independent = _first_hit_independent_poisson_uniformization(a,b,c,d,horizon)
+        assert 0 <= closed <= 1
+        assert isclose(closed, independent, rel_tol=1e-10, abs_tol=1e-12)
+
+
+def test_three_state_history_distinguishes_stationarity_from_first_arrival() -> None:
+    """Identical initial and equilibrium states do not identify evolutionary timing."""
+    N, beta = 100, 1.0
+    a1, b1, c1, d1 = _partial_history_rates(1.0, N, beta)
+    a4, b4, c4, d4 = _partial_history_rates(4.0, N, beta)
+    assert b1 == b4 == 0
+    assert isclose(a1, a4, abs_tol=1e-12)
+    assert isclose(c1, c4, abs_tol=1e-12)
+    assert isclose(a1, 0.029404746476, abs_tol=1e-12)
+    assert isclose(c1, 0.000113611977, abs_tol=1e-12)
+    assert isclose(d1, 0.023423120313, abs_tol=1e-12)
+    assert isclose(d4, 0.117256955418, abs_tol=1e-12)
+
+    tau1 = _first_hit_scaled_mean(a1,b1,c1,d1)
+    tau4 = _first_hit_scaled_mean(a4,b4,c4,d4)
+    assert isclose(tau1, 76.86592881951795, abs_tol=1e-9)
+    assert isclose(tau4, 42.569344710067, abs_tol=1e-9)
+    assert tau1 > 1.8*tau4
+
+    hit1 = _first_hit_closed_probability(a1,b1,c1,d1,40.0)
+    hit4 = _first_hit_closed_probability(a4,b4,c4,d4,40.0)
+    assert isclose(hit1, 0.2813787530564026, abs_tol=1e-9)
+    assert isclose(hit4, 0.5910823833300526, abs_tol=1e-9)
+    assert hit4 > 2*hit1
+
+    # The finite-time route changes, but the equilibrium occupancy does not.
+    vals = [0.0, intrinsic(D_STAR), intrinsic(1.0)]
+    scores = [exp(beta*(N-1)*(z-max(vals))) for z in vals]
+    equilibrium = [z/sum(scores) for z in scores]
+    for q in (1.0, 2.0, 4.0, 6.0):
+        S_to_P, _, P_to_S, P_to_D = _partial_history_rates(q,N,beta)
+        D_to_P = finite_mismatch_pair_fixation_from_closed_sum(
+            D_STAR, 1.0, q, N, beta
+        )
+        # Connected symmetric mutation graph: S<->P<->D.
+        assert isclose(equilibrium[0]*S_to_P,
+                       equilibrium[1]*P_to_S, rel_tol=1e-10, abs_tol=1e-12)
+        assert isclose(equilibrium[1]*P_to_D,
+                       equilibrium[2]*D_to_P, rel_tol=1e-10, abs_tol=1e-12)
+
+
+def test_direct_large_mutation_changes_first_passage_but_not_q_independence_of_S_assays() -> None:
+    """Mutation topology is an additional *declared* developmental hypothesis."""
+    t = {}
+    for q in (1.0, 4.0):
+        a,b,c,d = _partial_history_rates(q,100,1.0,direct=True)
+        assert b > 0
+        t[q] = _first_hit_scaled_mean(a,b,c,d)
+    assert isclose(t[1.0], 40.37744336884948, abs_tol=1e-9)
+    assert isclose(t[4.0], 22.402628919964393, abs_tol=1e-9)
+    assert t[1.0] > t[4.0]
+
+
+def test_three_state_finite_history_has_prior_art_and_clear_time_units() -> None:
+    source = (ROOT/"theory"/"PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md").read_text(encoding="utf-8")
+    for statement in (
+        "10.1111/j.1558-5646.2011.01236.x",
+        "stationary probabilities from approach-to-equilibrium",
+        "mu * E[T_(S->D)]",
+        "76.86592882",
+        "42.56934471",
+        "0.28137875",
+        "0.59108238",
+        "strong-mutation-weak-selection is NOT required",
+        "not a fourth universal SLK gate",
+    ):
+        if statement == "stationary probabilities from approach-to-equilibrium":
+            assert "stationary probabilities from approach-to-equilibrium" not in source
+            assert "distinguishes stationary probabilities" in source
+        else:
+            assert statement in source, statement
