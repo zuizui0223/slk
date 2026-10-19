@@ -1,6 +1,6 @@
 """Model witnesses: invasion from integration does not decide partial-resident stability."""
 
-from math import isclose
+from math import exp, isclose, log, sqrt
 from pathlib import Path
 
 import pytest
@@ -246,3 +246,584 @@ def test_theory_documents_explicit_conditional_scope() -> None:
         "established partial resident",
     ):
         assert term in source
+
+
+def test_main_manuscript_preserves_partial_arrest_vs_completion_fork() -> None:
+    """Check the same integration assays lead to opposite downstream outcomes."""
+    source = ROOT / "manuscript" / "SLK_MANUSCRIPT_AMNAT_V4.md"
+    if not source.exists():
+        source = ROOT / "MANUSCRIPT_SOURCE.md"
+    manuscript = source.read_text(encoding="utf-8")
+    for statement in (
+        "Partial division can alter the ecological fate of further specialization",
+        "identical fitness differences for every integrated-versus-divided pair",
+        "partial division may arrest evolution",
+        "−0.24850",
+        "+0.01796",
+        "not simulated or observed long-term lineage outcomes",
+        "Wahl 2002; Uchiumi and Sasaki 2020",
+    ):
+        assert statement in manuscript, statement
+    # The numerical witness is conditional, not a fitted natural-system estimate.
+    assert isclose(smooth_invasion(D_STAR, 0.0, 1.0), 1.0 / 140.0, abs_tol=1e-12)
+    for shape in (1.0, 2.0):
+        assert isclose(smooth_invasion(1.0, 0.0, shape), -0.25, abs_tol=1e-12)
+        assert smooth_invasion(0.30, 0.0, shape) < 0.0
+    assert isclose(smooth_invasion(1.0, 0.30, 1.0), -0.24850, abs_tol=1e-12)
+    assert isclose(smooth_invasion(1.0, 0.30, 2.0), 0.017959946, abs_tol=1e-8)
+    assert smooth_invasion(D_STAR + 1e-5, D_STAR, 1.0) < 0.0
+    assert smooth_invasion(D_STAR + 1e-5, D_STAR, 2.0) > 0.0
+
+
+def test_first_partial_founder_has_exact_direct_completion_curvature_boundary() -> None:
+    """Closed-form comparison changes only specialist–specialist mismatch."""
+    assert isclose(dependence(D_STAR), 8.0 / 245.0, abs_tol=1e-14)
+    assert isclose(intrinsic(1.0) - intrinsic(D_STAR), 117.0 / 98.0, abs_tol=1e-14)
+    q_critical = 1.0 + log(65.0 / 79.0) / log(237.0 / 253.0)
+    assert isclose(q_critical, 3.98580331443734, abs_tol=1e-12)
+
+    def closed_form(q: float) -> float:
+        return 117.0 / 98.0 - (711.0 / 490.0) * (237.0 / 253.0) ** (q - 1.0)
+
+    assert isclose(closed_form(q_critical), 0.0, abs_tol=1e-12)
+    for q in (1.0, 1.05, 1.1, 1.5, 2.0, 3.0, q_critical, 4.0, 5.0):
+        assert isclose(
+            smooth_invasion(1.0, D_STAR, q), closed_form(q), abs_tol=1e-12
+        )
+        assert isclose(smooth_invasion(D_STAR, 0.0, q), 1.0 / 140.0, abs_tol=1e-12)
+        assert isclose(smooth_invasion(1.0, 0.0, q), -0.25, abs_tol=1e-12)
+        # More than just endpoints: every S–d selection curve is identical.
+        for d in (0.05, D_STAR, 0.24, 0.6, 1.0):
+            for p in (0.0, 0.1, 0.5, 0.9, 1.0):
+                observed = (
+                    p * smooth_payoff(d, d, q)
+                    + (1.0 - p) * smooth_payoff(d, 0.0, q)
+                    - p * smooth_payoff(0.0, d, q)
+                    - (1.0 - p) * smooth_payoff(0.0, 0.0, q)
+                )
+                expected = intrinsic(d) + ETA * dependence(d) * (2.0 * p - 1.0)
+                assert isclose(observed, expected, abs_tol=1e-12)
+
+    assert smooth_invasion(1.0, D_STAR, q_critical - 0.001) < 0
+    assert smooth_invasion(1.0, D_STAR, q_critical + 0.001) > 0
+
+
+def test_mismatch_curvature_changes_founder_threshold_then_allows_two_step_route() -> None:
+    """Early founder success is invariant; completion is conditional on resident ecology."""
+    assert isclose(smooth_invasion(1.0, D_STAR, 1.0), -9.0 / 35.0, abs_tol=1e-12)
+    for q, expected_p in (
+        (1.0, 7.0 / 79.0),
+        (2.0, 0.060834268012604824),
+        (3.0, 0.031185948553540163),
+    ):
+        assert smooth_invasion(1.0, D_STAR, q) < 0.0
+        critical_p = mutant_frequency_threshold(1.0, D_STAR, q)
+        assert isclose(critical_p, expected_p, abs_tol=1e-12)
+        assert s_vs_partial_pair_selection(1.0, D_STAR, critical_p * 0.5, q) < 0
+        assert s_vs_partial_pair_selection(1.0, D_STAR, critical_p + 0.05, q) > 0
+
+    for q in (4.0, 5.0):
+        # Both separate pairwise substitutions have positive relative fitness
+        # at all tested frequencies if first partial and later full mutants appear.
+        assert mutant_frequency_threshold(1.0, D_STAR, q) < 0
+        for p in (0.0, 0.001, 0.01, 0.1, 0.5, 0.99, 1.0):
+            assert s_vs_partial_pair_selection(D_STAR, 0.0, p, q) > 0
+            assert s_vs_partial_pair_selection(1.0, D_STAR, p, q) > 0
+        assert smooth_invasion(1.0, 0.0, q) < 0
+
+    assert isclose(smooth_invasion(1.0, D_STAR, 4.0), 0.0011067606016059717, abs_tol=1e-12)
+    assert isclose(smooth_invasion(1.0, D_STAR, 5.0), 0.0765389054502259, abs_tol=1e-12)
+
+
+def test_curvature_dependence_of_minimum_resident_degree_enabling_completion() -> None:
+    """Numeric first crossing v(q), not a general monotonicity theorem."""
+    expected = (
+        (1.1, 0.9025056150614044),
+        (1.5, 0.43146179809559637),
+        (2.0, 0.28615302603084614),
+        (3.0, 0.18556385618903565),
+        (4.0, 0.1424076082307703),
+        (5.0, 0.11731821627431274),
+    )
+    thresholds = []
+    for q, witness_v in expected:
+        low, high = 0.00000001, 1.0 - 1e-9
+        assert smooth_invasion(1.0, low, q) < 0
+        assert smooth_invasion(1.0, high, q) > 0
+        for _ in range(75):
+            mid = (low + high) / 2.0
+            if smooth_invasion(1.0, mid, q) > 0:
+                high = mid
+            else:
+                low = mid
+        root = (low + high) / 2.0
+        thresholds.append(root)
+        assert isclose(root, witness_v, abs_tol=1e-10)
+        assert smooth_invasion(1.0, max(0.0, root - 1e-4), q) < 0
+        assert smooth_invasion(1.0, min(1.0, root + 1e-4), q) > 0
+    assert all(a > b for a, b in zip(thresholds, thresholds[1:]))
+
+
+def test_theory_qualifies_direct_completion_threshold_and_its_prior_art() -> None:
+    source = (ROOT / "theory" / "PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md").read_text(encoding="utf-8")
+    for token in (
+        "log(65/79)/log(237/253)",
+        "3.98580331443734",
+        "q > q_critical",
+        "M_q(d,0)=w(d)",
+        "0.060834268",
+        "sequential",
+        "10.1007/s00285-013-0725-z",
+        "not a general new theorem",
+    ):
+        if token == "not a general new theorem":
+            assert "**not** the first discovery" in source.lower()
+        else:
+            assert token in source, token
+
+
+def finite_mismatch_pair_fixation_from_closed_sum(
+    mutant: float, resident: float, exponent: float, n: int, beta: float
+) -> float:
+    """Exact one-mutant exponential Moran fixation, excluding self encounters."""
+    assert n >= 3 and beta > 0 and exponent >= 1
+    gap = intrinsic(mutant) - intrinsic(resident)
+    mismatch = ETA * smooth_mismatch(mutant, resident, exponent)
+    terms = [
+        -beta * (j * gap + mismatch * j * (j + 1 - n) / (n - 1))
+        for j in range(n)
+    ]
+    peak = max(terms)
+    return exp(-peak) / sum(exp(t - peak) for t in terms)
+
+
+def finite_mismatch_pair_fixation_from_transitions(
+    mutant: float, resident: float, exponent: float, n: int, beta: float
+) -> float:
+    """Independent exact birth/death ratio implementation of the 4-payoff game."""
+    gap = intrinsic(mutant) - intrinsic(resident)
+    mismatch = ETA * smooth_mismatch(mutant, resident, exponent)
+    products_log = [0.0]
+    cumulative = 0.0
+    for i in range(1, n):
+        # Pi are expected encounter payoffs, not raw fitness observations.
+        pi_mutant = intrinsic(mutant) - mismatch * (n - i) / (n - 1)
+        pi_resident = intrinsic(resident) - mismatch * i / (n - 1)
+        weight_m = i * exp(beta * pi_mutant)
+        weight_r = (n - i) * exp(beta * pi_resident)
+        t_plus = weight_m / (weight_m + weight_r) * (n - i) / n
+        t_minus = weight_r / (weight_m + weight_r) * i / n
+        assert t_plus > 0 and t_minus > 0
+        # The self-exclusion correction survives; do not use Delta(0).
+        assert isclose(pi_mutant - pi_resident,
+                       gap + mismatch * (2*i-n)/(n-1), abs_tol=1e-12)
+        cumulative += log(t_minus / t_plus)
+        products_log.append(cumulative)
+    peak = max(products_log)
+    return exp(-peak) / sum(exp(x - peak) for x in products_log)
+
+
+@pytest.mark.parametrize("exponent", (1.0, 2.0, 3.0, 4.0, 5.0))
+@pytest.mark.parametrize("n", (20, 100))
+@pytest.mark.parametrize("beta", (0.1, 1.0))
+def test_finite_four_payoff_moran_replays_independent_fixation_formula(
+    exponent: float, n: int, beta: float
+) -> None:
+    for mutant, resident in ((D_STAR, 0.0), (1.0, 0.0),
+                             (1.0, D_STAR), (D_STAR, 1.0)):
+        expected = finite_mismatch_pair_fixation_from_closed_sum(
+            mutant, resident, exponent, n, beta
+        )
+        observed = finite_mismatch_pair_fixation_from_transitions(
+            mutant, resident, exponent, n, beta
+        )
+        assert isclose(expected, observed, rel_tol=1e-11, abs_tol=1e-12)
+
+
+def test_finite_moran_fixation_is_continuous_at_direct_completion_boundary() -> None:
+    n, beta = 100, 0.1
+    q_star = 1.0 + log(65.0 / 79.0) / log(237.0 / 253.0)
+    q_values = (1.0, 2.0, 3.0, q_star - 0.001,
+                q_star, q_star + 0.001, 4.0, 5.0)
+    fixation_values = [
+        finite_mismatch_pair_fixation_from_closed_sum(
+            1.0, D_STAR, q, n, beta
+        ) for q in q_values
+    ]
+    assert all(x < y for x, y in zip(fixation_values, fixation_values[1:]))
+    assert fixation_values[0] > 1.0 / n  # opposed when rare, but fixation is possible
+    assert smooth_invasion(1.0, D_STAR, 1.0) < 0
+    assert smooth_invasion(1.0, D_STAR, 4.0) > 0
+    assert isclose(fixation_values[0], 0.027876352004896413, abs_tol=1e-12)
+    assert isclose(fixation_values[-2], 0.03848215517968246, abs_tol=1e-12)
+    assert isclose(fixation_values[-1], 0.04200871838101656, abs_tol=1e-12)
+    assert fixation_values[4] > fixation_values[3]
+    assert fixation_values[5] > fixation_values[4]
+
+
+def test_all_integration_assays_keep_same_finite_moran_probabilities() -> None:
+    """The initial S-vs-d tests are invariant, even for finite population fixation."""
+    n, beta = 100, 0.1
+    for mutant in (D_STAR, 1.0):
+        base = finite_mismatch_pair_fixation_from_closed_sum(mutant, 0.0, 1.0, n, beta)
+        for exponent in (1.0, 1.5, 2.0, 3.0, 4.0, 7.0):
+            observed = finite_mismatch_pair_fixation_from_closed_sum(
+                mutant, 0.0, exponent, n, beta
+            )
+            assert isclose(observed, base, abs_tol=1e-12)
+    assert isclose(
+        finite_mismatch_pair_fixation_from_closed_sum(D_STAR, 0.0, 1.0, n, beta),
+        0.012025785305009848,
+        abs_tol=1e-12,
+    )
+    assert isclose(
+        finite_mismatch_pair_fixation_from_closed_sum(1.0, 0.0, 1.0, n, beta),
+        0.028918435811972974,
+        abs_tol=1e-12,
+    )
+
+
+@pytest.mark.parametrize("exponent", (1.0, 2.0, 4.0, 5.0))
+@pytest.mark.parametrize("n", (20, 100))
+def test_symmetric_mismatch_retains_stationary_odds_but_changes_turnover(
+    exponent: float, n: int
+) -> None:
+    beta = 0.1
+    forward = finite_mismatch_pair_fixation_from_closed_sum(
+        1.0, D_STAR, exponent, n, beta
+    )
+    backward = finite_mismatch_pair_fixation_from_closed_sum(
+        D_STAR, 1.0, exponent, n, beta
+    )
+    gap = intrinsic(1.0) - intrinsic(D_STAR)
+    assert isclose(forward / backward, exp(beta*(n-1)*gap), rel_tol=1e-10)
+    assert 0 < backward < forward < 1
+    # The 4-entry asymmetric focal payoff is not the canonical 3-entry game.
+    x = ETA * smooth_mismatch(1.0, D_STAR, exponent)
+    assert not isclose(intrinsic(1.0)-x, intrinsic(D_STAR)-x)
+
+
+def test_finite_stochastic_fitness_receipt_preserves_known_prior_art() -> None:
+    source = (
+        ROOT / "theory" / "PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md"
+    ).read_text(encoding="utf-8")
+    for marker in (
+        "10.1016/j.jtbi.2007.07.005",
+        "not a fixation threshold",
+        "rho_u|v / rho_v|u",
+        "strictly increases",
+        "0.027876352",
+        "0.038482155",
+        "do not form the equal-off-diagonal three-entry canonical game",
+        "rate of turnover",
+    ):
+        assert marker in source, marker
+
+
+def _partial_history_rates(exponent: float, n: int, beta: float,
+                           *, direct: bool = False) -> tuple[float, float, float, float]:
+    """Successful substitution coefficients before common rare rate mu."""
+    partial = D_STAR
+    a = finite_mismatch_pair_fixation_from_closed_sum(partial, 0.0, exponent, n, beta)
+    b = (finite_mismatch_pair_fixation_from_closed_sum(1.0, 0.0, exponent, n, beta)
+         if direct else 0.0)
+    c = finite_mismatch_pair_fixation_from_closed_sum(0.0, partial, exponent, n, beta)
+    d = finite_mismatch_pair_fixation_from_closed_sum(1.0, partial, exponent, n, beta)
+    return a, b, c, d
+
+
+def _first_hit_scaled_mean(a: float, b: float, c: float, d: float) -> float:
+    """Closed two-transient-state first-passage time, in 1/mu units."""
+    return (a + c + d) / (a*d + b*(c+d))
+
+
+def _first_hit_closed_probability(a: float, b: float, c: float, d: float,
+                                  normalized_horizon: float) -> float:
+    """Exact CDF of first entry to D; later return substitutions are irrelevant."""
+    if normalized_horizon == 0:
+        return 0.0  # exact boundary; avoid +/- 1e-16 cancellation artifacts
+    g = sqrt((a+b-c-d)**2 + 4*a*c)
+    assert g > 0
+    r_slow = (a+b+c+d-g)/2
+    r_fast = (a+b+c+d+g)/2
+    surviving = ((r_fast-b)/g)*exp(-r_slow*normalized_horizon) + (
+        (b-r_slow)/g
+    )*exp(-r_fast*normalized_horizon)
+    return 1.0 - surviving
+
+
+def _first_hit_independent_poisson_uniformization(
+    a: float, b: float, c: float, d: float, normalized_horizon: float
+) -> float:
+    """Independent forward CTMC calculation using the substochastic matrix."""
+    rate = max(a+b, c+d)
+    if rate <= 0:
+        return 0.0
+    p_ss, p_sp = 1-(a+b)/rate, a/rate
+    p_ps, p_pp = c/rate, 1-(c+d)/rate
+    p0, p1 = 1.0, 0.0  # initial integrated state
+    poisson = exp(-rate*normalized_horizon)
+    survival = poisson*(p0+p1)
+    for k in range(1, 201):
+        p0, p1 = p0*p_ss+p1*p_ps, p0*p_sp+p1*p_pp
+        poisson *= (rate*normalized_horizon)/k
+        survival += poisson*(p0+p1)
+    return 1.0 - survival
+
+
+@pytest.mark.parametrize("exponent", (1.0, 2.0, 3.0, 4.0, 5.0))
+@pytest.mark.parametrize("direct", (False, True))
+def test_first_arrival_matches_independent_transient_ctmc(
+    exponent: float, direct: bool
+) -> None:
+    a, b, c, d = _partial_history_rates(exponent, 100, 1.0, direct=direct)
+    assert a > 0 and c > 0 and d > 0
+    assert (b > 0) == direct
+    for horizon in (0.0, 2.0, 20.0, 40.0, 80.0, 200.0):
+        closed = _first_hit_closed_probability(a, b, c, d, horizon)
+        independent = _first_hit_independent_poisson_uniformization(a,b,c,d,horizon)
+        assert 0 <= closed <= 1
+        assert isclose(closed, independent, rel_tol=1e-10, abs_tol=1e-12)
+
+
+def test_three_state_history_distinguishes_stationarity_from_first_arrival() -> None:
+    """Identical initial and equilibrium states do not identify evolutionary timing."""
+    N, beta = 100, 1.0
+    a1, b1, c1, d1 = _partial_history_rates(1.0, N, beta)
+    a4, b4, c4, d4 = _partial_history_rates(4.0, N, beta)
+    assert b1 == b4 == 0
+    assert isclose(a1, a4, abs_tol=1e-12)
+    assert isclose(c1, c4, abs_tol=1e-12)
+    assert isclose(a1, 0.029404746476, abs_tol=1e-12)
+    assert isclose(c1, 0.000113611977, abs_tol=1e-12)
+    assert isclose(d1, 0.023423120313, abs_tol=1e-12)
+    assert isclose(d4, 0.117256955418, abs_tol=1e-12)
+
+    tau1 = _first_hit_scaled_mean(a1,b1,c1,d1)
+    tau4 = _first_hit_scaled_mean(a4,b4,c4,d4)
+    assert isclose(tau1, 76.86592881951795, abs_tol=1e-9)
+    assert isclose(tau4, 42.569344710067, abs_tol=1e-9)
+    assert tau1 > 1.8*tau4
+
+    hit1 = _first_hit_closed_probability(a1,b1,c1,d1,40.0)
+    hit4 = _first_hit_closed_probability(a4,b4,c4,d4,40.0)
+    assert isclose(hit1, 0.2813787530564026, abs_tol=1e-9)
+    assert isclose(hit4, 0.5910823833300526, abs_tol=1e-9)
+    assert hit4 > 2*hit1
+
+    # The finite-time route changes, but the equilibrium occupancy does not.
+    vals = [0.0, intrinsic(D_STAR), intrinsic(1.0)]
+    scores = [exp(beta*(N-1)*(z-max(vals))) for z in vals]
+    equilibrium = [z/sum(scores) for z in scores]
+    for q in (1.0, 2.0, 4.0, 6.0):
+        S_to_P, _, P_to_S, P_to_D = _partial_history_rates(q,N,beta)
+        D_to_P = finite_mismatch_pair_fixation_from_closed_sum(
+            D_STAR, 1.0, q, N, beta
+        )
+        # Connected symmetric mutation graph: S<->P<->D.
+        assert isclose(equilibrium[0]*S_to_P,
+                       equilibrium[1]*P_to_S, rel_tol=1e-9, abs_tol=1e-300)
+        assert isclose(equilibrium[1]*P_to_D,
+                       equilibrium[2]*D_to_P, rel_tol=1e-9, abs_tol=1e-300)
+
+
+def test_direct_large_mutation_changes_first_passage_but_not_q_independence_of_S_assays() -> None:
+    """Mutation topology is an additional *declared* developmental hypothesis."""
+    t = {}
+    for q in (1.0, 4.0):
+        a,b,c,d = _partial_history_rates(q,100,1.0,direct=True)
+        assert b > 0
+        t[q] = _first_hit_scaled_mean(a,b,c,d)
+    assert isclose(t[1.0], 40.37744336884948, abs_tol=1e-9)
+    assert isclose(t[4.0], 22.402628919964393, abs_tol=1e-9)
+    assert t[1.0] > t[4.0]
+
+
+def test_three_state_finite_history_has_prior_art_and_clear_time_units() -> None:
+    source = (ROOT/"theory"/"PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md").read_text(encoding="utf-8")
+    for statement in (
+        "10.1111/j.1558-5646.2011.01236.x",
+        "stationary probabilities from approach-to-equilibrium",
+        "mu * E[T_(S->D)]",
+        "76.86592882",
+        "42.56934471",
+        "0.28137875",
+        "0.59108238",
+        "requires **rare mutation** but does **not** require weak selection",
+        "not a fourth universal SLK gate",
+    ):
+        if statement == "stationary probabilities from approach-to-equilibrium":
+            assert "distinguishes stationary probabilities" in source
+        else:
+            assert statement in source, statement
+
+
+def _transient_snapshot_closed(a: float, b: float, c: float, d: float,
+                               horizon: float) -> tuple[float, float, float]:
+    """Closed-form probabilities of S, P (no previous D), or first D."""
+    if horizon == 0:
+        return 1.0, 0.0, 0.0
+    g = sqrt((a+b-c-d)**2 + 4*a*c)
+    r_slow = (a+b+c+d-g)/2
+    r_fast = (a+b+c+d+g)/2
+    slow, fast = exp(-r_slow*horizon), exp(-r_fast*horizon)
+    sprob = ((r_fast-(a+b))*slow + ((a+b)-r_slow)*fast)/g
+    pprob = a*(slow-fast)/g
+    return sprob, pprob, 1.0-sprob-pprob
+
+
+def _transient_snapshot_uniformization(a: float,b: float,c: float,d: float,
+                                       horizon: float) -> tuple[float, float, float]:
+    """Independent Poisson uniformization for the 2 transient states."""
+    if horizon == 0:
+        return 1.0, 0.0, 0.0
+    rate = max(a+b,c+d)
+    assert rate > 0
+    pss,psp = 1-(a+b)/rate,a/rate
+    pps,ppp = c/rate,1-(c+d)/rate
+    state_s,state_p = 1.0,0.0
+    weight = exp(-rate*horizon)
+    sprob,pprob = weight,0.0
+    for j in range(1,401):
+        state_s,state_p = state_s*pss+state_p*pps,state_s*psp+state_p*ppp
+        weight *= rate*horizon/j
+        sprob += weight*state_s
+        pprob += weight*state_p
+    return sprob,pprob,1.0-sprob-pprob
+
+
+@pytest.mark.parametrize("exponent", [1.0, 2.0, 4.0, 5.0])
+@pytest.mark.parametrize("direct", [False, True])
+def test_fixed_ecological_window_snapshot_matches_independent_markov_calculation(
+    exponent: float, direct: bool
+) -> None:
+    a,b,c,d = _partial_history_rates(exponent,100,1.0,direct=direct)
+    for horizon in (0.0,0.5,5.0,20.0,40.0,100.0):
+        analytic = _transient_snapshot_closed(a,b,c,d,horizon)
+        independent = _transient_snapshot_uniformization(a,b,c,d,horizon)
+        assert all(0 <= z <= 1 for z in analytic)
+        assert isclose(sum(analytic),1.0,abs_tol=1e-12)
+        for x,y in zip(analytic,independent):
+            assert isclose(x,y,rel_tol=1e-9,abs_tol=1e-12)
+        assert isclose(analytic[2],
+                       _first_hit_closed_probability(a,b,c,d,horizon),
+                       rel_tol=1e-9,abs_tol=1e-12)
+
+
+def _random_window_closed(a: float,b: float,c: float,d: float,
+                          hazard: float) -> tuple[float,float,float]:
+    """Destination when an independent exponential partner regime terminates."""
+    assert hazard > 0
+    den=(a+b+hazard)*(c+d+hazard)-a*c
+    return (
+        hazard*(c+d+hazard)/den,
+        hazard*a/den,
+        (b*(c+d+hazard)+a*d)/den,
+    )
+
+
+def _random_window_competing_risks(a: float,b: float,c: float,d: float,
+                                   hazard: float) -> tuple[float,float,float]:
+    """Independent first-event recursion, not the closed determinant formula."""
+    Srate=a+b+hazard
+    Prate=c+d+hazard
+    # From P, return to S with probability c/Prate; repeat at S.
+    recycle=(a/Srate)*(c/Prate)
+    S_end=(hazard/Srate)/(1-recycle)
+    P_end=(a/Srate)*(hazard/Prate)/(1-recycle)
+    D_first=(b/Srate+(a/Srate)*(d/Prate))/(1-recycle)
+    return S_end,P_end,D_first
+
+
+@pytest.mark.parametrize("direct", [False, True])
+@pytest.mark.parametrize("hazard", [0.005,0.025,0.1,1.0])
+@pytest.mark.parametrize("exponent", [1.0,2.0,4.0,5.0])
+def test_random_window_endings_match_independent_competing_risk_recursions(
+    direct: bool,hazard:float,exponent:float
+) -> None:
+    a,b,c,d=_partial_history_rates(exponent,100,1.0,direct=direct)
+    theoretical=_random_window_closed(a,b,c,d,hazard)
+    independent=_random_window_competing_risks(a,b,c,d,hazard)
+    assert isclose(sum(theoretical),1.0,abs_tol=1e-12)
+    for x,y in zip(theoretical,independent):
+        assert 0 < x < 1
+        assert isclose(x,y,rel_tol=1e-10,abs_tol=1e-12)
+    if not direct:
+        assert isclose(theoretical[2]/theoretical[1],d/hazard,
+                       rel_tol=1e-12)
+
+
+def test_ecological_window_enriches_partial_specialization_despite_same_equilibrium() -> None:
+    """Unfinished partial lineages accumulate when completion is slower."""
+    q1 = _partial_history_rates(1.0,100,1.0)
+    q4 = _partial_history_rates(4.0,100,1.0)
+    s1,p1,d1=_transient_snapshot_closed(*q1,40.0)
+    s4,p4,d4=_transient_snapshot_closed(*q4,40.0)
+    assert isclose(s1,0.30934498256487464,abs_tol=1e-11)
+    assert isclose(s4,0.30879120902279444,abs_tol=1e-11)
+    assert isclose(p1,0.4092762643787228,abs_tol=1e-11)
+    assert isclose(p4,0.10012640764715294,abs_tol=1e-11)
+    assert isclose(d1,0.2813787530564026,abs_tol=1e-11)
+    assert isclose(d4,0.5910823833300526,abs_tol=1e-11)
+    assert p1>4*p4 and d4>2*d1
+    assert abs(s1-s4)<0.001
+    assert all(isclose(x,y,abs_tol=1e-12) for x,y in
+               zip(q1[:3],q4[:3]))  # same S-origin rates, b=0
+
+    hazard=0.025
+    end1=_random_window_closed(*q1,hazard)
+    end4=_random_window_closed(*q4,hazard)
+    for z,targets in (
+        (end1,(0.4601008159920624,0.27874039328678424,0.26115879072115333)),
+        (end4,(0.45971700815241506,0.09494843156531393,0.44533456028227086))
+    ):
+        for actual,expected in zip(z,targets):
+            assert isclose(actual,expected,abs_tol=1e-10)
+    assert isclose(end1[2]/end1[1],q1[-1]/hazard,rel_tol=1e-12)
+    assert isclose(end4[2]/end4[1],q4[-1]/hazard,rel_tol=1e-12)
+
+
+def test_environmental_turnover_threshold_differs_from_deterministic_invasion_threshold() -> None:
+    """Dominant completed-versus-unfinished outcome can switch while rare growth is negative."""
+    hazard=0.025
+    lo,hi=1.0,2.0
+    for _ in range(80):
+        mid=(lo+hi)/2
+        d=_partial_history_rates(mid,100,1.0)[-1]
+        if d<hazard:
+            lo=mid
+        else:
+            hi=mid
+    q_window=(lo+hi)/2
+    q_deterministic=1+log(65.0/79.0)/log(237.0/253.0)
+    assert isclose(q_window,1.0838083659710573,abs_tol=1e-11)
+    assert q_window < q_deterministic
+    assert smooth_invasion(1.0,D_STAR,q_window)<0
+    probs=_random_window_closed(*_partial_history_rates(q_window,100,1.0),hazard)
+    assert isclose(probs[2]/probs[1],1.0,abs_tol=1e-11)
+    # Supplying direct D mutations invalidates the simple completion-to-P ratio.
+    for q in (1.0,4.0):
+        without=_random_window_closed(*_partial_history_rates(q,100,1.0),hazard)
+        with_direct=_random_window_closed(
+            *_partial_history_rates(q,100,1.0,direct=True),hazard
+        )
+        assert with_direct[2]>without[2]
+        assert not isclose(with_direct[2]/with_direct[1],
+                           _partial_history_rates(q,100,1.0)[-1]/hazard)
+
+
+def test_ecological_window_biological_scope_and_prior_art_guards() -> None:
+    source=(ROOT/"theory"/"PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md").read_text(encoding="utf-8")
+    for phrase in (
+        "0.40927626",
+        "0.10012641",
+        "0.26115879",
+        "0.44533456",
+        "q_window=1.08380836597",
+        "d/h",
+        "same in S and P",
+        "not a general biological law",
+        "replicate evolutionary histories",
+        "not an invented evolutionary mechanism",
+    ):
+        assert phrase in source,phrase

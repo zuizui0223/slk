@@ -40,7 +40,7 @@ Architecture economics, evolutionary history, and ecological interactions can th
 
 ## Biological predictions
 
-The framework now makes four natural-history predictions.
+The framework now makes five conditional natural-history predictions.
 
 **1. Conflict strength alone should not rank the tendency toward division of labor.** A system with stronger conflict can remain integrated if little of that conflict is recoverable or if the divided architecture is costly, whereas weaker conflict can be resolved structurally when release is efficient and cheap.
 
@@ -50,7 +50,11 @@ The framework now makes four natural-history predictions.
 
 **4. Structural novelty and demographic support trade off along one escape frontier.** Under the canonical positive-frequency extension, `p_escape(d)=1/2-[dmax/(2eta)][R(d)/d-k]` under a release-proportional feedback extension that vanishes at `d=0`. The structural threshold `d_J` is the `p=1/2` slice and the endpoint frequency threshold `p_C` is the `d=dmax` slice. Larger favorable structural changes therefore require less initial abundance, while clustering, immigration, or repeated origin can compensate for more modest novelty; environmental change can move the whole frontier before morphology changes.
 
-The strongest prediction is not that hysteresis, coexistence or frequency dependence exist; all are established phenomena. It is that the first failing bottleneck can turn over for one unchanged organization while the structural or demographic perturbation needed for reorganization shrinks.
+**5. Partial division can change the ecological prospects of further specialization.** All integrated-versus-variant fitness comparisons may be identical while an established partially differentiated type either resists further rare specialization or permits a relay or direct two-step completion. In the registered symmetric mismatch witness, an initial partial degree `d=1/7` permits rare full division only above a **model-specific** mismatch exponent `q=3.985803...`; below it, further intermediate residents or sufficient founding frequency may be needed. The numerical boundary is not an observed or universal evolutionary threshold. In a finite Moran population, this sharp deterministic threshold becomes a continuous **fixation-probability contrast**: under the specified N=100, beta=0.1 exponential-fitness witness, one completed specialist fixes with probability **2.79%** at q=1 (despite a negative rare-growth margin) versus **3.85%** at q=4; neutral fixation is 1%. This is a model result, not a natural fixation estimate or a claim of novel stochastic evolutionary theory. **Finite-time history also changes:** in a mutation-limited three-architecture model with S→P→D adjacency, symmetric per-edge mutation opportunities, N=100 and β=1, the scaled mean first time to completed division falls from **μT=76.87** at q=1 to **42.57** at q=4; completion by a normalized ecological window μt=40 rises from **28.1% to 59.1%**. Yet asymptotic architecture occupancy remains unchanged under symmetric mutation opportunities. This numerical contrast is model-specific, and the general stationary-versus-transient distinction is existing origin-fixation theory (Sella & Hirsh 2005; McCandlish 2011, DOI 10.1111/j.1558-5646.2011.01236.x). It does not identify any actual ecological window or natural mutation supply; details are in `theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md`.
+
+**A new time-limited ecological interpretation:** at the same scaled opportunity horizon `μt=40`, q=1 leaves **40.9%** of initially integrated replicate lineages unfinished at partial division, versus **10.0%** at q=4, while the fraction still integrated is approximately **31% in both**. If the interaction environment ends at an independent constant hazard `λ`, then without a direct S→D mutation route, the ratio of completed-first-arrival lineages to partial-but-unfinished lineages at environmental turnover is exactly `μρ_(D|P)/λ`. This conditional result links excess intermediate morphologies to **slow progression relative to partner turnover**, not necessarily an adaptive optimum at intermediate differentiation. Changing the mutation graph, turnover process, or ecological payoff rules changes the conclusion. It is a theoretical prediction, not a measured natural proportion.
+
+The strongest original SLK prediction is the **candidate-specific turnover of the first failing bottleneck** and a shifting structure–frequency escape frontier before completed division appears. An additional biological implication is that *partial division changes the ecology faced by later variants*: under two explicitly different mismatch structures, every integrated-versus-divided assay is identical while established partial differentiation either resists onward specialization or enables a chain toward complete division. This is a conditional mechanism already derived in the supporting theory, not a general new theorem about stable specialization and not a verified trajectory in nature. See `theory/PARTIAL_DIVISION_RESIDENT_STABILITY_V1.md`.
 
 ## Running biological example
 
@@ -59,6 +63,24 @@ The manuscript uses *Pedicularis rex* as a literature-based running example. Exi
 The important biological point is that the balance of this conflict already varies geographically: seed-predator effects change strongly among populations while the pollinator side is more consistent. The same integrated floral architecture can therefore occupy different selective environments across the species' range.
 
 No new *P. rex* biological result is claimed by this repository.
+
+## Floral ecological extension — structural division is not the only reproductive route
+
+Across three paired large/small-flowered lineages of *Solanum* section *Androceras*, the single pollinating anther's share of pollen falls from **50–67%** to **39–41%**: differentiation weakens but is not erased (Vallejo-Marín et al. 2014). The small-flowered taxa also dispense pollen faster under simulated buzzing (Kemp and Vallejo-Marín 2021). Manual self-pollination worked in both large- and small-flowered taxa, but autonomous seed production occurred in two small-flowered taxa and none of their three large-flowered comparators; the remaining small-flowered result was inconclusive because it failed to fruit even with hand pollination (Rubini Pisano et al. 2026, DOI 10.1093/aob/mcag186). This distinguishes self-compatible reproduction from the geometry or other mechanisms that permit pollen to reach the stigma without a visitor. Crucially, phenotypic covariation between the two anther classes and between corolla and sexual organs weakens, while selected anther–stigma associations strengthen. This suggests **functional reallocation of floral coordination**, not a general loss of all integration. The study documents seed-autonomy capacity and trait covariance, not wild selfing rates, selection causing the morphological transition, or an SLK three-gate turnover. Pollen and seed discounting, as well as inbreeding depression, still matter to selfing's full fitness value (Porcher and Lande 2005, DOI 10.1111/j.1420-9101.2005.00905.x).
+
+Separate *Solanum* (2022), *Chamaecrista* (2025) and *Bredia* (2026) experiments demonstrate that floral organs can share mechanical transport and grip functions even when their pollen-handling roles differ. Enhanced vibration, pollen deposition on an artificial bee, and stable buzzing are different endpoints from realized male or female reproductive fitness. An accessible flower retaining mechanical support but reducing anther differentiation is therefore a legitimate evolutionary candidate. Its fitness and historical accessibility remain unmeasured; supporting filaments do not by themselves explain retention of differentiated pollen-producing anthers. See `docs/FLORAL_PARTNER_FUNCTION_SWITCH_V1.md`, `docs/FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md`, and `theory/FLORAL_SCAFFOLD_BYPASS_V1.md`.
+
+**Where pollen goes matters, not just how much disappears.** A 2025 controlled *Bombus terrestris* study found different pollen-loss routes for heterantherous *Solanum rostratum* versus coned-anther *S. dulcamara*: respectively about 63% versus 19% of removed pollen fell to the ground, while about 28% versus 66% entered bee corbiculae. Only ~1% of removed pollen was deposited on four subsequent stigmas in either species, without a statistically detected PTE difference (Vasquez-Castro et al. 2025, DOI 10.26786/1920-7603(2025)836). The small two-species trial does **not** establish equivalence, a cause-specific architecture effect, genetic paternity, or an observed evolutionary transition. It shows that similar measured pollen-transfer endpoints can hide very different bee reward and pollen-waste pathways; see `docs/FLORAL_SHARED_MECHANICS_EVIDENCE_V1.md` for the quantitative primary-source audit.
+
+**Pollen receipt need not predict seed maturation, even within one species.** Under controlled *S. rostratum* bee visits, larger abdomens relative to anther–stigma separation predicted more stigma pollen, whereas smaller relative abdomens were associated with more seeds per fruit; fruit set had no significant association (Solís-Montero and Vallejo-Marín 2017, DOI 10.1002/ece3.2897). The experiment did not distinguish excess-pollen effects from geitonogamous pollen or inbreeding depression. Together, the 2017 and 2025 studies make floral division a question about distinct ecological outcomes, not a one-dimensional quantity of pollen moved.
+
+## Independent empirical macro bridge — pollen limitation is context dependent
+
+We added an **original, source-verified synthesis of published experiments**, not new field measurements and not a direct test of SLK's three specialization gates. The public GloPL dataset (Bennett et al. 2018; DOI [10.5061/dryad.dt437](https://doi.org/10.5061/dryad.dt437)) contains 2,969 pollen-limitation experiments. In a deliberately matched subset of flower-level fruit-set pollen-supplementation experiments, **53 species / 58 within-study repeated-site or repeated-year groups** can be compared; **31/58** groups differ by at least 0.5 in the log pollen-supplementation response ratio. This documents substantial heterogeneity in reproductive context within the same species, but it does not show the same genotype or anther architecture persisted or identify why pollen limitation changed.
+
+We then independently matched the original Razanajatovo et al. (2016) global breeding-system indices (DOI [10.1038/ncomms13313](https://doi.org/10.1038/ncomms13313)) by exact plant binomials: **429 species** overlap GloPL overall, **81** overlap the strict fruit-set protocol, **68** have self-compatibility (SC) fruit-set indices and **56** have autofertility (AF) indices. Unadjusted rank associations with species-level pollen limitation were **SC rho=-0.282, p=0.0218** and **AF rho=-0.073, p=0.5944**. However, on the **same 54 species** their differences were not supported (paired bootstrap interval for rho_SC-rho_AF: **[-0.466, +0.069]**). Emasculation-exclusion and family aggregation further weakened the SC association. Only **8** of the strictly multi-context species had measured AF, so **AF buffering environmental fluctuation is unresolved**, not demonstrated.
+
+These results are kept in independent, reproducible ecological companion notes rather than promoted to evolutionary maintenance evidence: `docs/SLK_GLOPL_CONTEXT_PILOT_V1.md` and `docs/SLK_GLOPL_BREEDING_MACRO_PILOT_V1.md`. Scripts and source-verified GitHub Actions include `scripts/analyze_glopl_context_variation.py`, `scripts/audit_glopl_breeding_overlap.py`, and `scripts/analyze_glopl_autofertility.py`. Source raw files are not redistributed. The ecological claim ceiling for the flagship remains unchanged.
 
 ## What the theory contributes
 
@@ -143,15 +165,17 @@ PEDICULARIS_OPERATIONS_FLAGSHIP_GROWTH_CI_BLOCKED
 PEDICULARIS_OPERATIONS_DELETION_FOR_MIGRATION_ALLOWED
 EMPIRICAL_COMPANION_160_FILE_MANIFEST_FROZEN
 EMPIRICAL_COMPANION_DESTINATION_VERIFICATION_REQUIRED_BEFORE_PRUNING
-AMNAT_REFOCUSED_REVIEW_PACKAGE_BUILD_PASS
-AMNAT_RENDERED_LAYOUT_QA_PASS_28_28
-AMNAT_REVIEWER_ZIP_READY_CURRENT
-AMNAT_ZENODO_ARCHIVE_PAYLOAD_READY_CURRENT
+AMNAT_LATEST_HEAD_TEST_AND_BUNDLE_CI_PASS
+AMNAT_RENDERED_LAYOUT_PREVIOUS_QA_NOT_FROZEN_CURRENT
+AMNAT_REVIEWER_ZIP_LATEST_CI_BUILT_TRACKED_RECEIPT_STALE
+AMNAT_ZENODO_ARCHIVE_TRACKED_RECEIPT_STALE
 AMNAT_PORTAL_READINESS_GATE_REGISTERED
-AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_READY_CURRENT
-AMNAT_INTERNAL_BLOCKERS_NONE
+AMNAT_EDITORIAL_MANAGER_UPLOAD_KIT_TRACKED_RECEIPT_STALE
+AMNAT_HUMAN_PORTAL_FIELDS_ARCHIVE_AND_REFREEZE_OUTSTANDING
 EMPIRICAL_CLAIM_CEILING_UNCHANGED
 ```
+
+The source branch passed its latest Python 3.11/3.12 and anonymous-bundle CI checks at commit `e09cf67a6154` before this README-only clarification. This does **not** update the frozen local checksum receipts for the reviewer ZIP, Editorial Manager kit, or archive deposit. Build artifacts, deposited archives, and an actual journal submission are separate steps; no journal submission is claimed.
 
 ## Journal decision rule
 

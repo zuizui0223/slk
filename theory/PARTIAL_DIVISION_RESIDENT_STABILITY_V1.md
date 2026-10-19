@@ -152,6 +152,271 @@ This is not an assertion of guaranteed global convergence of a stochastic evolut
 
 The `q=2` smooth mismatch model provides the cleanest demonstration of why `S`–`d` assays cannot decide partial stability **without assuming directional competitive dominance**. The following `lambda` example is retained to show a stronger, additional possibility: a fully divided mutant can even invade an already established partial form *directly*, when asymmetric interactions among differentiated forms are allowed.
 
+## A second biological threshold: when the *first* partial founder directly unlocks complete division
+
+The cusp-versus-smooth result can be sharpened without changing **any** measurement against the integrated phenotype. This calculation concerns the same already-declared symmetric mismatch family `M_q`; it introduces no additional interaction function. For every `q>=1`, all selection curves in a population of integration `S=0` and any partial/full architecture `d` are **exactly identical at every frequency** because `M_q(d,0)=w(d)` and `M_q(d,d)=0`.
+
+Focus on the already favored first partial founder `v=d_*=1/7` and ask whether a rare complete specialist `u=1` can invade **that new resident**, without requiring additional intermediate morphologies. In the registered `F(d)=d/4+d²`, `w(d)=d/10+9d²/10`, `eta=3/2` witness,
+
+```text
+w(1/7)=8/245,                    F(1)-F(1/7)=117/98,
+w(1)-w(1/7)=237/245,            w(1)+w(1/7)=253/245,
+
+I_q(1 | 1/7) =
+   117/98 - (711/490) * (237/253)^(q-1).
+
+I_q(1 | 1/7) > 0  exactly when
+
+q > q_critical
+  = 1 + log(65/79)/log(237/253)
+  = 3.98580331443734... .
+```
+
+The ratio `237/253` is strictly between zero and one, so `I_q(1 | 1/7)` increases **strictly** with `q`; there is exactly one crossing in this one-parameter family. At equality the full specialist is *neutral when rare*, not positively invasible. This is a threshold in the **shape of ecological mismatch costs between already differentiated residents**, not a change in intrinsic fitness or a claim that any natural population has `q=4`.
+
+| Mismatch exponent `q` | Rare full specialist against established `d=1/7` | Finite-introduction frequency boundary `p_critical` | Interpretation |
+|---:|---:|---:|---|
+| 1 | -0.257142857 | 0.088607595 = 7/79 | Rare complete division excluded; it gains when introduced above 8.86% |
+| 2 | -0.165378721 | 0.060834268 | Direct rare invasion excluded; gradual onward changes can invade |
+| 3 | -0.079417850 | 0.031185949 | Direct rare invasion excluded; founder barrier smaller |
+| 4 | +0.001106761 | below 0 | Full specialist can already invade the *first* partial resident when rare |
+| 5 | +0.076538905 | below 0 | Same direct two-step route with a larger deterministic margin |
+
+Here `p_critical=1/2-[F(1)-F(d_*)]/[2 eta M_q(1,d_*)]` whenever the value lies in `(0,1)`. When the formal threshold becomes negative, **no positive founding-frequency threshold remains** in this pairwise selection comparison. The relative selection difference is increasing in founder frequency under the declared positive mismatch interaction, so a positive rare-invasion margin stays positive for all `p in [0,1]` (apart from the trivial zero-mutant endpoint as a population state).
+
+This yields three **conditional ecological fates of the same initially favored partial structure**:
+
+1. **First-order mismatch (`q=1`):** the `d_*` resident resists each different rare mutant in the declared single-mutant model. Yet a sufficiently concentrated full-specialist introduction can still cross the known `7/79` threshold; “resistance when rare” must not be called absolute permanence.
+2. **Smooth-but-not-yet-direct completion (`1<q<q_critical`):** at each positive partial resident `v>0`, sufficiently nearby further division is favored because mismatch costs are `o(|u-v|)` while intrinsic value has `F'(v)>0`. The full specialist remains excluded **from rare introduction at the first founder `d_*`** and requires a further resident shift, a sufficiently large founding frequency, or another mechanism. Such possible substitutions do not establish realized evolutionary completion.
+3. **Direct two-step route (`q>q_critical`):** `d_*` invades `S` from rarity, and the full specialist subsequently invades `d_*` from rarity. Both pairwise selection differences remain positive as the invading type becomes common. A sequential `S -> d_* -> D` trajectory is therefore *permitted under a rare-mutation, pairwise-replacement interpretation* without introducing yet another partial degree. It is not evidence that mutation supply, actual establishment or whole-population dynamics follow this trajectory in nature.
+
+The ecological distinction is **not simply whether a partially differentiated morphology exists**: it is whether two already differentiated architectures experience sufficiently weak incremental mismatch penalties for specialization to continue. The model also produces a continuum in the *minimum partially differentiated resident degree allowing direct full-specialist invasion*: for `q=1.1, 1.5, 2, 3, 4` the model's numerical first crossing in `v in (0,1)` is approximately `0.902506, 0.431462, 0.286153, 0.185564, 0.142408`. These numbers apply only to the registered fixed `F,w,eta` witness. In particular, `q=2` recovers the independently checked `0.286153026...` relay threshold already established above; `q=4` puts that crossing just *below* `d_*=1/7`.
+
+**Scientific ceiling and prior art.** Smoothness of invasion fitness, the form of partner-competition kernels, convergence, and trait-substitution sequences are established subjects of evolutionary ecology (Waxman & Gavrilets 2005; Boldin & Diekmann 2014, DOI 10.1007/s00285-013-0725-z). This calculation is **not** the first discovery that interaction regularity affects evolution. Its narrower contribution is an **exact, reproducible switching boundary inside the specific SLK matched-assay family**: all initial integrated-resident assays can be identical while the ecological state reached after partial specialization admits a finite-founder-only escape, an intermediate relay, or an immediate rare-invasion route to completed division. These are illustrative model predictions; there is no fitted ecological `q` and no observed cross-taxon two-step evolutionary transition.
+
+## Finite populations: the deterministic direct-completion boundary is not a fixation threshold
+
+The exact `q_critical` result classifies **deterministic growth from infinitesimal rarity**, not the probability that one rare complete specialist eventually fixes in a finite population. Classic frequency-dependent evolutionary-game theory already distinguishes these endpoints: in coordination games a type can be disfavored when rare while fixation from one individual remains possible, and even exceed the neutral `1/N` benchmark (Ohtsuki et al. 2007, DOI 10.1016/j.jtbi.2007.07.005). The following is a **process-specific application** of that established result to the same SLK conditional witness, not a novel fixation-process theorem.
+
+Fix two viable architectures `u,v` and their symmetric positive mismatch `m=M_q(u,v)`. In the pairwise ecological payoff specification, a focal individual with architecture `u` receives `A(u,u)=F(u)` against its own type and `A(u,v)=F(u)-eta*m` against `v`. The reverse focal payoffs are `A(v,u)=F(v)-eta*m` and `A(v,v)=F(v)`. **These four entries do not form the equal-off-diagonal three-entry canonical game** used for the separate `INV1` reference calculation; applying that reference game's fixation ratio to this pair would silently change the fitness process.
+
+Under a fixed finite population `N>=3`, uniformly random encounters **without self-interaction**, exponential reproductive weights `exp(beta*payoff)`, `beta>0`, and uniform random death, when `i` of `N` individuals are the focal `u` type,
+
+```text
+B   = F(u)-F(v),              X = eta * M_q(u,v),
+pi_u(i) = F(u) - X*(N-i)/(N-1),
+pi_v(i) = F(v) - X*i/(N-1),
+
+Delta_i = pi_u(i)-pi_v(i)
+        = B + X*(2i-N)/(N-1).
+
+T_minus(i)/T_plus(i) = exp(-beta * Delta_i).
+```
+
+The finite-population Moran fixation probability of **one** focal mutant is therefore exactly
+
+```text
+rho_u|v =
+  1 / sum_{j=0}^{N-1} exp[-beta * A_j],
+
+A_j = j*B + X*j*(j+1-N)/(N-1).
+```
+
+The expression is finite, strictly positive and continuous in `q` for `u!=v>0` and finite `N,beta`. Hence the deterministic `q_critical=3.985803...` produces **no discontinuous jump in fixation probability**. For the declared `eta>0`, `M_q(u,v)` strictly decreases with `q` when both types are positive and distinct; all nontrivial terms in the denominator then decrease, so `rho_u|v` **strictly increases** with `q` at fixed `N,beta,B`. This continuous stochastic improvement occurs even *below* the deterministic direct-completion boundary.
+
+The numerical finite-population example uses the **previously registered** `F(d)=d/4+d²`, `w(d)=d/10+9d²/10`, `eta=1.5`, complete mutant `u=1` and first partial resident `v=1/7`, with `N=100`, `beta=0.1`:
+
+| Mismatch shape `q` | Deterministic rare-invasion margin `I_q(1|1/7)` | Exact one-mutant fixation `rho` |
+|---:|---:|---:|
+| 1 | -0.257142857 | 0.027876352 |
+| 2 | -0.165378721 | 0.031383661 |
+| 3 | -0.079417850 | 0.034930 (rounded) |
+| 4 | +0.001106761 | 0.038482155 |
+| 5 | +0.076538905 | 0.042008718 |
+
+The neutral reference is `1/N=0.01`. Even at `q=1`, a complete specialist selected **against at rarity** has fixation probability `2.79%` in this particular process because its higher intrinsic payoff becomes valuable once its frequency rises. This is not a model of dispersal, mutation supply, genetic linkage, individual plant survival, or observed lineage evolution. It **does not** invalidate negative rarity invasion: rarity invasion and one-founder fixation are distinct quantities.
+
+A further exact identity from the symmetric mismatch `M_q(u,v)=M_q(v,u)` is
+
+```text
+rho_u|v / rho_v|u = exp[ beta*(N-1)*(F(u)-F(v)) ].
+```
+
+The mismatch terms cancel because `sum_{i=1}^{N-1} (2i-N)=0`. The reciprocal fixation ratio is therefore independent of `q` *under this four-entry payoff and update process*, although **both absolute fixation probabilities and the rate of turnover change with `q`**. For `u=1, v=1/7, N=100, beta=0.1`, the ratio is about `135861.02335` in every `q` case. Under additional **symmetric rare-mutation** assumptions, long-run monomorphic occupancy odds share this same ratio, but expected substitution waiting times do not. This resembles but **is not numerically interchangeable with** the distinct canonical `INV1` identity with its different game/payoff map.
+
+**Biological consequence, with a hard ceiling.** The first partial structure can alter both the *deterministic* opportunity for additional specialization and the *finite-population probability* of eventual replacement. The former has the sharp `q_critical` invasion boundary; the latter has a continuous probabilistic transition depending on `N`, `beta`, and the frequency path. Therefore the SLK ecological statement must remain **“rare completed division declines or increases”**, not **“completed division cannot evolve”**. No natural system supplies these `N,` `beta,` or `q` parameter estimates, and a mutation-limited waiting time or evolutionary history cannot be inferred from the one-mutant fixation calculation without an explicit mutation process.
+
+Prior art: Ohtsuki H, Bordalo P, Nowak MA. 2007. The one-third law of evolutionary dynamics. *Journal of Theoretical Biology* 249:289–295. DOI 10.1016/j.jtbi.2007.07.005 (the one-third law is a separate **weak-selection limiting result**, not asserted to hold exactly for the exponential-fitness example above).
+
+## A finite ecological window: identical long-run architecture odds but different routes and waiting times
+
+A deterministic invasion boundary is not the same question as **how far specialization progresses before an ecological context changes**. The already derived four-entry exponential-Moran fixation probabilities give a minimal origin-fixation substitution chain across three monomorphic architectural states. The approximation requires **rare mutation** but does **not** require weak selection:
+
+```text
+S = 0 (integrated),   P = d_* = 1/7 (partial),   D = 1 (complete).
+```
+
+Assume mutation is **rare compared with within-population absorption**: one substitution resolves before another arrives. For each permitted directed evolutionary transition `i -> j`, an attempted new mutant is supplied at rate `mu_ij`, and its fixation probability is `rho_(j|i)` from the previously defined **self-excluding four-entry exponential Moran process**. The origin-fixation transition rate is
+
+```text
+Q_ij = mu_ij * rho_(j|i)          for i != j.
+```
+
+This is a standard origin-fixation chain, not a new theory of evolutionary waiting times (Sella & Hirsh 2005; McCandlish 2011, DOI 10.1111/j.1558-5646.2011.01236.x). In particular, McCandlish explicitly distinguishes stationary probabilities from approach-to-equilibrium dynamics on mutational networks. Here the **biological question** is how partial division changes the next specialization step while all initial integrated-resident assays are invariant to ecological mismatch curvature `q`.
+
+### Long-run architectural occupancy under symmetric mutation opportunities
+
+For any pair of degrees `u,v`, the fixation odds from the declared four-entry mismatch model obey
+
+```text
+rho_(u|v)/rho_(v|u) = exp[beta*(N-1)*(F(u)-F(v))].
+```
+
+This ratio is exactly independent of `q`. For a finite, **connected** set of architectural states with **symmetric** permitted mutation rates (`mu_ij=mu_ji`; zero for both directions on missing edges), the rare-mutation substitution chain is reversible and satisfies detailed balance with
+
+```text
+pi_i = exp[beta*(N-1)*F(i)] /
+       sum_j exp[beta*(N-1)*F(j)].
+```
+
+Thus identical intrinsic `F` predicts identical *asymptotic* monomorphic architecture occupancy at all `q` in this family, **even when mutational connectivity excludes direct S-to-D transitions**. The equality does **not** survive arbitrary asymmetric mutation rates, altered four-entry payoffs, finite mutation supply producing polymorphism, or changed intrinsic `F`. Nor does it imply the same transition rates, the same time to specialization, or the same route through intermediate states.
+
+### First passage through a partial-specialization resident
+
+For three monomorphic states, define the rates **before multiplying by a shared, sufficiently small mutation supply `mu`**:
+
+```text
+a = rho_(P|S),    b = rho_(D|S),
+c = rho_(S|P),    d = rho_(D|P).
+```
+
+If all three undirected mutation edges are available with equal directional supply `mu`, the two-state transient generator (before the *first* appearance of a fixed D state) is
+
+```text
+Q_transient/mu = [[-(a+b), a],
+                  [c, -(c+d)]].
+```
+
+Direct solution of the first-step recursions gives the dimensionless mean **first-passage time from integrated S to the first fixed D population**
+
+```text
+mu * E[T_(S->D)] = (a+c+d)/(a*d + b*(c+d)).
+```
+
+The probability that the *first* fixation of D enters from P rather than directly from S is `a*d/[a*d+b*(c+d)]`. This is a route-of-first-arrival probability, not the fraction of time subsequently spent in P. When large S-to-D structural mutations are developmentally inaccessible, set **`b=0` in the transition graph only** (not in the fitness model): then every route to D must pass through P, and
+
+```text
+mu * E[T_(S->D)] = (a+c+d)/(a*d).
+```
+
+A finite ecological window may close before D is reached. Let `tau=mu*t`, `g=sqrt((a+b-c-d)^2+4*a*c)`, and `r_slow, r_fast=(a+b+c+d ∓ g)/2`. The **exact** probability of having reached a fixed D at least once by that normalized horizon is
+
+```text
+P(hit D by tau) = 1 -
+  [(r_fast-b)/g]*exp(-r_slow*tau)
+  -[(b-r_slow)/g]*exp(-r_fast*tau).
+```
+
+This is a *first-hitting* probability that treats D as absorbing **only for the first-passage calculation**; the full reversible origin-fixation chain permits later reversions.
+
+### Three-state SLK numerical witness: partial division as a temporal gate
+
+Take the same `F(d)=d/4+d^2`, `w(d)=d/10+9d^2/10`, `eta=1.5`, `N=100`, and `beta=1`. Keep mutation opportunities symmetric and restrict mutation graph accessibility to **S <-> P <-> D**, so direct S-to-D mutation is *not supplied* (`b=0`) while pairwise S-to-D fitness remains defined and identical at all `q`.
+
+| Quantity (same initial S-versus-d assays) | `q=1` | `q=4` |
+|---|---:|---:|
+| `rho_(P|S)=a` | 0.029404746476 | 0.029404746476 |
+| `rho_(S|P)=c` | 0.000113611977 | 0.000113611977 |
+| `rho_(D|P)=d` | 0.023423120313 | 0.117256955418 |
+| `mu E[T_(S->D)]` | **76.86592882** | **42.56934471** |
+| `P(hit D by mu*t=40)` | **0.28137875** | **0.59108238** |
+
+These are **not** generation counts and `mu=1` is **not** assumed biologically: the displayed waiting-time and finite-window values are expressed in *mutation-opportunity units*, valid under `mu` small enough that each population fixation/loss episode ends before the next eligible mutant arrives. For instance an ecological opportunity lasting `t=40/mu` time units would have a model first-completion probability of about **28% versus 59%** under the two alternative interaction curvatures, even though all integration-resident assays and eventual stationary probabilities agree. If rare long-distance architecture changes S-to-D are supplied too, the same calculation (with `b=rho_(D|S)`) yields `mu E[T]=40.37744337` for `q=1` versus `22.40262892` for `q=4`, demonstrating explicit **dependence on mutational access** as well as specialist-specialist ecology.
+
+This means *two lineages with identical current fitness ranking and the same asymptotic preference for full division could occupy different architectural states throughout a finite environmental window*. One may appear indefinitely partially specialized on observational timescales although the equilibrium occupancy is overwhelmingly fully specialized. The ecological window duration and the mutation topology are distinct hypotheses; no time scale, demographic size, selection intensity, q or mutation network was inferred for a natural lineage.
+
+**Scope / prior-art boundary.** Time-dependent fitness landscape evolution, reversible origin-fixation dynamics and mutational-network bottlenecks are established theory (Sella & Hirsh 2005; McCandlish 2011). SLK's limited numerical contribution is the **specified partial-specialization witness**: q-independent original assays and stationary occupancy coexist with q-dependent specialist-to-specialist substitution rates and finite-time completion, making evolutionary stasis **history- and time-horizon dependent** even before invoking phenotype-specific costs that change with environment. This is not a fourth universal SLK gate or field validation of a real trajectory.
+
+Citation: McCandlish DM. 2011. Visualizing fitness landscapes. *Evolution* 65:1544–1558. DOI 10.1111/j.1558-5646.2011.01236.x. (Reversible origin-fixation landscapes, stationary distributions, and their transient dynamics.)
+
+## An ecological opportunity window can accumulate incomplete division without an intermediate adaptive peak
+
+The three-architecture chain makes a more direct biological prediction about **which morphology a finite-lived pollinator, prey or partner regime leaves behind**. Even without changing any intrinsic architecture payoff, populations can temporarily accumulate partially differentiated forms because later specialization has not yet succeeded. This is **transient enrichment**, not a theorem that partial division is the long-run fitness optimum.
+
+### Fixed environmental duration: where the unfinished lineages accumulate
+
+Use the previously defined `S<->P<->D` graph with no directly supplied `S->D` mutation and start in S. For first-arrival analysis only, treat D as absorbing after the *first* completed substitution. With `tau=mu*t`, `a=rho_(P|S)`, `c=rho_(S|P)`, and `d=rho_(D|P)`, define
+
+```text
+g = sqrt((a-c-d)^2 + 4*a*c),
+r_- = (a+c+d-g)/2,  r_+ = (a+c+d+g)/2.
+
+Pr(S and never yet D at tau)
+ = [(r_+-a)*exp(-r_-*tau)+(a-r_-)*exp(-r_+*tau)]/g,
+
+Pr(P and never yet D at tau)
+ = a*[exp(-r_-*tau)-exp(-r_+*tau)]/g,
+
+Pr(ever first reached D by tau)
+ = 1 - Pr(S and never yet D) - Pr(P and never yet D).
+```
+
+At `N=100`, `beta=1`, and a **fixed opportunity duration** `tau=40`:
+
+| Mutational-history category, starting from S | `q=1` | `q=4` |
+|---|---:|---:|
+| Still S, never yet reached D | 0.30934498 | 0.30879121 |
+| Currently P, never yet reached D | **0.40927626** | **0.10012641** |
+| Has reached a fixed D at least once | **0.28137875** | **0.59108238** |
+
+The near-equal S fraction occurs because S-to-P fixation is identical across q and returns P-to-S are rare in this numerical witness. What differs most is the **transient accumulation of partial specialists**. The D column is a *first-hit event probability*, **not** necessarily the probability D is currently fixed if later reversions are permitted by the full model. Treating S/P/D as an exhaustive snapshot of actual present-day morph frequencies without checking reversion would be incorrect. These are proportions across independent **replicate evolutionary histories initialized in S**, not percentages of flowers within one population.
+
+### Random environmental ending: competition between onward evolution and loss of opportunity
+
+Rather than prespecifying `tau`, suppose the favorable interaction regime terminates independently at constant hazard `lambda`, while eligible mutants are supplied at fixed rare rate `mu`. Define the **dimensionless turnover hazard** `h=lambda/mu > 0`. The process ends on environmental change unless D was fixed first. With only S-P-D neighbor mutations supplied, first-step competing-risk recursions yield, for `K=(a+h)(c+d+h)-a*c`,
+
+```text
+Pr(end while S without ever D) = h*(c+d+h)/K,
+Pr(end while P without ever D) = h*a/K,
+Pr(reach fixed D before environment ends) = a*d/K.
+```
+
+These probabilities sum exactly to one. A separate calculation integrates the fixed-duration transient S/P occupancy against the exponential density `h*exp(-h*tau)` and gives the same result.
+
+A particularly simple, **conditional ecological window identity** follows:
+
+```text
+Pr(reach D before window ends) /
+Pr(window ends in P with no prior D)
+    = d/h
+    = mu*rho_(D|P)/lambda.
+```
+
+The ratio cancels `a` and `c` only because completion is possible **solely through P** and the environment-ending hazard is the same in S and P. It says that the relative representation of a completed first arrival versus a stalled partial lineage at turnover depends on the **onward successful-substitution rate versus the environmental switching rate**, not on how the lineage initially reached P. It is an elementary constant-rate Markov competing-risk identity, **not a general biological law**.
+
+A random environmental duration with the **same mean normalized opportunity** as `tau=40` has `h=1/40=0.025` and produces:
+
+| Terminal category (or completed-first-arrival event) | `q=1` | `q=4` |
+|---|---:|---:|
+| Environmental regime ends with S (without prior D) | 0.46010082 | 0.45971701 |
+| Regime ends with P (without prior D) | **0.27874039** | **0.09494843** |
+| First fixed D occurs before regime ends | **0.26115879** | **0.44533456** |
+| First-completion : unfinished-P odds | **0.936925** | **4.690278** |
+
+For this *chosen* `h=0.025`, the equality of complete-arrival and unfinished-partial probabilities occurs at `d(q)=h`, numerically `q_window=1.08380836597`. That crossing is **not** the deterministic rare-invasion threshold `q_critical=3.98580331444`; at `q_window` the full specialist still has a *negative* deterministic rare-growth margin. In a finite population, positive stochastic fixation makes the two questions different. Neither critical value is a universal ecological constant; changing `N, beta, mu, lambda`, mutation topology or the interactions alters the prediction.
+
+With a supplied direct `S->D` route of coefficient `b=rho_(D|S)`, the same `K=(a+b+h)(c+d+h)-a*c` gives
+
+```text
+Pr(end S without D) = h*(c+d+h)/K,
+Pr(end P without D) = h*a/K,
+Pr(reach D first) = [b*(c+d+h)+a*d]/K,
+```
+
+and the simple `d/h` ratio **no longer holds**. At `h=0.025`, direct S-to-D opportunities change first-completion probability from **0.261159 to 0.503027** for `q=1` and from **0.445335 to 0.626809** for `q=4`. This explicitly demonstrates that an apparently stable partial structure can reflect both **how ecological partners interact with more specialized newcomers** and **which developmental/mutational routes actually exist**.
+
+**Natural-history interpretation and evidence ceiling.** In a cross-population or phylogenetic sample observed at finite time, excess intermediate specialization can indicate slow onward transitions without identifying an equilibrium adaptive peak. However, ecological turnover rates, encounter-dependent mismatch functions, lineage ages, historical state frequencies, mutation accessibility and paternity/fitness measurements must be grounded independently before applying this deduction to real flowers or microbial partners. The model provides a qualitative hypothesis about **time-limited accumulation of incomplete differentiation**, not evidence that the phenomenon caused the observed *Solanum*, *Bredia* or *Pedicularis* morphologies. Competing ecological hazards and Markov first-passage calculations are established prior art, so the new result is an explicit conditional architectural interpretation in the SLK witness, **not an invented evolutionary mechanism or a new probability theorem**.
+
 ## A counterexample with exactly the same S-versus-d evidence
 
 Add a directional effect of encounters between two already differentiated forms:
@@ -216,6 +481,7 @@ Three more directly relevant precedents narrow the scope of any claimed conceptu
 
 **Remaining narrow result:** for two explicit multi-architecture payoff extensions, all binary integrated-resident comparisons (including full frequency-response curves for every partial degree) are identical while selective consequences for partial residents differ. The exact (7/79) founder threshold and the smooth-mismatch relay threshold are transparent **model witnesses**, not generally valid new natural laws.
 
+- Boldin B, Diekmann O. 2014. An extension of the classification of evolutionary singular strategies in Adaptive Dynamics. *Journal of Mathematical Biology* 69:905–940. https://doi.org/10.1007/s00285-013-0725-z (General prior art: invadability can depend on regularity of invasion fitness; not an SLK model analysis.)
 - Waxman D, Gavrilets S. 2005. 20 questions on adaptive dynamics. *Journal of Evolutionary Biology* 18:1139–1154. https://doi.org/10.1111/j.1420-9101.2005.00948.x (Background on what invasion fitness can and cannot determine.)
 - Abrams PA. 2005. 'Adaptive dynamics' vs. 'adaptive dynamics'. *Journal of Evolutionary Biology* 18:1162–1165. https://doi.org/10.1111/j.1420-9101.2004.00843.x (Scope of evolutionary path interpretation.)
 - Cooper GA, West SA. 2018. Division of labour and the evolution of extreme specialization. *Nature Ecology & Evolution* 2:1161–1167. https://doi.org/10.1038/s41559-018-0564-9

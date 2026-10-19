@@ -1,0 +1,60 @@
+name: GloPL × breeding-system macro association pilot
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - biology/scaffold-bypass-test-20261014
+    paths:
+      - scripts/analyze_glopl_autofertility.py
+      - tests/test_glopl_autofertility.py
+      - .github/workflows/glopl-breeding-association.yml
+
+permissions:
+  contents: read
+
+jobs:
+  macro-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test trait parsing, matched study aggregation and permutation inference
+        run: |
+          python -m pip install -q pytest
+          python -m pytest -q tests/test_glopl_autofertility.py
+      - name: Calculate independent species-level GloPL/SC/AF associations from locked sources
+        run: |
+          python scripts/analyze_glopl_autofertility.py \
+            --out "$RUNNER_TEMP/GLOPL_BREEDING_ASSOCIATION.json" \
+            --species-csv "$RUNNER_TEMP/GLOPL_BREEDING_MATCHED_SPECIES.csv"
+      - name: Display sample sizes and correlation outcomes
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          p=Path(os.environ["RUNNER_TEMP"])/"GLOPL_BREEDING_ASSOCIATION.json"
+          r=json.loads(p.read_text())
+          keys=["GloPL_records","GloPL_all_binomial_species",
+                "GloPL_FS_Sup_flower_species","breeding_species",
+                "all_glopl_breeding_overlap",
+                "fruit_set_study_protocol_exact_species_overlap",
+                "matched_strict_context_species_overlap",
+                "species_with_both_SC_FS_and_AF_FS",
+                "trait_coverage","species_level_rank_correlations",
+                "paired_SC_AF_comparison", "family_aggregation_sensitivity",
+                "life_history_strata", "source_processing_sensitivities",
+                "strict_context_association"]
+          print(json.dumps({k:r[k] for k in keys},indent=2))
+          PY
+      - name: Archive derived metadata and matched trait slice only
+        uses: actions/upload-artifact@v4
+        with:
+          name: slk-glopl-breeding-macro-pilot
+          path: |
+            ${{ runner.temp }}/GLOPL_BREEDING_ASSOCIATION.json
+            ${{ runner.temp }}/GLOPL_BREEDING_MATCHED_SPECIES.csv
+          if-no-files-found: error

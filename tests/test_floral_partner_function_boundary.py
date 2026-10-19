@@ -45,8 +45,8 @@ def test_morphological_retention_is_explicitly_unproven() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
         encoding="utf-8"
     )
-    assert "Divided pollen roles can depend on shared floral mechanics" in text
-    assert "mechanical support maintains dimorphism after pollen partitioning weakens remains untested" in text
+    assert "Mechanically coupled flower parts affect pollen handling" in text
+    assert "Supporting filaments may persist without dimorphic anthers" in text
     assert "untested bridge hypothesis" in ledger.lower()
     assert "not demonstrated by juxtaposing" in ledger.lower()
     assert "proposed natural-history hypothesis" in note
@@ -84,8 +84,8 @@ def test_flower_module_audit_separates_behavior_mechanics_and_evolutionary_histo
     assert "repeatedly de novo" in audit or "often arisen de novo" in audit
     assert "not literal observed events" in audit
     assert "a bee's functional role is not fixed" in audit.lower()
-    assert "changes buzzing behavior between *Bredia* and *Melastoma candidum*" in manuscript_text
-    assert "mechanical support maintains dimorphism after pollen partitioning weakens remains untested" in manuscript_text
+    assert "behaves differently on *Bredia* and *Melastoma candidum*" in manuscript_text
+    assert "maintenance of dimorphism remains untested" in manuscript_text
 
 
 def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
@@ -101,7 +101,7 @@ def test_filament_contrast_is_not_claimed_as_lifetime_fitness() -> None:
         assert marker.lower() in audit.lower()
     assert 12/39 > 0/31
     assert 13/39 > 0/31
-    assert "removing long-stamen filaments produced slipping and ventral stigma contact" in manuscript()
+    assert "long filaments stabilize buzzing even without their anthers" in manuscript()
 
 def test_separate_de_novo_origin_from_secondary_function_retention() -> None:
     note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(
@@ -125,3 +125,78 @@ def test_reference_names_are_in_literature_cited_not_inserted_into_main() -> Non
         assert name in references
     assert "Bredia hirsuta" in main
     assert "Senna arnottiana" in main
+
+
+def test_parallel_solanum_comparison_is_natural_evolution_not_causal_slk_confirmation() -> None:
+    """Keep structural erosion, pollen dispensing, and hypothesized selfing separate."""
+    main = manuscript()
+    note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(encoding="utf-8")
+    prior_path = ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md"
+    prior = prior_path.read_text(encoding="utf-8") if prior_path.exists() else None
+    for doi in ("10.1098/rstb.2013.0256", "10.1002/ajb2.1680"):
+        assert doi in main
+        assert doi in note
+        assert doi in ledger
+        if prior is not None:
+            assert doi in prior
+    assert "field outcrossing rates" in main
+    assert "artificial vibrations" in note.lower()
+    if prior is not None:
+        assert "not measured natural selfing rates" in prior
+    assert "**not** selective retention of an ancestral heterantherous" in main
+
+
+def test_autonomous_selfing_capacity_does_not_imply_measured_field_mating_rate() -> None:
+    main = manuscript()
+    note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(encoding="utf-8")
+    for item in (main, note, ledger):
+        assert "Rubini Pisano" in item
+    assert "10.1093/aob/mcag186" in note
+    assert "10.1093/aob/mcag186" in ledger
+    assert "inconclusive" in note.lower()
+    assert "not an informative negative test" in ledger
+    assert "field outcrossing rates" in main
+
+
+def test_solanum_residual_pollen_allocation_and_coordination_shift_are_not_slk_gate_results() -> None:
+    """Guard primary-source biology without confusing phenotypic covariance and evolutionary selection."""
+    main = manuscript()
+    note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(encoding="utf-8")
+    prior = ROOT / "docs" / "PRIOR_ART_BOUNDARY_V1.md"
+    for source in (main, note, ledger):
+        assert "50–67%" in source
+        assert "39–41%" in source
+        assert "anther–stigma" in source
+        assert "Rubini Pisano" in source
+    assert "field outcrossing rates" in main
+    assert "pollen discounting" in main
+    assert "phenotypic" in note.lower()
+    assert "not a zero-pollen or fully uniform-anther state" in ledger
+    if prior.is_file():
+        text = prior.read_text(encoding="utf-8")
+        assert "Neither the quantitative pollen reallocation" in text
+        assert "Porcher & Lande 2005" in text
+    assert 0 < 0.39 <= 0.41 < 0.50 <= 0.67 < 1
+
+
+def test_hand_self_compatibility_does_not_identify_autonomous_pollen_transfer() -> None:
+    """The same compatible reproductive tissues need not receive self pollen autonomously."""
+    main = manuscript()
+    note = (ROOT / "docs" / "FLORAL_PARTNER_FUNCTION_SWITCH_V1.md").read_text(encoding="utf-8")
+    ledger = (ROOT / "docs" / "EMPIRICAL_BRIDGE_EVIDENCE_V1.md").read_text(encoding="utf-8")
+    assert "both flower-size groups are self-compatible under hand pollination" in main
+    assert "autonomous pollen delivery" in main
+    assert "all six taxa" in note
+    assert "AI_s" in note and "AI_f" in note
+    for lineage in ("Pacificum:", "Androceras:", "Violaceiflorum:"):
+        assert lineage in note
+    for taxon in ("S. grayi", "S. heterodoxum", "S. fructu-tecto"):
+        assert taxon in note
+    assert "no comparable field mating-system estimates" in note
+    assert "manual self-pollination" in ledger
+    assert "t=0.70–0.94" in note
+    assert "not the acquisition of self-compatibility" in main
+    assert "a new incompatibility mutation" in ledger
