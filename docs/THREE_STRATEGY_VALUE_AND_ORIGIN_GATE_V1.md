@@ -78,6 +78,17 @@ The GenBank source audit recovered 22/22 original ndhF accession bytes and 23/23
 
 Therefore **heteranthery and Wurmbea are complementary, not interchangeable biological validations**: heteranthery exemplifies within-flower differentiated routes amid pollen fates, while Wurmbea exemplifies within-individual sex-expression plasticity and between-plant reproductive states. At present **neither** has same-context randomized phenotypic optimum comparisons, matched S/P/D lifetime fitness, cost `K`, heritable mutant path and independent historical transitions jointly measured.
 
+## New empirical source-support diagnosis: simultaneity is not an identified architecture driver
+
+The [BALANCE source-hashed timing × function pair × architecture audit](https://github.com/zuizui0223/balance/blob/analysis/source-stratified-trait-architecture-20261019/docs/BALANCE_TIMING_FUNCTION_ARCHITECTURE_COMMON_SUPPORT_V1.md) now directly reads its existing U2 sexual-interference original-review screen (**22 source species, 8 conflict-positive**) and independently the selected plant pilot (**29 source-context rows, 16 conflict-positive**), with U3 kept in its separate frozen matched-source frame.
+
+- In U2, exactly **one of eight** positive screens is tagged `SIMULTANEOUS`, and its observed architecture is `SHARED_INTEGRATED`. The other seven are source-coded `MIXED` (five) or `SEQUENTIAL_WITHIN_UNIT` (two), and some separate functions spatially/temporally.
+- In the pilot, exactly **eight of sixteen** positive rows are source-tagged `SIMULTANEOUS`: four shared pollinator–antagonist systems; three within-flower pollen-reward/gamete division systems; and one spatially separated pollinator–prey system.
+- **None of the registered positive functional-pair families has all four populated source cells** in the simultaneous/other × structural/nonstructural comparison. Therefore a function-pair-conditional association between source simultaneity and strict structural differentiation lacks complete common support. The anecdotal four-shared/three-within-flower contrast is aliased with the biological function-pair selection process.
+- The U3 reality control still consists of **four PASS matched pairs in three dependence blocks**, not an independent eight-taxon macro denominator. The positive nonheterantherous *S. spectabilis* and *S. lycocarpum* have different source routes even though both lack visible focal stamen dimorphism.
+
+**Implication for SLK G1/G2:** the study screen's `conflict_timing_geometry=SIMULTANEOUS` is an author's coded temporal geometry, **not** direct evidence that two opposed *pure-function* optima occupy the same coordinate simultaneously or a measured model `C`. No source field measures within-genotype reversible policy cost `W_P`, direct module cost `K`, or a heritable structural origin. These data narrow the *necessary prospective* measurements but do not promote SLK's empirical G1–G5 gates or identify a general effect. The screening frames must remain separate from the independent BALANCE V4 confirmatory universe.
+
 ## Minimal outcome-independent macro + intervention execution contract
 
 The first meaningful comparative unit is
