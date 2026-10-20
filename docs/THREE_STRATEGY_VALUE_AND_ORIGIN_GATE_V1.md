@@ -115,6 +115,18 @@ The [BALANCE source-hashed timing × function pair × architecture audit](https:
 
 **Implication for SLK G1/G2:** the study screen's `conflict_timing_geometry=SIMULTANEOUS` is an author's coded temporal geometry, **not** direct evidence that two opposed *pure-function* optima occupy the same coordinate simultaneously or a measured model `C`. No source field measures within-genotype reversible policy cost `W_P`, direct module cost `K`, or a heritable structural origin. These data narrow the *necessary prospective* measurements but do not promote SLK's empirical G1–G5 gates or identify a general effect. The screening frames must remain separate from the independent BALANCE V4 confirmatory universe.
 
+## Independent conflict-first empirical denominator: U6 is prospective, not a claimed module effect
+
+The [new BALANCE outcome-blind U6 source opportunity and accepted-name audit](https://github.com/zuizui0223/balance/blob/audit/u6-preoutcome-taxonomy-20261021/docs/BALANCE_U6_SOURCE_OPPORTUNITY_AND_TAXON_ALIAS_AUDIT_V1.md) extends the evidence basis **beyond heteranthery-selected cases** without breaking its pre-registered outcome freeze.
+
+U6 selected **21 source groups solely by published pollen-theft/inefficient-transfer evidence**, before opening any architecture. Review-side source recovery is 15 RESOLVED / 6 EVIDENCE_CEILING, with 63/63 source-screened predictor receipts and **zero independently adjudicated predictors**. Both coder A and B remain **UNSTARTED for all 21 groups** (42 unresolved architectural source slots); SLK G2–G5 direct architecture benefit is therefore **not currently estimable** from U6.
+
+Its original source-bearing pollen pool is `SINGLE_OR_CONTINUOUS` for all 21 and spatial geometry `SAME_UNIT` for all 21; U6 has **zero within-frame predictor contrast** for these dimensions, even if its architecture coding were completed. The original source timing tags, in contrast, include **18 simultaneous / 3 sequential** groups. The sequential evidence concerns *visitor ordering at the pollen pool* (`Clusia arrudae`, `Crescentia alata`, `Tolmiea menziesii`), not directly programmed delayed anther release as in *Clarkia*. These codes are not a `do(z)` functional conflict load, a quantified PAYOFF `C`, or a time-series measured `rho`.
+
+The canonical U6 dependence map **already** records two nonindependent taxonomic blocks with other universes: `Impatiens_capensis` exact species with U1, and `Melastoma_affine` with U3 `Melastoma_malabathricum` at a conservative accepted-species concept level. [Kew POWO](https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:570553-1) synonymizes *M. affine* to *M. malabathricum* subsp. *malabathricum*. The frozen Pass-1 prose declaring U3 had no overlap is stale relative to the canonical map, **not newly corrected source data**. Original experimental plant populations remain unverified; these are conservative shared taxon blocks, not duplicated proven biological experiments.
+
+Thus **19/21** U6 groups are U6-only relative to current U1/U2/U3 exact/accepted species mappings, not 19 independent evolutionary origins. The future hypothesis `timing × function-route anatomy` can be tested **only after genuinely independent U6 architecture coding** and source/phylogenetic dependence. Do not repair source 18/3 imbalance by importing known morphological successes from U3/Clarkia, or infer a missing function-structure effect from the current absence of architecture labels.
+
 ## Minimal outcome-independent macro + intervention execution contract
 
 The first meaningful comparative unit is
