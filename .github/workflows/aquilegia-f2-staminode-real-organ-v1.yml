@@ -1,0 +1,50 @@
+name: Source-verified Aquilegia F2 staminode real-organ reassembly
+on:
+  pull_request:
+    paths:
+      - "data/external/johns2024_aquilegia_f2_phenotypes_source.csv"
+      - "analysis/audit_aquilegia_f2_partial_reassembly_v1.py"
+      - "results/aquilegia_staminode_F2_real_source_v1.json"
+      - "tests/test_aquilegia_f2_partial_reassembly_v1.py"
+      - "docs/SLK_ANTO_REAL_STAMINODE_AFTERLIFE_AND_FUNCTION_V1.md"
+      - ".github/workflows/aquilegia-f2-staminode-real-organ-v1.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-f2-organ-reassembly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify plant, flower and whorl data geometry against source
+        run: |
+          python -m unittest discover -s tests -p "test_aquilegia_f2_partial_reassembly_v1.py" -v
+      - name: Independently compare actual source reanalysis with frozen JS recount
+        run: |
+          python analysis/audit_aquilegia_f2_partial_reassembly_v1.py \
+            --expected results/aquilegia_staminode_F2_real_source_v1.json \
+            --output /tmp/aquilegia_real_reassembly_v1.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/aquilegia_real_reassembly_v1.json"))
+          s,m,p=d["source"],d["morphology"],d["paired_whorls"]
+          assert (s["unique_f2_plants"],s["scored_flowers"],s["scored_whorl_rows"])==(231,400,800)
+          assert (s["plants_scored_one_flower"],s["plants_scored_two_flowers"])==(62,169)
+          assert (m["non_endpoint_whorl_rows"],m["anther_present_LEge2_fused_whorl_rows"])==(441,187)
+          assert (m["flowers_with_any_anther_present_LEge2_fused_whorl"],m["plants_with_any_anther_present_LEge2_fused_whorl"])==(129,91)
+          assert (p["outer_anther_yes_inner_no"],p["inner_anther_yes_outer_no"])==(99,0)
+          assert (p["LE_inner_greater"],p["LE_outer_greater"])==(181,2)
+          assert (p["fusion_identical_by_scoring"],p["fused_flowers"],p["fusion_independent_whorl_measurements"])==(400,234,0)
+          assert all(v is False for v in d["biological_claim_limits"].values())
+          assert d["interpretation"]["genetic_modularity_not_inferred_from_morphology_alone"]
+          print("PASS_AQUILEGIA_REAL_F2_SOURCE_ORGAN_MOSAIC_NOT_AN_ADAPTATION_OR_REGAIN_ESTIMATE")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aquilegia-original-f2-whorl-reassembly-v1
+          path: /tmp/aquilegia_real_reassembly_v1.json
+          retention-days: 30
