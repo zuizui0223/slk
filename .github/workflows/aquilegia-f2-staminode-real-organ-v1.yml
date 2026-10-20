@@ -6,6 +6,9 @@ on:
       - "analysis/audit_aquilegia_f2_partial_reassembly_v1.py"
       - "results/aquilegia_staminode_F2_real_source_v1.json"
       - "tests/test_aquilegia_f2_partial_reassembly_v1.py"
+      - "analysis/audit_aquilegia_f2_within_plant_variability_v2.py"
+      - "tests/test_aquilegia_f2_within_plant_variability_v2.py"
+      - "results/aquilegia_staminode_F2_within_plant_source_v2.json"
       - "docs/SLK_ANTO_REAL_STAMINODE_AFTERLIFE_AND_FUNCTION_V1.md"
       - ".github/workflows/aquilegia-f2-staminode-real-organ-v1.yml"
   workflow_dispatch:
@@ -23,6 +26,36 @@ jobs:
       - name: Verify plant, flower and whorl data geometry against source
         run: |
           python -m unittest discover -s tests -p "test_aquilegia_f2_partial_reassembly_v1.py" -v
+      - name: Verify the two-flower same-plant reproducibility and apparent structural loss
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_f2_within_plant_variability_v2.py' -v
+          python analysis/audit_aquilegia_f2_within_plant_variability_v2.py --output /tmp/aquilegia_F2_plant_repeat_v2.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/aquilegia_F2_plant_repeat_v2.json'))
+          b=json.load(open('results/aquilegia_staminode_F2_within_plant_source_v2.json'))
+          x=a['paired_flower_concordance']; y=a['mosaic_anther_and_staminode_filament']
+          z=b['within_plant']
+          assert a['source_scope']['source_git_blob_sha1']==b['source']['original_phenotype_git_blob_sha1']
+          assert (a['sample']['plants'],a['sample']['flowers'],a['sample']['whorl_rows'])==(231,400,800)
+          assert a['sample']['two_flower_plants']==b['source']['repeated_plants']==169
+          assert (x['AN_inner_same'],x['AN_outer_same'],x['AN_both_whorls_same'])==(139,139,119)
+          assert (x['LE_inner_same'],x['LE_outer_same'],x['FU_flower_level_same'])==(138,123,154)
+          for name in ('both_flower_mosaic','only_flower_a_mosaic','only_flower_b_mosaic','neither_flower_mosaic'):
+              expected={'both_flower_mosaic':'mosaic_both','only_flower_a_mosaic':'mosaic_only_a',
+                  'only_flower_b_mosaic':'mosaic_only_b','neither_flower_mosaic':'mosaic_none'}[name]
+              assert y[name]==z[expected],(name,y[name],z[expected])
+          for key in ('AN_inner','AN_outer','LE_inner','LE_outer','FU'):
+              p=a['replication_vs_marginal_null'][key]
+              for field,src in (('same_plant_agreement_fraction','within'),
+                                ('independently_paired_expected_agreement_fraction','independent'),
+                                ('agreement_excess_over_marginal_independence','excess')):
+                  assert math.isclose(p[field],z[key][src],rel_tol=0,abs_tol=1e-12),(key,field,p[field],z[key][src])
+          assert math.isclose(y['among_first_flower_negative_second_positive'],
+              z['mosaic_second_positive_conditional_first_negative'],rel_tol=0,abs_tol=1e-12)
+          assert all(v is False for v in a['inference_limits'].values())
+          print('PASS_AQUILEGIA_TWO_FLOWER_PARTIAL_ORGAN_REASSEMBLY_AND_DETECTION_BIAS')
+          PY
       - name: Independently compare actual source reanalysis with frozen JS recount
         run: |
           python analysis/audit_aquilegia_f2_partial_reassembly_v1.py \
