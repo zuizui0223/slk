@@ -87,7 +87,7 @@ class TestWithinPlantF2(unittest.TestCase):
     def test_identical_duplicate_anther_record_not_second_whorl(self):
         with self.assertRaisesRegex(ValueError,"DUPLICATE_FLOWER_WHORL"):
             summarize_repeated_plants(self.rows+[dict(self.rows[0])],strict=False)
-        with self.assertRaisesRegex(ValueError,"PAIRED_WHORL"):
+        with self.assertRaisesRegex(ValueError,"MISSING_INNER_OR_OUTER"):
             summarize_repeated_plants(self.rows[1:],strict=False)
 
 
