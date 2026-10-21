@@ -30,7 +30,7 @@ class AquilegiaSraJoinMetadataTests(unittest.TestCase):
         self.assertEqual(r["ENA_run_metadata"]["canonical_F2_id_count"],336)
         self.assertEqual(r["linked_plant_count"],231)
         self.assertEqual(r["unlinked_phenotype_plant_ids"],[])
-        self.assertEqual(r["unphenotyped_SRA_F2_id_count"],105)
+        self.assertEqual(r["ENA_run_metadata"]["unphenotyped_SRA_F2_id_count"],105)
         self.assertEqual(len(r["linked_phenotype_plants"]),231)
 
     def test_F2_alias_parser_requires_exact_accession_name(self):
