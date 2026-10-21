@@ -1,0 +1,2118 @@
+{
+  "schema": "slk_aquilegia_F2_ena_sample_alias_public_snapshot_v4",
+  "snapshot_date": "2026-10-21",
+  "source": {
+    "name": "EMBL-EBI ENA portal read_run file-report API",
+    "source_url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJNA1089234&result=read_run&fields=run_accession,sample_alias,experiment_alias,study_accession&format=tsv",
+    "bioproject": "PRJNA1089234",
+    "published_article_doi": "10.1186/s13227-024-00225-3",
+    "raw_read_sequences_downloaded": false,
+    "processed_SNP_genotypes_acquired": false,
+    "sequencing_QC_pass_for_every_f2_unconfirmed": true
+  },
+  "context": {
+    "phenotype_source_git_blob_sha1": "9911d4a5e85fa8629ad9890f28992e0f07e5feca",
+    "original_F2_phenotyped_plants": 231,
+    "sample_alias_matches_all_phenotyped_ids": true,
+    "total_run_rows": 341,
+    "F2_run_rows": 340,
+    "canonical_distinct_F2_samples": 336,
+    "phenotyped_id_without_run": 0,
+    "F2_sample_ids_without_scored_morphology": 105,
+    "number_of_F2_ids_with_multiple_run_rows": 4
+  },
+  "duplicate_or_multilibrary_f2_ids": [
+    {
+      "plant": "16",
+      "runs": [
+        "SRR28414110",
+        "SRR28414175"
+      ],
+      "aliases": [
+        "F2.16_2",
+        "F2.16_1"
+      ]
+    },
+    {
+      "plant": "19",
+      "runs": [
+        "SRR28414089",
+        "SRR28414107"
+      ],
+      "aliases": [
+        "F2.19_1",
+        "F2.19_2"
+      ]
+    },
+    {
+      "plant": "36",
+      "runs": [
+        "SRR28414075",
+        "SRR28414097"
+      ],
+      "aliases": [
+        "F2.36",
+        "F2.36_2"
+      ]
+    },
+    {
+      "plant": "50",
+      "runs": [
+        "SRR28413998",
+        "SRR28414094"
+      ],
+      "aliases": [
+        "F2.50",
+        "F2.50_2"
+      ]
+    }
+  ],
+  "run_metadata_rows": [
+    {
+      "run_accession": "SRR28380910",
+      "sample_alias": "Aj2_parent_HMR",
+      "experiment_alias": "NEB",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413926",
+      "sample_alias": "F2.99",
+      "experiment_alias": "F2.99",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413927",
+      "sample_alias": "F2.98",
+      "experiment_alias": "F2.98",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413928",
+      "sample_alias": "F2.97",
+      "experiment_alias": "F2.97",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413929",
+      "sample_alias": "F2.96",
+      "experiment_alias": "F2.96",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413930",
+      "sample_alias": "F2.95",
+      "experiment_alias": "F2.95",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413931",
+      "sample_alias": "F2.94",
+      "experiment_alias": "F2.94",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413932",
+      "sample_alias": "F2.116",
+      "experiment_alias": "F2.116",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413933",
+      "sample_alias": "F2.93",
+      "experiment_alias": "F2.93",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413934",
+      "sample_alias": "F2.92",
+      "experiment_alias": "F2.92",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413935",
+      "sample_alias": "F2.9",
+      "experiment_alias": "F2.9",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413936",
+      "sample_alias": "F2.89",
+      "experiment_alias": "F2.89",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413937",
+      "sample_alias": "F2.86",
+      "experiment_alias": "F2.86",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413938",
+      "sample_alias": "F2.305",
+      "experiment_alias": "F2.305",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413939",
+      "sample_alias": "F2.304",
+      "experiment_alias": "F2.304",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413940",
+      "sample_alias": "F2.303",
+      "experiment_alias": "F2.303",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413941",
+      "sample_alias": "F2.302",
+      "experiment_alias": "F2.302",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413942",
+      "sample_alias": "F2.301",
+      "experiment_alias": "F2.301",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413943",
+      "sample_alias": "F2.149",
+      "experiment_alias": "F2.149",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413944",
+      "sample_alias": "F2.300",
+      "experiment_alias": "F2.300",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413945",
+      "sample_alias": "F2.299",
+      "experiment_alias": "F2.299",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413946",
+      "sample_alias": "F2.298",
+      "experiment_alias": "F2.298",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413947",
+      "sample_alias": "F2.297",
+      "experiment_alias": "F2.297",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413948",
+      "sample_alias": "F2.296",
+      "experiment_alias": "F2.296",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413949",
+      "sample_alias": "F2.294",
+      "experiment_alias": "F2.294",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413950",
+      "sample_alias": "F2.292",
+      "experiment_alias": "F2.292",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413951",
+      "sample_alias": "F2.291",
+      "experiment_alias": "F2.291",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413952",
+      "sample_alias": "F2.290",
+      "experiment_alias": "F2.290",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413953",
+      "sample_alias": "F2.289",
+      "experiment_alias": "F2.289",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413954",
+      "sample_alias": "F2.147",
+      "experiment_alias": "F2.147",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413955",
+      "sample_alias": "F2.288",
+      "experiment_alias": "F2.288",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413956",
+      "sample_alias": "F2.286",
+      "experiment_alias": "F2.286",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413957",
+      "sample_alias": "F2.285",
+      "experiment_alias": "F2.285",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413958",
+      "sample_alias": "F2.284",
+      "experiment_alias": "F2.284",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413959",
+      "sample_alias": "F2.283",
+      "experiment_alias": "F2.283",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413960",
+      "sample_alias": "F2.282",
+      "experiment_alias": "F2.282",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413961",
+      "sample_alias": "F2.281",
+      "experiment_alias": "F2.281",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413962",
+      "sample_alias": "F2.280",
+      "experiment_alias": "F2.280",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413963",
+      "sample_alias": "F2.279",
+      "experiment_alias": "F2.279",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413964",
+      "sample_alias": "F2.277",
+      "experiment_alias": "F2.277",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413965",
+      "sample_alias": "F2.143",
+      "experiment_alias": "F2.143",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413966",
+      "sample_alias": "F2.276",
+      "experiment_alias": "F2.276",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413967",
+      "sample_alias": "F2.275",
+      "experiment_alias": "F2.275",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413968",
+      "sample_alias": "F2.274",
+      "experiment_alias": "F2.274",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413969",
+      "sample_alias": "F2.273",
+      "experiment_alias": "F2.273",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413970",
+      "sample_alias": "F2.85",
+      "experiment_alias": "F2.85",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413971",
+      "sample_alias": "F2.84",
+      "experiment_alias": "F2.84",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413972",
+      "sample_alias": "F2.83",
+      "experiment_alias": "F2.83",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413973",
+      "sample_alias": "F2.81",
+      "experiment_alias": "F2.81",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413974",
+      "sample_alias": "F2.80",
+      "experiment_alias": "F2.80",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413975",
+      "sample_alias": "F2.115",
+      "experiment_alias": "F2.115",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413976",
+      "sample_alias": "F2.78",
+      "experiment_alias": "F2.78",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413977",
+      "sample_alias": "F2.75",
+      "experiment_alias": "F2.75",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413978",
+      "sample_alias": "F2.71",
+      "experiment_alias": "F2.71",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413979",
+      "sample_alias": "F2.7",
+      "experiment_alias": "F2.7",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413980",
+      "sample_alias": "F2.69",
+      "experiment_alias": "F2.69",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413981",
+      "sample_alias": "F2.68",
+      "experiment_alias": "F2.68",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413982",
+      "sample_alias": "F2.67",
+      "experiment_alias": "F2.67",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413983",
+      "sample_alias": "F2.66",
+      "experiment_alias": "F2.66",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413984",
+      "sample_alias": "F2.64",
+      "experiment_alias": "F2.64",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413985",
+      "sample_alias": "F2.63",
+      "experiment_alias": "F2.63",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413986",
+      "sample_alias": "F2.114",
+      "experiment_alias": "F2.114",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413987",
+      "sample_alias": "F2.62",
+      "experiment_alias": "F2.62",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413988",
+      "sample_alias": "F2.60",
+      "experiment_alias": "F2.60",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413989",
+      "sample_alias": "F2.58",
+      "experiment_alias": "F2.58",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413990",
+      "sample_alias": "F2.57",
+      "experiment_alias": "F2.57",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413991",
+      "sample_alias": "F2.56",
+      "experiment_alias": "F2.56",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413992",
+      "sample_alias": "F2.55",
+      "experiment_alias": "F2.55",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413993",
+      "sample_alias": "F2.54",
+      "experiment_alias": "F2.54",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413994",
+      "sample_alias": "F2.53",
+      "experiment_alias": "F2.53",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413995",
+      "sample_alias": "F2.52",
+      "experiment_alias": "F2.52",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413996",
+      "sample_alias": "F2.51",
+      "experiment_alias": "F2.51",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413997",
+      "sample_alias": "F2.112",
+      "experiment_alias": "F2.112",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413998",
+      "sample_alias": "F2.50",
+      "experiment_alias": "F2.50",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28413999",
+      "sample_alias": "F2.49",
+      "experiment_alias": "F2.49",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414000",
+      "sample_alias": "F2.48",
+      "experiment_alias": "F2.48",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414001",
+      "sample_alias": "F2.47",
+      "experiment_alias": "F2.47",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414002",
+      "sample_alias": "F2.272",
+      "experiment_alias": "F2.272",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414003",
+      "sample_alias": "F2.271",
+      "experiment_alias": "F2.271",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414004",
+      "sample_alias": "F2.270",
+      "experiment_alias": "F2.270",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414005",
+      "sample_alias": "F2.269",
+      "experiment_alias": "F2.269",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414006",
+      "sample_alias": "F2.268",
+      "experiment_alias": "F2.268",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414007",
+      "sample_alias": "F2.267",
+      "experiment_alias": "F2.267",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414008",
+      "sample_alias": "F2.142",
+      "experiment_alias": "F2.142",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414009",
+      "sample_alias": "F2.266",
+      "experiment_alias": "F2.266",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414010",
+      "sample_alias": "F2.265",
+      "experiment_alias": "F2.265",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414011",
+      "sample_alias": "F2.264",
+      "experiment_alias": "F2.264",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414012",
+      "sample_alias": "F2.263",
+      "experiment_alias": "F2.263",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414013",
+      "sample_alias": "F2.262",
+      "experiment_alias": "F2.262",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414014",
+      "sample_alias": "F2.261",
+      "experiment_alias": "F2.261",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414015",
+      "sample_alias": "F2.259",
+      "experiment_alias": "F2.259",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414016",
+      "sample_alias": "F2.258",
+      "experiment_alias": "F2.258",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414017",
+      "sample_alias": "F2.257",
+      "experiment_alias": "F2.257",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414018",
+      "sample_alias": "F2.256",
+      "experiment_alias": "F2.256",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414019",
+      "sample_alias": "F2.141",
+      "experiment_alias": "F2.141",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414020",
+      "sample_alias": "F2.255",
+      "experiment_alias": "F2.255",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414021",
+      "sample_alias": "F2.254",
+      "experiment_alias": "F2.254",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414022",
+      "sample_alias": "F2.253",
+      "experiment_alias": "F2.253",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414023",
+      "sample_alias": "F2.252",
+      "experiment_alias": "F2.252",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414024",
+      "sample_alias": "F2.251",
+      "experiment_alias": "F2.251",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414025",
+      "sample_alias": "F2.250",
+      "experiment_alias": "F2.250",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414026",
+      "sample_alias": "F2.249",
+      "experiment_alias": "F2.249",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414027",
+      "sample_alias": "F2.213",
+      "experiment_alias": "F2.213",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414028",
+      "sample_alias": "F2.209",
+      "experiment_alias": "F2.209",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414029",
+      "sample_alias": "F2.207",
+      "experiment_alias": "F2.207",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414030",
+      "sample_alias": "F2.140",
+      "experiment_alias": "F2.140",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414031",
+      "sample_alias": "F2.186",
+      "experiment_alias": "F2.186",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414032",
+      "sample_alias": "F2.183",
+      "experiment_alias": "F2.183",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414033",
+      "sample_alias": "F2.182",
+      "experiment_alias": "F2.182",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414034",
+      "sample_alias": "F2.79",
+      "experiment_alias": "F2.79",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414035",
+      "sample_alias": "F2.74",
+      "experiment_alias": "F2.74",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414036",
+      "sample_alias": "F2.73",
+      "experiment_alias": "F2.73",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414037",
+      "sample_alias": "F2.72",
+      "experiment_alias": "F2.72",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414038",
+      "sample_alias": "F2.70",
+      "experiment_alias": "F2.70",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414039",
+      "sample_alias": "F2.61",
+      "experiment_alias": "F2.61",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414040",
+      "sample_alias": "F2.59",
+      "experiment_alias": "F2.59",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414041",
+      "sample_alias": "F2.44",
+      "experiment_alias": "F2.44",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414042",
+      "sample_alias": "F2.37",
+      "experiment_alias": "F2.37",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414043",
+      "sample_alias": "F2.135",
+      "experiment_alias": "F2.135",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414044",
+      "sample_alias": "F2.31",
+      "experiment_alias": "F2.31",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414045",
+      "sample_alias": "F2.248",
+      "experiment_alias": "F2.248",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414046",
+      "sample_alias": "F2.246",
+      "experiment_alias": "F2.246",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414047",
+      "sample_alias": "F2.245",
+      "experiment_alias": "F2.245",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414048",
+      "sample_alias": "F2.243",
+      "experiment_alias": "F2.243",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414049",
+      "sample_alias": "F2.241",
+      "experiment_alias": "F2.241",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414050",
+      "sample_alias": "F2.240",
+      "experiment_alias": "F2.240",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414051",
+      "sample_alias": "F2.24",
+      "experiment_alias": "F2.24",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414052",
+      "sample_alias": "F2.239",
+      "experiment_alias": "F2.239",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414053",
+      "sample_alias": "F2.238",
+      "experiment_alias": "F2.238",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414054",
+      "sample_alias": "F2.130",
+      "experiment_alias": "F2.130",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414055",
+      "sample_alias": "F2.237",
+      "experiment_alias": "F2.237",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414056",
+      "sample_alias": "F2.236",
+      "experiment_alias": "F2.236",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414057",
+      "sample_alias": "F2.235",
+      "experiment_alias": "F2.235",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414058",
+      "sample_alias": "F2.234",
+      "experiment_alias": "F2.234",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414059",
+      "sample_alias": "F2.233",
+      "experiment_alias": "F2.233",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414060",
+      "sample_alias": "F2.231",
+      "experiment_alias": "F2.231",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414061",
+      "sample_alias": "F2.230",
+      "experiment_alias": "F2.230",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414062",
+      "sample_alias": "F2.229",
+      "experiment_alias": "F2.229",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414063",
+      "sample_alias": "F2.228",
+      "experiment_alias": "F2.228",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414064",
+      "sample_alias": "F2.227",
+      "experiment_alias": "F2.227",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414065",
+      "sample_alias": "F2.13",
+      "experiment_alias": "F2.13",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414066",
+      "sample_alias": "F2.46",
+      "experiment_alias": "F2.46",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414067",
+      "sample_alias": "F2.45",
+      "experiment_alias": "F2.45",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414068",
+      "sample_alias": "F2.43",
+      "experiment_alias": "F2.43",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414069",
+      "sample_alias": "F2.42",
+      "experiment_alias": "F2.42",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414070",
+      "sample_alias": "F2.41",
+      "experiment_alias": "F2.41",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414071",
+      "sample_alias": "F2.40",
+      "experiment_alias": "F2.40",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414072",
+      "sample_alias": "F2.111",
+      "experiment_alias": "F2.111",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414073",
+      "sample_alias": "F2.39",
+      "experiment_alias": "F2.39",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414074",
+      "sample_alias": "F2.38",
+      "experiment_alias": "F2.38",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414075",
+      "sample_alias": "F2.36",
+      "experiment_alias": "F2.36",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414076",
+      "sample_alias": "F2.33",
+      "experiment_alias": "F2.33",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414077",
+      "sample_alias": "F2.32",
+      "experiment_alias": "F2.32",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414078",
+      "sample_alias": "F2.30",
+      "experiment_alias": "F2.30",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414079",
+      "sample_alias": "F2.29",
+      "experiment_alias": "F2.29",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414080",
+      "sample_alias": "F2.28",
+      "experiment_alias": "F2.28",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414081",
+      "sample_alias": "F2.27",
+      "experiment_alias": "F2.27",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414082",
+      "sample_alias": "F2.26",
+      "experiment_alias": "F2.26",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414083",
+      "sample_alias": "F2.110",
+      "experiment_alias": "F2.110",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414084",
+      "sample_alias": "F2.25",
+      "experiment_alias": "F2.25",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414085",
+      "sample_alias": "F2.23",
+      "experiment_alias": "F2.23",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414086",
+      "sample_alias": "F2.22",
+      "experiment_alias": "F2.22",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414087",
+      "sample_alias": "F2.21",
+      "experiment_alias": "F2.21",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414088",
+      "sample_alias": "F2.20",
+      "experiment_alias": "F2.20",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414089",
+      "sample_alias": "F2.19_1",
+      "experiment_alias": "F2.19",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414090",
+      "sample_alias": "F2.91",
+      "experiment_alias": "F2.91",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414091",
+      "sample_alias": "F2.87",
+      "experiment_alias": "F2.87",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414092",
+      "sample_alias": "F2.77",
+      "experiment_alias": "F2.77",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414093",
+      "sample_alias": "F2.6",
+      "experiment_alias": "F2.6",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414094",
+      "sample_alias": "F2.50_2",
+      "experiment_alias": "F2.50_2",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414095",
+      "sample_alias": "F2.5",
+      "experiment_alias": "F2.5",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414096",
+      "sample_alias": "F2.4",
+      "experiment_alias": "F2.4",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414097",
+      "sample_alias": "F2.36_2",
+      "experiment_alias": "F2.36_2",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414098",
+      "sample_alias": "F2.320",
+      "experiment_alias": "F2.320",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414099",
+      "sample_alias": "F2.319",
+      "experiment_alias": "F2.319",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414100",
+      "sample_alias": "F2.318",
+      "experiment_alias": "F2.318",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414101",
+      "sample_alias": "F2.153",
+      "experiment_alias": "F2.153",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414102",
+      "sample_alias": "F2.11",
+      "experiment_alias": "F2.11",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414103",
+      "sample_alias": "F2.317",
+      "experiment_alias": "F2.317",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414104",
+      "sample_alias": "F2.316",
+      "experiment_alias": "F2.316",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414105",
+      "sample_alias": "F2.3",
+      "experiment_alias": "F2.3",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414106",
+      "sample_alias": "F2.193",
+      "experiment_alias": "F2.193",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414107",
+      "sample_alias": "F2.19_2",
+      "experiment_alias": "F2.19_2",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414108",
+      "sample_alias": "F2.185",
+      "experiment_alias": "F2.185",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414109",
+      "sample_alias": "F2.180",
+      "experiment_alias": "F2.180",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414110",
+      "sample_alias": "F2.16_2",
+      "experiment_alias": "F2.16_2",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414111",
+      "sample_alias": "F2.131",
+      "experiment_alias": "F2.131",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414112",
+      "sample_alias": "F2.125",
+      "experiment_alias": "F2.125",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414113",
+      "sample_alias": "F2.151",
+      "experiment_alias": "F2.151",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414114",
+      "sample_alias": "F2.108",
+      "experiment_alias": "F2.108",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414115",
+      "sample_alias": "F2.1",
+      "experiment_alias": "F2.1",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414116",
+      "sample_alias": "F2.8",
+      "experiment_alias": "F2.8",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414117",
+      "sample_alias": "F2.76",
+      "experiment_alias": "F2.76",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414118",
+      "sample_alias": "F2.65",
+      "experiment_alias": "F2.65",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414119",
+      "sample_alias": "F2.315",
+      "experiment_alias": "F2.315",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414120",
+      "sample_alias": "F2.314",
+      "experiment_alias": "F2.314",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414121",
+      "sample_alias": "F2.313",
+      "experiment_alias": "F2.313",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414122",
+      "sample_alias": "F2.312",
+      "experiment_alias": "F2.312",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414123",
+      "sample_alias": "F2.311",
+      "experiment_alias": "F2.311",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414124",
+      "sample_alias": "F2.15",
+      "experiment_alias": "F2.15",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414125",
+      "sample_alias": "F2.310",
+      "experiment_alias": "F2.310",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414126",
+      "sample_alias": "F2.309",
+      "experiment_alias": "F2.309",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414127",
+      "sample_alias": "F2.308",
+      "experiment_alias": "F2.308",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414128",
+      "sample_alias": "F2.307",
+      "experiment_alias": "F2.307",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414129",
+      "sample_alias": "F2.306",
+      "experiment_alias": "F2.306",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414130",
+      "sample_alias": "F2.226",
+      "experiment_alias": "F2.226",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414131",
+      "sample_alias": "F2.225",
+      "experiment_alias": "F2.225",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414132",
+      "sample_alias": "F2.224",
+      "experiment_alias": "F2.224",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414133",
+      "sample_alias": "F2.223",
+      "experiment_alias": "F2.223",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414134",
+      "sample_alias": "F2.222",
+      "experiment_alias": "F2.222",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414135",
+      "sample_alias": "F2.221",
+      "experiment_alias": "F2.221",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414136",
+      "sample_alias": "F2.220",
+      "experiment_alias": "F2.220",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414137",
+      "sample_alias": "F2.219",
+      "experiment_alias": "F2.219",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414138",
+      "sample_alias": "F2.218",
+      "experiment_alias": "F2.218",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414139",
+      "sample_alias": "F2.217",
+      "experiment_alias": "F2.217",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414140",
+      "sample_alias": "F2.129",
+      "experiment_alias": "F2.129",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414141",
+      "sample_alias": "F2.216",
+      "experiment_alias": "F2.216",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414142",
+      "sample_alias": "F2.215",
+      "experiment_alias": "F2.215",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414143",
+      "sample_alias": "F2.214",
+      "experiment_alias": "F2.214",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414144",
+      "sample_alias": "F2.212",
+      "experiment_alias": "F2.212",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414145",
+      "sample_alias": "F2.211",
+      "experiment_alias": "F2.211",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414146",
+      "sample_alias": "F2.210",
+      "experiment_alias": "F2.210",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414147",
+      "sample_alias": "F2.208",
+      "experiment_alias": "F2.208",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414148",
+      "sample_alias": "F2.206",
+      "experiment_alias": "F2.206",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414149",
+      "sample_alias": "F2.205",
+      "experiment_alias": "F2.205",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414150",
+      "sample_alias": "F2.204",
+      "experiment_alias": "F2.204",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414151",
+      "sample_alias": "F2.123",
+      "experiment_alias": "F2.123",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414152",
+      "sample_alias": "F2.203",
+      "experiment_alias": "F2.203",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414153",
+      "sample_alias": "F2.202",
+      "experiment_alias": "F2.202",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414154",
+      "sample_alias": "F2.201",
+      "experiment_alias": "F2.201",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414155",
+      "sample_alias": "F2.200",
+      "experiment_alias": "F2.200",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414156",
+      "sample_alias": "F2.2",
+      "experiment_alias": "F2.2",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414157",
+      "sample_alias": "F2.199",
+      "experiment_alias": "F2.199",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414158",
+      "sample_alias": "F2.198",
+      "experiment_alias": "F2.198",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414159",
+      "sample_alias": "F2.197",
+      "experiment_alias": "F2.197",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414160",
+      "sample_alias": "F2.196",
+      "experiment_alias": "F2.196",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414161",
+      "sample_alias": "F2.195",
+      "experiment_alias": "F2.195",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414162",
+      "sample_alias": "F2.351",
+      "experiment_alias": "F2.351",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414163",
+      "sample_alias": "F2.350",
+      "experiment_alias": "F2.350",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414164",
+      "sample_alias": "F2.18",
+      "experiment_alias": "F2.18",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414165",
+      "sample_alias": "F2.35",
+      "experiment_alias": "F2.35",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414166",
+      "sample_alias": "F2.349",
+      "experiment_alias": "F2.349",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414167",
+      "sample_alias": "F2.348",
+      "experiment_alias": "F2.348",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414168",
+      "sample_alias": "F2.347",
+      "experiment_alias": "F2.347",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414169",
+      "sample_alias": "F2.346",
+      "experiment_alias": "F2.346",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414170",
+      "sample_alias": "F2.345",
+      "experiment_alias": "F2.345",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414171",
+      "sample_alias": "F2.344",
+      "experiment_alias": "F2.344",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414172",
+      "sample_alias": "F2.343",
+      "experiment_alias": "F2.343",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414173",
+      "sample_alias": "F2.342",
+      "experiment_alias": "F2.342",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414174",
+      "sample_alias": "F2.341",
+      "experiment_alias": "F2.341",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414175",
+      "sample_alias": "F2.16_1",
+      "experiment_alias": "F2.16",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414176",
+      "sample_alias": "F2.340",
+      "experiment_alias": "F2.340",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414177",
+      "sample_alias": "F2.34",
+      "experiment_alias": "F2.34",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414178",
+      "sample_alias": "F2.339",
+      "experiment_alias": "F2.339",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414179",
+      "sample_alias": "F2.338",
+      "experiment_alias": "F2.338",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414180",
+      "sample_alias": "F2.337",
+      "experiment_alias": "F2.337",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414181",
+      "sample_alias": "F2.336",
+      "experiment_alias": "F2.336",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414182",
+      "sample_alias": "F2.335",
+      "experiment_alias": "F2.335",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414183",
+      "sample_alias": "F2.333",
+      "experiment_alias": "F2.333",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414184",
+      "sample_alias": "F2.331",
+      "experiment_alias": "F2.331",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414185",
+      "sample_alias": "F2.330",
+      "experiment_alias": "F2.330",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414186",
+      "sample_alias": "F2.155",
+      "experiment_alias": "F2.155",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414187",
+      "sample_alias": "F2.328",
+      "experiment_alias": "F2.328",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414188",
+      "sample_alias": "F2.327",
+      "experiment_alias": "F2.327",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414189",
+      "sample_alias": "F2.326",
+      "experiment_alias": "F2.326",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414190",
+      "sample_alias": "F2.325",
+      "experiment_alias": "F2.325",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414191",
+      "sample_alias": "F2.324",
+      "experiment_alias": "F2.324",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414192",
+      "sample_alias": "F2.322",
+      "experiment_alias": "F2.322",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414193",
+      "sample_alias": "F2.321",
+      "experiment_alias": "F2.321",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414194",
+      "sample_alias": "F2.181",
+      "experiment_alias": "F2.181",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414195",
+      "sample_alias": "F2.178",
+      "experiment_alias": "F2.178",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414196",
+      "sample_alias": "F2.177",
+      "experiment_alias": "F2.177",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414197",
+      "sample_alias": "F2.176",
+      "experiment_alias": "F2.176",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414198",
+      "sample_alias": "F2.175",
+      "experiment_alias": "F2.175",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414199",
+      "sample_alias": "F2.174",
+      "experiment_alias": "F2.174",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414200",
+      "sample_alias": "F2.173",
+      "experiment_alias": "F2.173",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414201",
+      "sample_alias": "F2.14",
+      "experiment_alias": "F2.14",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414202",
+      "sample_alias": "F2.172",
+      "experiment_alias": "F2.172",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414203",
+      "sample_alias": "F2.154",
+      "experiment_alias": "F2.154",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414204",
+      "sample_alias": "F2.152",
+      "experiment_alias": "F2.152",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414205",
+      "sample_alias": "F2.150",
+      "experiment_alias": "F2.150",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414206",
+      "sample_alias": "F2.146",
+      "experiment_alias": "F2.146",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414207",
+      "sample_alias": "F2.145",
+      "experiment_alias": "F2.145",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414208",
+      "sample_alias": "F2.144",
+      "experiment_alias": "F2.144",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414209",
+      "sample_alias": "F2.139",
+      "experiment_alias": "F2.139",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414210",
+      "sample_alias": "F2.137",
+      "experiment_alias": "F2.137",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414211",
+      "sample_alias": "F2.134",
+      "experiment_alias": "F2.134",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414212",
+      "sample_alias": "F2.138",
+      "experiment_alias": "F2.138",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414213",
+      "sample_alias": "F2.109",
+      "experiment_alias": "F2.109",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414214",
+      "sample_alias": "F2.132",
+      "experiment_alias": "F2.132",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414215",
+      "sample_alias": "F2.128",
+      "experiment_alias": "F2.128",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414216",
+      "sample_alias": "F2.124",
+      "experiment_alias": "F2.124",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414217",
+      "sample_alias": "F2.122",
+      "experiment_alias": "F2.122",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414218",
+      "sample_alias": "F2.121",
+      "experiment_alias": "F2.121",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414219",
+      "sample_alias": "F2.113",
+      "experiment_alias": "F2.113",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414220",
+      "sample_alias": "F2.107",
+      "experiment_alias": "F2.107",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414221",
+      "sample_alias": "F2.104",
+      "experiment_alias": "F2.104",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414222",
+      "sample_alias": "F2.90",
+      "experiment_alias": "F2.90",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414223",
+      "sample_alias": "F2.88",
+      "experiment_alias": "F2.88",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414224",
+      "sample_alias": "F2.136",
+      "experiment_alias": "F2.136",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414225",
+      "sample_alias": "F2.82",
+      "experiment_alias": "F2.82",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414226",
+      "sample_alias": "F2.120",
+      "experiment_alias": "F2.120",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414227",
+      "sample_alias": "F2.194",
+      "experiment_alias": "F2.194",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414228",
+      "sample_alias": "F2.192",
+      "experiment_alias": "F2.192",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414229",
+      "sample_alias": "F2.191",
+      "experiment_alias": "F2.191",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414230",
+      "sample_alias": "F2.190",
+      "experiment_alias": "F2.190",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414231",
+      "sample_alias": "F2.189",
+      "experiment_alias": "F2.189",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414232",
+      "sample_alias": "F2.188",
+      "experiment_alias": "F2.188",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414233",
+      "sample_alias": "F2.187",
+      "experiment_alias": "F2.187",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414234",
+      "sample_alias": "F2.184",
+      "experiment_alias": "F2.184",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414235",
+      "sample_alias": "F2.179",
+      "experiment_alias": "F2.179",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414236",
+      "sample_alias": "F2.171",
+      "experiment_alias": "F2.171",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414237",
+      "sample_alias": "F2.12",
+      "experiment_alias": "F2.12",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414238",
+      "sample_alias": "F2.170",
+      "experiment_alias": "F2.170",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414239",
+      "sample_alias": "F2.17",
+      "experiment_alias": "F2.17",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414240",
+      "sample_alias": "F2.169",
+      "experiment_alias": "F2.169",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414241",
+      "sample_alias": "F2.168",
+      "experiment_alias": "F2.168",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414242",
+      "sample_alias": "F2.167",
+      "experiment_alias": "F2.167",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414243",
+      "sample_alias": "F2.166",
+      "experiment_alias": "F2.166",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414244",
+      "sample_alias": "F2.165",
+      "experiment_alias": "F2.165",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414245",
+      "sample_alias": "F2.164",
+      "experiment_alias": "F2.164",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414246",
+      "sample_alias": "F2.163",
+      "experiment_alias": "F2.163",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414247",
+      "sample_alias": "F2.161",
+      "experiment_alias": "F2.161",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414248",
+      "sample_alias": "F2.119",
+      "experiment_alias": "F2.119",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414249",
+      "sample_alias": "F2.160",
+      "experiment_alias": "F2.160",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414250",
+      "sample_alias": "F2.159",
+      "experiment_alias": "F2.159",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414251",
+      "sample_alias": "F2.158",
+      "experiment_alias": "F2.158",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414252",
+      "sample_alias": "F2.157",
+      "experiment_alias": "F2.157",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414253",
+      "sample_alias": "F2.156",
+      "experiment_alias": "F2.156",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414254",
+      "sample_alias": "F2.148",
+      "experiment_alias": "F2.148",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414255",
+      "sample_alias": "F2.133",
+      "experiment_alias": "F2.133",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414256",
+      "sample_alias": "F2.127",
+      "experiment_alias": "F2.127",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414257",
+      "sample_alias": "F2.118",
+      "experiment_alias": "F2.118",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414258",
+      "sample_alias": "F2.105",
+      "experiment_alias": "F2.105",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414259",
+      "sample_alias": "F2.117",
+      "experiment_alias": "F2.117",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414260",
+      "sample_alias": "F2.106",
+      "experiment_alias": "F2.106",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414261",
+      "sample_alias": "F2.102",
+      "experiment_alias": "F2.102",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414262",
+      "sample_alias": "F2.103",
+      "experiment_alias": "F2.103",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414263",
+      "sample_alias": "F2.101",
+      "experiment_alias": "F2.101",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414264",
+      "sample_alias": "F2.100",
+      "experiment_alias": "F2.100",
+      "study_accession": "PRJNA1089234"
+    },
+    {
+      "run_accession": "SRR28414265",
+      "sample_alias": "F2.10",
+      "experiment_alias": "F2.10",
+      "study_accession": "PRJNA1089234"
+    }
+  ]
+}
