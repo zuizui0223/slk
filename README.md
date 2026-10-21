@@ -108,6 +108,12 @@ The narrower contribution is the **architecture-specific estimand transport** fr
 
 `K` is the net optimized fitness debit attributable to the differentiated architecture relative to its matched pre-cost comparison, on the same fitness scale and time horizon as `R`. It is comparison-specific rather than a universal physiological quantity. Empirical use must declare comparison states, scale, time horizon, included/excluded cost channels, uncertainty, and how double counting with `R` was prevented. See `docs/K_OPERATIONAL_DEFINITION_V1.md`.
 
+## Shared versus reversible versus differentiated: empirical comparison guard
+
+[Three-strategy architecture value and historical-origin identification](docs/THREE_STRATEGY_VALUE_AND_ORIGIN_GATE_V1.md) supplements the cumulative G1–G9 ladder without redefining it: a differentiated architecture must beat **both** the static shared compromise and biologically feasible reversible shared-coordinate responses before its net intrinsic advantage is promoted. PAYOFF's source models prove that concurrent conflict imposes an inescapable loss floor for a single coordinate, while a sufficiently predictive long-memory plastic controller can defeat a fixed module at parameter values where a memoryless model suggests the opposite.
+
+Source-screened plants already show that functional routing and visible organ dimorphism are not equivalent: BALANCE's matched pollen-reward/gamete-transfer systems include nonheterantherous taxa with *within-flower* or *among-flower* division. Wurmbea supplies a real alternative of reversible sexual expression across seasons, but sex segregation among individual plants is **not** identical to a within-individual coexpressed two-coordinate module. None of these observations closes a matched `R,K,Phi` receipt, genotype invasion, or the historical claim that trade-off generated a novel structure. The active flagship manuscript remains unchanged.
+
 ## Empirical anchor and repository boundary
 
 The first prospectively registered same-system empirical anchor is `Pedicularis rex`. Its role is to test whether the abstract ladder can be closed in one biological system:
