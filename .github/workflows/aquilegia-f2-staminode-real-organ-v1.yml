@@ -17,6 +17,11 @@ on:
       - "tests/test_aquilegia_f2_ena_identity_match_v4.py"
       - "results/aquilegia_f2_ena_phenotype_sample_link_independent_JS_v4.json"
       - "analysis/audit_aquilegia_f2_allometry_v5.py"
+      - "data/external/johns2024_aquilegia_qtl_table1_publisher_v6.md"
+      - "analysis/audit_aquilegia_original_qtl_overlap_v6.py"
+      - "tests/test_aquilegia_original_qtl_overlap_v6.py"
+      - "results/aquilegia_published_QTL_interval_overlap_independent_JS_v6.json"
+      - "docs/SLK_ANTO_AQUILEGIA_GENETIC_PARTIAL_COUPLING_V6.md"
       - "tests/test_aquilegia_f2_allometry_v5.py"
       - "results/aquilegia_f2_mosaic_allometry_JS_receipt_v5.json"
       - "data/evidence/aquilegia_original_processed_qtl_public_source_audit_20261021_v1.json"
@@ -155,6 +160,40 @@ jobs:
           assert pub['other_original_sources']['original_F2_pheno_IDs_with_ENA_run_aliases']==231
           assert pub['other_original_sources']['raw_reads_downloaded_by_us']==0
           print('PASS_ORIGINAL_F2_MOSAIC_WITHIN_ALLOMETRY_CLASSES_AND_PROCESSED_QTL_SOURCE_BLOCK')
+          PY
+      - name: Cross-check original-author QTL Table 1 interval relationships, not fabricated genotypes
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_original_qtl_overlap_v6.py' -v
+          python analysis/audit_aquilegia_original_qtl_overlap_v6.py --output /tmp/aquilegia_QTL_support_interval_v6.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/aquilegia_QTL_support_interval_v6.json'))
+          b=json.load(open('results/aquilegia_published_QTL_interval_overlap_independent_JS_v6.json'))
+          assert a['schema']=='slk_aquilegia_2024_published_QTL_support_interval_audit_v6'
+          assert a['source']['original_table_rows']==b['source']['original_QTL_table_rows']==16
+          assert a['source']['author_reported_independent_QTL']==b['source']['independent_QTL_count_reported_by_authors']==9
+          assert a['source']['table_is_not_processed_329_by_599_marker_matrix'] is True
+          keys={
+              'anther_inner_vs_outer':('Anther, inner','Anther, outer',3,3),
+              'lateral_expansion_inner_vs_outer':('Lateral expansion, inner','Lateral expansion, outer',3,0),
+              'lateral_expansion_outer_vs_fusion':('Lateral expansion, outer','Fusion',2,2),
+              'lateral_expansion_inner_vs_fusion':('Lateral expansion, inner','Fusion',3,0),
+          }
+          for key,(left,right,n,overlap) in keys.items():
+              current=a['contrasts'][key]
+              independent=next(z for z in b['pairwise_trait_overlap'] if z['traits']==[left,right])
+              assert (current['same_chr_comparisons'],current['overlapping_support_regions'])==(n,overlap)
+              assert (independent['pairOnSameChromosome'],independent['intervalOverlaps'])==(n,overlap)
+              assert len(current['pairs'])==len(independent['comparison_details'])
+              for x,y in zip(current['pairs'],independent['comparison_details']):
+                  assert x['chromosome']==y['chr'] and x['A']==y['a'] and x['B']==y['b']
+                  assert x['shared_1_5_LOD_interval']==y['shared_interval']
+                  assert math.isclose(x['overlap_cM'],y['overlap'],abs_tol=1e-10,rel_tol=0)
+          major=next(x for x in a['reported_rows'] if x['name']=='LEOU-Q3')
+          assert major['PVE_percent']==25.5
+          assert a['interpretive_limits']['author_QTL_analyses_are_not_newly_refit'] is True
+          assert all(v is False for k,v in a['interpretive_limits'].items() if k!='author_QTL_analyses_are_not_newly_refit')
+          print('PASS_PUBLISHED_AQUILEGIA_QTL_16_ROWS_NINE_INDEPENDENT_LOCI_TRAIT_SUPPORT_INTERVALS')
           PY
       - name: Independently compare actual source reanalysis with frozen JS recount
         run: |
