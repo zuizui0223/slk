@@ -9,6 +9,9 @@ on:
       - "analysis/audit_aquilegia_f2_within_plant_variability_v2.py"
       - "tests/test_aquilegia_f2_within_plant_variability_v2.py"
       - "results/aquilegia_staminode_F2_within_plant_source_v2.json"
+      - "analysis/audit_aquilegia_f2_positional_nestedness_v3.py"
+      - "tests/test_aquilegia_f2_positional_nestedness_v3.py"
+      - "results/aquilegia_f2_positional_nestedness_source_v3.json"
       - "docs/SLK_ANTO_REAL_STAMINODE_AFTERLIFE_AND_FUNCTION_V1.md"
       - ".github/workflows/aquilegia-f2-staminode-real-organ-v1.yml"
   workflow_dispatch:
@@ -55,6 +58,26 @@ jobs:
               z['mosaic_second_positive_conditional_first_negative'],rel_tol=0,abs_tol=1e-12)
           assert all(v is False for v in a['inference_limits'].values())
           print('PASS_AQUILEGIA_TWO_FLOWER_PARTIAL_ORGAN_REASSEMBLY_AND_DETECTION_BIAS')
+          PY
+      - name: Check F2 organ positional nesting against source and independently frozen counts
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_f2_positional_nestedness_v3.py' -v
+          python analysis/audit_aquilegia_f2_positional_nestedness_v3.py \
+            --expected results/aquilegia_f2_positional_nestedness_source_v3.json \
+            --output /tmp/aquilegia_F2_positional_nesting_v3.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/aquilegia_F2_positional_nesting_v3.json'))
+          assert d['sample']['plants']==231 and d['sample']['flowers']==400
+          x=d['positionally_nested_anther']
+          assert (x['all_flowers']['inner_yes_outer_no_violation'],
+                  x['all_flowers']['outer_yes_inner_no'])==(0,99)
+          assert [q['all_flowers']['outer_high_inner_low_violation']
+                  for q in d['lateral_expansion_threshold_sensitivity']]==[1,1,0]
+          assert d['conjunctive_nesting_at_LE2']['all_flowers']['both_rules_hold']==399
+          assert d['conjunctive_nesting_at_LE2']['first_flower_per_plant']['both_rules_hold']==230
+          assert all(v is False for v in d['evidence_ceiling'].values())
+          print('PASS_ORIGINAL_AQUILEGIA_POSITIONAL_NESTING_NOT_FREE_COMPONENT_REASSEMBLY')
           PY
       - name: Independently compare actual source reanalysis with frozen JS recount
         run: |
