@@ -1,0 +1,61 @@
+{
+  "schema": "slk_aquilegia_processed_qtl_data_public_availability_audit_v1",
+  "audit_date": "2026-10-21",
+  "organism": "Aquilegia jonesii × Aquilegia coerulea 'Origami' F2",
+  "publication": {
+    "doi": "10.1186/s13227-024-00225-3",
+    "article_url": "https://link.springer.com/article/10.1186/s13227-024-00225-3",
+    "author_declares_all_code_in_repository": true,
+    "original_paper_genetic_map_plants": 329,
+    "original_paper_marker_bins": 599,
+    "original_paper_useful_SNPs": 849724,
+    "original_paper_independent_QTL": 9,
+    "original_paper_QTL_total_PVE_percent_range": [
+      44,
+      53
+    ],
+    "source_of_numbers": "Original 2024 paper Results; not recalculated from genotypes"
+  },
+  "named_author_code_repo": {
+    "url": "https://github.com/jasonwjohns/aquilegia_staminodes",
+    "public": true,
+    "default_branch": "main",
+    "observed_latest_commit_sha": "57502ecdf9325a87a771ef376ff830d26273ab2b",
+    "observed_commit_count": 1,
+    "observed_branches": [
+      "main"
+    ],
+    "observed_paths": [
+      {
+        "path": "README.md",
+        "size_bytes": 57,
+        "blob_sha": "62c07f64b75037ede4207ddb2da9c346e137db34"
+      }
+    ],
+    "observed_README": "# aquilegia_staminodes\ndata and code for staminode paper\n",
+    "processed_genotype_or_marker_matrix_in_this_repo": false,
+    "public_genetic_map_or_QTL_source_code_in_this_repo": false,
+    "commit_history_contains_deleted_genotype_artifact": false,
+    "missing_data_elsewhere_possible": true,
+    "do_not_claim_authors_did_not_have_genotypes": true
+  },
+  "other_original_sources": {
+    "source_phenotype_blob_sha": "9911d4a5e85fa8629ad9890f28992e0f07e5feca",
+    "author_phenotyped_F2_plants": 231,
+    "ENA_bioproject": "PRJNA1089234",
+    "ENA_study_public_run_rows": 341,
+    "ENA_F2_canonical_ID_count": 336,
+    "original_F2_pheno_IDs_with_ENA_run_aliases": 231,
+    "original_study_reported_genetic_map_usable": 329,
+    "direct_pheno_to_postQC_genotype_status_unknown": true,
+    "compressed_FASTQ_bytes_with_pheno_aliases": 49374744454,
+    "raw_reads_downloaded_by_us": 0
+  },
+  "recommendation_contract": {
+    "highest_return_first": "Obtain 329×599 original author-processed R/qtl marker genotype and genetic map with 231-ID crosswalk and QC ledger; verify actual ID overlap before inferential fitting",
+    "avoid": "Do not equate 336 public F2 numeric aliases with 329 successfully genotyped individuals; do not download 49GB blindly or use unrelated Aquilegia VCF",
+    "fallback": "Use a small, identity-confirmed genomic-coverage pilot only if processed source unavailable, with separate BioSample duplicate handling",
+    "biological_falsifier": "Do actual alleles predict within-genotype presence and whorl position of chimeric AN/LE/FU beyond baseline organ number, and are candidate forms pollen-fertile or ecologically functional?",
+    "claim_status": "SOURCE_AVAILABILITY_BARRIER_NOT_GENOMIC_RESULT"
+  }
+}
