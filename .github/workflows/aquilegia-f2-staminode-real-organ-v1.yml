@@ -12,6 +12,11 @@ on:
       - "analysis/audit_aquilegia_f2_positional_nestedness_v3.py"
       - "tests/test_aquilegia_f2_positional_nestedness_v3.py"
       - "results/aquilegia_f2_positional_nestedness_source_v3.json"
+      - "data/external/aquilegia_f2_PRJNA1089234_ena_run_metadata_v4.json"
+      - "analysis/audit_aquilegia_f2_ena_identity_match_v4.py"
+      - "tests/test_aquilegia_f2_ena_identity_match_v4.py"
+      - "results/aquilegia_f2_ena_phenotype_sample_link_independent_JS_v4.json"
+      - "docs/SLK_ANTO_AQUILEGIA_SAME_PLANT_SRA_ID_LINK_V4.md"
       - "docs/SLK_ANTO_REAL_STAMINODE_AFTERLIFE_AND_FUNCTION_V1.md"
       - ".github/workflows/aquilegia-f2-staminode-real-organ-v1.yml"
   workflow_dispatch:
@@ -78,6 +83,39 @@ jobs:
           assert d['conjunctive_nesting_at_LE2']['first_flower_per_plant']['both_rules_hold']==230
           assert all(v is False for v in d['evidence_ceiling'].values())
           print('PASS_ORIGINAL_AQUILEGIA_POSITIONAL_NESTING_NOT_FREE_COMPONENT_REASSEMBLY')
+          PY
+      - name: Match published F2 morphology plants to original SRA BioSample names
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_f2_ena_identity_match_v4.py' -v
+          python analysis/audit_aquilegia_f2_ena_identity_match_v4.py --output /tmp/aquilegia_F2_run_id_match_v4.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/aquilegia_F2_run_id_match_v4.json'))
+          i=json.load(open('results/aquilegia_f2_ena_phenotype_sample_link_independent_JS_v4.json'))
+          assert d['linked_plant_count']==i['metrics']['matched_phenotype_plants']==231
+          assert d['ENA_run_metadata']['total_run_rows']==i['metrics']['all_run_rows']==341
+          assert d['ENA_run_metadata']['F2_run_rows']==i['metrics']['f2_run_rows']==340
+          assert d['ENA_run_metadata']['canonical_F2_id_count']==i['metrics']['f2_distinct_canonical_ids']==336
+          assert d['ENA_run_metadata']['unphenotyped_SRA_F2_id_count']==i['metrics']['distinct_unphenotyped_F2_id']==105
+          assert d['ENA_run_metadata']['all_source_FASTQ_bytes']==i['metrics']['source_fastq_total_bytes']==78243926288
+          assert d['ENA_run_metadata']['phenotyped_plant_alias_matched_FASTQ_bytes']==i['metrics']['matched_phenotyped_FASTQ_bytes']==49374744454
+          assert d['ENA_run_metadata']['ambiguous_F2_id_list']==i['metrics']['duplicate_alias_base_ids']==['16','19','36','50']
+          assert d['ENA_run_metadata']['duplicated_alias_ids_present_in_phenotypes']==i['metrics']['phenotyped_F2_with_multiple_run_samples']==3
+          assert d['phenotypes']['mosaic_positive_plants']==i['metrics']['source_scored_plants_with_mosaic']==91
+          assert d['phenotypes']['nestedness_exception_plants']==i['metrics']['source_scored_plants_with_nestedness_exception']==1
+          a={x['plant']:x for x in d['linked_phenotype_plants']}
+          assert len(a)==len(i['linked_pairs'])==231
+          for v in i['linked_pairs']:
+              p=a[v['plant']]
+              assert set(p['run_accessions'])==set(v['runs'])
+              assert set(p['biosample_accessions'])==set(v['biosamples'])
+              assert p['scored_flower_count']==v['n_flowers']
+              assert p['mosaic_any_scored_flower']==v['mosaic_any']
+              assert p['positional_nesting_exception_any']==v['violator_any']
+          assert d['scientific_limits']['source_FASTQ_files_have_not_been_downloaded'] is True
+          assert d['scientific_limits']['marker_genotypes_computed_or_validated'] is False
+          assert d['scientific_limits']['functional_reexpression_genes_confirmed'] is False
+          print('PASS_ALL_231_ORIGINAL_F2_PHENOTYPE_TO_SRA_SAMPLE_ALIASES_NO_GENOTYPES_CALLED')
           PY
       - name: Independently compare actual source reanalysis with frozen JS recount
         run: |
