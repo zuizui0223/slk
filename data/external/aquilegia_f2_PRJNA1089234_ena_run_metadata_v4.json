@@ -8,7 +8,14 @@
     "published_article_doi": "10.1186/s13227-024-00225-3",
     "raw_read_sequences_downloaded": false,
     "processed_SNP_genotypes_acquired": false,
-    "sequencing_QC_pass_for_every_f2_unconfirmed": true
+    "sequencing_QC_pass_for_every_f2_unconfirmed": true,
+    "enriched_ena_url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJNA1089234&result=read_run&fields=run_accession,sample_accession,sample_alias,experiment_accession,experiment_alias,library_name,fastq_bytes&format=tsv",
+    "estimated_total_fastq_bytes": 78243926288,
+    "phenotype_id_matched_fastq_bytes": 49374744454,
+    "n_fastq_files": 681,
+    "zero_fastq_bytes_run_count": 0,
+    "raw_fastq_download_planned_not_executed": true,
+    "sample_alias_duplicate_biosamples_not_assumed_technical_replicates": true
   },
   "context": {
     "phenotype_source_git_blob_sha1": "9911d4a5e85fa8629ad9890f28992e0f07e5feca",
@@ -23,2096 +30,3139 @@
   },
   "duplicate_or_multilibrary_f2_ids": [
     {
-      "plant": "16",
-      "runs": [
+      "id": "16",
+      "biosample_accessions": [
+        "SAMN40548416",
+        "SAMN40548103"
+      ],
+      "run_accessions": [
         "SRR28414110",
         "SRR28414175"
       ],
-      "aliases": [
+      "sample_aliases": [
         "F2.16_2",
         "F2.16_1"
-      ]
+      ],
+      "distinct_biosample_count": 2
     },
     {
-      "plant": "19",
-      "runs": [
+      "id": "19",
+      "biosample_accessions": [
+        "SAMN40548106",
+        "SAMN40548417"
+      ],
+      "run_accessions": [
         "SRR28414089",
         "SRR28414107"
       ],
-      "aliases": [
+      "sample_aliases": [
         "F2.19_1",
         "F2.19_2"
-      ]
+      ],
+      "distinct_biosample_count": 2
     },
     {
-      "plant": "36",
-      "runs": [
+      "id": "36",
+      "biosample_accessions": [
+        "SAMN40548123",
+        "SAMN40548418"
+      ],
+      "run_accessions": [
         "SRR28414075",
         "SRR28414097"
       ],
-      "aliases": [
+      "sample_aliases": [
         "F2.36",
         "F2.36_2"
-      ]
+      ],
+      "distinct_biosample_count": 2
     },
     {
-      "plant": "50",
-      "runs": [
+      "id": "50",
+      "biosample_accessions": [
+        "SAMN40548137",
+        "SAMN40548419"
+      ],
+      "run_accessions": [
         "SRR28413998",
         "SRR28414094"
       ],
-      "aliases": [
+      "sample_aliases": [
         "F2.50",
         "F2.50_2"
-      ]
+      ],
+      "distinct_biosample_count": 2
     }
   ],
   "run_metadata_rows": [
     {
       "run_accession": "SRR28380910",
+      "sample_accession": "SAMN40533899",
       "sample_alias": "Aj2_parent_HMR",
+      "experiment_accession": "SRX23985770",
       "experiment_alias": "NEB",
-      "study_accession": "PRJNA1089234"
+      "library_name": "NEB",
+      "fastq_bytes": "3800545156;3812333738"
     },
     {
       "run_accession": "SRR28413926",
+      "sample_accession": "SAMN40548090",
       "sample_alias": "F2.99",
+      "experiment_accession": "SRX24018637",
       "experiment_alias": "F2.99",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.99",
+      "fastq_bytes": "106796351;111013113"
     },
     {
       "run_accession": "SRR28413927",
+      "sample_accession": "SAMN40548089",
       "sample_alias": "F2.98",
+      "experiment_accession": "SRX24018636",
       "experiment_alias": "F2.98",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.98",
+      "fastq_bytes": "126830649;131918569"
     },
     {
       "run_accession": "SRR28413928",
+      "sample_accession": "SAMN40548088",
       "sample_alias": "F2.97",
+      "experiment_accession": "SRX24018635",
       "experiment_alias": "F2.97",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.97",
+      "fastq_bytes": "181233651;188701340"
     },
     {
       "run_accession": "SRR28413929",
+      "sample_accession": "SAMN40548183",
       "sample_alias": "F2.96",
+      "experiment_accession": "SRX24018634",
       "experiment_alias": "F2.96",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.96",
+      "fastq_bytes": "216320964;224832170"
     },
     {
       "run_accession": "SRR28413930",
+      "sample_accession": "SAMN40548182",
       "sample_alias": "F2.95",
+      "experiment_accession": "SRX24018633",
       "experiment_alias": "F2.95",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.95",
+      "fastq_bytes": "133127189;138519550"
     },
     {
       "run_accession": "SRR28413931",
+      "sample_accession": "SAMN40548181",
       "sample_alias": "F2.94",
+      "experiment_accession": "SRX24018632",
       "experiment_alias": "F2.94",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.94",
+      "fastq_bytes": "221851504;230593219"
     },
     {
       "run_accession": "SRR28413932",
+      "sample_accession": "SAMN40548121",
       "sample_alias": "F2.116",
+      "experiment_accession": "SRX24018631",
       "experiment_alias": "F2.116",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.116",
+      "fastq_bytes": "119115471;123912817"
     },
     {
       "run_accession": "SRR28413933",
+      "sample_accession": "SAMN40548180",
       "sample_alias": "F2.93",
+      "experiment_accession": "SRX24018630",
       "experiment_alias": "F2.93",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.93",
+      "fastq_bytes": "171248338;177962442"
     },
     {
       "run_accession": "SRR28413934",
+      "sample_accession": "SAMN40548179",
       "sample_alias": "F2.92",
+      "experiment_accession": "SRX24018629",
       "experiment_alias": "F2.92",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.92",
+      "fastq_bytes": "162252147;168659335"
     },
     {
       "run_accession": "SRR28413935",
+      "sample_accession": "SAMN40548096",
       "sample_alias": "F2.9",
+      "experiment_accession": "SRX24018628",
       "experiment_alias": "F2.9",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.9",
+      "fastq_bytes": "201368456;209407707"
     },
     {
       "run_accession": "SRR28413936",
+      "sample_accession": "SAMN40548176",
       "sample_alias": "F2.89",
+      "experiment_accession": "SRX24018627",
       "experiment_alias": "F2.89",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.89",
+      "fastq_bytes": "155771470;162066290"
     },
     {
       "run_accession": "SRR28413937",
+      "sample_accession": "SAMN40548173",
       "sample_alias": "F2.86",
+      "experiment_accession": "SRX24018626",
       "experiment_alias": "F2.86",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.86",
+      "fastq_bytes": "147907253;153807653"
     },
     {
       "run_accession": "SRR28413938",
+      "sample_accession": "SAMN40548365",
       "sample_alias": "F2.305",
+      "experiment_accession": "SRX24018625",
       "experiment_alias": "F2.305",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.305",
+      "fastq_bytes": "63379552;65810900"
     },
     {
       "run_accession": "SRR28413939",
+      "sample_accession": "SAMN40548364",
       "sample_alias": "F2.304",
+      "experiment_accession": "SRX24018624",
       "experiment_alias": "F2.304",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.304",
+      "fastq_bytes": "122256165;126899118"
     },
     {
       "run_accession": "SRR28413940",
+      "sample_accession": "SAMN40548363",
       "sample_alias": "F2.303",
+      "experiment_accession": "SRX24018623",
       "experiment_alias": "F2.303",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.303",
+      "fastq_bytes": "133356427;138586940"
     },
     {
       "run_accession": "SRR28413941",
+      "sample_accession": "SAMN40548362",
       "sample_alias": "F2.302",
+      "experiment_accession": "SRX24018622",
       "experiment_alias": "F2.302",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.302",
+      "fastq_bytes": "85940381;89172024"
     },
     {
       "run_accession": "SRR28413942",
+      "sample_accession": "SAMN40548361",
       "sample_alias": "F2.301",
+      "experiment_accession": "SRX24018621",
       "experiment_alias": "F2.301",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.301",
+      "fastq_bytes": "101981555;105873796"
     },
     {
       "run_accession": "SRR28413943",
+      "sample_accession": "SAMN40548174",
       "sample_alias": "F2.149",
+      "experiment_accession": "SRX24018620",
       "experiment_alias": "F2.149",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.149",
+      "fastq_bytes": "189134937;196679206"
     },
     {
       "run_accession": "SRR28413944",
+      "sample_accession": "SAMN40548360",
       "sample_alias": "F2.300",
+      "experiment_accession": "SRX24018619",
       "experiment_alias": "F2.300",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.300",
+      "fastq_bytes": "94055214;97743808"
     },
     {
       "run_accession": "SRR28413945",
+      "sample_accession": "SAMN40548359",
       "sample_alias": "F2.299",
+      "experiment_accession": "SRX24018618",
       "experiment_alias": "F2.299",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.299",
+      "fastq_bytes": "108850752;113087735"
     },
     {
       "run_accession": "SRR28413946",
+      "sample_accession": "SAMN40548358",
       "sample_alias": "F2.298",
+      "experiment_accession": "SRX24018617",
       "experiment_alias": "F2.298",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.298",
+      "fastq_bytes": "94356316;98046457"
     },
     {
       "run_accession": "SRR28413947",
+      "sample_accession": "SAMN40548357",
       "sample_alias": "F2.297",
+      "experiment_accession": "SRX24018616",
       "experiment_alias": "F2.297",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.297",
+      "fastq_bytes": "57066144;59217408"
     },
     {
       "run_accession": "SRR28413948",
+      "sample_accession": "SAMN40548356",
       "sample_alias": "F2.296",
+      "experiment_accession": "SRX24018615",
       "experiment_alias": "F2.296",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.296",
+      "fastq_bytes": "93425082;96943633"
     },
     {
       "run_accession": "SRR28413949",
+      "sample_accession": "SAMN40548355",
       "sample_alias": "F2.294",
+      "experiment_accession": "SRX24018614",
       "experiment_alias": "F2.294",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.294",
+      "fastq_bytes": "90811260;94295776"
     },
     {
       "run_accession": "SRR28413950",
+      "sample_accession": "SAMN40548354",
       "sample_alias": "F2.292",
+      "experiment_accession": "SRX24018613",
       "experiment_alias": "F2.292",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.292",
+      "fastq_bytes": "35251818;36561092"
     },
     {
       "run_accession": "SRR28413951",
+      "sample_accession": "SAMN40548353",
       "sample_alias": "F2.291",
+      "experiment_accession": "SRX24018612",
       "experiment_alias": "F2.291",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.291",
+      "fastq_bytes": "110244374;114484980"
     },
     {
       "run_accession": "SRR28413952",
+      "sample_accession": "SAMN40548352",
       "sample_alias": "F2.290",
+      "experiment_accession": "SRX24018611",
       "experiment_alias": "F2.290",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.290",
+      "fastq_bytes": "81413951;84451880"
     },
     {
       "run_accession": "SRR28413953",
+      "sample_accession": "SAMN40548351",
       "sample_alias": "F2.289",
+      "experiment_accession": "SRX24018610",
       "experiment_alias": "F2.289",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.289",
+      "fastq_bytes": "196466885"
     },
     {
       "run_accession": "SRR28413954",
+      "sample_accession": "SAMN40548169",
       "sample_alias": "F2.147",
+      "experiment_accession": "SRX24018609",
       "experiment_alias": "F2.147",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.147",
+      "fastq_bytes": "140069150;145616524"
     },
     {
       "run_accession": "SRR28413955",
+      "sample_accession": "SAMN40548350",
       "sample_alias": "F2.288",
+      "experiment_accession": "SRX24018608",
       "experiment_alias": "F2.288",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.288",
+      "fastq_bytes": "68434760;71051356"
     },
     {
       "run_accession": "SRR28413956",
+      "sample_accession": "SAMN40548349",
       "sample_alias": "F2.286",
+      "experiment_accession": "SRX24018607",
       "experiment_alias": "F2.286",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.286",
+      "fastq_bytes": "55847194;58051271"
     },
     {
       "run_accession": "SRR28413957",
+      "sample_accession": "SAMN40548348",
       "sample_alias": "F2.285",
+      "experiment_accession": "SRX24018606",
       "experiment_alias": "F2.285",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.285",
+      "fastq_bytes": "39875198;41369928"
     },
     {
       "run_accession": "SRR28413958",
+      "sample_accession": "SAMN40548347",
       "sample_alias": "F2.284",
+      "experiment_accession": "SRX24018605",
       "experiment_alias": "F2.284",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.284",
+      "fastq_bytes": "75036750;77880362"
     },
     {
       "run_accession": "SRR28413959",
+      "sample_accession": "SAMN40548346",
       "sample_alias": "F2.283",
+      "experiment_accession": "SRX24018604",
       "experiment_alias": "F2.283",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.283",
+      "fastq_bytes": "81917687;85063587"
     },
     {
       "run_accession": "SRR28413960",
+      "sample_accession": "SAMN40548345",
       "sample_alias": "F2.282",
+      "experiment_accession": "SRX24018603",
       "experiment_alias": "F2.282",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.282",
+      "fastq_bytes": "48210905;50028593"
     },
     {
       "run_accession": "SRR28413961",
+      "sample_accession": "SAMN40548344",
       "sample_alias": "F2.281",
+      "experiment_accession": "SRX24018602",
       "experiment_alias": "F2.281",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.281",
+      "fastq_bytes": "70249437;72904010"
     },
     {
       "run_accession": "SRR28413962",
+      "sample_accession": "SAMN40548343",
       "sample_alias": "F2.280",
+      "experiment_accession": "SRX24018601",
       "experiment_alias": "F2.280",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.280",
+      "fastq_bytes": "70626848;73290299"
     },
     {
       "run_accession": "SRR28413963",
+      "sample_accession": "SAMN40548342",
       "sample_alias": "F2.279",
+      "experiment_accession": "SRX24018600",
       "experiment_alias": "F2.279",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.279",
+      "fastq_bytes": "76016243;78943516"
     },
     {
       "run_accession": "SRR28413964",
+      "sample_accession": "SAMN40548341",
       "sample_alias": "F2.277",
+      "experiment_accession": "SRX24018599",
       "experiment_alias": "F2.277",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.277",
+      "fastq_bytes": "45972008;47741445"
     },
     {
       "run_accession": "SRR28413965",
+      "sample_accession": "SAMN40548164",
       "sample_alias": "F2.143",
+      "experiment_accession": "SRX24018598",
       "experiment_alias": "F2.143",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.143",
+      "fastq_bytes": "79387666;82471616"
     },
     {
       "run_accession": "SRR28413966",
+      "sample_accession": "SAMN40548340",
       "sample_alias": "F2.276",
+      "experiment_accession": "SRX24018597",
       "experiment_alias": "F2.276",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.276",
+      "fastq_bytes": "123448754;128203068"
     },
     {
       "run_accession": "SRR28413967",
+      "sample_accession": "SAMN40548339",
       "sample_alias": "F2.275",
+      "experiment_accession": "SRX24018596",
       "experiment_alias": "F2.275",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.275",
+      "fastq_bytes": "70227586;72903874"
     },
     {
       "run_accession": "SRR28413968",
+      "sample_accession": "SAMN40548338",
       "sample_alias": "F2.274",
+      "experiment_accession": "SRX24018595",
       "experiment_alias": "F2.274",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.274",
+      "fastq_bytes": "72483853;75238917"
     },
     {
       "run_accession": "SRR28413969",
+      "sample_accession": "SAMN40548337",
       "sample_alias": "F2.273",
+      "experiment_accession": "SRX24018594",
       "experiment_alias": "F2.273",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.273",
+      "fastq_bytes": "55812521;57928248"
     },
     {
       "run_accession": "SRR28413970",
+      "sample_accession": "SAMN40548172",
       "sample_alias": "F2.85",
+      "experiment_accession": "SRX24018593",
       "experiment_alias": "F2.85",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.85",
+      "fastq_bytes": "226240189;235208479"
     },
     {
       "run_accession": "SRR28413971",
+      "sample_accession": "SAMN40548171",
       "sample_alias": "F2.84",
+      "experiment_accession": "SRX24018592",
       "experiment_alias": "F2.84",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.84",
+      "fastq_bytes": "195720977;203633954"
     },
     {
       "run_accession": "SRR28413972",
+      "sample_accession": "SAMN40548170",
       "sample_alias": "F2.83",
+      "experiment_accession": "SRX24018591",
       "experiment_alias": "F2.83",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.83",
+      "fastq_bytes": "151315983;157354394"
     },
     {
       "run_accession": "SRR28413973",
+      "sample_accession": "SAMN40548168",
       "sample_alias": "F2.81",
+      "experiment_accession": "SRX24018590",
       "experiment_alias": "F2.81",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.81",
+      "fastq_bytes": "179841982;187020147"
     },
     {
       "run_accession": "SRR28413974",
+      "sample_accession": "SAMN40548167",
       "sample_alias": "F2.80",
+      "experiment_accession": "SRX24018589",
       "experiment_alias": "F2.80",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.80",
+      "fastq_bytes": "217596083;226546688"
     },
     {
       "run_accession": "SRR28413975",
+      "sample_accession": "SAMN40548118",
       "sample_alias": "F2.115",
+      "experiment_accession": "SRX24018588",
       "experiment_alias": "F2.115",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.115",
+      "fastq_bytes": "55869051;58146284"
     },
     {
       "run_accession": "SRR28413976",
+      "sample_accession": "SAMN40548166",
       "sample_alias": "F2.78",
+      "experiment_accession": "SRX24018587",
       "experiment_alias": "F2.78",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.78",
+      "fastq_bytes": "123874574;128803904"
     },
     {
       "run_accession": "SRR28413977",
+      "sample_accession": "SAMN40548162",
       "sample_alias": "F2.75",
+      "experiment_accession": "SRX24018586",
       "experiment_alias": "F2.75",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.75",
+      "fastq_bytes": "125466577;130553090"
     },
     {
       "run_accession": "SRR28413978",
+      "sample_accession": "SAMN40548158",
       "sample_alias": "F2.71",
+      "experiment_accession": "SRX24018585",
       "experiment_alias": "F2.71",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.71",
+      "fastq_bytes": "88389552;91949453"
     },
     {
       "run_accession": "SRR28413979",
+      "sample_accession": "SAMN40548094",
       "sample_alias": "F2.7",
+      "experiment_accession": "SRX24018584",
       "experiment_alias": "F2.7",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.7",
+      "fastq_bytes": "117242664;121878651"
     },
     {
       "run_accession": "SRR28413980",
+      "sample_accession": "SAMN40548156",
       "sample_alias": "F2.69",
+      "experiment_accession": "SRX24018583",
       "experiment_alias": "F2.69",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.69",
+      "fastq_bytes": "177292790;184298983"
     },
     {
       "run_accession": "SRR28413981",
+      "sample_accession": "SAMN40548155",
       "sample_alias": "F2.68",
+      "experiment_accession": "SRX24018582",
       "experiment_alias": "F2.68",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.68",
+      "fastq_bytes": "149207958;155034207"
     },
     {
       "run_accession": "SRR28413982",
+      "sample_accession": "SAMN40548154",
       "sample_alias": "F2.67",
+      "experiment_accession": "SRX24018581",
       "experiment_alias": "F2.67",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.67",
+      "fastq_bytes": "104435175;108682551"
     },
     {
       "run_accession": "SRR28413983",
+      "sample_accession": "SAMN40548153",
       "sample_alias": "F2.66",
+      "experiment_accession": "SRX24018580",
       "experiment_alias": "F2.66",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.66",
+      "fastq_bytes": "88795954;92329187"
     },
     {
       "run_accession": "SRR28413984",
+      "sample_accession": "SAMN40548151",
       "sample_alias": "F2.64",
+      "experiment_accession": "SRX24018579",
       "experiment_alias": "F2.64",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.64",
+      "fastq_bytes": "123466409;128274258"
     },
     {
       "run_accession": "SRR28413985",
+      "sample_accession": "SAMN40548150",
       "sample_alias": "F2.63",
+      "experiment_accession": "SRX24018578",
       "experiment_alias": "F2.63",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.63",
+      "fastq_bytes": "114392132;118935133"
     },
     {
       "run_accession": "SRR28413986",
+      "sample_accession": "SAMN40548111",
       "sample_alias": "F2.114",
+      "experiment_accession": "SRX24018577",
       "experiment_alias": "F2.114",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.114",
+      "fastq_bytes": "65370649;68008548"
     },
     {
       "run_accession": "SRR28413987",
+      "sample_accession": "SAMN40548149",
       "sample_alias": "F2.62",
+      "experiment_accession": "SRX24018576",
       "experiment_alias": "F2.62",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.62",
+      "fastq_bytes": "99148650;103149785"
     },
     {
       "run_accession": "SRR28413988",
+      "sample_accession": "SAMN40548147",
       "sample_alias": "F2.60",
+      "experiment_accession": "SRX24018575",
       "experiment_alias": "F2.60",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.60",
+      "fastq_bytes": "139262330;144752748"
     },
     {
       "run_accession": "SRR28413989",
+      "sample_accession": "SAMN40548145",
       "sample_alias": "F2.58",
+      "experiment_accession": "SRX24018574",
       "experiment_alias": "F2.58",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.58",
+      "fastq_bytes": "62342241;64875577"
     },
     {
       "run_accession": "SRR28413990",
+      "sample_accession": "SAMN40548144",
       "sample_alias": "F2.57",
+      "experiment_accession": "SRX24018573",
       "experiment_alias": "F2.57",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.57",
+      "fastq_bytes": "57305947;59577758"
     },
     {
       "run_accession": "SRR28413991",
+      "sample_accession": "SAMN40548143",
       "sample_alias": "F2.56",
+      "experiment_accession": "SRX24018572",
       "experiment_alias": "F2.56",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.56",
+      "fastq_bytes": "70827555;73680103"
     },
     {
       "run_accession": "SRR28413992",
+      "sample_accession": "SAMN40548142",
       "sample_alias": "F2.55",
+      "experiment_accession": "SRX24018571",
       "experiment_alias": "F2.55",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.55",
+      "fastq_bytes": "117484822;122230848"
     },
     {
       "run_accession": "SRR28413993",
+      "sample_accession": "SAMN40548141",
       "sample_alias": "F2.54",
+      "experiment_accession": "SRX24018570",
       "experiment_alias": "F2.54",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.54",
+      "fastq_bytes": "118177447;122915469"
     },
     {
       "run_accession": "SRR28413994",
+      "sample_accession": "SAMN40548140",
       "sample_alias": "F2.53",
+      "experiment_accession": "SRX24018569",
       "experiment_alias": "F2.53",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.53",
+      "fastq_bytes": "61766467;64264941"
     },
     {
       "run_accession": "SRR28413995",
+      "sample_accession": "SAMN40548139",
       "sample_alias": "F2.52",
+      "experiment_accession": "SRX24018568",
       "experiment_alias": "F2.52",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.52",
+      "fastq_bytes": "160175025;166634078"
     },
     {
       "run_accession": "SRR28413996",
+      "sample_accession": "SAMN40548138",
       "sample_alias": "F2.51",
+      "experiment_accession": "SRX24018567",
       "experiment_alias": "F2.51",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.51",
+      "fastq_bytes": "91867702;95552416"
     },
     {
       "run_accession": "SRR28413997",
+      "sample_accession": "SAMN40548104",
       "sample_alias": "F2.112",
+      "experiment_accession": "SRX24018566",
       "experiment_alias": "F2.112",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.112",
+      "fastq_bytes": "63620654;66139104"
     },
     {
       "run_accession": "SRR28413998",
+      "sample_accession": "SAMN40548137",
       "sample_alias": "F2.50",
+      "experiment_accession": "SRX24018565",
       "experiment_alias": "F2.50",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.50",
+      "fastq_bytes": "18559253;19272565"
     },
     {
       "run_accession": "SRR28413999",
+      "sample_accession": "SAMN40548136",
       "sample_alias": "F2.49",
+      "experiment_accession": "SRX24018564",
       "experiment_alias": "F2.49",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.49",
+      "fastq_bytes": "119198355;123877335"
     },
     {
       "run_accession": "SRR28414000",
+      "sample_accession": "SAMN40548135",
       "sample_alias": "F2.48",
+      "experiment_accession": "SRX24018563",
       "experiment_alias": "F2.48",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.48",
+      "fastq_bytes": "113026806;117494749"
     },
     {
       "run_accession": "SRR28414001",
+      "sample_accession": "SAMN40548134",
       "sample_alias": "F2.47",
+      "experiment_accession": "SRX24018562",
       "experiment_alias": "F2.47",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.47",
+      "fastq_bytes": "43140619;44831142"
     },
     {
       "run_accession": "SRR28414002",
+      "sample_accession": "SAMN40548336",
       "sample_alias": "F2.272",
+      "experiment_accession": "SRX24018561",
       "experiment_alias": "F2.272",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.272",
+      "fastq_bytes": "66002962;68531881"
     },
     {
       "run_accession": "SRR28414003",
+      "sample_accession": "SAMN40548335",
       "sample_alias": "F2.271",
+      "experiment_accession": "SRX24018560",
       "experiment_alias": "F2.271",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.271",
+      "fastq_bytes": "56724947;58950864"
     },
     {
       "run_accession": "SRR28414004",
+      "sample_accession": "SAMN40548334",
       "sample_alias": "F2.270",
+      "experiment_accession": "SRX24018559",
       "experiment_alias": "F2.270",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.270",
+      "fastq_bytes": "113499122;117868142"
     },
     {
       "run_accession": "SRR28414005",
+      "sample_accession": "SAMN40548333",
       "sample_alias": "F2.269",
+      "experiment_accession": "SRX24018558",
       "experiment_alias": "F2.269",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.269",
+      "fastq_bytes": "60976675;63337799"
     },
     {
       "run_accession": "SRR28414006",
+      "sample_accession": "SAMN40548332",
       "sample_alias": "F2.268",
+      "experiment_accession": "SRX24018557",
       "experiment_alias": "F2.268",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.268",
+      "fastq_bytes": "144875093;150515624"
     },
     {
       "run_accession": "SRR28414007",
+      "sample_accession": "SAMN40548331",
       "sample_alias": "F2.267",
+      "experiment_accession": "SRX24018556",
       "experiment_alias": "F2.267",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.267",
+      "fastq_bytes": "64962540;67450825"
     },
     {
       "run_accession": "SRR28414008",
+      "sample_accession": "SAMN40548163",
       "sample_alias": "F2.142",
+      "experiment_accession": "SRX24018555",
       "experiment_alias": "F2.142",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.142",
+      "fastq_bytes": "126261139;131405191"
     },
     {
       "run_accession": "SRR28414009",
+      "sample_accession": "SAMN40548330",
       "sample_alias": "F2.266",
+      "experiment_accession": "SRX24018554",
       "experiment_alias": "F2.266",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.266",
+      "fastq_bytes": "65550667;68068443"
     },
     {
       "run_accession": "SRR28414010",
+      "sample_accession": "SAMN40548329",
       "sample_alias": "F2.265",
+      "experiment_accession": "SRX24018553",
       "experiment_alias": "F2.265",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.265",
+      "fastq_bytes": "83893869;87053937"
     },
     {
       "run_accession": "SRR28414011",
+      "sample_accession": "SAMN40548328",
       "sample_alias": "F2.264",
+      "experiment_accession": "SRX24018552",
       "experiment_alias": "F2.264",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.264",
+      "fastq_bytes": "98857528;102634588"
     },
     {
       "run_accession": "SRR28414012",
+      "sample_accession": "SAMN40548327",
       "sample_alias": "F2.263",
+      "experiment_accession": "SRX24018551",
       "experiment_alias": "F2.263",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.263",
+      "fastq_bytes": "245570;254676"
     },
     {
       "run_accession": "SRR28414013",
+      "sample_accession": "SAMN40548326",
       "sample_alias": "F2.262",
+      "experiment_accession": "SRX24018550",
       "experiment_alias": "F2.262",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.262",
+      "fastq_bytes": "47324784;49123253"
     },
     {
       "run_accession": "SRR28414014",
+      "sample_accession": "SAMN40548325",
       "sample_alias": "F2.261",
+      "experiment_accession": "SRX24018549",
       "experiment_alias": "F2.261",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.261",
+      "fastq_bytes": "63523443;65899281"
     },
     {
       "run_accession": "SRR28414015",
+      "sample_accession": "SAMN40548324",
       "sample_alias": "F2.259",
+      "experiment_accession": "SRX24018548",
       "experiment_alias": "F2.259",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.259",
+      "fastq_bytes": "48897283;50743204"
     },
     {
       "run_accession": "SRR28414016",
+      "sample_accession": "SAMN40548323",
       "sample_alias": "F2.258",
+      "experiment_accession": "SRX24018547",
       "experiment_alias": "F2.258",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.258",
+      "fastq_bytes": "73793643;76629491"
     },
     {
       "run_accession": "SRR28414017",
+      "sample_accession": "SAMN40548322",
       "sample_alias": "F2.257",
+      "experiment_accession": "SRX24018546",
       "experiment_alias": "F2.257",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.257",
+      "fastq_bytes": "88242485;91616779"
     },
     {
       "run_accession": "SRR28414018",
+      "sample_accession": "SAMN40548321",
       "sample_alias": "F2.256",
+      "experiment_accession": "SRX24018545",
       "experiment_alias": "F2.256",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.256",
+      "fastq_bytes": "75836359;78726103"
     },
     {
       "run_accession": "SRR28414019",
+      "sample_accession": "SAMN40548161",
       "sample_alias": "F2.141",
+      "experiment_accession": "SRX24018544",
       "experiment_alias": "F2.141",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.141",
+      "fastq_bytes": "172888804;179782206"
     },
     {
       "run_accession": "SRR28414020",
+      "sample_accession": "SAMN40548320",
       "sample_alias": "F2.255",
+      "experiment_accession": "SRX24018543",
       "experiment_alias": "F2.255",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.255",
+      "fastq_bytes": "92737918;96260071"
     },
     {
       "run_accession": "SRR28414021",
+      "sample_accession": "SAMN40548319",
       "sample_alias": "F2.254",
+      "experiment_accession": "SRX24018542",
       "experiment_alias": "F2.254",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.254",
+      "fastq_bytes": "54198455;56284746"
     },
     {
       "run_accession": "SRR28414022",
+      "sample_accession": "SAMN40548318",
       "sample_alias": "F2.253",
+      "experiment_accession": "SRX24018541",
       "experiment_alias": "F2.253",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.253",
+      "fastq_bytes": "86895334;90242206"
     },
     {
       "run_accession": "SRR28414023",
+      "sample_accession": "SAMN40548317",
       "sample_alias": "F2.252",
+      "experiment_accession": "SRX24018540",
       "experiment_alias": "F2.252",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.252",
+      "fastq_bytes": "90657952;94085747"
     },
     {
       "run_accession": "SRR28414024",
+      "sample_accession": "SAMN40548316",
       "sample_alias": "F2.251",
+      "experiment_accession": "SRX24018539",
       "experiment_alias": "F2.251",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.251",
+      "fastq_bytes": "104773097;108793924"
     },
     {
       "run_accession": "SRR28414025",
+      "sample_accession": "SAMN40548315",
       "sample_alias": "F2.250",
+      "experiment_accession": "SRX24018538",
       "experiment_alias": "F2.250",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.250",
+      "fastq_bytes": "105820693;109888311"
     },
     {
       "run_accession": "SRR28414026",
+      "sample_accession": "SAMN40548314",
       "sample_alias": "F2.249",
+      "experiment_accession": "SRX24018537",
       "experiment_alias": "F2.249",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.249",
+      "fastq_bytes": "70138136;72870926"
     },
     {
       "run_accession": "SRR28414027",
+      "sample_accession": "SAMN40548297",
       "sample_alias": "F2.213",
+      "experiment_accession": "SRX24018536",
       "experiment_alias": "F2.213",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.213",
+      "fastq_bytes": "11528839;11979892"
     },
     {
       "run_accession": "SRR28414028",
+      "sample_accession": "SAMN40548296",
       "sample_alias": "F2.209",
+      "experiment_accession": "SRX24018535",
       "experiment_alias": "F2.209",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.209",
+      "fastq_bytes": "81307750;84435282"
     },
     {
       "run_accession": "SRR28414029",
+      "sample_accession": "SAMN40548295",
       "sample_alias": "F2.207",
+      "experiment_accession": "SRX24018534",
       "experiment_alias": "F2.207",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.207",
+      "fastq_bytes": "75435087;78292399"
     },
     {
       "run_accession": "SRR28414030",
+      "sample_accession": "SAMN40548160",
       "sample_alias": "F2.140",
+      "experiment_accession": "SRX24018533",
       "experiment_alias": "F2.140",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.140",
+      "fastq_bytes": "181594513;188703791"
     },
     {
       "run_accession": "SRR28414031",
+      "sample_accession": "SAMN40548294",
       "sample_alias": "F2.186",
+      "experiment_accession": "SRX24018532",
       "experiment_alias": "F2.186",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.186",
+      "fastq_bytes": "72203599;74945074"
     },
     {
       "run_accession": "SRR28414032",
+      "sample_accession": "SAMN40548293",
       "sample_alias": "F2.183",
+      "experiment_accession": "SRX24018531",
       "experiment_alias": "F2.183",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.183",
+      "fastq_bytes": "88270886;91631493"
     },
     {
       "run_accession": "SRR28414033",
+      "sample_accession": "SAMN40548313",
       "sample_alias": "F2.182",
+      "experiment_accession": "SRX24018530",
       "experiment_alias": "F2.182",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.182",
+      "fastq_bytes": "52500811;54528858"
     },
     {
       "run_accession": "SRR28414034",
+      "sample_accession": "SAMN40548269",
       "sample_alias": "F2.79",
+      "experiment_accession": "SRX24018529",
       "experiment_alias": "F2.79",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.79",
+      "fastq_bytes": "148144147;153939262"
     },
     {
       "run_accession": "SRR28414035",
+      "sample_accession": "SAMN40548268",
       "sample_alias": "F2.74",
+      "experiment_accession": "SRX24018528",
       "experiment_alias": "F2.74",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.74",
+      "fastq_bytes": "186307174;193542138"
     },
     {
       "run_accession": "SRR28414036",
+      "sample_accession": "SAMN40548267",
       "sample_alias": "F2.73",
+      "experiment_accession": "SRX24018527",
       "experiment_alias": "F2.73",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.73",
+      "fastq_bytes": "61202888;63654277"
     },
     {
       "run_accession": "SRR28414037",
+      "sample_accession": "SAMN40548266",
       "sample_alias": "F2.72",
+      "experiment_accession": "SRX24018526",
       "experiment_alias": "F2.72",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.72",
+      "fastq_bytes": "86742824;90086405"
     },
     {
       "run_accession": "SRR28414038",
+      "sample_accession": "SAMN40548265",
       "sample_alias": "F2.70",
+      "experiment_accession": "SRX24018525",
       "experiment_alias": "F2.70",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.70",
+      "fastq_bytes": "98606178;102429667"
     },
     {
       "run_accession": "SRR28414039",
+      "sample_accession": "SAMN40548264",
       "sample_alias": "F2.61",
+      "experiment_accession": "SRX24018524",
       "experiment_alias": "F2.61",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.61",
+      "fastq_bytes": "80545709;83758406"
     },
     {
       "run_accession": "SRR28414040",
+      "sample_accession": "SAMN40548263",
       "sample_alias": "F2.59",
+      "experiment_accession": "SRX24018523",
       "experiment_alias": "F2.59",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.59",
+      "fastq_bytes": "88354092;91920666"
     },
     {
       "run_accession": "SRR28414041",
+      "sample_accession": "SAMN40548262",
       "sample_alias": "F2.44",
+      "experiment_accession": "SRX24018522",
       "experiment_alias": "F2.44",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.44",
+      "fastq_bytes": "74016653;76874386"
     },
     {
       "run_accession": "SRR28414042",
+      "sample_accession": "SAMN40548261",
       "sample_alias": "F2.37",
+      "experiment_accession": "SRX24018521",
       "experiment_alias": "F2.37",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.37",
+      "fastq_bytes": "41621857;43206530"
     },
     {
       "run_accession": "SRR28414043",
+      "sample_accession": "SAMN40548157",
       "sample_alias": "F2.135",
+      "experiment_accession": "SRX24018520",
       "experiment_alias": "F2.135",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.135",
+      "fastq_bytes": "155122493;161708453"
     },
     {
       "run_accession": "SRR28414044",
+      "sample_accession": "SAMN40548260",
       "sample_alias": "F2.31",
+      "experiment_accession": "SRX24018519",
       "experiment_alias": "F2.31",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.31",
+      "fastq_bytes": "69949405;72625248"
     },
     {
       "run_accession": "SRR28414045",
+      "sample_accession": "SAMN40548255",
       "sample_alias": "F2.248",
+      "experiment_accession": "SRX24018518",
       "experiment_alias": "F2.248",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.248",
+      "fastq_bytes": "71891764;74656727"
     },
     {
       "run_accession": "SRR28414046",
+      "sample_accession": "SAMN40548254",
       "sample_alias": "F2.246",
+      "experiment_accession": "SRX24018517",
       "experiment_alias": "F2.246",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.246",
+      "fastq_bytes": "92584218;96185068"
     },
     {
       "run_accession": "SRR28414047",
+      "sample_accession": "SAMN40548253",
       "sample_alias": "F2.245",
+      "experiment_accession": "SRX24018516",
       "experiment_alias": "F2.245",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.245",
+      "fastq_bytes": "83431384;86729582"
     },
     {
       "run_accession": "SRR28414048",
+      "sample_accession": "SAMN40548252",
       "sample_alias": "F2.243",
+      "experiment_accession": "SRX24018515",
       "experiment_alias": "F2.243",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.243",
+      "fastq_bytes": "43662231;45395010"
     },
     {
       "run_accession": "SRR28414049",
+      "sample_accession": "SAMN40548251",
       "sample_alias": "F2.241",
+      "experiment_accession": "SRX24018514",
       "experiment_alias": "F2.241",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.241",
+      "fastq_bytes": "98377758;102191004"
     },
     {
       "run_accession": "SRR28414050",
+      "sample_accession": "SAMN40548250",
       "sample_alias": "F2.240",
+      "experiment_accession": "SRX24018513",
       "experiment_alias": "F2.240",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.240",
+      "fastq_bytes": "85281270;88593855"
     },
     {
       "run_accession": "SRR28414051",
+      "sample_accession": "SAMN40548259",
       "sample_alias": "F2.24",
+      "experiment_accession": "SRX24018512",
       "experiment_alias": "F2.24",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.24",
+      "fastq_bytes": "99223192;103114900"
     },
     {
       "run_accession": "SRR28414052",
+      "sample_accession": "SAMN40548249",
       "sample_alias": "F2.239",
+      "experiment_accession": "SRX24018511",
       "experiment_alias": "F2.239",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.239",
+      "fastq_bytes": "63941722;66424578"
     },
     {
       "run_accession": "SRR28414053",
+      "sample_accession": "SAMN40548248",
       "sample_alias": "F2.238",
+      "experiment_accession": "SRX24018510",
       "experiment_alias": "F2.238",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.238",
+      "fastq_bytes": "47942556;49826880"
     },
     {
       "run_accession": "SRR28414054",
+      "sample_accession": "SAMN40548152",
       "sample_alias": "F2.130",
+      "experiment_accession": "SRX24018509",
       "experiment_alias": "F2.130",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.130",
+      "fastq_bytes": "69878278;72691310"
     },
     {
       "run_accession": "SRR28414055",
+      "sample_accession": "SAMN40548247",
       "sample_alias": "F2.237",
+      "experiment_accession": "SRX24018508",
       "experiment_alias": "F2.237",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.237",
+      "fastq_bytes": "61906604;64280389"
     },
     {
       "run_accession": "SRR28414056",
+      "sample_accession": "SAMN40548246",
       "sample_alias": "F2.236",
+      "experiment_accession": "SRX24018507",
       "experiment_alias": "F2.236",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.236",
+      "fastq_bytes": "51553743;53573136"
     },
     {
       "run_accession": "SRR28414057",
+      "sample_accession": "SAMN40548245",
       "sample_alias": "F2.235",
+      "experiment_accession": "SRX24018506",
       "experiment_alias": "F2.235",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.235",
+      "fastq_bytes": "81305553;84453985"
     },
     {
       "run_accession": "SRR28414058",
+      "sample_accession": "SAMN40548244",
       "sample_alias": "F2.234",
+      "experiment_accession": "SRX24018505",
       "experiment_alias": "F2.234",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.234",
+      "fastq_bytes": "151089699;157082098"
     },
     {
       "run_accession": "SRR28414059",
+      "sample_accession": "SAMN40548243",
       "sample_alias": "F2.233",
+      "experiment_accession": "SRX24018504",
       "experiment_alias": "F2.233",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.233",
+      "fastq_bytes": "109475063;113790640"
     },
     {
       "run_accession": "SRR28414060",
+      "sample_accession": "SAMN40548242",
       "sample_alias": "F2.231",
+      "experiment_accession": "SRX24018503",
       "experiment_alias": "F2.231",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.231",
+      "fastq_bytes": "128082753;133026084"
     },
     {
       "run_accession": "SRR28414061",
+      "sample_accession": "SAMN40548241",
       "sample_alias": "F2.230",
+      "experiment_accession": "SRX24018502",
       "experiment_alias": "F2.230",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.230",
+      "fastq_bytes": "68680964;71357419"
     },
     {
       "run_accession": "SRR28414062",
+      "sample_accession": "SAMN40548240",
       "sample_alias": "F2.229",
+      "experiment_accession": "SRX24018501",
       "experiment_alias": "F2.229",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.229",
+      "fastq_bytes": "26254702;27313355"
     },
     {
       "run_accession": "SRR28414063",
+      "sample_accession": "SAMN40548239",
       "sample_alias": "F2.228",
+      "experiment_accession": "SRX24018500",
       "experiment_alias": "F2.228",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.228",
+      "fastq_bytes": "73847690;76761412"
     },
     {
       "run_accession": "SRR28414064",
+      "sample_accession": "SAMN40548238",
       "sample_alias": "F2.227",
+      "experiment_accession": "SRX24018499",
       "experiment_alias": "F2.227",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.227",
+      "fastq_bytes": "150058451;156023202"
     },
     {
       "run_accession": "SRR28414065",
+      "sample_accession": "SAMN40548100",
       "sample_alias": "F2.13",
+      "experiment_accession": "SRX24018498",
       "experiment_alias": "F2.13",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.13",
+      "fastq_bytes": "129074863;134290928"
     },
     {
       "run_accession": "SRR28414066",
+      "sample_accession": "SAMN40548133",
       "sample_alias": "F2.46",
+      "experiment_accession": "SRX24018497",
       "experiment_alias": "F2.46",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.46",
+      "fastq_bytes": "75960452;78971885"
     },
     {
       "run_accession": "SRR28414067",
+      "sample_accession": "SAMN40548131",
       "sample_alias": "F2.45",
+      "experiment_accession": "SRX24018496",
       "experiment_alias": "F2.45",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.45",
+      "fastq_bytes": "106041730;110227986"
     },
     {
       "run_accession": "SRR28414068",
+      "sample_accession": "SAMN40548130",
       "sample_alias": "F2.43",
+      "experiment_accession": "SRX24018495",
       "experiment_alias": "F2.43",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.43",
+      "fastq_bytes": "75798534;78781237"
     },
     {
       "run_accession": "SRR28414069",
+      "sample_accession": "SAMN40548129",
       "sample_alias": "F2.42",
+      "experiment_accession": "SRX24018494",
       "experiment_alias": "F2.42",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.42",
+      "fastq_bytes": "147278160;153134040"
     },
     {
       "run_accession": "SRR28414070",
+      "sample_accession": "SAMN40548128",
       "sample_alias": "F2.41",
+      "experiment_accession": "SRX24018493",
       "experiment_alias": "F2.41",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.41",
+      "fastq_bytes": "88365829;92099473"
     },
     {
       "run_accession": "SRR28414071",
+      "sample_accession": "SAMN40548127",
       "sample_alias": "F2.40",
+      "experiment_accession": "SRX24018492",
       "experiment_alias": "F2.40",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.40",
+      "fastq_bytes": "107036474;111278205"
     },
     {
       "run_accession": "SRR28414072",
+      "sample_accession": "SAMN40548097",
       "sample_alias": "F2.111",
+      "experiment_accession": "SRX24018491",
       "experiment_alias": "F2.111",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.111",
+      "fastq_bytes": "133640877;139008940"
     },
     {
       "run_accession": "SRR28414073",
+      "sample_accession": "SAMN40548126",
       "sample_alias": "F2.39",
+      "experiment_accession": "SRX24018490",
       "experiment_alias": "F2.39",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.39",
+      "fastq_bytes": "103015126;107221547"
     },
     {
       "run_accession": "SRR28414074",
+      "sample_accession": "SAMN40548125",
       "sample_alias": "F2.38",
+      "experiment_accession": "SRX24018489",
       "experiment_alias": "F2.38",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.38",
+      "fastq_bytes": "101201921;105193971"
     },
     {
       "run_accession": "SRR28414075",
+      "sample_accession": "SAMN40548123",
       "sample_alias": "F2.36",
+      "experiment_accession": "SRX24018488",
       "experiment_alias": "F2.36",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.36",
+      "fastq_bytes": "14320115;14881470"
     },
     {
       "run_accession": "SRR28414076",
+      "sample_accession": "SAMN40548120",
       "sample_alias": "F2.33",
+      "experiment_accession": "SRX24018487",
       "experiment_alias": "F2.33",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.33",
+      "fastq_bytes": "103870694;108062594"
     },
     {
       "run_accession": "SRR28414077",
+      "sample_accession": "SAMN40548119",
       "sample_alias": "F2.32",
+      "experiment_accession": "SRX24018486",
       "experiment_alias": "F2.32",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.32",
+      "fastq_bytes": "50065355;52078434"
     },
     {
       "run_accession": "SRR28414078",
+      "sample_accession": "SAMN40548117",
       "sample_alias": "F2.30",
+      "experiment_accession": "SRX24018485",
       "experiment_alias": "F2.30",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.30",
+      "fastq_bytes": "109118105;113343994"
     },
     {
       "run_accession": "SRR28414079",
+      "sample_accession": "SAMN40548116",
       "sample_alias": "F2.29",
+      "experiment_accession": "SRX24018484",
       "experiment_alias": "F2.29",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.29",
+      "fastq_bytes": "119589213;124302660"
     },
     {
       "run_accession": "SRR28414080",
+      "sample_accession": "SAMN40548115",
       "sample_alias": "F2.28",
+      "experiment_accession": "SRX24018483",
       "experiment_alias": "F2.28",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.28",
+      "fastq_bytes": "144630997;150497813"
     },
     {
       "run_accession": "SRR28414081",
+      "sample_accession": "SAMN40548114",
       "sample_alias": "F2.27",
+      "experiment_accession": "SRX24018482",
       "experiment_alias": "F2.27",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.27",
+      "fastq_bytes": "75484426;78659662"
     },
     {
       "run_accession": "SRR28414082",
+      "sample_accession": "SAMN40548113",
       "sample_alias": "F2.26",
+      "experiment_accession": "SRX24018481",
       "experiment_alias": "F2.26",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.26",
+      "fastq_bytes": "113269249;117778838"
     },
     {
       "run_accession": "SRR28414083",
+      "sample_accession": "SAMN40548095",
       "sample_alias": "F2.110",
+      "experiment_accession": "SRX24018480",
       "experiment_alias": "F2.110",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.110",
+      "fastq_bytes": "220520720;229132991"
     },
     {
       "run_accession": "SRR28414084",
+      "sample_accession": "SAMN40548112",
       "sample_alias": "F2.25",
+      "experiment_accession": "SRX24018479",
       "experiment_alias": "F2.25",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.25",
+      "fastq_bytes": "94302971;97992423"
     },
     {
       "run_accession": "SRR28414085",
+      "sample_accession": "SAMN40548110",
       "sample_alias": "F2.23",
+      "experiment_accession": "SRX24018478",
       "experiment_alias": "F2.23",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.23",
+      "fastq_bytes": "45985281;47768241"
     },
     {
       "run_accession": "SRR28414086",
+      "sample_accession": "SAMN40548109",
       "sample_alias": "F2.22",
+      "experiment_accession": "SRX24018477",
       "experiment_alias": "F2.22",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.22",
+      "fastq_bytes": "89188473;92784491"
     },
     {
       "run_accession": "SRR28414087",
+      "sample_accession": "SAMN40548108",
       "sample_alias": "F2.21",
+      "experiment_accession": "SRX24018476",
       "experiment_alias": "F2.21",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.21",
+      "fastq_bytes": "115934489;120437116"
     },
     {
       "run_accession": "SRR28414088",
+      "sample_accession": "SAMN40548107",
       "sample_alias": "F2.20",
+      "experiment_accession": "SRX24018475",
       "experiment_alias": "F2.20",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.20",
+      "fastq_bytes": "116933709;121501503"
     },
     {
       "run_accession": "SRR28414089",
+      "sample_accession": "SAMN40548106",
       "sample_alias": "F2.19_1",
+      "experiment_accession": "SRX24018474",
       "experiment_alias": "F2.19",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.19",
+      "fastq_bytes": "31808909;33062269"
     },
     {
       "run_accession": "SRR28414090",
+      "sample_accession": "SAMN40548408",
       "sample_alias": "F2.91",
+      "experiment_accession": "SRX24018473",
       "experiment_alias": "F2.91",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.91",
+      "fastq_bytes": "82899341;86144628"
     },
     {
       "run_accession": "SRR28414091",
+      "sample_accession": "SAMN40548413",
       "sample_alias": "F2.87",
+      "experiment_accession": "SRX24018472",
       "experiment_alias": "F2.87",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.87",
+      "fastq_bytes": "99469658;103313218"
     },
     {
       "run_accession": "SRR28414092",
+      "sample_accession": "SAMN40548406",
       "sample_alias": "F2.77",
+      "experiment_accession": "SRX24018471",
       "experiment_alias": "F2.77",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.77",
+      "fastq_bytes": "45478144;47285024"
     },
     {
       "run_accession": "SRR28414093",
+      "sample_accession": "SAMN40548427",
       "sample_alias": "F2.6",
+      "experiment_accession": "SRX24018470",
       "experiment_alias": "F2.6",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.6",
+      "fastq_bytes": "8359808;8691933"
     },
     {
       "run_accession": "SRR28414094",
+      "sample_accession": "SAMN40548419",
       "sample_alias": "F2.50_2",
+      "experiment_accession": "SRX24018469",
       "experiment_alias": "F2.50_2",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.50_2",
+      "fastq_bytes": "62227893;64658978"
     },
     {
       "run_accession": "SRR28414095",
+      "sample_accession": "SAMN40548410",
       "sample_alias": "F2.5",
+      "experiment_accession": "SRX24018468",
       "experiment_alias": "F2.5",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.5",
+      "fastq_bytes": "131175040;136240137"
     },
     {
       "run_accession": "SRR28414096",
+      "sample_accession": "SAMN40548426",
       "sample_alias": "F2.4",
+      "experiment_accession": "SRX24018467",
       "experiment_alias": "F2.4",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.4",
+      "fastq_bytes": "12794443;13294775"
     },
     {
       "run_accession": "SRR28414097",
+      "sample_accession": "SAMN40548418",
       "sample_alias": "F2.36_2",
+      "experiment_accession": "SRX24018466",
       "experiment_alias": "F2.36_2",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.36_2",
+      "fastq_bytes": "107652343;111846184"
     },
     {
       "run_accession": "SRR28414098",
+      "sample_accession": "SAMN40548380",
       "sample_alias": "F2.320",
+      "experiment_accession": "SRX24018465",
       "experiment_alias": "F2.320",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.320",
+      "fastq_bytes": "127440697;132514332"
     },
     {
       "run_accession": "SRR28414099",
+      "sample_accession": "SAMN40548379",
       "sample_alias": "F2.319",
+      "experiment_accession": "SRX24018464",
       "experiment_alias": "F2.319",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.319",
+      "fastq_bytes": "200842849;208706946"
     },
     {
       "run_accession": "SRR28414100",
+      "sample_accession": "SAMN40548378",
       "sample_alias": "F2.318",
+      "experiment_accession": "SRX24018463",
       "experiment_alias": "F2.318",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.318",
+      "fastq_bytes": "137671431;142972394"
     },
     {
       "run_accession": "SRR28414101",
+      "sample_accession": "SAMN40548177",
       "sample_alias": "F2.153",
+      "experiment_accession": "SRX24018462",
       "experiment_alias": "F2.153",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.153",
+      "fastq_bytes": "199567767;207510291"
     },
     {
       "run_accession": "SRR28414102",
+      "sample_accession": "SAMN40548098",
       "sample_alias": "F2.11",
+      "experiment_accession": "SRX24018461",
       "experiment_alias": "F2.11",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.11",
+      "fastq_bytes": "237921869;247718344"
     },
     {
       "run_accession": "SRR28414103",
+      "sample_accession": "SAMN40548377",
       "sample_alias": "F2.317",
+      "experiment_accession": "SRX24018460",
       "experiment_alias": "F2.317",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.317",
+      "fastq_bytes": "33347456;34640243"
     },
     {
       "run_accession": "SRR28414104",
+      "sample_accession": "SAMN40548376",
       "sample_alias": "F2.316",
+      "experiment_accession": "SRX24018459",
       "experiment_alias": "F2.316",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.316",
+      "fastq_bytes": "207452642;215726865"
     },
     {
       "run_accession": "SRR28414105",
+      "sample_accession": "SAMN40548425",
       "sample_alias": "F2.3",
+      "experiment_accession": "SRX24018458",
       "experiment_alias": "F2.3",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.3",
+      "fastq_bytes": "33044806;34334642"
     },
     {
       "run_accession": "SRR28414106",
+      "sample_accession": "SAMN40548415",
       "sample_alias": "F2.193",
+      "experiment_accession": "SRX24018457",
       "experiment_alias": "F2.193",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.193",
+      "fastq_bytes": "83924605;87171774"
     },
     {
       "run_accession": "SRR28414107",
+      "sample_accession": "SAMN40548417",
       "sample_alias": "F2.19_2",
+      "experiment_accession": "SRX24018456",
       "experiment_alias": "F2.19_2",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.19_2",
+      "fastq_bytes": "72166563;74988532"
     },
     {
       "run_accession": "SRR28414108",
+      "sample_accession": "SAMN40548407",
       "sample_alias": "F2.185",
+      "experiment_accession": "SRX24018455",
       "experiment_alias": "F2.185",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.185",
+      "fastq_bytes": "53026844;55095746"
     },
     {
       "run_accession": "SRR28414109",
+      "sample_accession": "SAMN40548422",
       "sample_alias": "F2.180",
+      "experiment_accession": "SRX24018454",
       "experiment_alias": "F2.180",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.180",
+      "fastq_bytes": "86259758;89616412"
     },
     {
       "run_accession": "SRR28414110",
+      "sample_accession": "SAMN40548416",
       "sample_alias": "F2.16_2",
+      "experiment_accession": "SRX24018453",
       "experiment_alias": "F2.16_2",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.16_2",
+      "fastq_bytes": "50698963;52626192"
     },
     {
       "run_accession": "SRR28414111",
+      "sample_accession": "SAMN40548421",
       "sample_alias": "F2.131",
+      "experiment_accession": "SRX24018452",
       "experiment_alias": "F2.131",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.131",
+      "fastq_bytes": "95596376;99265236"
     },
     {
       "run_accession": "SRR28414112",
+      "sample_accession": "SAMN40548414",
       "sample_alias": "F2.125",
+      "experiment_accession": "SRX24018451",
       "experiment_alias": "F2.125",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.125",
+      "fastq_bytes": "79768220;82903694"
     },
     {
       "run_accession": "SRR28414113",
+      "sample_accession": "SAMN40548175",
       "sample_alias": "F2.151",
+      "experiment_accession": "SRX24018450",
       "experiment_alias": "F2.151",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.151",
+      "fastq_bytes": "102933595;106991299"
     },
     {
       "run_accession": "SRR28414114",
+      "sample_accession": "SAMN40548420",
       "sample_alias": "F2.108",
+      "experiment_accession": "SRX24018449",
       "experiment_alias": "F2.108",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.108",
+      "fastq_bytes": "73720511;76593351"
     },
     {
       "run_accession": "SRR28414115",
+      "sample_accession": "SAMN40548409",
       "sample_alias": "F2.1",
+      "experiment_accession": "SRX24018448",
       "experiment_alias": "F2.1",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.1",
+      "fastq_bytes": "136876722;142219534"
     },
     {
       "run_accession": "SRR28414116",
+      "sample_accession": "SAMN40548298",
       "sample_alias": "F2.8",
+      "experiment_accession": "SRX24018447",
       "experiment_alias": "F2.8",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.8",
+      "fastq_bytes": "87169822;90522611"
     },
     {
       "run_accession": "SRR28414117",
+      "sample_accession": "SAMN40548300",
       "sample_alias": "F2.76",
+      "experiment_accession": "SRX24018446",
       "experiment_alias": "F2.76",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.76",
+      "fastq_bytes": "60913140;63272324"
     },
     {
       "run_accession": "SRR28414118",
+      "sample_accession": "SAMN40548299",
       "sample_alias": "F2.65",
+      "experiment_accession": "SRX24018445",
       "experiment_alias": "F2.65",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.65",
+      "fastq_bytes": "102749597;106664413"
     },
     {
       "run_accession": "SRR28414119",
+      "sample_accession": "SAMN40548375",
       "sample_alias": "F2.315",
+      "experiment_accession": "SRX24018444",
       "experiment_alias": "F2.315",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.315",
+      "fastq_bytes": "144051885;149586896"
     },
     {
       "run_accession": "SRR28414120",
+      "sample_accession": "SAMN40548374",
       "sample_alias": "F2.314",
+      "experiment_accession": "SRX24018443",
       "experiment_alias": "F2.314",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.314",
+      "fastq_bytes": "75891833;78779189"
     },
     {
       "run_accession": "SRR28414121",
+      "sample_accession": "SAMN40548373",
       "sample_alias": "F2.313",
+      "experiment_accession": "SRX24018442",
       "experiment_alias": "F2.313",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.313",
+      "fastq_bytes": "97563535;101278899"
     },
     {
       "run_accession": "SRR28414122",
+      "sample_accession": "SAMN40548372",
       "sample_alias": "F2.312",
+      "experiment_accession": "SRX24018441",
       "experiment_alias": "F2.312",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.312",
+      "fastq_bytes": "245472078;254741804"
     },
     {
       "run_accession": "SRR28414123",
+      "sample_accession": "SAMN40548371",
       "sample_alias": "F2.311",
+      "experiment_accession": "SRX24018440",
       "experiment_alias": "F2.311",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.311",
+      "fastq_bytes": "115076511;119422073"
     },
     {
       "run_accession": "SRR28414124",
+      "sample_accession": "SAMN40548102",
       "sample_alias": "F2.15",
+      "experiment_accession": "SRX24018439",
       "experiment_alias": "F2.15",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.15",
+      "fastq_bytes": "32040021;33304449"
     },
     {
       "run_accession": "SRR28414125",
+      "sample_accession": "SAMN40548370",
       "sample_alias": "F2.310",
+      "experiment_accession": "SRX24018438",
       "experiment_alias": "F2.310",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.310",
+      "fastq_bytes": "86121596;89610064"
     },
     {
       "run_accession": "SRR28414126",
+      "sample_accession": "SAMN40548369",
       "sample_alias": "F2.309",
+      "experiment_accession": "SRX24018437",
       "experiment_alias": "F2.309",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.309",
+      "fastq_bytes": "120048573;124675349"
     },
     {
       "run_accession": "SRR28414127",
+      "sample_accession": "SAMN40548368",
       "sample_alias": "F2.308",
+      "experiment_accession": "SRX24018436",
       "experiment_alias": "F2.308",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.308",
+      "fastq_bytes": "127303466;132249293"
     },
     {
       "run_accession": "SRR28414128",
+      "sample_accession": "SAMN40548367",
       "sample_alias": "F2.307",
+      "experiment_accession": "SRX24018435",
       "experiment_alias": "F2.307",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.307",
+      "fastq_bytes": "77402687;80328281"
     },
     {
       "run_accession": "SRR28414129",
+      "sample_accession": "SAMN40548366",
       "sample_alias": "F2.306",
+      "experiment_accession": "SRX24018434",
       "experiment_alias": "F2.306",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.306",
+      "fastq_bytes": "63240146;65619201"
     },
     {
       "run_accession": "SRR28414130",
+      "sample_accession": "SAMN40548237",
       "sample_alias": "F2.226",
+      "experiment_accession": "SRX24018433",
       "experiment_alias": "F2.226",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.226",
+      "fastq_bytes": "55320926;57511745"
     },
     {
       "run_accession": "SRR28414131",
+      "sample_accession": "SAMN40548236",
       "sample_alias": "F2.225",
+      "experiment_accession": "SRX24018432",
       "experiment_alias": "F2.225",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.225",
+      "fastq_bytes": "59319760;61626296"
     },
     {
       "run_accession": "SRR28414132",
+      "sample_accession": "SAMN40548235",
       "sample_alias": "F2.224",
+      "experiment_accession": "SRX24018431",
       "experiment_alias": "F2.224",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.224",
+      "fastq_bytes": "91701703;95358692"
     },
     {
       "run_accession": "SRR28414133",
+      "sample_accession": "SAMN40548234",
       "sample_alias": "F2.223",
+      "experiment_accession": "SRX24018430",
       "experiment_alias": "F2.223",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.223",
+      "fastq_bytes": "51619576;53663901"
     },
     {
       "run_accession": "SRR28414134",
+      "sample_accession": "SAMN40548233",
       "sample_alias": "F2.222",
+      "experiment_accession": "SRX24018429",
       "experiment_alias": "F2.222",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.222",
+      "fastq_bytes": "58770348;61068232"
     },
     {
       "run_accession": "SRR28414135",
+      "sample_accession": "SAMN40548232",
       "sample_alias": "F2.221",
+      "experiment_accession": "SRX24018428",
       "experiment_alias": "F2.221",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.221",
+      "fastq_bytes": "124600998;129482419"
     },
     {
       "run_accession": "SRR28414136",
+      "sample_accession": "SAMN40548231",
       "sample_alias": "F2.220",
+      "experiment_accession": "SRX24018427",
       "experiment_alias": "F2.220",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.220",
+      "fastq_bytes": "66726798;69313948"
     },
     {
       "run_accession": "SRR28414137",
+      "sample_accession": "SAMN40548230",
       "sample_alias": "F2.219",
+      "experiment_accession": "SRX24018426",
       "experiment_alias": "F2.219",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.219",
+      "fastq_bytes": "97283909;101120548"
     },
     {
       "run_accession": "SRR28414138",
+      "sample_accession": "SAMN40548229",
       "sample_alias": "F2.218",
+      "experiment_accession": "SRX24018425",
       "experiment_alias": "F2.218",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.218",
+      "fastq_bytes": "66380569;68965734"
     },
     {
       "run_accession": "SRR28414139",
+      "sample_accession": "SAMN40548228",
       "sample_alias": "F2.217",
+      "experiment_accession": "SRX24018424",
       "experiment_alias": "F2.217",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.217",
+      "fastq_bytes": "42107111;43764414"
     },
     {
       "run_accession": "SRR28414140",
+      "sample_accession": "SAMN40548148",
       "sample_alias": "F2.129",
+      "experiment_accession": "SRX24018423",
       "experiment_alias": "F2.129",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.129",
+      "fastq_bytes": "165835282;172423052"
     },
     {
       "run_accession": "SRR28414141",
+      "sample_accession": "SAMN40548227",
       "sample_alias": "F2.216",
+      "experiment_accession": "SRX24018422",
       "experiment_alias": "F2.216",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.216",
+      "fastq_bytes": "96904623;100763124"
     },
     {
       "run_accession": "SRR28414142",
+      "sample_accession": "SAMN40548226",
       "sample_alias": "F2.215",
+      "experiment_accession": "SRX24018421",
       "experiment_alias": "F2.215",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.215",
+      "fastq_bytes": "108399515;112648841"
     },
     {
       "run_accession": "SRR28414143",
+      "sample_accession": "SAMN40548225",
       "sample_alias": "F2.214",
+      "experiment_accession": "SRX24018420",
       "experiment_alias": "F2.214",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.214",
+      "fastq_bytes": "107653293;111924625"
     },
     {
       "run_accession": "SRR28414144",
+      "sample_accession": "SAMN40548224",
       "sample_alias": "F2.212",
+      "experiment_accession": "SRX24018419",
       "experiment_alias": "F2.212",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.212",
+      "fastq_bytes": "100855698;104851361"
     },
     {
       "run_accession": "SRR28414145",
+      "sample_accession": "SAMN40548223",
       "sample_alias": "F2.211",
+      "experiment_accession": "SRX24018418",
       "experiment_alias": "F2.211",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.211",
+      "fastq_bytes": "68676037;71378015"
     },
     {
       "run_accession": "SRR28414146",
+      "sample_accession": "SAMN40548222",
       "sample_alias": "F2.210",
+      "experiment_accession": "SRX24018417",
       "experiment_alias": "F2.210",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.210",
+      "fastq_bytes": "109008247;113343701"
     },
     {
       "run_accession": "SRR28414147",
+      "sample_accession": "SAMN40548221",
       "sample_alias": "F2.208",
+      "experiment_accession": "SRX24018416",
       "experiment_alias": "F2.208",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.208",
+      "fastq_bytes": "119717881;124394034"
     },
     {
       "run_accession": "SRR28414148",
+      "sample_accession": "SAMN40548220",
       "sample_alias": "F2.206",
+      "experiment_accession": "SRX24018415",
       "experiment_alias": "F2.206",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.206",
+      "fastq_bytes": "133374602;138655355"
     },
     {
       "run_accession": "SRR28414149",
+      "sample_accession": "SAMN40548219",
       "sample_alias": "F2.205",
+      "experiment_accession": "SRX24018414",
       "experiment_alias": "F2.205",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.205",
+      "fastq_bytes": "143463022;149096931"
     },
     {
       "run_accession": "SRR28414150",
+      "sample_accession": "SAMN40548218",
       "sample_alias": "F2.204",
+      "experiment_accession": "SRX24018413",
       "experiment_alias": "F2.204",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.204",
+      "fastq_bytes": "118817507;123523362"
     },
     {
       "run_accession": "SRR28414151",
+      "sample_accession": "SAMN40548146",
       "sample_alias": "F2.123",
+      "experiment_accession": "SRX24018412",
       "experiment_alias": "F2.123",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.123",
+      "fastq_bytes": "85598553;88923701"
     },
     {
       "run_accession": "SRR28414152",
+      "sample_accession": "SAMN40548217",
       "sample_alias": "F2.203",
+      "experiment_accession": "SRX24018411",
       "experiment_alias": "F2.203",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.203",
+      "fastq_bytes": "121504096;126282531"
     },
     {
       "run_accession": "SRR28414153",
+      "sample_accession": "SAMN40548216",
       "sample_alias": "F2.202",
+      "experiment_accession": "SRX24018410",
       "experiment_alias": "F2.202",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.202",
+      "fastq_bytes": "92117810;95775301"
     },
     {
       "run_accession": "SRR28414154",
+      "sample_accession": "SAMN40548215",
       "sample_alias": "F2.201",
+      "experiment_accession": "SRX24018409",
       "experiment_alias": "F2.201",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.201",
+      "fastq_bytes": "101315382;105257877"
     },
     {
       "run_accession": "SRR28414155",
+      "sample_accession": "SAMN40548214",
       "sample_alias": "F2.200",
+      "experiment_accession": "SRX24018408",
       "experiment_alias": "F2.200",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.200",
+      "fastq_bytes": "94791386;98518748"
     },
     {
       "run_accession": "SRR28414156",
+      "sample_accession": "SAMN40548256",
       "sample_alias": "F2.2",
+      "experiment_accession": "SRX24018407",
       "experiment_alias": "F2.2",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.2",
+      "fastq_bytes": "127007764;132012366"
     },
     {
       "run_accession": "SRR28414157",
+      "sample_accession": "SAMN40548213",
       "sample_alias": "F2.199",
+      "experiment_accession": "SRX24018406",
       "experiment_alias": "F2.199",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.199",
+      "fastq_bytes": "84409028;87641828"
     },
     {
       "run_accession": "SRR28414158",
+      "sample_accession": "SAMN40548212",
       "sample_alias": "F2.198",
+      "experiment_accession": "SRX24018405",
       "experiment_alias": "F2.198",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.198",
+      "fastq_bytes": "103807320;107950063"
     },
     {
       "run_accession": "SRR28414159",
+      "sample_accession": "SAMN40548211",
       "sample_alias": "F2.197",
+      "experiment_accession": "SRX24018404",
       "experiment_alias": "F2.197",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.197",
+      "fastq_bytes": "156748564;163070158"
     },
     {
       "run_accession": "SRR28414160",
+      "sample_accession": "SAMN40548210",
       "sample_alias": "F2.196",
+      "experiment_accession": "SRX24018403",
       "experiment_alias": "F2.196",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.196",
+      "fastq_bytes": "79817974;83006185"
     },
     {
       "run_accession": "SRR28414161",
+      "sample_accession": "SAMN40548209",
       "sample_alias": "F2.195",
+      "experiment_accession": "SRX24018402",
       "experiment_alias": "F2.195",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.195",
+      "fastq_bytes": "132282762;137468424"
     },
     {
       "run_accession": "SRR28414162",
+      "sample_accession": "SAMN40548405",
       "sample_alias": "F2.351",
+      "experiment_accession": "SRX24018401",
       "experiment_alias": "F2.351",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.351",
+      "fastq_bytes": "36568498;37960656"
     },
     {
       "run_accession": "SRR28414163",
+      "sample_accession": "SAMN40548424",
       "sample_alias": "F2.350",
+      "experiment_accession": "SRX24018400",
       "experiment_alias": "F2.350",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.350",
+      "fastq_bytes": "10372190;10771802"
     },
     {
       "run_accession": "SRR28414164",
+      "sample_accession": "SAMN40548105",
       "sample_alias": "F2.18",
+      "experiment_accession": "SRX24018399",
       "experiment_alias": "F2.18",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.18",
+      "fastq_bytes": "183016753;190303053"
     },
     {
       "run_accession": "SRR28414165",
+      "sample_accession": "SAMN40548412",
       "sample_alias": "F2.35",
+      "experiment_accession": "SRX24018398",
       "experiment_alias": "F2.35",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.35",
+      "fastq_bytes": "67467303;70125373"
     },
     {
       "run_accession": "SRR28414166",
+      "sample_accession": "SAMN40548423",
       "sample_alias": "F2.349",
+      "experiment_accession": "SRX24018397",
       "experiment_alias": "F2.349",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.349",
+      "fastq_bytes": "37839512;39287672"
     },
     {
       "run_accession": "SRR28414167",
+      "sample_accession": "SAMN40548404",
       "sample_alias": "F2.348",
+      "experiment_accession": "SRX24018396",
       "experiment_alias": "F2.348",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.348",
+      "fastq_bytes": "38021610;39523785"
     },
     {
       "run_accession": "SRR28414168",
+      "sample_accession": "SAMN40548403",
       "sample_alias": "F2.347",
+      "experiment_accession": "SRX24018395",
       "experiment_alias": "F2.347",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.347",
+      "fastq_bytes": "82497647;85793274"
     },
     {
       "run_accession": "SRR28414169",
+      "sample_accession": "SAMN40548402",
       "sample_alias": "F2.346",
+      "experiment_accession": "SRX24018394",
       "experiment_alias": "F2.346",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.346",
+      "fastq_bytes": "55297012;57503968"
     },
     {
       "run_accession": "SRR28414170",
+      "sample_accession": "SAMN40548401",
       "sample_alias": "F2.345",
+      "experiment_accession": "SRX24018393",
       "experiment_alias": "F2.345",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.345",
+      "fastq_bytes": "76606466;79588352"
     },
     {
       "run_accession": "SRR28414171",
+      "sample_accession": "SAMN40548400",
       "sample_alias": "F2.344",
+      "experiment_accession": "SRX24018392",
       "experiment_alias": "F2.344",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.344",
+      "fastq_bytes": "115127466;119630249"
     },
     {
       "run_accession": "SRR28414172",
+      "sample_accession": "SAMN40548399",
       "sample_alias": "F2.343",
+      "experiment_accession": "SRX24018391",
       "experiment_alias": "F2.343",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.343",
+      "fastq_bytes": "150755985;156738017"
     },
     {
       "run_accession": "SRR28414173",
+      "sample_accession": "SAMN40548398",
       "sample_alias": "F2.342",
+      "experiment_accession": "SRX24018390",
       "experiment_alias": "F2.342",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.342",
+      "fastq_bytes": "38505715;39981336"
     },
     {
       "run_accession": "SRR28414174",
+      "sample_accession": "SAMN40548397",
       "sample_alias": "F2.341",
+      "experiment_accession": "SRX24018389",
       "experiment_alias": "F2.341",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.341",
+      "fastq_bytes": "110209853;114614875"
     },
     {
       "run_accession": "SRR28414175",
+      "sample_accession": "SAMN40548103",
       "sample_alias": "F2.16_1",
+      "experiment_accession": "SRX24018388",
       "experiment_alias": "F2.16",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.16",
+      "fastq_bytes": "68870000;71624283"
     },
     {
       "run_accession": "SRR28414176",
+      "sample_accession": "SAMN40548396",
       "sample_alias": "F2.340",
+      "experiment_accession": "SRX24018387",
       "experiment_alias": "F2.340",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.340",
+      "fastq_bytes": "143603500;149257697"
     },
     {
       "run_accession": "SRR28414177",
+      "sample_accession": "SAMN40548411",
       "sample_alias": "F2.34",
+      "experiment_accession": "SRX24018386",
       "experiment_alias": "F2.34",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.34",
+      "fastq_bytes": "118371669;122964714"
     },
     {
       "run_accession": "SRR28414178",
+      "sample_accession": "SAMN40548395",
       "sample_alias": "F2.339",
+      "experiment_accession": "SRX24018385",
       "experiment_alias": "F2.339",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.339",
+      "fastq_bytes": "121805485;126534894"
     },
     {
       "run_accession": "SRR28414179",
+      "sample_accession": "SAMN40548394",
       "sample_alias": "F2.338",
+      "experiment_accession": "SRX24018384",
       "experiment_alias": "F2.338",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.338",
+      "fastq_bytes": "105484384;109588982"
     },
     {
       "run_accession": "SRR28414180",
+      "sample_accession": "SAMN40548393",
       "sample_alias": "F2.337",
+      "experiment_accession": "SRX24018383",
       "experiment_alias": "F2.337",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.337",
+      "fastq_bytes": "90624851;94215407"
     },
     {
       "run_accession": "SRR28414181",
+      "sample_accession": "SAMN40548392",
       "sample_alias": "F2.336",
+      "experiment_accession": "SRX24018382",
       "experiment_alias": "F2.336",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.336",
+      "fastq_bytes": "113968477;118438542"
     },
     {
       "run_accession": "SRR28414182",
+      "sample_accession": "SAMN40548391",
       "sample_alias": "F2.335",
+      "experiment_accession": "SRX24018381",
       "experiment_alias": "F2.335",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.335",
+      "fastq_bytes": "112280595;116648534"
     },
     {
       "run_accession": "SRR28414183",
+      "sample_accession": "SAMN40548390",
       "sample_alias": "F2.333",
+      "experiment_accession": "SRX24018380",
       "experiment_alias": "F2.333",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.333",
+      "fastq_bytes": "85881161;89150817"
     },
     {
       "run_accession": "SRR28414184",
+      "sample_accession": "SAMN40548389",
       "sample_alias": "F2.331",
+      "experiment_accession": "SRX24018379",
       "experiment_alias": "F2.331",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.331",
+      "fastq_bytes": "97019868;100868632"
     },
     {
       "run_accession": "SRR28414185",
+      "sample_accession": "SAMN40548388",
       "sample_alias": "F2.330",
+      "experiment_accession": "SRX24018378",
       "experiment_alias": "F2.330",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.330",
+      "fastq_bytes": "130415548;135530528"
     },
     {
       "run_accession": "SRR28414186",
+      "sample_accession": "SAMN40548178",
       "sample_alias": "F2.155",
+      "experiment_accession": "SRX24018377",
       "experiment_alias": "F2.155",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.155",
+      "fastq_bytes": "74839249;77917988"
     },
     {
       "run_accession": "SRR28414187",
+      "sample_accession": "SAMN40548387",
       "sample_alias": "F2.328",
+      "experiment_accession": "SRX24018376",
       "experiment_alias": "F2.328",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.328",
+      "fastq_bytes": "193679841;201369173"
     },
     {
       "run_accession": "SRR28414188",
+      "sample_accession": "SAMN40548386",
       "sample_alias": "F2.327",
+      "experiment_accession": "SRX24018375",
       "experiment_alias": "F2.327",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.327",
+      "fastq_bytes": "242872625;252765588"
     },
     {
       "run_accession": "SRR28414189",
+      "sample_accession": "SAMN40548385",
       "sample_alias": "F2.326",
+      "experiment_accession": "SRX24018374",
       "experiment_alias": "F2.326",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.326",
+      "fastq_bytes": "165619512;172109141"
     },
     {
       "run_accession": "SRR28414190",
+      "sample_accession": "SAMN40548384",
       "sample_alias": "F2.325",
+      "experiment_accession": "SRX24018373",
       "experiment_alias": "F2.325",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.325",
+      "fastq_bytes": "143851606;149515972"
     },
     {
       "run_accession": "SRR28414191",
+      "sample_accession": "SAMN40548383",
       "sample_alias": "F2.324",
+      "experiment_accession": "SRX24018372",
       "experiment_alias": "F2.324",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.324",
+      "fastq_bytes": "138864964;144236432"
     },
     {
       "run_accession": "SRR28414192",
+      "sample_accession": "SAMN40548382",
       "sample_alias": "F2.322",
+      "experiment_accession": "SRX24018371",
       "experiment_alias": "F2.322",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.322",
+      "fastq_bytes": "230163544;239041143"
     },
     {
       "run_accession": "SRR28414193",
+      "sample_accession": "SAMN40548381",
       "sample_alias": "F2.321",
+      "experiment_accession": "SRX24018370",
       "experiment_alias": "F2.321",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.321",
+      "fastq_bytes": "117603913;122193509"
     },
     {
       "run_accession": "SRR28414194",
+      "sample_accession": "SAMN40548292",
       "sample_alias": "F2.181",
+      "experiment_accession": "SRX24018369",
       "experiment_alias": "F2.181",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.181",
+      "fastq_bytes": "82864509;85982310"
     },
     {
       "run_accession": "SRR28414195",
+      "sample_accession": "SAMN40548312",
       "sample_alias": "F2.178",
+      "experiment_accession": "SRX24018368",
       "experiment_alias": "F2.178",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.178",
+      "fastq_bytes": "62717280;65130392"
     },
     {
       "run_accession": "SRR28414196",
+      "sample_accession": "SAMN40548291",
       "sample_alias": "F2.177",
+      "experiment_accession": "SRX24018367",
       "experiment_alias": "F2.177",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.177",
+      "fastq_bytes": "112159312;116469804"
     },
     {
       "run_accession": "SRR28414197",
+      "sample_accession": "SAMN40548311",
       "sample_alias": "F2.176",
+      "experiment_accession": "SRX24018366",
       "experiment_alias": "F2.176",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.176",
+      "fastq_bytes": "93033440;96587696"
     },
     {
       "run_accession": "SRR28414198",
+      "sample_accession": "SAMN40548290",
       "sample_alias": "F2.175",
+      "experiment_accession": "SRX24018365",
       "experiment_alias": "F2.175",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.175",
+      "fastq_bytes": "104774698;108886894"
     },
     {
       "run_accession": "SRR28414199",
+      "sample_accession": "SAMN40548289",
       "sample_alias": "F2.174",
+      "experiment_accession": "SRX24018364",
       "experiment_alias": "F2.174",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.174",
+      "fastq_bytes": "93001298;96585218"
     },
     {
       "run_accession": "SRR28414200",
+      "sample_accession": "SAMN40548288",
       "sample_alias": "F2.173",
+      "experiment_accession": "SRX24018363",
       "experiment_alias": "F2.173",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.173",
+      "fastq_bytes": "79159107;82171179"
     },
     {
       "run_accession": "SRR28414201",
+      "sample_accession": "SAMN40548101",
       "sample_alias": "F2.14",
+      "experiment_accession": "SRX24018362",
       "experiment_alias": "F2.14",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.14",
+      "fastq_bytes": "128011337;133336738"
     },
     {
       "run_accession": "SRR28414202",
+      "sample_accession": "SAMN40548310",
       "sample_alias": "F2.172",
+      "experiment_accession": "SRX24018361",
       "experiment_alias": "F2.172",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.172",
+      "fastq_bytes": "36728906;38114481"
     },
     {
       "run_accession": "SRR28414203",
+      "sample_accession": "SAMN40548287",
       "sample_alias": "F2.154",
+      "experiment_accession": "SRX24018360",
       "experiment_alias": "F2.154",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.154",
+      "fastq_bytes": "86955728;90255624"
     },
     {
       "run_accession": "SRR28414204",
+      "sample_accession": "SAMN40548286",
       "sample_alias": "F2.152",
+      "experiment_accession": "SRX24018359",
       "experiment_alias": "F2.152",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.152",
+      "fastq_bytes": "103055044;106969581"
     },
     {
       "run_accession": "SRR28414205",
+      "sample_accession": "SAMN40548285",
       "sample_alias": "F2.150",
+      "experiment_accession": "SRX24018358",
       "experiment_alias": "F2.150",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.150",
+      "fastq_bytes": "51731894;53707816"
     },
     {
       "run_accession": "SRR28414206",
+      "sample_accession": "SAMN40548284",
       "sample_alias": "F2.146",
+      "experiment_accession": "SRX24018357",
       "experiment_alias": "F2.146",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.146",
+      "fastq_bytes": "75457970;78351723"
     },
     {
       "run_accession": "SRR28414207",
+      "sample_accession": "SAMN40548283",
       "sample_alias": "F2.145",
+      "experiment_accession": "SRX24018356",
       "experiment_alias": "F2.145",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.145",
+      "fastq_bytes": "104253191;108213201"
     },
     {
       "run_accession": "SRR28414208",
+      "sample_accession": "SAMN40548282",
       "sample_alias": "F2.144",
+      "experiment_accession": "SRX24018355",
       "experiment_alias": "F2.144",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.144",
+      "fastq_bytes": "75692709;78556005"
     },
     {
       "run_accession": "SRR28414209",
+      "sample_accession": "SAMN40548281",
       "sample_alias": "F2.139",
+      "experiment_accession": "SRX24018354",
       "experiment_alias": "F2.139",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.139",
+      "fastq_bytes": "91228691;94654431"
     },
     {
       "run_accession": "SRR28414210",
+      "sample_accession": "SAMN40548280",
       "sample_alias": "F2.137",
+      "experiment_accession": "SRX24018353",
       "experiment_alias": "F2.137",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.137",
+      "fastq_bytes": "99953247;103822860"
     },
     {
       "run_accession": "SRR28414211",
+      "sample_accession": "SAMN40548309",
       "sample_alias": "F2.134",
+      "experiment_accession": "SRX24018352",
       "experiment_alias": "F2.134",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.134",
+      "fastq_bytes": "61026513;63319432"
     },
     {
       "run_accession": "SRR28414212",
+      "sample_accession": "SAMN40548159",
       "sample_alias": "F2.138",
+      "experiment_accession": "SRX24018351",
       "experiment_alias": "F2.138",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.138",
+      "fastq_bytes": "159292660;165563735"
     },
     {
       "run_accession": "SRR28414213",
+      "sample_accession": "SAMN40548093",
       "sample_alias": "F2.109",
+      "experiment_accession": "SRX24018350",
       "experiment_alias": "F2.109",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.109",
+      "fastq_bytes": "149197986;155046266"
     },
     {
       "run_accession": "SRR28414214",
+      "sample_accession": "SAMN40548308",
       "sample_alias": "F2.132",
+      "experiment_accession": "SRX24018349",
       "experiment_alias": "F2.132",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.132",
+      "fastq_bytes": "53576333;55621132"
     },
     {
       "run_accession": "SRR28414215",
+      "sample_accession": "SAMN40548307",
       "sample_alias": "F2.128",
+      "experiment_accession": "SRX24018348",
       "experiment_alias": "F2.128",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.128",
+      "fastq_bytes": "54522807;56639585"
     },
     {
       "run_accession": "SRR28414216",
+      "sample_accession": "SAMN40548306",
       "sample_alias": "F2.124",
+      "experiment_accession": "SRX24018347",
       "experiment_alias": "F2.124",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.124",
+      "fastq_bytes": "58041893;60275427"
     },
     {
       "run_accession": "SRR28414217",
+      "sample_accession": "SAMN40548305",
       "sample_alias": "F2.122",
+      "experiment_accession": "SRX24018346",
       "experiment_alias": "F2.122",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.122",
+      "fastq_bytes": "69393989;72010110"
     },
     {
       "run_accession": "SRR28414218",
+      "sample_accession": "SAMN40548304",
       "sample_alias": "F2.121",
+      "experiment_accession": "SRX24018345",
       "experiment_alias": "F2.121",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.121",
+      "fastq_bytes": "94686551;98269183"
     },
     {
       "run_accession": "SRR28414219",
+      "sample_accession": "SAMN40548303",
       "sample_alias": "F2.113",
+      "experiment_accession": "SRX24018344",
       "experiment_alias": "F2.113",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.113",
+      "fastq_bytes": "126447377;131342594"
     },
     {
       "run_accession": "SRR28414220",
+      "sample_accession": "SAMN40548302",
       "sample_alias": "F2.107",
+      "experiment_accession": "SRX24018343",
       "experiment_alias": "F2.107",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.107",
+      "fastq_bytes": "82650882;85857237"
     },
     {
       "run_accession": "SRR28414221",
+      "sample_accession": "SAMN40548301",
       "sample_alias": "F2.104",
+      "experiment_accession": "SRX24018342",
       "experiment_alias": "F2.104",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.104",
+      "fastq_bytes": "74360986;77263703"
     },
     {
       "run_accession": "SRR28414222",
+      "sample_accession": "SAMN40548272",
       "sample_alias": "F2.90",
+      "experiment_accession": "SRX24018341",
       "experiment_alias": "F2.90",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.90",
+      "fastq_bytes": "172389259;179268328"
     },
     {
       "run_accession": "SRR28414223",
+      "sample_accession": "SAMN40548271",
       "sample_alias": "F2.88",
+      "experiment_accession": "SRX24018340",
       "experiment_alias": "F2.88",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.88",
+      "fastq_bytes": "125562948;130405928"
     },
     {
       "run_accession": "SRR28414224",
+      "sample_accession": "SAMN40548165",
       "sample_alias": "F2.136",
+      "experiment_accession": "SRX24018339",
       "experiment_alias": "F2.136",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.136",
+      "fastq_bytes": "59514300;61820272"
     },
     {
       "run_accession": "SRR28414225",
+      "sample_accession": "SAMN40548270",
       "sample_alias": "F2.82",
+      "experiment_accession": "SRX24018338",
       "experiment_alias": "F2.82",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.82",
+      "fastq_bytes": "172932961;179605075"
     },
     {
       "run_accession": "SRR28414226",
+      "sample_accession": "SAMN40548132",
       "sample_alias": "F2.120",
+      "experiment_accession": "SRX24018337",
       "experiment_alias": "F2.120",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.120",
+      "fastq_bytes": "75084822;78114770"
     },
     {
       "run_accession": "SRR28414227",
+      "sample_accession": "SAMN40548208",
       "sample_alias": "F2.194",
+      "experiment_accession": "SRX24018336",
       "experiment_alias": "F2.194",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.194",
+      "fastq_bytes": "131702058;136930397"
     },
     {
       "run_accession": "SRR28414228",
+      "sample_accession": "SAMN40548207",
       "sample_alias": "F2.192",
+      "experiment_accession": "SRX24018335",
       "experiment_alias": "F2.192",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.192",
+      "fastq_bytes": "120010377;124648573"
     },
     {
       "run_accession": "SRR28414229",
+      "sample_accession": "SAMN40548206",
       "sample_alias": "F2.191",
+      "experiment_accession": "SRX24018334",
       "experiment_alias": "F2.191",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.191",
+      "fastq_bytes": "117079704;121578449"
     },
     {
       "run_accession": "SRR28414230",
+      "sample_accession": "SAMN40548205",
       "sample_alias": "F2.190",
+      "experiment_accession": "SRX24018333",
       "experiment_alias": "F2.190",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.190",
+      "fastq_bytes": "121643312;126475934"
     },
     {
       "run_accession": "SRR28414231",
+      "sample_accession": "SAMN40548204",
       "sample_alias": "F2.189",
+      "experiment_accession": "SRX24018332",
       "experiment_alias": "F2.189",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.189",
+      "fastq_bytes": "69383122;72080038"
     },
     {
       "run_accession": "SRR28414232",
+      "sample_accession": "SAMN40548203",
       "sample_alias": "F2.188",
+      "experiment_accession": "SRX24018331",
       "experiment_alias": "F2.188",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.188",
+      "fastq_bytes": "98572867;102373884"
     },
     {
       "run_accession": "SRR28414233",
+      "sample_accession": "SAMN40548202",
       "sample_alias": "F2.187",
+      "experiment_accession": "SRX24018330",
       "experiment_alias": "F2.187",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.187",
+      "fastq_bytes": "94936081;98618217"
     },
     {
       "run_accession": "SRR28414234",
+      "sample_accession": "SAMN40548201",
       "sample_alias": "F2.184",
+      "experiment_accession": "SRX24018329",
       "experiment_alias": "F2.184",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.184",
+      "fastq_bytes": "74254911;77175023"
     },
     {
       "run_accession": "SRR28414235",
+      "sample_accession": "SAMN40548200",
       "sample_alias": "F2.179",
+      "experiment_accession": "SRX24018328",
       "experiment_alias": "F2.179",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.179",
+      "fastq_bytes": "119696157;124392598"
     },
     {
       "run_accession": "SRR28414236",
+      "sample_accession": "SAMN40548199",
       "sample_alias": "F2.171",
+      "experiment_accession": "SRX24018327",
       "experiment_alias": "F2.171",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.171",
+      "fastq_bytes": "117729354;122286588"
     },
     {
       "run_accession": "SRR28414237",
+      "sample_accession": "SAMN40548099",
       "sample_alias": "F2.12",
+      "experiment_accession": "SRX24018326",
       "experiment_alias": "F2.12",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.12",
+      "fastq_bytes": "140386412;146020277"
     },
     {
       "run_accession": "SRR28414238",
+      "sample_accession": "SAMN40548198",
       "sample_alias": "F2.170",
+      "experiment_accession": "SRX24018325",
       "experiment_alias": "F2.170",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.170",
+      "fastq_bytes": "147035066;152756871"
     },
     {
       "run_accession": "SRR28414239",
+      "sample_accession": "SAMN40548258",
       "sample_alias": "F2.17",
+      "experiment_accession": "SRX24018324",
       "experiment_alias": "F2.17",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.17",
+      "fastq_bytes": "189861473;197400434"
     },
     {
       "run_accession": "SRR28414240",
+      "sample_accession": "SAMN40548197",
       "sample_alias": "F2.169",
+      "experiment_accession": "SRX24018323",
       "experiment_alias": "F2.169",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.169",
+      "fastq_bytes": "184815128;192181109"
     },
     {
       "run_accession": "SRR28414241",
+      "sample_accession": "SAMN40548196",
       "sample_alias": "F2.168",
+      "experiment_accession": "SRX24018322",
       "experiment_alias": "F2.168",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.168",
+      "fastq_bytes": "99477511;103375324"
     },
     {
       "run_accession": "SRR28414242",
+      "sample_accession": "SAMN40548195",
       "sample_alias": "F2.167",
+      "experiment_accession": "SRX24018321",
       "experiment_alias": "F2.167",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.167",
+      "fastq_bytes": "158272556;164607331"
     },
     {
       "run_accession": "SRR28414243",
+      "sample_accession": "SAMN40548194",
       "sample_alias": "F2.166",
+      "experiment_accession": "SRX24018320",
       "experiment_alias": "F2.166",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.166",
+      "fastq_bytes": "181297786;188720724"
     },
     {
       "run_accession": "SRR28414244",
+      "sample_accession": "SAMN40548193",
       "sample_alias": "F2.165",
+      "experiment_accession": "SRX24018319",
       "experiment_alias": "F2.165",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.165",
+      "fastq_bytes": "47358686;49215375"
     },
     {
       "run_accession": "SRR28414245",
+      "sample_accession": "SAMN40548192",
       "sample_alias": "F2.164",
+      "experiment_accession": "SRX24018318",
       "experiment_alias": "F2.164",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.164",
+      "fastq_bytes": "82489617;85741602"
     },
     {
       "run_accession": "SRR28414246",
+      "sample_accession": "SAMN40548191",
       "sample_alias": "F2.163",
+      "experiment_accession": "SRX24018317",
       "experiment_alias": "F2.163",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.163",
+      "fastq_bytes": "123111174;127882404"
     },
     {
       "run_accession": "SRR28414247",
+      "sample_accession": "SAMN40548190",
       "sample_alias": "F2.161",
+      "experiment_accession": "SRX24018316",
       "experiment_alias": "F2.161",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.161",
+      "fastq_bytes": "102408468;106333368"
     },
     {
       "run_accession": "SRR28414248",
+      "sample_accession": "SAMN40548124",
       "sample_alias": "F2.119",
+      "experiment_accession": "SRX24018315",
       "experiment_alias": "F2.119",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.119",
+      "fastq_bytes": "163558596;170049350"
     },
     {
       "run_accession": "SRR28414249",
+      "sample_accession": "SAMN40548189",
       "sample_alias": "F2.160",
+      "experiment_accession": "SRX24018314",
       "experiment_alias": "F2.160",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.160",
+      "fastq_bytes": "110297940;114587511"
     },
     {
       "run_accession": "SRR28414250",
+      "sample_accession": "SAMN40548188",
       "sample_alias": "F2.159",
+      "experiment_accession": "SRX24018313",
       "experiment_alias": "F2.159",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.159",
+      "fastq_bytes": "128585870;133670821"
     },
     {
       "run_accession": "SRR28414251",
+      "sample_accession": "SAMN40548187",
       "sample_alias": "F2.158",
+      "experiment_accession": "SRX24018312",
       "experiment_alias": "F2.158",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.158",
+      "fastq_bytes": "83147132;86418307"
     },
     {
       "run_accession": "SRR28414252",
+      "sample_accession": "SAMN40548186",
       "sample_alias": "F2.157",
+      "experiment_accession": "SRX24018311",
       "experiment_alias": "F2.157",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.157",
+      "fastq_bytes": "126063103;130918704"
     },
     {
       "run_accession": "SRR28414253",
+      "sample_accession": "SAMN40548185",
       "sample_alias": "F2.156",
+      "experiment_accession": "SRX24018310",
       "experiment_alias": "F2.156",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.156",
+      "fastq_bytes": "158090234;164224986"
     },
     {
       "run_accession": "SRR28414254",
+      "sample_accession": "SAMN40548184",
       "sample_alias": "F2.148",
+      "experiment_accession": "SRX24018309",
       "experiment_alias": "F2.148",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.148",
+      "fastq_bytes": "147815857;153682139"
     },
     {
       "run_accession": "SRR28414255",
+      "sample_accession": "SAMN40548279",
       "sample_alias": "F2.133",
+      "experiment_accession": "SRX24018308",
       "experiment_alias": "F2.133",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.133",
+      "fastq_bytes": "94475760;98161084"
     },
     {
       "run_accession": "SRR28414256",
+      "sample_accession": "SAMN40548278",
       "sample_alias": "F2.127",
+      "experiment_accession": "SRX24018307",
       "experiment_alias": "F2.127",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.127",
+      "fastq_bytes": "71390942;74207686"
     },
     {
       "run_accession": "SRR28414257",
+      "sample_accession": "SAMN40548277",
       "sample_alias": "F2.118",
+      "experiment_accession": "SRX24018306",
       "experiment_alias": "F2.118",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.118",
+      "fastq_bytes": "102224813;106219189"
     },
     {
       "run_accession": "SRR28414258",
+      "sample_accession": "SAMN40548276",
       "sample_alias": "F2.105",
+      "experiment_accession": "SRX24018305",
       "experiment_alias": "F2.105",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.105",
+      "fastq_bytes": "88246253;91649837"
     },
     {
       "run_accession": "SRR28414259",
+      "sample_accession": "SAMN40548122",
       "sample_alias": "F2.117",
+      "experiment_accession": "SRX24018304",
       "experiment_alias": "F2.117",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.117",
+      "fastq_bytes": "123753873;128533072"
     },
     {
       "run_accession": "SRR28414260",
+      "sample_accession": "SAMN40548092",
       "sample_alias": "F2.106",
+      "experiment_accession": "SRX24018303",
       "experiment_alias": "F2.106",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.106",
+      "fastq_bytes": "172185237;179163808"
     },
     {
       "run_accession": "SRR28414261",
+      "sample_accession": "SAMN40548091",
       "sample_alias": "F2.102",
+      "experiment_accession": "SRX24018302",
       "experiment_alias": "F2.102",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.102",
+      "fastq_bytes": "118899273;123731591"
     },
     {
       "run_accession": "SRR28414262",
+      "sample_accession": "SAMN40548275",
       "sample_alias": "F2.103",
+      "experiment_accession": "SRX24018641",
       "experiment_alias": "F2.103",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.103",
+      "fastq_bytes": "164350138;170630399"
     },
     {
       "run_accession": "SRR28414263",
+      "sample_accession": "SAMN40548274",
       "sample_alias": "F2.101",
+      "experiment_accession": "SRX24018640",
       "experiment_alias": "F2.101",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.101",
+      "fastq_bytes": "66926279;69618586"
     },
     {
       "run_accession": "SRR28414264",
+      "sample_accession": "SAMN40548273",
       "sample_alias": "F2.100",
+      "experiment_accession": "SRX24018639",
       "experiment_alias": "F2.100",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.100",
+      "fastq_bytes": "118464514;123088479"
     },
     {
       "run_accession": "SRR28414265",
+      "sample_accession": "SAMN40548257",
       "sample_alias": "F2.10",
+      "experiment_accession": "SRX24018638",
       "experiment_alias": "F2.10",
-      "study_accession": "PRJNA1089234"
+      "library_name": "F2.10",
+      "fastq_bytes": "147125139;152902715"
     }
   ]
 }
