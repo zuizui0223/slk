@@ -46,16 +46,17 @@ class AquilegiaSraJoinMetadataTests(unittest.TestCase):
         self.assertEqual(v["canonical_ids_with_more_than_one_run"],4)
         self.assertEqual(v["ambiguous_F2_id_list"],["16","19","36","50"])
         for id in v["ambiguous_F2_id_list"]:
-            x=next(y for y in self.result["linked_phenotype_plants"] if y["plant"]==id)
+            x=next(y for y in v["all_F2_duplicate_records"] if y["plant"]==id)
             self.assertEqual(len(x["run_accessions"]),2)
             self.assertEqual(len(x["biosample_accessions"]),2)
+        self.assertEqual(v["duplicated_alias_ids_present_in_phenotypes"],3)
         self.assertTrue(self.result["scientific_limits"]["duplicates_cannot_be_assumed_technical_replicates"])
 
     def test_sequence_download_size_requires_staging_not_blind_processing(self):
         m=self.result["ENA_run_metadata"]
         self.assertEqual(m["fastq_file_count"],681)
-        self.assertEqual(m["all_source_FASTQ_bytes"],78240175775)
-        self.assertEqual(m["phenotyped_plant_alias_matched_FASTQ_bytes"],49369532026)
+        self.assertEqual(m["all_source_FASTQ_bytes"],78243926288)
+        self.assertEqual(m["phenotyped_plant_alias_matched_FASTQ_bytes"],49374744454)
         self.assertGreater(m["phenotyped_plant_alias_matched_FASTQ_bytes"],40_000_000_000)
         self.assertEqual(m["zero_bytes_run_count"],0)
         self.assertTrue(self.result["scientific_limits"]["source_FASTQ_files_have_not_been_downloaded"])
@@ -79,7 +80,7 @@ class AquilegiaSraJoinMetadataTests(unittest.TestCase):
     def test_missing_validated_phenotype_plant_fails_closed(self):
         raw=load_manifest(MANIFEST)
         raw["run_metadata_rows"]=[r for r in raw["run_metadata_rows"]
-          if not (r["sample_alias"]=="F2.98")]
+          if not (r["sample_alias"]=="F2.2")]
         with self.assertRaisesRegex(ValueError,"ORIGINAL_PHENOTYPE_SAMPLE_HAS_NO_ENA_RUN"):
             link_pheno_to_run_metadata(load_rows(SOURCE),raw,strict=False)
 
