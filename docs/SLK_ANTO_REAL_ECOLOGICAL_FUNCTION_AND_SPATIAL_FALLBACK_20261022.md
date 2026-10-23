@@ -69,3 +69,23 @@ SLK's `Phi,g0,Delta_R` remain useful analytical eligibility criteria for an iden
 - *Parnassia* source results are author-reported experimental aggregates, because the authors' referenced Dryad file is presently not publicly retrievable through its DOI/API. No original individual-level controlled beetle manipulation dataset was recovered.
 - Independent `Aquilegia` F2 source/QTL reruns and individual SRA sample aliases live in [SLK PR #121](https://github.com/zuizui0223/slk/pull/121).
 - All numeric dose/selection claims are tagged to their original published source (above). No `anto` native trait-restoration rate is fitted.
+
+## 23 October — Quantifying measured maternal coverage, not hypothetical anatomical removal
+
+A new same-source original mother audit in [aza3 draft PR #84](https://github.com/zuizui0223/aza3/pull/84) corrects an ambiguity in phrases such as “lateral heads rescue the mother.” The 106-source-mother, 323-source-head dataset has a valid **joint apical+lateral seed accounting** for 105 mothers; original 2007|327 remains excluded from this paired route analysis only.
+
+For each original mother, let A mean the apical head produced at least one author-scored good seed and L mean any lateral head produced at least one. The observed **joint route coverage** is `P(A∨L)`, and the **increment over the better individual route** is `P(A∨L)−max(P(A),P(L))=min(n_apical-only,n_lateral-only)/n`. This is a *real, descriptive set identity*, NOT the experimental fitness gain from deleting a floral organ.
+
+| Original 2008 source regime | Apical-positive A | Lateral-positive L | Any-positive A∨L | Both fail | Observed extra coverage over better route |
+|---|---:|---:|---:|---:|---:|
+| Apex undamaged, ambient insects n15 | 2/15 | 2/15 | 3/15 | **12/15** | 1/15 (6.7pt) |
+| Apex damaged, ambient n12 | 0/12 | 7/12 | 7/12 | **5/12** | **0** |
+| Apex undamaged, insecticide n21 | 20/21 | 14/21 | **21/21** | 0/21 | 1/21 (4.8pt) |
+| Apex damaged, insecticide n19 | 11/19 | 15/19 | **19/19** | 0/19 | **4/19 (21.1pt)** |
+
+Under damaged apex+insecticide, real seed production was **apical-only in four mothers, lateral-only in eight, both in seven, neither in zero**, so the two routes jointly covered observed failures in different individual mothers. Under damaged apex+ambient insects, seven mothers used only lateral heads and five had **both seed routes fail**; merely having lateral heads was not enough for every maternal plant. **This is an observational pattern of alternative operational reproduction, not proof that one insect antagonist caused simultaneous failures or that anatomical duplication was favored by evolution.**
+
+The two-source case comparison with original *C. arvense* 2022 (merged aza3 #83) adds a second **distinct bottleneck**: pollinator-exclusion bags reduced original author-classified viable seeds/head by ~41.6, with the source-accounting deficit concentrated in the viable-seed / floret conversion term rather than floret count. It is a DIFFERENT species and experimental system, and the bag altered visitor access plus potentially enemy exposure/microclimate. Thus even many available floral heads may share a downstream seed-conversion vulnerability; **do not infer experimentally proven common-mode failure or a new macroecological adaptive trade-off from joining independent taxa**.
+
+**SLK's stronger falsifiable question** is therefore not “are there two floral modules?” but “when are their realized failures sufficiently noncoincident, under the *same* ecological conditions, to make alternative architecture worth maintaining?” A matched, explicitly authorized organ/partner factorial experiment must measure counterfactual fitness and head-specific pollen and seed-enemy activity to answer that. The v1–v6 SLK selection thresholds remain model-only and cannot be parameterized by this observed union probability. New exact source tests are green in [aza3 PR #84 CI](https://github.com/zuizui0223/aza3/actions/runs/39917712538); **all Cirsium raw empirical code remains exclusively in aza3**.
+
