@@ -139,6 +139,19 @@ This suggests a distinct strategy to measure before treating all temporal organi
 
 Other source-ordered groups reinforce the difference between clocks: *Amomum subulatum* has within-visit mechanical pollen/stigma contact filtering; *Bromelia antiacantha* features morning bees/afternoon hummingbird activity; *Banksia menziesii* shows a link between beetle occurrence and the **number of florets opening**. The reviewed *Actinidia deliciosa* pollen consumption is a **laboratory thrips assay**, while its dioecy anatomy is a different source study. All six are **research source observations**, not independently completed human U6 architecture outcomes; the 42 original A/B coder slots and V4 confirmation remain untouched.
 
+## Additional mechanistic source coordinate gate: where pollen is lost matters
+
+[BALANCE's source-limited next-six U6 extraction (PR #257)](https://github.com/zuizui0223/balance/pull/257) moves a further six architecture-blind source taxa into a provenance-tracked ecological ledger. The central new distinction is that not all cases admitted under a broad pollen-theft/transfer-efficiency conflict act on an identical *functional coordinate or clock*:
+
+- *Melastoma affine*: Gross & Mackay (1998) observe honeybees collecting **pollen deposited on recipient stigmas**, and decreased seed set when honeybees visited last. This is **POST-deposition recipient female receipt interference**, not consumer depletion of the original exporting anther pollen supply. The enrolled U6 original source-pool predictor has not been independently re-adjudicated and must not be used as a direct same-coordinate `L` without a new source-level location review.
+- *Echium plantagineum*: Kirk (1987) measures **PRE-deposition source anther pollen consumption** by thrips in a laboratory. The same original source `U6_REF_078` also studies *Actinidia deliciosa*, so the two taxa are not two independent source research programmes.
+- *Impatiens capensis*: Wilson & Thomson (1991) observed inefficient pollen-collecting honeybees; a separate 2007 original field study found that when honeybees foraged for nectar the gap from nectar-foraging bumblebees disappeared. **Consumer behavioural state**, not just plant structure or pollinator taxonomic identity, is a separate causal alternative.
+- *Grevillea barklyana*: Vaughton (1996) bird-exclusion and pollen-collecting honeybee observations indicate male-stage consumer access differences and female fruit-set effects; still no heritable architecture origin.
+
+**SLK identification upgrade:** before asserting that a potential new structure resolved the same shared-coordinate functional conflict, independently tag whether each observed process happens at the source anther, transferred pollen on the recipient bee, or after deposition on recipient stigma; separately track visitor behaviour and male/female reproductive fitness. The source U6 category `SINGLE_OR_CONTINUOUS` is about its source-screened pollen pool, **not** a confirmation that the recipient-side pollination process or plant's reproductive architecture is unmodularized. Reconciled accepted-species `M. affine/M. malabathricum` U3 dependence must be retained. Source-extractor observations are not qualified `CODER_A/B` architectural outcomes; all 42 independent U6 coding forms remain unstarted.
+
+This extends the empirical *measurement ontology* without changing SLK's architecture-value theory or the mathematical identity/threshold assumptions. No source-based `L`, `R`, `K`, `Phi`, valid evolutionary transition or historical cause is promoted.
+
 ## Minimal outcome-independent macro + intervention execution contract
 
 The first meaningful comparative unit is
