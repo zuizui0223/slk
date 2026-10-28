@@ -1,0 +1,2813 @@
+{
+  "schema": "slk_aquilegia_F2_ena_original_sample_identity_independent_JS_v4",
+  "snapshot_date": "2026-10-21",
+  "anchor": {
+    "morphology_source_blob": "9911d4a5e85fa8629ad9890f28992e0f07e5feca",
+    "bioproject": "PRJNA1089234",
+    "ENA_source_url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJNA1089234&result=read_run&fields=run_accession,sample_accession,sample_alias,experiment_accession,experiment_alias,library_name,fastq_bytes&format=tsv"
+  },
+  "metrics": {
+    "phenotype_plants": 231,
+    "matched_phenotype_plants": 231,
+    "f2_run_rows": 340,
+    "f2_distinct_canonical_ids": 336,
+    "distinct_unphenotyped_F2_id": 105,
+    "all_run_rows": 341,
+    "phenotyped_F2_with_multiple_run_samples": 3,
+    "duplicate_alias_base_ids": [
+      "16",
+      "19",
+      "36",
+      "50"
+    ],
+    "raw_fastq_files": 681,
+    "source_fastq_total_bytes": 78243926288,
+    "matched_phenotyped_FASTQ_bytes": 49374744454,
+    "source_scored_plants_with_mosaic": 91,
+    "source_scored_plants_with_nestedness_exception": 1
+  },
+  "linked_pairs": [
+    {
+      "plant": "2",
+      "runs": [
+        "SRR28414156"
+      ],
+      "biosamples": [
+        "SAMN40548256"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "3",
+      "runs": [
+        "SRR28414105"
+      ],
+      "biosamples": [
+        "SAMN40548425"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "4",
+      "runs": [
+        "SRR28414096"
+      ],
+      "biosamples": [
+        "SAMN40548426"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "7",
+      "runs": [
+        "SRR28413979"
+      ],
+      "biosamples": [
+        "SAMN40548094"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "11",
+      "runs": [
+        "SRR28414102"
+      ],
+      "biosamples": [
+        "SAMN40548098"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "13",
+      "runs": [
+        "SRR28414065"
+      ],
+      "biosamples": [
+        "SAMN40548100"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "14",
+      "runs": [
+        "SRR28414201"
+      ],
+      "biosamples": [
+        "SAMN40548101"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "15",
+      "runs": [
+        "SRR28414124"
+      ],
+      "biosamples": [
+        "SAMN40548102"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "16",
+      "runs": [
+        "SRR28414110",
+        "SRR28414175"
+      ],
+      "biosamples": [
+        "SAMN40548103",
+        "SAMN40548416"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "23",
+      "runs": [
+        "SRR28414085"
+      ],
+      "biosamples": [
+        "SAMN40548110"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "24",
+      "runs": [
+        "SRR28414051"
+      ],
+      "biosamples": [
+        "SAMN40548259"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "25",
+      "runs": [
+        "SRR28414084"
+      ],
+      "biosamples": [
+        "SAMN40548112"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "27",
+      "runs": [
+        "SRR28414081"
+      ],
+      "biosamples": [
+        "SAMN40548114"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "28",
+      "runs": [
+        "SRR28414080"
+      ],
+      "biosamples": [
+        "SAMN40548115"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "30",
+      "runs": [
+        "SRR28414078"
+      ],
+      "biosamples": [
+        "SAMN40548117"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "31",
+      "runs": [
+        "SRR28414044"
+      ],
+      "biosamples": [
+        "SAMN40548260"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "32",
+      "runs": [
+        "SRR28414077"
+      ],
+      "biosamples": [
+        "SAMN40548119"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "33",
+      "runs": [
+        "SRR28414076"
+      ],
+      "biosamples": [
+        "SAMN40548120"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "34",
+      "runs": [
+        "SRR28414177"
+      ],
+      "biosamples": [
+        "SAMN40548411"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "35",
+      "runs": [
+        "SRR28414165"
+      ],
+      "biosamples": [
+        "SAMN40548412"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "36",
+      "runs": [
+        "SRR28414075",
+        "SRR28414097"
+      ],
+      "biosamples": [
+        "SAMN40548123",
+        "SAMN40548418"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "37",
+      "runs": [
+        "SRR28414042"
+      ],
+      "biosamples": [
+        "SAMN40548261"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "39",
+      "runs": [
+        "SRR28414073"
+      ],
+      "biosamples": [
+        "SAMN40548126"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "40",
+      "runs": [
+        "SRR28414071"
+      ],
+      "biosamples": [
+        "SAMN40548127"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "41",
+      "runs": [
+        "SRR28414070"
+      ],
+      "biosamples": [
+        "SAMN40548128"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "42",
+      "runs": [
+        "SRR28414069"
+      ],
+      "biosamples": [
+        "SAMN40548129"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "43",
+      "runs": [
+        "SRR28414068"
+      ],
+      "biosamples": [
+        "SAMN40548130"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "45",
+      "runs": [
+        "SRR28414067"
+      ],
+      "biosamples": [
+        "SAMN40548131"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "46",
+      "runs": [
+        "SRR28414066"
+      ],
+      "biosamples": [
+        "SAMN40548133"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "47",
+      "runs": [
+        "SRR28414001"
+      ],
+      "biosamples": [
+        "SAMN40548134"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "48",
+      "runs": [
+        "SRR28414000"
+      ],
+      "biosamples": [
+        "SAMN40548135"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "49",
+      "runs": [
+        "SRR28413999"
+      ],
+      "biosamples": [
+        "SAMN40548136"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "50",
+      "runs": [
+        "SRR28413998",
+        "SRR28414094"
+      ],
+      "biosamples": [
+        "SAMN40548137",
+        "SAMN40548419"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "51",
+      "runs": [
+        "SRR28413996"
+      ],
+      "biosamples": [
+        "SAMN40548138"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "52",
+      "runs": [
+        "SRR28413995"
+      ],
+      "biosamples": [
+        "SAMN40548139"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "53",
+      "runs": [
+        "SRR28413994"
+      ],
+      "biosamples": [
+        "SAMN40548140"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "54",
+      "runs": [
+        "SRR28413993"
+      ],
+      "biosamples": [
+        "SAMN40548141"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "55",
+      "runs": [
+        "SRR28413992"
+      ],
+      "biosamples": [
+        "SAMN40548142"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "57",
+      "runs": [
+        "SRR28413990"
+      ],
+      "biosamples": [
+        "SAMN40548144"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "59",
+      "runs": [
+        "SRR28414040"
+      ],
+      "biosamples": [
+        "SAMN40548263"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "60",
+      "runs": [
+        "SRR28413988"
+      ],
+      "biosamples": [
+        "SAMN40548147"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "61",
+      "runs": [
+        "SRR28414039"
+      ],
+      "biosamples": [
+        "SAMN40548264"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "62",
+      "runs": [
+        "SRR28413987"
+      ],
+      "biosamples": [
+        "SAMN40548149"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "63",
+      "runs": [
+        "SRR28413985"
+      ],
+      "biosamples": [
+        "SAMN40548150"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "66",
+      "runs": [
+        "SRR28413983"
+      ],
+      "biosamples": [
+        "SAMN40548153"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "68",
+      "runs": [
+        "SRR28413981"
+      ],
+      "biosamples": [
+        "SAMN40548155"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "69",
+      "runs": [
+        "SRR28413980"
+      ],
+      "biosamples": [
+        "SAMN40548156"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "70",
+      "runs": [
+        "SRR28414038"
+      ],
+      "biosamples": [
+        "SAMN40548265"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "72",
+      "runs": [
+        "SRR28414037"
+      ],
+      "biosamples": [
+        "SAMN40548266"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "73",
+      "runs": [
+        "SRR28414036"
+      ],
+      "biosamples": [
+        "SAMN40548267"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "74",
+      "runs": [
+        "SRR28414035"
+      ],
+      "biosamples": [
+        "SAMN40548268"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "75",
+      "runs": [
+        "SRR28413977"
+      ],
+      "biosamples": [
+        "SAMN40548162"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "77",
+      "runs": [
+        "SRR28414092"
+      ],
+      "biosamples": [
+        "SAMN40548406"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "78",
+      "runs": [
+        "SRR28413976"
+      ],
+      "biosamples": [
+        "SAMN40548166"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "80",
+      "runs": [
+        "SRR28413974"
+      ],
+      "biosamples": [
+        "SAMN40548167"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "81",
+      "runs": [
+        "SRR28413973"
+      ],
+      "biosamples": [
+        "SAMN40548168"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "82",
+      "runs": [
+        "SRR28414225"
+      ],
+      "biosamples": [
+        "SAMN40548270"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "83",
+      "runs": [
+        "SRR28413972"
+      ],
+      "biosamples": [
+        "SAMN40548170"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "84",
+      "runs": [
+        "SRR28413971"
+      ],
+      "biosamples": [
+        "SAMN40548171"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "86",
+      "runs": [
+        "SRR28413937"
+      ],
+      "biosamples": [
+        "SAMN40548173"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "87",
+      "runs": [
+        "SRR28414091"
+      ],
+      "biosamples": [
+        "SAMN40548413"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "88",
+      "runs": [
+        "SRR28414223"
+      ],
+      "biosamples": [
+        "SAMN40548271"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "89",
+      "runs": [
+        "SRR28413936"
+      ],
+      "biosamples": [
+        "SAMN40548176"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "91",
+      "runs": [
+        "SRR28414090"
+      ],
+      "biosamples": [
+        "SAMN40548408"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "92",
+      "runs": [
+        "SRR28413934"
+      ],
+      "biosamples": [
+        "SAMN40548179"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "93",
+      "runs": [
+        "SRR28413933"
+      ],
+      "biosamples": [
+        "SAMN40548180"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "94",
+      "runs": [
+        "SRR28413931"
+      ],
+      "biosamples": [
+        "SAMN40548181"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "95",
+      "runs": [
+        "SRR28413930"
+      ],
+      "biosamples": [
+        "SAMN40548182"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "97",
+      "runs": [
+        "SRR28413928"
+      ],
+      "biosamples": [
+        "SAMN40548088"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "99",
+      "runs": [
+        "SRR28413926"
+      ],
+      "biosamples": [
+        "SAMN40548090"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "100",
+      "runs": [
+        "SRR28414264"
+      ],
+      "biosamples": [
+        "SAMN40548273"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "101",
+      "runs": [
+        "SRR28414263"
+      ],
+      "biosamples": [
+        "SAMN40548274"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "102",
+      "runs": [
+        "SRR28414261"
+      ],
+      "biosamples": [
+        "SAMN40548091"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "103",
+      "runs": [
+        "SRR28414262"
+      ],
+      "biosamples": [
+        "SAMN40548275"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "104",
+      "runs": [
+        "SRR28414221"
+      ],
+      "biosamples": [
+        "SAMN40548301"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "106",
+      "runs": [
+        "SRR28414260"
+      ],
+      "biosamples": [
+        "SAMN40548092"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "107",
+      "runs": [
+        "SRR28414220"
+      ],
+      "biosamples": [
+        "SAMN40548302"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "108",
+      "runs": [
+        "SRR28414114"
+      ],
+      "biosamples": [
+        "SAMN40548420"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "110",
+      "runs": [
+        "SRR28414083"
+      ],
+      "biosamples": [
+        "SAMN40548095"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "111",
+      "runs": [
+        "SRR28414072"
+      ],
+      "biosamples": [
+        "SAMN40548097"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "113",
+      "runs": [
+        "SRR28414219"
+      ],
+      "biosamples": [
+        "SAMN40548303"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "114",
+      "runs": [
+        "SRR28413986"
+      ],
+      "biosamples": [
+        "SAMN40548111"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "116",
+      "runs": [
+        "SRR28413932"
+      ],
+      "biosamples": [
+        "SAMN40548121"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "117",
+      "runs": [
+        "SRR28414259"
+      ],
+      "biosamples": [
+        "SAMN40548122"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "119",
+      "runs": [
+        "SRR28414248"
+      ],
+      "biosamples": [
+        "SAMN40548124"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "120",
+      "runs": [
+        "SRR28414226"
+      ],
+      "biosamples": [
+        "SAMN40548132"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "121",
+      "runs": [
+        "SRR28414218"
+      ],
+      "biosamples": [
+        "SAMN40548304"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "122",
+      "runs": [
+        "SRR28414217"
+      ],
+      "biosamples": [
+        "SAMN40548305"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "123",
+      "runs": [
+        "SRR28414151"
+      ],
+      "biosamples": [
+        "SAMN40548146"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "124",
+      "runs": [
+        "SRR28414216"
+      ],
+      "biosamples": [
+        "SAMN40548306"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "127",
+      "runs": [
+        "SRR28414256"
+      ],
+      "biosamples": [
+        "SAMN40548278"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "128",
+      "runs": [
+        "SRR28414215"
+      ],
+      "biosamples": [
+        "SAMN40548307"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "129",
+      "runs": [
+        "SRR28414140"
+      ],
+      "biosamples": [
+        "SAMN40548148"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "130",
+      "runs": [
+        "SRR28414054"
+      ],
+      "biosamples": [
+        "SAMN40548152"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "131",
+      "runs": [
+        "SRR28414111"
+      ],
+      "biosamples": [
+        "SAMN40548421"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "132",
+      "runs": [
+        "SRR28414214"
+      ],
+      "biosamples": [
+        "SAMN40548308"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": true
+    },
+    {
+      "plant": "133",
+      "runs": [
+        "SRR28414255"
+      ],
+      "biosamples": [
+        "SAMN40548279"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "134",
+      "runs": [
+        "SRR28414211"
+      ],
+      "biosamples": [
+        "SAMN40548309"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "135",
+      "runs": [
+        "SRR28414043"
+      ],
+      "biosamples": [
+        "SAMN40548157"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "138",
+      "runs": [
+        "SRR28414212"
+      ],
+      "biosamples": [
+        "SAMN40548159"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "139",
+      "runs": [
+        "SRR28414209"
+      ],
+      "biosamples": [
+        "SAMN40548281"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "142",
+      "runs": [
+        "SRR28414008"
+      ],
+      "biosamples": [
+        "SAMN40548163"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "143",
+      "runs": [
+        "SRR28413965"
+      ],
+      "biosamples": [
+        "SAMN40548164"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "144",
+      "runs": [
+        "SRR28414208"
+      ],
+      "biosamples": [
+        "SAMN40548282"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "145",
+      "runs": [
+        "SRR28414207"
+      ],
+      "biosamples": [
+        "SAMN40548283"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "146",
+      "runs": [
+        "SRR28414206"
+      ],
+      "biosamples": [
+        "SAMN40548284"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "148",
+      "runs": [
+        "SRR28414254"
+      ],
+      "biosamples": [
+        "SAMN40548184"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "149",
+      "runs": [
+        "SRR28413943"
+      ],
+      "biosamples": [
+        "SAMN40548174"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "151",
+      "runs": [
+        "SRR28414113"
+      ],
+      "biosamples": [
+        "SAMN40548175"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "152",
+      "runs": [
+        "SRR28414204"
+      ],
+      "biosamples": [
+        "SAMN40548286"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "154",
+      "runs": [
+        "SRR28414203"
+      ],
+      "biosamples": [
+        "SAMN40548287"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "155",
+      "runs": [
+        "SRR28414186"
+      ],
+      "biosamples": [
+        "SAMN40548178"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "156",
+      "runs": [
+        "SRR28414253"
+      ],
+      "biosamples": [
+        "SAMN40548185"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "158",
+      "runs": [
+        "SRR28414251"
+      ],
+      "biosamples": [
+        "SAMN40548187"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "159",
+      "runs": [
+        "SRR28414250"
+      ],
+      "biosamples": [
+        "SAMN40548188"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "160",
+      "runs": [
+        "SRR28414249"
+      ],
+      "biosamples": [
+        "SAMN40548189"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "161",
+      "runs": [
+        "SRR28414247"
+      ],
+      "biosamples": [
+        "SAMN40548190"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "163",
+      "runs": [
+        "SRR28414246"
+      ],
+      "biosamples": [
+        "SAMN40548191"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "164",
+      "runs": [
+        "SRR28414245"
+      ],
+      "biosamples": [
+        "SAMN40548192"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "165",
+      "runs": [
+        "SRR28414244"
+      ],
+      "biosamples": [
+        "SAMN40548193"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "166",
+      "runs": [
+        "SRR28414243"
+      ],
+      "biosamples": [
+        "SAMN40548194"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "167",
+      "runs": [
+        "SRR28414242"
+      ],
+      "biosamples": [
+        "SAMN40548195"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "168",
+      "runs": [
+        "SRR28414241"
+      ],
+      "biosamples": [
+        "SAMN40548196"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "169",
+      "runs": [
+        "SRR28414240"
+      ],
+      "biosamples": [
+        "SAMN40548197"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "170",
+      "runs": [
+        "SRR28414238"
+      ],
+      "biosamples": [
+        "SAMN40548198"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "174",
+      "runs": [
+        "SRR28414199"
+      ],
+      "biosamples": [
+        "SAMN40548289"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "175",
+      "runs": [
+        "SRR28414198"
+      ],
+      "biosamples": [
+        "SAMN40548290"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "176",
+      "runs": [
+        "SRR28414197"
+      ],
+      "biosamples": [
+        "SAMN40548311"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "177",
+      "runs": [
+        "SRR28414196"
+      ],
+      "biosamples": [
+        "SAMN40548291"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "178",
+      "runs": [
+        "SRR28414195"
+      ],
+      "biosamples": [
+        "SAMN40548312"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "179",
+      "runs": [
+        "SRR28414235"
+      ],
+      "biosamples": [
+        "SAMN40548200"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "182",
+      "runs": [
+        "SRR28414033"
+      ],
+      "biosamples": [
+        "SAMN40548313"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "183",
+      "runs": [
+        "SRR28414032"
+      ],
+      "biosamples": [
+        "SAMN40548293"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "184",
+      "runs": [
+        "SRR28414234"
+      ],
+      "biosamples": [
+        "SAMN40548201"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "185",
+      "runs": [
+        "SRR28414108"
+      ],
+      "biosamples": [
+        "SAMN40548407"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "187",
+      "runs": [
+        "SRR28414233"
+      ],
+      "biosamples": [
+        "SAMN40548202"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "188",
+      "runs": [
+        "SRR28414232"
+      ],
+      "biosamples": [
+        "SAMN40548203"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "189",
+      "runs": [
+        "SRR28414231"
+      ],
+      "biosamples": [
+        "SAMN40548204"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "190",
+      "runs": [
+        "SRR28414230"
+      ],
+      "biosamples": [
+        "SAMN40548205"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "191",
+      "runs": [
+        "SRR28414229"
+      ],
+      "biosamples": [
+        "SAMN40548206"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "192",
+      "runs": [
+        "SRR28414228"
+      ],
+      "biosamples": [
+        "SAMN40548207"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "193",
+      "runs": [
+        "SRR28414106"
+      ],
+      "biosamples": [
+        "SAMN40548415"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "196",
+      "runs": [
+        "SRR28414160"
+      ],
+      "biosamples": [
+        "SAMN40548210"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "197",
+      "runs": [
+        "SRR28414159"
+      ],
+      "biosamples": [
+        "SAMN40548211"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "198",
+      "runs": [
+        "SRR28414158"
+      ],
+      "biosamples": [
+        "SAMN40548212"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "199",
+      "runs": [
+        "SRR28414157"
+      ],
+      "biosamples": [
+        "SAMN40548213"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "200",
+      "runs": [
+        "SRR28414155"
+      ],
+      "biosamples": [
+        "SAMN40548214"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "203",
+      "runs": [
+        "SRR28414152"
+      ],
+      "biosamples": [
+        "SAMN40548217"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "204",
+      "runs": [
+        "SRR28414150"
+      ],
+      "biosamples": [
+        "SAMN40548218"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "205",
+      "runs": [
+        "SRR28414149"
+      ],
+      "biosamples": [
+        "SAMN40548219"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "206",
+      "runs": [
+        "SRR28414148"
+      ],
+      "biosamples": [
+        "SAMN40548220"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "207",
+      "runs": [
+        "SRR28414029"
+      ],
+      "biosamples": [
+        "SAMN40548295"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "208",
+      "runs": [
+        "SRR28414147"
+      ],
+      "biosamples": [
+        "SAMN40548221"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "210",
+      "runs": [
+        "SRR28414146"
+      ],
+      "biosamples": [
+        "SAMN40548222"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "212",
+      "runs": [
+        "SRR28414144"
+      ],
+      "biosamples": [
+        "SAMN40548224"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "213",
+      "runs": [
+        "SRR28414027"
+      ],
+      "biosamples": [
+        "SAMN40548297"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "214",
+      "runs": [
+        "SRR28414143"
+      ],
+      "biosamples": [
+        "SAMN40548225"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "215",
+      "runs": [
+        "SRR28414142"
+      ],
+      "biosamples": [
+        "SAMN40548226"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "218",
+      "runs": [
+        "SRR28414138"
+      ],
+      "biosamples": [
+        "SAMN40548229"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "220",
+      "runs": [
+        "SRR28414136"
+      ],
+      "biosamples": [
+        "SAMN40548231"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "222",
+      "runs": [
+        "SRR28414134"
+      ],
+      "biosamples": [
+        "SAMN40548233"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "224",
+      "runs": [
+        "SRR28414132"
+      ],
+      "biosamples": [
+        "SAMN40548235"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "225",
+      "runs": [
+        "SRR28414131"
+      ],
+      "biosamples": [
+        "SAMN40548236"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "226",
+      "runs": [
+        "SRR28414130"
+      ],
+      "biosamples": [
+        "SAMN40548237"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "231",
+      "runs": [
+        "SRR28414060"
+      ],
+      "biosamples": [
+        "SAMN40548242"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "233",
+      "runs": [
+        "SRR28414059"
+      ],
+      "biosamples": [
+        "SAMN40548243"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "234",
+      "runs": [
+        "SRR28414058"
+      ],
+      "biosamples": [
+        "SAMN40548244"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "239",
+      "runs": [
+        "SRR28414052"
+      ],
+      "biosamples": [
+        "SAMN40548249"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "240",
+      "runs": [
+        "SRR28414050"
+      ],
+      "biosamples": [
+        "SAMN40548250"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "241",
+      "runs": [
+        "SRR28414049"
+      ],
+      "biosamples": [
+        "SAMN40548251"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "245",
+      "runs": [
+        "SRR28414047"
+      ],
+      "biosamples": [
+        "SAMN40548253"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "248",
+      "runs": [
+        "SRR28414045"
+      ],
+      "biosamples": [
+        "SAMN40548255"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "249",
+      "runs": [
+        "SRR28414026"
+      ],
+      "biosamples": [
+        "SAMN40548314"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "250",
+      "runs": [
+        "SRR28414025"
+      ],
+      "biosamples": [
+        "SAMN40548315"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "252",
+      "runs": [
+        "SRR28414023"
+      ],
+      "biosamples": [
+        "SAMN40548317"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "253",
+      "runs": [
+        "SRR28414022"
+      ],
+      "biosamples": [
+        "SAMN40548318"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "254",
+      "runs": [
+        "SRR28414021"
+      ],
+      "biosamples": [
+        "SAMN40548319"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "255",
+      "runs": [
+        "SRR28414020"
+      ],
+      "biosamples": [
+        "SAMN40548320"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "259",
+      "runs": [
+        "SRR28414015"
+      ],
+      "biosamples": [
+        "SAMN40548324"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "262",
+      "runs": [
+        "SRR28414013"
+      ],
+      "biosamples": [
+        "SAMN40548326"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "264",
+      "runs": [
+        "SRR28414011"
+      ],
+      "biosamples": [
+        "SAMN40548328"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "265",
+      "runs": [
+        "SRR28414010"
+      ],
+      "biosamples": [
+        "SAMN40548329"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "266",
+      "runs": [
+        "SRR28414009"
+      ],
+      "biosamples": [
+        "SAMN40548330"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "267",
+      "runs": [
+        "SRR28414007"
+      ],
+      "biosamples": [
+        "SAMN40548331"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "269",
+      "runs": [
+        "SRR28414005"
+      ],
+      "biosamples": [
+        "SAMN40548333"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "270",
+      "runs": [
+        "SRR28414004"
+      ],
+      "biosamples": [
+        "SAMN40548334"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "274",
+      "runs": [
+        "SRR28413968"
+      ],
+      "biosamples": [
+        "SAMN40548338"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "275",
+      "runs": [
+        "SRR28413967"
+      ],
+      "biosamples": [
+        "SAMN40548339"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "276",
+      "runs": [
+        "SRR28413966"
+      ],
+      "biosamples": [
+        "SAMN40548340"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "277",
+      "runs": [
+        "SRR28413964"
+      ],
+      "biosamples": [
+        "SAMN40548341"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "281",
+      "runs": [
+        "SRR28413961"
+      ],
+      "biosamples": [
+        "SAMN40548344"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "282",
+      "runs": [
+        "SRR28413960"
+      ],
+      "biosamples": [
+        "SAMN40548345"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "283",
+      "runs": [
+        "SRR28413959"
+      ],
+      "biosamples": [
+        "SAMN40548346"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "284",
+      "runs": [
+        "SRR28413958"
+      ],
+      "biosamples": [
+        "SAMN40548347"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "288",
+      "runs": [
+        "SRR28413955"
+      ],
+      "biosamples": [
+        "SAMN40548350"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "289",
+      "runs": [
+        "SRR28413953"
+      ],
+      "biosamples": [
+        "SAMN40548351"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "290",
+      "runs": [
+        "SRR28413952"
+      ],
+      "biosamples": [
+        "SAMN40548352"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "291",
+      "runs": [
+        "SRR28413951"
+      ],
+      "biosamples": [
+        "SAMN40548353"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "292",
+      "runs": [
+        "SRR28413950"
+      ],
+      "biosamples": [
+        "SAMN40548354"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "298",
+      "runs": [
+        "SRR28413946"
+      ],
+      "biosamples": [
+        "SAMN40548358"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "300",
+      "runs": [
+        "SRR28413944"
+      ],
+      "biosamples": [
+        "SAMN40548360"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "302",
+      "runs": [
+        "SRR28413941"
+      ],
+      "biosamples": [
+        "SAMN40548362"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "305",
+      "runs": [
+        "SRR28413938"
+      ],
+      "biosamples": [
+        "SAMN40548365"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "306",
+      "runs": [
+        "SRR28414129"
+      ],
+      "biosamples": [
+        "SAMN40548366"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "310",
+      "runs": [
+        "SRR28414125"
+      ],
+      "biosamples": [
+        "SAMN40548370"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "311",
+      "runs": [
+        "SRR28414123"
+      ],
+      "biosamples": [
+        "SAMN40548371"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "313",
+      "runs": [
+        "SRR28414121"
+      ],
+      "biosamples": [
+        "SAMN40548373"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "314",
+      "runs": [
+        "SRR28414120"
+      ],
+      "biosamples": [
+        "SAMN40548374"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "316",
+      "runs": [
+        "SRR28414104"
+      ],
+      "biosamples": [
+        "SAMN40548376"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "318",
+      "runs": [
+        "SRR28414100"
+      ],
+      "biosamples": [
+        "SAMN40548378"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "319",
+      "runs": [
+        "SRR28414099"
+      ],
+      "biosamples": [
+        "SAMN40548379"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "322",
+      "runs": [
+        "SRR28414192"
+      ],
+      "biosamples": [
+        "SAMN40548382"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "324",
+      "runs": [
+        "SRR28414191"
+      ],
+      "biosamples": [
+        "SAMN40548383"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "325",
+      "runs": [
+        "SRR28414190"
+      ],
+      "biosamples": [
+        "SAMN40548384"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "326",
+      "runs": [
+        "SRR28414189"
+      ],
+      "biosamples": [
+        "SAMN40548385"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "327",
+      "runs": [
+        "SRR28414188"
+      ],
+      "biosamples": [
+        "SAMN40548386"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "328",
+      "runs": [
+        "SRR28414187"
+      ],
+      "biosamples": [
+        "SAMN40548387"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "330",
+      "runs": [
+        "SRR28414185"
+      ],
+      "biosamples": [
+        "SAMN40548388"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "331",
+      "runs": [
+        "SRR28414184"
+      ],
+      "biosamples": [
+        "SAMN40548389"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "333",
+      "runs": [
+        "SRR28414183"
+      ],
+      "biosamples": [
+        "SAMN40548390"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "335",
+      "runs": [
+        "SRR28414182"
+      ],
+      "biosamples": [
+        "SAMN40548391"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "337",
+      "runs": [
+        "SRR28414180"
+      ],
+      "biosamples": [
+        "SAMN40548393"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "338",
+      "runs": [
+        "SRR28414179"
+      ],
+      "biosamples": [
+        "SAMN40548394"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "339",
+      "runs": [
+        "SRR28414178"
+      ],
+      "biosamples": [
+        "SAMN40548395"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": true,
+      "violator_any": false
+    },
+    {
+      "plant": "341",
+      "runs": [
+        "SRR28414174"
+      ],
+      "biosamples": [
+        "SAMN40548397"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "342",
+      "runs": [
+        "SRR28414173"
+      ],
+      "biosamples": [
+        "SAMN40548398"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "343",
+      "runs": [
+        "SRR28414172"
+      ],
+      "biosamples": [
+        "SAMN40548399"
+      ],
+      "n_flowers": 1,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "344",
+      "runs": [
+        "SRR28414171"
+      ],
+      "biosamples": [
+        "SAMN40548400"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "345",
+      "runs": [
+        "SRR28414170"
+      ],
+      "biosamples": [
+        "SAMN40548401"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "346",
+      "runs": [
+        "SRR28414169"
+      ],
+      "biosamples": [
+        "SAMN40548402"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    },
+    {
+      "plant": "351",
+      "runs": [
+        "SRR28414162"
+      ],
+      "biosamples": [
+        "SAMN40548405"
+      ],
+      "n_flowers": 2,
+      "mosaic_any": false,
+      "violator_any": false
+    }
+  ],
+  "bioinference": false,
+  "genotypes_called": false,
+  "no_raw_fastq_download": true,
+  "same_alias_base_may_have_distinct_biosamples": true
+}

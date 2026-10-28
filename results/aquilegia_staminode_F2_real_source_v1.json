@@ -1,0 +1,64 @@
+{
+  "schema": "slk_anto_aquilegia_f2_whorl_reassembly_original_source_v1",
+  "source": {
+    "citation": "Johns et al. 2024 EvoDevo 15:6, Supplementary Material 3",
+    "doi": "10.1186/s13227-024-00225-3",
+    "original_supplement_url": "https://static-content.springer.com/esm/art%3A10.1186%2Fs13227-024-00225-3/MediaObjects/13227_2024_225_MOESM3_ESM.csv",
+    "original_publisher_csv_git_blob_sha1": "9911d4a5e85fa8629ad9890f28992e0f07e5feca",
+    "license": "Creative Commons Attribution 4.0 (publisher article/supplement)",
+    "sample_basis": "F2 of A. jonesii x A. coerulea Origami",
+    "scored_whorl_rows": 800,
+    "scored_flowers": 400,
+    "unique_f2_plants": 231,
+    "plants_scored_one_flower": 62,
+    "plants_scored_two_flowers": 169,
+    "repeated_fusion_measurement_is_not_independent": true,
+    "author_genomic_sample_separate_from_this_phenotype_CSV": true
+  },
+  "morphology": {
+    "anther_present_whorl_rows": 467,
+    "anther_absent_whorl_rows": 333,
+    "pure_staminode_endpoint_whorl_rows": 240,
+    "pure_stamen_endpoint_whorl_rows": 119,
+    "non_endpoint_whorl_rows": 441,
+    "observed_distinct_anther_LE_fusion_combinations": 15,
+    "anther_present_LEge2_fused_whorl_rows": 187,
+    "flowers_with_any_anther_present_LEge2_fused_whorl": 129,
+    "plants_with_any_anther_present_LEge2_fused_whorl": 91
+  },
+  "paired_whorls": {
+    "flower_pairs": 400,
+    "outer_anther_yes_inner_no": 99,
+    "inner_anther_yes_outer_no": 0,
+    "anther_same": 301,
+    "LE_inner_greater": 181,
+    "LE_outer_greater": 2,
+    "LE_equal": 217,
+    "LE_outer_greater_flower_keys": [
+      "132|a",
+      "39|a"
+    ],
+    "every_f2_flower_obeys_strict_LE_gradient": false,
+    "one_per_plant_author_analysis_not_our_all_flower_analyses": true,
+    "fusion_identical_by_scoring": 400,
+    "fused_flowers": 234,
+    "fusion_independent_whorl_measurements": 0
+  },
+  "biological_claim_limits": {
+    "pollen_fertility_confirmed": false,
+    "individual_locus_genotype_linked_in_this_CSV": false,
+    "biochemical_developmental_toolkit_retention_measured": false,
+    "ecological_fitness_or_pollinator_payoff_estimated": false,
+    "recurrent_natural_re_expression_confirmed": false,
+    "SLK_candidate_structural_payoff_calibrated": false
+  },
+  "interpretation": {
+    "actual_biological_phenotype_co_occurrence": true,
+    "differential_inner_outer_whorl_identity": true,
+    "genetic_modularity_not_inferred_from_morphology_alone": true,
+    "QTL_results_are_from_original_authors_not_our_CSV_refit": true,
+    "400_flower_counts_are_not_400_independent_genotypes": true,
+    "3_morphological_traits_are_not_3_functional_gene_modules": true,
+    "staminode_return_does_not_equal_restored_ancestral_pollen_role": true
+  }
+}
