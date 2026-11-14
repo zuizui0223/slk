@@ -1,0 +1,52 @@
+name: Real published Wurmbea within-plant gender re-expression 1999 and 2012
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/WURMBEA_1999_2012_REAL_SEX_REEXPRESSION_SOURCE_RECEIPT_V1.json'
+      - 'analysis/audit_wurmbea_published_state_plasticity_v1.py'
+      - 'tests/test_wurmbea_published_state_plasticity_v1.py'
+      - 'docs/SLK_ANTO_WURMBEA_REAL_GENDER_REEXPRESSION_V1_20261114.md'
+      - '.github/workflows/wurmbea-real-published-gender-plasticity-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-aggregate-verification:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify published tagged-plant and resource cohorts
+        run: |
+          python -m unittest discover -s tests -p 'test_wurmbea_published_state_plasticity_v1.py' -v
+      - name: Independently recalculate the published aggregate count interpretations
+        run: |
+          python analysis/audit_wurmbea_published_state_plasticity_v1.py --output /tmp/wurmbea_state_v1.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/wurmbea_state_v1.json'))
+          b=json.load(open('data/evidence/WURMBEA_1999_2012_REAL_SEX_REEXPRESSION_SOURCE_RECEIPT_V1.json'))
+          assert a['1999_tagged']==90 and a['1999_1983_nonflowering']==22
+          assert a['1999_male_to_fruiting_male']==14 and a['1999_male_reflowered']==28
+          assert a['1999_fruiting_male_to_male']==7 and a['1999_fruiting_male_reflowered']==23
+          assert a['1999_females_remaining_female_if_reflowered']==17
+          x=b['original_2012']['Wallan_resource_contrast']
+          assert (x['positive_high'],x['n_high'],x['positive_low'],x['n_low'])==(33,50,21,50)
+          assert math.isclose(a['2012_resource_exact_fisher_two_sided'],
+                              x['exact_fisher_independent_aggregate']['two_sided'],abs_tol=1e-12)
+          assert math.isclose(a['2012_resource_absolute_difference'],.24,abs_tol=1e-12)
+          assert a['2012_dioecious_perfect_flower_positive']==0
+          assert a['2012_biglandulosa_all_positive']
+          assert a['observed_within_lifetime_sex_change_not_native_genetic_regain']
+          assert b['claim_limits']['published_aggregate_not_original_plant_level_dataset']
+          print('PASS_PUBLISHED_WURMBEA_REAL_PHENOTYPE_REEXPRESSION_NOT_GENOMIC_ANCESTRAL_RECOVERY')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: published-Wurmbea-original-aggregate-reproduction-v1
+          path: /tmp/wurmbea_state_v1.json
+          if-no-files-found: error
+          retention-days: 30
