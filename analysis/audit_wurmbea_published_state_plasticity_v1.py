@@ -61,17 +61,17 @@ def audit_wurmbea_published_aggregates(data,strict=True):
     groups=row["population_groups"]
     require(len(groups)==4,"PUBLISHED_2012_POPULATIONS_CHANGED")
     for g in groups:
-        require(g["high_n"]+g["low_n"]==g["n"],"PUBLISHED_RESOURCE_COHORT_CHANGED")
-        require(0<=g["high_perfect_flower_positive"]<=g["high_n"] and
-                0<=g["low_perfect_flower_positive"]<=g["low_n"],
+        require(g["high"]["n"]+g["low"]["n"]==g["n"],"PUBLISHED_RESOURCE_COHORT_CHANGED")
+        require(0<=g["high"]["positive"]<=g["high"]["n"] and
+                0<=g["low"]["positive"]<=g["low"]["n"],
                 "INVALID_PUBLISHED_PERFECT_FLOWER_COUNTS")
     # Only the original Wallan, W. dioica subdioecious 100-male
     # experiment is used in the original within-pop resource contrast.
     wallan=next(g for g in groups if g["name"].startswith("W. dioica subdioecious"))
-    a=wallan["high"]["positive"] if "high" in wallan else wallan["high_perfect_flower_positive"]
-    b=wallan["high"]["n"]-a if "high" in wallan else wallan["high_n"]-a
-    c=wallan["low"]["positive"] if "low" in wallan else wallan["low_perfect_flower_positive"]
-    d=wallan["low"]["n"]-c if "low" in wallan else wallan["low_n"]-c
+    a=wallan["high"]["positive"]
+    b=wallan["high"]["n"]-a
+    c=wallan["low"]["positive"]
+    d=wallan["low"]["n"]-c
     results={
       "schema":"wurmbea_original_published_individual_expression_math_check_v1",
       "1999_tagged":n,
@@ -89,11 +89,11 @@ def audit_wurmbea_published_aggregates(data,strict=True):
       "2012_resource_absolute_difference":a/(a+b)-c/(c+d),
       "2012_resource_exact_fisher_two_sided":fisher_two_sided(a,b,c,d),
       "2012_dioecious_perfect_flower_positive":
-          next(g for g in groups if g["name"].startswith("W. dioica dioecious"))["high_perfect_flower_positive"]+
-          next(g for g in groups if g["name"].startswith("W. dioica dioecious"))["low_perfect_flower_positive"],
+          next(g for g in groups if g["name"].startswith("W. dioica dioecious"))["high"]["positive"]+
+          next(g for g in groups if g["name"].startswith("W. dioica dioecious"))["low"]["positive"],
       "2012_biglandulosa_all_positive":all(
-          g["high_perfect_flower_positive"]==g["high_n"] and
-          g["low_perfect_flower_positive"]==g["low_n"] for g in groups
+          g["high"]["positive"]==g["high"]["n"] and
+          g["low"]["positive"]==g["low"]["n"] for g in groups
           if "biglandulosa" in g["name"]),
       "published_aggregate_only_not_raw_population_experiment":True,
       "observed_within_lifetime_sex_change_not_native_genetic_regain":True
