@@ -1,0 +1,141 @@
+{
+  "schema": "slk_anto_Wurmbea_authors_original_aggregate_1999_2012_v1",
+  "audit_date": "2026-11-14",
+  "original_1999": {
+    "citation": "Ramsey & Vaughton 1999 Journal of Ecology DOI 10.1046/j.1365-2745.1999.00336.x",
+    "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1046/j.1365-2745.1999.00336.x",
+    "tagged_same_plants_1981": 90,
+    "drought_no_aboveground_flowering_1982": true,
+    "followup_1983": [
+      {
+        "source_1981": "female",
+        "count_F_1983": 17,
+        "count_M_1983": 0,
+        "count_FM_1983": 0,
+        "count_nonflower_1983": 10,
+        "n_1981": 27
+      },
+      {
+        "source_1981": "male_only",
+        "count_F_1983": 0,
+        "count_M_1983": 14,
+        "count_FM_1983": 14,
+        "count_nonflower_1983": 9,
+        "n_1981": 37
+      },
+      {
+        "source_1981": "fruiting_male",
+        "count_F_1983": 0,
+        "count_M_1983": 7,
+        "count_FM_1983": 16,
+        "count_nonflower_1983": 3,
+        "n_1981": 26
+      }
+    ],
+    "derived": {
+      "not_refloresced": 22,
+      "reflowered": 68,
+      "male_only_to_fruiting_male": 14,
+      "male_only_refloresced": 28,
+      "male_only_female_function_reexpressed_fraction": 0.5,
+      "fruiting_male_to_male_only": 7,
+      "fruiting_male_refloresced": 23,
+      "fruiting_male_return_to_male_only_fraction": 0.30434782608695654,
+      "female_refloresced": 17,
+      "female_remained_female": 17,
+      "pollen_bearing_refloresced": 51,
+      "pollen_bearing_switched_between_M_and_FM": 21,
+      "pollen_bearing_switch_fraction": 0.4117647058823529
+    }
+  },
+  "original_2012": {
+    "citation": "Vaughton & Ramsey 2012 Annals of Botany DOI 10.1093/aob/mcr163",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3278287/",
+    "study_population_count": 4,
+    "source_initial_field_phenotypic_males_total": 266,
+    "equal_haphazard_resource_assignments_per_population": true,
+    "treatments_maintained_for_two_years": true,
+    "population_groups": [
+      {
+        "name": "W. dioica dioecious Wyperfeld",
+        "high": {
+          "positive": 0,
+          "n": 33
+        },
+        "low": {
+          "positive": 0,
+          "n": 33
+        },
+        "n": 66
+      },
+      {
+        "name": "W. dioica subdioecious Wallan",
+        "high": {
+          "positive": 33,
+          "n": 50
+        },
+        "low": {
+          "positive": 21,
+          "n": 50
+        },
+        "n": 100
+      },
+      {
+        "name": "W. biglandulosa gynodioecious Goonoowigal",
+        "high": {
+          "positive": 25,
+          "n": 25
+        },
+        "low": {
+          "positive": 25,
+          "n": 25
+        },
+        "n": 50
+      },
+      {
+        "name": "W. biglandulosa cosexual Rocky River",
+        "high": {
+          "positive": 25,
+          "n": 25
+        },
+        "low": {
+          "positive": 25,
+          "n": 25
+        },
+        "n": 50
+      }
+    ],
+    "Wallan_resource_contrast": {
+      "positive_high": 33,
+      "n_high": 50,
+      "positive_low": 21,
+      "n_low": 50,
+      "risk_difference_high_minus_low": 0.24,
+      "exact_fisher_independent_aggregate": {
+        "two_sided": 0.026802559248039523,
+        "one_sided_high_resource_greater": 0.013401279624019755,
+        "odds_ratio": 2.680672268907563
+      },
+      "wilson_high_95": [
+        0.521538260502326,
+        0.7756305077749992
+      ],
+      "wilson_low_95": [
+        0.2937500335471198,
+        0.5576655823142176
+      ],
+      "authors_chisquare_one_tailed_p": 0.014
+    },
+    "functional_proof_author_reported": "All plants with perfect flowers set fruits with seeds following hand cross-pollination",
+    "subdioecious_male_only_pollen_per_flower_about_twice_hermaphroditic_source_authors": true
+  },
+  "claim_limits": {
+    "published_aggregate_not_original_plant_level_dataset": true,
+    "different_1999_2012_cohorts_not_same_tagged_individuals": true,
+    "gender_plasticity_means_expression_not_ancestral_genetic_reacquisition": true,
+    "no_fertile_flowers_detected_does_not_prove_genetic_gene_loss": true,
+    "field_and_greenhouse_population_effects_not_randomized_genotypic_selection": true,
+    "no_same_organ_SLK_payoff_or_historic_genetic_ancestral_return": true,
+    "no_derived_evolutionary_origin_rate": true
+  }
+}
