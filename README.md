@@ -58,6 +58,8 @@ The strongest original SLK prediction is the **candidate-specific turnover of th
 
 ## Running biological example
 
+**Wurmbea biological continuation (14 November 2026):** [Female capacity and reproductive return](docs/SLK_ANTO_WURMBEA_REPRODUCTIVE_RETURN_V2_20261114.md) separates sex re-expression from subsequent seed, germination and offspring survival. In a distinct published 2006 experiment, a descriptive female/fruiting-male index through the second growing season is **2.750 under open pollination versus 1.327 under hand crossing**. These are ratios of products of reported treatment means, not lifetime fitness or a causal effect of switching sex. Source means, stage definitions and reproducible calculations are retained; the earlier 1999 author attribution and individual-round-trip wording are corrected.
+
 The manuscript uses *Pedicularis rex* as a literature-based running example. Existing work documents opposing pollinator- and seed-predator-mediated selection on floral exsertion and experimentally supports a defensive role of water held by cup-like bracts. That establishes the biological motivation—real conflict in a multifunctional structure—but it does **not** yet identify why integration persists.
 
 The important biological point is that the balance of this conflict already varies geographically: seed-predator effects change strongly among populations while the pollinator side is more consistent. The same integrated floral architecture can therefore occupy different selective environments across the species' range.

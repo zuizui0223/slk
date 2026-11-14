@@ -2,7 +2,7 @@
   "schema": "slk_anto_Wurmbea_authors_original_aggregate_1999_2012_v1",
   "audit_date": "2026-11-14",
   "original_1999": {
-    "citation": "Ramsey & Vaughton 1999 Journal of Ecology DOI 10.1046/j.1365-2745.1999.00336.x",
+    "citation": "Barrett, Case & Peters 1999 Journal of Ecology 87:123-137 DOI 10.1046/j.1365-2745.1999.00336.x",
     "url": "https://besjournals.onlinelibrary.wiley.com/doi/10.1046/j.1365-2745.1999.00336.x",
     "tagged_same_plants_1981": 90,
     "drought_no_aboveground_flowering_1982": true,
@@ -130,6 +130,7 @@
     "subdioecious_male_only_pollen_per_flower_about_twice_hermaphroditic_source_authors": true
   },
   "claim_limits": {
+    "two_observed_flowering_censuses_do_not_document_one_individual_round_trip": true,
     "published_aggregate_not_original_plant_level_dataset": true,
     "different_1999_2012_cohorts_not_same_tagged_individuals": true,
     "gender_plasticity_means_expression_not_ancestral_genetic_reacquisition": true,

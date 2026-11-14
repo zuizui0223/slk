@@ -1,0 +1,94 @@
+{
+  "schema": "slk_wurmbea_published_reproductive_return_v2",
+  "audit_date": "2026-11-14",
+  "source": {
+    "citation": "Ramsey M, Vaughton G, Peakall R (2006). Does inbreeding avoidance maintain gender dimorphism in Wurmbea dioica (Colchicaceae)? Journal of Evolutionary Biology 19:1497-1506.",
+    "doi": "10.1111/j.1420-9101.2006.01129.x",
+    "publisher_url": "https://academic.oup.com/jeb/article-abstract/19/5/1497/7324691",
+    "full_article_text_url": "https://www.academia.edu/55515324/Does_inbreeding_avoidance_maintain_gender_dimorphism_in_Wurmbea_dioica_Colchicaceae_",
+    "table": "Table 2, p.1500; methods pp.1499-1501; Figure 2 and results p.1502",
+    "access": "Full primary-article text mirror, checked against publisher abstract; original family records unavailable",
+    "population": "YY, southeastern Australian Wurmbea dioica ssp. dioica",
+    "data_level": "Published rounded treatment means and standard errors; manual factual transcription"
+  },
+  "measurement_semantics": {
+    "stage_order": ["seeds", "seeds_x_germination", "seeds_x_germination_x_survival", "seeds_x_germination_x_survival_x_corm_mass"],
+    "germination_and_survival_unit": "percent",
+    "seed_unit": "seeds per maternal plant, published treatment mean",
+    "germination_condition": "seed germination among sampled mature seeds, monitored for four months",
+    "survival_condition": "survival of planted germinated seedlings through the second growing season",
+    "corm_mass_unit": "mg per surviving offspring, growth proxy",
+    "index_definition": "Successive products of treatment means, then ratio between groups; not the mean of family-specific products",
+    "corm_mass_is_lifetime_fitness": false,
+    "table_means_decimal_places": 1
+  },
+  "sampling": {
+    "initial_maternal_plants": {"Ms": 19, "Mo": 15, "Mc": 15, "Fo": 15, "Fc": 15},
+    "seed_traits_families": {"Ms": 15, "Mo": 15, "Mc": 15, "Fo": 15, "Fc": 15},
+    "seedling_families": {"Ms": 11, "Mo": 10, "Mc": 12, "Fo": 12, "Fc": 12},
+    "seedlings_per_growth_family": 8,
+    "total_growth_seedlings": 456,
+    "selfed_mothers_excluded_from_subsequent_seed_traits_due_to_too_few_seeds": 4,
+    "note": "Different stage-specific family sets; no single common sample size or within-family covariance is available"
+  },
+  "groups": {
+    "Ms": {
+      "sex_morph": "fruiting male (hermaphrodite)", "pollination": "hand self",
+      "seeds_mean": 20.9, "seeds_se": 3.4,
+      "germination_pct_mean": 74.7, "germination_pct_se": 4.7,
+      "survival_pct_mean": 55.7, "survival_pct_se": 6.4,
+      "corm_mass_mg_mean": 13.1, "corm_mass_mg_se": 2.2
+    },
+    "Mo": {
+      "sex_morph": "fruiting male (hermaphrodite)", "pollination": "open field",
+      "seeds_mean": 27.2, "seeds_se": 2.1,
+      "germination_pct_mean": 80.9, "germination_pct_se": 4.7,
+      "survival_pct_mean": 72.5, "survival_pct_se": 5.2,
+      "corm_mass_mg_mean": 14.2, "corm_mass_mg_se": 2.1
+    },
+    "Mc": {
+      "sex_morph": "fruiting male (hermaphrodite)", "pollination": "emasculated hand cross",
+      "seeds_mean": 42.6, "seeds_se": 4.8,
+      "germination_pct_mean": 94.8, "germination_pct_se": 1.8,
+      "survival_pct_mean": 88.5, "survival_pct_se": 3.6,
+      "corm_mass_mg_mean": 21.4, "corm_mass_mg_se": 1.5
+    },
+    "Fo": {
+      "sex_morph": "female", "pollination": "open field",
+      "seeds_mean": 55.3, "seeds_se": 7.6,
+      "germination_pct_mean": 96.4, "germination_pct_se": 1.4,
+      "survival_pct_mean": 82.3, "survival_pct_se": 4.5,
+      "corm_mass_mg_mean": 19.0, "corm_mass_mg_se": 1.7
+    },
+    "Fc": {
+      "sex_morph": "female", "pollination": "hand cross",
+      "seeds_mean": 60.1, "seeds_se": 7.4,
+      "germination_pct_mean": 94.7, "germination_pct_se": 1.3,
+      "survival_pct_mean": 83.3, "survival_pct_se": 4.7,
+      "corm_mass_mg_mean": 20.1, "corm_mass_mg_se": 2.3
+    }
+  },
+  "author_reported": {
+    "female_open_over_fruiting_male_open_cumulative": 3.7,
+    "female_cross_advantage_abstract_and_discussion": 1.4,
+    "fruiting_male_cross_over_female_cross_cumulative_results": 0.80,
+    "fruiting_male_cross_over_female_cross_without_seed_count_results": 1.13,
+    "fruiting_male_open_over_cross_cumulative_results": 0.23,
+    "self_cross_cumulative_inbreeding_depression": 0.85,
+    "self_cross_cumulative_inbreeding_depression_se": 0.04,
+    "interpretation": "Reported point estimates are retained separately from Table 2 arithmetic; no correction to the original paper is asserted"
+  },
+  "claim_limits": [
+    "The 2006 fruiting males were already female-functional at collection; their prior male-only expression histories are unknown",
+    "No linkage to the 1999 tagged transition cohort or the 2012 resource-induced cohort",
+    "Open controls were pollinated in the field before excavation; self/cross treatments were pollinated in a glasshouse; crossed fruiting males were emasculated",
+    "Treatment contrasts are among different maternal plants; no paired genotype crossover or complete isolation of the effect of selfing",
+    "Corm mass is a growth proxy, not observed adult reproduction, paternal success, or lifetime fitness",
+    "Products of marginal means are descriptive indices; family selection and unobserved covariance prevent inference of exact cohort totals",
+    "No new sampling confidence intervals or significance tests can be reconstructed from the published marginal SEs alone",
+    "Printed-mean rounding bounds are deterministic sensitivity bounds, not sampling uncertainty",
+    "Marker outcrossing rates were measured among germinated seedlings, not zygotes; no further multiplication by cumulative inbreeding depression",
+    "The 1.4 abstract summary matches the seed-number ratio, while the four-component crossed female/male index is about 1.25; the original results also report reciprocal cumulative RP about 0.80",
+    "The original-text Mo/Mc cumulative 0.23 is not reproduced by the transcribed table means; do not pool, replace, or silently reconcile it with the derived 0.296"
+  ]
+}

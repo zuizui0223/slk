@@ -1,0 +1,245 @@
+{
+  "schema": "slk_wurmbea_reproductive_return_result_v2",
+  "source": {
+    "citation": "Ramsey M, Vaughton G, Peakall R (2006). Does inbreeding avoidance maintain gender dimorphism in Wurmbea dioica (Colchicaceae)? Journal of Evolutionary Biology 19:1497-1506.",
+    "doi": "10.1111/j.1420-9101.2006.01129.x",
+    "publisher_url": "https://academic.oup.com/jeb/article-abstract/19/5/1497/7324691",
+    "full_article_text_url": "https://www.academia.edu/55515324/Does_inbreeding_avoidance_maintain_gender_dimorphism_in_Wurmbea_dioica_Colchicaceae_",
+    "table": "Table 2, p.1500; methods pp.1499-1501; Figure 2 and results p.1502",
+    "access": "Full primary-article text mirror, checked against publisher abstract; original family records unavailable",
+    "population": "YY, southeastern Australian Wurmbea dioica ssp. dioica",
+    "data_level": "Published rounded treatment means and standard errors; manual factual transcription"
+  },
+  "stage_order": [
+    "seeds",
+    "seeds_x_germination",
+    "seeds_x_germination_x_survival",
+    "seeds_x_germination_x_survival_x_corm_mass"
+  ],
+  "group_indices": {
+    "Ms": [
+      20.9,
+      15.6123,
+      8.6960511,
+      113.91826941
+    ],
+    "Mo": [
+      27.2,
+      22.0048,
+      15.953479999999999,
+      226.539416
+    ],
+    "Mc": [
+      42.6,
+      40.3848,
+      35.740548,
+      764.8477271999999
+    ],
+    "Fo": [
+      55.3,
+      53.309200000000004,
+      43.8734716,
+      833.5959604000001
+    ],
+    "Fc": [
+      60.1,
+      56.9147,
+      47.4099451,
+      952.9398965100002
+    ]
+  },
+  "comparisons": {
+    "Fo_over_Mo": {
+      "stage_ratios": [
+        2.0330882352941178,
+        2.4226168835890354,
+        2.7500878554396913,
+        3.6796950178418406
+      ],
+      "rounding_only_bounds": [
+        [
+          2.0275229357798166,
+          2.0386740331491713
+        ],
+        [
+          2.413240702438361,
+          2.4320359987289737
+        ],
+        [
+          2.735893146458376,
+          2.7643638991764115
+        ],
+        [
+          3.638257903535875,
+          3.7216347900572893
+        ]
+      ]
+    },
+    "Fc_over_Mc": {
+      "stage_ratios": [
+        1.4107981220657277,
+        1.4093099383926628,
+        1.3265030267582916,
+        1.245921067188863
+      ],
+      "rounding_only_bounds": [
+        [
+          1.4079718640093788,
+          1.4136310223266744
+        ],
+        [
+          1.4050030250763073,
+          1.4136310223266744
+        ],
+        [
+          1.3209091116612375,
+          1.3321214891003763
+        ],
+        [
+          1.2346959295481499,
+          1.2572481501345474
+        ]
+      ]
+    },
+    "Ms_over_Mc": {
+      "stage_ratios": [
+        0.49061032863849763,
+        0.3865885184524871,
+        0.24331051387348623,
+        0.1489424173711528
+      ],
+      "rounding_only_bounds": [
+        [
+          0.488862837045721,
+          0.49236192714453575
+        ],
+        [
+          0.3847507726458943,
+          0.38843328816943595
+        ],
+        [
+          0.24179989269050275,
+          0.24482934782867213
+        ],
+        [
+          0.1471090256228933,
+          0.15079653039564586
+        ]
+      ]
+    },
+    "Mo_over_Mc": {
+      "stage_ratios": [
+        0.6384976525821596,
+        0.5448782710326657,
+        0.4463692050832573,
+        0.29618891178421747
+      ],
+      "rounding_only_bounds": [
+        [
+          0.6365767878077374,
+          0.6404230317273795
+        ],
+        [
+          0.5426171143305808,
+          0.5471476983465053
+        ],
+        [
+          0.44395945717956614,
+          0.4487910176940527
+        ],
+        [
+          0.2928683598643758,
+          0.29954435607214297
+        ]
+      ]
+    },
+    "Fo_over_Fc": {
+      "stage_ratios": [
+        0.9201331114808652,
+        0.9366508125317361,
+        0.925406505058366,
+        0.8747623679656195
+      ],
+      "rounding_only_bounds": [
+        [
+          0.9185369908561929,
+          0.9217318900915902
+        ],
+        [
+          0.9340479057413635,
+          0.9392608642296236
+        ],
+        [
+          0.9217209387789701,
+          0.9291066927244387
+        ],
+        [
+          0.8668293692238949,
+          0.8827672068030202
+        ]
+      ]
+    }
+  },
+  "self_cross_summary_inbreeding_depression": 0.8510575826288472,
+  "source_sampling": {
+    "initial_maternal_plants": {
+      "Ms": 19,
+      "Mo": 15,
+      "Mc": 15,
+      "Fo": 15,
+      "Fc": 15
+    },
+    "seed_traits_families": {
+      "Ms": 15,
+      "Mo": 15,
+      "Mc": 15,
+      "Fo": 15,
+      "Fc": 15
+    },
+    "seedling_families": {
+      "Ms": 11,
+      "Mo": 10,
+      "Mc": 12,
+      "Fo": 12,
+      "Fc": 12
+    },
+    "seedlings_per_growth_family": 8,
+    "total_growth_seedlings": 456,
+    "selfed_mothers_excluded_from_subsequent_seed_traits_due_to_too_few_seeds": 4,
+    "note": "Different stage-specific family sets; no single common sample size or within-family covariance is available"
+  },
+  "author_reported": {
+    "female_open_over_fruiting_male_open_cumulative": 3.7,
+    "female_cross_advantage_abstract_and_discussion": 1.4,
+    "fruiting_male_cross_over_female_cross_cumulative_results": 0.8,
+    "fruiting_male_cross_over_female_cross_without_seed_count_results": 1.13,
+    "fruiting_male_open_over_cross_cumulative_results": 0.23,
+    "self_cross_cumulative_inbreeding_depression": 0.85,
+    "self_cross_cumulative_inbreeding_depression_se": 0.04,
+    "interpretation": "Reported point estimates are retained separately from Table 2 arithmetic; no correction to the original paper is asserted"
+  },
+  "source_consistency": {
+    "crossed_female_male_four_component_ratio": 1.245921067188863,
+    "crossed_male_female_four_component_reciprocal": 0.8026190633859913,
+    "open_cross_fruiting_male_four_component_ratio": 0.29618891178421747,
+    "open_cross_reported_minus_recomputed": -0.06618891178421746,
+    "status": "TABLE_RECOMPUTATION_WITH_SOURCE_REPORTED_DISCREPANCY_RETAINED"
+  },
+  "new_confidence_intervals": null,
+  "new_p_values": null,
+  "rounding_bounds_are_sampling_intervals": false,
+  "claim_limits": [
+    "The 2006 fruiting males were already female-functional at collection; their prior male-only expression histories are unknown",
+    "No linkage to the 1999 tagged transition cohort or the 2012 resource-induced cohort",
+    "Open controls were pollinated in the field before excavation; self/cross treatments were pollinated in a glasshouse; crossed fruiting males were emasculated",
+    "Treatment contrasts are among different maternal plants; no paired genotype crossover or complete isolation of the effect of selfing",
+    "Corm mass is a growth proxy, not observed adult reproduction, paternal success, or lifetime fitness",
+    "Products of marginal means are descriptive indices; family selection and unobserved covariance prevent inference of exact cohort totals",
+    "No new sampling confidence intervals or significance tests can be reconstructed from the published marginal SEs alone",
+    "Printed-mean rounding bounds are deterministic sensitivity bounds, not sampling uncertainty",
+    "Marker outcrossing rates were measured among germinated seedlings, not zygotes; no further multiplication by cumulative inbreeding depression",
+    "The 1.4 abstract summary matches the seed-number ratio, while the four-component crossed female/male index is about 1.25; the original results also report reciprocal cumulative RP about 0.80",
+    "The original-text Mo/Mc cumulative 0.23 is not reproduced by the transcribed table means; do not pool, replace, or silently reconcile it with the derived 0.296"
+  ],
+  "source_file_sha256": "b629a6f25404ed4d23ad627d8154fc0694b3fa2f0bd980d4fca07bb002d109e0"
+}

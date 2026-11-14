@@ -5,7 +5,7 @@ This program reads only *author-reported aggregate Table 1 and percentages*
 stored in data/evidence. It is not an individual-level data download, genetic
 analysis, new evidence for trait reacquisition, or SLK fitness fit.
 Primary studies:
- Ramsey & Vaughton (1999), J Ecol doi:10.1046/j.1365-2745.1999.00336.x
+ Barrett, Case & Peters (1999), J Ecol doi:10.1046/j.1365-2745.1999.00336.x
  Vaughton & Ramsey (2012), Ann Bot doi:10.1093/aob/mcr163
 """
 from __future__ import annotations
