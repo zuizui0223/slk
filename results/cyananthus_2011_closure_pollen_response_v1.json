@@ -102,7 +102,8 @@
     "Ring manipulation under sufficient pollen showed no statistically detectable seed response; this does not estimate benefits of keeping flowers open under insufficient pollen",
     "2011 authors themselves explicitly say sexual conflict or pollen-donor manipulation are not established by this experiment",
     "2021 Dryad 10.5061/dryad.hmgqnk9f7 is listed by PubMed but the landing and file content were not retrieved here; no claim of original 2021 raw-data reanalysis",
-    "No SLK L, Phi, g0, Delta_R, historical origin, allelic invasion or fixation estimates from this source"
+    "No SLK L, Phi, g0, Delta_R, historical origin, allelic invasion or fixation estimates from this source",
+    "The female versus perfect flower 20-grain comparison is standardized for cross-pollen dose but not a randomized within-genotype sex-architecture intervention."
   ],
   "female_all_initially_treated_closure_fraction_bounds": {
     "10": {
@@ -129,5 +130,21 @@
   },
   "female_30_vs_10_direction_robust_to_any_missing_outcomes": true,
   "female_20_vs_10_nonstrict_direction_robust_to_any_missing_outcomes": true,
-  "female_30_vs_20_direction_robust_to_any_missing_outcomes": false
+  "female_30_vs_20_direction_robust_to_any_missing_outcomes": false,
+  "morph_response_at_20_cross_pollen": {
+    "female_usable_closed": 40,
+    "female_usable_open": 23,
+    "perfect_usable_closed": 7,
+    "perfect_usable_open": 19,
+    "female_usable_closure_fraction": 0.63492063,
+    "perfect_usable_closure_fraction": 0.26923077,
+    "reproduced_pearson_chisq": 9.87603467,
+    "original_pearson_chisq": 9.876,
+    "original_p": 0.002,
+    "female_minimum_closure_fraction_all_72": 0.55555556,
+    "perfect_maximum_closure_fraction_all_30": 0.36666667,
+    "female_higher_than_perfect_with_any_missing_outcomes": true,
+    "sex_morph_randomized_treatment": false,
+    "same_maternal_plant_or_genotype": false
+  }
 }
