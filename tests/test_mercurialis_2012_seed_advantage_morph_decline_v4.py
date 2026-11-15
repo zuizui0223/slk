@@ -37,38 +37,38 @@ class MercurialisSeedBenefitNotGeneticIncrease(unittest.TestCase):
 
     def test_original_oh_seed_ratio_direction_19_of_20(self):
         out=self.result
-        self.assertEqual(out["female_relative_seed_advantage_plots"],19)
-        self.assertEqual(sum(r["relative_seed_advantage_under_rounding"]=="female_seed_higher"
+        self.assertEqual(out["female_seed_biomass_allocation_higher_plots"],19)
+        self.assertEqual(sum(r["relative_seed_allocation_advantage_under_rounding"]=="female_seed_allocation_higher"
                              for r in out["plot_level_records"]),19)
         self.assertEqual(out["source_ratio_definition"],
-                         "o_h = sigma_hermaphrodite / sigma_female relative seed production")
+                         "o_h = (seed dry biomass / aboveground biomass)_hermaphrodite divided by (seed dry biomass / aboveground biomass)_female")
 
     def test_joint_advantage_does_not_imply_frequency_increase(self):
         d=self.result["joint_outcomes_counted_from_original_plot_summary"]
         self.assertEqual(d,{
-            "female_seed_higher_and_female_morph_decrease":17,
-            "female_seed_higher_and_female_morph_increase":1,
-            "female_seed_higher_and_morph_ambiguous":1,
-            "hermaphrodite_seed_higher_and_female_morph_decrease":0,
-            "hermaphrodite_seed_higher_and_female_morph_increase":1,
-            "hermaphrodite_seed_higher_and_morph_ambiguous":0,
-            "seed_advantage_ambiguous":0
+            "female_seed_allocation_higher_and_female_morph_decrease":17,
+            "female_seed_allocation_higher_and_female_morph_increase":1,
+            "female_seed_allocation_higher_and_morph_ambiguous":1,
+            "hermaphrodite_seed_allocation_higher_and_female_morph_decrease":0,
+            "hermaphrodite_seed_allocation_higher_and_female_morph_increase":1,
+            "hermaphrodite_seed_allocation_higher_and_morph_ambiguous":0,
+            "seed_allocation_ambiguous":0
         })
         self.assertFalse(self.result["evidence_morph_increase_when_seed_higher_must_occur"])
 
     def test_actual_original_seed_ratio_bins_1_15_4(self):
         d=self.result
-        x=d["descriptive_female_to_hermaphrodite_seed_ratio_bins_from_oh"]
+        x=d["descriptive_female_to_hermaphrodite_seed_allocation_share_ratio_bins_from_oh"]
         self.assertEqual(x,{
-            "seed_advantage_not_detected":1,
-            "female_seed_ratio_strictly_between_1_and_2":15,
-            "female_seed_ratio_strictly_above_2":4,
+            "female_allocation_not_higher":1,
+            "female_allocation_ratio_strictly_between_1_and_2":15,
+            "female_allocation_ratio_strictly_above_2":4,
             "uncertainty_from_oh_rounding_crossing_bin_boundary":0
         })
         self.assertEqual(sum(x.values()),20)
         self.assertEqual(sum(
-            r["descriptive_ratio_bin_not_novel_invasion_condition"]==
-            "female_seed_ratio_strictly_above_2"
+            r["relative_allocation_bin_not_model_viable_seed_g"]==
+            "female_allocation_ratio_strictly_above_2"
             for r in d["plot_level_records"]),4)
 
     def test_nuclear_vs_maternal_thresholds_are_only_old_theory(self):
@@ -76,29 +76,30 @@ class MercurialisSeedBenefitNotGeneticIncrease(unittest.TestCase):
         self.assertEqual(prior["nuclear_male_sterility_female_seed_ratio_required"],"g>2")
         self.assertEqual(prior["maternal_CMS_female_seed_ratio_required"],"g>1")
         self.assertFalse(self.result["theoretical_prior_nuclear_and_CMS_thresholds_apply_to_real_2012_plots"])
+        self.assertFalse(self.result["o_h_allocation_ratio_can_equal_Heredity_viable_seed_g"])
         self.assertEqual(self.result["idealized_ancestral_thresholds_from_original_Heredity"],
                          {"nuclear_male_sterility":"g>2","maternally_inherited_CMS":"g>1"})
         self.assertEqual(prior["actual_2012_plot_invasion_inference"],
-            "BLOCKED_BY_SELFING_EXISTING_MALES_PARTNER_CONTEXT_AND_CMS_UNTYPED")
+            "BLOCKED_BY_ALLOCATION_FRACTION_NOT_VIABLE_SEED_NUMBER_SELFING_EXISTING_MALES_AND_CMS_UNTYPED")
 
     def test_source_exceptions_and_rounding_unresolved(self):
         rows={r["original_plot"]:r for r in self.result["plot_level_records"]}
-        self.assertEqual(rows[6]["relative_seed_advantage_under_rounding"],"female_seed_higher")
+        self.assertEqual(rows[6]["relative_seed_allocation_advantage_under_rounding"],"female_seed_allocation_higher")
         self.assertEqual(rows[6]["female_morph_change_under_rounding"],"female_morph_increase")
-        self.assertEqual(rows[12]["relative_seed_advantage_under_rounding"],"hermaphrodite_seed_higher")
+        self.assertEqual(rows[12]["relative_seed_allocation_advantage_under_rounding"],"hermaphrodite_seed_allocation_higher")
         self.assertEqual(rows[12]["female_morph_change_under_rounding"],"female_morph_increase")
         self.assertEqual(rows[20]["female_morph_change_under_rounding"],"undetermined_under_source_rounding")
-        self.assertAlmostEqual(rows[12]["female_over_hermaphrodite_seed_output_ratio_from_printed_oh"],
+        self.assertAlmostEqual(rows[12]["female_over_hermaphrodite_seed_allocation_share_ratio_from_printed_oh"],
                                1/1.03,places=8)
 
     def test_strict_rounding_guards_at_boundaries(self):
         self.assertEqual(classify(.9,.25,.3333),
-                         ("female_seed_higher","female_morph_decrease"))
+                         ("female_seed_allocation_higher","female_morph_decrease"))
         self.assertEqual(classify(1.00,.33,1/3),
                          ("undetermined_under_source_rounding",
                           "undetermined_under_source_rounding"))
         self.assertEqual(classify(1.03,.40,.33),
-                         ("hermaphrodite_seed_higher","female_morph_increase"))
+                         ("hermaphrodite_seed_allocation_higher","female_morph_increase"))
         with self.assertRaisesRegex(ValueError,"BAD_SOURCE_NUMBER"):
             classify(float("nan"),.3,.3)
         with self.assertRaisesRegex(ValueError,"SOURCE_FREQUENCIES_OUT_OF_RANGE"):
@@ -122,6 +123,14 @@ class MercurialisSeedBenefitNotGeneticIncrease(unittest.TestCase):
         self.assertIn("11-generation",p["study_type"])
         self.assertTrue(self.result["experimental_2025_P_phys_acuta_cross_taxon_not_plant"])
         self.assertTrue(p["prior_direct_empirical_example"])
+
+    def test_2012_original_seed_ratio_is_biomass_fraction_not_fecundity(self):
+        m=self.prior["method_correction_2026_11_15"]
+        self.assertEqual(m["severity"],"MATERIAL_SOURCE_MEASUREMENT_CORRECTION")
+        self.assertEqual(m["corrected_endpoint"],
+            "SEED_BIOMASS_PER_ABOVEGROUND_BIOMASS_ALLOCATION_FRACTION")
+        self.assertIn("aboveground biomass",self.result["source_ratio_definition"])
+        self.assertFalse(self.result["o_h_allocation_ratio_can_equal_Heredity_viable_seed_g"])
 
     def test_plots_do_not_supply_genetic_CMS_or_paternity(self):
         d=self.result
