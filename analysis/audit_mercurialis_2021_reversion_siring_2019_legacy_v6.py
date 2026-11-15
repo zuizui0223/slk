@@ -85,7 +85,7 @@ def compute(s):
     if abs(inferred-z["author_inferred_fraction_XX_female_sired"])>1e-10:
         raise ValueError("FEMALE_PATERNITY_RATIO_REPRODUCTION_FAILED")
     immigration=x["G0_contaminant_males"]
-    if (immigration["males"]!=9 or immigration["offspring"]!=812
+    if (immigration["observed"]!=9 or immigration["offspring"]!=812
         or sum(immigration["population_males"])!=9
         or sum(immigration["population_denominators"])!=812):
         raise ValueError("G0_POLLEN_IMMIGRATION_SOURCE_CHANGED")
@@ -118,9 +118,9 @@ def compute(s):
         "new_selfing_model_fit":None
       },
       "G0_immigrant_male_progeny":{
-        "original_male_n":immigration["males"],
+        "original_male_n":immigration["observed"],
         "original_offspring_n":immigration["offspring"],
-        "male_fraction":round(immigration["males"]/immigration["offspring"],9),
+        "male_fraction":round(immigration["observed"]/immigration["offspring"],9),
         "confirms_mating_system_not_perfectly_hermetically_sealed":True
       },
       "G5_XY_males_reintroduced_sex_ratio_fatherhood":{
