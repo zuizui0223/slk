@@ -9,7 +9,7 @@
       "year": 2015,
       "doi": "10.1371/journal.pone.0117149",
       "title": "A sexually dimorphic corolla appendage affects pollen removal and floral longevity in gynodioecious Cyananthus delavayi (Campanulaceae)",
-      "access": "Full-text public PLOS ONE; PMC abstract/results indexed, current web view intermittently blocked by bot check",
+      "access": "Authoritative PLOS ONE full-text https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117149 (Methods, Results, Fig.2/3 cited); PMC may be temporarily bot-blocked",
       "original_interventions": [
         "Throat-hair excision",
         "0%, 50%, 100% pollen removal under pollinator exclusion"
@@ -24,9 +24,51 @@
         "reduced_pollen_removal": "Male phase prolonged at female phase's expense",
         "no_pollen_removal": "Approximately one-third of hermaphroditic flowers never reached a female phase under the two no-removal procedures",
         "throat_hair_excision": "Increased pollen removal per halictid bee visit and shortened male phase",
-        "biological_ceiling": "Pollen-phase trade-off observed, but no experimentally established historical origin and no direct paternal reproductive success"
+        "biological_ceiling": "Pollen-phase trade-off observed, but no experimentally established historical origin and no direct paternal reproductive success",
+        "total_flower_life": "Significantly increased under pollinator exclusion; within netted treatments, total longevity increased as less pollen was removed. Do NOT claim constant total longevity for 2015 across all arms.",
+        "sexual_phase_tradeoff": "Within limited total flowering opportunity, increased male phase can truncate female phase; no pollen removal ~one third lack female phase."
       },
-      "author_figure2_label": "NHR netted/no hair removal; HR hair removal; C natural control; 0%, 50%, 100% pollen removal are distinct pollinator-excluded manipulations"
+      "author_figure2_label": "NHR netted/no hair removal; HR hair removal; C natural control; 0%, 50%, 100% pollen removal are distinct pollinator-excluded manipulations",
+      "sampling": {
+        "year": 2009,
+        "phase_experiment": {
+          "perfect_flowers": 125,
+          "maternal_plants": 20,
+          "six_treatment_arms": true
+        },
+        "bee_single_visit_throat_hair": {
+          "hair_removed_flowers": 34,
+          "intact_control_flowers": 30,
+          "selected_plants": 15
+        },
+        "experimental_unit_warning": "Flowers clustered in source plants; the figure arm-level sample sizes and raw data are not reproduced here"
+      },
+      "original_tests": {
+        "total_floral_longevity": {
+          "F": 31.02,
+          "df1": 5,
+          "df2": 118,
+          "p": "<0.001"
+        },
+        "male_phase_duration": {
+          "F": 189.77,
+          "df1": 4,
+          "df2": 100,
+          "p": "<0.001"
+        },
+        "male_phase_proportion": {
+          "F": 83.67,
+          "df1": 4,
+          "df2": 100,
+          "p": "<0.001"
+        },
+        "single_halictid_visit_hair_excision_remaining_pollen": {
+          "t": -6.682,
+          "df": 62,
+          "p": "<0.001"
+        },
+        "original_author_conclusion": "The total longevity DID change across exclusion/pollen-removal treatment arms. This is not the 2021 null total-longevity result."
+      }
     },
     {
       "year": 2017,
@@ -135,6 +177,7 @@
     "2015 0% pollen removal trials can suppress female phase without showing historical fixation or heritable disappearance of female genetic capacity",
     "No direct comparison with Wurmbea at matched pollinator guild, floral phases, geography, units or genetic backgrounds",
     "Experiments reveal contemporary function and constraints, not taxon-specific histories of sexual-system evolution",
-    "Do not imply any included study was conducted by SLK authors"
+    "Do not imply any included study was conducted by SLK authors",
+    "Crucial correction: 2015 original factorial reports significant overall floral-longevity differences (F[5,118]=31.02, p<0.001), whereas 2021 publisher abstract reports no detected overall floral longevity effect under its different experiment; do not collapse these into a single unchanged-longevity claim"
   ]
 }
