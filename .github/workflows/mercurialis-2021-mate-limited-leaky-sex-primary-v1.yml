@@ -1,0 +1,45 @@
+name: Mercurialis 2021 original mate shortage induces male-flower expression
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/mercurialis_2021_mate_absence_leaky_female_source_v1.json'
+      - 'analysis/audit_mercurialis_2021_mate_absence_leakiness_v1.py'
+      - 'results/mercurialis_2021_mate_absence_leakiness_v1.json'
+      - 'tests/test_mercurialis_2021_mate_absence_leakiness_v1.py'
+      - 'docs/SLK_MERCURIALIS_2021_MATE_LOSS_FUNCTIONAL_REEXPRESSION_V1_20261115.md'
+      - '.github/workflows/mercurialis-2021-mate-limited-leaky-sex-primary-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-diploid-female-function-expression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate experimental mate limitation, source mixed effects nesting and biological ceiling
+        run: python -m unittest discover -s tests -p 'test_mercurialis_2021_mate_absence_leakiness_v1.py' -v
+      - name: Regenerate genuine source design audit without invented selfing data
+        run: |
+          python analysis/audit_mercurialis_2021_mate_absence_leakiness_v1.py --output /tmp/mercurialis_2021_leaky_v1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/mercurialis_2021_leaky_v1.json').read_text(encoding='utf-8'))
+          b=json.loads(Path('results/mercurialis_2021_mate_absence_leakiness_v1.json').read_text(encoding='utf-8'))
+          assert a==b, 'Cossard Pannell 2021 source/analysis mismatch'
+          assert a['experimental_plot_replicates']==6
+          assert a['female_phenotyped_n']==272
+          assert a['sampled_unique_pots_from_source_occupancy']==223
+          assert a['sampled_female_plants_sharing_pots_with_other_sampled_females']==80
+          assert a['male_relative_reproductive_allocation_no_mates_over_with_males']['published_ratio']==2.33
+          assert a['male_relative_reproductive_allocation_no_mates_over_with_males']['published_p']==.01
+          assert a['incidence_of_leaky_females']['published_group_comparison_p']==.058
+          assert not a['self_paternity_or_seed_viability_measured']
+          assert not a['may_be_pooled_with_2024_hexaploid_distance_LMM']
+          assert not a['SLK_Phi_g0_Delta_R_measured']
+          print('PASS_ORIGINAL_DIPLOID_2021_SEX_REEXPRESSION_NOT_GENETIC_REGAIN')
+          PY
