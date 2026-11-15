@@ -44,7 +44,7 @@ def compute(s):
         per=[]
         control=[]
         for kind,prows in (("female_only",per),("control",control)):
-            pop=t[gen][kind]
+            pop={k:v for k,v in t[gen].items() if k[0]==("S" if kind=="female_only" else "C")}
             # Source uses G1 and G4 keys with explicit control/female-only groups
             assert set(pop)==({"S1","S2","S3"} if kind=="female_only" else {"C1","C2","C3"})
             for pid,r in sorted(pop.items()):
@@ -72,8 +72,7 @@ def compute(s):
         }
     g1=groups["G1"]["female_only_unweighted_mean_s"]
     g4=groups["G4"]["female_only_unweighted_mean_s"]
-    if not(abs(g1-x["paper_mean_selfing_G1_female_only"])<.005 and
-           abs(g4-x["paper_mean_selfing_G4_female_only"])<.005):
+    if not(abs(g1-.19)<.005 and abs(g4-.12)<.005):
         raise ValueError("PRINTED_SELFING_AUTHOR_AVERAGES_CHANGED")
     z=x["G5_reintroduced_males"]
     if (z["arrays"]!=6 or z["array_females"]!=50 or z["array_XY_males"]!=50
@@ -93,7 +92,7 @@ def compute(s):
     if (y["exp1"]["mating_arrays"]!=30 or y["exp1"]["progeny_sex_phenotyped"]!=6000
         or y["exp2"]["mating_arrays"]!=12 or y["exp2"]["offspring_genotyped"]!=720
         or y["exp2"]["marker_loci"]!=5
-        or not y["exp2"]["exp2_31pct_comparison_requires_equal_selfing_assumption"]):
+        or "equal selfing" not in y["exp2"]["assumption"]):
         raise ValueError("2019_ARCHITECTURE_SIRING_EXPERIMENT_CHANGED")
     if (y["exp1"]["F_like_siring_less_than_M_like_fraction"]!=.25 or
         y["exp2"]["F_like_siring_less_than_M_like_fraction"]!=.31
