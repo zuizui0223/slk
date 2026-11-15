@@ -32,6 +32,8 @@ jobs:
           b=json.loads(Path('results/mercurialis_2021_mate_absence_leakiness_v1.json').read_text(encoding='utf-8'))
           assert a==b, 'Cossard Pannell 2021 source/analysis mismatch'
           assert a['experimental_plot_replicates']==6
+          assert a['females_per_180_plant_population']=={'with_males':90,'without_males':180}
+          assert a['mating_partner_removal_is_not_pure_pollen_arrival_intervention']
           assert a['female_phenotyped_n']==272
           assert a['sampled_unique_pots_from_source_occupancy']==223
           assert a['sampled_female_plants_sharing_pots_with_other_sampled_females']==80
