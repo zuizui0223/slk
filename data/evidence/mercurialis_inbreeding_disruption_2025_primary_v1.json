@@ -1,0 +1,75 @@
+{
+  "schema": "MERCURIALIS_2025_INBREEDING_ROUTE_PRIMARY_V1",
+  "audited": "2026-11-15",
+  "source": {
+    "doi": "10.1111/nph.70356",
+    "journal": "New Phytologist",
+    "year": 2025,
+    "url": "https://nph.onlinelibrary.wiley.com/doi/10.1111/nph.70356",
+    "data_archive": "https://doi.org/10.5281/zenodo.14542260"
+  },
+  "organism": "Mercurialis annua, diploid wind-pollinated annual plant",
+  "experiment": {
+    "founder_sex": "female-derived populations evolved without males",
+    "prior_evolution_generations": 8,
+    "common_garden_replicates": 3,
+    "individuals_per_replicate": 61,
+    "phenotyped_n": 180,
+    "successful_genotyping_seeds": 948,
+    "assigned_paternity_seeds": 915,
+    "selfing_analyzed_n": 172,
+    "mean_selfing_rate": 0.296,
+    "allocation_morphs": "Continuum from pure female through intermediate allocation to pure male, reduced vegetative sex dimorphism"
+  },
+  "fitness_estimands": {
+    "male_paternity": "nine-microsatellite markers assign seed father; source sampled ~6.6% of produced seeds",
+    "female_reproduction": "mature seed number discounted by estimated selfing rate times hypothetical inbreeding depression",
+    "whole_lifetime": "Annual plants permit authors to approximate annual lifetime seed gene transmission, but seed viability conditional on assumed depression",
+    "inbreeding_scenarios": [
+      0,
+      1
+    ],
+    "diploid_actual_delta": "NOT_MEASURED_IN_THIS_STUDY"
+  },
+  "primary_table1_total_fitness_quadratic": {
+    "small": {
+      "delta0": -1.3,
+      "delta0_se": 1.35,
+      "delta0_significant": false,
+      "delta1": -0.83,
+      "delta1_se": 1.35,
+      "delta1_significant": false
+    },
+    "medium": {
+      "delta0": 0.38,
+      "delta0_se": 0.78,
+      "delta0_significant": false,
+      "delta1": 2,
+      "delta1_se": 0.78,
+      "delta1_significant": true
+    },
+    "large": {
+      "delta0": 2.07,
+      "delta0_se": 1.26,
+      "delta0_significant": false,
+      "delta1": 4.86,
+      "delta1_se": 1.26,
+      "delta1_significant": true
+    }
+  },
+  "published_observations": {
+    "sex_allocation_tradeoff_p": "<0.001",
+    "selfing_vs_male_allocation_p": "<0.001",
+    "size_gender_selfing_interaction": "NOT_SIGNIFICANT",
+    "reason_for_qualifier": "Delta 0 vs 1 imposed analytically. Actual diploid inbreeding depression unknown. Absence of ancillary sexual dimorphism does not mean no male/female sex allocation specialization."
+  },
+  "biological_limit": "The inferred strong disruptive selection on sex allocation for medium/large plants is CONDITIONAL on assumed delta=1; this study does not observe natural historical establishment of dioecy.",
+  "not_estimated": [
+    "actual diploid inbreeding depression",
+    "same-time pollinator-mediated pollen removal mechanism",
+    "genetic architecture switching accessibility",
+    "rare mutant invasion and fixation",
+    "SLK R/Phi/g0/Delta_R"
+  ],
+  "cross_source_independence": "Independent genus and wind pollination from Pulsatilla and Cyananthus, not a replicated experiment with shared estimands."
+}
