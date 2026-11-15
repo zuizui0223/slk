@@ -47,6 +47,8 @@ Case & Barrett (2004), *International Journal of Plant Sciences* 165:289–301�
 
 **分業は花粉の量を増すことより、受粉・交配・子孫成熟の経路を変える場合に意味を持ち得る。** それは SLK の主問題（多機能性がどの条件で保持され、どの条件で分業が有利になるか）に自然史の筋道を与える。ただし現状から `Phi > 0`、`g0`、`Delta_R`、分業の自然選択による成立を推定しない。
 
+**分類学的限定（2026-11-15追記）：** 西部 `W. dioica subsp. alba` は [Kew POWO](https://powo.science.kew.org/taxon/543572-1) では現在も受容される一方、[豪州ゲノミクス計画](https://www.genomicsforaustralianplants.com/wurmbea-dioica-conservation/)は東部種との別系統・西部複合体の複数分類群の可能性を検討中。したがって東部の再発現・自殖研究とこの西部訪花研究をひとつの遺伝系統での進化過程として結合しない。[V4補足](SLK_WURMBEA_FLORAL_CONFLICT_EVOLUTION_DIRECTION_V4_20261115.md)参照。
+
 ## 推論上の重要なバイアス
 
 1. **開花期間が非重複**。原著の訪花調査は分化集団6月26日〜7月13日、両性型8月12日〜9月1日（1996年）。同所でも、性表現だけを変えた操作ではない。訪花率の7.29倍を形態の因果効果とは扱わない。
