@@ -32,6 +32,21 @@ class CyananthusRealStudies(unittest.TestCase):
         self.assertIn("Approximately one-third",s["observed"]["no_pollen_removal"])
         self.assertIn("female",s["observed"]["reduced_pollen_removal"].lower())
 
+    def test_2015_full_life_did_change_2021_did_not(self):
+        early=self.s[2015]
+        late=self.s[2021]
+        self.assertEqual(early["sampling"]["phase_experiment"]["perfect_flowers"],125)
+        self.assertEqual(early["sampling"]["phase_experiment"]["maternal_plants"],20)
+        self.assertEqual(early["original_tests"]["total_floral_longevity"],
+                         {"F":31.02,"df1":5,"df2":118,"p":"<0.001"})
+        self.assertIn("Significantly increased",early["observed"]["total_flower_life"])
+        self.assertEqual(late["published_results"]["total_floral_longevity"],
+                         "No detected treatment effect")
+        self.assertNotEqual(
+            early["original_tests"]["original_author_conclusion"],
+            late["published_results"]["total_floral_longevity"]
+        )
+
     def test_2017_original_sample_grain(self):
         d=self.s[2017]
         counts=d["sampling"]["single_visit_flower_sample_sizes"]
