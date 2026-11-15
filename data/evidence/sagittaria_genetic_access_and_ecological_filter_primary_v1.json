@@ -1,0 +1,185 @@
+{
+  "schema": "SLK_SAGITTARIA_THREE_STAGE_ORIGINAL_STUDY_SOURCES_V1",
+  "audit_date": "2026-11-15",
+  "system": {
+    "taxon": "Sagittaria latifolia",
+    "family": "Alismataceae",
+    "sexual_systems": "Monoecious individuals with unisexual flowers versus dioecious populations",
+    "geography": "Southern Ontario, Canada, for original crosses/transplants; 2011 array-specific details not equated with 2004 cohort",
+    "unit_warning": "Original cross families / ramets nested by 23 male or 27 female genotypes / environments / independent later mating arrays, NOT one linked fitness dataset"
+  },
+  "studies": {
+    "genetic_access_2004": {
+      "doi": "10.1098/rspb.2003.2580",
+      "citation": "Dorken ME & Barrett SCH 2004, Proceedings of the Royal Society B 271:213–219",
+      "original_pdf_text": "https://citeseerx.ist.psu.edu/document?doi=663839fee5ad830d5f807dbad9aad17493a45c37&repid=rep1&type=pdf",
+      "abstract": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1691578/",
+      "access": "Original PDF indexed searchable text, primary source PMC abstract; screenshot retrieval 403, printed table visual verification incomplete",
+      "crossing_design": {
+        "F1_seed_families": 18,
+        "F2_and_backcross_families": 23,
+        "total_F2_and_backcross_maternal_parents": 12,
+        "total_F2_and_backcross_paternal_parents": 25
+      },
+      "f1_original_table1": {
+        "dioecious_male_x_female": {
+          "n": 202,
+          "male_fraction": 0.46,
+          "female_fraction": 0.54,
+          "expected_male_fraction": 0.5,
+          "original_pooled_G": 1.61,
+          "original_df": 1,
+          "original_p": 0.21
+        },
+        "dioecious_male_x_monoecious_hermaphrodite": {
+          "n": 241,
+          "male_fraction": 0.42,
+          "hermaphrodite_fraction": 0.58,
+          "expected_male_fraction": 0.5,
+          "original_pooled_G": 6.34,
+          "original_df": 1,
+          "original_p": 0.01
+        },
+        "monoecious_hermaphrodite_x_dioecious_female": {
+          "n": 141,
+          "hermaphrodite_fraction": 1,
+          "source_statement": "All progeny hermaphroditic"
+        }
+      },
+      "f2_and_backcross_original_table2": {
+        "class_a": {
+          "n": 676,
+          "male_fraction": 0.48,
+          "hermaphrodite_fraction": 0.26,
+          "female_fraction": 0.26,
+          "expected_ratio": [
+            0.5,
+            0.25,
+            0.25
+          ],
+          "original_pooled_G": 1.37,
+          "original_df": 2,
+          "original_p": 0.63,
+          "original_heterogeneity_p": 0.59,
+          "families": 8
+        },
+        "class_b": {
+          "n": 555,
+          "hermaphrodite_fraction": 0.73,
+          "female_fraction": 0.27,
+          "expected_ratio": [
+            0.75,
+            0.25
+          ],
+          "original_pooled_G": 2.41,
+          "original_df": 1,
+          "original_p": 0.12,
+          "families": 7
+        },
+        "class_c": {
+          "n": 424,
+          "male_fraction": 0.53,
+          "hermaphrodite_fraction": 0.47,
+          "expected_ratio": [
+            0.5,
+            0.5
+          ],
+          "original_pooled_G": 1.82,
+          "original_df": 1,
+          "original_p": 0.18,
+          "families": 6
+        },
+        "class_d": {
+          "n": 204,
+          "hermaphrodite_fraction": 0.46,
+          "female_fraction": 0.54,
+          "expected_ratio": [
+            0.5,
+            0.5
+          ],
+          "original_pooled_G": 1.59,
+          "original_df": 1,
+          "original_p": 0.21,
+          "families": 2
+        }
+      },
+      "noted_departures": {
+        "selfed_inconstant_male": {
+          "offspring": 58,
+          "phenotype": "ALL_HERMAPHRODITE",
+          "source_expected": "INCONSTANT_MALE_VS_FEMALE_3_TO_1",
+          "discrepancy": "Unexpected all-hermaphrodite outcome, not explained by simple model"
+        },
+        "excess_f1_hermaphrodites": "F1 241 pooled p=.01 vs 1:1 expected, not an across-study transition rate",
+        "multiple_f2_individual_crosses": "Some isolated family G tests flagged in raw table, not significant after table-wide multiple-comparison adjustment"
+      },
+      "inferred_sex_genetic_architecture": "Mendelian linked two-locus sterility model consistent with many classes but not all; specific genes not molecularly sequenced in this original",
+      "direct_access_scope": "Experimental gamete/genotype combination to flowering phenotype and some F1 reproductive parent ability; not novel mutation or viable lifetime selection of every intermediate"
+    },
+    "sex_expression_resource_2004": {
+      "same_article_as": "genetic_access_2004",
+      "male_clone_genotypes": 23,
+      "female_clone_genotypes": 27,
+      "male_ramets_total": 92,
+      "female_ramets_total": 108,
+      "per_genotype_ramets_high": 2,
+      "per_genotype_ramets_low": 2,
+      "male_genotypes_with_male_and_female_flowers_high": 10,
+      "male_genotypes_reported_male_only_low": 21,
+      "remaining_low_genotypes_sex_state": "NOT_EXACTLY_SPECIFIED_IN_EXTRACTED_TEXT; may contain mixed and/or not flower, so count expressing both low is between 0 and 2",
+      "female_genotypes_with_male_flowers_either_condition": 0,
+      "interpretation": "An observed same-genotype resource reaction norm on the male side; not a gain-of-function mutation rate or fitness benefit",
+      "source_text": "Under high fertilizer 10/23 male genotypes produced male and female flowers; under low fertilizer 21/23 genotypes only male flowers; female genotypes did not produce male flowers"
+    },
+    "habitat_sorting_2003": {
+      "doi": "10.1111/j.0014-3820.2003.tb00378.x",
+      "citation": "Dorken ME & Barrett SCH (2003) Evolution 57:1973–1988",
+      "evidence_level": "Original abstract verified; no individual transplant survival counts extracted",
+      "design": [
+        "field natural habitat contrasts",
+        "uniform glasshouse",
+        "common garden of sexual systems and F1 progeny",
+        "shaded versus unshaded wetland transplant"
+      ],
+      "monoecious_habitats": "Disturbed ephemeral wetlands; shallow open settings",
+      "dioecious_habitats": "More permanent shaded/competitive wetlands",
+      "f1_life_history_traits": "Generally intermediate phenotype values, not a complete quantified mutational trajectory",
+      "local_survival_results": "Monoecious populations survive best in habitat matching unshaded origin; dioecious populations survive best in shaded origin; numeric survival ratios not extracted",
+      "inference": "Contemporary genotype-by-environment survival context for sexual-system backgrounds, not rare-mutant invasion experiment or demonstration of sexual-system origin"
+    },
+    "male_reproductive_performance_2011": {
+      "doi": "10.1111/j.1558-5646.2011.01344.x",
+      "citation": "Perry LE & Dorken ME (2011) Evolution 65:2782–2791",
+      "evidence_level": "Publisher/public abstract and accessible discussion excerpts; no raw genotype/seeds downloaded",
+      "direct_design": "Experimental mating arrays with female, male and hermaphroditic plants; paternity/siring success compared",
+      "pollen_metering": "Dioecious males displayed a smaller fraction of produced flowers simultaneously, prolonging pollen presentation compared with monoecious hermaphrodites",
+      "reported_outcome": "Siring success of males increased approximately linearly with male flower production in tested arrays, consistent with nonsaturating seasonal male payoff",
+      "authors_caveat": "Study does not directly estimate the shape of lifetime male fitness gain curve in long-lived clonal perennial",
+      "inference": "Population array performance, not natural lifetime relative success of all genotypes under multiple environmental partner frequencies"
+    },
+    "clonal_tradeoff_2012": {
+      "doi": "10.1111/j.1469-8137.2012.04260.x",
+      "citation": "Van Drunen WE & Dorken ME (2012) New Phytologist 196:606–616",
+      "evidence_level": "Original public abstract, no raw common garden traits",
+      "n_plants": 412,
+      "intervention": "Common garden reproductive allocation manipulations in monoecious and dioecious origin plants",
+      "observed_female_investment": "Approx 1:1 biomass tradeoff between maternal sexual investment and clonal propagule production",
+      "observed_male_investment": "No equivalent detected biomass tradeoff for male function; higher nitrogen costs affect propagule nutrient content",
+      "inference": "Different resource currencies for female and male functions, not one universal scalar architecture K"
+    }
+  },
+  "cross_source_claim_limits": [
+    "All 2004 F1/F2 source fractions are published rounded decimals, not integer counts; reconstruct feasible integer intervals only, do not fabricate exact raw phenotypes",
+    "Class_a F2 676 offspring from 8 crosses share parentage; do not count as 676 independent origins of sex differentiation",
+    "The two-locus explanation is a model inferred from segregation, not sequenced contemporary causal sex genes or measured spontaneous mutation paths",
+    "F2 and backcross progeny reaching flowering establish biological generation/accessibility, not lifetime viable fitness advantage of all intermediate genotypes",
+    "High and low fertilizer use clonally replicated genotypes but individual 23-genotype paired outcome identities are unavailable; derive only combinatorial directional bounds, not exact McNemar statistic or population-adjusted p",
+    "Female lack of sex inconstancy observed under these treatments is not permanent loss of all latent genomic competence in all environments",
+    "2003 transplant performance, 2004 crossing genetics, 2011 siring arrays and 2012 cost allocation are independent experimental cohorts; do NOT stitch into a same-individual causal fitness mediation",
+    "2004 F1 male×monoecious cross shows significant segregation skew, contrary to a perfect Mendelian narrative; F2 pooled tests match predicted genotype ratios",
+    "Sagittaria can have monoecy with UNISEXUAL flowers; these are NOT bisexual flowers, unlike protandrous Cyananthus or protogynous Pulsatilla",
+    "Sagittaria genetic cross demonstrates possible recombination between existing alleles; does not show new allele origin, establishment from rarity, or fixation through SLK ecological partner feedback",
+    "Different carbon/biomass versus nitrogen resource tradeoffs from 2012 are not empirically measured SLK module-building K or single unit",
+    "The original 2004 article PDF table was extracted as searchable text and abstract independently verified; web screenshot endpoint failed, so no new hidden exact phenotype counts asserted"
+  ]
+}
