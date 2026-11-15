@@ -5,6 +5,11 @@ on:
       - 'data/evidence/cyananthus_temporal_conflict_three_study_source_v1.json'
       - 'docs/SLK_CYANANTHUS_SEXUAL_PHASE_CONFLICT_EMPIRICAL_V1_20261115.md'
       - 'tests/test_cyananthus_temporal_conflict_three_study_source_v1.py'
+      - 'data/evidence/cyananthus_2011_closure_pollen_response_primary_source_v1.json'
+      - 'analysis/analyze_cyananthus_2011_closure_pollen_response_v1.py'
+      - 'results/cyananthus_2011_closure_pollen_response_v1.json'
+      - 'tests/test_cyananthus_2011_closure_pollen_response_v1.py'
+      - 'docs/SLK_CYANANTHUS_TWO_TEMPORAL_BOTTLENECKS_ECOLOGY_V2_20261115.md'
       - '.github/workflows/cyananthus-sexual-phase-published-evidence-v1.yml'
   workflow_dispatch:
 permissions:
@@ -20,6 +25,23 @@ jobs:
           python-version: '3.12'
       - name: Verify intervention fidelity, source dependence and inferential limits
         run: python -m unittest discover -s tests -p 'test_cyananthus*.py' -v
+      - name: Independently reconstruct 2011 original table and verify published chi-square
+        run: |
+          python analysis/analyze_cyananthus_2011_closure_pollen_response_v1.py --output /tmp/cyananthus_2011_closure_v1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          fresh=json.loads(Path('/tmp/cyananthus_2011_closure_v1.json').read_text(encoding='utf-8'))
+          tracked=json.loads(Path('results/cyananthus_2011_closure_pollen_response_v1.json').read_text(encoding='utf-8'))
+          assert fresh==tracked, 'Published 2011 reconstructed values stale'
+          assert abs(fresh['pearson_chisq_on_published_usable_counts']-23.451)<.001
+          assert fresh['female_source_treated_n']==216 and fresh['female_source_usable_n']==163
+          assert fresh['perfect_source_treated_n']==180 and fresh['perfect_source_usable_n']==98
+          assert fresh['new_confidence_intervals'] is None
+          assert fresh['early_closure_caused_seed_loss_under_low_pollen'] is None
+          assert not fresh['pollen_donor_manipulation_established']
+          print('PASS_PUBLISHED_CYANANTHUS_CLOSURE_COUNTS_NO_UNMEASURED_DONOR_FITNESS')
+          PY
       - name: Check no unearned evolutionary origin claims
         run: |
           python - <<'PY'
