@@ -1,0 +1,41 @@
+name: Original flower-sex conflict ecology and prior-art ceiling
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/pulsatilla_sexual_conflict_multi_paper_primary_v1.json'
+      - 'data/evidence/mercurialis_inbreeding_disruption_2025_primary_v1.json'
+      - 'analysis/recompute_pulsatilla_2025_phase_turnover_v1.py'
+      - 'results/pulsatilla_2025_published_phase_turnover_v1.json'
+      - 'tests/test_pulsatilla_empirical_phase_and_mercurialis_v1.py'
+      - 'docs/SLK_NATURAL_CONFLICT_ROUTES_AND_PRIOR_ART_V1_20261115.md'
+      - '.github/workflows/slk-natural-sex-conflict-primary-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-grain-and-novelty:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Confirm original year-specific transitional counts and conditional delta
+        run: python -m unittest discover -s tests -p 'test_pulsatilla_empirical_phase_and_mercurialis_v1.py' -v
+      - name: Recompute original publication counts without fabricating original individuals
+        run: |
+          python analysis/recompute_pulsatilla_2025_phase_turnover_v1.py --output /tmp/pulsatilla_sex_phase_transitions_v1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/pulsatilla_sex_phase_transitions_v1.json').read_text())
+          b=json.loads(Path('results/pulsatilla_2025_published_phase_turnover_v1.json').read_text())
+          assert a==b, "Published-source transition reconstruction changed"
+          assert a['transitions']['2020-2021']['rounded_table_reconstructed_counts']=={'M_to_H':5,'H_to_M':2}
+          assert a['transitions']['2021-2022']['rounded_table_reconstructed_counts']=={'M_to_H':2,'H_to_M':1}
+          assert a['unique_individuals_with_round_trip'] is None
+          assert a['genetic_loss_and_reacquisition'] is None
+          assert a['slk_Phi_g0_Delta_R'] is None
+          print('PASS_REAL_PUBLISHED_2025_PHASE_CHANGE_NOT_ANCESTRAL_TRAIT_RECOVERY')
+          PY
