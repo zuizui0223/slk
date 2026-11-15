@@ -1,0 +1,44 @@
+name: Mercurialis real 2012 pollen effort to next-generation sex-ratio gap
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/mercurialis_2008_2012_2024_density_partner_composition_original_v2.json'
+      - 'analysis/reanalyze_mercurialis_2012_pollen_allocation_transmission_gap_v3.py'
+      - 'results/mercurialis_2012_pollen_effort_transmission_gap_v3.json'
+      - 'tests/test_mercurialis_2012_allocation_transmission_gap_v3.py'
+      - 'docs/SLK_MERCURIALIS_2012_ACTUAL_PLOT_POLLEN_EFFORT_VS_OFFSPRING_V3_20261115.md'
+      - '.github/workflows/mercurialis-2012-pollen-effort-offspring-permutation-v3.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-plot-permutation-not-parentage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original plot-level separation, label permutations, rounding and claim ceiling
+        run: python -m unittest discover -s tests -p 'test_mercurialis_2012_allocation_transmission_gap_v3.py' -v
+      - name: Regenerate 252-allocation exploratory contrast and compare frozen source result
+        run: |
+          python analysis/reanalyze_mercurialis_2012_pollen_allocation_transmission_gap_v3.py --output /tmp/mercurialis_2012_newplot_v3.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/mercurialis_2012_newplot_v3.json').read_text(encoding='utf-8'))
+          b=json.loads(Path('results/mercurialis_2012_pollen_effort_transmission_gap_v3.json').read_text(encoding='utf-8'))
+          assert a==b, 'Frozen original plot-level source analysis drifted'
+          x=a['published_metric_analyses']
+          assert x['ph']['two_sided_extreme_labelings']==2
+          assert x['male']['two_sided_extreme_labelings']==210
+          assert x['ph']['possible_labelings']==252
+          assert x['ph']['printed_2_decimal_group_gap_rounding_bounds']==[-.092,-.072]
+          assert x['male']['printed_2_decimal_group_gap_rounding_bounds']==[0,.02]
+          assert a['2012_published_male_progeny_density_GLM']=={'t':-.54,'p':'>.50'}
+          assert not a['offspring_sex_frequency_is_actual_fitness_of_rare_genotype']
+          assert a['SLK_rare_invasion_estimate'] is None
+          print('PASS_PUBLISHED_10_PLOTS_POLLEN_ALLOCATION_RESPONSE_IS_NOT_RARE_MALE_INVASION')
+          PY
