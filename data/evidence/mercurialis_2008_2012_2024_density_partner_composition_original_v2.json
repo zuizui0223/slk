@@ -503,7 +503,38 @@
     "original_interpretation": "Presence of females may buffer male siring against density-related hermaphrodite selfing by supplying outcrossable ovules, but female presence itself was NOT independently randomized.",
     "contamination_note": "Male progeny 0–4% in arrays with no male parents, particularly at low density, indicate inter-plot pollen dispersal despite spatial barriers.",
     "morphology_counts_note": "Neuter sterile males 0–3% counted as males in original table and GLM.",
-    "sampling_warning": "Plots, not individual offspring, are independent manipulations. Source study contains 10 mixed population ancestries in 20 plots, so plot-wise aggregate not individual fitness."
+    "sampling_warning": "Plots, not individual offspring, are independent manipulations. Source study contains 10 mixed population ancestries in 20 plots, so plot-wise aggregate not individual fitness.",
+    "experimental_male_presence_by_sex_seed_effort": {
+      "metric": "Fraction of aboveground biomass allocated to seeds, averaged across density levels; not total individual seed fitness",
+      "female": {
+        "male_absent": {
+          "mean": 0.067,
+          "se": 0.008
+        },
+        "male_present": {
+          "mean": 0.061,
+          "se": 0.006
+        }
+      },
+      "hermaphrodite": {
+        "male_absent": {
+          "mean": 0.042,
+          "se": 0.006
+        },
+        "male_present": {
+          "mean": 0.047,
+          "se": 0.002
+        }
+      },
+      "original_interaction": {
+        "F": 6.3,
+        "df1": 1,
+        "df2": 445,
+        "p": "<.05"
+      },
+      "original_source": "Perry et al. (2012) Results 'Experimental plots', Table 1 male frequency by sex interaction; authors report female +9% without males vs present and hermaphrodite −12% without males vs present",
+      "inference": "Male presence was factorially manipulated, females were present in all treatment arms. Sex morph is naturally determined and not randomized, so the sex-morph-dependent seed-effort association is not a within-genotype conversion effect."
+    }
   },
   "study_2024": {
     "cite": "Nguyen MT, Martignier T & Pannell JR (2024). Widespread male sterility and trioecy in androdioecious Mercurialis annua. American Journal of Botany 111:e16429.",
@@ -587,6 +618,7 @@
     "2024 CMS and nuclear fertility restoration model is a supported genetic inference, not experimentally verified restorer molecular identity or restorer fitness cost",
     "Source papers by overlapping investigators and source regions are prior art for frequency-dependent evolution, sex-ratio buffering and trioecy; SLK cannot claim first discovery",
     "No original plot-level 2008 full genotype raw CSV, 2012 individual pedigrees or 2024 population supplementary downloads; analysis uses original published table and correctly preserves rounding",
-    "No SLK Phi/g0/Delta_R, new mutation probability, rare allele frequency gradient or cross-study causal lifetime fitness are identified"
+    "No SLK Phi/g0/Delta_R, new mutation probability, rare allele frequency gradient or cross-study causal lifetime fitness are identified",
+    "In 2012, male presence×sex morph had a significant interaction on seed-biomass allocation (published F[1,445]=6.3, p<.05), but the original 2012 offspring male-density GLM remained nonsignificant; do not conflate allocation response and next-generation sex-ratio effect."
   ]
 }
