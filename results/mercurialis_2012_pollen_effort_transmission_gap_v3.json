@@ -22,6 +22,16 @@
     "low": 0.32653061,
     "high": 0.33333333
   },
+  "offspring_male_frequency_minus_parent_male_fraction": {
+    "low": -0.01053061,
+    "high": -0.00733333,
+    "high_minus_low": 0.00319728,
+    "adjusted_gap_two_decimal_rounding_bounds": [
+      -0.00680272,
+      0.01319728
+    ],
+    "not_rare_allele_invasion_or_paternity": true
+  },
   "published_metric_analyses": {
     "ph": {
       "high_minus_low_from_published_plot_means": -0.082,
