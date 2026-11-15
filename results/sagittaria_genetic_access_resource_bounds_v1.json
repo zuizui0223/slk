@@ -1,0 +1,72 @@
+{
+  "schema": "SLK_SAGITTARIA_GENOTYPE_AND_RESOURCE_BOUNDS_V1",
+  "source_genetic_doi": "10.1098/rspb.2003.2580",
+  "f2_observed_rounded_three_morph_shares": {
+    "male": 0.48,
+    "hermaphrodite": 0.26,
+    "female": 0.26
+  },
+  "f2_offspring": 676,
+  "f2_families": 8,
+  "f2_feasible_integer_ranges": {
+    "male": [
+      322,
+      327
+    ],
+    "hermaphrodite": [
+      173,
+      179
+    ],
+    "female": [
+      173,
+      179
+    ]
+  },
+  "f2_feasible_joint_integer_triples": 33,
+  "f2_hermaphroditic_offspring_minimum": 173,
+  "f2_hermaphroditic_offspring_maximum": 179,
+  "original_f2_pooled_G": 1.37,
+  "original_f2_pooled_G_p": 0.63,
+  "new_genotype_access_p_values": null,
+  "f1_male_x_monoecious_hermaphrodite": {
+    "offspring": 241,
+    "published_male_share": 0.42,
+    "male_integer_interval": [
+      101,
+      102
+    ],
+    "original_pooled_G": 6.34,
+    "original_pooled_G_p": 0.01,
+    "F1_skew_must_not_be_hidden": true
+  },
+  "resource_same_genotype": {
+    "male_genotypes": 23,
+    "high_fertilizer_male_and_female_genotypes": 10,
+    "low_fertilizer_male_only_genotypes": 21,
+    "low_fertilizer_other_genotypes_upper_bound": 2,
+    "male_genotypes_forced_high_mixed_and_low_male_only_minimum": 8,
+    "minimum_fraction_forced_high_mixed_low_male_only": 0.34782609,
+    "low_treatment_mixed_count_exact": null,
+    "paired_male_genotype_records_recovered": null,
+    "male_genotype_independence_test": null,
+    "female_genotypes_ever_male_flowering": 0
+  },
+  "recombination_or_existing_genotype_segregation_not_new_mutations": true,
+  "actual_rare_invasion_rate": null,
+  "historical_gynodioecy_path_fixed": null,
+  "cross_study_joint_fitness_model": null,
+  "claim_limits": [
+    "All 2004 F1/F2 source fractions are published rounded decimals, not integer counts; reconstruct feasible integer intervals only, do not fabricate exact raw phenotypes",
+    "Class_a F2 676 offspring from 8 crosses share parentage; do not count as 676 independent origins of sex differentiation",
+    "The two-locus explanation is a model inferred from segregation, not sequenced contemporary causal sex genes or measured spontaneous mutation paths",
+    "F2 and backcross progeny reaching flowering establish biological generation/accessibility, not lifetime viable fitness advantage of all intermediate genotypes",
+    "High and low fertilizer use clonally replicated genotypes but individual 23-genotype paired outcome identities are unavailable; derive only combinatorial directional bounds, not exact McNemar statistic or population-adjusted p",
+    "Female lack of sex inconstancy observed under these treatments is not permanent loss of all latent genomic competence in all environments",
+    "2003 transplant performance, 2004 crossing genetics, 2011 siring arrays and 2012 cost allocation are independent experimental cohorts; do NOT stitch into a same-individual causal fitness mediation",
+    "2004 F1 male×monoecious cross shows significant segregation skew, contrary to a perfect Mendelian narrative; F2 pooled tests match predicted genotype ratios",
+    "Sagittaria can have monoecy with UNISEXUAL flowers; these are NOT bisexual flowers, unlike protandrous Cyananthus or protogynous Pulsatilla",
+    "Sagittaria genetic cross demonstrates possible recombination between existing alleles; does not show new allele origin, establishment from rarity, or fixation through SLK ecological partner feedback",
+    "Different carbon/biomass versus nitrogen resource tradeoffs from 2012 are not empirically measured SLK module-building K or single unit",
+    "The original 2004 article PDF table was extracted as searchable text and abstract independently verified; web screenshot endpoint failed, so no new hidden exact phenotype counts asserted"
+  ]
+}
