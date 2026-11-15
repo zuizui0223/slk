@@ -69,6 +69,18 @@ class Cyananthus2011RealOriginalSource(unittest.TestCase):
         # 30-grain flower stayed open, the 30-grain total exceeds the 10-grain total.
         self.assertGreater(41,40)
 
+    def test_20_grain_female_vs_perfect_cross_morph_response(self):
+        comp=compute(self.data)["morph_response_at_20_cross_pollen"]
+        self.assertEqual((comp["female_usable_closed"],comp["female_usable_open"]),(40,23))
+        self.assertEqual((comp["perfect_usable_closed"],comp["perfect_usable_open"]),(7,19))
+        self.assertAlmostEqual(comp["reproduced_pearson_chisq"],9.87603467,places=7)
+        self.assertEqual(comp["original_p"],.002)
+        self.assertAlmostEqual(comp["female_minimum_closure_fraction_all_72"],40/72,places=8)
+        self.assertAlmostEqual(comp["perfect_maximum_closure_fraction_all_30"],11/30,places=8)
+        self.assertTrue(comp["female_higher_than_perfect_with_any_missing_outcomes"])
+        self.assertFalse(comp["sex_morph_randomized_treatment"])
+        self.assertFalse(comp["same_maternal_plant_or_genotype"])
+
     def test_perfect_ten_grain_fruit_missing_not_zero_seeds(self):
         p=self.data["perfect_experiment"]
         r=compute(self.data)
