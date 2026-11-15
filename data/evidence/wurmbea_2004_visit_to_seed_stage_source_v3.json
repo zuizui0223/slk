@@ -100,6 +100,48 @@
     "The cause of low seed fertility (inbreeding, pollen quality, resource availability, predation) was not experimentally resolved by this comparison",
     "No male paternity, outcrossing paternity, genotype-dependent lifetime fitness or directional selection estimates",
     "Cannot infer historical origin, genetic constraint, or SLK Phi/g0/Delta_R from these descriptive source values",
-    "Cannot mix western subspecies alba and eastern dioica source estimates as a within-population mechanism or meta-analytic effect"
-  ]
+    "Cannot mix western subspecies alba and eastern dioica source estimates as a within-population mechanism or meta-analytic effect",
+    "Anther onset, dehiscence duration and first-day pollen removal are separate published metrics; no reconstructed daily pollen time series, paternity success or causal floral-architecture effect"
+  ],
+  "anther_presentation_same_paper": {
+    "days_from_anthesis_until_first_pollen_presentation": {
+      "male": {
+        "mean": 2.3,
+        "se": 0.27
+      },
+      "cosexual": {
+        "mean": 4.4,
+        "se": 0.21
+      },
+      "note": "Males start releasing pollen earlier than cosexuals; source p.293, original means SE"
+    },
+    "days_to_dehisce_all_six_anthers": {
+      "male": {
+        "mean": 5.43,
+        "se": 0.38
+      },
+      "cosexual": {
+        "mean": 4.4,
+        "se": 0.28
+      },
+      "original_mann_whitney_p": 0.034,
+      "note": "Source p.293; male dehiscence is more prolonged"
+    },
+    "first_day_percent_of_total_pollen_removed": {
+      "male": {
+        "mean": 24.4,
+        "se": 6.7
+      },
+      "cosexual": {
+        "mean": 50.3,
+        "se": 6.9
+      },
+      "note": "Source pp.294–297; first pollen-presentation day, not overall nine-day pollen removal"
+    },
+    "anther_reclosure_after_wet_or_windy_weather": {
+      "males_some_observed": true,
+      "cosexuals_not_observed": true,
+      "note": "Qualitative source observation, not quantified probability or inherited evolutionary innovation"
+    }
+  }
 }
