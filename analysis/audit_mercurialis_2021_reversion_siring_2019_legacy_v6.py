@@ -44,7 +44,7 @@ def compute(s):
         per=[]
         control=[]
         for kind,prows in (("female_only",per),("control",control)):
-            pop=t[gen+"_"+kind+"_selfing"] if gen+"_"+kind+"_selfing" in t else t[gen+"_"+kind]
+            pop=t[gen][kind]
             # Source uses G1 and G4 keys with explicit control/female-only groups
             assert set(pop)==({"S1","S2","S3"} if kind=="female_only" else {"C1","C2","C3"})
             for pid,r in sorted(pop.items()):
