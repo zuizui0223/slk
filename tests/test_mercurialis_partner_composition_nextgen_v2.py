@@ -69,6 +69,17 @@ class MercurialisDensityPartnerContext(unittest.TestCase):
         self.assertEqual(r["original_male_density_test"],{"t":-.54,"p":">.50"})
         self.assertFalse(r["causal_female_buffering_effect_measured"])
 
+    def test_2012_manipulated_male_presence_changes_female_and_cosex_effort_oppositely(self):
+        r=analyze(self.s)["trioecy_2012"]["male_presence_sex_specific_seed_effort"]
+        self.assertEqual((r["female_no_males"],r["female_with_males"]),(.067,.061))
+        self.assertEqual((r["hermaphrodite_no_males"],r["hermaphrodite_with_males"]),(.042,.047))
+        self.assertEqual(r["female_delta_with_minus_without_males"],-.006)
+        self.assertEqual(r["hermaphrodite_delta_with_minus_without_males"],.005)
+        self.assertEqual(r["published_interaction_F"],6.3)
+        self.assertEqual(r["published_interaction_df"],[1,445])
+        self.assertEqual(r["published_interaction_p"],"<.05")
+        self.assertIsNone(r["new_male_paternity_effect_estimated"])
+
     def test_2012_more_female_seed_biomass_does_not_ensure_daughter_freq_gain(self):
         r=analyze(self.s)["trioecy_2012"]
         self.assertAlmostEqual(r["female_seed_allocation_fraction_relative_to_hermaphrodite"],.061/.043,places=8)
