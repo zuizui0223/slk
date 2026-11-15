@@ -38,6 +38,17 @@ class RealMateAbsenceGeneticPotential(unittest.TestCase):
         self.assertEqual(d["initial_total_plants"],1080)
         self.assertEqual(d["source_seed_demes"],35)
 
+    def test_female_density_doubles_in_male_removal_composition_treatment(self):
+        d=self.r
+        self.assertEqual(d["females_per_180_plant_population"],
+                         {"with_males":90,"without_males":180})
+        self.assertTrue(d["female_density_doubled_with_males_removed"])
+        self.assertTrue(d["mating_partner_removal_is_not_pure_pollen_arrival_intervention"])
+        z=copy.deepcopy(self.src)
+        z["design"]["female_count_change_under_fixed_total_plants"]["female_density_ratio"]=1
+        with self.assertRaisesRegex(ValueError,"FALSE_PURE_MATE_POLLEN_TREATMENT"):
+            compute(z)
+
     def test_272_females_are_nested_in_223_pots_not_independent_populations(self):
         d=self.r
         self.assertEqual(d["female_phenotyped_n"],272)
