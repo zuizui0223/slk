@@ -147,7 +147,7 @@ class MercurialisSeedBenefitNotGeneticIncrease(unittest.TestCase):
             if z["id"]==1:
                 z["oh"]=1.8
                 break
-        with self.assertRaisesRegex(ValueError,"SOURCE_CROSS_TAB_PLOT_BIOLOGY_CHANGED"):
+        with self.assertRaisesRegex(ValueError,"SOURCE_RATIO_THRESHOLDS_NOT_REPRODUCED"):
             compute(src,self.prior)
         prior=copy.deepcopy(self.prior)
         prior["model_2025_prior_art"]["author_simulation_not_natural_invasion"]=False
