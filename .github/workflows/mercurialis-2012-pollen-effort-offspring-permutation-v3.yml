@@ -38,6 +38,9 @@ jobs:
           assert x['ph']['printed_2_decimal_group_gap_rounding_bounds']==[-.092,-.072]
           assert x['male']['printed_2_decimal_group_gap_rounding_bounds']==[0,.02]
           assert a['2012_published_male_progeny_density_GLM']=={'t':-.54,'p':'>.50'}
+          assert a['offspring_male_frequency_minus_parent_male_fraction']['high_minus_low']==.00319728
+          assert a['offspring_male_frequency_minus_parent_male_fraction']['adjusted_gap_two_decimal_rounding_bounds']==[-.00680272,.01319728]
+          assert a['offspring_male_frequency_minus_parent_male_fraction']['not_rare_allele_invasion_or_paternity']
           assert not a['offspring_sex_frequency_is_actual_fitness_of_rare_genotype']
           assert a['SLK_rare_invasion_estimate'] is None
           print('PASS_PUBLISHED_10_PLOTS_POLLEN_ALLOCATION_RESPONSE_IS_NOT_RARE_MALE_INVASION')
