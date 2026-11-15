@@ -1,0 +1,43 @@
+name: Mercurialis ploidy-gated ecological mating and QTL primary evidence
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/mercurialis_density_ploidy_genetic_tradeoff_v1_20261115.json'
+      - 'analysis/audit_mercurialis_density_and_tradeoff_v1.py'
+      - 'results/mercurialis_density_ploidy_tradeoff_audit_v1.json'
+      - 'tests/test_mercurialis_density_ploidy_genetics_v1.py'
+      - 'docs/SLK_MERCURIALIS_PLOIDY_GENETIC_SUPPLY_AND_RARE_ESTABLISHMENT_V1_20261115.md'
+      - '.github/workflows/mercurialis-density-genetic-conflict-real-evidence-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  experimental-unit-and-claim-ceiling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert ploidy, genuine experimental frequency and published QTL source boundaries
+        run: python -m unittest discover -s tests -p 'test_mercurialis_density_ploidy_genetics_v1.py' -v
+      - name: Recompute published contrasts and verify frozen evidence without pooling
+        run: |
+          python analysis/audit_mercurialis_density_and_tradeoff_v1.py --output /tmp/mercurialis_density_and_tradeoff_v1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/mercurialis_density_and_tradeoff_v1.json').read_text())
+          b=json.loads(Path('results/mercurialis_density_ploidy_tradeoff_audit_v1.json').read_text())
+          assert a==b, 'Source receipt changed without frozen result update'
+          x=a['mating_2007']
+          assert x['male_fraction_levels_actually_tested_2004']==[0,.5]
+          assert (x['male_ploidy'],x['hermaphrodite_ploidy'])==(2,6)
+          assert x['outcross_absolute_point_difference']==.338
+          assert not x['rare_male_invasion_directly_observed']
+          assert not a['genetic_2026']['single_gene_pleiotropy_proven']
+          assert a['cross_ploidy_combined_fitness_estimate'] is None
+          assert not a['SLK_Phi_g0_Delta_R_measured']
+          print('PASS_PLOIDY_BLOCKED_EXISTING_ECOLOGICAL_PRIOR_ART_NOT_REAL_SLK_INVASION')
+          PY
