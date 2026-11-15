@@ -1,0 +1,142 @@
+{
+  "schema": "slk_cyananthus_2011_published_table1_flower_closure_v1",
+  "audit_date": "2026-11-15",
+  "citation": {
+    "authors": "Niu Y, Yang Y, Zhang Z-Q, Li Z-M, Sun H",
+    "year": 2011,
+    "title": "Floral closure induced by pollination in gynodioecious Cyananthus delavayi (Campanulaceae): effects of pollen load and type, floral morph and fitness consequences",
+    "journal": "Annals of Botany",
+    "doi": "10.1093/aob/mcr224",
+    "full_text_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3197452/",
+    "locations": "Study site 27°54'N 99°38'E, 3355 m, Shangri-la, Yunnan, southwestern China",
+    "source_locations": [
+      "Methods sections pollen load and fitness, pp.1259–1260",
+      "Results flower closure and pollen-load response",
+      "Original Table 1 n labels",
+      "Results paired corolla ring manipulation"
+    ],
+    "acquisition": "Open-access original full text via PMC; group n inferred strictly from original Table 1 parentheses, not raw flower observations"
+  },
+  "female_experiment": {
+    "initiated_flowers_per_pollen_dose": 72,
+    "initiated_doses": [
+      10,
+      20,
+      30
+    ],
+    "initiated_total": 216,
+    "female_source_plants": 24,
+    "source_table1_usable": {
+      "10": {
+        "closed": 20,
+        "open": 32
+      },
+      "20": {
+        "closed": 40,
+        "open": 23
+      },
+      "30": {
+        "closed": 41,
+        "open": 7
+      }
+    },
+    "usable_total": 163,
+    "table_basis": "Female flowers with both closure observation and female-fitness result available",
+    "original_pearson_chisq": 23.451,
+    "original_pearson_df": 2,
+    "original_pearson_p": "<0.0001",
+    "source_note": "With 20 grains, 63.5% of analyzed female flowers closed; initial design randomized 72 flowers per dose but not all fruits were retained, so original result pertains to analyzed subset",
+    "randomization_unit": "Flowers nested within 24 plants; exact maternal clustering not recoverable from published table"
+  },
+  "perfect_experiment": {
+    "initiated_plants": 15,
+    "initiated_per_pollen_source_and_dose": 30,
+    "initiated_sources": [
+      "cross",
+      "self"
+    ],
+    "initiated_doses": [
+      10,
+      20,
+      30
+    ],
+    "initiated_total": 180,
+    "source_table1_usable": {
+      "cross": {
+        "20": {
+          "closed": 7,
+          "open": 19
+        },
+        "30": {
+          "closed": 16,
+          "open": 7
+        }
+      },
+      "self": {
+        "20": {
+          "closed": 9,
+          "open": 16
+        },
+        "30": {
+          "closed": 12,
+          "open": 12
+        }
+      }
+    },
+    "usable_total": 98,
+    "ten_grain_condition": "Zero recorded closure of perfect flowers with 10-grain exposure, but most fruits were lost and their female fitness was not usable",
+    "source_note": "Table 1 records 49 cross and 49 self only at 20 and 30 grains; do not treat missing 10-grain perfect fruit data as zero seed"
+  },
+  "closure_latency": {
+    "female": {
+      "mean_hours": 5.38,
+      "se_hours": 0.13,
+      "n": 30
+    },
+    "perfect_cross": {
+      "mean_hours": 6.2,
+      "se_hours": 0.1,
+      "n": 22
+    },
+    "original_t": -4.537,
+    "original_df": 50,
+    "original_p": "<0.001",
+    "sample_type": "Separate hand-crossed flowers of female and perfect plants; latency distributions were not reconstructed"
+  },
+  "paired_prevent_closure_sufficient_cross_pollen": {
+    "perfect": {
+      "pairs": 22,
+      "ring_prevented_seed_mean": 17.77,
+      "control_seed_mean": 15.91,
+      "original_p": 0.391
+    },
+    "female": {
+      "pairs": 30,
+      "ring_prevented_seed_mean": 20.93,
+      "control_seed_mean": 22.33,
+      "original_p": 0.531
+    },
+    "methods": "Two flowers per source plant, one constrained open with fine wire ring, all hand pollinated with sufficient cross-pollen",
+    "interpretation": "Neither test detected additional seed benefit of preventing closure under sufficient pollination; these tests are not closure-prevention effects under pollen limitation"
+  },
+  "observed_interpretation": {
+    "female_closed_at_20_grains": "63.5% among 63 analyzed flowers, not 72 initially exposed",
+    "female_cross_self_comparison": "Sex and pollen type contrasts distinct; the non-significant self vs cross closure response in perfect flowers is not equivalence",
+    "male_phase_bottleneck_other_sources": "2015/2021 controlled pollen removal delays the start of the female phase in hermaphrodites; not same cohort",
+    "female_phase_bottleneck_this_source": "2011 premature closure can remove future pollen-receipt opportunities after very low pollen deposition",
+    "simultaneous_same_flower_two_mechanism_experiment": false,
+    "true_fitness_scope": "Maternal seeds and ovule/fertilization indices; no direct male paternity, lifetime fitness, genetic divergence or SLK origin gate",
+    "author_donor_manipulation_inference": "The original discussion explicitly says this work does not sufficiently verify sexual conflict or pollen-donor manipulation"
+  },
+  "claim_limits": [
+    "Counts from published Table 1 used to exactly reconstruct Pearson chi-square for the female usable subset, but raw individual-level data and maternal clustering are unavailable",
+    "216 treated female flowers but 163 usable; 180 treated perfect flowers but 98 usable; unequal missing outcomes may bias percentages",
+    "The original tests use SPSS/JMP treating analyzed flowers as units; reconstructing chi-square does not correct potential within-plant dependence",
+    "Different original articles in 2011, 2015, 2017 and 2021 share species/research programs, not a single cohort or four independent evolutionary transitions",
+    "A closure correlation with low fruit production in field flowers does not prove causal female-fitness loss from the closure itself",
+    "Ring manipulation under sufficient pollen showed no statistically detectable seed response; this does not estimate benefits of keeping flowers open under insufficient pollen",
+    "2011 authors themselves explicitly say sexual conflict or pollen-donor manipulation are not established by this experiment",
+    "2021 Dryad 10.5061/dryad.hmgqnk9f7 is listed by PubMed but the landing and file content were not retrieved here; no claim of original 2021 raw-data reanalysis",
+    "No SLK L, Phi, g0, Delta_R, historical origin, allelic invasion or fixation estimates from this source"
+  ]
+}
