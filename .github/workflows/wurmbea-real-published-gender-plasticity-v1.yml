@@ -11,6 +11,12 @@ on:
       - 'docs/SLK_ANTO_WURMBEA_REAL_GENDER_REEXPRESSION_V1_20261114.md'
       - 'docs/SLK_ANTO_WURMBEA_REPRODUCTIVE_RETURN_V2_20261114.md'
       - 'results/wurmbea_reproductive_return_v2.json'
+      - 'data/evidence/wurmbea_2004_visit_to_seed_stage_source_v3.json'
+      - 'analysis/analyze_wurmbea_2004_visit_seed_decoupling_v3.py'
+      - 'tests/test_wurmbea_2004_visit_seed_decoupling_v3.py'
+      - 'results/wurmbea_2004_visit_seed_decoupling_v3.json'
+      - 'docs/SLK_ANTO_WURMBEA_VISITATION_VS_SEED_REAL_STAGE_DECOUPLING_V3_20261115.md'
+      - 'docs/SLK_ANTO_WURMBEA_ECOLOGICAL_GATE_CONTEXT_V3_20261115.md'
       - '.github/workflows/wurmbea-real-published-gender-plasticity-v1.yml'
   workflow_dispatch:
 permissions:
@@ -62,11 +68,27 @@ jobs:
           assert fresh['new_p_values'] is None
           print('PASS_PUBLISHED_STAGE_MEANS_NOT_LIFETIME_FITNESS')
           PY
+      - name: Reproduce original Wurmbea 2004 opposite visit versus seed ordering
+        run: |
+          python analysis/analyze_wurmbea_2004_visit_seed_decoupling_v3.py --output /tmp/wurmbea_2004_visit_seed_v3.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          fresh=json.loads(Path('/tmp/wurmbea_2004_visit_seed_v3.json').read_text())
+          tracked=json.loads(Path('results/wurmbea_2004_visit_seed_decoupling_v3.json').read_text())
+          assert fresh == tracked, 'Stale or manually modified original-mean comparison'
+          assert fresh['same_paper_opposite_ordering']
+          assert fresh['same_season_or_same_individual_comparison'] is False
+          assert fresh['new_p_values'] is None
+          assert fresh['per_visit_seed_fitness_ratio'] is None
+          print('PASS_REAL_PUBLISHED_VISIT_AND_SEED_OPPOSITE_ORDERING_NO_CAUSAL_CONVERSION')
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: published-Wurmbea-original-aggregate-reproduction-v1
           path: |
             /tmp/wurmbea_state_v1.json
             /tmp/wurmbea_reproductive_return_v2.json
+            /tmp/wurmbea_2004_visit_seed_v3.json
           if-no-files-found: error
           retention-days: 30
