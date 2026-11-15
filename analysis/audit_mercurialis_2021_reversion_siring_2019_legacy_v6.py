@@ -75,14 +75,14 @@ def compute(s):
     if not(abs(g1-.19)<.005 and abs(g4-.12)<.005):
         raise ValueError("PRINTED_SELFING_AUTHOR_AVERAGES_CHANGED")
     z=x["G5_reintroduced_males"]
-    if (z["arrays"]!=6 or z["array_females"]!=50 or z["array_XY_males"]!=50
+    if (z["arrays"]!=6 or z["females_per_array"]!=50 or z["XY_males_per_array"]!=50
         or z["selected_XX_mothers_male_progeny_fraction"]!=.436
         or z["control_XX_mothers_male_progeny_fraction"]!=.503
-        or z["paper_male_sired_sex_ratio_null"]!=.5
-        or z["paper_inferred_fraction_XX_female_sired"]!=.128):
+        or z["expected_male_fraction_from_XY_fathers"]!=.5
+        or z["author_inferred_fraction_XX_female_sired"]!=.128):
         raise ValueError("G5_REINTRODUCTION_SOURCE_CHANGED")
     inferred=2*(.5-z["selected_XX_mothers_male_progeny_fraction"])
-    if abs(inferred-z["paper_inferred_fraction_XX_female_sired"])>1e-10:
+    if abs(inferred-z["author_inferred_fraction_XX_female_sired"])>1e-10:
         raise ValueError("FEMALE_PATERNITY_RATIO_REPRODUCTION_FAILED")
     immigration=x["G0_contaminant_males"]
     if (immigration["males"]!=9 or immigration["offspring"]!=812
@@ -125,12 +125,12 @@ def compute(s):
       },
       "G5_XY_males_reintroduced_sex_ratio_fatherhood":{
          "reintroduction_mating_arrays":z["arrays"],
-         "female_plants_per_array":z["array_females"],
-         "XY_males_per_array":z["array_XY_males"],
+         "female_plants_per_array":z["females_per_array"],
+         "XY_males_per_array":z["XY_males_per_array"],
          "control_male_progeny_fraction":z["control_XX_mothers_male_progeny_fraction"],
          "evolved_XX_mother_male_progeny_fraction":z["selected_XX_mothers_male_progeny_fraction"],
          "son_deficit_vs_XY_half_sex_ratio":round(
-             z["paper_male_sired_sex_ratio_null"]-
+             z["expected_male_fraction_from_XY_fathers"]-
              z["selected_XX_mothers_male_progeny_fraction"],8),
          "source_author_inferred_XX_female_sired_fraction":round(inferred,8),
          "not_direct_father_genotypes":True,
