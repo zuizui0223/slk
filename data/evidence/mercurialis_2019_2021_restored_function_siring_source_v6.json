@@ -1,0 +1,163 @@
+{
+  "schema": "SLK_MERCURIALIS_2019_SIRING_LEGACY_AND_2021_EXPERIMENTAL_REVERSAL_V6",
+  "audit_date": "2026-11-15",
+  "experimental_2021": {
+    "doi": "10.1016/j.cub.2020.12.028",
+    "authors": "Cossard, Gerchen, Li, Cuenot & Pannell (Current Biology, 2021)",
+    "original": "https://www.sciencedirect.com/science/article/pii/S0960982220318807",
+    "ploidy": "diploid, male XX-only descendants versus original XY male donors",
+    "population_replicates": {
+      "female_only": 3,
+      "male_female_controls": 3
+    },
+    "plant_n_per_population": {
+      "G0": 180,
+      "G1_G4": 210
+    },
+    "common_garden": "G0 through G4 source seeds raised simultaneously in randomized blocks under identical pollen environment, allowing separation of current plastic treatment from inherited or maternal lineage effects; genetics vs epigenetics not identified",
+    "original_G0_mate_absence_male_flower_ratio": 2.33,
+    "original_G1_common_garden_male_flower_ratio_vs_control": 8.77,
+    "original_G4_common_garden_male_flower_ratio_vs_control": 23.3,
+    "male_flower_positive_females": {
+      "G0": 0.0548,
+      "G4": 0.693
+    },
+    "mean_2021_author_G4_standard_deviation_shift": 5.84,
+    "selfing_genotypes": {
+      "markers": 8,
+      "source_method": "RMES on progeny SSR; not direct per-offspring selfed assignment",
+      "G1": {
+        "C1": {
+          "n": 114,
+          "s": 0.047,
+          "nonzero_significant": false
+        },
+        "C2": {
+          "n": 111,
+          "s": 0,
+          "nonzero_significant": false
+        },
+        "C3": {
+          "n": 103,
+          "s": 0,
+          "nonzero_significant": false
+        },
+        "S1": {
+          "n": 116,
+          "s": 0.124,
+          "nonzero_significant": true
+        },
+        "S2": {
+          "n": 117,
+          "s": 0.225,
+          "nonzero_significant": true
+        },
+        "S3": {
+          "n": 118,
+          "s": 0.225,
+          "nonzero_significant": true
+        }
+      },
+      "G4": {
+        "C1": {
+          "n": 116,
+          "s": 0.019,
+          "nonzero_significant": false
+        },
+        "C2": {
+          "n": 119,
+          "s": 0,
+          "nonzero_significant": false
+        },
+        "C3": {
+          "n": 114,
+          "s": 0.062,
+          "nonzero_significant": false
+        },
+        "S1": {
+          "n": 118,
+          "s": 0.172,
+          "nonzero_significant": true
+        },
+        "S2": {
+          "n": 120,
+          "s": 0.074,
+          "nonzero_significant": false
+        },
+        "S3": {
+          "n": 117,
+          "s": 0.121,
+          "nonzero_significant": true
+        }
+      }
+    },
+    "author_G1_vs_G4_selfing_difference_p": 0.1,
+    "G0_contaminant_males": {
+      "observed": 9,
+      "offspring": 812,
+      "population_males": [
+        6,
+        2,
+        1
+      ],
+      "population_denominators": [
+        331,
+        262,
+        219
+      ],
+      "interpreted_as_pollen_immigration": true,
+      "removed_after_G0": true
+    },
+    "G5_reintroduced_males": {
+      "arrays": 6,
+      "females_per_array": 50,
+      "XY_males_per_array": 50,
+      "selected_XX_mothers_male_progeny_fraction": 0.436,
+      "control_XX_mothers_male_progeny_fraction": 0.503,
+      "expected_male_fraction_from_XY_fathers": 0.5,
+      "author_inferred_fraction_XX_female_sired": 0.128,
+      "author_p_sex_ratio_selected": "<.001",
+      "method": "Indirect inference from proportion of Y-bearing sons; assumes XY fathers produce equal sexes, XX female pollen only X daughters; NOT SSR assignment of fathers or direct selfing vs XX-outcross separation",
+      "not_a_rare_XY_invasion_trial": true
+    },
+    "source_conflict": "Original Results mentions 20 source populations while original STAR Methods specify 35 source demes; unresolved, use source block with caution",
+    "original_Data_S1": "Publisher lists Excel raw fields for field population, common garden, mating arrays, but workbook not obtained or refit in this task"
+  },
+  "architecture_2019": {
+    "doi": "10.1111/ele.13207",
+    "authors": "Santos Del Blanco, Tudor & Pannell (Ecology Letters, 2019)",
+    "original": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6850444/",
+    "morphs": "Female-like monoecious axillary short inflorescences vs male-like monoecious pedunculate long inflorescences vs males in different natural population source material",
+    "exp1": {
+      "mating_arrays": 30,
+      "adults_analyzed": 851,
+      "progeny_sex_phenotyped": 6000,
+      "F_like_siring_less_than_M_like_fraction": 0.25,
+      "source": "Arrays with XY males present; authors infer paternal contribution from male progeny"
+    },
+    "exp2": {
+      "mating_arrays": 12,
+      "adults_analyzed": 300,
+      "offspring_genotyped": 720,
+      "marker_loci": 5,
+      "F_like_siring_less_than_M_like_fraction": 0.31,
+      "source": "F-like vs M-like competition; maternal/selfing assignments by SSR source category",
+      "assumption": "~31% difference calculated under assumed equal selfing in both morphs because M-like selfing unidentifiable",
+      "F_like_selfing_fraction": 0.15
+    },
+    "not_a_randomized_in_the_same_genome_inflorescence_manipulation": true,
+    "not_the_2021_evolved_lineages": true
+  },
+  "critical_scope": [
+    "G0 2.33× acute response and 2021 G4 23.3× evolution derive from same experiment, not two independent origins",
+    "G4 23.3× is relative to contemporaneous control females, not 23.3× G0 itself",
+    "Published G1/G4 RMES selfing means .19/.12 decrease was not statistically significant (p=.10); cannot infer more male flowers means monotonically more selfing",
+    "G5 12.8% female siring uses 2×(0.5−0.436), not 2×(0.503−0.436), and source is inferred from sex ratio not directly father-genotyped",
+    "2019 25–31% female-like inflorescence siring disadvantage is independent source material from 2021 evolved XX females; not a direct same-genotype counterfactual",
+    "2019 observed source morphology differs with population and genes; source study does not isolate peduncle architecture in same isogenic background",
+    "2021 source G0 provenance inconsistency 20 populations vs 35 demes remains unresolved",
+    "Follow-up 2025 New Phytologist and 2026 PNAS reuse evolved XX lineages (not independent reversals)",
+    "No actual multigeneration return-to-dioecy after XY male reintroduction was observed; single G5 mating array tests ability to sire under male competition",
+    "No novel field data, raw Data S1 files, complete SLK Phi/g0/Delta_R or whole-lifetime rare mutant invasion rates"
+  ]
+}
