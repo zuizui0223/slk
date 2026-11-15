@@ -66,6 +66,13 @@
     "2021 original dryad dataset is registered but CSV/text could not be fetched via available tools; no raw individual model refit here",
     "Do not equate 2021 diploid XX female plastic male expression with 2024 hexaploid CMS female retained sterile male flowers, or combine their model coefficients",
     "This plastic response supports preserved developmental ability, not evolutionary restoration of a genetically deleted male function",
-    "No allelic rare-type invasion, realized lifetime fitness, SLK Phi/g0/Delta_R, or historical origin directly observed"
-  ]
+    "No allelic rare-type invasion, realized lifetime fitness, SLK Phi/g0/Delta_R, or historical origin directly observed",
+    "The all-female treatment doubles the number of females per equal-180-plant population (90 controls vs 180); mate absence is confounded with increased female-neighbour density/competition, and is NOT pure pollen supplementation or direct pollen signal intervention."
+  ],
+  "females_per_180_plant_population": {
+    "with_males": 90,
+    "without_males": 180
+  },
+  "female_density_doubled_with_males_removed": true,
+  "mating_partner_removal_is_not_pure_pollen_arrival_intervention": true
 }
