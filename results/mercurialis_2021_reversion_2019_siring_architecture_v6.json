@@ -117,8 +117,9 @@
   },
   "G0_immigrant_male_progeny": {
     "original_offspring_n": 812,
-    "male_fraction": null,
-    "confirms_mating_system_not_perfectly_hermetically_sealed": true
+    "male_fraction": 0.011083744,
+    "confirms_mating_system_not_perfectly_hermetically_sealed": true,
+    "original_male_n": 9
   },
   "G5_XY_males_reintroduced_sex_ratio_fatherhood": {
     "reintroduction_mating_arrays": 6,
@@ -128,7 +129,9 @@
     "source_author_inferred_XX_female_sired_fraction": 0.128,
     "not_direct_father_genotypes": true,
     "selfing_fraction_cannot_be_separated_from_XX_cross": true,
-    "one_generation_not_male_reinvasion_fixed": true
+    "one_generation_not_male_reinvasion_fixed": true,
+    "female_plants_per_array": 50,
+    "XY_males_per_array": 50
   },
   "2019_independent_source_architecture_paternal_penalty": {
     "exp1_arrays": 30,
