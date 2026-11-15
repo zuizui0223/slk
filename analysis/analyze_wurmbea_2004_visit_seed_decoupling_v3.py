@@ -45,6 +45,24 @@ def analyze(source):
     if f <= 0 or c <= 0:
         raise ValueError("ZERO_FLY_VISIT_DENOMINATOR")
     fr, cr = ranges["female"], ranges["cosexual"]
+    timing = source["anther_presentation_same_paper"]
+    onset = timing["days_from_anthesis_until_first_pollen_presentation"]
+    six = timing["days_to_dehisce_all_six_anthers"]
+    first_day = timing["first_day_percent_of_total_pollen_removed"]
+    for group in (onset, six, first_day):
+        for sex in ("male", "cosexual"):
+            for key in ("mean", "se"):
+                value = group[sex][key]
+                if (isinstance(value, bool) or
+                        not isinstance(value, (float, int)) or
+                        not math.isfinite(value) or value <= 0):
+                    raise ValueError("INVALID_POLLEN_PRESENTATION_MEASURE")
+    if not 0 < six["original_mann_whitney_p"] < 1:
+        raise ValueError("INVALID_ORIGINAL_P")
+    if not (first_day["male"]["mean"] < first_day["cosexual"]["mean"] and
+            onset["male"]["mean"] < onset["cosexual"]["mean"] and
+            six["male"]["mean"] > six["cosexual"]["mean"]):
+        raise ValueError("POLLEN_METERING_SOURCE_DIRECTION_CHANGED")
     source_outcomes = source["author_reported_outcomes"]
     if (source_outcomes["pollen_deposition_female_vs_cosexual"] !=
             "NO_SIGNIFICANT_DIFFERENCE_DETECTED"):
@@ -66,6 +84,20 @@ def analyze(source):
             source_outcomes["pollen_deposition_female_vs_cosexual"],
         "hand_cross_supplementation":
             source_outcomes["additional_hand_cross_pollination_effect_on_fruit_or_seed_set"],
+        "pollen_presentation_biology": {
+            "male_over_cosexual_onset_days_ratio":
+                onset["male"]["mean"] / onset["cosexual"]["mean"],
+            "male_over_cosexual_complete_anther_dehiscence_days_ratio":
+                six["male"]["mean"] / six["cosexual"]["mean"],
+            "male_over_cosexual_first_day_pollen_removed_ratio":
+                first_day["male"]["mean"] / first_day["cosexual"]["mean"],
+            "published_mann_whitney_p_anther_duration":
+                six["original_mann_whitney_p"],
+            "male_reclosure_observed_in_some_plants":
+                timing["anther_reclosure_after_wet_or_windy_weather"]["males_some_observed"],
+            "new_p_value": None,
+            "male_paternity": None,
+        },
         "same_season_or_same_individual_comparison": False,
         "per_visit_seed_fitness_ratio": None,
         "new_p_values": None,
