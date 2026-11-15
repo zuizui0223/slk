@@ -27,7 +27,15 @@
       "monoecious hermaphrodite"
     ],
     "sexual_structures": "Hermaphrodite bears male and female unisexual flowers on same plant; male-sterile female has nonfunctional male flowers",
-    "geography": "southern Spain (Motril) parental seed source common garden, not continentwide random material"
+    "geography": "southern Spain (Motril) parental seed source common garden, not continentwide random material",
+    "female_phenotype_retains_male_looking_nonfunctional_flower_organs": {
+      "source_location": "Original 2024 Discussion 'Widespread trioecy in hexaploid M. annua'",
+      "observation": "Females are phenotypically monoecious and produce sterile male-looking flowers that otherwise resemble fertile male flowers on hermaphrodites; they can be missed in morphological field counts",
+      "form_present": true,
+      "male_fertility_function_present": false,
+      "afterloss_de_novo_genetic_reacquisition_established": false,
+      "implication": "Morphological retention of staminate organ is NOT proof of pollen fertility or same genetic structure as true dioecy"
+    }
   },
   "distance_experiment": {
     "year": "Common garden prior to published 2024 study, Motril-derived plants",
