@@ -84,7 +84,7 @@ class RealMateAbsenceGeneticPotential(unittest.TestCase):
     def test_island_hypothesis_not_an_island_field_experiment(self):
         self.assertTrue(self.r["published_paper_proposes_island_colonization_without_testing_islands"])
         self.assertIn("NO oceanic island",self.src["discussion"]["island_colonization"])
-        self.assertIn("founder",self.src["discussion"]["proposed_cue"]+" founder")
+        self.assertIn("founder events",self.src["discussion"]["island_colonization"])
 
     def test_false_ploidy_or_p_or_experiment_sample_fails(self):
         d=copy.deepcopy(self.src)
