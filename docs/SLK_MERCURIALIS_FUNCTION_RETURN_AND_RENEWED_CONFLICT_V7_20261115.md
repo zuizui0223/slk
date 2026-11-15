@@ -11,14 +11,14 @@ G5で雄を復帰させた6交配アレイ（各50 XX雌＋50 XY雄）では、�
 
 G1/G4の**8 SSRによる集団別自殖率（RMES）**は、雄なし集団3つの掲載推定平均で**G1 0.1913／G4 0.1223**、差−0.069、原著p=.10で非有意。雄花が増えれば自殖率が単調に増すという結論は出ない。
 
-## 2. G8で初めて測れたのは「再発現した雄機能の遺伝的父性」と「自殖との衝突」
+## 2. 同じ実験進化系列のG8で測れたのは「再発現した雄機能の遺伝的父性」と「自殖との衝突」
 
 Chen & Pannell (2025) [New Phytologist, DOI 10.1111/nph.70356](https://doi.org/10.1111/nph.70356) は同じXXのみの実験進化**系列から8世代後の種子**を用い、3つの共通庭園（各61株）の雄花・雌花、成熟種子、9 SSRによる父性を調べた。**2021論文のG4個体を再測定した縦断追跡ではない**。
 
 - **形質を測定できた180株**で、雄花と雌花への配分は負の関連（原著p<.001）。両性機能の資源配分には実際のトレードオフがある。
 - **181親個体、958種子**からDNA抽出。948種子の遺伝子型が利用可能で、**915種子の父親を割り当てた**（Cervus、80%の緩い信頼閾値）。遺伝子型判定可能種子に対する父性割当率 **915/948=96.52%** と、全生産種子約13,800粒に対する父性標本 **約6.6%** は別の分母。「全種子の96.5%について父性を測定した」ではない。
 - **172株の個体別自殖率の平均29.6%**。雄配分が大きいほどその個体の自殖率が高い（原著p<.001）。これは「915種子中の自殖粒率29.6%」とは限らない。またG1/G4の集団別RMES（8 SSR）とG8の個体別父性比率（9 SSR）は直接の増減系列として結べない。
-- 自殖の近交弱勢 **δは当該二倍体集団では実測されていない**。原著は **δ=0 または δ=1** という両極の仮定で、実際の成熟種子数と父性推定を用いて雌・雄・総繁殖成功を計算した。δ=1の「総繁殖成功」は自殖子孫に完全な適応度損失を仮定した推定値であり、野外の生存子孫数を観察した値ではない。
+- 自殖の近交弱勢 **δは当該二倍体集団では未測定**（実測されていない）。原著は **δ=0 または δ=1** という両極の仮定で、実際の成熟種子数と父性推定を用いて雌・雄・総繁殖成功を計算した。δ=1の「総繁殖成功」は自殖子孫に完全な適応度損失を仮定した推定値であり、野外の生存子孫数を観察した値ではない。
 
 原著Table 1にある**総相対適応度～雄配分の二次係数**（括弧内SE、同じ個体から2つのδシナリオを作成）：
 
@@ -54,9 +54,9 @@ Santos Del Blanco, Tudor & Pannell (2019) [Ecology Letters, DOI 10.1111/ele.1320
 
 ## 再現・一次資料
 
-- Published source receipts: \`data/evidence/mercurialis_2019_2021_restored_function_siring_source_v6.json\` and \`data/evidence/mercurialis_inbreeding_disruption_2025_primary_v1.json\`.
-- New cross-study provenance: \`data/evidence/mercurialis_g0_g8_return_pressure_source_v7.json\`.
-- Arithmetic-only audit: \`analysis/audit_mercurialis_g0_g8_return_pressure_v7.py\`.
-- Frozen result: \`results/mercurialis_g0_g8_return_pressure_v7.json\`, bounded tests and dedicated CI.
+- Published source receipts: `data/evidence/mercurialis_2019_2021_restored_function_siring_source_v6.json` and `data/evidence/mercurialis_inbreeding_disruption_2025_primary_v1.json`.
+- New cross-study provenance: `data/evidence/mercurialis_g0_g8_return_pressure_source_v7.json`.
+- Arithmetic-only audit: `analysis/audit_mercurialis_g0_g8_return_pressure_v7.py`.
+- Frozen result: `results/mercurialis_g0_g8_return_pressure_v7.json`, bounded tests and dedicated CI.
 - 2025 original paper links its raw data and code at [Zenodo 10.5281/zenodo.14542260](https://doi.org/10.5281/zenodo.14542260), but the archive could **not** be retrieved here; no individual-level reanalysis or new GLMM claim.
-- Current SLK Am Nat flagship, \`main\`, ANTO and aza3 unchanged; this memo belongs solely to the Draft empirical PR #121.
+- Current SLK Am Nat flagship, `main`, ANTO and aza3 unchanged; this memo belongs solely to the Draft empirical PR #121.
