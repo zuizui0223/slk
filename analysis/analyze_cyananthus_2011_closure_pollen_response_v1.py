@@ -94,6 +94,33 @@ def compute(data):
     robust_30_gt_20=(
         missingness_bounds["30"]["worst_case_closure_lower"]>
         missingness_bounds["20"]["worst_case_closure_upper"])
+    morph_source=data["cross_morph_comparison_at_20_grains"]
+    if (morph_source["pollen_dose"]!=20 or
+            morph_source["pollen_source"]!="cross" or
+            morph_source["female_table1"]!=f["source_table1_usable"]["20"] or
+            morph_source["perfect_table1"]!=pexp["source_table1_usable"]["cross"]["20"]):
+        raise ValueError("POLLEN_MATCHED_MORPH_SOURCE_MISMATCH")
+    morph_counts=[rows[1],[
+        pexp["source_table1_usable"]["cross"]["20"]["closed"],
+        pexp["source_table1_usable"]["cross"]["20"]["open"]]]
+    mr=[sum(row) for row in morph_counts]
+    mc=[sum(row[j] for row in morph_counts) for j in range(2)]
+    mt=sum(mr)
+    morph_chisq=sum(
+        (morph_counts[i][j]-mr[i]*mc[j]/mt)**2/(mr[i]*mc[j]/mt)
+        for i in range(2) for j in range(2)
+    )
+    if abs(morph_chisq-morph_source["original_chisq"])>.001:
+        raise ValueError("PUBLISHED_SEX_MORPH_CHISQ_NOT_REPRODUCED")
+    # Against all missing outcome allocations, the female minimum still
+    # exceeds the hermaphrodite cross-pollen maximum at matched dose=20.
+    female_lower=rows[1][0]/f["initiated_flowers_per_pollen_dose"]
+    perfect_missing=pexp["initiated_per_pollen_source_and_dose"]-mr[1]
+    if perfect_missing<0:
+        raise ValueError("MORE_USABLE_PERFECT_THAN_EXPOSED")
+    perfect_upper=(morph_counts[1][0]+perfect_missing)/pexp[
+        "initiated_per_pollen_source_and_dose"]
+    morph_direction_robust=female_lower>perfect_upper
     return {
         "schema":"slk_cyananthus_2011_closure_published_table1_result_v1",
         "doi":data["citation"]["doi"],
@@ -119,6 +146,22 @@ def compute(data):
         "perfect_source_unusable_n":pexp["initiated_total"]-pexp["usable_total"],
         "perfect_source_usable_fraction":round(pexp["usable_total"]/pexp["initiated_total"],8),
         "perfect_usable_closure_table":perf,
+        "morph_response_at_20_cross_pollen":{
+            "female_usable_closed":morph_counts[0][0],
+            "female_usable_open":morph_counts[0][1],
+            "perfect_usable_closed":morph_counts[1][0],
+            "perfect_usable_open":morph_counts[1][1],
+            "female_usable_closure_fraction":round(morph_counts[0][0]/mr[0],8),
+            "perfect_usable_closure_fraction":round(morph_counts[1][0]/mr[1],8),
+            "reproduced_pearson_chisq":round(morph_chisq,8),
+            "original_pearson_chisq":morph_source["original_chisq"],
+            "original_p":morph_source["original_p"],
+            "female_minimum_closure_fraction_all_72":round(female_lower,8),
+            "perfect_maximum_closure_fraction_all_30":round(perfect_upper,8),
+            "female_higher_than_perfect_with_any_missing_outcomes":morph_direction_robust,
+            "sex_morph_randomized_treatment":False,
+            "same_maternal_plant_or_genotype":False
+        },
         "closure_latency_hours":{
             sex:{"mean":data["closure_latency"][sex]["mean_hours"],
                  "se":data["closure_latency"][sex]["se_hours"],
