@@ -31,6 +31,12 @@ def compute(s):
         d["scored_female_plants"]!=272 or
         not d["measured_population_replicates_not_272_independent_populations"]):
         raise ValueError("SOURCE_POPULATION_AND_NESTING_CHANGED")
+    female_density=d["female_count_change_under_fixed_total_plants"]
+    if (female_density["control_females_per_population"]!=90 or
+        female_density["all_female_females_per_population"]!=180 or
+        female_density["female_density_ratio"]!=2 or
+        female_density["total_individuals_per_population_both_groups"]!=180):
+        raise ValueError("FALSE_PURE_MATE_POLLEN_TREATMENT")
     p=d["sampled_pot_occupancy_counts"]
     n1=p["one_female_from_each_pot"]
     n2=p["pots_with_two_sampled_females"]
@@ -73,6 +79,9 @@ def compute(s):
         "initial_control_total_plants":d["control_dioecious_plots"]*180,
         "initial_female_only_total_plants":d["all_female_plots"]*180,
         "initial_total_plants":d["initial_total_plants"],
+        "females_per_180_plant_population":{"with_males":90,"without_males":180},
+        "female_density_doubled_with_males_removed":True,
+        "mating_partner_removal_is_not_pure_pollen_arrival_intervention":True,
         "female_phenotyped_n":d["scored_female_plants"],
         "sampled_unique_pots_from_source_occupancy":sampled_pots,
         "sampled_female_plants_sharing_pots_with_other_sampled_females":females_in_multi_sampled_pots,
