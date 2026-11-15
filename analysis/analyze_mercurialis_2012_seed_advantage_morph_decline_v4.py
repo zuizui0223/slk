@@ -32,9 +32,9 @@ def classify(seed_ratio:float, daughter_fraction:float, parent_fraction:float):
         raise ValueError("SOURCE_FREQUENCIES_OUT_OF_RANGE")
     # original prints to 2 decimals; borderline ties remain ambiguous.
     if seed_ratio + .005 < 1:
-        advantage="female_seed_higher"
+        advantage="female_seed_allocation_higher"
     elif seed_ratio - .005 > 1:
-        advantage="hermaphrodite_seed_higher"
+        advantage="hermaphrodite_seed_allocation_higher"
     else:
         advantage="undetermined_under_source_rounding"
 
@@ -55,6 +55,9 @@ def compute(original,prior):
         raise ValueError("INVALID_ORIGINAL_2012_SOURCE_SCOPE")
     if prior["observed_2012_source"]["doi"]!=pub["doi"]:
         raise ValueError("MISMATCHED_PRIMARY_STUDY")
+    if prior["method_correction_2026_11_15"]["corrected_endpoint"]!=\
+            "SEED_BIOMASS_PER_ABOVEGROUND_BIOMASS_ALLOCATION_FRACTION":
+        raise ValueError("ABSOLUTE_FECUNDITY_NOT_MEASURED")
     t=prior["model_2025_prior_art"]
     if (t["doi"]!="10.1038/s41437-024-00729-7" or
         not t["author_simulation_not_natural_invasion"] or
@@ -76,19 +79,19 @@ def compute(original,prior):
     # invasion requirements in the PRIOR Heredity paper. Here we record
     # purely descriptive bins, not an empirical invasion test.
     ratio_bins={
-      "seed_advantage_not_detected":0,
-      "female_seed_ratio_strictly_between_1_and_2":0,
-      "female_seed_ratio_strictly_above_2":0,
+      "female_allocation_not_higher":0,
+      "female_allocation_ratio_strictly_between_1_and_2":0,
+      "female_allocation_ratio_strictly_above_2":0,
       "uncertainty_from_oh_rounding_crossing_bin_boundary":0
     }
     intersection={
-      "female_seed_higher_and_female_morph_decrease":0,
-      "female_seed_higher_and_female_morph_increase":0,
-      "female_seed_higher_and_morph_ambiguous":0,
-      "hermaphrodite_seed_higher_and_female_morph_decrease":0,
-      "hermaphrodite_seed_higher_and_female_morph_increase":0,
-      "hermaphrodite_seed_higher_and_morph_ambiguous":0,
-      "seed_advantage_ambiguous":0
+      "female_seed_allocation_higher_and_female_morph_decrease":0,
+      "female_seed_allocation_higher_and_female_morph_increase":0,
+      "female_seed_allocation_higher_and_morph_ambiguous":0,
+      "hermaphrodite_seed_allocation_higher_and_female_morph_decrease":0,
+      "hermaphrodite_seed_allocation_higher_and_female_morph_increase":0,
+      "hermaphrodite_seed_allocation_higher_and_morph_ambiguous":0,
+      "seed_allocation_ambiguous":0
     }
     for r in sorted(rows,key=lambda x:x["id"]):
         key=r["density"]+"_"+r["males"]
@@ -106,36 +109,36 @@ def compute(original,prior):
         parent_f=parent["female"]/sum(parent.values())
         seed,morph=classify(r["oh"],r["female"],parent_f)
         if r["oh"]-.005>1:
-            bin_name="seed_advantage_not_detected"
+            bin_name="female_allocation_not_higher"
         elif r["oh"]+.005<.5:
-            bin_name="female_seed_ratio_strictly_above_2"
+            bin_name="female_allocation_ratio_strictly_above_2"
         elif r["oh"]-.005>.5 and r["oh"]+.005<1:
-            bin_name="female_seed_ratio_strictly_between_1_and_2"
+            bin_name="female_allocation_ratio_strictly_between_1_and_2"
         else:
             bin_name="uncertainty_from_oh_rounding_crossing_bin_boundary"
         ratio_bins[bin_name]+=1
-        if seed=="female_seed_higher":
+        if seed=="female_seed_allocation_higher":
             if morph=="female_morph_decrease":
-                intersection["female_seed_higher_and_female_morph_decrease"]+=1
+                intersection["female_seed_allocation_higher_and_female_morph_decrease"]+=1
             elif morph=="female_morph_increase":
-                intersection["female_seed_higher_and_female_morph_increase"]+=1
+                intersection["female_seed_allocation_higher_and_female_morph_increase"]+=1
             else:
-                intersection["female_seed_higher_and_morph_ambiguous"]+=1
-        elif seed=="hermaphrodite_seed_higher":
+                intersection["female_seed_allocation_higher_and_morph_ambiguous"]+=1
+        elif seed=="hermaphrodite_seed_allocation_higher":
             if morph=="female_morph_decrease":
-                intersection["hermaphrodite_seed_higher_and_female_morph_decrease"]+=1
+                intersection["hermaphrodite_seed_allocation_higher_and_female_morph_decrease"]+=1
             elif morph=="female_morph_increase":
-                intersection["hermaphrodite_seed_higher_and_female_morph_increase"]+=1
+                intersection["hermaphrodite_seed_allocation_higher_and_female_morph_increase"]+=1
             else:
-                intersection["hermaphrodite_seed_higher_and_morph_ambiguous"]+=1
+                intersection["hermaphrodite_seed_allocation_higher_and_morph_ambiguous"]+=1
         else:
-            intersection["seed_advantage_ambiguous"]+=1
+            intersection["seed_allocation_ambiguous"]+=1
         table.append({
           "original_plot":r["id"],"treatment_cell":key,
-          "source_oh_hermaphrodite_over_female_seed_output":r["oh"],
-          "female_over_hermaphrodite_seed_output_ratio_from_printed_oh":round(1/r["oh"],8),
-          "relative_seed_advantage_under_rounding":seed,
-          "descriptive_ratio_bin_not_novel_invasion_condition":bin_name,
+          "source_oh_hermaphrodite_over_female_seed_allocation_fraction":r["oh"],
+          "female_over_hermaphrodite_seed_allocation_share_ratio_from_printed_oh":round(1/r["oh"],8),
+          "relative_seed_allocation_advantage_under_rounding":seed,
+          "relative_allocation_bin_not_model_viable_seed_g":bin_name,
           "parental_female_morph_fraction":round(parent_f,8),
           "source_progeny_female_morph_fraction":r["female"],
           "female_morph_frequency_change_from_parent":round(r["female"]-parent_f,8),
@@ -146,51 +149,52 @@ def compute(original,prior):
     if found_groups!=expected_groups:
         raise ValueError("UNBALANCED_ORIGINAL_PLOT_CELLS")
     if ratio_bins!={
-        "seed_advantage_not_detected":1,
-        "female_seed_ratio_strictly_between_1_and_2":15,
-        "female_seed_ratio_strictly_above_2":4,
+        "female_allocation_not_higher":1,
+        "female_allocation_ratio_strictly_between_1_and_2":15,
+        "female_allocation_ratio_strictly_above_2":4,
         "uncertainty_from_oh_rounding_crossing_bin_boundary":0
     }:
         raise ValueError("SOURCE_RATIO_THRESHOLDS_NOT_REPRODUCED")
     if (prior["model_2025_prior_art"]["idealized_original_intro_thresholds"]
         ["actual_2012_plot_invasion_inference"]
-        !="BLOCKED_BY_SELFING_EXISTING_MALES_PARTNER_CONTEXT_AND_CMS_UNTYPED"):
+        !="BLOCKED_BY_ALLOCATION_FRACTION_NOT_VIABLE_SEED_NUMBER_SELFING_EXISTING_MALES_AND_CMS_UNTYPED"):
         raise ValueError("FALSE_INVASION_THRESHOLD_APPLICATION")
     if sum(r["progeny_sample_n"] for r in table)!=6076:
         raise ValueError("SOURCE_2012_PROGENY_TOTAL_CHANGED")
     if intersection!={
-      "female_seed_higher_and_female_morph_decrease":17,
-      "female_seed_higher_and_female_morph_increase":1,
-      "female_seed_higher_and_morph_ambiguous":1,
-      "hermaphrodite_seed_higher_and_female_morph_decrease":0,
-      "hermaphrodite_seed_higher_and_female_morph_increase":1,
-      "hermaphrodite_seed_higher_and_morph_ambiguous":0,
-      "seed_advantage_ambiguous":0
+      "female_seed_allocation_higher_and_female_morph_decrease":17,
+      "female_seed_allocation_higher_and_female_morph_increase":1,
+      "female_seed_allocation_higher_and_morph_ambiguous":1,
+      "hermaphrodite_seed_allocation_higher_and_female_morph_decrease":0,
+      "hermaphrodite_seed_allocation_higher_and_female_morph_increase":1,
+      "hermaphrodite_seed_allocation_higher_and_morph_ambiguous":0,
+      "seed_allocation_ambiguous":0
     }:
         raise ValueError("SOURCE_CROSS_TAB_PLOT_BIOLOGY_CHANGED")
     limit=prior["claim_limits"]
     if not any("2025 Heredity model" in s for s in limit):
         raise ValueError("THEORETICAL_PRIOR_ART_SCOPE_MISSING")
     return {
-      "schema":"SLK_2012_ORIGINAL_PLOT_SEED_ADVANTAGE_VERSUS_MORPH_TURNOVER_V4",
+      "schema":"SLK_2012_ORIGINAL_PLOT_SEED_BIOMASS_ALLOCATION_VERSUS_MORPH_TURNOVER_V4",
       "primary_source_doi":pub["doi"],
       "interpretive_prior_art_doi":t["doi"],
       "external_cross_taxon_direct_experiment_doi":snail["doi"],
       "count_independent_experimental_plots":20,
       "sex_system_design":"TRIOECY; all plots include female phenotypes",
-      "source_ratio_definition":"o_h = sigma_hermaphrodite / sigma_female relative seed production",
+      "source_ratio_definition":"o_h = (seed dry biomass / aboveground biomass)_hermaphrodite divided by (seed dry biomass / aboveground biomass)_female",
       "male_presence_is_male_for_hermaphrodite_substitution":True,
       "source_values_printed_to_decimals":2,
-      "descriptive_female_to_hermaphrodite_seed_ratio_bins_from_oh":ratio_bins,
+      "descriptive_female_to_hermaphrodite_seed_allocation_share_ratio_bins_from_oh":ratio_bins,
       "theoretical_prior_nuclear_and_CMS_thresholds_apply_to_real_2012_plots":False,
+      "o_h_allocation_ratio_can_equal_Heredity_viable_seed_g":False,
       "idealized_ancestral_thresholds_from_original_Heredity":{
          "nuclear_male_sterility":"g>2",
          "maternally_inherited_CMS":"g>1"
       },
       "joint_outcomes_counted_from_original_plot_summary":intersection,
-      "female_relative_seed_advantage_plots":19,
+      "female_seed_biomass_allocation_higher_plots":19,
       "female_morph_frequency_decline_plots":17,
-      "female_seed_advantage_plus_decline_plots":17,
+      "female_allocation_higher_plus_decline_plots":17,
       "plot_level_records":table,
       "evidence_morph_increase_when_seed_higher_must_occur":False,
       "same_genotype_genetic_fitness_recovered":False,
