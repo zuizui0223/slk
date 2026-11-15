@@ -27,7 +27,12 @@
       "not_supported_as_two_significant_opposite_gradients": true
     },
     "paternity_method": "10 microsatellite loci, up to 10 offspring per seed family",
-    "dryad": "https://doi.org/10.5061/dryad.rbnzs7hj0"
+    "dryad": "https://doi.org/10.5061/dryad.rbnzs7hj0",
+    "source_2023_flower_counts": {
+      "male": 46,
+      "bisexual": 129,
+      "total": 175
+    }
   },
   "primary_2024": {
     "doi": "10.1111/1365-2745.14378",
@@ -145,7 +150,16 @@
       "2020-2021": 7,
       "2021-2022": 3
     },
-    "data": "https://doi.org/10.5281/zenodo.7713765"
+    "data": "https://doi.org/10.5281/zenodo.7713765",
+    "andromonoecious_both_flower_morphs_n": 16,
+    "male_flower_opened_before_bisexual_count_from_88pct": 14,
+    "author_reported_male_first_fraction": 0.88,
+    "male_fitness_pistil_availability_p": 0.037,
+    "source_2025_flower_counts": {
+      "male": 45,
+      "bisexual": 130,
+      "total": 175
+    }
   },
   "inference_limits": [
     "2023, 2024, Current Biology 2025 and Am Nat 2025 overlap in Solalex 2022 population and DNA sampling; NOT independent biological replicates",
@@ -153,6 +167,7 @@
     "Year-to-year observed changes in sex expression do not demonstrate ancestral genome function reacquisition, historical appearance of andromonoecy, or selection driving sex change",
     "2025 male power-law b=0.5 CI includes 1 and p=.051; not established as significantly saturating",
     "No Dryad CSV or Zenodo raw ZIP fetched via current tools; cite publisher table only",
-    "No actual SLK architecture value Phi, accessibility g0, rare invasion Delta_R, realized full-cycle genotypic fitness or origin rates estimated"
+    "No actual SLK architecture value Phi, accessibility g0, rare invasion Delta_R, realized full-cycle genotypic fitness or origin rates estimated",
+    "2023 primary paper reports 46 male/129 bisexual flowers, 2025 Am Nat reports 45 male/130 bisexual from apparently the same 175-flower Solalex 2022 cohort; provenance difference unresolved, retain each source's reported classification rather than silently pooling."
   ]
 }
