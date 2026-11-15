@@ -137,6 +137,24 @@
     "Ring manipulation under sufficient pollen showed no statistically detectable seed response; this does not estimate benefits of keeping flowers open under insufficient pollen",
     "2011 authors themselves explicitly say sexual conflict or pollen-donor manipulation are not established by this experiment",
     "2021 Dryad 10.5061/dryad.hmgqnk9f7 is listed by PubMed but the landing and file content were not retrieved here; no claim of original 2021 raw-data reanalysis",
-    "No SLK L, Phi, g0, Delta_R, historical origin, allelic invasion or fixation estimates from this source"
-  ]
+    "No SLK L, Phi, g0, Delta_R, historical origin, allelic invasion or fixation estimates from this source",
+    "The female versus perfect flower 20-grain comparison is standardized for cross-pollen dose but not a randomized within-genotype sex-architecture intervention."
+  ],
+  "cross_morph_comparison_at_20_grains": {
+    "pollen_source": "cross",
+    "pollen_dose": 20,
+    "female_table1": {
+      "closed": 40,
+      "open": 23
+    },
+    "perfect_table1": {
+      "closed": 7,
+      "open": 19
+    },
+    "original_chisq": 9.876,
+    "original_df": 1,
+    "original_p": 0.002,
+    "denominator_warning": "Same pollen-dose condition, different floral morphs and source plants; sex morph was not a randomized treatment",
+    "question": "Does differentiated female morph have the same pollen-triggered shutdown sensitivity as perfect flowers? Original test detects a difference."
+  }
 }
