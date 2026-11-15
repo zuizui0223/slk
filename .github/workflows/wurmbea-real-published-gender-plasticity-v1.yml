@@ -17,6 +17,9 @@ on:
       - 'results/wurmbea_2004_visit_seed_decoupling_v3.json'
       - 'docs/SLK_ANTO_WURMBEA_VISITATION_VS_SEED_REAL_STAGE_DECOUPLING_V3_20261115.md'
       - 'docs/SLK_ANTO_WURMBEA_ECOLOGICAL_GATE_CONTEXT_V3_20261115.md'
+      - 'data/evidence/wurmbea_multiscale_origin_vs_function_source_v4.json'
+      - 'docs/SLK_WURMBEA_FLORAL_CONFLICT_EVOLUTION_DIRECTION_V4_20261115.md'
+      - 'tests/test_wurmbea_multiscale_origin_vs_function_v4.py'
       - '.github/workflows/wurmbea-real-published-gender-plasticity-v1.yml'
   workflow_dispatch:
 permissions:
@@ -33,6 +36,8 @@ jobs:
       - name: Verify published tagged-plant and resource cohorts
         run: |
           python -m unittest discover -s tests -p 'test_wurmbea*.py' -v
+      - name: Check published multi-scale Wurmbea functional and historical claim ceilings
+        run: python -m unittest discover -s tests -p 'test_wurmbea_multiscale*.py' -v
       - name: Independently recalculate the published aggregate count interpretations
         run: |
           python analysis/audit_wurmbea_published_state_plasticity_v1.py --output /tmp/wurmbea_state_v1.json
