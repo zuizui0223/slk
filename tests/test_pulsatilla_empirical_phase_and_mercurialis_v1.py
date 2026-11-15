@@ -53,6 +53,18 @@ class FloralSexConflictOriginalEvidence(unittest.TestCase):
         self.assertAlmostEqual(a1["fraction_by_original_year_source_phase"]["M_to_H"],5/7)
         self.assertAlmostEqual(a2["fraction_by_original_year_source_phase"]["H_to_M"],1/41)
 
+    def test_male_flower_can_lead_at_plant_scale_but_cohort_classification_differs(self):
+        d=self.p
+        x=d["primary_2025_amnat"]
+        self.assertEqual(x["andromonoecious_both_flower_morphs_n"],16)
+        self.assertEqual(x["male_flower_opened_before_bisexual_count_from_88pct"],14)
+        self.assertEqual(x["male_fitness_pistil_availability_p"],.037)
+        self.assertEqual(d["primary_2023"]["source_2023_flower_counts"],
+                         {"male":46,"bisexual":129,"total":175})
+        self.assertEqual(x["source_2025_flower_counts"],
+                         {"male":45,"bisexual":130,"total":175})
+        self.assertIn("unresolved"," ".join(d["inference_limits"]))
+
     def test_pulsatilla_no_new_p_value_or_same_person_round_trip(self):
         a=compute(self.p)
         for k in ("unique_individuals_with_round_trip","flower_by_flower_raw_records",
