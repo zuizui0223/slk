@@ -1,0 +1,46 @@
+name: Mercurialis experimental sex-ratio turnover and partner composition
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/mercurialis_2008_2012_2024_density_partner_composition_original_v2.json'
+      - 'analysis/analyze_mercurialis_2008_2012_2024_nextgen_composition_v2.py'
+      - 'results/mercurialis_2008_2012_2024_nextgen_partner_composition_v2.json'
+      - 'tests/test_mercurialis_partner_composition_nextgen_v2.py'
+      - 'docs/SLK_MERCURIALIS_DENSITY_TRIOECY_PARTNER_COMPOSITION_V2_20261115.md'
+      - '.github/workflows/mercurialis-nextgen-partner-composition-v2.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-next-generation-population-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify paired original study units, source totals and no false causal claims
+        run: python -m unittest discover -s tests -p 'test_mercurialis_partner_composition_nextgen_v2.py' -v
+      - name: Recompute 2008 and 2012 source outcomes and freeze original 2024 external field comparison
+        run: |
+          python analysis/analyze_mercurialis_2008_2012_2024_nextgen_composition_v2.py --output /tmp/mercurialis_nextgen_v2.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/mercurialis_nextgen_v2.json').read_text())
+          b=json.loads(Path('results/mercurialis_2008_2012_2024_nextgen_partner_composition_v2.json').read_text())
+          assert a==b, 'Tracked original population study evidence drifted'
+          x=a['androdioecy_2008']
+          y=a['trioecy_2012']
+          assert x['populations']==8 and x['unresolved_original_low_N_difference']==54
+          assert x['progeny_male_high_minus_low']==.11125
+          assert x['male_frequency_change_high_minus_low_after_parent_adjustment']==.105
+          assert y['plot_replicates']==20 and y['offspring_phenotyped']==6076
+          assert y['male_present_high_minus_low_progeny_male_plot_mean']==.01
+          assert y['female_next_generation_direction_certain_under_rounding']=={'decrease':17,'increase':2,'ambiguous':1}
+          assert not y['causal_female_buffering_effect_measured']
+          assert not a['directly_randomized_female_presence_between_studies']
+          assert not a['SLK_Phi_g0_Delta_R_measured']
+          print('PASS_ORIGINAL_SEX_RATIO_CONTRAST_NO_CROSS_STUDY_CAUSAL_FEMALE_BUFFERING')
+          PY
