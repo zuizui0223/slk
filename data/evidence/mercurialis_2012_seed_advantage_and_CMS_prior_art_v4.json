@@ -1,0 +1,95 @@
+{
+  "schema": "SLK_MERCURIALIS_2012_FEMALE_SEED_ADVANTAGE_NOT_MORPH_SPREAD_V4",
+  "audit_date": "2026-11-15",
+  "observed_2012_source": {
+    "citation": "Perry LE, Pannell JR & Dorken ME (2012) PLoS ONE 7:e35597",
+    "doi": "10.1371/journal.pone.0035597",
+    "primary_table_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3330815/",
+    "table": "Table 2 (all 20 parent plots, 2 density × 2 male-presence ×5)",
+    "valid_parent_plots": 20,
+    "valid_progeny_source_total": 6076,
+    "origin": "Source data already transcribed in data/evidence/mercurialis_2008_2012_2024_density_partner_composition_original_v2.json",
+    "original_oh_definition": "Relative seed production of hermaphrodites versus females: o_h = sigma_h/sigma_f",
+    "comparable_ratio": "Female seed production relative to hermaphrodite equals 1/o_h within each experimental plot, as a descriptive reciprocal",
+    "female_seed_advantage_condition": "o_h strictly less than 1 (female relative seed production higher)",
+    "source_precision": "All Table 2 o_h and offspring sex morph proportions are printed with two decimals; each is rounded, +/- 0.005 for uncertainty bounds",
+    "parental_female_fraction": "Low density 16/49, high density 75/225; female included in every experimental treatment cell",
+    "observed_same_plot_counts": {
+      "relative_female_seed_higher": 19,
+      "relative_female_seed_lower": 1,
+      "relative_female_seed_equal": 0,
+      "female_morph_frequency_decline_and_relative_seed_advantage": 17,
+      "female_morph_frequency_increase_and_relative_seed_advantage": 1,
+      "female_morph_frequency_rounding_ambiguous_and_relative_seed_advantage": 1,
+      "female_morph_frequency_increase_without_relative_seed_advantage": 1,
+      "proof_ceiling": "No causal mediation or allelic CMS frequency observed"
+    },
+    "interpretation": "Printed relative reproductive success via seed output can favor female morphology even while next-generation female phenotype declines under the same plot's mating/segregation structure"
+  },
+  "model_2025_prior_art": {
+    "citation": "Nguyen MT & Pannell JR (2025), The evolution and maintenance of trioecy with cytoplasmic male sterility, Heredity 134:1–9",
+    "doi": "10.1038/s41437-024-00729-7",
+    "publication_online": "2024-10-14",
+    "journal_issue": "2025-01",
+    "publisher_full_text": "https://www.nature.com/articles/s41437-024-00729-7",
+    "primary_code": "https://github.com/maithunguyen/Trioecy-model-single-population",
+    "study_type": "Published theoretical recursion and simulations, not field experiments",
+    "phenotypes": [
+      "XX non-CMS hermaphrodite",
+      "XY non-CMS male",
+      "XX CMS female",
+      "XY CMS-carrying male with partial nuclear Y restoration"
+    ],
+    "model_parameter_definitions": {
+      "g": "Female seeds relative to hermaphrodite seeds",
+      "alpha": "Male pollen relative to hermaphrodite pollen",
+      "s": "Prior selfing fraction in hermaphrodite",
+      "d": "Inbreeding depression of selfed seeds",
+      "e_m": "Proportion of male pollen aborted by CMS, zero means fully restored"
+    },
+    "source_results": [
+      "Males can hinder rare cytoplasmic male sterility (CMS) invasion but enable stable trioecy in model parameter regimes",
+      "With some hermaphrodite selfing and a Y-linked partial fertility restorer, negative frequency dependence can maintain three sex morphs even with no pollen limitation",
+      "Males siring females' sons create offspring that cannot maternally transmit the CMS cytoplasm, limiting the spread of CMS",
+      "When CMS fully eliminates male pollen (e_m=1), the maintenance regime differs and male restoration is not available",
+      "Order of invasion can alter which sexual system forms or whether extinction is approached in some model scenarios",
+      "The model is based on nuclear and cytoplasmic genetic transmission, not an architecture-independent universal SLK theorem"
+    ],
+    "simulated_initial_rare_male_frequency": 0.000001,
+    "simulated_initial_rare_CMS_frequency": 0.000001,
+    "equilibrium_convergence_tolerance": 1e-10,
+    "author_simulation_not_natural_invasion": true,
+    "source_prior_art_boundary": "This paper explicitly distinguishes invasion and equilibrium maintenance with partner/sex composition; SLK cannot claim first discovery of this phenomenon"
+  },
+  "cross_taxon_direct_selection_prior_art": {
+    "taxon": "Physa acuta",
+    "citation": "Laugier F et al. (2025), Cytoplasmic Male Sterility Declines in the Presence of Resistant Nuclear Backgrounds. The American Naturalist 206:16–30",
+    "doi": "10.1086/735820",
+    "journal_url": "https://www.journals.uchicago.edu/doi/10.1086/735820",
+    "data_archive": "https://zenodo.org/records/14967453",
+    "study_type": "11-generation experimental evolution in freshwater hermaphroditic snail, not plant trioecy",
+    "treatment": "CMS-bearing mitochondrial haplotypes experimentally placed in nuclear background rich in male fertility restorers",
+    "result": "CMS mitochondrial haplotypes declined across 11 experimental generations; study authors estimated approximately 20% relative fitness disadvantage in that nuclear genetic context",
+    "independent_result": "Separate isolated-snail hatching assay found reduced hatch success of CMS carriers, but did not account for all ~20% fitness disadvantage",
+    "interpretation": "Direct evolutionary loss of a CMS cytotype under a compatible nuclear-restorer context can occur in an animal; cannot substitute for CMS allele lineage tracking in Mercurialis",
+    "prior_direct_empirical_example": true,
+    "limitations": [
+      "Different mitochondrial species, animals rather than flowering plants",
+      "Restorer-rich genetic background not a direct SLK phenotype module",
+      "Reported ~20% value is author estimate; no primary raw records refitted in SLK",
+      "11 experimental generations not a macroevolutionary origin of sex morphs"
+    ]
+  },
+  "claim_limits": [
+    "2012 female relative seed production is reproductive output proxy and not mother-genotype transmission fitness; 19 plot-level signs do not represent 19 independent evolutionary origins",
+    "2012 source Table2 reports offspring phenotypes after seed germination, not cytoplasmic haplotype frequencies or paternal parentage",
+    "Female reproductive morphology and CMS genotype should not be assumed identical in all plots without direct genotyping",
+    "2012 study plot genetic backgrounds and density treatments differ; observed seed advantage and decline simultaneously is not controlled manipulation of CMS fitness",
+    "2025 Heredity model provides prior theoretical mechanism but is NOT fitted to observed 2012 20 plot-specific relative seed ratios",
+    "2025 invasion and maintenance regimes depend on genetics, pollen limitation and selfing assumptions; never import one paper's illustrative parameter values as observed Mercurialis field estimates",
+    "2025 Physa snail direct evolutionary experiment addresses restoration-mediated cytonuclear selection, not floral multifunctionality or three-sex coexistence in plants",
+    "Do not add 2012, 2025 Heredity and 2025 snail as multiple independent plant experimental invasion replications",
+    "All new SLK plot-level arithmetic uses previously published 2012 plot summaries; no original raw genotypes, lineage data, or 2024 Figshare accession were retrieved",
+    "SLK Phi, g0 and Delta_R are NOT estimated or demonstrated in nature by this synthesis"
+  ]
+}
