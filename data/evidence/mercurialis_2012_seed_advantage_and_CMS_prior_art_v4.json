@@ -22,7 +22,13 @@
       "female_morph_frequency_increase_and_relative_seed_advantage": 1,
       "female_morph_frequency_rounding_ambiguous_and_relative_seed_advantage": 1,
       "female_morph_frequency_increase_without_relative_seed_advantage": 1,
-      "proof_ceiling": "No causal mediation or allelic CMS frequency observed"
+      "proof_ceiling": "No causal mediation or allelic CMS frequency observed",
+      "published_oh_inverse_descriptive_bins": {
+        "seed_advantage_not_detected": 1,
+        "female_seed_ratio_strictly_between_1_and_2": 15,
+        "female_seed_ratio_strictly_above_2": 4,
+        "uncertainty_from_oh_rounding_crossing_bin_boundary": 0
+      }
     },
     "interpretation": "Printed relative reproductive success via seed output can favor female morphology even while next-generation female phenotype declines under the same plot's mating/segregation structure"
   },
@@ -59,7 +65,16 @@
     "simulated_initial_rare_CMS_frequency": 0.000001,
     "equilibrium_convergence_tolerance": 1e-10,
     "author_simulation_not_natural_invasion": true,
-    "source_prior_art_boundary": "This paper explicitly distinguishes invasion and equilibrium maintenance with partner/sex composition; SLK cannot claim first discovery of this phenomenon"
+    "source_prior_art_boundary": "This paper explicitly distinguishes invasion and equilibrium maintenance with partner/sex composition; SLK cannot claim first discovery of this phenomenon",
+    "idealized_original_intro_thresholds": {
+      "source_section": "Heredity 134:1–9 Introduction, source arguments for fully outcrossing hermaphrodite resident populations",
+      "nuclear_male_sterility_female_seed_ratio_required": "g>2",
+      "maternal_CMS_female_seed_ratio_required": "g>1",
+      "assumptions": "Residents fully outcrossing, appropriate novel sterility phenotype rare, no males yet, no further pollen limitation or cytotype interaction",
+      "prior_art_not_recalculated_here": true,
+      "actual_2012_plot_invasion_inference": "BLOCKED_BY_SELFING_EXISTING_MALES_PARTNER_CONTEXT_AND_CMS_UNTYPED",
+      "use": "Illustrative comparison of inheritance route under otherwise idealized conditions, not direct 2012 plot classification of invasibility"
+    }
   },
   "cross_taxon_direct_selection_prior_art": {
     "taxon": "Physa acuta",
@@ -90,6 +105,7 @@
     "2025 Physa snail direct evolutionary experiment addresses restoration-mediated cytonuclear selection, not floral multifunctionality or three-sex coexistence in plants",
     "Do not add 2012, 2025 Heredity and 2025 snail as multiple independent plant experimental invasion replications",
     "All new SLK plot-level arithmetic uses previously published 2012 plot summaries; no original raw genotypes, lineage data, or 2024 Figshare accession were retrieved",
-    "SLK Phi, g0 and Delta_R are NOT estimated or demonstrated in nature by this synthesis"
+    "SLK Phi, g0 and Delta_R are NOT estimated or demonstrated in nature by this synthesis",
+    "Relative female seed advantage categories (g in (1,2) or >2) are 2012 descriptive reciprocal ratios only; the simple Heredity thresholds for maternally versus biparentally inherited male sterility are prior theoretical baselines for fully outcrossing residents without males, not empirical 2012 invasion diagnoses."
   ]
 }
