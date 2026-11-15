@@ -1,0 +1,108 @@
+{
+  "schema": "SLK_MERCURIALIS_PUBLISHED_PLoidY_ECOLOGY_GENETIC_AUDIT_RESULT_V1",
+  "source_dois": {
+    "mating_2007": "10.1111/j.1558-5646.2007.00195.x",
+    "genetic_2026": "10.1073/pnas.2427240123",
+    "natural_geography_2026": "10.1093/jeb/voag044"
+  },
+  "mating_2007": {
+    "hermaphrodite_ploidy": 6,
+    "male_ploidy": 2,
+    "male_sired_progeny_ploidy": 4,
+    "male_fraction_levels_actually_tested_2004": [
+      0,
+      0.5
+    ],
+    "array_replicates_2004": 12,
+    "total_plants_per_array": 100,
+    "outcross_mean_no_males": 0.425,
+    "outcross_mean_half_males": 0.763,
+    "outcross_absolute_point_difference": 0.338,
+    "outcross_mean_ratio": 1.79529412,
+    "original_presence_F": 15.64,
+    "original_presence_p": 0.0042,
+    "original_2004_density_p": 0.5901,
+    "original_2004_density_interaction_p": 0.3945,
+    "independent_2003_density_only_outcrossing": {
+      "0.11": 0.68,
+      "0.22": 0.61,
+      "0.33": 0.16
+    },
+    "original_relative_siring_beta": 35.2,
+    "lambda_imported_from_2006_other_study": 21,
+    "descriptive_per_pollen_siring_alpha": 1.67619048,
+    "new_alpha_significance_or_ci": null,
+    "male_invades_below_reported_spacing_approx_model_only": [
+      0.2,
+      0.3
+    ],
+    "male_maintenance_density_approx_model_only": [
+      4,
+      5
+    ],
+    "density_threshold_directly_observed": false,
+    "rare_male_invasion_directly_observed": false
+  },
+  "genetic_2026": {
+    "diploid_X_only_populations": 3,
+    "diploid_XY_control_populations": 3,
+    "evolution_generations": 8,
+    "shared_common_garden_total_N": 1116,
+    "trait_model_N": 318,
+    "GLMM_generation_beta": 0.09,
+    "GLMM_seed_mass_beta": -0.18,
+    "published_QTL_variance_by_cross": [
+      {
+        "cross": 1,
+        "chromosome": 5,
+        "reported_variance_percent": 24.1,
+        "trait": "male relative allocation"
+      },
+      {
+        "cross": 2,
+        "chromosome": 7,
+        "reported_variance_percent": 32,
+        "trait": "male relative allocation"
+      },
+      {
+        "cross": 4,
+        "chromosome": 4,
+        "reported_variance_percent": 8.03,
+        "trait": "male relative allocation"
+      }
+    ],
+    "sex_allocation_locus_categories": [
+      "antagonistic_broad_region",
+      "single_sex",
+      "same_direction",
+      "one_side_not_significant"
+    ],
+    "single_gene_pleiotropy_proven": false,
+    "rare_XY_reinvasion_directly_observed": false,
+    "raw_phenotype_and_RadSeq_downloaded": false
+  },
+  "natural_geography_2026": {
+    "sexes_with_positive_incidence_distance_gradient": [
+      "female",
+      "male"
+    ],
+    "female_incidence_percent_points_per_km_approx": 0.012,
+    "male_incidence_percent_points_per_km_approx": 0.01,
+    "degree_conditional_on_leaky_trend_detected": false,
+    "new_geographic_selection_causal_effect": null,
+    "individual_data_downloaded": false
+  },
+  "cross_ploidy_combined_fitness_estimate": null,
+  "same_genotype_density_by_QTL_effect": null,
+  "SLK_Phi_g0_Delta_R_measured": false,
+  "new_p_values": null,
+  "raw_individual_reanalysis": false,
+  "unmeasured": [
+    "SLK_full_cycle_module_cost_K",
+    "SLK_Phi",
+    "SLK_g0",
+    "SLK_Delta_R",
+    "direct_natural_rare_genotype_fixation",
+    "integrated_same_cohort_genetic_density_interaction"
+  ]
+}
