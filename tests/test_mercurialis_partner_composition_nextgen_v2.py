@@ -80,6 +80,20 @@ class MercurialisDensityPartnerContext(unittest.TestCase):
         self.assertEqual(r["published_interaction_p"],"<.05")
         self.assertIsNone(r["new_male_paternity_effect_estimated"])
 
+    def test_2012_male_presence_replaces_hermaphrodites_at_fixed_density(self):
+        x=self.s["study_2012"]["parental_sex_counts"]
+        for density in ("low","high"):
+            without=x[density]["absent"]
+            with_m=x[density]["present"]
+            self.assertEqual(without["female"],with_m["female"])
+            self.assertEqual(without["hermaphrodite"]-with_m["hermaphrodite"],
+                             with_m["male"])
+            self.assertEqual(sum(without.values()),sum(with_m.values()))
+        self.assertEqual(x["low"]["absent"],{"male":0,"hermaphrodite":33,"female":16})
+        self.assertEqual(x["low"]["present"],{"male":16,"hermaphrodite":17,"female":16})
+        self.assertTrue(any("not pure addition" in limit
+                            for limit in self.s["inferential_limits"]))
+
     def test_2012_more_female_seed_biomass_does_not_ensure_daughter_freq_gain(self):
         r=analyze(self.s)["trioecy_2012"]
         self.assertAlmostEqual(r["female_seed_allocation_fraction_relative_to_hermaphrodite"],.061/.043,places=8)
