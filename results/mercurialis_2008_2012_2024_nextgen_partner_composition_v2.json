@@ -279,6 +279,7 @@
     "Source papers by overlapping investigators and source regions are prior art for frequency-dependent evolution, sex-ratio buffering and trioecy; SLK cannot claim first discovery",
     "No original plot-level 2008 full genotype raw CSV, 2012 individual pedigrees or 2024 population supplementary downloads; analysis uses original published table and correctly preserves rounding",
     "No SLK Phi/g0/Delta_R, new mutation probability, rare allele frequency gradient or cross-study causal lifetime fitness are identified",
-    "In 2012, male presence×sex morph had a significant interaction on seed-biomass allocation (published F[1,445]=6.3, p<.05), but the original 2012 offspring male-density GLM remained nonsignificant; do not conflate allocation response and next-generation sex-ratio effect."
+    "In 2012, male presence×sex morph had a significant interaction on seed-biomass allocation (published F[1,445]=6.3, p<.05), but the original 2012 offspring male-density GLM remained nonsignificant; do not conflate allocation response and next-generation sex-ratio effect.",
+    "The 2012 male-present treatment replaced some monoecious hermaphrodites with males at fixed total density and fixed female frequency, so the experimental contrast is a change in mate composition, not pure addition of male pollen at fixed hermaphrodite abundance."
   ]
 }
