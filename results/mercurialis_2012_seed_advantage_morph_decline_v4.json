@@ -32,7 +32,8 @@
       "female_morph_frequency_change_from_parent": -0.05653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 304,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_above_2"
     },
     {
       "original_plot": 2,
@@ -45,7 +46,8 @@
       "female_morph_frequency_change_from_parent": -0.05333333,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 320,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 3,
@@ -58,7 +60,8 @@
       "female_morph_frequency_change_from_parent": -0.02653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 311,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 4,
@@ -71,7 +74,8 @@
       "female_morph_frequency_change_from_parent": -0.02333333,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 298,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 5,
@@ -84,7 +88,8 @@
       "female_morph_frequency_change_from_parent": -0.04333333,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 297,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 6,
@@ -97,7 +102,8 @@
       "female_morph_frequency_change_from_parent": 0.04346939,
       "female_morph_change_under_rounding": "female_morph_increase",
       "progeny_sample_n": 337,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 7,
@@ -110,7 +116,8 @@
       "female_morph_frequency_change_from_parent": -0.11333333,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 309,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 8,
@@ -123,7 +130,8 @@
       "female_morph_frequency_change_from_parent": -0.03653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 320,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 9,
@@ -136,7 +144,8 @@
       "female_morph_frequency_change_from_parent": -0.01653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 332,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_above_2"
     },
     {
       "original_plot": 10,
@@ -149,7 +158,8 @@
       "female_morph_frequency_change_from_parent": -0.02333333,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 302,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 11,
@@ -162,7 +172,8 @@
       "female_morph_frequency_change_from_parent": -0.03653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 308,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_above_2"
     },
     {
       "original_plot": 12,
@@ -175,7 +186,8 @@
       "female_morph_frequency_change_from_parent": 0.01666667,
       "female_morph_change_under_rounding": "female_morph_increase",
       "progeny_sample_n": 297,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "seed_advantage_not_detected"
     },
     {
       "original_plot": 13,
@@ -188,7 +200,8 @@
       "female_morph_frequency_change_from_parent": -0.01333333,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 304,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 14,
@@ -201,7 +214,8 @@
       "female_morph_frequency_change_from_parent": -0.00653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 304,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_above_2"
     },
     {
       "original_plot": 15,
@@ -214,7 +228,8 @@
       "female_morph_frequency_change_from_parent": -0.11333333,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 291,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 16,
@@ -227,7 +242,8 @@
       "female_morph_frequency_change_from_parent": -0.09653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 326,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 17,
@@ -240,7 +256,8 @@
       "female_morph_frequency_change_from_parent": -0.06653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 316,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 18,
@@ -253,7 +270,8 @@
       "female_morph_frequency_change_from_parent": -0.11333333,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 272,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 19,
@@ -266,7 +284,8 @@
       "female_morph_frequency_change_from_parent": -0.05653061,
       "female_morph_change_under_rounding": "female_morph_decrease",
       "progeny_sample_n": 243,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     },
     {
       "original_plot": 20,
@@ -279,7 +298,8 @@
       "female_morph_frequency_change_from_parent": -0.00333333,
       "female_morph_change_under_rounding": "undetermined_under_source_rounding",
       "progeny_sample_n": 285,
-      "inheritance_cytotype_or_parentage_observed": false
+      "inheritance_cytotype_or_parentage_observed": false,
+      "descriptive_ratio_bin_not_novel_invasion_condition": "female_seed_ratio_strictly_between_1_and_2"
     }
   ],
   "evidence_morph_increase_when_seed_higher_must_occur": false,
@@ -299,6 +319,18 @@
     "2025 Physa snail direct evolutionary experiment addresses restoration-mediated cytonuclear selection, not floral multifunctionality or three-sex coexistence in plants",
     "Do not add 2012, 2025 Heredity and 2025 snail as multiple independent plant experimental invasion replications",
     "All new SLK plot-level arithmetic uses previously published 2012 plot summaries; no original raw genotypes, lineage data, or 2024 Figshare accession were retrieved",
-    "SLK Phi, g0 and Delta_R are NOT estimated or demonstrated in nature by this synthesis"
-  ]
+    "SLK Phi, g0 and Delta_R are NOT estimated or demonstrated in nature by this synthesis",
+    "Relative female seed advantage categories (g in (1,2) or >2) are 2012 descriptive reciprocal ratios only; the simple Heredity thresholds for maternally versus biparentally inherited male sterility are prior theoretical baselines for fully outcrossing residents without males, not empirical 2012 invasion diagnoses."
+  ],
+  "descriptive_female_to_hermaphrodite_seed_ratio_bins_from_oh": {
+    "seed_advantage_not_detected": 1,
+    "female_seed_ratio_strictly_between_1_and_2": 15,
+    "female_seed_ratio_strictly_above_2": 4,
+    "uncertainty_from_oh_rounding_crossing_bin_boundary": 0
+  },
+  "theoretical_prior_nuclear_and_CMS_thresholds_apply_to_real_2012_plots": false,
+  "idealized_ancestral_thresholds_from_original_Heredity": {
+    "nuclear_male_sterility": "g>2",
+    "maternally_inherited_CMS": "g>1"
+  }
 }
