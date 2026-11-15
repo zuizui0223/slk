@@ -114,6 +114,8 @@ We then independently matched the original Razanajatovo et al. (2016) global bre
 
 These results are kept in independent, reproducible ecological companion notes rather than promoted to evolutionary maintenance evidence: `docs/SLK_GLOPL_CONTEXT_PILOT_V1.md` and `docs/SLK_GLOPL_BREEDING_MACRO_PILOT_V1.md`. Scripts and source-verified GitHub Actions include `scripts/analyze_glopl_context_variation.py`, `scripts/audit_glopl_breeding_overlap.py`, and `scripts/analyze_glopl_autofertility.py`. Source raw files are not redistributed. The ecological claim ceiling for the flagship remains unchanged.
 
+**Within-lineage functional return versus conditional pressure to separate again.** In *Mercurialis annua*, the 2021 experiment directly demonstrated rapid XX male-function re-expression under male scarcity and indirect XX fatherhood after XY males returned (G5), whereas a 2025 analysis of descendant G8 sex-allocation variants identified individual genetic paternity, a positive male-allocation/selfing association, and disruptive total-fitness curvature for medium/large plants only under assumed severe inbreeding depression. G4 and G8 estimates use different cohorts and mating estimands; 2019 inflorescence siring penalties came from independent source morphs, not genetically matched G8 plants. **A return of dioecy was not observed.** See `docs/SLK_MERCURIALIS_FUNCTION_RETURN_AND_RENEWED_CONFLICT_V7_20261115.md` for source-based stage and inference boundaries.
+
 ## What the theory contributes
 
 The mathematical machinery supports the biological theory rather than replacing it. The main contributions are:
