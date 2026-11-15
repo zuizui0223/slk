@@ -72,10 +72,17 @@ def analyze(src):
         or abs(change_t-tests["high_minus_low_progeny_change_from_parent_paired_t"])>.12
         or abs(lambda_t-tests["lambda_high_low_t_magnitude"])>.12):
         raise ValueError("ORIGINAL_2008_PAIRED_T_NOT_REPRODUCED")
-    if any(abs(mean(q)-p["original_means"][k])>.02 for q,k in (
-            (low,"low_progeny_male"),(high,"high_progeny_male"),
-            (lowlambda,"low_lambda"),(highlambda,"high_lambda"))):
-        raise ValueError("ORIGINAL_2008_PRINTED_MEANS_MISMATCH")
+    # Printed grand means have DIFFERENT precisions: male fractions are
+    # reported to 0.01, lambda to 0.1. Validate each at its own rounding
+    # interval; demanding 0.02 from the printed lambda mean 9.4 would
+    # incorrectly reject the legitimate row mean 9.3625.
+    for q,k,tolerance in (
+            (low,"low_progeny_male",.005001),
+            (high,"high_progeny_male",.005001),
+            (lowlambda,"low_lambda",.050001),
+            (highlambda,"high_lambda",.050001)):
+        if abs(mean(q)-p["original_means"][k])>tolerance:
+            raise ValueError("ORIGINAL_2008_PRINTED_MEANS_MISMATCH")
     nrows={level:sum(r[level]["progeny_n"] for r in rows)
            for level in ("low","high")}
     reported=p["original_table1_published_total_progeny"]
