@@ -8,6 +8,8 @@
 
 このノートは東部 *W. dioica* と西部 *W. dioica* ssp. *alba* の**別亜種・別集団・別原著の観測**を並置した比較である。各論文が同一個体・同一環境で測定したかのような統合適応度や SLK の `Phi / g0 / Delta_R` 推定は行わない。既存の 1999・2006・2012 原著集計の数値やソースファイルは変更しない。
 
+**2026-11-15分類学的追記：** Kew POWOは2026年時点で西部 `W. dioica subsp. alba` を受容しているが、[Genomics for Australian Plants](https://www.genomicsforaustralianplants.com/wurmbea-dioica-conservation/) では西部集団が東部 *W. dioica* とは異なる複数の分類群である可能性を調査している。種分割を確定した原著を今回確認できていないため、現行名は保持し、東部・西部を単一の進化的独立反復や同一個体群の生態勾配として扱わない。系統・跨分類群の限界は[追補V4](SLK_WURMBEA_FLORAL_CONFLICT_EVOLUTION_DIRECTION_V4_20261115.md)を参照。
+
 ## A. 環境と性システムの直接の生態観察
 
 **Case & Barrett (2001, Ecology, DOI 10.1890/0012-9658(2001)082[2601:EDOCAS]2.0.CO;2** [原著要約](https://esajournals.onlinelibrary.wiley.com/doi/abs/10.1890/0012-9658%282001%29082%5B2601%3AEDOCAS%5D2.0.CO%3B2)) は西オーストラリアの同所域で、両性型集団は湿潤な微生息地、雌雄分化集団は乾燥した微生息地に偏ることを示した。総 ramet バイオマスが近いにもかかわらず、分化型は地下の根・球茎へ、両性型は葉・茎・花へ相対的に配分し、分化型は低密度で先に開花した。ramet 当たり花数が近くても、分化型は genet 当たりの ramet 数と花数が多い。つまり、花型は単独の特徴ではなく**資源獲得・クローン的な株構成・開花時期を含む生活史全体と共変**する。
