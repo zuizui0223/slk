@@ -1,0 +1,44 @@
+name: Mercurialis 2021 real reversal and 2019 sex-morph siring costs
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/mercurialis_2019_2021_restored_function_siring_source_v6.json'
+      - 'analysis/audit_mercurialis_2021_reversion_siring_2019_legacy_v6.py'
+      - 'results/mercurialis_2021_reversion_2019_siring_architecture_v6.json'
+      - 'tests/test_mercurialis_2021_reversion_2019_architecture_v6.py'
+      - 'docs/SLK_MERCURIALIS_REAL_EXPERIMENTAL_REVERSAL_AND_ARCHITECTURAL_LEGACY_V6_20261115.md'
+      - '.github/workflows/mercurialis-2021-experimental-reversion-real-siring-2019-morphology-v6.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-evolution-source-and-morphological-legacy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test exact historical populations, G5 XX fatherhood, 2019 distinct morphology prior art
+        run: python -m unittest discover -s tests -p 'test_mercurialis_2021_reversion_2019_architecture_v6.py' -v
+      - name: Reconstruct source published SSR selfing and observed child male share
+        run: |
+          python analysis/audit_mercurialis_2021_reversion_siring_2019_legacy_v6.py --output /tmp/mercurialis_true_original_v6.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/mercurialis_true_original_v6.json').read_text(encoding='utf-8'))
+          b=json.loads(Path('results/mercurialis_2021_reversion_2019_siring_architecture_v6.json').read_text(encoding='utf-8'))
+          assert a==b, 'Current primary 2021/2019 source recheck not equal to frozen result'
+          assert a['true_population_evolutionary_replicates']==3
+          assert a['G4_evolved_line_male_flower_ratio_vs_current_controls']==23.3
+          assert a['G5_XY_males_reintroduced_sex_ratio_fatherhood']['source_author_inferred_XX_female_sired_fraction']==.128
+          assert a['G5_XY_males_reintroduced_sex_ratio_fatherhood']['not_direct_father_genotypes']
+          assert not a['selfing_8_SSR_markers_author_RMES']['increasing_selfing_proven']
+          assert a['selfing_8_SSR_markers_author_RMES']['author_test_between_G1_and_G4_p']==.10
+          assert a['2019_independent_source_architecture_paternal_penalty']['exp2_equal_selfing_assumption_required']
+          assert a['rare_genotype_or_historical_origin_SLK_Phi_g0_Delta_R'] is None
+          assert a['2021_data_S1_Excel_raw_downloaded'] is False
+          print('PASS_REAL_EXP_REVERSAL_G5_SEX_RATIO_XX_PATERNITY_AND_PRIOR_MORPHOLOGICAL_BARRIER')
+          PY
