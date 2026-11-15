@@ -1,0 +1,274 @@
+{
+  "schema": "SLK_MERCURIALIS_DENSITY_PLOIDY_GENETIC_TRADEOFF_SOURCE_V1",
+  "audit_date": "2026-11-15",
+  "question": "Are architectural sex-allocation variants genetically available AND able to establish when rare under ecological mating constraints?",
+  "study_blocks": {
+    "mating_2007": {
+      "cite": "Eppley & Pannell (2007) Evolution 61:2349-2359",
+      "doi": "10.1111/j.1558-5646.2007.00195.x",
+      "full_text": "https://onlinelibrary.wiley.com/doi/full/10.1111/j.1558-5646.2007.00195.x",
+      "experimental_scope": "Artificial arrays in Oxford field station, 2003 density-only hermaphrodites and 2004 with or without 50% males",
+      "female_function_phenotype": "Allohexaploid hermaphrodites (6x), Spanish populations 506 and 660, maternal plants",
+      "male_function_phenotype": "Diploid male donors (2x), Spanish population 580",
+      "offspring_male_sired_ploidy": "4x progeny; discrimination against diploid pollen by hexaploid stigmas is a known confound",
+      "field2003": {
+        "array_n": 6,
+        "array_size": 100,
+        "grid": "10x10",
+        "male_frequency": 0,
+        "spacing_m": [
+          0.11,
+          0.22,
+          0.33,
+          0.44,
+          0.66,
+          1.5
+        ],
+        "outcross_by_spacing": {
+          "0.11": 0.68,
+          "0.22": 0.61,
+          "0.33": 0.16
+        },
+        "between_0_44_and_1_50_approx_outcross_range": [
+          0.03,
+          0.05
+        ],
+        "fitted_exponential_pollen_model_parameters": {
+          "phi": 1.46,
+          "phi_se": 0.55,
+          "b": 9.34,
+          "b_se": 2.55
+        }
+      },
+      "field2004": {
+        "array_n": 12,
+        "array_size": 100,
+        "grid": "10x10",
+        "spacing_m": [
+          0.11,
+          0.33
+        ],
+        "male_frequencies_tested": [
+          0,
+          0.5
+        ],
+        "male_mixed_array_genotypes": {
+          "male": 50,
+          "hermaphrodite_source1": 25,
+          "hermaphrodite_source2": 25
+        },
+        "array_aggregated_outcross_mean": {
+          "male_absent": 0.425,
+          "male_present": 0.763
+        },
+        "array_aggregated_outcross_SE": {
+          "male_absent": 0.06,
+          "male_present": 0.06
+        },
+        "original_ANOVA": {
+          "male_presence": {
+            "F": 15.64,
+            "df1": 1,
+            "df2": 8,
+            "p": 0.0042
+          },
+          "density": {
+            "F": 0.31,
+            "df1": 1,
+            "df2": 8,
+            "p": 0.5901
+          },
+          "male_presence_by_density": {
+            "F": 0.81,
+            "df1": 1,
+            "df2": 8,
+            "p": 0.3945
+          }
+        },
+        "original_progeny_per_group": {
+          "hermaphrodite_low": 477,
+          "hermaphrodite_high": 402,
+          "mixed_low": 462,
+          "mixed_high": 464
+        },
+        "male_fecundity_vs_hermaphrodite_siring_beta": {
+          "estimate": 35.2,
+          "se": 20.6,
+          "source_note": "Experiment male and hermaphrodite pollen contribute differently; one cannot treat SE as raw independent individual-based interval"
+        },
+        "pollen_production_lambda_from_Buggs_Pannell_2006": 21,
+        "male_per_pollen_siring_alpha_original_ratio_statement": 1.67
+      },
+      "invasion_model": {
+        "state": "PREDICTION_FROM_ORIGINAL_MODEL_NOT_DIRECT_RARE_FREQUENCY_EXPERIMENT",
+        "inbreeding_depression_scenarios": [
+          0,
+          0.5
+        ],
+        "pollen_production_lambda_assumed_wild_range": [
+          4,
+          10
+        ],
+        "substantial_male_persistence_spacing_m_approx": [
+          0.2,
+          0.3
+        ],
+        "maintenance_density_plants_per_m2_approx": [
+          4,
+          5
+        ],
+        "density_is_not_direct_inverse_spacing_square_conversion": true,
+        "source_natural_paradox": "Some dense hermaphrodite-only regional populations lacked males despite the model indicating that migrants could invade; interpreted as dispersal/colonization history, not demonstrated causal stasis",
+        "native_rare_male_frequency_measured": false,
+        "temporal_fixation_or_invasion_observed": false
+      }
+    },
+    "genetic_2026": {
+      "cite": "Gerchen et al. (2026) PNAS 123:e2427240123",
+      "doi": "10.1073/pnas.2427240123",
+      "full_text": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12799159/",
+      "target": "Diploid XY natural sex system, experimental XX female-only lines progressively produce male flowers",
+      "original_sex_chromosome": "XY/Y male determination absent in X-only lines",
+      "populations": {
+        "control_XY": 3,
+        "experiment_XX_only": 3
+      },
+      "selected_generations": 8,
+      "shared_common_garden": {
+        "individuals": 1116,
+        "generations": [
+          1,
+          3,
+          5,
+          6,
+          7,
+          8
+        ],
+        "analysis_subset_N": 318
+      },
+      "original_GLMM": {
+        "generation": {
+          "beta": 0.09,
+          "se": 0.04,
+          "CI": [
+            0.02,
+            0.17
+          ]
+        },
+        "seed_mass": {
+          "beta": -0.18,
+          "se": 0.05,
+          "CI": [
+            -0.28,
+            -0.08
+          ]
+        },
+        "conditional_R2": 0.33
+      },
+      "original_SMA": {
+        "slope": -1.54,
+        "CI": [
+          -1.72,
+          -1.39
+        ],
+        "R2": 0.05
+      },
+      "F2_QTL_crosses": 4,
+      "tradeoff_credible_region_examples": [
+        {
+          "cross": 1,
+          "chromosome": 5,
+          "reported_variance_percent": 24.1,
+          "trait": "male relative allocation"
+        },
+        {
+          "cross": 2,
+          "chromosome": 7,
+          "reported_variance_percent": 32,
+          "trait": "male relative allocation"
+        },
+        {
+          "cross": 4,
+          "chromosome": 4,
+          "reported_variance_percent": 8.03,
+          "trait": "male relative allocation"
+        }
+      ],
+      "suggestive_but_incomplete_tradeoff": {
+        "cross": 4,
+        "chromosome": 5,
+        "variance_percent": 18.6,
+        "reported_trait": "male reproductive effort",
+        "female_effect": "same opposite direction but female QTL single-QTL test just missed p<.05"
+      },
+      "same_direction_region": {
+        "cross": 4,
+        "chromosome": 7,
+        "reported_effect": "Positive effect on both male and female reproductive effort"
+      },
+      "trait_specific_region": {
+        "cross": 1,
+        "chromosome": 4,
+        "reported_effect": "One of male and female reproductive efforts changed without counterpart"
+      },
+      "confounds": [
+        "QTL credible intervals often span broad pericentromeric non-recombining regions",
+        "multiple linked physical genes possible rather than verified one-gene antagonistic pleiotropy",
+        "segregation distortion in crosses 1,3,4; overlapping distortion regions removed"
+      ],
+      "measures": "Allocation traits and QTL in XX lines, not achieved rare re-invasion of XY males or actual long-term per allele establishment",
+      "archive": {
+        "phenotypes_and_scripts": "https://doi.org/10.5281/zenodo.17930175",
+        "RadSeq_ENA": "PRJEB83968",
+        "github_workflow_reference": "Snakemake on GitHub, original source article link",
+        "raw_files_retrieved": false,
+        "listed_in_article": true
+      }
+    },
+    "natural_geography_2026": {
+      "cite": "Nguyen & Pannell (2026) Journal of Evolutionary Biology (published 13 June 2026)",
+      "doi": "10.1093/jeb/voag044",
+      "full_text": "https://academic.oup.com/jeb/advance-article/doi/10.1093/jeb/voag044/8707704",
+      "target": "Diploid dioecious wild-derived male and female plants grown in common garden across European geographic range",
+      "source_estimands": {
+        "leaky_expression_incidence_with_origin_distance": {
+          "female_percent_points_per_km_approx": 0.012,
+          "female_Z": 4.29,
+          "female_p": "<.001",
+          "male_percent_points_per_km_approx": 0.01,
+          "male_Z": 2.38,
+          "male_p": "<.05"
+        },
+        "expression_degree_given_leaky": "NO_DETECTED_RELATION_TO_EXPANSION_DISTANCE_IN_EITHER_SEX",
+        "reproductive_effort_with_origin_distance": {
+          "female_additional_flowers_per_g_per_km_approx": 0.0000817,
+          "female_Z": 2.53,
+          "female_p": "<.05",
+          "male_additional_flowers_per_g_per_km_approx": 0.000062,
+          "male_Z": 1.96,
+          "male_p": 0.0502
+        }
+      },
+      "environmental_explanation": "Greater leaky-expression incidence toward range margins consistent with reproductive assurance under colonization, but study is cross-sectional correlation of geographic populations, not realized colonization fitness experiment",
+      "underlying_data": "https://doi.org/10.5281/zenodo.20446693",
+      "raw_files_retrieved": false
+    }
+  },
+  "inferential_firewall": {
+    "cross_ploidy_cohort_bridge": "BLOCKED: 2007 diploid male × allohexaploid hermaphrodite arrays cannot estimate population dynamics or allele fitness of 2026 diploid XX evolving plants",
+    "2007_no_rare_frequency": "2004 array male frequency 0 or 50%; rare male invasion is derived from author's density+selfing model, not observed low-frequency invasion",
+    "2003_vs_2004": "2003 density-only experiments show gradient; 2004 factorial density was not significant. Keep separate",
+    "QTL_vs_development": "2006–2026 study-level genotype linkage does not prove a single pleiotropic gene; large credible intervals and segregation distortion",
+    "data_level": "Published source data and equations checked; no imported raw phenotype, genotype or 2026 range-expansion individual records",
+    "nonindependent_studies": "2025 New Phytologist and 2026 PNAS use the same experimentally evolved diploid XX founder lineages; not independent natural origins",
+    "unmeasured": [
+      "SLK_full_cycle_module_cost_K",
+      "SLK_Phi",
+      "SLK_g0",
+      "SLK_Delta_R",
+      "direct_natural_rare_genotype_fixation",
+      "integrated_same_cohort_genetic_density_interaction"
+    ],
+    "prior_art": "Density-dependent inferred male invasion and sexual allocation antagonism/QTL are established prior art, not SLK novelty"
+  }
+}
