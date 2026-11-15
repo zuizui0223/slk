@@ -77,7 +77,7 @@ class SagittariaAccessEcologicalPersistence(unittest.TestCase):
         d=self.d["studies"]["habitat_sorting_2003"]
         self.assertEqual(d["doi"],"10.1111/j.0014-3820.2003.tb00378.x")
         self.assertIn("shaded versus unshaded",d["design"][-1])
-        self.assertIn("F1",d["f1_life_history_traits"])
+        self.assertIn("intermediate",d["f1_life_history_traits"])
         self.assertIn("not rare-mutant",d["inference"])
 
     def test_paternity_scheduling_and_female_nutrient_costs_distinct(self):
