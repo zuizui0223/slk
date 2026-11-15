@@ -35,7 +35,7 @@ class Original2024MercurialisPollenDistances(unittest.TestCase):
         self.assertTrue(z["form_present"])
         self.assertFalse(z["male_fertility_function_present"])
         self.assertFalse(z["afterloss_de_novo_genetic_reacquisition_established"])
-        self.assertIn("visually",z["observation"])
+        self.assertIn("resemble",z["observation"])
 
     def test_original_pollen_assay_is_3_times_28_and_only_71_analyzed(self):
         d=self.d["distance_experiment"]
