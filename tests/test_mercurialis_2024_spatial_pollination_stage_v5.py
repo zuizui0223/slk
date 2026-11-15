@@ -30,6 +30,13 @@ class Original2024MercurialisPollenDistances(unittest.TestCase):
         self.assertIn("unisexual flowers",self.d["taxon"]["sexual_structures"])
         self.assertIsNone(self.a["actual_male_or_female_genotype_frequency_invasion"])
 
+    def test_2024_female_can_retain_visibly_male_like_sterile_organs(self):
+        z=self.d["taxon"]["female_phenotype_retains_male_looking_nonfunctional_flower_organs"]
+        self.assertTrue(z["form_present"])
+        self.assertFalse(z["male_fertility_function_present"])
+        self.assertFalse(z["afterloss_de_novo_genetic_reacquisition_established"])
+        self.assertIn("visually",z["observation"])
+
     def test_original_pollen_assay_is_3_times_28_and_only_71_analyzed(self):
         d=self.d["distance_experiment"]
         self.assertEqual(self.a["original_distance_experimental_plants_planted"],84)
