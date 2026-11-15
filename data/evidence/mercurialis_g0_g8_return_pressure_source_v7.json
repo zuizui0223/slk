@@ -1,0 +1,39 @@
+{
+  "schema": "SLK_MERCURIALIS_G0_G8_FUNCTION_RETURN_AND_RETURN_PRESSURE_V7",
+  "audit_date": "2026-11-15",
+  "study_relationships": {
+    "experimental_reversion_2021_doi": "10.1016/j.cub.2020.12.028",
+    "published_g8_fitness_2025_doi": "10.1111/nph.70356",
+    "independent_morphology_2019_doi": "10.1111/ele.13207",
+    "G0_G4_G5_G8_same_experimental_program_not_independent_evolutionary_reversals": true,
+    "longitudinal_individual_matched_G4_G8": false,
+    "distinct_2019_cohort_and_genetic_background": true
+  },
+  "g8_original_source_additional_receipt": {
+    "original_article": "https://doi.org/10.1111/nph.70356",
+    "published_data_archive": "https://doi.org/10.5281/zenodo.14542260",
+    "source_population_seeds_evolved_male_free_generations": 8,
+    "parents_DNA_extracted_n": 181,
+    "progeny_DNA_extracted_n": 958,
+    "published_approximate_total_progeny_n": 13800,
+    "paternity_marker_loci": 9,
+    "paternity_assignment_Cervus_relaxed_confidence": 0.8,
+    "seed_sampled_per_mother_min": 5,
+    "seed_sampled_per_mother_max": 10,
+    "original_table1_quadratic_effect_comparison_delta0_vs_delta1": {
+      "small": "NOT_REPORTED_SIGNIFICANT",
+      "medium": "P<0.001",
+      "large": "P<0.001"
+    },
+    "raw_Zenodo_data_downloaded_or_refit": false
+  },
+  "biological_ceiling": {
+    "g5_female_XX_siring": "INDIRECT_SEX_RATIO_ESTIMATE_NOT_SSR_PARENTAGE",
+    "g8_siring": "SSR_FATHER_ASSIGNMENT_ON_SAMPLE_NOT_ALL_SEEDS",
+    "g8_mean_selfing": "MEAN_OF_INDIVIDUAL_ESTIMATES_NOT_PROPORTION_OF_ALL_ASSIGNED_SEEDS",
+    "inbreeding_depression": "DELTA_0_OR_1_ASSUMED_NOT_DIPLOID_FIELD_MEASURED",
+    "q_delta_difference": "PRINTED_COEFFICIENT_DIFFERENCE_NOT_NEW_CAUSAL_EFFECT_OR_INDEPENDENT_SE",
+    "directional_evolutionary_return_to_dioecy": "NOT_OBSERVED",
+    "original_SLK_rare_invasion_and_Phi_g0_Delta_R": "NOT_ESTIMATED"
+  }
+}
