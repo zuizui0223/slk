@@ -45,6 +45,16 @@ class RealSourcePlotReanalysis(unittest.TestCase):
         self.assertEqual(self.a["sex_composition_parental_male_share"],
                          {"low":.32653061,"high":.33333333})
 
+    def test_parent_normalized_male_morph_change_is_not_genotype_invasion(self):
+        z=self.a["offspring_male_frequency_minus_parent_male_fraction"]
+        self.assertAlmostEqual(z["low"],.316-16/49,places=8)
+        self.assertAlmostEqual(z["high"],.326-75/225,places=8)
+        self.assertAlmostEqual(z["high_minus_low"],
+                               (.326-75/225)-(.316-16/49),places=8)
+        self.assertEqual(z["adjusted_gap_two_decimal_rounding_bounds"],
+                         [-.00680272,.01319728])
+        self.assertTrue(z["not_rare_allele_invasion_or_paternity"])
+
     def test_exact_all_252_high_label_combinations_and_new_test_marked(self):
         x=self.a["published_metric_analyses"]
         self.assertEqual({k:v["possible_labelings"] for k,v in x.items()},
