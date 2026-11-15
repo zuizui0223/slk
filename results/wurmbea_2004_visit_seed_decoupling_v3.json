@@ -28,6 +28,16 @@
     "The cause of low seed fertility (inbreeding, pollen quality, resource availability, predation) was not experimentally resolved by this comparison",
     "No male paternity, outcrossing paternity, genotype-dependent lifetime fitness or directional selection estimates",
     "Cannot infer historical origin, genetic constraint, or SLK Phi/g0/Delta_R from these descriptive source values",
-    "Cannot mix western subspecies alba and eastern dioica source estimates as a within-population mechanism or meta-analytic effect"
-  ]
+    "Cannot mix western subspecies alba and eastern dioica source estimates as a within-population mechanism or meta-analytic effect",
+    "Anther onset, dehiscence duration and first-day pollen removal are separate published metrics; no reconstructed daily pollen time series, paternity success or causal floral-architecture effect"
+  ],
+  "pollen_presentation_biology": {
+    "male_over_cosexual_onset_days_ratio": 0.5227272727272726,
+    "male_over_cosexual_complete_anther_dehiscence_days_ratio": 1.234090909090909,
+    "male_over_cosexual_first_day_pollen_removed_ratio": 0.4850894632206759,
+    "published_mann_whitney_p_anther_duration": 0.034,
+    "male_reclosure_observed_in_some_plants": true,
+    "new_p_value": null,
+    "male_paternity": null
+  }
 }
