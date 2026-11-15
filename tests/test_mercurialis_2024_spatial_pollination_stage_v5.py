@@ -27,7 +27,7 @@ class Original2024MercurialisPollenDistances(unittest.TestCase):
     def test_2024_original_doi_ploidy_separate_from_diploid_studies(self):
         self.assertEqual(self.a["source_doi"],"10.1002/ajb2.16429")
         self.assertEqual(self.d["taxon"]["cytotype"],"HEXAPLOID_IBERIAN")
-        self.assertIn("uniser", "uniser")  # no genetic continuity asserted
+        self.assertIn("unisexual flowers",self.d["taxon"]["sexual_structures"])
         self.assertIsNone(self.a["actual_male_or_female_genotype_frequency_invasion"])
 
     def test_original_pollen_assay_is_3_times_28_and_only_71_analyzed(self):
