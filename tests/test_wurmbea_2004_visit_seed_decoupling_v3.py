@@ -89,6 +89,23 @@ class PublishedWurmbeaVisitSeedContrastV3(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "INVALID_FLY"):
             analyze(altered)
 
+    def test_original_anther_timing_independently_quantified(self):
+        result = analyze(self.source)
+        timing = result["pollen_presentation_biology"]
+        self.assertAlmostEqual(timing["male_over_cosexual_onset_days_ratio"], 2.3 / 4.4)
+        self.assertAlmostEqual(timing["male_over_cosexual_complete_anther_dehiscence_days_ratio"], 5.43 / 4.4)
+        self.assertAlmostEqual(timing["male_over_cosexual_first_day_pollen_removed_ratio"], 24.4 / 50.3)
+        self.assertEqual(timing["published_mann_whitney_p_anther_duration"], .034)
+        self.assertTrue(timing["male_reclosure_observed_in_some_plants"])
+        self.assertIsNone(timing["male_paternity"])
+        self.assertIsNone(timing["new_p_value"])
+
+    def test_wrong_pollen_meterming_polarity_rejected(self):
+        altered = copy.deepcopy(self.source)
+        altered["anther_presentation_same_paper"]["days_to_dehisce_all_six_anthers"]["male"]["mean"] = 1.0
+        with self.assertRaisesRegex(ValueError, "POLLEN_METERING_SOURCE_DIRECTION"):
+            analyze(altered)
+
     def test_committed_result_exact_reproduction(self):
         actual = analyze(self.source)
         committed = json.loads(
