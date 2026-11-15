@@ -72,6 +72,15 @@ def compute(original,prior):
                       for m in ("absent","present")}
     found_groups={s:0 for s in expected_groups}
     table=[]
+    # Same measured seed ratio, different idealized nuclear/cytoplasmic
+    # invasion requirements in the PRIOR Heredity paper. Here we record
+    # purely descriptive bins, not an empirical invasion test.
+    ratio_bins={
+      "seed_advantage_not_detected":0,
+      "female_seed_ratio_strictly_between_1_and_2":0,
+      "female_seed_ratio_strictly_above_2":0,
+      "uncertainty_from_oh_rounding_crossing_bin_boundary":0
+    }
     intersection={
       "female_seed_higher_and_female_morph_decrease":0,
       "female_seed_higher_and_female_morph_increase":0,
@@ -96,6 +105,15 @@ def compute(original,prior):
             raise ValueError("ORIGINAL_PARENT_COMPOSITION_CHANGED")
         parent_f=parent["female"]/sum(parent.values())
         seed,morph=classify(r["oh"],r["female"],parent_f)
+        if r["oh"]-.005>1:
+            bin_name="seed_advantage_not_detected"
+        elif r["oh"]+.005<.5:
+            bin_name="female_seed_ratio_strictly_above_2"
+        elif r["oh"]-.005>.5 and r["oh"]+.005<1:
+            bin_name="female_seed_ratio_strictly_between_1_and_2"
+        else:
+            bin_name="uncertainty_from_oh_rounding_crossing_bin_boundary"
+        ratio_bins[bin_name]+=1
         if seed=="female_seed_higher":
             if morph=="female_morph_decrease":
                 intersection["female_seed_higher_and_female_morph_decrease"]+=1
@@ -117,6 +135,7 @@ def compute(original,prior):
           "source_oh_hermaphrodite_over_female_seed_output":r["oh"],
           "female_over_hermaphrodite_seed_output_ratio_from_printed_oh":round(1/r["oh"],8),
           "relative_seed_advantage_under_rounding":seed,
+          "descriptive_ratio_bin_not_novel_invasion_condition":bin_name,
           "parental_female_morph_fraction":round(parent_f,8),
           "source_progeny_female_morph_fraction":r["female"],
           "female_morph_frequency_change_from_parent":round(r["female"]-parent_f,8),
@@ -126,6 +145,17 @@ def compute(original,prior):
         })
     if found_groups!=expected_groups:
         raise ValueError("UNBALANCED_ORIGINAL_PLOT_CELLS")
+    if ratio_bins!={
+        "seed_advantage_not_detected":1,
+        "female_seed_ratio_strictly_between_1_and_2":15,
+        "female_seed_ratio_strictly_above_2":4,
+        "uncertainty_from_oh_rounding_crossing_bin_boundary":0
+    }:
+        raise ValueError("SOURCE_RATIO_THRESHOLDS_NOT_REPRODUCED")
+    if (prior["model_2025_prior_art"]["idealized_original_intro_thresholds"]
+        ["actual_2012_plot_invasion_inference"]
+        !="BLOCKED_BY_SELFING_EXISTING_MALES_PARTNER_CONTEXT_AND_CMS_UNTYPED"):
+        raise ValueError("FALSE_INVASION_THRESHOLD_APPLICATION")
     if sum(r["progeny_sample_n"] for r in table)!=6076:
         raise ValueError("SOURCE_2012_PROGENY_TOTAL_CHANGED")
     if intersection!={
@@ -151,6 +181,12 @@ def compute(original,prior):
       "source_ratio_definition":"o_h = sigma_hermaphrodite / sigma_female relative seed production",
       "male_presence_is_male_for_hermaphrodite_substitution":True,
       "source_values_printed_to_decimals":2,
+      "descriptive_female_to_hermaphrodite_seed_ratio_bins_from_oh":ratio_bins,
+      "theoretical_prior_nuclear_and_CMS_thresholds_apply_to_real_2012_plots":False,
+      "idealized_ancestral_thresholds_from_original_Heredity":{
+         "nuclear_male_sterility":"g>2",
+         "maternally_inherited_CMS":"g>1"
+      },
       "joint_outcomes_counted_from_original_plot_summary":intersection,
       "female_relative_seed_advantage_plots":19,
       "female_morph_frequency_decline_plots":17,
