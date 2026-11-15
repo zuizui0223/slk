@@ -120,6 +120,30 @@ def analyze(src):
         "sex_composition_parental_male_share":{
             k:round(v,8) for k,v in parent_male_shares.items()
         },
+        # Parent-normalized phenotype frequency: not a genotype-specific
+        # growth rate, and no population-genetic transmission estimator.
+        "offspring_male_frequency_minus_parent_male_fraction":{
+            "low":round(tests["male"]["low_density_five_plot_unweighted_mean"]-
+                         parent_male_shares["low"],8),
+            "high":round(tests["male"]["high_density_five_plot_unweighted_mean"]-
+                          parent_male_shares["high"],8),
+            "high_minus_low":round(
+                 (tests["male"]["high_density_five_plot_unweighted_mean"]-
+                  parent_male_shares["high"])-
+                 (tests["male"]["low_density_five_plot_unweighted_mean"]-
+                  parent_male_shares["low"]),8),
+            "adjusted_gap_two_decimal_rounding_bounds":[
+                 round((tests["male"]["high_density_five_plot_unweighted_mean"]-
+                  parent_male_shares["high"])-
+                 (tests["male"]["low_density_five_plot_unweighted_mean"]-
+                  parent_male_shares["low"])-.01,8),
+                 round((tests["male"]["high_density_five_plot_unweighted_mean"]-
+                  parent_male_shares["high"])-
+                 (tests["male"]["low_density_five_plot_unweighted_mean"]-
+                  parent_male_shares["low"])+.01,8)
+            ],
+            "not_rare_allele_invasion_or_paternity":True
+        },
         "published_metric_analyses":tests,
         "2012_published_male_progeny_density_GLM":a["original_progeny_GLM"]["male_density_in_males_present_plots"],
         "plot_pollen_alloc_change_and_progeny_change_decouple_in_observed_means":True,
