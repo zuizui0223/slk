@@ -55,7 +55,14 @@
     "male_reproductive_effort_definition": "dry biomass of staminate male flowers / aboveground vegetative biomass of female plant",
     "female_reproductive_effort_definition": "dry biomass of female flowers and fruits/seeds / aboveground vegetative biomass of female plant",
     "leakiness_threshold_rule": "MRE greater than control-population female 95th percentile; 5% of controls classified leaky BY DEFINITION",
-    "alternative_threshold_robustness": "Authors also analyzed any male flower and an 80th-percentile cutoff; qualitative findings similar"
+    "alternative_threshold_robustness": "Authors also analyzed any male flower and an 80th-percentile cutoff; qualitative findings similar",
+    "female_count_change_under_fixed_total_plants": {
+      "control_females_per_population": 90,
+      "all_female_females_per_population": 180,
+      "female_density_ratio": 2,
+      "total_individuals_per_population_both_groups": 180,
+      "causal_scope": "Treatment replaces male plants by female plants; it manipulates mate/sex community at fixed total plant density, NOT pollen availability alone at constant female neighbour density"
+    }
   },
   "published_results": {
     "male_reproductive_effort_all_female_over_control_ratio": 2.33,
@@ -93,6 +100,7 @@
     "2021 original dryad dataset is registered but CSV/text could not be fetched via available tools; no raw individual model refit here",
     "Do not equate 2021 diploid XX female plastic male expression with 2024 hexaploid CMS female retained sterile male flowers, or combine their model coefficients",
     "This plastic response supports preserved developmental ability, not evolutionary restoration of a genetically deleted male function",
-    "No allelic rare-type invasion, realized lifetime fitness, SLK Phi/g0/Delta_R, or historical origin directly observed"
+    "No allelic rare-type invasion, realized lifetime fitness, SLK Phi/g0/Delta_R, or historical origin directly observed",
+    "The all-female treatment doubles the number of females per equal-180-plant population (90 controls vs 180); mate absence is confounded with increased female-neighbour density/competition, and is NOT pure pollen supplementation or direct pollen signal intervention."
   ]
 }
