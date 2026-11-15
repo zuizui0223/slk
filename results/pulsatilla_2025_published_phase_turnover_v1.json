@@ -1,0 +1,67 @@
+{
+  "schema": "SLK_PULSATILLA_PUBLISHED_2025_TABLE1_RECONSTRUCTION_V1",
+  "source_doi": "10.1086/737646",
+  "same_tagged_population_across_years": true,
+  "original_tagged_plants": 70,
+  "transitions": {
+    "2020-2021": {
+      "original_author_denom": {
+        "M": 7,
+        "H": 26
+      },
+      "rounded_table_reconstructed_counts": {
+        "M_to_H": 5,
+        "H_to_M": 2
+      },
+      "fraction_by_original_year_source_phase": {
+        "M_to_H": 0.7142857142857143,
+        "H_to_M": 0.07692307692307693
+      },
+      "repeated_year_sample_not_independent": true
+    },
+    "2021-2022": {
+      "original_author_denom": {
+        "M": 6,
+        "H": 41
+      },
+      "rounded_table_reconstructed_counts": {
+        "M_to_H": 2,
+        "H_to_M": 1
+      },
+      "fraction_by_original_year_source_phase": {
+        "M_to_H": 0.3333333333333333,
+        "H_to_M": 0.024390243902439025
+      },
+      "repeated_year_sample_not_independent": true
+    }
+  },
+  "unique_individuals_with_round_trip": null,
+  "flower_by_flower_raw_records": null,
+  "new_p_values": null,
+  "genetic_loss_and_reacquisition": null,
+  "slk_Phi_g0_Delta_R": null,
+  "note": "Published rounded transitions, not new individual-level evidence or historical origin rates.",
+  "published_opposite_pistil_gradient": {
+    "female_beta": 0.72,
+    "male_beta": -0.51,
+    "difference_of_printed_rounded_betas": 1.23,
+    "author_reported_SAS": 1.22,
+    "author_reported_SA_index": -0.58,
+    "source_2023_doi": "10.1098/rspb.2023.2137",
+    "new_selection_model_fit": null
+  },
+  "published_gain_curve": {
+    "female_b": 1.26,
+    "female_CI": [
+      1.06,
+      1.46
+    ],
+    "male_b": 0.5,
+    "male_CI": [
+      0,
+      1.01
+    ],
+    "male_significantly_saturating": false,
+    "male_p_value_reported": 0.051
+  }
+}
