@@ -1,5 +1,5 @@
 {
-  "schema": "SLK_MERCURIALIS_2012_FEMALE_SEED_ADVANTAGE_NOT_MORPH_SPREAD_V4",
+  "schema": "SLK_MERCURIALIS_2012_SEED_BIOMASS_ALLOCATION_NOT_FECUNDITY_V4_CORRECTED",
   "audit_date": "2026-11-15",
   "observed_2012_source": {
     "citation": "Perry LE, Pannell JR & Dorken ME (2012) PLoS ONE 7:e35597",
@@ -9,26 +9,24 @@
     "valid_parent_plots": 20,
     "valid_progeny_source_total": 6076,
     "origin": "Source data already transcribed in data/evidence/mercurialis_2008_2012_2024_density_partner_composition_original_v2.json",
-    "original_oh_definition": "Relative seed production of hermaphrodites versus females: o_h = sigma_h/sigma_f",
-    "comparable_ratio": "Female seed production relative to hermaphrodite equals 1/o_h within each experimental plot, as a descriptive reciprocal",
-    "female_seed_advantage_condition": "o_h strictly less than 1 (female relative seed production higher)",
+    "original_oh_definition": "o_h = sigma_h/sigma_f, WHERE sigma_h and sigma_f are each SEED DRY BIOMASS divided by ABOVEGROUND BIOMASS; source-defined FEMALE REPRODUCTIVE EFFORT, not absolute total number of seeds",
+    "comparable_ratio": "Reciprocal 1/o_h compares relative fractions of aboveground biomass allocated to seeds; it is NOT G_f/G_h numbers of viable seeds and is NOT Heredity model g",
+    "female_seed_advantage_condition": "o_h < 1 means females allocate a LARGER FRACTION of aboveground biomass to seeds, not more absolute seeds per plant",
     "source_precision": "All Table 2 o_h and offspring sex morph proportions are printed with two decimals; each is rounded, +/- 0.005 for uncertainty bounds",
     "parental_female_fraction": "Low density 16/49, high density 75/225; female included in every experimental treatment cell",
     "observed_same_plot_counts": {
-      "relative_female_seed_higher": 19,
-      "relative_female_seed_lower": 1,
-      "relative_female_seed_equal": 0,
-      "female_morph_frequency_decline_and_relative_seed_advantage": 17,
-      "female_morph_frequency_increase_and_relative_seed_advantage": 1,
-      "female_morph_frequency_rounding_ambiguous_and_relative_seed_advantage": 1,
-      "female_morph_frequency_increase_without_relative_seed_advantage": 1,
-      "proof_ceiling": "No causal mediation or allelic CMS frequency observed",
-      "published_oh_inverse_descriptive_bins": {
-        "seed_advantage_not_detected": 1,
-        "female_seed_ratio_strictly_between_1_and_2": 15,
-        "female_seed_ratio_strictly_above_2": 4,
-        "uncertainty_from_oh_rounding_crossing_bin_boundary": 0
-      }
+      "female_seed_biomass_allocation_fraction_higher": 19,
+      "hermaphrodite_seed_biomass_allocation_fraction_higher": 1,
+      "female_allocation_fraction_higher_but_daughter_morph_declines": 17,
+      "female_allocation_fraction_higher_and_daughter_morph_increases": 1,
+      "female_allocation_fraction_higher_and_daughter_morph_ambiguous": 1,
+      "hermaphrodite_allocation_fraction_higher_and_daughter_morph_increases": 1,
+      "descriptive_reciprocal_ALLOCATION_share_ratio_bins_not_model_g": {
+        "females_not_higher": 1,
+        "ratio_between_1_and_2": 15,
+        "ratio_above_2": 4
+      },
+      "proof_ceiling": "Reproductive effort fraction and child morph frequencies only; no offspring haplotype, cytotype or parentage observed"
     },
     "interpretation": "Printed relative reproductive success via seed output can favor female morphology even while next-generation female phenotype declines under the same plot's mating/segregation structure"
   },
@@ -72,8 +70,8 @@
       "maternal_CMS_female_seed_ratio_required": "g>1",
       "assumptions": "Residents fully outcrossing, appropriate novel sterility phenotype rare, no males yet, no further pollen limitation or cytotype interaction",
       "prior_art_not_recalculated_here": true,
-      "actual_2012_plot_invasion_inference": "BLOCKED_BY_SELFING_EXISTING_MALES_PARTNER_CONTEXT_AND_CMS_UNTYPED",
-      "use": "Illustrative comparison of inheritance route under otherwise idealized conditions, not direct 2012 plot classification of invasibility"
+      "actual_2012_plot_invasion_inference": "BLOCKED_BY_ALLOCATION_FRACTION_NOT_VIABLE_SEED_NUMBER_SELFING_EXISTING_MALES_AND_CMS_UNTYPED",
+      "use": "The Heredity g>1/g>2 thresholds refer to VIABLE SEED NUMBER and CANNOT be mapped onto 2012 o_h, a fraction of aboveground biomass invested in seeds; only a separate, nonnumeric theoretical prior-art contrast"
     }
   },
   "cross_taxon_direct_selection_prior_art": {
@@ -96,7 +94,8 @@
     ]
   },
   "claim_limits": [
-    "2012 female relative seed production is reproductive output proxy and not mother-genotype transmission fitness; 19 plot-level signs do not represent 19 independent evolutionary origins",
+    "CORRECTION REQUIRED: The original 2012 METHODS define sigma_h and sigma_f as FRACTIONS OF ABOVEGROUND BIOMASS ALLOCATED TO SEEDS, NOT absolute seed number. No 2012 model-g comparisons or fecundity threshold bins are valid.",
+    "2012 female relative seed biomass allocation is a reproductive-effort proxy and not mother-genotype transmission fitness; 19 plot-level signs do not represent 19 independent evolutionary origins",
     "2012 source Table2 reports offspring phenotypes after seed germination, not cytoplasmic haplotype frequencies or paternal parentage",
     "Female reproductive morphology and CMS genotype should not be assumed identical in all plots without direct genotyping",
     "2012 study plot genetic backgrounds and density treatments differ; observed seed advantage and decline simultaneously is not controlled manipulation of CMS fitness",
@@ -106,6 +105,19 @@
     "Do not add 2012, 2025 Heredity and 2025 snail as multiple independent plant experimental invasion replications",
     "All new SLK plot-level arithmetic uses previously published 2012 plot summaries; no original raw genotypes, lineage data, or 2024 Figshare accession were retrieved",
     "SLK Phi, g0 and Delta_R are NOT estimated or demonstrated in nature by this synthesis",
-    "Relative female seed advantage categories (g in (1,2) or >2) are 2012 descriptive reciprocal ratios only; the simple Heredity thresholds for maternally versus biparentally inherited male sterility are prior theoretical baselines for fully outcrossing residents without males, not empirical 2012 invasion diagnoses."
-  ]
+    "Relative female seed allocation fractions with reciprocal ratios in (1,2) or >2 are 2012 descriptive biomass allocation measures, NOT modeled seed productivity g; the simple Heredity thresholds for maternally versus biparentally inherited male sterility are prior theoretical baselines for fully outcrossing residents without males, not empirical 2012 invasion diagnoses."
+  ],
+  "method_correction_2026_11_15": {
+    "severity": "MATERIAL_SOURCE_MEASUREMENT_CORRECTION",
+    "published_source_section": "Perry et al. (2012) PLOS ONE Methods lines defining sigma_h, sigma_f as the fraction of aboveground biomass allocated to seeds",
+    "corrected_endpoint": "SEED_BIOMASS_PER_ABOVEGROUND_BIOMASS_ALLOCATION_FRACTION",
+    "not_measured_here": [
+      "absolute number of seeds per plant",
+      "female seed viability adjusted fitness",
+      "cytoplasmic genetic transmission"
+    ],
+    "former_interpretation": "o_h reciprocal as female/hermaphrodite total seed output ratio",
+    "retracted": "ABSOLUTE_SEED_OUTPUT_INTERPRETATION_AND_DIRECT_COMPARISON_TO_HEREDITY_G_THRESHOLDS",
+    "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0035597"
+  }
 }
