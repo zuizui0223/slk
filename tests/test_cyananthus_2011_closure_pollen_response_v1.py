@@ -51,6 +51,24 @@ class Cyananthus2011RealOriginalSource(unittest.TestCase):
         self.assertAlmostEqual(r["30"]["closure_fraction"],41/48,places=8)
         self.assertTrue(r["10"]["closure_fraction"]<r["20"]["closure_fraction"]<r["30"]["closure_fraction"])
 
+    def test_missingness_extremes_preserve_30_vs_10_direction(self):
+        result=compute(self.data)
+        bounds=result["female_all_initially_treated_closure_fraction_bounds"]
+        self.assertEqual(
+            {k:v["unknown_outcome_n"] for k,v in bounds.items()},
+            {"10":20,"20":9,"30":24}
+        )
+        self.assertAlmostEqual(bounds["10"]["worst_case_closure_lower"],20/72,places=8)
+        self.assertAlmostEqual(bounds["10"]["worst_case_closure_upper"],40/72,places=8)
+        self.assertAlmostEqual(bounds["30"]["worst_case_closure_lower"],41/72,places=8)
+        self.assertAlmostEqual(bounds["30"]["worst_case_closure_upper"],65/72,places=8)
+        self.assertTrue(result["female_30_vs_10_direction_robust_to_any_missing_outcomes"])
+        self.assertTrue(result["female_20_vs_10_nonstrict_direction_robust_to_any_missing_outcomes"])
+        self.assertFalse(result["female_30_vs_20_direction_robust_to_any_missing_outcomes"])
+        # Even if every missing 10-grain flower closed and every missing
+        # 30-grain flower stayed open, the 30-grain total exceeds the 10-grain total.
+        self.assertGreater(41,40)
+
     def test_perfect_ten_grain_fruit_missing_not_zero_seeds(self):
         p=self.data["perfect_experiment"]
         r=compute(self.data)
