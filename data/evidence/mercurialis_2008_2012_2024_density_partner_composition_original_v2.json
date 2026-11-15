@@ -1,0 +1,592 @@
+{
+  "schema": "SLK_MERCURIALIS_ORIGINAL_NEXTGEN_AND_TRIOECY_ECOLOGY_V2",
+  "audited": "2026-11-15",
+  "question": "Does density shift male progeny frequency in androdioecy but not under trioecy, and does short-term female decline rule out persistent natural coexistence?",
+  "study_2008": {
+    "cite": "Dorken ME & Pannell JR (2008). Density-dependent regulation of the sex ratio in an annual plant. The American Naturalist 171:824-830.",
+    "doi": "10.1086/587524",
+    "url": "https://www.journals.uchicago.edu/doi/10.1086/587524",
+    "primary_fulltext_url": "https://artefacts-discovery.researcher.life/full_text_files/DA-2/40/407ea686302d334f9085944e959500a2/full_text/ykAFAKn4J2S0gBs_6m_0H8ZQuXj%2B4YhTeQN_gPkLo4w%3D.pdf",
+    "source_verified": "Original author paper page 826 Table 1 checked both rendered PDF screenshot and text",
+    "experimental_source_populations": 8,
+    "array_parent_sex_system": "ANDRODIOECY_MALES_AND_HERMAPHRODITES_NO_FEMALES",
+    "density_plants_per_m2": {
+      "low": 12.25,
+      "high": 250
+    },
+    "mating_design": "Eight paired source populations from Morocco (M1-M5) and Portugal (P1-P3), two independent density arrays per source; progeny grown at common high density to minimize sex-expression plasticity",
+    "original_table1": [
+      {
+        "id": "M1",
+        "field_male": 0.38,
+        "field_density": 438,
+        "low": {
+          "lambda": 5.6,
+          "parent_male": 0.39,
+          "parent_n": 49,
+          "progeny_male": 0.25,
+          "progeny_n": 942
+        },
+        "high": {
+          "lambda": 43.8,
+          "parent_male": 0.42,
+          "parent_n": 280,
+          "progeny_male": 0.4,
+          "progeny_n": 298
+        }
+      },
+      {
+        "id": "M2",
+        "field_male": 0.25,
+        "field_density": 217,
+        "low": {
+          "lambda": 9.3,
+          "parent_male": 0.33,
+          "parent_n": 49,
+          "progeny_male": 0.29,
+          "progeny_n": 735
+        },
+        "high": {
+          "lambda": 48.9,
+          "parent_male": 0.32,
+          "parent_n": 266,
+          "progeny_male": 0.43,
+          "progeny_n": 126
+        }
+      },
+      {
+        "id": "M3",
+        "field_male": 0.44,
+        "field_density": 96,
+        "low": {
+          "lambda": 13.7,
+          "parent_male": 0.35,
+          "parent_n": 49,
+          "progeny_male": 0.38,
+          "progeny_n": 1500
+        },
+        "high": {
+          "lambda": 65.7,
+          "parent_male": 0.42,
+          "parent_n": 290,
+          "progeny_male": 0.38,
+          "progeny_n": 677
+        }
+      },
+      {
+        "id": "M4",
+        "field_male": 0.4,
+        "field_density": 140,
+        "low": {
+          "lambda": 20.6,
+          "parent_male": 0.55,
+          "parent_n": 49,
+          "progeny_male": 0.31,
+          "progeny_n": 697
+        },
+        "high": {
+          "lambda": 52,
+          "parent_male": 0.46,
+          "parent_n": 263,
+          "progeny_male": 0.43,
+          "progeny_n": 128
+        }
+      },
+      {
+        "id": "M5",
+        "field_male": 0.47,
+        "field_density": 57,
+        "low": {
+          "lambda": 13.2,
+          "parent_male": 0.33,
+          "parent_n": 48,
+          "progeny_male": 0.26,
+          "progeny_n": 987
+        },
+        "high": {
+          "lambda": 26.5,
+          "parent_male": 0.39,
+          "parent_n": 269,
+          "progeny_male": 0.45,
+          "progeny_n": 392
+        }
+      },
+      {
+        "id": "P1",
+        "field_male": 0.06,
+        "field_density": 198,
+        "low": {
+          "lambda": 3.5,
+          "parent_male": 0.37,
+          "parent_n": 49,
+          "progeny_male": 0.31,
+          "progeny_n": 612
+        },
+        "high": {
+          "lambda": 12.2,
+          "parent_male": 0.26,
+          "parent_n": 299,
+          "progeny_male": 0.36,
+          "progeny_n": 648
+        }
+      },
+      {
+        "id": "P2",
+        "field_male": 0.16,
+        "field_density": 285,
+        "low": {
+          "lambda": 4.7,
+          "parent_male": 0.22,
+          "parent_n": 49,
+          "progeny_male": 0.15,
+          "progeny_n": 1592
+        },
+        "high": {
+          "lambda": 18.1,
+          "parent_male": 0.19,
+          "parent_n": 304,
+          "progeny_male": 0.33,
+          "progeny_n": 592
+        }
+      },
+      {
+        "id": "P3",
+        "field_male": 0.15,
+        "field_density": 31,
+        "low": {
+          "lambda": 4.3,
+          "parent_male": 0.33,
+          "parent_n": 49,
+          "progeny_male": 0.39,
+          "progeny_n": 228
+        },
+        "high": {
+          "lambda": 9.3,
+          "parent_male": 0.46,
+          "parent_n": 314,
+          "progeny_male": 0.45,
+          "progeny_n": 510
+        }
+      }
+    ],
+    "original_table1_published_total_progeny": {
+      "low": 7239,
+      "high": 3371
+    },
+    "original_stat_tests": {
+      "high_minus_low_progeny_male_paired_t_magnitude": 4.6,
+      "high_minus_low_progeny_change_from_parent_paired_t": 2.6,
+      "lambda_high_low_t_magnitude": 4.1,
+      "df": 7,
+      "author_tests": "low versus high raw sign t=-4.6 p<.005; correcting for parental ratios t=+2.6 p<.05; lambda t=-4.1 p<.005"
+    },
+    "original_means": {
+      "low_progeny_male": 0.29,
+      "high_progeny_male": 0.4,
+      "low_lambda": 9.4,
+      "high_lambda": 34.6
+    },
+    "original_2008_hermaphrodite_pollen_allocation_mg_per_g": {
+      "low": {
+        "mean": 31.2,
+        "se": 3.9
+      },
+      "high": {
+        "mean": 8.7,
+        "se": 3.9
+      }
+    },
+    "quality_warning": "Rendered Table 1 eight low-density offspring cell Ns sum 7293, whereas published total line says 7239 (54 discrepancy). Preserve both; proportions and paired t are computed per-population, not by treating total as verified."
+  },
+  "study_2012": {
+    "cite": "Perry LE, Pannell JR & Dorken ME (2012). Two's Company, Three's a Crowd: Experimental Evaluation of the Evolutionary Maintenance of Trioecy in Mercurialis annua (Euphorbiaceae). PLoS ONE 7:e35597.",
+    "doi": "10.1371/journal.pone.0035597",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3330815/",
+    "source_verified": "Original open full text Table 2 lines 210-251; source text includes original GLMs and discussion",
+    "original_source_populations": 10,
+    "plot_count": 20,
+    "plots_per_density_male_presence": 5,
+    "parent_plants_per_plot": {
+      "low": 49,
+      "high": 225
+    },
+    "density_plants_per_m2": {
+      "low": 8.5,
+      "high": 156.25
+    },
+    "parental_sex_counts": {
+      "low": {
+        "absent": {
+          "male": 0,
+          "hermaphrodite": 33,
+          "female": 16
+        },
+        "present": {
+          "male": 16,
+          "hermaphrodite": 17,
+          "female": 16
+        }
+      },
+      "high": {
+        "absent": {
+          "male": 0,
+          "hermaphrodite": 150,
+          "female": 75
+        },
+        "present": {
+          "male": 75,
+          "hermaphrodite": 75,
+          "female": 75
+        }
+      }
+    },
+    "type": "TRIOECIOUS_ALL_TREATMENTS_CONTAIN_FEMALES; FACTOR IS MALE_PRESENCE_NOT_FEMALE_PRESENCE",
+    "counts_per_plot": "Table 2 progeny flowers scored after one parent generation; 600 germinated seeds attempted per plot in greenhouse, approx 50% germination; 6076 phenotyped progeny",
+    "original_table2": [
+      {
+        "id": 6,
+        "density": "low",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.6,
+        "male": 0.01,
+        "herm": 0.62,
+        "female": 0.37,
+        "n": 337
+      },
+      {
+        "id": 9,
+        "density": "low",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.49,
+        "male": 0.01,
+        "herm": 0.68,
+        "female": 0.31,
+        "n": 332
+      },
+      {
+        "id": 11,
+        "density": "low",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.49,
+        "male": 0.02,
+        "herm": 0.69,
+        "female": 0.29,
+        "n": 308
+      },
+      {
+        "id": 14,
+        "density": "low",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.48,
+        "male": 0.02,
+        "herm": 0.66,
+        "female": 0.32,
+        "n": 304
+      },
+      {
+        "id": 16,
+        "density": "low",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.7,
+        "male": 0.04,
+        "herm": 0.73,
+        "female": 0.23,
+        "n": 326
+      },
+      {
+        "id": 1,
+        "density": "low",
+        "males": "present",
+        "ph": 0.2,
+        "oh": 0.34,
+        "male": 0.37,
+        "herm": 0.36,
+        "female": 0.27,
+        "n": 304
+      },
+      {
+        "id": 3,
+        "density": "low",
+        "males": "present",
+        "ph": 0.21,
+        "oh": 0.73,
+        "male": 0.24,
+        "herm": 0.46,
+        "female": 0.3,
+        "n": 311
+      },
+      {
+        "id": 8,
+        "density": "low",
+        "males": "present",
+        "ph": 0.14,
+        "oh": 0.71,
+        "male": 0.33,
+        "herm": 0.38,
+        "female": 0.29,
+        "n": 320
+      },
+      {
+        "id": 17,
+        "density": "low",
+        "males": "present",
+        "ph": 0.22,
+        "oh": 0.91,
+        "male": 0.27,
+        "herm": 0.47,
+        "female": 0.26,
+        "n": 316
+      },
+      {
+        "id": 19,
+        "density": "low",
+        "males": "present",
+        "ph": 0.17,
+        "oh": 0.88,
+        "male": 0.37,
+        "herm": 0.36,
+        "female": 0.27,
+        "n": 243
+      },
+      {
+        "id": 2,
+        "density": "high",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.75,
+        "male": 0.01,
+        "herm": 0.71,
+        "female": 0.28,
+        "n": 320
+      },
+      {
+        "id": 5,
+        "density": "high",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.83,
+        "male": 0,
+        "herm": 0.7,
+        "female": 0.29,
+        "n": 297
+      },
+      {
+        "id": 7,
+        "density": "high",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.61,
+        "male": 0,
+        "herm": 0.77,
+        "female": 0.22,
+        "n": 309
+      },
+      {
+        "id": 10,
+        "density": "high",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.73,
+        "male": 0,
+        "herm": 0.69,
+        "female": 0.31,
+        "n": 302
+      },
+      {
+        "id": 20,
+        "density": "high",
+        "males": "absent",
+        "ph": null,
+        "oh": 0.6,
+        "male": 0,
+        "herm": 0.67,
+        "female": 0.33,
+        "n": 285
+      },
+      {
+        "id": 4,
+        "density": "high",
+        "males": "present",
+        "ph": 0.13,
+        "oh": 0.73,
+        "male": 0.27,
+        "herm": 0.42,
+        "female": 0.31,
+        "n": 298
+      },
+      {
+        "id": 12,
+        "density": "high",
+        "males": "present",
+        "ph": 0.11,
+        "oh": 1.03,
+        "male": 0.36,
+        "herm": 0.29,
+        "female": 0.35,
+        "n": 297
+      },
+      {
+        "id": 13,
+        "density": "high",
+        "males": "present",
+        "ph": 0.08,
+        "oh": 0.79,
+        "male": 0.33,
+        "herm": 0.36,
+        "female": 0.32,
+        "n": 304
+      },
+      {
+        "id": 15,
+        "density": "high",
+        "males": "present",
+        "ph": 0.13,
+        "oh": 0.75,
+        "male": 0.27,
+        "herm": 0.51,
+        "female": 0.22,
+        "n": 291
+      },
+      {
+        "id": 18,
+        "density": "high",
+        "males": "present",
+        "ph": 0.08,
+        "oh": 0.87,
+        "male": 0.4,
+        "herm": 0.38,
+        "female": 0.22,
+        "n": 272
+      }
+    ],
+    "original_table1_reproductive_effort": {
+      "female_seed_biomass_fraction": {
+        "mean": 0.061,
+        "se": 0.002
+      },
+      "hermaphrodite_seed_biomass_fraction": {
+        "mean": 0.043,
+        "se": 0.002
+      },
+      "male_pollen_biomass_fraction": {
+        "mean": 0.205,
+        "se": 0.005
+      },
+      "hermaphrodite_pollen_biomass_fraction": {
+        "mean": 0.035,
+        "se": 0.002
+      }
+    },
+    "original_progeny_GLM": {
+      "female_density": {
+        "t": 0.7,
+        "p": ">.50"
+      },
+      "female_male_presence": {
+        "t": 0.1,
+        "p": ">.85"
+      },
+      "female_interaction": {
+        "t": -0.5,
+        "p": ">.50"
+      },
+      "male_density_in_males_present_plots": {
+        "t": -0.54,
+        "p": ">.50"
+      }
+    },
+    "original_interpretation": "Presence of females may buffer male siring against density-related hermaphrodite selfing by supplying outcrossable ovules, but female presence itself was NOT independently randomized.",
+    "contamination_note": "Male progeny 0–4% in arrays with no male parents, particularly at low density, indicate inter-plot pollen dispersal despite spatial barriers.",
+    "morphology_counts_note": "Neuter sterile males 0–3% counted as males in original table and GLM.",
+    "sampling_warning": "Plots, not individual offspring, are independent manipulations. Source study contains 10 mixed population ancestries in 20 plots, so plot-wise aggregate not individual fitness."
+  },
+  "study_2024": {
+    "cite": "Nguyen MT, Martignier T & Pannell JR (2024). Widespread male sterility and trioecy in androdioecious Mercurialis annua. American Journal of Botany 111:e16429.",
+    "doi": "10.1002/ajb2.16429",
+    "url": "https://bsapubs.onlinelibrary.wiley.com/doi/full/10.1002/ajb2.16429",
+    "sample_size_populations": 109,
+    "source_species_cytotype": "HEXAPLOID_IBERIAN",
+    "sex_system_threshold_per_sex_frequency": 0.025,
+    "source_category_counts": {
+      "cosex_only": 36,
+      "androdioecious": 25,
+      "gynodioecious": 12,
+      "trioecious": 36
+    },
+    "plant_morph_overall_percent": {
+      "female": 5.3,
+      "male": 8.4,
+      "hermaphrodite": 86.3
+    },
+    "female_mean_grouped_by_males_above_2_5_percent": {
+      "male_rich": 8.2,
+      "male_poor": 1.6,
+      "original_wilcoxon_p": "<.0001"
+    },
+    "original_full_population_glm": {
+      "female_vs_male_frequency": {
+        "Z": 1.63,
+        "p": 0.103
+      },
+      "female_vs_density": {
+        "Z": -0.5,
+        "p": 0.62
+      }
+    },
+    "long_term_tracking": {
+      "initial_populations": 8,
+      "years": [
+        2016,
+        2017,
+        2018
+      ],
+      "extinct_by_2017": 2,
+      "additional_extinct_by_2018": 1,
+      "persisted_three_years": 5,
+      "no_overall_directional_sex_ratio_shift_detected": true
+    },
+    "genetic_mechanism_inferred": "Dominant Y male determination plus cytoplasmic male sterility and multiple partially linked nuclear fertility restorers",
+    "genetic_model_assumptions": [
+      "Restorer fertility cost required but not directly measured",
+      "Molecular developmental identity and linkage of restorer alleles not verified",
+      "Fit of deterministic predicted morph frequencies does not prove unique mechanism"
+    ],
+    "reported_morph_fitness": {
+      "male_pollen_output_relative_to_herm": 12,
+      "female_seed_production_relative_to_herm_upper_bound": 1.12
+    },
+    "data_availability": {
+      "figshare_raw_and_scripts": [
+        "10.6084/m9.figshare.26521189.v1",
+        "10.6084/m9.figshare.26521294.v1"
+      ],
+      "publisher_appendices": [
+        "S1 109-pop sex counts and density",
+        "S2 eight 2016-2018 population sex counts",
+        "S3 64 controlled crosses",
+        "S4 39 F×M crosses"
+      ],
+      "reanalysis_download_status": "NOT_RETRIEVED_WEB_CLICK_403_AND_FIGSHARE_500"
+    }
+  },
+  "inferential_limits": [
+    "2008 androdioecy and 2012 female-containing trioecy are different source populations, years, densities and genotype histories; observed contrast cannot identify female-presence causal moderation across studies",
+    "2008 source Table 1 displays low N=7239 but its eight row progeny Ns sum 7293; do not silently correct original published totals or use contradictory denominator for new p values",
+    "2008 source-published proportions rounded to 0.01, paired t from rounded values is a verification check, not a new test from individual pedigree",
+    "2012 20 plot-level experimental replicates and 6076 individual offspring; do not count offspring as 6076 independent manipulated experimental units",
+    "2012 0–4% male progeny in male-absent plots is evidence of external pollen contamination, not spontaneous sex-detector allele mutation",
+    "2012 three morphs are different biological reproductive strategies; male density model differs if females are present but original did not directly randomize their presence",
+    "2012 females' higher seed biomass allocation does not equal female genotype increase or long-run stable trioecy",
+    "2024 natural 109 populations include categories defined with 2.5% arbitrary cutoff; 36 trioecious populations do not demonstrate indefinite genotype frequency equilibrium",
+    "2024 shows no overall female density GLM association despite its male-rich group contrast; do not selectively report the positive group comparison as a universal density effect",
+    "2024 CMS and nuclear fertility restoration model is a supported genetic inference, not experimentally verified restorer molecular identity or restorer fitness cost",
+    "Source papers by overlapping investigators and source regions are prior art for frequency-dependent evolution, sex-ratio buffering and trioecy; SLK cannot claim first discovery",
+    "No original plot-level 2008 full genotype raw CSV, 2012 individual pedigrees or 2024 population supplementary downloads; analysis uses original published table and correctly preserves rounding",
+    "No SLK Phi/g0/Delta_R, new mutation probability, rare allele frequency gradient or cross-study causal lifetime fitness are identified"
+  ]
+}
