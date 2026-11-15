@@ -1,0 +1,98 @@
+{
+  "schema": "SLK_MERCURIALIS_2021_DIRECT_MATE_CONTEXT_LEAKY_SEX_SOURCE_V1",
+  "audit_date": "2026-11-15",
+  "primary_source": {
+    "citation": "Cossard GG & Pannell JR (2021). Enhanced leaky sex expression in response to pollen limitation in the dioecious plant Mercurialis annua. Journal of Evolutionary Biology 34:416–422",
+    "doi": "10.1111/jeb.13720",
+    "publisher_full_text": "https://academic.oup.com/jeb/article/34/2/416/7326544",
+    "pmc": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7984330/",
+    "dryad_data": "https://doi.org/10.5061/dryad.nvx0k6dqq",
+    "status": "Original publisher full text accessible and Methods, Results, Discussion verified; original individual Dryad CSV not fetched or refit"
+  },
+  "plant": {
+    "taxon": "Mercurialis annua",
+    "ploidy": "DIPLOID_XX_FEMALES_XY_MALES",
+    "sex_system": "dioecious",
+    "mechanism": "Female plants can produce rare staminate flowers (leaky sex expression); they may be located in leaf axils around pistillate flowers, not the normal male's stalked inflorescences",
+    "genetic_marker_used_in_this_experiment": false,
+    "unknown_inherited_reactivation": "Phenotype plasticity is NOT molecular restoration after genetic loss"
+  },
+  "design": {
+    "source_demographically_mixed_seeds_from_demes": 35,
+    "source_region": "Northwestern Spain metapopulation",
+    "experimental_common_gardens": 6,
+    "control_dioecious_plots": 3,
+    "all_female_plots": 3,
+    "control_population_parent_sex_counts": {
+      "male": 90,
+      "female": 90
+    },
+    "all_female_population_parent_sex_counts": {
+      "male": 0,
+      "female": 180
+    },
+    "initial_females_in_all_controls": 270,
+    "initial_females_in_all_female_plots": 540,
+    "initial_total_plants": 1080,
+    "randomized_assignment_and_seed_pool": "Seedlings raised 6 weeks in common greenhouse from mixed same seed pool, then effectively randomly assigned to field plots; individual genotypes not matched or cloned across treatments",
+    "pot_structure": "60 pots per plot ×3 plants, 3 plots per treatment; controls alternated 2M1F and 1M2F; all-female 3F per pot",
+    "treated_growth_weeks": 7,
+    "scored_female_plants": 272,
+    "scored_females_per_plot_range": [
+      35,
+      50
+    ],
+    "sampled_pot_occupancy_counts": {
+      "one_female_from_each_pot": 192,
+      "pots_with_two_sampled_females": 13,
+      "pots_with_three_sampled_females": 18
+    },
+    "measured_population_replicates_not_272_independent_populations": true,
+    "model_random_effects": [
+      "experimental population",
+      "pot"
+    ],
+    "male_reproductive_effort_definition": "dry biomass of staminate male flowers / aboveground vegetative biomass of female plant",
+    "female_reproductive_effort_definition": "dry biomass of female flowers and fruits/seeds / aboveground vegetative biomass of female plant",
+    "leakiness_threshold_rule": "MRE greater than control-population female 95th percentile; 5% of controls classified leaky BY DEFINITION",
+    "alternative_threshold_robustness": "Authors also analyzed any male flower and an 80th-percentile cutoff; qualitative findings similar"
+  },
+  "published_results": {
+    "male_reproductive_effort_all_female_over_control_ratio": 2.33,
+    "male_effort_group_treatment_p": 0.01,
+    "leakiness_incidence_group_difference_p": 0.058,
+    "leakiness_incidence_statistical_status": "TREND_NOT_SIGNIFICANT_AT_0_05",
+    "female_effort_group_treatment_p": 0.19,
+    "female_effort_statistical_status": "NO_DETECTED_MEAN_DIFFERENCE",
+    "female_effort_variance_original_F": 0.005,
+    "female_effort_variance_original_p": 0.01,
+    "number_of_males_in_same_pot_male_effort_p": 0.851,
+    "number_of_males_in_same_pot_female_effort_p": 0.977,
+    "number_of_males_in_same_pot_leaky_incidence_p": 0.11,
+    "original_comparison_outcome": "The MRE per female plant's aboveground vegetation is more than doubled in all-female plots; change in fraction of plants deemed leaky not significant",
+    "actual_self_sired_seed_count_in_original_plots": "NOT_MEASURED",
+    "pollen_viability_of_induced_male_flowers": "NOT_MEASURED",
+    "adaptive_plasticity_causal_fitness_evidence": "NOT_DEMONSTRATED_AS_DUAL_ENVIRONMENT_GENOTYPE_FITNESS_CROSSOVER",
+    "source_figure1_caption": "Three all-female (S1-S3) and three 1:1 control (C1-C3) populations, with mean and SE for incidence, MRE and FRE"
+  },
+  "discussion": {
+    "proposed_cue": "Plants may sense reproductive pollen receipt or later fruit filling; neighbour sex recognition not demonstrated, and pot-level number of males had no detected effect",
+    "source_falsifiable_adaptive_plasticity_requirement": "Demonstrate leaky plants reproduce more without mates AND nonleaky plants reproduce more when mates available in appropriate common genetics",
+    "island_colonization": "Proposed as a plausible function of sex leakiness during mate-limited founder events; NO oceanic island plant population studied here",
+    "biogeography": "Expansion-front metapopulations in western Europe can encounter mate-limited colonization and fluctuating density, but experiment in Swiss common gardens with Spanish-origin genotypes",
+    "context_with_2024_hexaploid": "2024 hexaploid M. annua male-sterile females often make visually male-like flowers without functional pollen; 2021 diploid XX females reactivate morphologically male flowers. These are biologically distinct cytotypes and studies."
+  },
+  "limitations": [
+    "The 2.33× effect is male-flower dry biomass per vegetative biomass, not count of male flowers, viability of pollen, number of mating partners or genetically confirmed selfed offspring",
+    "No same-clone repeated genotype across control and male-free treatment; plants from same mixed pool assigned to different environments on average",
+    "There are SIX plot-level replicate experimental populations (three each), 272 female plants nested among them and pots; do not treat 272 as independent population replicates",
+    "By construction 5% of control plants exceed control-based 95th percentile; incidence direction is non-significant p=.058 even though MRE mean response p=.01",
+    "Female reproductive effort difference p=.19 non-significant, which does NOT demonstrate zero cost of opposite-sex male flowers",
+    "No male flower pollen viability or source-verified actual offspring selfing rates from this 2021 manipulation",
+    "No experiment tested pollen addition independently of male absence, direct sensing cues unverified",
+    "2021 original dryad dataset is registered but CSV/text could not be fetched via available tools; no raw individual model refit here",
+    "Do not equate 2021 diploid XX female plastic male expression with 2024 hexaploid CMS female retained sterile male flowers, or combine their model coefficients",
+    "This plastic response supports preserved developmental ability, not evolutionary restoration of a genetically deleted male function",
+    "No allelic rare-type invasion, realized lifetime fitness, SLK Phi/g0/Delta_R, or historical origin directly observed"
+  ]
+}
