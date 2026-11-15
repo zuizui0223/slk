@@ -97,7 +97,7 @@ class TrueExperimentalReversionAndMaleArchitectureLegacy(unittest.TestCase):
 
     def test_wrong_published_2021_paternity_assumption_or_male_sample_fails(self):
         s=copy.deepcopy(self.src)
-        s["experimental_2021"]["G5_reintroduced_males"]["paper_inferred_fraction_XX_female_sired"]=.134
+        s["experimental_2021"]["G5_reintroduced_males"]["author_inferred_fraction_XX_female_sired"]=.134
         with self.assertRaisesRegex(ValueError,"G5_REINTRODUCTION_SOURCE_CHANGED"):
             compute(s)
         s=copy.deepcopy(self.src)
