@@ -70,6 +70,30 @@ def compute(data):
         raise ValueError("PAIRED_SAMPLES_CHANGED")
     closure_fractions={d:round(rows[i][0]/rowsum[i],8)
                        for i,d in enumerate(doses)}
+    missingness_bounds={}
+    for i,dose in enumerate(doses):
+        missing=f["initiated_flowers_per_pollen_dose"]-rowsum[i]
+        if missing<0:
+            raise ValueError("MORE_USABLE_THAN_ORIGINAL_RANDOMIZED")
+        missingness_bounds[dose]={
+            "source_randomized_n":f["initiated_flowers_per_pollen_dose"],
+            "usable_n":rowsum[i],"unknown_outcome_n":missing,
+            "worst_case_closure_lower":round(
+                rows[i][0]/f["initiated_flowers_per_pollen_dose"],8),
+            "worst_case_closure_upper":round(
+                (rows[i][0]+missing)/f["initiated_flowers_per_pollen_dose"],8),
+        }
+    # Identification statement, not a new significance test: allow every
+    # missing flower's closure status to be adversarial, independently by dose.
+    robust_30_gt_10=(
+        missingness_bounds["30"]["worst_case_closure_lower"]>
+        missingness_bounds["10"]["worst_case_closure_upper"])
+    robust_20_ge_10=(
+        missingness_bounds["20"]["worst_case_closure_lower"]>=
+        missingness_bounds["10"]["worst_case_closure_upper"])
+    robust_30_gt_20=(
+        missingness_bounds["30"]["worst_case_closure_lower"]>
+        missingness_bounds["20"]["worst_case_closure_upper"])
     return {
         "schema":"slk_cyananthus_2011_closure_published_table1_result_v1",
         "doi":data["citation"]["doi"],
@@ -82,6 +106,10 @@ def compute(data):
         "female_source_usable_n":total,
         "female_source_unusable_n":f["initiated_total"]-total,
         "female_source_usable_fraction":round(total/f["initiated_total"],8),
+        "female_all_initially_treated_closure_fraction_bounds":missingness_bounds,
+        "female_30_vs_10_direction_robust_to_any_missing_outcomes":robust_30_gt_10,
+        "female_20_vs_10_nonstrict_direction_robust_to_any_missing_outcomes":robust_20_ge_10,
+        "female_30_vs_20_direction_robust_to_any_missing_outcomes":robust_30_gt_20,
         "pearson_chisq_on_published_usable_counts":round(chisq,8),
         "pearson_df":2,
         "pearson_p_for_df2":round(p,12),
