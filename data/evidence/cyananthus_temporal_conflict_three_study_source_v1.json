@@ -1,0 +1,140 @@
+{
+  "schema": "slk_cyananthus_2015_2017_2021_primary_source_three_study_ecological_bridge_v1",
+  "audit_date": "2026-11-15",
+  "common_taxon": "Cyananthus delavayi (Campanulaceae)",
+  "system": "Gynodioecious populations in alpine southwestern China, female and hermaphrodite flowers",
+  "evidence_dependence": "ONE_TAXON_MULTIPLE_STUDIES_PARTIALLY_SHARED_AUTHOR_LAB_NOT_THREE_INDEPENDENT_ORIGINS",
+  "primary_studies": [
+    {
+      "year": 2015,
+      "doi": "10.1371/journal.pone.0117149",
+      "title": "A sexually dimorphic corolla appendage affects pollen removal and floral longevity in gynodioecious Cyananthus delavayi (Campanulaceae)",
+      "access": "Full-text public PLOS ONE; PMC abstract/results indexed, current web view intermittently blocked by bot check",
+      "original_interventions": [
+        "Throat-hair excision",
+        "0%, 50%, 100% pollen removal under pollinator exclusion"
+      ],
+      "measured": [
+        "male-phase duration",
+        "female-phase duration",
+        "total floral longevity",
+        "pollen removal"
+      ],
+      "observed": {
+        "reduced_pollen_removal": "Male phase prolonged at female phase's expense",
+        "no_pollen_removal": "Approximately one-third of hermaphroditic flowers never reached a female phase under the two no-removal procedures",
+        "throat_hair_excision": "Increased pollen removal per halictid bee visit and shortened male phase",
+        "biological_ceiling": "Pollen-phase trade-off observed, but no experimentally established historical origin and no direct paternal reproductive success"
+      },
+      "author_figure2_label": "NHR netted/no hair removal; HR hair removal; C natural control; 0%, 50%, 100% pollen removal are distinct pollinator-excluded manipulations"
+    },
+    {
+      "year": 2017,
+      "doi": "10.1002/ece3.3391",
+      "title": "Evaluation of pollinator effectiveness based on pollen deposition and seed production in a gynodieocious alpine plant, Cyananthus delavayi",
+      "access": "Full original text: https://pmc.ncbi.nlm.nih.gov/articles/PMC5648671/",
+      "sampling": {
+        "year": 2016,
+        "site": "Shangri-La Alpine Botanical Garden, Yunnan, SW China",
+        "selected_plants": {
+          "female": 30,
+          "hermaphrodite": 30
+        },
+        "single_visit_flower_sample_sizes": {
+          "bumblebee": {
+            "hermaphrodite": 23,
+            "female": 32
+          },
+          "halictid_bee": {
+            "hermaphrodite": 20,
+            "female": 19
+          },
+          "hoverfly": {
+            "hermaphrodite": 25,
+            "female": 28
+          }
+        },
+        "flower_sample_sum": 147,
+        "tracked_same_flower_single_visit_to_seed": true
+      },
+      "measured": [
+        "Pollen grains on stigmas 8-10 h after a single visit",
+        "Seed number in fruits collected after 30 days"
+      ],
+      "original_table2_reported": {
+        "pollen_deposition_sex_F": 15.246,
+        "pollen_deposition_sex_p": "<0.001",
+        "pollen_deposition_pollinator_group_F": 10.455,
+        "pollen_deposition_pollinator_group_p": "<0.001",
+        "seed_production_pollinator_group_F": 15.591,
+        "seed_production_pollinator_group_p": "<0.001",
+        "seed_production_sex_F": 0.069,
+        "seed_production_sex_p": 0.794
+      },
+      "original_table3_reported": {
+        "conditional_pollen_deposition_F": 0.036,
+        "conditional_pollen_deposition_p": 0.85,
+        "pollinator_group_F": 15.231,
+        "pollinator_group_p": "<0.001",
+        "residual_df": 137
+      },
+      "observed": {
+        "hoverfly": "Single visits produced fewer seeds than bumblebee or halictid bee visits",
+        "visit_pollen_vs_seed": "Stigma pollen count failed to explain seed number in published fitted model while pollinator group did",
+        "limit": "Failed to reject an association is not proof of zero pollen effect; pollen origin and compatibility unknown"
+      }
+    },
+    {
+      "year": 2021,
+      "doi": "10.1111/evo.14113",
+      "title": "Sexual conflict in protandrous flowers and the evolution of gynodioecy",
+      "access": "Publisher abstract and publisher-listed supporting information descriptions; original full article behind paywall, raw experimental data not obtained",
+      "locations": "Five reported field populations near Shangri-La City, SW China",
+      "intervention": "Experimental early versus restricted pollen removal from protandrous hermaphroditic flowers",
+      "measured": [
+        "male-phase duration",
+        "female-phase duration",
+        "total floral longevity",
+        "hermaphrodite maternal seed production",
+        "female comparative seed production"
+      ],
+      "published_results": {
+        "early_removal": "Hermaphrodite seed production became similar to female seed production",
+        "restricted_removal": "Male phase extended, female phase shortened and hermaphrodite female fertility lowered",
+        "total_floral_longevity": "No detected treatment effect",
+        "female_advantage_across_five_populations": "Approximately 2-fold seed fertility advantage on average",
+        "reported_scope": "Sex-specific fitness advantage and phase competition are published findings, not reestimated here"
+      },
+      "inference_boundary": "Supports current floral sexual interference and a conditional ecological route favoring females, not a measured allele invasion/fixation or identified historical origin of gynodioecy"
+    }
+  ],
+  "comparative_interpretation": {
+    "complementary_wurmbea_2004": "Wurmbea pollinator-exclusion sign varies among sex morphs, and pollen metering differs; Cyananthus pollen-removal directly manipulates temporal male/female phase competition and maternal seed output",
+    "common_positive": "Reproductive opportunity has separate sex-specific temporal and seed-maturation stages",
+    "different_causal_treatments": "Whole-plant pollinator exclusion is NOT equivalent to flower-level experimental pollen removal",
+    "no_pooled_effect": true,
+    "independent_organismal_origins_estimated": 0,
+    "SLK_empirical_gates_closed": [],
+    "not_estimated": [
+      "L",
+      "R",
+      "K",
+      "Phi",
+      "g0",
+      "Delta_R",
+      "genetic architecture accessibility",
+      "population-level invasion or fixation"
+    ]
+  },
+  "interpretation_limits": [
+    "2015 and 2021 studies involve the same plant species and overlapping author network; do not count as two independent evolutionary transitions",
+    "2017 measures pollen and seed from the same single-visit experimental flower, but this is not the 2021 pollen-removal treatment cohort",
+    "5 populations in 2021 refer to reported female seed advantage; avoid assuming 5 independent populations for every specific intervention without full Methods",
+    "2021 accessible source is abstract/supplementary listing only; do not claim source-verified exact effect sizes, CIs or treatment sample sizes",
+    "2017 conditional F and p are author-reported fitted-model statistics, not new regressions, causal mediation or null-effect proof",
+    "2015 0% pollen removal trials can suppress female phase without showing historical fixation or heritable disappearance of female genetic capacity",
+    "No direct comparison with Wurmbea at matched pollinator guild, floral phases, geography, units or genetic backgrounds",
+    "Experiments reveal contemporary function and constraints, not taxon-specific histories of sexual-system evolution",
+    "Do not imply any included study was conducted by SLK authors"
+  ]
+}
