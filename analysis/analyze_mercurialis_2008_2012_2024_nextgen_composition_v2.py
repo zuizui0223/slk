@@ -152,6 +152,15 @@ def analyze(src):
     paternal_h=effort["hermaphrodite_pollen_biomass_fraction"]["mean"]
     if not (maternal_f>maternal_h and paternal_m>paternal_h):
         raise ValueError("ORIGINAL_2012_ALLOCATION_ORDER_CHANGED")
+    alloc=t["experimental_male_presence_by_sex_seed_effort"]
+    af=alloc["female"]
+    ah=alloc["hermaphrodite"]
+    si=alloc["original_interaction"]
+    delta_f=af["male_present"]["mean"]-af["male_absent"]["mean"]
+    delta_h=ah["male_present"]["mean"]-ah["male_absent"]["mean"]
+    if not (delta_f<0<delta_h and si["F"]==6.3 and
+            si["df1"]==1 and si["df2"]==445 and si["p"]=="<.05"):
+        raise ValueError("ORIGINAL_2012_SEX_BY_MALE_EFFORT_CHANGED")
 
     if (g["sample_size_populations"]!=109 or
         sum(g["source_category_counts"].values())!=109 or
@@ -202,6 +211,18 @@ def analyze(src):
         "male_absent_low_plot_mean_male_progeny":cells["low_absent"]["male_progeny_plot_mean"],
         "male_absent_high_plot_mean_male_progeny":cells["high_absent"]["male_progeny_plot_mean"],
         "male_progeny_without_male_parents_indicates_gene_flow":True,
+        "male_presence_sex_specific_seed_effort":{
+            "female_no_males":af["male_absent"]["mean"],
+            "female_with_males":af["male_present"]["mean"],
+            "hermaphrodite_no_males":ah["male_absent"]["mean"],
+            "hermaphrodite_with_males":ah["male_present"]["mean"],
+            "female_delta_with_minus_without_males":round(delta_f,8),
+            "hermaphrodite_delta_with_minus_without_males":round(delta_h,8),
+            "published_interaction_F":si["F"],
+            "published_interaction_df":[si["df1"],si["df2"]],
+            "published_interaction_p":si["p"],
+            "new_male_paternity_effect_estimated":None
+        },
         "female_seed_allocation_fraction_relative_to_hermaphrodite":round(
             maternal_f/maternal_h,8),
         "male_pollen_allocation_fraction_relative_to_hermaphrodite":round(
