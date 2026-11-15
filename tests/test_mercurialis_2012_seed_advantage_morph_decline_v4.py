@@ -56,6 +56,31 @@ class MercurialisSeedBenefitNotGeneticIncrease(unittest.TestCase):
         })
         self.assertFalse(self.result["evidence_morph_increase_when_seed_higher_must_occur"])
 
+    def test_actual_original_seed_ratio_bins_1_15_4(self):
+        d=self.result
+        x=d["descriptive_female_to_hermaphrodite_seed_ratio_bins_from_oh"]
+        self.assertEqual(x,{
+            "seed_advantage_not_detected":1,
+            "female_seed_ratio_strictly_between_1_and_2":15,
+            "female_seed_ratio_strictly_above_2":4,
+            "uncertainty_from_oh_rounding_crossing_bin_boundary":0
+        })
+        self.assertEqual(sum(x.values()),20)
+        self.assertEqual(sum(
+            r["descriptive_ratio_bin_not_novel_invasion_condition"]==
+            "female_seed_ratio_strictly_above_2"
+            for r in d["plot_level_records"]),4)
+
+    def test_nuclear_vs_maternal_thresholds_are_only_old_theory(self):
+        prior=self.prior["model_2025_prior_art"]["idealized_original_intro_thresholds"]
+        self.assertEqual(prior["nuclear_male_sterility_female_seed_ratio_required"],"g>2")
+        self.assertEqual(prior["maternal_CMS_female_seed_ratio_required"],"g>1")
+        self.assertFalse(self.result["theoretical_prior_nuclear_and_CMS_thresholds_apply_to_real_2012_plots"])
+        self.assertEqual(self.result["idealized_ancestral_thresholds_from_original_Heredity"],
+                         {"nuclear_male_sterility":"g>2","maternally_inherited_CMS":"g>1"})
+        self.assertEqual(prior["actual_2012_plot_invasion_inference"],
+            "BLOCKED_BY_SELFING_EXISTING_MALES_PARTNER_CONTEXT_AND_CMS_UNTYPED")
+
     def test_source_exceptions_and_rounding_unresolved(self):
         rows={r["original_plot"]:r for r in self.result["plot_level_records"]}
         self.assertEqual(rows[6]["relative_seed_advantage_under_rounding"],"female_seed_higher")
