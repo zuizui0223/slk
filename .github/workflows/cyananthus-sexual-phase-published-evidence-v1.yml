@@ -1,0 +1,36 @@
+name: Published Cyananthus floral phase interference and seed effects
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/cyananthus_temporal_conflict_three_study_source_v1.json'
+      - 'docs/SLK_CYANANTHUS_SEXUAL_PHASE_CONFLICT_EMPIRICAL_V1_20261115.md'
+      - 'tests/test_cyananthus_temporal_conflict_three_study_source_v1.py'
+      - '.github/workflows/cyananthus-sexual-phase-published-evidence-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  primary-source-ceiling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify intervention fidelity, source dependence and inferential limits
+        run: python -m unittest discover -s tests -p 'test_cyananthus*.py' -v
+      - name: Check no unearned evolutionary origin claims
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data=json.loads(Path('data/evidence/cyananthus_temporal_conflict_three_study_source_v1.json').read_text())
+          studies=data['primary_studies']
+          assert len(studies)==3 and {s['year'] for s in studies}=={2015,2017,2021}
+          assert data['comparative_interpretation']['SLK_empirical_gates_closed']==[]
+          assert data['comparative_interpretation']['independent_organismal_origins_estimated']==0
+          assert data['comparative_interpretation']['no_pooled_effect']
+          assert studies[-1]['published_results']['total_floral_longevity']=='No detected treatment effect'
+          print('PASS_REAL_EXPERIMENTAL_PHASE_CONFLICT_WITHOUT_HISTORICAL_ORIGIN_CLAIM')
+          PY
