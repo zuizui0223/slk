@@ -1,0 +1,71 @@
+{
+  "schema": "SLK_MERCURIALIS_2021_ORIGINAL_MATE_ABSENCE_SOURCE_AUDIT_V1",
+  "source_doi": "10.1111/jeb.13720",
+  "source_ploidy": "DIPLOID_XX_FEMALES_XY_MALES",
+  "source_seed_demes": 35,
+  "treatment_population_counts": {
+    "controls_with_males": 3,
+    "female_only": 3
+  },
+  "parental_sex_counts_per_population": {
+    "control": {
+      "male": 90,
+      "female": 90
+    },
+    "female_only": {
+      "male": 0,
+      "female": 180
+    }
+  },
+  "initial_control_total_plants": 540,
+  "initial_female_only_total_plants": 540,
+  "initial_total_plants": 1080,
+  "female_phenotyped_n": 272,
+  "sampled_unique_pots_from_source_occupancy": 223,
+  "sampled_female_plants_sharing_pots_with_other_sampled_females": 80,
+  "fraction_females_from_multi_sampled_pots": 0.29411765,
+  "experimental_plot_replicates": 6,
+  "male_relative_reproductive_allocation_no_mates_over_with_males": {
+    "published_ratio": 2.33,
+    "published_p": 0.01,
+    "metric": "male flower dry biomass divided by vegetative aboveground biomass",
+    "new_effect_size_or_CI": null
+  },
+  "incidence_of_leaky_females": {
+    "published_group_comparison_p": 0.058,
+    "significant_at_point_zero_five": false,
+    "source_control_incidence_by_threshold_definition": 0.05,
+    "control_incidence_is_not_independent_natural_prevalence": true
+  },
+  "female_reproductive_effort": {
+    "published_group_comparison_p": 0.19,
+    "no_detected_mean_difference": true,
+    "zero_female_cost_proven": false
+  },
+  "pot_male_neighbor_count": {
+    "male_effort_original_p": 0.851,
+    "female_effort_original_p": 0.977,
+    "pollen_or_fruit_signal_identity_demonstrated": false
+  },
+  "same_clonal_genotype_treatment_comparison": false,
+  "self_paternity_or_seed_viability_measured": false,
+  "adaptive_reaction_norm_crossing_with_fitness_measured": false,
+  "published_paper_proposes_island_colonization_without_testing_islands": true,
+  "raw_Dryad_individual_file_downloaded": false,
+  "may_be_pooled_with_2024_hexaploid_distance_LMM": false,
+  "SLK_Phi_g0_Delta_R_measured": false,
+  "all_new_p_values": null,
+  "limitations": [
+    "The 2.33× effect is male-flower dry biomass per vegetative biomass, not count of male flowers, viability of pollen, number of mating partners or genetically confirmed selfed offspring",
+    "No same-clone repeated genotype across control and male-free treatment; plants from same mixed pool assigned to different environments on average",
+    "There are SIX plot-level replicate experimental populations (three each), 272 female plants nested among them and pots; do not treat 272 as independent population replicates",
+    "By construction 5% of control plants exceed control-based 95th percentile; incidence direction is non-significant p=.058 even though MRE mean response p=.01",
+    "Female reproductive effort difference p=.19 non-significant, which does NOT demonstrate zero cost of opposite-sex male flowers",
+    "No male flower pollen viability or source-verified actual offspring selfing rates from this 2021 manipulation",
+    "No experiment tested pollen addition independently of male absence, direct sensing cues unverified",
+    "2021 original dryad dataset is registered but CSV/text could not be fetched via available tools; no raw individual model refit here",
+    "Do not equate 2021 diploid XX female plastic male expression with 2024 hexaploid CMS female retained sterile male flowers, or combine their model coefficients",
+    "This plastic response supports preserved developmental ability, not evolutionary restoration of a genetically deleted male function",
+    "No allelic rare-type invasion, realized lifetime fitness, SLK Phi/g0/Delta_R, or historical origin directly observed"
+  ]
+}
