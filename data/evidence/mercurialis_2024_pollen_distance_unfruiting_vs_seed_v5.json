@@ -1,0 +1,214 @@
+{
+  "schema": "SLK_MERCURIALIS_2024_POLLEN_SOURCE_DISTANCE_FEMALE_FUNCTION_V5",
+  "audit_date": "2026-11-15",
+  "source": {
+    "citation": "Nguyen MT, Martignier T & Pannell JR (2024). Widespread male sterility and trioecy in androdioecious Mercurialis annua: Its distribution, genetic basis, and estimates of morph-specific fitness components. American Journal of Botany 111:e16429",
+    "doi": "10.1002/ajb2.16429",
+    "full_text": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11584041/",
+    "sections": [
+      "Methods: Expression of sexual phenotypes in a common garden",
+      "Methods: Estimation of pollen limitation",
+      "Results: Allocation to female function",
+      "Results: Estimates of pollen limitation",
+      "Table 1",
+      "Table 2",
+      "Discussion: genetic architecture and Figure 6"
+    ],
+    "original_supplementary_archive": "https://doi.org/10.6084/m9.figshare.26521189.v1",
+    "source_access": "Authoritative primary open PMC HTML and original Table 1/2 text; supplementary DOCX link and Figshare file unavailable due network restrictions",
+    "analyzed_pdf_figures_by_new_screenshot": false
+  },
+  "taxon": {
+    "name": "Mercurialis annua",
+    "cytotype": "HEXAPLOID_IBERIAN",
+    "morphs": [
+      "dioecious male",
+      "male-sterile female",
+      "monoecious hermaphrodite"
+    ],
+    "sexual_structures": "Hermaphrodite bears male and female unisexual flowers on same plant; male-sterile female has nonfunctional male flowers",
+    "geography": "southern Spain (Motril) parental seed source common garden, not continentwide random material"
+  },
+  "distance_experiment": {
+    "year": "Common garden prior to published 2024 study, Motril-derived plants",
+    "experimental_replicate_assemblies": 3,
+    "plants_per_assembly": 28,
+    "total_planted": 84,
+    "central_group_each_assembly": {
+      "male": 4,
+      "female": 4,
+      "hermaphrodite": 4,
+      "number": 12
+    },
+    "ring_each_of_two_distances_each_assembly": {
+      "female": 4,
+      "hermaphrodite": 4,
+      "number": 8
+    },
+    "radial_distance_m": [
+      0.5,
+      1.5
+    ],
+    "repl_spacing_m": 10,
+    "reported_model_observations": 71,
+    "response_definition": "Number of female flowers that DID NOT develop fruits divided by total female flowers on each plant; interpreted as pollen limitation proxy, not measured stigma pollen grains",
+    "proxy_observation_warning": "Non-development of fruit was inferred to indicate no pollination; resource-related fruit failure and mate identity cannot be excluded without direct pollen and fertilization data",
+    "actual_plant_panel_data_available": false,
+    "reported_linear_mixed_model": {
+      "response": "proportion of undeveloped female flowers; printed Table 2 linear mixed model on plant-level proportion",
+      "intercept_at_zero_distance_hermaphrodite": {
+        "estimate": 0.152,
+        "CI95": [
+          0.072,
+          0.232
+        ]
+      },
+      "female_vs_hermaphrodite_offset": {
+        "estimate": 0.053,
+        "CI95": [
+          0.006,
+          0.1
+        ],
+        "reported_p": 0.029,
+        "reported_t": 2.23,
+        "df": 66.1
+      },
+      "distance_from_center_per_m": {
+        "estimate": 0.084,
+        "CI95": [
+          0.047,
+          0.121
+        ],
+        "reported_p": "<0.001",
+        "reported_t": 4.45,
+        "df": 66
+      },
+      "distance_by_morph_interaction": {
+        "original_reported_t": 0.245,
+        "reported_df": 65.4,
+        "reported_p": 0.8,
+        "reason_dropped": "No detected sex-specific difference in distance slope; source reports dropped after AIC comparison"
+      },
+      "random_effect": "Experimental replicate plot"
+    },
+    "seed_biomass_followup": {
+      "response": "Seed biomass / plant biomass (as reported in Table 2; model scale is not independently reconstructed)",
+      "female_vs_hermaphrodite_effect": {
+        "estimate": 0.196,
+        "CI95": [
+          -0.504,
+          0.895
+        ],
+        "reported_t": 0.548,
+        "reported_df": 66.2,
+        "reported_p": 0.58
+      },
+      "distance_effect": {
+        "estimate": -0.384,
+        "CI95": [
+          -0.937,
+          0.169
+        ],
+        "reported_t": -1.36,
+        "reported_df": 66,
+        "reported_p": 0.17
+      },
+      "reported_model_observations": 71,
+      "conclusion": "No detected difference in measured seed-biomass endpoint by morph or distance; NOT a zero causal effect or same-cohort compensation identified",
+      "omit_intercept_scale_predictions": true
+    },
+    "design_confounds": [
+      "Center group contains four male pollen sources AND four hermaphrodites and females; ring hermaphrodites themselves may emit pollen, so distance is an ecological proximity treatment not pure exclusive male pollen source",
+      "Three replicate assemblies with plants nested in each; 71 plants analyzed of 84 planted, missing 13 original individual data not accessed",
+      "Female flower non-fruit output is an indirect pollen-limitation proxy",
+      "All morphs were already present in arrays; no invasion when rare or genotype-based parentage tracked"
+    ]
+  },
+  "separate_morph_common_garden": {
+    "site": "Motril parental seed source grown in pot common garden separate from 0.5/1.5 m distance experiment",
+    "design": "Three blocks of 70 pots, each pot planted with one male, female, hermaphrodite; total 210 pots and 630 initially placed plants",
+    "reported_table1_analyzed_by_endpoint": {
+      "male_flower_biomass": 201,
+      "seed_biomass_per_aboveground_biomass": 383,
+      "seed_count_per_biomass": 383
+    },
+    "male_vs_hermaphrodite_male_effort_ratio": {
+      "estimate": 11.7,
+      "CI95": [
+        11.2,
+        12.9
+      ],
+      "source_report": "Original authors report ratio based on male-flower biomass/aboveground biomass, NOT actual paternal genotypes or pollen germination"
+    },
+    "female_vs_hermaphrodite_seed_biomass_fraction": {
+      "beta": 0.003,
+      "CI95": [
+        -0.006,
+        0.012
+      ],
+      "reported_t": 0.598,
+      "df": 213,
+      "reported_p": 0.55
+    },
+    "female_vs_hermaphrodite_seed_count_per_biomass": {
+      "beta": 4.35,
+      "CI95": [
+        -0.76,
+        9.46
+      ],
+      "text_reported_t": 2.91,
+      "text_reported_df": 213,
+      "text_reported_p": 0.097
+    },
+    "authors_power_statement": "Study reports approximate 80% power for detecting >12% female relative seed difference; this is not proof that gain <12% or an equivalence study",
+    "striking_source_inconsistency": "Source main text t=2.91 df=213 p=.097 for seed count per biomass cannot be simultaneously correct; t=2.91 would have two-sided p≈.004, while source coefficient 4.35 with CI[-.76,9.46] includes zero and corresponds to t≈1.68 and p≈.095. Do not choose a corrected t without raw data or author erratum.",
+    "discrepancy_status": "UNRESOLVED_REPORTED_T_VS_P_AND_CI_CONFLICT"
+  },
+  "independent_original_population_survey_and_model": {
+    "original_population_n": 109,
+    "documented_trioecious_populations": 36,
+    "source_model_rescue_conditions": {
+      "restorer_cost_rho_simulation_range_for_field_morph_ratios": [
+        0.15,
+        0.4
+      ],
+      "selfing_s_range": [
+        0.3,
+        1
+      ],
+      "inbreeding_d_range": [
+        0.1,
+        0.5
+      ],
+      "female_seed_output_relative_to_hermaphrodite_assumed": [
+        1,
+        1.11
+      ],
+      "male_pollen_output_relative_to_hermaphrodite_assumed": [
+        6,
+        15
+      ],
+      "original_best_inferred_nuclear_linkage_recombination_fractions": [
+        0.11,
+        0.26
+      ]
+    },
+    "model_result": "Model requires a restoration cost greater than zero in its parameter settings to maintain trioecy, but biological identity and actual fitness cost of linked restorers remain unmeasured",
+    "no_fitted_population_specific_ecological_coefficients": true,
+    "original_author_conclusion": "Trioecy possible without pollen limitation when genotype-specific restoration costs and mating parameters satisfy prior simulation conditions"
+  },
+  "limitations": [
+    "Directly verified primary 2024 Table 2 coefficients and 95% CIs; numerical predictions are re-expression of fitted published linear model at 0.5 and 1.5 m, NOT new data fits or actual individual observations",
+    "Fruit failure proxy cannot isolate failure of pollen receipt from resource-mediated fruit abortion, although original authors interpret it as pollen limitation",
+    "Distance effect p<.001 and female offset p=.029 support original source-specific associations, but interaction p=.80 does not prove exactly equal slopes across morphs",
+    "CIs of each printed coefficient cannot be combined to produce correct CI for a full 0.5/1.5m prediction without covariance of fitted coefficients",
+    "No detected seed biomass response does not establish absence of fitness costs or compensatory seed maturation",
+    "Separate common garden has 383 female-function and 201 male-function analyzed plant outcomes; not same 71 distance experiment plants and not 109 field population records",
+    "Original printed seed-count-per-biomass model narrative t=2.91 p=.097 is internally statistically inconsistent; no fabricated correction chosen",
+    "Original 2024 authors' >12% detectable difference power statement is NOT a confidence bound or proof that femaleness lacks any benefit",
+    "Model restorer cost rho=.15-.4 is an assumed simulation regime chosen to match morph frequencies, not measured cost or a source-calibrated SLK module K",
+    "Full 109-pop supplement S1, 3-year count supplement S2, 64-cross S3 and 39-cross S4 not downloaded; raw data analysis not performed",
+    "No same-plant genotype-specific paternity, maternal genetic transmission, CMS allele or rare mutant invasion fitness measured",
+    "No SLK Phi, g0, Delta_R nor full joint fitness calculated from this published source"
+  ]
+}
