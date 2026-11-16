@@ -1,0 +1,51 @@
+name: Mercurialis published individual-data provenance index
+on:
+  push:
+    paths:
+      - '.github/workflows/mercurialis-public-rawdata-index-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Inspect the two publishers' public metadata (no individual genotypes)
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, urllib.request, urllib.error
+          sources = [
+              ("2025_diploid_G8", "https://zenodo.org/api/records/14542260"),
+              ("2024_hexaploid_raw_A", "https://api.figshare.com/v2/articles/26521189"),
+              ("2024_hexaploid_raw_B", "https://api.figshare.com/v2/articles/26521294"),
+          ]
+          out = {}
+          for key, url in sources:
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent":"SLK-source-verification/1.0", "Accept":"application/json"})
+                  with urllib.request.urlopen(req, timeout=22) as res:
+                      obj=json.load(res)
+                  files=obj.get("files", [])
+                  if isinstance(files, dict): files=list(files.values())
+                  files_out=[]
+                  for x in files:
+                      if not isinstance(x,dict): continue
+                      files_out.append({"name":x.get("key") or x.get("name"), "size_bytes":x.get("size") or (x.get("size_bytes")),"checksum":x.get("checksum") or x.get("computed_md5"), "access": x.get("links",{}).get("self") or x.get("download_url")})
+                  out[key]={"ok":True,"id":obj.get("id"),"title":obj.get("title") or obj.get("metadata",{}).get("title"),"doi":obj.get("doi") or obj.get("metadata",{}).get("doi"),"files":files_out}
+              except Exception as e:
+                  out[key]={"ok":False,"failure_type":type(e).__name__,"error":str(e)[:200]}
+          print("SLK_PUBLIC_RAWDATA_METADATA_START")
+          print(json.dumps(out,ensure_ascii=False,indent=2,sort_keys=True))
+          print("SLK_PUBLIC_RAWDATA_METADATA_END")
+          with open("mercurialis_public_rawdata_index_v1.json","w") as f:json.dump(out,f,indent=2)
+          if not any(y["ok"] for y in out.values()):raise SystemExit("No public source metadata could be reached; no empirical data fetched.")
+          PY
+      - name: Publish metadata receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercurialis-published-rawdata-index-v1
+          path: mercurialis_public_rawdata_index_v1.json
+          if-no-files-found: warn
