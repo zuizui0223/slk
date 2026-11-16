@@ -86,7 +86,7 @@ def prepared(rs,numer,denom):
         total=denom(r)
         if target is None or total is None or total<=0:continue
         if target>total or target<0:raise ValueError("Invalid outcome numerator")
-        out.append({"Sex":r["Sex"],"dist":r["dist"],"block":r["block"],
+        out.append({"id":r["id"],"Sex":r["Sex"],"dist":r["dist"],"block":r["block"],
                     "sown":float(total),"germinated":float(target),
                     "observations":r["observations"]})
     return out
@@ -120,7 +120,25 @@ def summarize(rs):
                          "sex_distance_point":fit(x,True),
                          "sex_distance_bootstrap":boot(x,True,seed=20261118),
                          "leave_one_block_out":{b:fit([r for r in x if r["block"]!=b])
-                                                for b in ("1","2","3")}}
+                                                for b in ("1","2","3")},
+                         "leave_one_block_out_interaction":{
+                             b:fit([r for r in x if r["block"]!=b],True)
+                             for b in ("1","2","3")},
+                         "outer_rings_only_interaction":fit([r for r in x if r["dist"]>0],True),
+                         "leave_one_mother_out_interaction_range":None}
+    for name,x in specs.items():
+        estimates=[]
+        for dropped in x:
+            reduced=[r for r in x if r["id"]!=dropped["id"]]
+            fitted=fit(reduced,True)
+            if fitted is not None:
+                estimates.append(fitted["sex_by_distance_log_odds"])
+        analyses[name]["leave_one_mother_out_interaction_range"]={
+            "n_successful":len(estimates),
+            "minimum":min(estimates) if estimates else None,
+            "maximum":max(estimates) if estimates else None,
+            "all_positive":all(v>0 for v in estimates) if estimates else None,
+            "all_negative":all(v<0 for v in estimates) if estimates else None}
     cells={}
     for sex in ("F","H"):
         for d in (0,.5,1.5):
