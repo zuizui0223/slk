@@ -99,6 +99,8 @@ def prepare(zip_path):
         nonfruit=number(r["Female_flowers_unfert"])
         seeds=number(r["nombre graines"])
         seedmass=number(r["Seed_masse"])
+        vegmass=number(r["Veg_mass"])
+        height=number(r["Size"])
         sown=number(r["Seed_sown"])
         germinated=number(r["Prog_tot"])
         reported_germ=number(r["Germ_rate"])
@@ -114,7 +116,9 @@ def prepare(zip_path):
         output.append({
             "id":r["ID"],"Sex":r["Sex"],"block":r["Bloc"],"dist":number(r["Dist"]),
             "observation":r["Observation"],"flowers":flowers,"nonfruit":nonfruit,
-            "seeds":seeds,"seedmass":seedmass,"sown":sown,"germinated":germinated,
+            "seeds":seeds,"seedmass":seedmass,"vegetative_mass":vegmass,"height_cm":height,"sown":sown,"germinated":germinated,
+            "seed_mass_per_vegetative_mass":(seedmass/vegmass if seedmass is not None and vegmass is not None and vegmass>0 else None),
+            "average_seed_mass":(seedmass/seeds if seedmass is not None and seeds>0 else None),
             "unfruiting_fraction":nonfruit/flowers,"fruiting_fraction":fruits/flowers,
             "seeds_per_female_flower":seeds/flowers,
             "seeds_per_fruiting_flower":(seeds/fruits if fruits>0 else None),
@@ -127,7 +131,7 @@ def prepare(zip_path):
     return output
 
 def group(rows):
-    metrics=("unfruiting_fraction","seeds_per_female_flower","seeds_per_fruiting_flower",
+    metrics=("flowers","seeds","seedmass","vegetative_mass","height_cm","seed_mass_per_vegetative_mass","average_seed_mass","unfruiting_fraction","seeds_per_female_flower","seeds_per_fruiting_flower",
              "germination_rate","expected_germinants_per_female_flower")
     d={"n_plants":len(rows)}
     for metric in metrics:
@@ -143,18 +147,19 @@ def run(zip_path):
         for dist in (0.,.5,1.5):
             bycell[sex+"_"+str(dist)]=group([r for r in rows if r["Sex"]==sex and r["dist"]==dist])
     adjusted={}
-    for k in ("unfruiting_fraction","seeds_per_female_flower","seeds_per_fruiting_flower","germination_rate","expected_germinants_per_female_flower"):
+    for k in ("flowers","seeds","seedmass","vegetative_mass","height_cm","seed_mass_per_vegetative_mass","average_seed_mass","unfruiting_fraction","seeds_per_female_flower","seeds_per_fruiting_flower","germination_rate","expected_germinants_per_female_flower"):
         adjusted[k]={"ols":fit(rows,k),"bootstrap":bootstrap(rows,k)}
     flagged=[r for r in rows if r["observation"].strip()]
     clean=[r for r in rows if not r["observation"].strip()]
-    sensitivity={k:fit(clean,k) for k in ("unfruiting_fraction","seeds_per_female_flower","germination_rate","expected_germinants_per_female_flower")}
+    sensitivity={k:fit(clean,k) for k in ("flowers","seeds","unfruiting_fraction","seeds_per_female_flower","germination_rate","expected_germinants_per_female_flower")}
     return {"source_doi":SOURCE_DOI,"source_zip_md5":ZIP_MD5,"data_csv":CSV_PATH,
         "analysis":"exploratory within-original-experiment plant-stage accounting; not fitted paper GLMM, no causal mediation",
         "denominators":{"N_all":84,"N_female_or_hermaphrodite":len(rows),
           "N_with_measured_germination":sum(r["germination_rate"] is not None for r in rows),
           "N_expected_germinants_defined":sum(r["expected_germinants_per_female_flower"] is not None for r in rows),
           "N_flagged_observation":len(flagged),
-          "N_with_zero_seed":sum(r["seeds"]==0 for r in rows)},
+          "N_with_zero_seed":sum(r["seeds"]==0 for r in rows),
+          "N_with_vegetative_mass":sum(r["vegetative_mass"] is not None for r in rows)},
         "by_sex":bysex,"by_sex_distance":bycell,
         "adjusted_effects":adjusted,
         "sensitivity_excluding_observation_flags":{"n":len(clean),"estimates":sensitivity},
@@ -163,7 +168,9 @@ def run(zip_path):
             "Seeds per fruiting flower is a retrospective ratio and need not be statistically independent from unfruiting fraction.",
             "Expected germinants = (mature seeds/female flower) × (sown germinants/sown seeds). No field offspring survival, seed paternity, or lifetime fitness.",
             "Bootstrap conditions on only 3 fixed experimental blocks and small cells; exploratory confidence intervals are not population-wide block inference.",
-            "F/H hexaploid 2024 raw data and diploid 2025 G8 are independent genetic systems, not longitudinal evolution."]}
+            "F/H hexaploid 2024 raw data and diploid 2025 G8 are independent genetic systems, not longitudinal evolution.",
+            "The original Table 2 sex/distance mixed model used N=71; our unweighted fixed-block exploratory models use N=72 for reproductive flower outcomes. Their p-values are not replicated.",
+            "Missing vegetative mass especially in F plants makes biomass-normalized outcomes a selected subset, not equivalent to original published mixed model."]]}
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()
