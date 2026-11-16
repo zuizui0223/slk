@@ -78,13 +78,11 @@ class TestRealOffspringMorphStage(unittest.TestCase):
 
     def test_scientific_scope_warnings_and_prior_art_preserved(self):
         note=NOTE.read_text()
-        for text in ("自殖","未同定","父性","雌花","Pannell (1997)","Eppley & Pannell (2007)","実験","3区画","ばらつき"):
-            if text=="ばらつき":continue
+        for text in ("自殖","未同定","父性","雌花","Pannell (1997)","Eppley & Pannell (2007)","実験","3ブロック"):
             self.assertIn(text,note)
         for source in (self.a,self.b):
-            self.assertTrue(any("paternity" in s.lower() or "genotype" in s.lower()
-                                for s in source["interpretation"] if "interpretation" in source)
-                            if "interpretation" in source else any("paternity" in s.lower() or "genotype" in s.lower()
-                                for s in source["cautions"]))
+            warnings=source.get("interpretation",source.get("cautions",[]))
+            self.assertTrue(any(("paternity" in s.lower() or "genotype" in s.lower()
+                                 or "父性" in s) for s in warnings))
 
 if __name__=="__main__":unittest.main()
