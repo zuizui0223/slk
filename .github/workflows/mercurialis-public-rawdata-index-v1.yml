@@ -5,6 +5,7 @@ on:
       - '.github/workflows/mercurialis-public-rawdata-index-v1.yml'
       - 'analysis/reanalyze_mercurialis_2024_parent_to_germination_v1.py'
       - 'analysis/analyze_mercurialis_2024_germination_binomial_v9.py'
+      - 'analysis/audit_mercurialis_2024_next_generation_morph_stage_v10.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -165,6 +166,10 @@ jobs:
         shell: bash
         run: |
           python analysis/analyze_mercurialis_2024_germination_binomial_v9.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_germination_binomial_v9.json
+      - name: Audit actual offspring phenotype counts and missing sex labels
+        shell: bash
+        run: |
+          python analysis/audit_mercurialis_2024_next_generation_morph_stage_v10.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_offspring_morph_audit_v10.json
       - name: Publish metadata receipt
         if: always()
         uses: actions/upload-artifact@v4
@@ -177,4 +182,5 @@ jobs:
             mercurialis_stage_definition_audit_v1.json
             mercurialis_2024_parent_to_germination_v1.json
             mercurialis_2024_germination_binomial_v9.json
+            mercurialis_2024_offspring_morph_audit_v10.json
           if-no-files-found: warn
