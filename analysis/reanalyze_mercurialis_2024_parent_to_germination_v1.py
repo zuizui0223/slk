@@ -83,6 +83,47 @@ def bootstrap(rows,metric,n_reps=1200,seed=20261116):
     return {"successful_bootstraps":len(effects),"F_minus_H_95pct":ci(0),"distance_per_m_95pct":ci(1),
             "method":"plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"}
 
+def fit_controls(rows,metric,controls):
+    # Descriptive partial association only. Height and seed mass were
+    # measured after spatial placement, so adjustment is not causal control.
+    valid=[r for r in rows if r.get(metric) is not None
+           and all(r.get(c) is not None for c in controls)]
+    if len(valid)<14:return None
+    avg={c:mean([r[c] for r in valid]) for c in controls}
+    scales={"average_seed_mass":1000.0}
+    def vec(r):
+        return matrix_row(r)+[(r[c]-avg[c])*scales.get(c,1.0) for c in controls]
+    d=5+len(controls)
+    xx=[[0.]*d for _ in range(d)]
+    xy=[0.]*d
+    for r in valid:
+        x=vec(r)
+        y=r[metric]
+        for i in range(d):
+            xy[i]+=x[i]*y
+            for j in range(d):xx[i][j]+=x[i]*x[j]
+    beta=solve(xx,xy)
+    if beta is None:return None
+    return {"n":len(valid),"F_minus_H":beta[1],"distance_per_m":beta[2],
+            "covariates":list(controls),"covariate_coefficients":{c:beta[5+i] for i,c in enumerate(controls)}}
+
+def bootstrap_controls(rows,metric,controls,n_reps=1200,seed=20261116):
+    strata=collections.defaultdict(list)
+    for r in rows:strata[(r["block"],r["Sex"],r["dist"])].append(r)
+    pools=list(strata.values())
+    rng=random.Random(seed)
+    out=[]
+    for _ in range(n_reps):
+        sample=[rng.choice(pool) for pool in pools for j in range(len(pool))]
+        est=fit_controls(sample,metric,controls)
+        if est:out.append((est["F_minus_H"],est["distance_per_m"]))
+    if len(out)<.95*n_reps:return {"successful_bootstraps":len(out),"status":"insufficient"}
+    def ci(k):
+        vs=sorted(z[k] for z in out)
+        return [vs[int(.025*(len(vs)-1))],vs[int(.975*(len(vs)-1))]
+    return {"successful_bootstraps":len(out),"F_minus_H_95pct":ci(0),"distance_per_m_95pct":ci(1),
+            "method":"conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"}
+
 def prepare(zip_path):
     with open(zip_path,"rb") as f:
         content=f.read()
@@ -149,6 +190,22 @@ def run(zip_path):
     adjusted={}
     for k in ("flowers","seeds","seedmass","vegetative_mass","height_cm","seed_mass_per_vegetative_mass","average_seed_mass","unfruiting_fraction","seeds_per_female_flower","seeds_per_fruiting_flower","germination_rate","expected_germinants_per_female_flower"):
         adjusted[k]={"ols":fit(rows,k),"bootstrap":bootstrap(rows,k)}
+    sensitivity_specs=[
+        ("unfruiting_fraction",["height_cm"]),
+        ("unfruiting_fraction",["height_cm","vegetative_mass"]),
+        ("seeds_per_female_flower",["height_cm"]),
+        ("seeds",["height_cm"]),
+        ("germination_rate",["height_cm"]),
+        ("germination_rate",["height_cm","average_seed_mass"]),
+        ("germination_rate",["height_cm","vegetative_mass"]),
+        ("expected_germinants_per_female_flower",["height_cm"]),
+        ("expected_germinants_per_female_flower",["height_cm","average_seed_mass"]),
+    ]
+    controlled={}
+    for metric,controls in sensitivity_specs:
+        name=metric+"|"+",".join(controls)
+        controlled[name]={"ols":fit_controls(rows,metric,controls),
+            "bootstrap":bootstrap_controls(rows,metric,controls)}
     flagged=[r for r in rows if r["observation"].strip()]
     clean=[r for r in rows if not r["observation"].strip()]
     sensitivity={k:fit(clean,k) for k in ("flowers","seeds","unfruiting_fraction","seeds_per_female_flower","germination_rate","expected_germinants_per_female_flower")}
@@ -162,6 +219,7 @@ def run(zip_path):
           "N_with_vegetative_mass":sum(r["vegetative_mass"] is not None for r in rows)},
         "by_sex":bysex,"by_sex_distance":bycell,
         "adjusted_effects":adjusted,
+        "post_placement_size_adjusted_sensitivity":controlled,
         "sensitivity_excluding_observation_flags":{"n":len(clean),"estimates":sensitivity},
         "cautions":["Sex-by-distance nonrandom allocation cannot be assumed to identify causal effect without original randomization details.",
             "Unfruiting flowers are not a direct measurement of pollen delivery/fertilization.",
@@ -170,7 +228,9 @@ def run(zip_path):
             "Bootstrap conditions on only 3 fixed experimental blocks and small cells; exploratory confidence intervals are not population-wide block inference.",
             "F/H hexaploid 2024 raw data and diploid 2025 G8 are independent genetic systems, not longitudinal evolution.",
             "The original Table 2 sex/distance mixed model used N=71; our unweighted fixed-block exploratory models use N=72 for reproductive flower outcomes. Their p-values are not replicated.",
-            "Missing vegetative mass especially in F plants makes biomass-normalized outcomes a selected subset, not equivalent to original published mixed model."]}
+            "Missing vegetative mass especially in F plants makes biomass-normalized outcomes a selected subset, not equivalent to original published mixed model.",
+            "Plant height and average seed mass were measured after placement; their statistical adjustment may block a true causal pathway or induce collider bias, not identify a direct pollen effect.",
+            "Distance is to the central male group, but hermaphrodite plants on rings are additional pollen sources; distance does not equal nearest available pollen donor."]]}
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()
