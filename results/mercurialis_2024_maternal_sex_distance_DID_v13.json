@@ -1,0 +1,363 @@
+{
+  "source_doi": "10.6084/m9.figshare.26521189.v1",
+  "publisher_archive_md5": "365ab41f1d6192344a3b3fec87654e49",
+  "n_plants_original": 84,
+  "n_maternal_F_H": 72,
+  "n_with_assayed_sex_morphs": 71,
+  "excluded_zero_seed_mothers": [
+    {
+      "id": "605",
+      "reason": "No seed crop or progeny assay"
+    }
+  ],
+  "contrast": "(P(Yphenotype|H center)-P(Yphenotype|H far)) - (P(Yphenotype|F center)-P(Yphenotype|F far))",
+  "main": {
+    "n_mothers": {
+      "H_0.0": 12,
+      "H_1.5": 9,
+      "F_0.0": 12,
+      "F_1.5": 15
+    },
+    "group_germinated": {
+      "H_0.0": 491,
+      "H_1.5": 325,
+      "F_0.0": 543,
+      "F_1.5": 470
+    },
+    "group_unsexed": {
+      "H_0.0": 23,
+      "H_1.5": 22,
+      "F_0.0": 13,
+      "F_1.5": 19
+    },
+    "H_center_minus_far_Y_drop_worstcase": [
+      0.18904590318032272,
+      0.3035813880620398
+    ],
+    "F_center_minus_far_Y_drop_worstcase": [
+      -0.0011010540339328467,
+      0.06326554602092394
+    ],
+    "H_drop_minus_F_drop_worstcase": [
+      0.12578035715939878,
+      0.30468244209597267
+    ],
+    "sexed_only_difference_in_drops": 0.23277247580328142,
+    "strict_worstcase_positive": true
+  },
+  "within_block": {
+    "1": {
+      "n_mothers": {
+        "H_0.0": 4,
+        "H_1.5": 4,
+        "F_0.0": 4,
+        "F_1.5": 4
+      },
+      "group_germinated": {
+        "H_0.0": 185,
+        "H_1.5": 162,
+        "F_0.0": 215,
+        "F_1.5": 133
+      },
+      "group_unsexed": {
+        "H_0.0": 10,
+        "H_1.5": 13,
+        "F_0.0": 9,
+        "F_1.5": 8
+      },
+      "H_center_minus_far_Y_drop_worstcase": [
+        0.11444778111444781,
+        0.24874874874874878
+      ],
+      "F_center_minus_far_Y_drop_worstcase": [
+        -0.09515649589088998,
+        0.0068543451652386955
+      ],
+      "H_drop_minus_F_drop_worstcase": [
+        0.10759343594920912,
+        0.3439052446396388
+      ],
+      "sexed_only_difference_in_drops": 0.24700492418248335,
+      "strict_worstcase_positive": true
+    },
+    "2": {
+      "n_mothers": {
+        "H_0.0": 4,
+        "H_1.5": 4,
+        "F_0.0": 4,
+        "F_1.5": 4
+      },
+      "group_germinated": {
+        "H_0.0": 187,
+        "H_1.5": 112,
+        "F_0.0": 140,
+        "F_1.5": 122
+      },
+      "group_unsexed": {
+        "H_0.0": 10,
+        "H_1.5": 6,
+        "F_0.0": 1,
+        "F_1.5": 5
+      },
+      "H_center_minus_far_Y_drop_worstcase": [
+        0.2081741787624141,
+        0.31522154316271966
+      ],
+      "F_center_minus_far_Y_drop_worstcase": [
+        0.014519906323185006,
+        0.06264637002341922
+      ],
+      "H_drop_minus_F_drop_worstcase": [
+        0.14552780873899487,
+        0.30070163683953466
+      ],
+      "sexed_only_difference_in_drops": 0.23488812698826206,
+      "strict_worstcase_positive": true
+    },
+    "3": {
+      "n_mothers": {
+        "H_0.0": 4,
+        "H_1.5": 1,
+        "F_0.0": 4,
+        "F_1.5": 7
+      },
+      "group_germinated": {
+        "H_0.0": 119,
+        "H_1.5": 51,
+        "F_0.0": 188,
+        "F_1.5": 215
+      },
+      "group_unsexed": {
+        "H_0.0": 3,
+        "H_1.5": 3,
+        "F_0.0": 3,
+        "F_1.5": 6
+      },
+      "H_center_minus_far_Y_drop_worstcase": [
+        0.3137254901960784,
+        0.3977591036414566
+      ],
+      "F_center_minus_far_Y_drop_worstcase": [
+        0.05809005442850074,
+        0.10195447798119744
+      ],
+      "H_drop_minus_F_drop_worstcase": [
+        0.21177101221488098,
+        0.3396690492129559
+      ],
+      "sexed_only_difference_in_drops": 0.29759699065506684,
+      "strict_worstcase_positive": true
+    }
+  },
+  "leave_one_block_out": {
+    "1": {
+      "n_mothers": {
+        "H_0.0": 8,
+        "H_1.5": 5,
+        "F_0.0": 8,
+        "F_1.5": 11
+      },
+      "group_germinated": {
+        "H_0.0": 306,
+        "H_1.5": 163,
+        "F_0.0": 328,
+        "F_1.5": 337
+      },
+      "group_unsexed": {
+        "H_0.0": 13,
+        "H_1.5": 9,
+        "F_0.0": 4,
+        "F_1.5": 11
+      },
+      "H_center_minus_far_Y_drop_worstcase": [
+        0.2403865431653234,
+        0.33808492722242267
+      ],
+      "F_center_minus_far_Y_drop_worstcase": [
+        0.0443656365347036,
+        0.08920170804081928
+      ],
+      "H_drop_minus_F_drop_worstcase": [
+        0.15118483512450412,
+        0.29371929068771907
+      ],
+      "sexed_only_difference_in_drops": 0.23677862277916722,
+      "strict_worstcase_positive": true
+    },
+    "2": {
+      "n_mothers": {
+        "H_0.0": 8,
+        "H_1.5": 5,
+        "F_0.0": 8,
+        "F_1.5": 11
+      },
+      "group_germinated": {
+        "H_0.0": 304,
+        "H_1.5": 213,
+        "F_0.0": 403,
+        "F_1.5": 348
+      },
+      "group_unsexed": {
+        "H_0.0": 13,
+        "H_1.5": 16,
+        "F_0.0": 12,
+        "F_1.5": 14
+      },
+      "H_center_minus_far_Y_drop_worstcase": [
+        0.17545404002965156,
+        0.29333456881640724
+      ],
+      "F_center_minus_far_Y_drop_worstcase": [
+        -0.006453038989190307,
+        0.06355352100624623
+      ],
+      "H_drop_minus_F_drop_worstcase": [
+        0.11190051902340534,
+        0.29978760780559754
+      ],
+      "sexed_only_difference_in_drops": 0.22716692721362236,
+      "strict_worstcase_positive": true
+    },
+    "3": {
+      "n_mothers": {
+        "H_0.0": 8,
+        "H_1.5": 8,
+        "F_0.0": 8,
+        "F_1.5": 8
+      },
+      "group_germinated": {
+        "H_0.0": 372,
+        "H_1.5": 274,
+        "F_0.0": 355,
+        "F_1.5": 255
+      },
+      "group_unsexed": {
+        "H_0.0": 20,
+        "H_1.5": 19,
+        "F_0.0": 10,
+        "F_1.5": 13
+      },
+      "H_center_minus_far_Y_drop_worstcase": [
+        0.1619770818617063,
+        0.28508358841535203
+      ],
+      "F_center_minus_far_Y_drop_worstcase": [
+        -0.04866059099696218,
+        0.030488815244407663
+      ],
+      "H_drop_minus_F_drop_worstcase": [
+        0.13148826661729865,
+        0.3337441794123142
+      ],
+      "sexed_only_difference_in_drops": 0.24974252816469744,
+      "strict_worstcase_positive": true
+    }
+  },
+  "one_mother_influence": {
+    "n_removed_one_by_one": 48,
+    "lowest_lowerbound": 0.09729010600199672,
+    "highest_lowerbound": 0.1630428811123142,
+    "all_positive": true,
+    "least_favorable_deleted_mother": {
+      "removed_id": "559",
+      "sex": "H",
+      "dist": 0,
+      "lowerbound": 0.09729010600199672,
+      "upperbound": 0.2812677496408091
+    },
+    "source": "exact all-mother delete-one influence; not an uncertainty interval"
+  },
+  "mother_bootstrap": {
+    "successful_samples": 3000,
+    "worstcase_lowerbound_bootstrap_95pct": [
+      0.005091528346258423,
+      0.2390453712129685
+    ],
+    "worstcase_upperbound_bootstrap_95pct": [
+      0.21551646504164507,
+      0.39539445658540273
+    ],
+    "sexed_only_DID_bootstrap_95pct": [
+      0.13550140616017264,
+      0.3313849955741721
+    ],
+    "fraction_of_bootstraps_whose_worstcase_lowerbound_positive": 0.98,
+    "scope": "mother resampling within fixed source block x sexual morph x 0/1.5m cell, conditional on just 3 blocks",
+    "not_a_confidence_interval_on_genetic_siring": true
+  },
+  "source_crop_vs_assay_inconsistencies": [
+    {
+      "mother_id": "546",
+      "reported_crop": 54,
+      "assayed_sown": 55,
+      "sex": "H",
+      "dist": 1.5
+    },
+    {
+      "mother_id": "557",
+      "reported_crop": 70,
+      "assayed_sown": 71,
+      "sex": "H",
+      "dist": 0
+    },
+    {
+      "mother_id": "559",
+      "reported_crop": 68,
+      "assayed_sown": 70,
+      "sex": "H",
+      "dist": 0
+    }
+  ],
+  "exclude_crop_assay_mismatch": {
+    "n_mothers": {
+      "H_0.0": 10,
+      "H_1.5": 8,
+      "F_0.0": 12,
+      "F_1.5": 15
+    },
+    "group_germinated": {
+      "H_0.0": 416,
+      "H_1.5": 298,
+      "F_0.0": 543,
+      "F_1.5": 470
+    },
+    "group_unsexed": {
+      "H_0.0": 22,
+      "H_1.5": 22,
+      "F_0.0": 13,
+      "F_1.5": 19
+    },
+    "H_center_minus_far_Y_drop_worstcase": [
+      0.1563790655653072,
+      0.28308918430562724
+    ],
+    "F_center_minus_far_Y_drop_worstcase": [
+      -0.0011010540339328467,
+      0.06326554602092394
+    ],
+    "H_drop_minus_F_drop_worstcase": [
+      0.09311351954438327,
+      0.2841902383395601
+    ],
+    "sexed_only_difference_in_drops": 0.20615075390578053,
+    "strict_worstcase_positive": true
+  },
+  "falsification_firewall": [
+    "Missingness bounds are worst-case allocations of known early-unsexed germinants, NOT confidence intervals.",
+    "Bootstrap considers mother-to-mother variability conditional on 3 blocks, NOT genetic parentage or independent sites.",
+    "Offspring maleness M+Mst is used as a Y-carrier proxy based on separate controlled crosses; no Y genotyping done for this field cohort.",
+    "Conditional paternal share two times phenotype fraction needs 1:1 sex segregation and no sex-specific survival; neither is verified in field ring experiment.",
+    "No direct self-pollen transmission, H-to-H outcrossing, realized DNA paternal contributions or genotype-specific invasion rate.",
+    "Spatial position influences pollen access, density/spacing and maternal environment; same genetic background not guaranteed.",
+    "The 2017 Labouche et al. study demonstrated distance, pollen and offspring-quality relationships in different dioecious populations. Novelty is this public-data phenotype-by-morph contrast only."
+  ],
+  "provenance": {
+    "github_actions_run_id": 43903984098,
+    "source_checked_job_id": 133427763126,
+    "analysis_commit": "fb3eab5f2209793b7ec09a3c143c4139d2f96cb8",
+    "script": "analysis/audit_mercurialis_2024_morph_difference_in_differences_v13.py",
+    "authentic_archive_md5": "365ab41f1d6192344a3b3fec87654e49",
+    "raw_archive_not_committed": true,
+    "run_conclusion": "success"
+  }
+}
