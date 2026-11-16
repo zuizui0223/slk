@@ -1,0 +1,489 @@
+{
+  "source": "10.6084/m9.figshare.26521189.v1",
+  "zip_md5": "365ab41f1d6192344a3b3fec87654e49",
+  "source_n_mothers": 72,
+  "sample_exclusions": [
+    {
+      "id": "546",
+      "sex": "H",
+      "distance": 1.5,
+      "crop_seeds": 54,
+      "sown": 55,
+      "reason": "sown_seed_count_exceeds_reported_total_crop"
+    },
+    {
+      "id": "557",
+      "sex": "H",
+      "distance": 0,
+      "crop_seeds": 70,
+      "sown": 71,
+      "reason": "sown_seed_count_exceeds_reported_total_crop"
+    },
+    {
+      "id": "559",
+      "sex": "H",
+      "distance": 0,
+      "crop_seeds": 68,
+      "sown": 70,
+      "reason": "sown_seed_count_exceeds_reported_total_crop"
+    }
+  ],
+  "n_mothers_with_phenotyped_progeny": 71,
+  "source_categories": "F, M, H, Mst, NA (died before sex could be assigned)",
+  "cell_summary": {
+    "F_0.0": {
+      "n_mothers": 12,
+      "means": {
+        "per_flower_female": 0.2876889010383192,
+        "per_flower_hermaphrodite": 0.22157653723423396,
+        "per_flower_male": 0.38037001245950225,
+        "per_flower_male_sterile": 0.002690315926032262,
+        "per_flower_unsexed_died_early": 0.023716641393036846,
+        "per_flower_total": 0.9160424080511245,
+        "mother_seed_per_flower": 1.4972901002426136
+      },
+      "n_assay_crop_consistent": 12,
+      "sum_expected_morph_offspring": 10.992508896613494
+    },
+    "F_0.5": {
+      "n_mothers": 11,
+      "means": {
+        "per_flower_female": 0.3278881677357546,
+        "per_flower_hermaphrodite": 0.19940836075355825,
+        "per_flower_male": 0.3594935587643406,
+        "per_flower_male_sterile": 0.02541918049684243,
+        "per_flower_unsexed_died_early": 0.03715303947725016,
+        "per_flower_total": 0.9493623072277461,
+        "mother_seed_per_flower": 1.3907638510539686
+      },
+      "n_assay_crop_consistent": 11,
+      "sum_expected_morph_offspring": 10.442985379505206
+    },
+    "F_1.5": {
+      "n_mothers": 15,
+      "means": {
+        "per_flower_female": 0.16379608355316627,
+        "per_flower_hermaphrodite": 0.202338740693025,
+        "per_flower_male": 0.22748861342233057,
+        "per_flower_male_sterile": 0.005806895953646477,
+        "per_flower_unsexed_died_early": 0.02631449195800191,
+        "per_flower_total": 0.6257448255801702,
+        "mother_seed_per_flower": 1.2229427502113264
+      },
+      "n_assay_crop_consistent": 15,
+      "sum_expected_morph_offspring": 9.386172383702553
+    },
+    "H_0.0": {
+      "n_mothers": 12,
+      "means": {
+        "per_flower_female": 0.17134848217458448,
+        "per_flower_hermaphrodite": 0.36581226977197495,
+        "per_flower_male": 0.33240566504486024,
+        "per_flower_male_sterile": 0.0019244734931009439,
+        "per_flower_unsexed_died_early": 0.04403172467060649,
+        "per_flower_total": 0.915522615155127,
+        "mother_seed_per_flower": 1.554213722520452
+      },
+      "n_assay_crop_consistent": 10,
+      "sum_expected_morph_offspring": 9.15522615155127
+    },
+    "H_0.5": {
+      "n_mothers": 13,
+      "means": {
+        "per_flower_female": 0.15482363009353725,
+        "per_flower_hermaphrodite": 0.333705513100613,
+        "per_flower_male": 0.2961254468886554,
+        "per_flower_male_sterile": 0.004414769447449186,
+        "per_flower_unsexed_died_early": 0.014175597698687379,
+        "per_flower_total": 0.8032449572289422,
+        "mother_seed_per_flower": 1.3868066475511596
+      },
+      "n_assay_crop_consistent": 13,
+      "sum_expected_morph_offspring": 10.442184443976249
+    },
+    "H_1.5": {
+      "n_mothers": 9,
+      "means": {
+        "per_flower_female": 0.13072606903132922,
+        "per_flower_hermaphrodite": 0.48913484544457436,
+        "per_flower_male": 0.10684361250887416,
+        "per_flower_male_sterile": 0.0065832784726793945,
+        "per_flower_unsexed_died_early": 0.051892545476036986,
+        "per_flower_total": 0.7851803509334941,
+        "mother_seed_per_flower": 1.386585802813546
+      },
+      "n_assay_crop_consistent": 8,
+      "sum_expected_morph_offspring": 6.281442807467953
+    }
+  },
+  "analyses": {
+    "per_flower_female": {
+      "main": {
+        "n_mothers": 69,
+        "distance_slope_H": -0.0697382230644655,
+        "distance_slope_F": -0.0697382230644655,
+        "F_minus_H": 0.10411594398833646,
+        "sex_by_distance": null
+      },
+      "main_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.09607821750329415,
+          -0.04461748283943689
+        ],
+        "F_slope_CI": [
+          -0.09607821750329415,
+          -0.04461748283943689
+        ],
+        "sex_by_distance_CI": null,
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "interaction": {
+        "n_mothers": 69,
+        "distance_slope_H": -0.0340725379757468,
+        "distance_slope_F": -0.09255369064823368,
+        "F_minus_H": 0.1419288376575739,
+        "sex_by_distance": -0.05848115267248689
+      },
+      "interaction_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.07905038926865,
+          0.00614046199587312
+        ],
+        "F_slope_CI": [
+          -0.12377501045949724,
+          -0.06322901857746584
+        ],
+        "sex_by_distance_CI": [
+          -0.11310999106720754,
+          -0.0024082288457295755
+        ],
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "leave_one_block_out": {
+        "1": null,
+        "2": null,
+        "3": null
+      }
+    },
+    "per_flower_hermaphrodite": {
+      "main": {
+        "n_mothers": 69,
+        "distance_slope_H": 0.028455542344448564,
+        "distance_slope_F": 0.028455542344448564,
+        "F_minus_H": -0.18314452061124445,
+        "sex_by_distance": null
+      },
+      "main_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.00705534248065361,
+          0.06113884891802981
+        ],
+        "F_slope_CI": [
+          -0.00705534248065361,
+          0.06113884891802981
+        ],
+        "sex_by_distance_CI": null,
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "interaction": {
+        "n_mothers": 69,
+        "distance_slope_H": 0.08310824148575811,
+        "distance_slope_F": -0.006505986714147732,
+        "F_minus_H": -0.12520152312706506,
+        "sex_by_distance": -0.08961422819990585
+      },
+      "interaction_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.0021859680287603473,
+          0.1641024902999243
+        ],
+        "F_slope_CI": [
+          -0.02715970882294396,
+          0.011458771317003319
+        ],
+        "sex_by_distance_CI": [
+          -0.1761176218865078,
+          -0.004496274302027041
+        ],
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "leave_one_block_out": {
+        "1": null,
+        "2": null,
+        "3": null
+      }
+    },
+    "per_flower_male": {
+      "main": {
+        "n_mothers": 69,
+        "distance_slope_H": -0.12629741354713744,
+        "distance_slope_F": -0.12629741354713744,
+        "F_minus_H": 0.07460166006307481,
+        "sex_by_distance": null
+      },
+      "main_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.15914004631679182,
+          -0.0969177443693421
+        ],
+        "F_slope_CI": [
+          -0.15914004631679182,
+          -0.0969177443693421
+        ],
+        "sex_by_distance_CI": null,
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "interaction": {
+        "n_mothers": 69,
+        "distance_slope_H": -0.16560827771273265,
+        "distance_slope_F": -0.10115011174068075,
+        "F_minus_H": 0.032924133806621,
+        "sex_by_distance": 0.0644581659720519
+      },
+      "interaction_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.21089502710451064,
+          -0.12595366124588
+        ],
+        "F_slope_CI": [
+          -0.14145491712612365,
+          -0.05682192216438606
+        ],
+        "sex_by_distance_CI": [
+          0.007656899086592738,
+          0.13201567145112678
+        ],
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "leave_one_block_out": {
+        "1": null,
+        "2": null,
+        "3": null
+      }
+    },
+    "per_flower_male_sterile": {
+      "main": {
+        "n_mothers": 69,
+        "distance_slope_H": 0.0002626489610170158,
+        "distance_slope_F": 0.0002626489610170158,
+        "F_minus_H": 0.006724606761293817,
+        "sex_by_distance": null
+      },
+      "main_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.004521864444882717,
+          0.004541259775025377
+        ],
+        "F_slope_CI": [
+          -0.004521864444882717,
+          0.004541259775025377
+        ],
+        "sex_by_distance_CI": null,
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "interaction": {
+        "n_mothers": 69,
+        "distance_slope_H": 0.0024967957986008478,
+        "distance_slope_F": -0.0011665428412286462,
+        "F_minus_H": 0.009093257653625671,
+        "sex_by_distance": -0.003663338639829494
+      },
+      "interaction_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.0031823712510732115,
+          0.008938946849396395
+        ],
+        "F_slope_CI": [
+          -0.007144004237880645,
+          0.0054678456961388365
+        ],
+        "sex_by_distance_CI": [
+          -0.011727255293368365,
+          0.004661075912942533
+        ],
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "leave_one_block_out": {
+        "1": null,
+        "2": null,
+        "3": null
+      }
+    },
+    "per_flower_unsexed_died_early": {
+      "main": {
+        "n_mothers": 69,
+        "distance_slope_H": 0.003093863081365718,
+        "distance_slope_F": 0.003093863081365718,
+        "F_minus_H": -0.0050018514792494785,
+        "sex_by_distance": null
+      },
+      "main_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.0093423461903128,
+          0.016076179618564175
+        ],
+        "F_slope_CI": [
+          -0.0093423461903128,
+          0.016076179618564175
+        ],
+        "sex_by_distance_CI": null,
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "interaction": {
+        "n_mothers": 69,
+        "distance_slope_H": 0.0047871947604112685,
+        "distance_slope_F": 0.0020106326895835695,
+        "F_minus_H": -0.0032065748550313806,
+        "sex_by_distance": -0.002776562070827699
+      },
+      "interaction_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.02130762792832096,
+          0.030775573758538434
+        ],
+        "F_slope_CI": [
+          -0.01060420558998201,
+          0.014007806117713495
+        ],
+        "sex_by_distance_CI": [
+          -0.031941951817951994,
+          0.025004479901788987
+        ],
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "leave_one_block_out": {
+        "1": null,
+        "2": null,
+        "3": null
+      }
+    },
+    "per_flower_total": {
+      "main": {
+        "n_mothers": 69,
+        "distance_slope_H": -0.16422358222477149,
+        "distance_slope_F": -0.16422358222477149,
+        "F_minus_H": -0.002704161277789062,
+        "sex_by_distance": null
+      },
+      "main_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.23015674535449082,
+          -0.1054880372933308
+        ],
+        "F_slope_CI": [
+          -0.23015674535449082,
+          -0.1054880372933308
+        ],
+        "sex_by_distance_CI": null,
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "interaction": {
+        "n_mothers": 69,
+        "distance_slope_H": -0.10928858364370889,
+        "distance_slope_F": -0.1993656992547072,
+        "F_minus_H": 0.05553813113572406,
+        "sex_by_distance": -0.0900771156109983
+      },
+      "interaction_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.21385742137201413,
+          -0.0052020719581493124
+        ],
+        "F_slope_CI": [
+          -0.2759913793100161,
+          -0.12627343846571792
+        ],
+        "sex_by_distance_CI": [
+          -0.22547482223002627,
+          0.049048830221072974
+        ],
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "leave_one_block_out": {
+        "1": null,
+        "2": null,
+        "3": null
+      }
+    },
+    "mother_seed_per_flower": {
+      "main": {
+        "n_mothers": 72,
+        "distance_slope_H": -0.1484789694484616,
+        "distance_slope_F": -0.1484789694484616,
+        "F_minus_H": -0.046096125786579,
+        "sex_by_distance": null
+      },
+      "main_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.23017709570934694,
+          -0.07440668911635132
+        ],
+        "F_slope_CI": [
+          -0.23017709570934694,
+          -0.07440668911635132
+        ],
+        "sex_by_distance_CI": null,
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "interaction": {
+        "n_mothers": 72,
+        "distance_slope_H": -0.1427954358574931,
+        "distance_slope_F": -0.15266821452938423,
+        "F_minus_H": -0.03974902112347608,
+        "sex_by_distance": -0.009872778671891132
+      },
+      "interaction_bootstrap": {
+        "successful_resamples": 1500,
+        "H_slope_CI": [
+          -0.23922757572059689,
+          -0.04266425710490872
+        ],
+        "F_slope_CI": [
+          -0.25925618189516897,
+          -0.04831260855963729
+        ],
+        "sex_by_distance_CI": [
+          -0.16409427579349417,
+          0.1367510112103516
+        ],
+        "limits": "mother resamples in fixed block x sex x distance; 3 blocks not general-population replication"
+      },
+      "leave_one_block_out": {
+        "1": null,
+        "2": null,
+        "3": null
+      }
+    }
+  },
+  "cautions": [
+    "This quantity is expected number of laboratory germinated morphs per source female flower, inferred from subsampled sown seeds.",
+    "It is not lifetime offspring, DNA sex-genotype transmission, selfing rate, paternity, or evolution of dioecy.",
+    "A female morph descendant and a male-sterile-male phenotype must not be equated with specific alleles or CMS cytotypes.",
+    "Sampling fraction of seeds differs by mother and distance; representative seed-assay subsampling is not established.",
+    "If sowing sample count exceeds reported crop count the mother is explicitly excluded from extrapolated morph-per-flower endpoints; parent count discrepancies are reported.",
+    "Sex expression is measured after germination; unsexed early deaths are kept as their own category.",
+    "Ring placement simultaneously changes distance to central males, plant spacing, resource gradient and potentially paternal pollen composition.",
+    "Sex by distance analyses are exploratory, only 3 blocks and 9 distant hermaphrodite mothers.",
+    "1997 Pannell and 2007 Eppley-Pannell previously established male availability/density as mating-system controls in nonidentical systems."
+  ],
+  "run_provenance": {
+    "github_actions_run": 43900776802,
+    "source_code_sha": "ba3c3cee9a9493863ea58212d51312d38bbb8fd4",
+    "archived_original_zip_md5_verified": true,
+    "source_original_zip_redistributed": false,
+    "scientific_status": "exploratory secondary analysis"
+  }
+}
