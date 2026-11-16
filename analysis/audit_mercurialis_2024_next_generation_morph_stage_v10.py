@@ -94,9 +94,18 @@ def prepared(rs,numer,denom):
 
 def summarize(rs):
     target=overview(rs)
-    if target["n_with_mismatch"] or target["unresolved_ids"]:
-        # Never silently fit sex-morph transitions with invalid progeny count labels.
+    unassayed=[x for x in rs if x["gap"] is None]
+    # The only missing progeny phenotype record is the H mother with zero
+    # mature seeds. It cannot contribute to a conditional phenotype ratio.
+    allowed_structural_zero=all(x["mother_seed_total"]==0 and
+                               (x["sown"] in (None,0)) and
+                               x["germinated"] is None for x in unassayed)
+    if target["n_with_mismatch"] or not allowed_structural_zero:
+        # Never silently impute phenotype labels for an unknown seed family.
         return {"state":"INVALID_OR_INCOMPLETE_COUNTS","audit":target}
+    target["excluded_from_phenotype_models"]=[
+        {"id":x["id"],"sex":x["Sex"],"reason":"No mature seeds, no germination assay"}
+        for x in unassayed]
     typed=prepared(rs,lambda r:r["Prog_F"],lambda r:r["typed"])
     male=prepared(rs,lambda r:r["Prog_M"]+r["Prog_Mst"],lambda r:r["typed"])
     herm=prepared(rs,lambda r:r["Prog_H"],lambda r:r["typed"])
