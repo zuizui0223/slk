@@ -59,6 +59,7 @@ jobs:
                   if len(data)>35000000:raise ValueError("Exceeded maximum download size")
                   md5=hashlib.md5(data).hexdigest()
                   if md5!=expected:raise ValueError("Published MD5 mismatch; refusing to read archive")
+                  with open("/tmp/slk_"+key+".zip","wb") as outzip:outzip.write(data)
                   with zipfile.ZipFile(io.BytesIO(data)) as z:
                       items=z.infolist()
                       names=[{"name":i.filename,"bytes":i.file_size} for i in items if not i.is_dir()]
@@ -80,6 +81,44 @@ jobs:
           with open("mercurialis_public_zip_member_index_v1.json","w") as f:json.dump(summary,f,indent=2)
           if not any(x["ok"] for x in summary.values()):raise SystemExit("No archive passed published checksum verification.")
           PY
+      - name: Inspect individual-level column schemas and published model code
+        shell: bash
+        run: |
+          python - <<'PY'
+          import zipfile,csv,io,re,json
+          out={}
+          for key in ("2025_G8","2024_6x"):
+              with zipfile.ZipFile("/tmp/slk_"+key+".zip") as z:
+                  cases={}
+                  for info in z.infolist():
+                      if info.is_dir() or info.filename.startswith("__MACOSX/") or "/._" in info.filename:continue
+                      name=info.filename
+                      if not name.lower().endswith(".csv") or info.file_size>300000:continue
+                      if key=="2024_6x" and not any(s in name for s in ("Pollination and distance/","Relative fitness FHM/")):continue
+                      raw=z.read(name)
+                      try:txt=raw.decode("utf-8-sig")
+                      except UnicodeError:txt=raw.decode("latin-1")
+                      dialect=csv.Sniffer().sniff(txt[:3000],delimiters=",;\t")
+                      rr=list(csv.DictReader(io.StringIO(txt),dialect=dialect))
+                      if len(rr)==0:continue
+                      field=list(rr[0])
+                      cases[name]={"nrows":len(rr),"fields":field,"preview":[{k:v for k,v in rr[i].items() if k in field[:18]} for i in range(min(3,len(rr)))]}
+                  out[key]=cases
+                  if key=="2025_G8":
+                      fitness=z.read("Geito_NewPhyto_v2/Fitness.R").decode("utf-8-sig")
+                      lines=fitness.splitlines()
+                      chosen=[]
+                      for i,line in enumerate(lines):
+                          if any(x in line.lower() for x in ("inbreeding", "total_fitness", "glm(", "lmer(", "scale(", "fitness_re", "sample(", "delta", "replicate", "summary(", "gender")):
+                              for j in range(max(0,i-1),min(len(lines),i+2)):
+                                  if j not in chosen:chosen.append(j)
+                      out["2025_code_selected_lines"]=[f"{i+1}: {lines[i]}" for i in sorted(chosen)[:120]]
+                      out["2025_readme"]=z.read("Geito_NewPhyto_v2/README.md.txt").decode("utf-8-sig")[:3300]
+          print("SLK_TABLES_SURVEY_START")
+          print(json.dumps(out,indent=2,ensure_ascii=False)[:38000])
+          print("SLK_TABLES_SURVEY_END")
+          with open("mercurialis_table_schema_survey_v1.json","w") as f:json.dump(out,f,indent=2)
+          PY
       - name: Publish metadata receipt
         if: always()
         uses: actions/upload-artifact@v4
@@ -88,4 +127,5 @@ jobs:
           path: |
             mercurialis_public_rawdata_index_v1.json
             mercurialis_public_zip_member_index_v1.json
+            mercurialis_table_schema_survey_v1.json
           if-no-files-found: warn
