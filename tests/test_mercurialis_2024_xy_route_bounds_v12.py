@@ -45,7 +45,7 @@ class XYMorphBoundsV12(unittest.TestCase):
         cells=self.d["cell_counts_and_worst_case_early_death_bounds"]
         for sex in ("H","F"):
             for dist in ("0","0.5","1.5"):
-                a=cells[sex+"_"+dist]
+                a=cells[sex+"_"+("0.0" if dist=="0" else dist)]
                 b=self.v10["by_cell"][sex+"_"+dist]
                 self.assertEqual(a["germinated"],b["germinated"])
                 self.assertEqual(a["known_Y_morph"],b["category_total"]["Prog_M"]+b["category_total"]["Prog_Mst"])
