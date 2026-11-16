@@ -8,6 +8,7 @@ on:
       - 'analysis/audit_mercurialis_2024_next_generation_morph_stage_v10.py'
       - 'analysis/analyze_mercurialis_2024_morph_specific_recruitment_v11.py'
       - 'analysis/audit_mercurialis_2024_xy_pollen_route_bounds_v12.py'
+      - 'analysis/audit_mercurialis_2024_morph_difference_in_differences_v13.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -180,6 +181,10 @@ jobs:
         shell: bash
         run: |
           python analysis/audit_mercurialis_2024_xy_pollen_route_bounds_v12.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_xy_pollen_route_bounds_v12.json
+      - name: Check female-versus-hermaphrodite distance interaction under adversarial unsexed child assignments
+        shell: bash
+        run: |
+          python analysis/audit_mercurialis_2024_morph_difference_in_differences_v13.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_morph_DID_bounds_v13.json
       - name: Publish metadata receipt
         if: always()
         uses: actions/upload-artifact@v4
@@ -195,4 +200,5 @@ jobs:
             mercurialis_2024_offspring_morph_audit_v10.json
             mercurialis_2024_morph_per_flower_v11.json
             mercurialis_2024_xy_pollen_route_bounds_v12.json
+            mercurialis_2024_morph_DID_bounds_v13.json
           if-no-files-found: warn
