@@ -120,7 +120,7 @@ def bootstrap_controls(rows,metric,controls,n_reps=1200,seed=20261116):
     if len(out)<.95*n_reps:return {"successful_bootstraps":len(out),"status":"insufficient"}
     def ci(k):
         vs=sorted(z[k] for z in out)
-        return [vs[int(.025*(len(vs)-1))],vs[int(.975*(len(vs)-1))]
+        return [vs[int(.025*(len(vs)-1))],vs[int(.975*(len(vs)-1))]]
     return {"successful_bootstraps":len(out),"F_minus_H_95pct":ci(0),"distance_per_m_95pct":ci(1),
             "method":"conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"}
 
