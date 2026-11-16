@@ -31,16 +31,25 @@ def enrich(rs):
         if flowers is None or flowers<=0 or seeds is None or seeds<0:
             raise ValueError("Missing or invalid flower/seed total")
         if r["gap"]==0:
-            if not r["sown"] or r["sown"]>seeds or r["germinated"]>r["sown"]:
-                raise ValueError("Invalid maternal seed sample denominator")
-            for label,col in OUTCOMES.items():
-                r["per_flower_"+label]=(seeds/flowers)*(r[col]/r["sown"])
+            if not r["sown"] or r["germinated"]>r["sown"]:
+                raise ValueError("Invalid maternal seed sample denominator: "+r["id"])
+            if r["sown"]>seeds:
+                # A published data-quality mismatch. Never extrapolate an assay
+                # with more sampled seeds than the recorded total crop.
+                r["sample_exclusion"]="sown_seed_count_exceeds_reported_total_crop"
+                for label in OUTCOMES:r["per_flower_"+label]=None
+            else:
+                r["sample_exclusion"]=None
+                for label,col in OUTCOMES.items():
+                    r["per_flower_"+label]=(seeds/flowers)*(r[col]/r["sown"])
         elif seeds==0 and r["sown"] in (None,0) and r["germinated"] is None:
             for label in OUTCOMES:r["per_flower_"+label]=0.0
+            r["sample_exclusion"]=None
         else:raise ValueError("Not a source-verified zero-seed row")
-        r["per_flower_total"]=sum(r["per_flower_"+c] for c in OUTCOMES)
+        r["per_flower_total"]=(sum(r["per_flower_"+c] for c in OUTCOMES)
+                              if r["sample_exclusion"] is None else None)
         r["mother_seed_per_flower"]=seeds/flowers
-        if r["gap"]==0:
+        if r["gap"]==0 and r["sample_exclusion"] is None:
             expected=(seeds/flowers)*(r["germinated"]/r["sown"])
             if abs(expected-r["per_flower_total"])>1e-12:
                 raise ValueError("Phenotype contributions do not sum to germinants per flower")
@@ -98,7 +107,8 @@ def run(zip_path):
             grp=[r for r in rs if r["Sex"]==sex and r["dist"]==distance]
             cells[f"{sex}_{distance}"]={"n_mothers":len(grp),
                    "means":{k:mean([r[k] for r in grp]) for k in keys},
-                   "sum_expected_morph_offspring":sum(r["per_flower_total"] for r in grp)}
+                   "n_assay_crop_consistent":sum(r["sample_exclusion"] is None for r in grp),
+                   "sum_expected_morph_offspring":sum(r["per_flower_total"] for r in grp if r["per_flower_total"] is not None)}
     analyses={}
     for metric in keys:
         analyses[metric]={"main":fit(rs,metric),"main_bootstrap":boot(rs,metric),
@@ -111,6 +121,10 @@ def run(zip_path):
         "source":"10.6084/m9.figshare.26521189.v1",
         "zip_md5":"365ab41f1d6192344a3b3fec87654e49",
         "source_n_mothers":72,
+        "sample_exclusions":[{"id":r["id"],"sex":r["Sex"],"distance":r["dist"],
+                              "crop_seeds":r["mother_seed_total"],"sown":r["sown"],
+                              "reason":r["sample_exclusion"]}
+                             for r in rs if r["sample_exclusion"]],
         "n_mothers_with_phenotyped_progeny":71,
         "source_categories":"F, M, H, Mst, NA (died before sex could be assigned)",
         "cell_summary":cells,
@@ -120,6 +134,7 @@ def run(zip_path):
             "It is not lifetime offspring, DNA sex-genotype transmission, selfing rate, paternity, or evolution of dioecy.",
             "A female morph descendant and a male-sterile-male phenotype must not be equated with specific alleles or CMS cytotypes.",
             "Sampling fraction of seeds differs by mother and distance; representative seed-assay subsampling is not established.",
+            "If sowing sample count exceeds reported crop count the mother is explicitly excluded from extrapolated morph-per-flower endpoints; parent count discrepancies are reported.",
             "Sex expression is measured after germination; unsexed early deaths are kept as their own category.",
             "Ring placement simultaneously changes distance to central males, plant spacing, resource gradient and potentially paternal pollen composition.",
             "Sex by distance analyses are exploratory, only 3 blocks and 9 distant hermaphrodite mothers.",
