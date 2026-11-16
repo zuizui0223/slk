@@ -119,6 +119,41 @@ jobs:
           print("SLK_TABLES_SURVEY_END")
           with open("mercurialis_table_schema_survey_v1.json","w") as f:json.dump(out,f,indent=2)
           PY
+      - name: Inspect original experiment README and stage-denominator definitions
+        shell: bash
+        run: |
+          python - <<'PY'
+          import zipfile,xml.etree.ElementTree as E,io,csv,collections,math,json
+          result={}
+          with zipfile.ZipFile("/tmp/slk_2024_6x.zip") as z:
+              fn="Data_field_experiment/Pollination and distance/Read_me_pollen_distance.odt"
+              with zipfile.ZipFile(io.BytesIO(z.read(fn))) as o:
+                  root=E.fromstring(o.read("content.xml"))
+                  chunks=["".join(el.itertext()).strip() for el in root.iter() if el.tag.endswith("}p") or el.tag.endswith("}h")]
+                  result["distance_readme"]=[s for s in chunks if s][:160]
+              fn="Data_field_experiment/Pollination and distance/Data_pollen_limitation_and_distance.csv"
+              rows=list(csv.DictReader(io.StringIO(z.read(fn).decode("utf-8-sig"))))
+              def val(x):
+                  try:return float(x)
+                  except:return None
+              for k in ("F","H","M"):
+                  rr=[a for a in rows if a["Sex"]==k]
+                  counts=collections.Counter(a["Dist"] for a in rr)
+                  cols=["Female_flowers_unfert","Female_flowers_tot","Seed_masse","nombre graines","Veg_mass","Seed_sown","Prog_tot","Germ_rate"]
+                  result[k]={"n":len(rr),"dist":dict(counts),"data":{c:{"nonmissing":sum(val(a[c]) is not None for a in rr),"min":min([val(a[c]) for a in rr if val(a[c]) is not None],default=None),"max":max([val(a[c]) for a in rr if val(a[c]) is not None],default=None)} for c in cols}}
+              valid=[a for a in rows if val(a["Seed_sown"]) and val(a["Prog_tot"]) is not None and val(a["Germ_rate"]) is not None]
+              result["germ_definition_check"]={"n":len(valid),"max_abs_delta":max((abs(val(a["Germ_rate"])-val(a["Prog_tot"])/val(a["Seed_sown"])) for a in valid),default=None)}
+              result["observations"]=dict(collections.Counter(a["Observation"] for a in rows))
+          with zipfile.ZipFile("/tmp/slk_2025_G8.zip") as z:
+              c=z.read("Geito_NewPhyto_v2/Fitness.R").decode("utf-8-sig").splitlines()
+              result["G8_fitness_preamble"]=[f"{i+1}: {x}" for i,x in enumerate(c[:30])]
+              rr=list(csv.DictReader(io.StringIO(z.read("Geito_NewPhyto_v2/3G_ID01.csv").decode("utf-8-sig"))))
+              result["G8_scenarios"]={i:len([x for x in rr if x["Inbreeding"]==i]) for i in ["ID=0","ID=1"]}
+          print("SLK_STAGE_DEFINITION_AUDIT_START")
+          print(json.dumps(result,indent=2,ensure_ascii=False)[:26000])
+          print("SLK_STAGE_DEFINITION_AUDIT_END")
+          with open("mercurialis_stage_definition_audit_v1.json","w") as f:json.dump(result,f,indent=2)
+          PY
       - name: Publish metadata receipt
         if: always()
         uses: actions/upload-artifact@v4
@@ -128,4 +163,5 @@ jobs:
             mercurialis_public_rawdata_index_v1.json
             mercurialis_public_zip_member_index_v1.json
             mercurialis_table_schema_survey_v1.json
+            mercurialis_stage_definition_audit_v1.json
           if-no-files-found: warn
