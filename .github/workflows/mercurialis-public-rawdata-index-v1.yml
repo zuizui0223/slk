@@ -7,6 +7,7 @@ on:
       - 'analysis/analyze_mercurialis_2024_germination_binomial_v9.py'
       - 'analysis/audit_mercurialis_2024_next_generation_morph_stage_v10.py'
       - 'analysis/analyze_mercurialis_2024_morph_specific_recruitment_v11.py'
+      - 'analysis/audit_mercurialis_2024_xy_pollen_route_bounds_v12.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -175,6 +176,10 @@ jobs:
         shell: bash
         run: |
           python analysis/analyze_mercurialis_2024_morph_specific_recruitment_v11.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_morph_per_flower_v11.json
+      - name: Quantify worst-case missing-sex bounds and within-block single-mother influence
+        shell: bash
+        run: |
+          python analysis/audit_mercurialis_2024_xy_pollen_route_bounds_v12.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_xy_pollen_route_bounds_v12.json
       - name: Publish metadata receipt
         if: always()
         uses: actions/upload-artifact@v4
@@ -189,4 +194,5 @@ jobs:
             mercurialis_2024_germination_binomial_v9.json
             mercurialis_2024_offspring_morph_audit_v10.json
             mercurialis_2024_morph_per_flower_v11.json
+            mercurialis_2024_xy_pollen_route_bounds_v12.json
           if-no-files-found: warn
