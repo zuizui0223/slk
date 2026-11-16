@@ -170,7 +170,7 @@ def run(zip_path):
             "Bootstrap conditions on only 3 fixed experimental blocks and small cells; exploratory confidence intervals are not population-wide block inference.",
             "F/H hexaploid 2024 raw data and diploid 2025 G8 are independent genetic systems, not longitudinal evolution.",
             "The original Table 2 sex/distance mixed model used N=71; our unweighted fixed-block exploratory models use N=72 for reproductive flower outcomes. Their p-values are not replicated.",
-            "Missing vegetative mass especially in F plants makes biomass-normalized outcomes a selected subset, not equivalent to original published mixed model."]]}
+            "Missing vegetative mass especially in F plants makes biomass-normalized outcomes a selected subset, not equivalent to original published mixed model."]}
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()
