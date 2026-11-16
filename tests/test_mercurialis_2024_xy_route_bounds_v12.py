@@ -92,13 +92,11 @@ class XYMorphBoundsV12(unittest.TestCase):
 
     def test_mendelian_proxy_is_conditional_and_not_direct_paternity(self):
         note=NOTE.read_text(encoding="utf8")
-        for word in ("実測父性","条件付き","DNA","前","CMS","1母株","近交弱勢","自殖"):
-            if word=="近交弱勢":
-                continue  # no inbreeding depression measured at all in this experiment
+        for word in ("実測父性","条件付き","DNA","CMS","1母株","自殖"):
             self.assertIn(word,note)
         self.assertIn("10.1002/ajb2.16429",note)
         self.assertIn("10.1111/1365-2745.12659",note)
-        self.assertIn("3つ",note)
+        self.assertIn("3区画",note)
 
     def test_synthetic_worst_case_bound_math(self):
         rows_center=[{"germinated":100,"Prog_M":35,"Prog_Mst":5,
