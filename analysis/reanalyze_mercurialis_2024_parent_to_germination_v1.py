@@ -230,7 +230,7 @@ def run(zip_path):
             "The original Table 2 sex/distance mixed model used N=71; our unweighted fixed-block exploratory models use N=72 for reproductive flower outcomes. Their p-values are not replicated.",
             "Missing vegetative mass especially in F plants makes biomass-normalized outcomes a selected subset, not equivalent to original published mixed model.",
             "Plant height and average seed mass were measured after placement; their statistical adjustment may block a true causal pathway or induce collider bias, not identify a direct pollen effect.",
-            "Distance is to the central male group, but hermaphrodite plants on rings are additional pollen sources; distance does not equal nearest available pollen donor."]]}
+            "Distance is to the central male group, but hermaphrodite plants on rings are additional pollen sources; distance does not equal nearest available pollen donor."]}
 
 if __name__=="__main__":
     p=argparse.ArgumentParser()
