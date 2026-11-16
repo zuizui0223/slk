@@ -42,10 +42,50 @@ jobs:
           with open("mercurialis_public_rawdata_index_v1.json","w") as f:json.dump(out,f,indent=2)
           if not any(y["ok"] for y in out.values()):raise SystemExit("No public source metadata could be reached; no empirical data fetched.")
           PY
+      - name: Verify checksums and index genuine ZIP members without executing publisher code
+        shell: bash
+        run: |
+          python - <<'PY'
+          import io,zipfile,hashlib,json,urllib.request
+          sources=[
+              ("2025_G8", "https://zenodo.org/api/records/15644955/files/Geito_NewPhyto_v2.zip/content", "ea198a76d60cdf412638c77e6e0e3d80", 5500000),
+              ("2024_6x", "https://ndownloader.figshare.com/files/48285769", "365ab41f1d6192344a3b3fec87654e49", 26100000),
+          ]
+          summary={}
+          for key,url,expected,expect_bytes in sources:
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent":"SLK-source-verification/1.0"}),timeout=65) as res:
+                      data=res.read(35000001)
+                  if len(data)>35000000:raise ValueError("Exceeded maximum download size")
+                  md5=hashlib.md5(data).hexdigest()
+                  if md5!=expected:raise ValueError("Published MD5 mismatch; refusing to read archive")
+                  with zipfile.ZipFile(io.BytesIO(data)) as z:
+                      items=z.infolist()
+                      names=[{"name":i.filename,"bytes":i.file_size} for i in items if not i.is_dir()]
+                      candidates=[i for i in items if not i.is_dir() and i.filename.lower().endswith((".csv",".tsv",".txt",".r",".xlsx",".json",".rds",".rdata",".rda",".dat"))]
+                      previews={}
+                      for i in candidates[:60]:
+                          ext=i.filename.lower().split(".")[-1]
+                          if ext not in ("csv","tsv","txt","r","dat","json") or i.file_size>9000000:continue
+                          raw=z.read(i.filename)[:2800]
+                          try:line=raw.decode("utf-8-sig")
+                          except UnicodeError:line=raw.decode("latin-1",errors="replace")
+                          previews[i.filename]=line[:450].splitlines()[:4]
+                      summary[key]={"ok":True,"archive_bytes":len(data),"md5":md5,"member_count":len(names),"members":names[:200],"previews":previews}
+              except Exception as e:
+                  summary[key]={"ok":False,"error":type(e).__name__+": "+str(e)[:200]}
+          print("SLK_VERIFIED_ARCHIVE_INDEX_START")
+          print(json.dumps(summary,indent=2,ensure_ascii=False))
+          print("SLK_VERIFIED_ARCHIVE_INDEX_END")
+          with open("mercurialis_public_zip_member_index_v1.json","w") as f:json.dump(summary,f,indent=2)
+          if not any(x["ok"] for x in summary.values()):raise SystemExit("No archive passed published checksum verification.")
+          PY
       - name: Publish metadata receipt
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mercurialis-published-rawdata-index-v1
-          path: mercurialis_public_rawdata_index_v1.json
+          path: |
+            mercurialis_public_rawdata_index_v1.json
+            mercurialis_public_zip_member_index_v1.json
           if-no-files-found: warn
