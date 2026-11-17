@@ -51,6 +51,6 @@ Nguyen, Martignier & Pannell (2024), *American Journal of Botany*, DOI [10.1002/
 
 公開元：[2024 Figshare data](https://doi.org/10.6084/m9.figshare.26521189.v1)、[2024 Figshare code](https://doi.org/10.6084/m9.figshare.26521294.v1)、[2025 CMS theoretical code](https://github.com/maithunguyen/Trioecy-model-single-population)。
 
-Appendix S1: AJB2-111-e16429-s001.docx / Appendix S2: AJB2-111-e16429-s002.docx。これらのファイルの存在は確認したが、**このセッションではバイト列を取得しておらず、109行を読み込んだとは言わない**。
+Appendix S1: AJB2-111-e16429-s001.docx / Appendix S2: AJB2-111-e16429-s002.docx。これらのファイルの存在は確認したが、**このセッションではバイト列を取得しておらず、109行を読み込んだとは言わない**。出版社のAppendix S1ダウンロードURLはHTTP 403、Figshare APIへの直接取得も失敗した。2024年の原著本文・添付説明・既存のMD5確認済み凍結結果に基づく監査であり、未取得の行データを再構築したものではない。
 
 V17はデータ連結の監査ノート。PR #121 Draftのみ。主稿・main・ANTO・aza3には変更を加えない。
