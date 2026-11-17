@@ -1,0 +1,48 @@
+name: Mercurialis 2024 XY-sire identifiability firewall
+on:
+  push:
+    paths:
+      - '.github/workflows/mercurialis-2024-sire-nonidentifiability-v14.yml'
+      - 'analysis/audit_mercurialis_2024_paternal_identification_frontier_v14.py'
+      - 'results/mercurialis_2024_xy_paternal_identification_frontier_v14.json'
+      - 'results/mercurialis_2024_xy_morph_route_bounds_v12.json'
+      - 'results/mercurialis_2024_maternal_sex_distance_DID_v13.json'
+      - 'tests/test_mercurialis_2024_paternal_frontier_v14.py'
+      - 'docs/SLK_MERCURIALIS_2024_PARENTAGE_PARTIAL_IDENTIFICATION_V14_20261117.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  conditional-parentage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Recompute source-frozen algebra without fetching biological genotypes
+        run: |
+          python analysis/audit_mercurialis_2024_paternal_identification_frontier_v14.py \
+            --v12 results/mercurialis_2024_xy_morph_route_bounds_v12.json \
+            --v13 results/mercurialis_2024_maternal_sex_distance_DID_v13.json \
+            --out /tmp/mercurialis_2024_identification_v14_recomputed.json
+      - name: Test provenance, counterexamples, novel source audit and negative inference
+        run: |
+          python -m unittest discover -s tests -p 'test_mercurialis_2024_paternal_frontier_v14.py' -v
+      - name: Match rerun against committed frozen receipt
+        run: |
+          python - <<'PY'
+          import json,math
+          with open("/tmp/mercurialis_2024_identification_v14_recomputed.json") as f:actual=json.load(f)
+          with open("results/mercurialis_2024_xy_paternal_identification_frontier_v14.json") as f:frozen=json.load(f)
+          def verify(a,b,path="root"):
+              if isinstance(a,dict):
+                  assert set(a)==set(b),path
+                  for k in a:verify(a[k],b[k],path+"."+k)
+              elif isinstance(a,list):
+                  assert len(a)==len(b),path
+                  for i,(x,y) in enumerate(zip(a,b)):verify(x,y,path+"["+str(i)+"]")
+              elif isinstance(a,float):
+                  assert math.isclose(a,b,abs_tol=1e-12,rel_tol=1e-12),path
+              else:assert a==b,path
+          verify(actual,frozen)
+          print("SLK_V14_SOURCE_FROZEN_ALGEBRA_MATCH_SUCCESS")
+          PY
