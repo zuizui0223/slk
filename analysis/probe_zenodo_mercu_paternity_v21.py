@@ -108,7 +108,10 @@ def probe(fetch=open_url):
     try:
         meta = json.loads(fetch(API).decode("utf8"))
         if str(meta.get("id")) != str(RECORD_ID):
-            raise ValueError("Unexpected record ID")
+            out["response_top_keys"] = sorted(str(k) for k in meta.keys())[:15]
+            out["response_id"] = str(meta.get("id"))[:80]
+            out["response_error"] = str({k: meta[k] for k in ("status", "message", "error") if k in meta})[:250]
+            raise ValueError("Unexpected record ID or Zenodo record error response")
         items = file_entries(meta)
         if not items:
             raise ValueError("No files in published source record")
