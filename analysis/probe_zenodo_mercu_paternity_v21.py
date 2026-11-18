@@ -32,7 +32,7 @@ def file_entries(metadata):
         "name": f.get("key", f.get("filename", "")),
         "size": f.get("size", 0),
         "checksum": f.get("checksum", f.get("md5", "")),
-        "url": f.get("links", {}).get("self", f.get("links", {}).get("content"))
+        "url": (f.get("links", {}).get("content") or f.get("links", {}).get("download") or f.get("links", {}).get("self"))
     } for f in files]
 
 def safe_source(url):
