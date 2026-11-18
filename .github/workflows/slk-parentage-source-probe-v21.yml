@@ -1,0 +1,45 @@
+name: SLK 2025 real parentage source access and schema V21
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/slk-parentage-source-probe-v21.yml'
+      - 'analysis/probe_zenodo_mercu_paternity_v21.py'
+      - 'tests/test_zenodo_mercu_paternity_probe_v21.py'
+  push:
+    paths:
+      - '.github/workflows/slk-parentage-source-probe-v21.yml'
+      - 'analysis/probe_zenodo_mercu_paternity_v21.py'
+      - 'tests/test_zenodo_mercu_paternity_probe_v21.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-receipt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate synthetic fixtures and source safety
+        run: python -m unittest discover -s tests -p 'test_zenodo_mercu_paternity_probe_v21.py' -v
+      - name: Query publisher-linked Zenodo 2025 raw genotype source (read only)
+        run: python analysis/probe_zenodo_mercu_paternity_v21.py --out /tmp/slk_v21_parentage_source_receipt.json
+      - name: Explicitly report live source access outcome
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("/tmp/slk_v21_parentage_source_receipt.json"))
+          assert r["new_fitness_estimates"] is False
+          print("SOURCE_ACCESS_STATUS:",r["state"])
+          print("VERIFIED_BYTES:",r["downloaded_verified_dataset"])
+          print("PUBLISHED_FILE_COUNT:",len(r["files"]))
+          if r["state"]=="unavailable":
+              print("NO_RAW_DATA: no parentage/fitness results can be claimed")
+          PY
+      - name: Preserve a manifest as Actions artifact (not original genotype rows)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: slk-v21-zenodo-2025-parentage-schema
+          path: /tmp/slk_v21_parentage_source_receipt.json
+          if-no-files-found: ignore
+          retention-days: 30
