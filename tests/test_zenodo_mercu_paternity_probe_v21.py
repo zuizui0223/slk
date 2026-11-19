@@ -62,6 +62,35 @@ class ZenodoOriginalParentageProbe(unittest.TestCase):
         self.assertTrue(result["downloaded_verified_dataset"])
         self.assertFalse(result["new_fitness_estimates"])
 
+    def test_concept_record_resolves_to_verified_version(self):
+        raw, url, meta = fixture()
+        meta["id"] = 15644955
+        meta["conceptrecid"] = "14542260"
+        meta["conceptdoi"] = "10.5281/zenodo.14542260"
+        meta["doi"] = "10.5281/zenodo.15644955"
+        def fetch(u):
+            if u == API:
+                return json.dumps(meta).encode("utf8")
+            if u == url:
+                return raw
+            raise AssertionError("unexpected URL: "+u)
+        result = probe(fetch=fetch)
+        self.assertEqual(result["state"], "verified_data_schema")
+        self.assertEqual(result["resolved_version_record_id"], "15644955")
+        self.assertEqual(result["resolved_concept_record_id"], "14542260")
+        self.assertTrue(result["downloaded_verified_dataset"])
+
+    def test_concept_redirect_requires_matching_concept_doi(self):
+        raw, url, meta = fixture()
+        meta["id"] = 15644955
+        meta["conceptrecid"] = "14542260"
+        meta["conceptdoi"] = "10.5281/zenodo.99999999"
+        def fetch(u):
+            return json.dumps(meta).encode("utf8") if u == API else raw
+        result = probe(fetch=fetch)
+        self.assertEqual(result["state"], "unavailable")
+        self.assertFalse(result["downloaded_verified_dataset"])
+
     def test_unavailable_is_visible_not_false_success(self):
         def no_source(_):
             raise TimeoutError("cannot reach data source")
