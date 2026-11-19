@@ -37,6 +37,8 @@ class RealFitnessSourceAudit(unittest.TestCase):
         self.assertEqual(result["fitness_source_key_examples"],[("P1","1"),("P1","2")])
         self.assertEqual(len(result["fitness_scenarios"]),2)
         self.assertEqual(result["fitness_scenarios"]["1"]["total_fitness"]["mean"],13.5)
+        self.assertEqual(result["paired_scenario_1_minus_0"]["Total_fitness"]["n_complete_mothers"],2)
+        self.assertEqual(result["paired_scenario_1_minus_0"]["Total_fitness"]["mean_scenario_1_minus_0"],-2.5)
     def test_no_p_values_or_natural_inbreeding_depression_claim(self):
         r=analyze_zip(archive())
         self.assertNotIn("p_value",r)
