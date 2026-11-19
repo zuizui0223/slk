@@ -54,7 +54,7 @@ def normalize_population(label):
     label=label.strip()
     if label in ("Population 1","Population 2","Population 3"):
         return "P"+label[-1]
-    if label in ("3G_P1","3G_P2","3G_P3"):
+    if label in ("3G_P1","3G_P2","3G_P3","P1","P2","P3"):
         return label[-2:]
     raise ValueError("Unrecognized original population label: "+label[:80])
 
