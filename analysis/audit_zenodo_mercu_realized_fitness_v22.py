@@ -80,6 +80,11 @@ def analyze_zip(raw):
         "raw_rows":{"sex_allocation":len(sex),"fitness_scenarios":len(fitness),"genotypes":len(geno)},
         "unique_population_mother_ids":{"sex_allocation":len(sex_unique),"fitness":len(fit_unique)},
         "sex_fitness_overlap_population_mother_ids":len(sex_unique & fit_unique),
+        "sex_source_key_examples":sorted(sex_unique)[:6],
+        "fitness_source_key_examples":sorted(fit_unique)[:6],
+        "fitness_population_labels":dict(sorted(Counter(x["Population"].strip() for x in fitness).items())),
+        "fitness_id_examples":sorted({x["ID"].strip() for x in fitness})[:8],
+        "sex_id_examples":sorted({x["ID"].strip() for x in sex})[:8],
         "duplicate_sex_population_mother_ids":len(sex_ids)-len(sex_unique),
         "genotype_parent_offspring_labels":dict(sorted(Counter(x["Parent_Offspring"].strip() for x in geno).items())),
         "sex_allocation":{
