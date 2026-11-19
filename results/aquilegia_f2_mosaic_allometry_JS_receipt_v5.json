@@ -1,0 +1,77 @@
+{
+  "schema": "slk_aquilegia_original_F2_mosaic_allometry_independent_JS_v5",
+  "source": {
+    "article_doi": "10.1186/s13227-024-00225-3",
+    "phenotype_source_blob": "9911d4a5e85fa8629ad9890f28992e0f07e5feca",
+    "author_original_F2_plants": 231,
+    "floral_grain_rows": 800,
+    "flowers": 400,
+    "scored_flower_stamen_counts": 367,
+    "one_per_plant_scored_stamen_counts": 211,
+    "upper_tertile_cutoff": 43,
+    "lower_tertile_cutoff": 37
+  },
+  "morphology": {
+    "mosaic_phenotype_definition": "one or both whorls show AN=1, LE>=2 and FU=1",
+    "total_first_per_plant_positive": 71,
+    "one_per_plant_groups": {
+      "low": {
+        "plants_or_flowers": 67,
+        "mosaic": 17,
+        "anther_reverse": 0,
+        "expansion_reverse": 1
+      },
+      "middle": {
+        "plants_or_flowers": 72,
+        "mosaic": 26,
+        "anther_reverse": 0,
+        "expansion_reverse": 0
+      },
+      "high": {
+        "plants_or_flowers": 72,
+        "mosaic": 28,
+        "anther_reverse": 0,
+        "expansion_reverse": 0
+      }
+    },
+    "all_scored_flower_groups": {
+      "low": {
+        "plants_or_flowers": 126,
+        "mosaic": 32,
+        "anther_reverse": 0,
+        "expansion_reverse": 1
+      },
+      "middle": {
+        "plants_or_flowers": 127,
+        "mosaic": 45,
+        "anther_reverse": 0,
+        "expansion_reverse": 0
+      },
+      "high": {
+        "plants_or_flowers": 114,
+        "mosaic": 42,
+        "anther_reverse": 0,
+        "expansion_reverse": 0
+      }
+    }
+  },
+  "unadjusted_plant_independent_descriptive_logit": {
+    "sample_n": 211,
+    "stamens_basis": "(stamen_count-40)/10",
+    "intercept": -0.695736889456913,
+    "slope": 0.18583020264715897,
+    "standard_error": 0.18630841585457283,
+    "odds_ratio": 1.204217770027566,
+    "wald_CI_95": [
+      0.8358264422388334,
+      1.7349779384411883
+    ],
+    "not_QTL_or_causal_fitness": true,
+    "flower_count_missingness_not_assumed_random": true
+  },
+  "claims": {
+    "no_source_processed_QTL_genotype_matrix_used": true,
+    "no_fertility_or_adaptive_function_assayed": true,
+    "not_independent_evolutionary_replicates": true
+  }
+}

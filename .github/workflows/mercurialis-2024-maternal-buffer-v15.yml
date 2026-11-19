@@ -1,0 +1,39 @@
+name: Mercurialis 2024 source-frozen maternal output V15
+on:
+  push:
+    paths:
+      - '.github/workflows/mercurialis-2024-maternal-buffer-v15.yml'
+      - 'analysis/audit_mercurialis_2024_maternal_buffer_v15.py'
+      - 'results/mercurialis_2024_maternal_buffer_v15.json'
+      - 'results/mercurialis_2024_morph_specific_germinants_v11.json'
+      - 'tests/test_mercurialis_2024_maternal_buffer_v15.py'
+      - 'docs/SLK_MERCURIALIS_MATERNAL_BUFFER_V15_20261117.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  published-maternal-contrast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source and inference guards
+        run: python -m unittest discover -s tests -p 'test_mercurialis_2024_maternal_buffer_v15.py' -v
+      - name: Recompute contrast from source-verified V11 frozen maternal means
+        run: |
+          python analysis/audit_mercurialis_2024_maternal_buffer_v15.py \
+            --source results/mercurialis_2024_morph_specific_germinants_v11.json \
+            --out /tmp/mercurialis_v15_recomputed.json
+      - name: Verify exact frozen V15 JSON result
+        run: |
+          python - <<'PY'
+          import json
+          with open("/tmp/mercurialis_v15_recomputed.json") as f:
+              new=json.load(f)
+          with open("results/mercurialis_2024_maternal_buffer_v15.json") as f:
+              frozen=json.load(f)
+          assert new == frozen, "V15 source-frozen maternal contrast has changed"
+          assert new["source_existing_total_interaction"]["interval_crosses_zero"]
+          assert new["n_independent_field_blocks"] == 3
+          print("SLK_V15_REPRODUCED_WITH_INFERENCE_BOUNDS")
+          PY

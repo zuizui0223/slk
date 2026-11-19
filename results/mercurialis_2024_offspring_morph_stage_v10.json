@@ -1,0 +1,593 @@
+{
+  "state": "COMPLETE",
+  "overall": {
+    "n_mothers_total": 72,
+    "n_with_germinated": 71,
+    "n_complete_category_counts": 71,
+    "n_complete_with_no_sum_gap": 71,
+    "n_with_mismatch": 0,
+    "sown": 4826,
+    "germinated": 2856,
+    "typed": 2749,
+    "category_total": {
+      "Prog_F": 714,
+      "Prog_M": 1018,
+      "Prog_H": 990,
+      "Prog_NA": 107,
+      "Prog_Mst": 27
+    },
+    "mismatches": [],
+    "unresolved_ids": [
+      "605"
+    ],
+    "excluded_from_phenotype_models": [
+      {
+        "id": "605",
+        "sex": "H",
+        "reason": "No mature seeds, no germination assay"
+      }
+    ]
+  },
+  "by_cell": {
+    "F_0": {
+      "n_mothers_total": 12,
+      "n_with_germinated": 12,
+      "n_complete_category_counts": 12,
+      "n_complete_with_no_sum_gap": 12,
+      "n_with_mismatch": 0,
+      "sown": 882,
+      "germinated": 543,
+      "typed": 530,
+      "category_total": {
+        "Prog_F": 172,
+        "Prog_M": 225,
+        "Prog_H": 131,
+        "Prog_NA": 13,
+        "Prog_Mst": 2
+      },
+      "mismatches": [],
+      "unresolved_ids": [],
+      "female_among_typed": 0.32452830188679244,
+      "herm_among_typed": 0.24716981132075472,
+      "unknown_among_germinated": 0.02394106813996317
+    },
+    "F_0.5": {
+      "n_mothers_total": 11,
+      "n_with_germinated": 11,
+      "n_complete_category_counts": 11,
+      "n_complete_with_no_sum_gap": 11,
+      "n_with_mismatch": 0,
+      "sown": 777,
+      "germinated": 537,
+      "typed": 516,
+      "category_total": {
+        "Prog_F": 185,
+        "Prog_M": 206,
+        "Prog_H": 110,
+        "Prog_NA": 21,
+        "Prog_Mst": 15
+      },
+      "mismatches": [],
+      "unresolved_ids": [],
+      "female_among_typed": 0.35852713178294576,
+      "herm_among_typed": 0.2131782945736434,
+      "unknown_among_germinated": 0.03910614525139665
+    },
+    "F_1.5": {
+      "n_mothers_total": 15,
+      "n_with_germinated": 15,
+      "n_complete_category_counts": 15,
+      "n_complete_with_no_sum_gap": 15,
+      "n_with_mismatch": 0,
+      "sown": 927,
+      "germinated": 470,
+      "typed": 451,
+      "category_total": {
+        "Prog_F": 123,
+        "Prog_M": 174,
+        "Prog_H": 150,
+        "Prog_NA": 19,
+        "Prog_Mst": 4
+      },
+      "mismatches": [],
+      "unresolved_ids": [],
+      "female_among_typed": 0.2727272727272727,
+      "herm_among_typed": 0.3325942350332594,
+      "unknown_among_germinated": 0.04042553191489362
+    },
+    "H_0": {
+      "n_mothers_total": 12,
+      "n_with_germinated": 12,
+      "n_complete_category_counts": 12,
+      "n_complete_with_no_sum_gap": 12,
+      "n_with_mismatch": 0,
+      "sown": 825,
+      "germinated": 491,
+      "typed": 468,
+      "category_total": {
+        "Prog_F": 92,
+        "Prog_M": 187,
+        "Prog_H": 188,
+        "Prog_NA": 23,
+        "Prog_Mst": 1
+      },
+      "mismatches": [],
+      "unresolved_ids": [],
+      "female_among_typed": 0.19658119658119658,
+      "herm_among_typed": 0.4017094017094017,
+      "unknown_among_germinated": 0.04684317718940937
+    },
+    "H_0.5": {
+      "n_mothers_total": 12,
+      "n_with_germinated": 12,
+      "n_complete_category_counts": 12,
+      "n_complete_with_no_sum_gap": 12,
+      "n_with_mismatch": 0,
+      "sown": 834,
+      "germinated": 490,
+      "typed": 481,
+      "category_total": {
+        "Prog_F": 90,
+        "Prog_M": 187,
+        "Prog_H": 201,
+        "Prog_NA": 9,
+        "Prog_Mst": 3
+      },
+      "mismatches": [],
+      "unresolved_ids": [],
+      "female_among_typed": 0.18711018711018712,
+      "herm_among_typed": 0.4178794178794179,
+      "unknown_among_germinated": 0.018367346938775512
+    },
+    "H_1.5": {
+      "n_mothers_total": 9,
+      "n_with_germinated": 9,
+      "n_complete_category_counts": 9,
+      "n_complete_with_no_sum_gap": 9,
+      "n_with_mismatch": 0,
+      "sown": 581,
+      "germinated": 325,
+      "typed": 303,
+      "category_total": {
+        "Prog_F": 52,
+        "Prog_M": 39,
+        "Prog_H": 210,
+        "Prog_NA": 22,
+        "Prog_Mst": 2
+      },
+      "mismatches": [],
+      "unresolved_ids": [],
+      "female_among_typed": 0.1716171617161716,
+      "herm_among_typed": 0.693069306930693,
+      "unknown_among_germinated": 0.06769230769230769
+    }
+  },
+  "analyses": {
+    "female_phenotype_fraction_among_typed": {
+      "point": {
+        "n_mothers": 71,
+        "sown": 2749,
+        "germinated": 714,
+        "pooled_germination": 0.2597308112040742,
+        "distance_log_odds_per_m": -0.1604538780108273,
+        "distance_odds_ratio_per_m": 0.8517571073981052,
+        "female_log_odds": 0.7293796681333645,
+        "sex_by_distance_log_odds": null,
+        "pearson_dispersion_plant_clustered": 1.0684517651708179,
+        "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+      },
+      "mother_bootstrap": {
+        "successful_mother_resamples": 1200,
+        "distance_log_odds_95pct": [
+          -0.2861732860764516,
+          -0.04229196766888517
+        ],
+        "distance_OR_95pct": [
+          0.7511324438746134,
+          0.9585898624633937
+        ],
+        "female_log_odds_95pct": [
+          0.5705362889847655,
+          0.9188039179766683
+        ],
+        "sex_by_distance_log_odds_95pct": null,
+        "caution": "bootstrap conditional on 3 spatial blocks and recorded cell sizes; not a CI for regions/populations"
+      },
+      "sex_distance_point": {
+        "n_mothers": 71,
+        "sown": 2749,
+        "germinated": 714,
+        "pooled_germination": 0.2597308112040742,
+        "distance_log_odds_per_m": -0.12004435179281953,
+        "distance_odds_ratio_per_m": 0.8868811010780103,
+        "female_log_odds": 0.7628777872063529,
+        "sex_by_distance_log_odds": -0.061286188747056825,
+        "pearson_dispersion_plant_clustered": 1.0825052298186613,
+        "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+      },
+      "sex_distance_bootstrap": {
+        "successful_mother_resamples": 1200,
+        "distance_log_odds_95pct": [
+          -0.41414575969111245,
+          0.1260630246664028
+        ],
+        "distance_OR_95pct": [
+          0.6609046109928657,
+          1.134353658291081
+        ],
+        "female_log_odds_95pct": [
+          0.5390963889538261,
+          1.0126574408604192
+        ],
+        "sex_by_distance_log_odds_95pct": [
+          -0.3346539502530322,
+          0.24114487273833166
+        ],
+        "caution": "bootstrap conditional on 3 spatial blocks and recorded cell sizes; not a CI for regions/populations"
+      },
+      "leave_one_block_out": {
+        "1": {
+          "n_mothers": 47,
+          "sown": 1737,
+          "germinated": 438,
+          "pooled_germination": 0.25215889464594127,
+          "distance_log_odds_per_m": -0.14447894040577014,
+          "distance_odds_ratio_per_m": 0.8654731387243051,
+          "female_log_odds": 0.8214544331688249,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 0.8886204021599503,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        },
+        "2": {
+          "n_mothers": 47,
+          "sown": 1868,
+          "germinated": 507,
+          "pooled_germination": 0.2714132762312634,
+          "distance_log_odds_per_m": -0.12043276903187514,
+          "distance_odds_ratio_per_m": 0.8865366880616655,
+          "female_log_odds": 0.7133424245525988,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 1.2027439227591457,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        },
+        "3": {
+          "n_mothers": 48,
+          "sown": 1893,
+          "germinated": 483,
+          "pooled_germination": 0.2551505546751189,
+          "distance_log_odds_per_m": -0.2281062886038083,
+          "distance_odds_ratio_per_m": 0.7960396453962728,
+          "female_log_odds": 0.6642784502381883,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 1.115659439326572,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        }
+      }
+    },
+    "male_plus_male_sterile_fraction_among_typed": {
+      "point": {
+        "n_mothers": 71,
+        "sown": 2749,
+        "germinated": 1045,
+        "pooled_germination": 0.38013823208439435,
+        "distance_log_odds_per_m": -0.4013202508041629,
+        "distance_odds_ratio_per_m": 0.6694356394035624,
+        "female_log_odds": 0.4049338819972537,
+        "sex_by_distance_log_odds": null,
+        "pearson_dispersion_plant_clustered": 2.5346109939069135,
+        "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+      },
+      "mother_bootstrap": {
+        "successful_mother_resamples": 1200,
+        "distance_log_odds_95pct": [
+          -0.5630949140432381,
+          -0.25666197697513676
+        ],
+        "distance_OR_95pct": [
+          0.569443953736446,
+          0.7736296742157358
+        ],
+        "female_log_odds_95pct": [
+          0.1921908601715955,
+          0.6419254554330713
+        ],
+        "sex_by_distance_log_odds_95pct": null,
+        "caution": "bootstrap conditional on 3 spatial blocks and recorded cell sizes; not a CI for regions/populations"
+      },
+      "sex_distance_point": {
+        "n_mothers": 71,
+        "sown": 2749,
+        "germinated": 1045,
+        "pooled_germination": 0.38013823208439435,
+        "distance_log_odds_per_m": -0.9123790202968243,
+        "distance_odds_ratio_per_m": 0.40156774892266417,
+        "female_log_odds": -0.01590986985062398,
+        "sex_by_distance_log_odds": 0.8118997694250538,
+        "pearson_dispersion_plant_clustered": 2.138849572536714,
+        "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+      },
+      "sex_distance_bootstrap": {
+        "successful_mother_resamples": 1200,
+        "distance_log_odds_95pct": [
+          -1.2288787958206804,
+          -0.629699073236552
+        ],
+        "distance_OR_95pct": [
+          0.29262048112954725,
+          0.5327520962511679
+        ],
+        "female_log_odds_95pct": [
+          -0.3061485864975555,
+          0.27719156423966507
+        ],
+        "sex_by_distance_log_odds_95pct": [
+          0.4850061565171254,
+          1.1561372768764093
+        ],
+        "caution": "bootstrap conditional on 3 spatial blocks and recorded cell sizes; not a CI for regions/populations"
+      },
+      "leave_one_block_out": {
+        "1": {
+          "n_mothers": 47,
+          "sown": 1737,
+          "germinated": 694,
+          "pooled_germination": 0.39953943580886586,
+          "distance_log_odds_per_m": -0.46503973447205715,
+          "distance_odds_ratio_per_m": 0.6281101470687077,
+          "female_log_odds": 0.3391109033385754,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 1.7393291555100843,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        },
+        "2": {
+          "n_mothers": 47,
+          "sown": 1868,
+          "germinated": 676,
+          "pooled_germination": 0.3618843683083512,
+          "distance_log_odds_per_m": -0.366933269850683,
+          "distance_odds_ratio_per_m": 0.6928558778779986,
+          "female_log_odds": 0.4133923913159186,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 3.0265722744862233,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        },
+        "3": {
+          "n_mothers": 48,
+          "sown": 1893,
+          "germinated": 720,
+          "pooled_germination": 0.3803486529318542,
+          "distance_log_odds_per_m": -0.36893001569670286,
+          "distance_odds_ratio_per_m": 0.691473801069213,
+          "female_log_odds": 0.46235821084340845,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 2.9161655902314636,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        }
+      }
+    },
+    "hermaphrodite_fraction_among_typed": {
+      "point": {
+        "n_mothers": 71,
+        "sown": 2749,
+        "germinated": 990,
+        "pooled_germination": 0.36013095671153145,
+        "distance_log_odds_per_m": 0.5561170187408653,
+        "distance_odds_ratio_per_m": 1.7438878526410655,
+        "female_log_odds": -1.0347880823451903,
+        "sex_by_distance_log_odds": null,
+        "pearson_dispersion_plant_clustered": 2.626799795139025,
+        "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+      },
+      "mother_bootstrap": {
+        "successful_mother_resamples": 1200,
+        "distance_log_odds_95pct": [
+          0.3673197123079856,
+          0.7514856495901954
+        ],
+        "distance_OR_95pct": [
+          1.443859464972254,
+          2.120147474250463
+        ],
+        "female_log_odds_95pct": [
+          -1.2582566961492827,
+          -0.8217774699963644
+        ],
+        "sex_by_distance_log_odds_95pct": null,
+        "caution": "bootstrap conditional on 3 spatial blocks and recorded cell sizes; not a CI for regions/populations"
+      },
+      "sex_distance_point": {
+        "n_mothers": 71,
+        "sown": 2749,
+        "germinated": 990,
+        "pooled_germination": 0.36013095671153145,
+        "distance_log_odds_per_m": 0.8239530870302767,
+        "distance_odds_ratio_per_m": 2.279493084825642,
+        "female_log_odds": -0.7281926494515513,
+        "sex_by_distance_log_odds": -0.5015228872010076,
+        "pearson_dispersion_plant_clustered": 2.5308626308730093,
+        "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+      },
+      "sex_distance_bootstrap": {
+        "successful_mother_resamples": 1200,
+        "distance_log_odds_95pct": [
+          0.5167369289537483,
+          1.1777216196229185
+        ],
+        "distance_OR_95pct": [
+          1.6765480190503064,
+          3.2469679409109427
+        ],
+        "female_log_odds_95pct": [
+          -1.0422048165937896,
+          -0.4150916836729601
+        ],
+        "sex_by_distance_log_odds_95pct": [
+          -0.8951914101149048,
+          -0.12353770311075145
+        ],
+        "caution": "bootstrap conditional on 3 spatial blocks and recorded cell sizes; not a CI for regions/populations"
+      },
+      "leave_one_block_out": {
+        "1": {
+          "n_mothers": 47,
+          "sown": 1737,
+          "germinated": 605,
+          "pooled_germination": 0.34830166954519287,
+          "distance_log_odds_per_m": 0.6329791106022322,
+          "distance_odds_ratio_per_m": 1.8832125291188404,
+          "female_log_odds": -1.0534094725323535,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 1.6927102316466287,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        },
+        "2": {
+          "n_mothers": 47,
+          "sown": 1868,
+          "germinated": 685,
+          "pooled_germination": 0.36670235546038543,
+          "distance_log_odds_per_m": 0.4809321806191009,
+          "distance_odds_ratio_per_m": 1.6175815778004485,
+          "female_log_odds": -1.0122314800865717,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 3.316949569249064,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        },
+        "3": {
+          "n_mothers": 48,
+          "sown": 1893,
+          "germinated": 690,
+          "pooled_germination": 0.36450079239302696,
+          "distance_log_odds_per_m": 0.564299021045192,
+          "distance_odds_ratio_per_m": 1.7582148790243006,
+          "female_log_odds": -1.0478912889041427,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 2.93712667720647,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        }
+      }
+    },
+    "unsexed_died_early_fraction_among_germinated": {
+      "point": {
+        "n_mothers": 71,
+        "sown": 2856,
+        "germinated": 107,
+        "pooled_germination": 0.03746498599439776,
+        "distance_log_odds_per_m": 0.34542880366322626,
+        "distance_odds_ratio_per_m": 1.4125955159493238,
+        "female_log_odds": -0.13515699182216792,
+        "sex_by_distance_log_odds": null,
+        "pearson_dispersion_plant_clustered": 2.312035517781993,
+        "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+      },
+      "mother_bootstrap": {
+        "successful_mother_resamples": 1200,
+        "distance_log_odds_95pct": [
+          -0.17225212157314068,
+          0.8160799912788542
+        ],
+        "distance_OR_95pct": [
+          0.8417669188128843,
+          2.2616168803776473
+        ],
+        "female_log_odds_95pct": [
+          -0.7190767932887971,
+          0.5207188808209514
+        ],
+        "sex_by_distance_log_odds_95pct": null,
+        "caution": "bootstrap conditional on 3 spatial blocks and recorded cell sizes; not a CI for regions/populations"
+      },
+      "sex_distance_point": {
+        "n_mothers": 71,
+        "sown": 2856,
+        "germinated": 107,
+        "pooled_germination": 0.03746498599439776,
+        "distance_log_odds_per_m": 0.33499824571617526,
+        "distance_odds_ratio_per_m": 1.3979379328404125,
+        "female_log_odds": -0.14975596023440282,
+        "sex_by_distance_log_odds": 0.0207879352924378,
+        "pearson_dispersion_plant_clustered": 2.346361750985572,
+        "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+      },
+      "sex_distance_bootstrap": {
+        "successful_mother_resamples": 1200,
+        "distance_log_odds_95pct": [
+          -0.6022869560909776,
+          1.1140611316528077
+        ],
+        "distance_OR_95pct": [
+          0.547557962075189,
+          3.0467063797832967
+        ],
+        "female_log_odds_95pct": [
+          -1.0294267595103173,
+          0.8040628181443699
+        ],
+        "sex_by_distance_log_odds_95pct": [
+          -0.8844599485687317,
+          1.0526492364328284
+        ],
+        "caution": "bootstrap conditional on 3 spatial blocks and recorded cell sizes; not a CI for regions/populations"
+      },
+      "leave_one_block_out": {
+        "1": {
+          "n_mothers": 47,
+          "sown": 1793,
+          "germinated": 56,
+          "pooled_germination": 0.031232571109871723,
+          "distance_log_odds_per_m": 0.32472727203564966,
+          "distance_odds_ratio_per_m": 1.3836532335878708,
+          "female_log_odds": -0.1193374456053723,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 2.1269782695625814,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        },
+        "2": {
+          "n_mothers": 47,
+          "sown": 1938,
+          "germinated": 70,
+          "pooled_germination": 0.03611971104231166,
+          "distance_log_odds_per_m": 0.4062203306973822,
+          "distance_odds_ratio_per_m": 1.501133261762404,
+          "female_log_odds": -0.2118125822200857,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 2.2184680303364472,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        },
+        "3": {
+          "n_mothers": 48,
+          "sown": 1981,
+          "germinated": 88,
+          "pooled_germination": 0.04442200908632004,
+          "distance_log_odds_per_m": 0.3083596587586614,
+          "distance_odds_ratio_per_m": 1.3611904649826376,
+          "female_log_odds": -0.0841012956545451,
+          "sex_by_distance_log_odds": null,
+          "pearson_dispersion_plant_clustered": 2.646759100190542,
+          "method": "grouped binomial point estimate, mother-level bootstrap; fixed block factors"
+        }
+      }
+    }
+  },
+  "source": "10.6084/m9.figshare.26521189.v1",
+  "source_zip_md5": "365ab41f1d6192344a3b3fec87654e49",
+  "source_csv": "Data_field_experiment/Pollination and distance/Data_pollen_limitation_and_distance.csv",
+  "original_total_plants": 84,
+  "n_female_and_hermaphrodite": 72,
+  "interpretation": [
+    "All offspring morphs are classified after germination and survival to sex assessment, not genotypes.",
+    "Unsexed progeny include plants dying too early to assign a phenotype; never assume they are females or males.",
+    "Mother F/H differs in inherited cytoplasmic sterility and nuclear restoration background; morph fraction is not a causal estimate of genetic selection.",
+    "Unknown pollen donors and selfing are not measured in this ring experiment.",
+    "The 2017 J Ecol study has already reported offspring sex-dependent responses in different dioecious plants.",
+    "Phenotypic ratios in the offspring are not equal to the next adult-generation population sex ratio.",
+    "Multiple exploratory outcomes and only three blocks prohibit confirmatory claims."
+  ],
+  "provenance": {
+    "github_actions_run_id": 43899497568,
+    "source_script_commit": "ef93e5c92fa81b5548abd58c5136edc1f906e0ea",
+    "source_archive_md5_verified": true,
+    "original_individual_data_redistributed": false,
+    "paper_doi": "10.1002/ajb2.16429",
+    "first_public_mother_level_source_analysis": true
+  }
+}

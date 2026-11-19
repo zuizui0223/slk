@@ -1,0 +1,147 @@
+{
+  "schema": "slk_wurmbea_2004_same_paper_visitor_to_seed_ordinal_contrast_v3",
+  "audit_date": "2026-11-15",
+  "source": {
+    "citation": "Case AL & Barrett SCH (2004). Floral biology of gender monomorphism and dimorphism in Wurmbea dioica (Colchicaceae) in Western Australia. International Journal of Plant Sciences 165(2):289–301.",
+    "doi": "10.1086/382796",
+    "author_pdf_url": "https://barrett.eeb.utoronto.ca/publications/files/2020/06/Case_Barrett_IJPS04-165-289.pdf",
+    "publisher_url": "https://www.journals.uchicago.edu/doi/10.1086/382796",
+    "source_sections": [
+      "Table 4, p.296 (fly visits)",
+      "Pollen Removal and Deposition, pp.294–296",
+      "Female Fertility and Fig. 9, pp.295–299"
+    ],
+    "study_site": "Sympatric monomorphic and dimorphic populations near Perth, Western Australia; W. dioica ssp. alba",
+    "data_level": "Original article's published rounded group means, reported ranges, and qualitative inferential statements; no raw plant/flower-level observations",
+    "audit_method": "Author PDF full-text extracted by public search and cross-checked against article abstract and Methods; screenshot endpoint returned 404, so visual original-table verification incomplete"
+  },
+  "observation_design": {
+    "visit_measure": "Fly visit rate per flower during 15-min observation periods",
+    "dimorphic_period": "1996-06-26 to 1996-07-13",
+    "monomorphic_period": "1996-08-12 to 1996-09-01",
+    "sexes_measured": [
+      "female",
+      "male",
+      "cosexual"
+    ],
+    "sex_system_populations_distinct": true,
+    "flowering_periods_nonoverlapping": true,
+    "paired_individual_visit_and_seed_records_available": false,
+    "15_min_periods_by_morph": {
+      "female": 65,
+      "male": 65,
+      "cosexual": 45
+    },
+    "date_specific_weather_adjustment_available": false
+  },
+  "fly_visits_per_flower_15min": {
+    "female": {
+      "mean": 0.7,
+      "se": 0.1
+    },
+    "male": {
+      "mean": 1.9,
+      "se": 0.4
+    },
+    "cosexual": {
+      "mean": 5.1,
+      "se": 0.9
+    }
+  },
+  "fly_visit_duration_seconds": {
+    "female": {
+      "mean": 69,
+      "se": 11
+    },
+    "male": {
+      "mean": 127,
+      "se": 13
+    },
+    "cosexual": {
+      "mean": 134,
+      "se": 15
+    }
+  },
+  "insect_repeat_visit_frequency_per_plant_per_period": {
+    "female": 0.57,
+    "male": 0.68,
+    "cosexual": 0.3
+  },
+  "female_seed_to_ovule_reported_ranges": {
+    "female": {
+      "min": 0.24,
+      "max": 0.25
+    },
+    "fruiting_male": {
+      "min": 0.14,
+      "max": 0.16
+    },
+    "cosexual": {
+      "min": 0.05,
+      "max": 0.07
+    },
+    "note": "Text ranges span reported pollination conditions and are not 95% confidence intervals; do not assign endpoints to specific treatments"
+  },
+  "author_reported_outcomes": {
+    "pollen_deposition_female_vs_cosexual": "NO_SIGNIFICANT_DIFFERENCE_DETECTED",
+    "additional_hand_cross_pollination_effect_on_fruit_or_seed_set": "NO_SIGNIFICANT_EFFECT_DETECTED",
+    "inferred_cause_of_low_seed_fertility": "UNKNOWN_AUTHORS_SUGGEST_RESOURCE_LIMITATION_MORE_LIKELY_THAN_QUANTITY_POLLEN_LIMITATION",
+    "honeybees_visited_only_cosexuals": true,
+    "honeybees_are_introduced_and_not_ancestral_cause_of_origination": true,
+    "seed_to_ovule_sign_difference_between_morphs": "FEMALE_GT_COSEXUAL"
+  },
+  "limits": [
+    "The fly visit observations were taken in nonoverlapping dates with different morph-specific floral phenologies; the taxon contrast is not an equal-season intervention",
+    "A common sympatric location does not make floral morphs matched treatments, and the two sexual systems constitute different populations",
+    "Not the same individuals or flowers observed along the full visit-to-seed pathway; no plant-level covariance or causal mediation is estimable",
+    "Mean visit rate excludes honeybee visits; honeybees visited only cosexuals",
+    "Seed-to-ovule intervals are ranges reported across pollination regimes and not sampling confidence intervals",
+    "Non-significant differences in pollen receipt or pollen-supplementation effect do not establish equivalence or the absence of a small limitation",
+    "The cause of low seed fertility (inbreeding, pollen quality, resource availability, predation) was not experimentally resolved by this comparison",
+    "No male paternity, outcrossing paternity, genotype-dependent lifetime fitness or directional selection estimates",
+    "Cannot infer historical origin, genetic constraint, or SLK Phi/g0/Delta_R from these descriptive source values",
+    "Cannot mix western subspecies alba and eastern dioica source estimates as a within-population mechanism or meta-analytic effect",
+    "Anther onset, dehiscence duration and first-day pollen removal are separate published metrics; no reconstructed daily pollen time series, paternity success or causal floral-architecture effect"
+  ],
+  "anther_presentation_same_paper": {
+    "days_from_anthesis_until_first_pollen_presentation": {
+      "male": {
+        "mean": 2.3,
+        "se": 0.27
+      },
+      "cosexual": {
+        "mean": 4.4,
+        "se": 0.21
+      },
+      "note": "Males start releasing pollen earlier than cosexuals; source p.293, original means SE"
+    },
+    "days_to_dehisce_all_six_anthers": {
+      "male": {
+        "mean": 5.43,
+        "se": 0.38
+      },
+      "cosexual": {
+        "mean": 4.4,
+        "se": 0.28
+      },
+      "original_mann_whitney_p": 0.034,
+      "note": "Source p.293; male dehiscence is more prolonged"
+    },
+    "first_day_percent_of_total_pollen_removed": {
+      "male": {
+        "mean": 24.4,
+        "se": 6.7
+      },
+      "cosexual": {
+        "mean": 50.3,
+        "se": 6.9
+      },
+      "note": "Source pp.294–297; first pollen-presentation day, not overall nine-day pollen removal"
+    },
+    "anther_reclosure_after_wet_or_windy_weather": {
+      "males_some_observed": true,
+      "cosexuals_not_observed": true,
+      "note": "Qualitative source observation, not quantified probability or inherited evolutionary innovation"
+    }
+  }
+}

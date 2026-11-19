@@ -1,0 +1,204 @@
+name: Mercurialis published individual-data provenance index
+on:
+  push:
+    paths:
+      - '.github/workflows/mercurialis-public-rawdata-index-v1.yml'
+      - 'analysis/reanalyze_mercurialis_2024_parent_to_germination_v1.py'
+      - 'analysis/analyze_mercurialis_2024_germination_binomial_v9.py'
+      - 'analysis/audit_mercurialis_2024_next_generation_morph_stage_v10.py'
+      - 'analysis/analyze_mercurialis_2024_morph_specific_recruitment_v11.py'
+      - 'analysis/audit_mercurialis_2024_xy_pollen_route_bounds_v12.py'
+      - 'analysis/audit_mercurialis_2024_morph_difference_in_differences_v13.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect the two publishers' public metadata (no individual genotypes)
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, urllib.request, urllib.error
+          sources = [
+              ("2025_diploid_G8", "https://zenodo.org/api/records/14542260"),
+              ("2024_hexaploid_raw_A", "https://api.figshare.com/v2/articles/26521189"),
+              ("2024_hexaploid_raw_B", "https://api.figshare.com/v2/articles/26521294"),
+          ]
+          out = {}
+          for key, url in sources:
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent":"SLK-source-verification/1.0", "Accept":"application/json"})
+                  with urllib.request.urlopen(req, timeout=22) as res:
+                      obj=json.load(res)
+                  files=obj.get("files", [])
+                  if isinstance(files, dict): files=list(files.values())
+                  files_out=[]
+                  for x in files:
+                      if not isinstance(x,dict): continue
+                      files_out.append({"name":x.get("key") or x.get("name"), "size_bytes":x.get("size") or (x.get("size_bytes")),"checksum":x.get("checksum") or x.get("computed_md5"), "access": x.get("links",{}).get("self") or x.get("download_url")})
+                  out[key]={"ok":True,"id":obj.get("id"),"title":obj.get("title") or obj.get("metadata",{}).get("title"),"doi":obj.get("doi") or obj.get("metadata",{}).get("doi"),"files":files_out}
+              except Exception as e:
+                  out[key]={"ok":False,"failure_type":type(e).__name__,"error":str(e)[:200]}
+          print("SLK_PUBLIC_RAWDATA_METADATA_START")
+          print(json.dumps(out,ensure_ascii=False,indent=2,sort_keys=True))
+          print("SLK_PUBLIC_RAWDATA_METADATA_END")
+          with open("mercurialis_public_rawdata_index_v1.json","w") as f:json.dump(out,f,indent=2)
+          if not any(y["ok"] for y in out.values()):raise SystemExit("No public source metadata could be reached; no empirical data fetched.")
+          PY
+      - name: Verify checksums and index genuine ZIP members without executing publisher code
+        shell: bash
+        run: |
+          python - <<'PY'
+          import io,zipfile,hashlib,json,urllib.request
+          sources=[
+              ("2025_G8", "https://zenodo.org/api/records/15644955/files/Geito_NewPhyto_v2.zip/content", "ea198a76d60cdf412638c77e6e0e3d80", 5500000),
+              ("2024_6x", "https://ndownloader.figshare.com/files/48285769", "365ab41f1d6192344a3b3fec87654e49", 26100000),
+          ]
+          summary={}
+          for key,url,expected,expect_bytes in sources:
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent":"SLK-source-verification/1.0"}),timeout=65) as res:
+                      data=res.read(35000001)
+                  if len(data)>35000000:raise ValueError("Exceeded maximum download size")
+                  md5=hashlib.md5(data).hexdigest()
+                  if md5!=expected:raise ValueError("Published MD5 mismatch; refusing to read archive")
+                  with open("/tmp/slk_"+key+".zip","wb") as outzip:outzip.write(data)
+                  with zipfile.ZipFile(io.BytesIO(data)) as z:
+                      items=z.infolist()
+                      names=[{"name":i.filename,"bytes":i.file_size} for i in items if not i.is_dir()]
+                      candidates=[i for i in items if not i.is_dir() and i.filename.lower().endswith((".csv",".tsv",".txt",".r",".xlsx",".json",".rds",".rdata",".rda",".dat"))]
+                      previews={}
+                      for i in candidates[:60]:
+                          ext=i.filename.lower().split(".")[-1]
+                          if ext not in ("csv","tsv","txt","r","dat","json") or i.file_size>9000000:continue
+                          raw=z.read(i.filename)[:2800]
+                          try:line=raw.decode("utf-8-sig")
+                          except UnicodeError:line=raw.decode("latin-1",errors="replace")
+                          previews[i.filename]=line[:450].splitlines()[:4]
+                      summary[key]={"ok":True,"archive_bytes":len(data),"md5":md5,"member_count":len(names),"members":names[:200],"previews":previews}
+              except Exception as e:
+                  summary[key]={"ok":False,"error":type(e).__name__+": "+str(e)[:200]}
+          print("SLK_VERIFIED_ARCHIVE_INDEX_START")
+          print(json.dumps(summary,indent=2,ensure_ascii=False))
+          print("SLK_VERIFIED_ARCHIVE_INDEX_END")
+          with open("mercurialis_public_zip_member_index_v1.json","w") as f:json.dump(summary,f,indent=2)
+          if not any(x["ok"] for x in summary.values()):raise SystemExit("No archive passed published checksum verification.")
+          PY
+      - name: Inspect individual-level column schemas and published model code
+        shell: bash
+        run: |
+          python - <<'PY'
+          import zipfile,csv,io,re,json
+          out={}
+          for key in ("2025_G8","2024_6x"):
+              with zipfile.ZipFile("/tmp/slk_"+key+".zip") as z:
+                  cases={}
+                  for info in z.infolist():
+                      if info.is_dir() or info.filename.startswith("__MACOSX/") or "/._" in info.filename:continue
+                      name=info.filename
+                      if not name.lower().endswith(".csv") or info.file_size>300000:continue
+                      if key=="2024_6x" and not any(s in name for s in ("Pollination and distance/","Relative fitness FHM/")):continue
+                      raw=z.read(name)
+                      try:txt=raw.decode("utf-8-sig")
+                      except UnicodeError:txt=raw.decode("latin-1")
+                      dialect=csv.Sniffer().sniff(txt[:3000],delimiters=",;\t")
+                      rr=list(csv.DictReader(io.StringIO(txt),dialect=dialect))
+                      if len(rr)==0:continue
+                      field=list(rr[0])
+                      cases[name]={"nrows":len(rr),"fields":field,"preview":[{k:v for k,v in rr[i].items() if k in field[:18]} for i in range(min(3,len(rr)))]}
+                  out[key]=cases
+                  if key=="2025_G8":
+                      fitness=z.read("Geito_NewPhyto_v2/Fitness.R").decode("utf-8-sig")
+                      lines=fitness.splitlines()
+                      chosen=[]
+                      for i,line in enumerate(lines):
+                          if any(x in line.lower() for x in ("inbreeding", "total_fitness", "glm(", "lmer(", "scale(", "fitness_re", "sample(", "delta", "replicate", "summary(", "gender")):
+                              for j in range(max(0,i-1),min(len(lines),i+2)):
+                                  if j not in chosen:chosen.append(j)
+                      out["2025_code_selected_lines"]=[f"{i+1}: {lines[i]}" for i in sorted(chosen)[:120]]
+                      out["2025_readme"]=z.read("Geito_NewPhyto_v2/README.md.txt").decode("utf-8-sig")[:3300]
+          print("SLK_TABLES_SURVEY_START")
+          print(json.dumps(out,indent=2,ensure_ascii=False)[:38000])
+          print("SLK_TABLES_SURVEY_END")
+          with open("mercurialis_table_schema_survey_v1.json","w") as f:json.dump(out,f,indent=2)
+          PY
+      - name: Inspect original experiment README and stage-denominator definitions
+        shell: bash
+        run: |
+          python - <<'PY'
+          import zipfile,xml.etree.ElementTree as E,io,csv,collections,math,json
+          result={}
+          with zipfile.ZipFile("/tmp/slk_2024_6x.zip") as z:
+              fn="Data_field_experiment/Pollination and distance/Read_me_pollen_distance.odt"
+              with zipfile.ZipFile(io.BytesIO(z.read(fn))) as o:
+                  root=E.fromstring(o.read("content.xml"))
+                  chunks=["".join(el.itertext()).strip() for el in root.iter() if el.tag.endswith("}p") or el.tag.endswith("}h")]
+                  result["distance_readme"]=[s for s in chunks if s][:160]
+              fn="Data_field_experiment/Pollination and distance/Data_pollen_limitation_and_distance.csv"
+              rows=list(csv.DictReader(io.StringIO(z.read(fn).decode("utf-8-sig"))))
+              def val(x):
+                  try:return float(x)
+                  except:return None
+              for k in ("F","H","M"):
+                  rr=[a for a in rows if a["Sex"]==k]
+                  counts=collections.Counter(a["Dist"] for a in rr)
+                  cols=["Female_flowers_unfert","Female_flowers_tot","Seed_masse","nombre graines","Veg_mass","Seed_sown","Prog_tot","Germ_rate"]
+                  result[k]={"n":len(rr),"dist":dict(counts),"data":{c:{"nonmissing":sum(val(a[c]) is not None for a in rr),"min":min([val(a[c]) for a in rr if val(a[c]) is not None],default=None),"max":max([val(a[c]) for a in rr if val(a[c]) is not None],default=None)} for c in cols}}
+              valid=[a for a in rows if val(a["Seed_sown"]) and val(a["Prog_tot"]) is not None and val(a["Germ_rate"]) is not None]
+              result["germ_definition_check"]={"n":len(valid),"max_abs_delta":max((abs(val(a["Germ_rate"])-val(a["Prog_tot"])/val(a["Seed_sown"])) for a in valid),default=None)}
+              result["observations"]=dict(collections.Counter(a["Observation"] for a in rows))
+          with zipfile.ZipFile("/tmp/slk_2025_G8.zip") as z:
+              c=z.read("Geito_NewPhyto_v2/Fitness.R").decode("utf-8-sig").splitlines()
+              result["G8_fitness_preamble"]=[f"{i+1}: {x}" for i,x in enumerate(c[:30])]
+              rr=list(csv.DictReader(io.StringIO(z.read("Geito_NewPhyto_v2/3G_ID01.csv").decode("utf-8-sig"))))
+              result["G8_scenarios"]={i:len([x for x in rr if x["Inbreeding"]==i]) for i in ["ID=0","ID=1"]}
+          print("SLK_STAGE_DEFINITION_AUDIT_START")
+          print(json.dumps(result,indent=2,ensure_ascii=False)[:26000])
+          print("SLK_STAGE_DEFINITION_AUDIT_END")
+          with open("mercurialis_stage_definition_audit_v1.json","w") as f:json.dump(result,f,indent=2)
+          PY
+      - name: Reanalyze original individual-plant field-to-germination transitions
+        shell: bash
+        run: |
+          python analysis/reanalyze_mercurialis_2024_parent_to_germination_v1.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_parent_to_germination_v1.json
+      - name: Audit grouped-binomial germination and sexual-morph interaction with mother-level bootstrap
+        shell: bash
+        run: |
+          python analysis/analyze_mercurialis_2024_germination_binomial_v9.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_germination_binomial_v9.json
+      - name: Audit actual offspring phenotype counts and missing sex labels
+        shell: bash
+        run: |
+          python analysis/audit_mercurialis_2024_next_generation_morph_stage_v10.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_offspring_morph_audit_v10.json
+      - name: Estimate each next-generation phenotype per maternal female flower
+        shell: bash
+        run: |
+          python analysis/analyze_mercurialis_2024_morph_specific_recruitment_v11.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_morph_per_flower_v11.json
+      - name: Quantify worst-case missing-sex bounds and within-block single-mother influence
+        shell: bash
+        run: |
+          python analysis/audit_mercurialis_2024_xy_pollen_route_bounds_v12.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_xy_pollen_route_bounds_v12.json
+      - name: Check female-versus-hermaphrodite distance interaction under adversarial unsexed child assignments
+        shell: bash
+        run: |
+          python analysis/audit_mercurialis_2024_morph_difference_in_differences_v13.py --zip /tmp/slk_2024_6x.zip --out mercurialis_2024_morph_DID_bounds_v13.json
+      - name: Publish metadata receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mercurialis-published-rawdata-index-v1
+          path: |
+            mercurialis_public_rawdata_index_v1.json
+            mercurialis_public_zip_member_index_v1.json
+            mercurialis_table_schema_survey_v1.json
+            mercurialis_stage_definition_audit_v1.json
+            mercurialis_2024_parent_to_germination_v1.json
+            mercurialis_2024_germination_binomial_v9.json
+            mercurialis_2024_offspring_morph_audit_v10.json
+            mercurialis_2024_morph_per_flower_v11.json
+            mercurialis_2024_xy_pollen_route_bounds_v12.json
+            mercurialis_2024_morph_DID_bounds_v13.json
+          if-no-files-found: warn

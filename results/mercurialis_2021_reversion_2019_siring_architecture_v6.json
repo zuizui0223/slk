@@ -1,0 +1,164 @@
+{
+  "schema": "SLK_MERCURIALIS_2021_EXP_REVERSAL_2019_SIRING_LEGACY_RESULT_V6",
+  "source_dois": {
+    "experiment_2021": "10.1016/j.cub.2020.12.028",
+    "morphology_2019": "10.1111/ele.13207"
+  },
+  "true_population_evolutionary_replicates": 3,
+  "G0_acute_plastic_ratio_vs_same_generation_controls": 2.33,
+  "G1_evolved_line_male_flower_ratio_vs_current_controls": 8.77,
+  "G4_evolved_line_male_flower_ratio_vs_current_controls": 23.3,
+  "base_to_G4_incidence_male_flowers": {
+    "G0": 0.0548,
+    "G4": 0.693
+  },
+  "base_to_G4_incidence_difference_percentage_points": 63.82,
+  "selfing_8_SSR_markers_author_RMES": {
+    "G1": {
+      "female_only_population_estimates": [
+        {
+          "population": "S1",
+          "genotyped_offspring": 116,
+          "author_RMES_selfing_s": 0.124,
+          "nonzero_significant": true
+        },
+        {
+          "population": "S2",
+          "genotyped_offspring": 117,
+          "author_RMES_selfing_s": 0.225,
+          "nonzero_significant": true
+        },
+        {
+          "population": "S3",
+          "genotyped_offspring": 118,
+          "author_RMES_selfing_s": 0.225,
+          "nonzero_significant": true
+        }
+      ],
+      "controls_population_estimates": [
+        {
+          "population": "C1",
+          "genotyped_offspring": 114,
+          "author_RMES_selfing_s": 0.047,
+          "nonzero_significant": false
+        },
+        {
+          "population": "C2",
+          "genotyped_offspring": 111,
+          "author_RMES_selfing_s": 0,
+          "nonzero_significant": false
+        },
+        {
+          "population": "C3",
+          "genotyped_offspring": 103,
+          "author_RMES_selfing_s": 0,
+          "nonzero_significant": false
+        }
+      ],
+      "female_only_unweighted_mean_s": 0.191333333,
+      "female_only_offspring_count_weighted_mean_of_estimates_NOT_pooled_fit": 0.191621083,
+      "female_only_population_n": 3,
+      "control_population_n": 3,
+      "female_only_significantly_nonzero_populations": 3,
+      "female_only_reported_n_genotyped": 351
+    },
+    "G4": {
+      "female_only_population_estimates": [
+        {
+          "population": "S1",
+          "genotyped_offspring": 118,
+          "author_RMES_selfing_s": 0.172,
+          "nonzero_significant": true
+        },
+        {
+          "population": "S2",
+          "genotyped_offspring": 120,
+          "author_RMES_selfing_s": 0.074,
+          "nonzero_significant": false
+        },
+        {
+          "population": "S3",
+          "genotyped_offspring": 117,
+          "author_RMES_selfing_s": 0.121,
+          "nonzero_significant": true
+        }
+      ],
+      "controls_population_estimates": [
+        {
+          "population": "C1",
+          "genotyped_offspring": 116,
+          "author_RMES_selfing_s": 0.019,
+          "nonzero_significant": false
+        },
+        {
+          "population": "C2",
+          "genotyped_offspring": 119,
+          "author_RMES_selfing_s": 0,
+          "nonzero_significant": false
+        },
+        {
+          "population": "C3",
+          "genotyped_offspring": 114,
+          "author_RMES_selfing_s": 0.062,
+          "nonzero_significant": false
+        }
+      ],
+      "female_only_unweighted_mean_s": 0.122333333,
+      "female_only_offspring_count_weighted_mean_of_estimates_NOT_pooled_fit": 0.122064789,
+      "female_only_population_n": 3,
+      "control_population_n": 3,
+      "female_only_significantly_nonzero_populations": 2,
+      "female_only_reported_n_genotyped": 355
+    },
+    "G4_minus_G1_female_only_unweighted_mean_s": -0.069,
+    "author_test_between_G1_and_G4_p": 0.1,
+    "increasing_selfing_proven": false,
+    "new_selfing_model_fit": null
+  },
+  "G0_immigrant_male_progeny": {
+    "original_offspring_n": 812,
+    "male_fraction": 0.011083744,
+    "confirms_mating_system_not_perfectly_hermetically_sealed": true,
+    "original_male_n": 9
+  },
+  "G5_XY_males_reintroduced_sex_ratio_fatherhood": {
+    "reintroduction_mating_arrays": 6,
+    "control_male_progeny_fraction": 0.503,
+    "evolved_XX_mother_male_progeny_fraction": 0.436,
+    "son_deficit_vs_XY_half_sex_ratio": 0.064,
+    "source_author_inferred_XX_female_sired_fraction": 0.128,
+    "not_direct_father_genotypes": true,
+    "selfing_fraction_cannot_be_separated_from_XX_cross": true,
+    "one_generation_not_male_reinvasion_fixed": true,
+    "female_plants_per_array": 50,
+    "XY_males_per_array": 50
+  },
+  "2019_independent_source_architecture_paternal_penalty": {
+    "exp1_arrays": 30,
+    "exp1_original_progeny_sexed": 6000,
+    "exp1_F_like_paternal_reduction_vs_M_like_with_males": 0.25,
+    "exp2_arrays": 12,
+    "exp2_5_SSR_offspring_genotyped": 720,
+    "exp2_F_like_paternal_reduction_vs_M_like": 0.31,
+    "exp2_equal_selfing_assumption_required": true,
+    "exp2_M_like_selfing_unidentified": true,
+    "not_same_cohort_as_2021_selected_XX": true,
+    "not_isogenic_inflorescence_swap": true
+  },
+  "source_2021_initial_seed_origin_20_vs_35_discrepancy_unresolved": true,
+  "2021_data_S1_Excel_raw_downloaded": false,
+  "new_p_values_or_CIs": null,
+  "rare_genotype_or_historical_origin_SLK_Phi_g0_Delta_R": null,
+  "limits": [
+    "G0 2.33× acute response and 2021 G4 23.3× evolution derive from same experiment, not two independent origins",
+    "G4 23.3× is relative to contemporaneous control females, not 23.3× G0 itself",
+    "Published G1/G4 RMES selfing means .19/.12 decrease was not statistically significant (p=.10); cannot infer more male flowers means monotonically more selfing",
+    "G5 12.8% female siring uses 2×(0.5−0.436), not 2×(0.503−0.436), and source is inferred from sex ratio not directly father-genotyped",
+    "2019 25–31% female-like inflorescence siring disadvantage is independent source material from 2021 evolved XX females; not a direct same-genotype counterfactual",
+    "2019 observed source morphology differs with population and genes; source study does not isolate peduncle architecture in same isogenic background",
+    "2021 source G0 provenance inconsistency 20 populations vs 35 demes remains unresolved",
+    "Follow-up 2025 New Phytologist and 2026 PNAS reuse evolved XX lineages (not independent reversals)",
+    "No actual multigeneration return-to-dioecy after XY male reintroduction was observed; single G5 mating array tests ability to sire under male competition",
+    "No novel field data, raw Data S1 files, complete SLK Phi/g0/Delta_R or whole-lifetime rare mutant invasion rates"
+  ]
+}

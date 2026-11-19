@@ -1,0 +1,107 @@
+{
+  "schema": "slk_wurmbea_multiscale_origin_vs_function_source_v4",
+  "audit_date": "2026-11-15",
+  "status": "SOURCE_GROUNDED_PUBLISHED_RESULTS_NOT_NEW_EMPIRICAL_FIT",
+  "findings": {
+    "jones_burd_2001": {
+      "citation": "Jones A & Burd M (2001). Vegetative and reproductive variation among unisexual and hermaphroditic individuals of Wurmbea dioica (Colchicaceae). Australian Journal of Botany 49:603-609.",
+      "doi": "10.1071/BT01008",
+      "publisher_url": "https://connectsci.au/bt/article-abstract/49/5/603/5102/Vegetative-and-reproductive-variation-among",
+      "geography": "Central Victoria, southeastern Australia",
+      "study_level": "Published author abstract; full article and raw records not independently obtained",
+      "whole_plant_pollen_investment_male_vs_hermaphrodite": "NO_DIFFERENCE_DETECTED",
+      "whole_plant_fruit_mass_female_vs_hermaphrodite": "NO_DIFFERENCE_DETECTED",
+      "after_controlling_flower_size": "HERMAPHRODITE_FLOWERS_HAVE_LOWER_POLLEN_AND_FRUIT_INVESTMENT_THAN_RESPECTIVE_UNISEXUAL_FLOWERS",
+      "unit_warning": "Flower-level morphology-controlled contrasts and whole-plant totals are distinct; not an experimental manipulation of conflict nor a fitness estimate",
+      "hypothesis_status": "INTRAFLORAL_ALLOCATION_COMPROMISE_CONSISTENT"
+    },
+    "ramsey_vaughton_2001": {
+      "citation": "Ramsey M & Vaughton G (2001). Sex Expression and Sexual Dimorphism in Subdioecious Wurmbea dioica (Colchicaceae). International Journal of Plant Sciences 162:589-597.",
+      "doi": "10.1086/320142",
+      "publisher_url": "https://www.journals.uchicago.edu/toc/ijps/2001/162/3",
+      "independent_source": "https://researchers.une.edu.au/en/publications/sex-expression-and-sexual-dimorphism-is-subdioecious-wurmbea-dioi-5/",
+      "geography": "Eastern Australian subdioecious populations; three populations in source abstract",
+      "study_level": "Published abstract only; no access to individual original observations",
+      "female_field_frequency_pct": 43,
+      "male_field_frequency_pct": 50,
+      "hermaphrodite_field_frequency_pct": 7,
+      "male_became_hermaphrodite_under_favorable_glasshouse_pct": 71,
+      "female_unchanged_under_favorable_glasshouse_years": 3,
+      "female_over_hermaphrodite_seed_per_plant_approx_ratio": 3,
+      "aborted_seed_pct": {
+        "female": 21,
+        "hermaphrodite": 51
+      },
+      "male_over_hermaphrodite_pollen_per_flower_approx_ratio": 1.3,
+      "male_pollen_viability_relative_advantage_pct_points_or_relative": "SOURCE_SAYS_7_PERCENT_MORE_VIABLE_DENOMINATOR_NOT_ASSUMED",
+      "same_individual_for_fitness_and_expression_cohorts": "NOT_VERIFIED",
+      "warning": "Published authors' summarized comparisons; no new confidence interval, genotype fitness, historical direction or independent raw cohort analysis"
+    },
+    "case_et_al_2008": {
+      "citation": "Case AL, Graham SW, Macfarlane TD & Barrett SCH (2008). A Phylogenetic Study of Evolutionary Transitions in Sexual Systems in Australasian Wurmbea (Colchicaceae). International Journal of Plant Sciences 169:141-156.",
+      "doi": "10.1086/523368",
+      "author_pdf_url": "https://barrett.eeb.utoronto.ca/publications/files/2020/06/Case_et_al_IJPS169_141-156.pdf",
+      "molecular_data": "Four non-contiguous plastid regions, 5,337 aligned nt across taxon set",
+      "sexual_system_states": "Gender monomorphic vs gender dimorphic; NOT 4-state functional architectures",
+      "randomly_resolved_phylogenies": 10000,
+      "dimorphic_terminal_units": 10,
+      "minimum_parsimony_changes_across_resolutions": {
+        "min": 5,
+        "max": 8
+      },
+      "gains_or_losses_direction": "UNRESOLVED_ZERO_TO_EIGHT_EACH_NOT_SIMULTANEOUSLY_ZERO",
+      "resolved_best_tree_significantly_reconstructed_internal_nodes": 0,
+      "pruned_taxon_example_significant_nodes": {
+        "numerator": 17,
+        "denominator": 20
+      },
+      "claimed_taxonomic_nonmonophyly": [
+        "Wurmbea dioica",
+        "Wurmbea biglandulosa"
+      ],
+      "possible_confounds": [
+        "plastid_capture",
+        "incomplete_lineage_sorting",
+        "genuine_species_nonmonophyly",
+        "misdefined_species_limits"
+      ],
+      "bottom_line": "Multiple state differences on plastid gene tree; repeated transitions direction and number of actual species-level origins cannot be confidently assigned",
+      "visual_pdf_screenshot_audit": "WEB_SCREENSHOT_404_PDF_TEXT_SEARCH_AND_PUBLISHER_ABSTRACT_VERIFIED",
+      "phylogenetic_transition_estimate_is_natural_same_species_replicate_count": false
+    },
+    "goldberg_et_al_2017": {
+      "citation": "Goldberg EE, Otto SP, Vamosi JC, Mayrose I, Sabath N, Ming R & Ashman TL (2017). Macroevolutionary synthesis of flowering plant sexual systems. Evolution 71:898-912.",
+      "doi": "10.1111/evo.13181",
+      "author_pdf_url": "https://www.zoology.ubc.ca/~otto/Reprints/Goldberg2017.pdf",
+      "published_data_url": "https://datadryad.org/dataset/doi:10.5061/dryad.7n82c",
+      "species": 2145,
+      "genera": 40,
+      "inclusion_frame": "Genera with at least 10 species with known sexual system, at least two sexual systems and at least two H or two D taxa; not representative of all flowering plants",
+      "reported_transition_rate_asymmetry": "LITTLE_EVIDENCE_FOR_UNIVERSAL_DIRECTION",
+      "reported_mild_transition_count_tendency": "TOWARD_INTERMEDIATE_SEXUAL_DIFFERENTIATION_FROM_BOTH_HERMAPHRODITISM_AND_DIOECY",
+      "source_verified": "Publisher and author-PDF abstract and original Figure 1/2 screenshots",
+      "no_wurmbea_specific_transition_reanalysis": true
+    },
+    "western_taxonomy_status_2026": {
+      "accepted_taxon_database": "Plants of the World Online, Royal Botanic Gardens Kew",
+      "accepted_taxon_url": "https://powo.science.kew.org/taxon/543572-1",
+      "currently_accepts_subsp_alba_under_W_dioica": true,
+      "alternative_hypothesis_source": "Genomics for Australian Plants conservation genomics project initiated August 2020",
+      "project_url": "https://www.genomicsforaustralianplants.com/wurmbea-dioica-conservation/",
+      "potential_issue": "Western subsp. alba complex may be multiple distinct taxa outside W. dioica s.str.; no published taxonomic resolution documented here",
+      "evidence_latest": "Western Australia DBCA 2024-25 science report (published 2026) notes Wurmbea dioica conservation genetic project well advanced, not settled",
+      "current_classification_is_formally_split": false,
+      "comparison_status": "SEPARATE_STUDY_TAXON_BLOCKS_REQUIRED_NOT_SAME_SPECIES_LONGITUDINAL"
+    }
+  },
+  "interpretation_limits": [
+    "Flower-level allocation compromise in one eastern population does not demonstrate adaptive genetic origin or an SLK G1 conflict estimator",
+    "Published male/female/fruiting-male group comparisons are not plant-level matched longitudinal genomic data across separate studies",
+    "Western subsp. alba and eastern W. dioica s.str. should not be merged into one genetic evolutionary trajectory; taxonomy remains under study",
+    "An ambiguous plastid phylogeny is not evidence that any organ re-evolved after genetic deletion",
+    "Genome-project proposal and Kew accepted name report different evidential states and do not independently prove current taxonomic revision",
+    "No phylogenetic independent origin count, W_s/W_p/W_d, Phi, g0 or Delta_R has been estimated by this source synthesis",
+    "The 2017 macro analysis sampled genera polymorphic for sexual system, not a random global set, and its H/G/M/D states are not interchangeable with SLK architecture labels",
+    "This receipt is not new experimental evidence, causal meta-analysis, reanalysis of the 2017 Dryad archive, or a combined pooled standardized effect size"
+  ]
+}

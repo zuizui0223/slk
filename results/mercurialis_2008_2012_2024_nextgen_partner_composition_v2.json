@@ -1,0 +1,285 @@
+{
+  "schema": "SLK_MERCURIALIS_2008_2012_2024_ORIGINAL_AGGREGATE_AUDIT_V2",
+  "source_dois": {
+    "2008": "10.1086/587524",
+    "2012": "10.1371/journal.pone.0035597",
+    "2024": "10.1002/ajb2.16429"
+  },
+  "androdioecy_2008": {
+    "populations": 8,
+    "low_density": 12.25,
+    "high_density": 250,
+    "progeny_male_low_unweighted_plot_fraction": 0.2925,
+    "progeny_male_high_unweighted_plot_fraction": 0.40375,
+    "progeny_male_high_minus_low": 0.11125,
+    "male_frequency_change_high_minus_low_after_parent_adjustment": 0.105,
+    "paired_t_high_minus_low_rounded_source": 4.64757163,
+    "paired_t_parent_delta_rounded_source": 2.63087907,
+    "lambda_high_mean": 34.5625,
+    "lambda_low_mean": 9.3625,
+    "lambda_paired_t_rounded_source": 4.12085706,
+    "source_original_paired_t_significance": "Original parent-adjusted t=2.6, df=7, p<.05",
+    "original_published_progeny_total": {
+      "low": 7239,
+      "high": 3371
+    },
+    "sum_of_original_row_progeny_N": {
+      "low": 7293,
+      "high": 3371
+    },
+    "unresolved_original_low_N_difference": 54,
+    "new_p_values": null,
+    "individual_pedigree_recovered": false
+  },
+  "trioecy_2012": {
+    "plot_replicates": 20,
+    "offspring_phenotyped": 6076,
+    "female_present_in_all_20_plots": true,
+    "male_treatment_is_presence_not_female_presence": true,
+    "factorial_cells": {
+      "low_absent": {
+        "n_plots": 5,
+        "n_progeny_reported": 1607,
+        "male_progeny_plot_mean": 0.02,
+        "female_progeny_plot_mean": 0.304,
+        "hermaphrodite_progeny_plot_mean": 0.676,
+        "parental_female_share": 0.32653061,
+        "source_proportions_are_rounded": true
+      },
+      "low_present": {
+        "n_plots": 5,
+        "n_progeny_reported": 1494,
+        "male_progeny_plot_mean": 0.316,
+        "female_progeny_plot_mean": 0.278,
+        "hermaphrodite_progeny_plot_mean": 0.406,
+        "parental_female_share": 0.32653061,
+        "source_proportions_are_rounded": true
+      },
+      "high_absent": {
+        "n_plots": 5,
+        "n_progeny_reported": 1513,
+        "male_progeny_plot_mean": 0.002,
+        "female_progeny_plot_mean": 0.286,
+        "hermaphrodite_progeny_plot_mean": 0.708,
+        "parental_female_share": 0.33333333,
+        "source_proportions_are_rounded": true
+      },
+      "high_present": {
+        "n_plots": 5,
+        "n_progeny_reported": 1462,
+        "male_progeny_plot_mean": 0.326,
+        "female_progeny_plot_mean": 0.284,
+        "hermaphrodite_progeny_plot_mean": 0.392,
+        "parental_female_share": 0.33333333,
+        "source_proportions_are_rounded": true
+      }
+    },
+    "parental_female_fraction_by_cell": {
+      "low_absent": 0.32653061,
+      "low_present": 0.32653061,
+      "high_absent": 0.33333333,
+      "high_present": 0.33333333
+    },
+    "male_present_high_minus_low_progeny_male_plot_mean": 0.01,
+    "male_absent_low_plot_mean_male_progeny": 0.02,
+    "male_absent_high_plot_mean_male_progeny": 0.002,
+    "male_progeny_without_male_parents_indicates_gene_flow": true,
+    "female_seed_allocation_fraction_relative_to_hermaphrodite": 1.41860465,
+    "male_pollen_allocation_fraction_relative_to_hermaphrodite": 5.85714286,
+    "female_next_generation_direction_certain_under_rounding": {
+      "decrease": 17,
+      "increase": 2,
+      "ambiguous": 1
+    },
+    "female_direction_per_plot": [
+      {
+        "plot": 6,
+        "density": "low",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "increase"
+      },
+      {
+        "plot": 9,
+        "density": "low",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 11,
+        "density": "low",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 14,
+        "density": "low",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 16,
+        "density": "low",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 1,
+        "density": "low",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 3,
+        "density": "low",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 8,
+        "density": "low",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 17,
+        "density": "low",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 19,
+        "density": "low",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 2,
+        "density": "high",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 5,
+        "density": "high",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 7,
+        "density": "high",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 10,
+        "density": "high",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 20,
+        "density": "high",
+        "male_treatment": "absent",
+        "female_change_vs_parent_with_rounding": "ambiguous"
+      },
+      {
+        "plot": 4,
+        "density": "high",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 12,
+        "density": "high",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "increase"
+      },
+      {
+        "plot": 13,
+        "density": "high",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 15,
+        "density": "high",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      },
+      {
+        "plot": 18,
+        "density": "high",
+        "male_treatment": "present",
+        "female_change_vs_parent_with_rounding": "decrease"
+      }
+    ],
+    "original_male_density_test": {
+      "t": -0.54,
+      "p": ">.50"
+    },
+    "original_female_density_test": {
+      "t": 0.7,
+      "p": ">.50"
+    },
+    "new_offspring_level_significance": null,
+    "causal_female_buffering_effect_measured": false,
+    "male_presence_sex_specific_seed_effort": {
+      "female_no_males": 0.067,
+      "female_with_males": 0.061,
+      "hermaphrodite_no_males": 0.042,
+      "hermaphrodite_with_males": 0.047,
+      "female_delta_with_minus_without_males": -0.006,
+      "hermaphrodite_delta_with_minus_without_males": 0.005,
+      "published_interaction_F": 6.3,
+      "published_interaction_df": [
+        1,
+        445
+      ],
+      "published_interaction_p": "<.05",
+      "new_male_paternity_effect_estimated": null
+    }
+  },
+  "natural_trioecy_2024": {
+    "studied_population_count": 109,
+    "reported_categories": {
+      "cosex_only": 36,
+      "androdioecious": 25,
+      "gynodioecious": 12,
+      "trioecious": 36
+    },
+    "original_grouping_threshold": 0.025,
+    "female_mean_in_male_rich_vs_poor_populations": {
+      "male_rich": 8.2,
+      "male_poor": 1.6,
+      "original_wilcoxon_p": "<.0001"
+    },
+    "full_population_female_vs_density_p": 0.62,
+    "full_population_female_vs_male_frequency_p": 0.103,
+    "five_of_eight_persisted_three_years": true,
+    "demonstrated_indefinite_evolutionary_equilibrium": false,
+    "CMS_nuclear_restorer_linkage_confirmed_molecularly": false,
+    "restorer_fitness_cost_measured": false
+  },
+  "cross_study_difference_in_density_contrast_2008_vs_2012_descriptive": 0.10125,
+  "cross_study_difference_significance": null,
+  "directly_randomized_female_presence_between_studies": false,
+  "SLK_Phi_g0_Delta_R_measured": false,
+  "new_causal_effect_sizes": null,
+  "limits": [
+    "2008 androdioecy and 2012 female-containing trioecy are different source populations, years, densities and genotype histories; observed contrast cannot identify female-presence causal moderation across studies",
+    "2008 source Table 1 displays low N=7239 but its eight row progeny Ns sum 7293; do not silently correct original published totals or use contradictory denominator for new p values",
+    "2008 source-published proportions rounded to 0.01, paired t from rounded values is a verification check, not a new test from individual pedigree",
+    "2012 20 plot-level experimental replicates and 6076 individual offspring; do not count offspring as 6076 independent manipulated experimental units",
+    "2012 0–4% male progeny in male-absent plots is evidence of external pollen contamination, not spontaneous sex-detector allele mutation",
+    "2012 three morphs are different biological reproductive strategies; male density model differs if females are present but original did not directly randomize their presence",
+    "2012 females' higher seed biomass allocation does not equal female genotype increase or long-run stable trioecy",
+    "2024 natural 109 populations include categories defined with 2.5% arbitrary cutoff; 36 trioecious populations do not demonstrate indefinite genotype frequency equilibrium",
+    "2024 shows no overall female density GLM association despite its male-rich group contrast; do not selectively report the positive group comparison as a universal density effect",
+    "2024 CMS and nuclear fertility restoration model is a supported genetic inference, not experimentally verified restorer molecular identity or restorer fitness cost",
+    "Source papers by overlapping investigators and source regions are prior art for frequency-dependent evolution, sex-ratio buffering and trioecy; SLK cannot claim first discovery",
+    "No original plot-level 2008 full genotype raw CSV, 2012 individual pedigrees or 2024 population supplementary downloads; analysis uses original published table and correctly preserves rounding",
+    "No SLK Phi/g0/Delta_R, new mutation probability, rare allele frequency gradient or cross-study causal lifetime fitness are identified",
+    "In 2012, male presence×sex morph had a significant interaction on seed-biomass allocation (published F[1,445]=6.3, p<.05), but the original 2012 offspring male-density GLM remained nonsignificant; do not conflate allocation response and next-generation sex-ratio effect.",
+    "The 2012 male-present treatment replaced some monoecious hermaphrodites with males at fixed total density and fixed female frequency, so the experimental contrast is a change in mate composition, not pure addition of male pollen at fixed hermaphrodite abundance."
+  ]
+}

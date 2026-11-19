@@ -1,0 +1,41 @@
+name: Sagittaria ecological partner routes vs realized siring source audit
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/sagittaria_partner_routing_mating_filter_primary_v2_20261115.json'
+      - 'analysis/audit_sagittaria_partner_routing_v2.py'
+      - 'results/sagittaria_partner_routing_realized_paternity_v2.json'
+      - 'tests/test_sagittaria_partner_routing_v2.py'
+      - 'docs/SLK_SAGITTARIA_PARTNER_ROUTING_VS_RARE_ESTABLISHMENT_V2_20261115.md'
+      - '.github/workflows/sagittaria-partner-routing-realized-siring-v2.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-ceiling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify original 2006/2022/2023/2002 source units and biological claims
+        run: python -m unittest discover -s tests -p 'test_sagittaria_partner_routing_v2.py' -v
+      - name: Reproduce source-only ecological routing contrasts without new P values
+        run: |
+          python analysis/audit_sagittaria_partner_routing_v2.py --output /tmp/sagittaria_partner_audit_v2.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/sagittaria_partner_audit_v2.json').read_text())
+          b=json.loads(Path('results/sagittaria_partner_routing_realized_paternity_v2.json').read_text())
+          assert a==b,"Original-source Sagittaria partner audit drifted"
+          assert a["experimental_transfer_2006"]["original_low_display_winner"]=="dioecious"
+          assert a["experimental_transfer_2006"]["original_high_display_winner"]=="monoecious"
+          assert a["temporal_paternity_2023"]["opportunity_original_p"]==.24
+          assert a["bateman_natural_2022"]["new_equivalence_test_or_p"] is None
+          assert a["genet_mutant_frequency_evidence"]=="ABSENT"
+          assert a["new_p_values"] is None
+          print("PASS_ORIGINAL_TRANSFER_ROUTE_RANK_REVERSAL_IS_NOT_GENOTYPE_INVASION")
+          PY

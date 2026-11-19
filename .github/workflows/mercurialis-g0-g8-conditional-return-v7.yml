@@ -1,0 +1,41 @@
+name: Mercurialis G0-G8 real functional return and conditional redivision pressure
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/mercurialis_g0_g8_return_pressure_source_v7.json'
+      - 'data/evidence/mercurialis_2019_2021_restored_function_siring_source_v6.json'
+      - 'data/evidence/mercurialis_inbreeding_disruption_2025_primary_v1.json'
+      - 'analysis/audit_mercurialis_g0_g8_return_pressure_v7.py'
+      - 'results/mercurialis_g0_g8_return_pressure_v7.json'
+      - 'tests/test_mercurialis_g0_g8_return_pressure_v7.py'
+      - 'docs/SLK_MERCURIALIS_FUNCTION_RETURN_AND_RENEWED_CONFLICT_V7_20261115.md'
+      - '.github/workflows/mercurialis-g0-g8-conditional-return-v7.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-function-return-and-inbreeding-scenario-boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Enforce real source lineage, G5 fatherhood, G8 SSR and assumed depression
+        run: python -m unittest discover -s tests -p 'test_mercurialis_g0_g8_return_pressure_v7.py' -v
+      - name: Freeze exact original-publication aggregation
+        run: |
+          python analysis/audit_mercurialis_g0_g8_return_pressure_v7.py --output /tmp/g0g8-return-v7.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/g0g8-return-v7.json').read_text(encoding='utf-8'))
+          b=json.loads(Path('results/mercurialis_g0_g8_return_pressure_v7.json').read_text(encoding='utf-8'))
+          assert a==b, 'Published source recomputation does not reproduce frozen receipt'
+          assert a['G8_paternity']['paternity_assigned']==915
+          assert a['G8_paternity']['genotyped_without_father_assignment']==33
+          assert not a['G8_actual_diploid_inbreeding_depression_measured']
+          assert not a['observed_G8_reversion_to_XX_XY_dioecy']
+          print('PASS_REAL_RETURN_VS_CONDITIONAL_REDIVISION_BOUNDARY')
+          PY

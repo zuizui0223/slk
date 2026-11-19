@@ -1,0 +1,50 @@
+name: SLK 2025 source-verified real maternal-paternal fitness V22
+on:
+  push:
+    paths:
+      - '.github/workflows/slk-2025-realized-fitness-v22.yml'
+      - 'analysis/audit_zenodo_mercu_realized_fitness_v22.py'
+      - 'analysis/probe_zenodo_mercu_paternity_v21.py'
+      - 'tests/test_zenodo_mercu_realized_fitness_v22.py'
+  pull_request:
+    paths:
+      - '.github/workflows/slk-2025-realized-fitness-v22.yml'
+      - 'analysis/audit_zenodo_mercu_realized_fitness_v22.py'
+      - 'analysis/probe_zenodo_mercu_paternity_v21.py'
+      - 'tests/test_zenodo_mercu_realized_fitness_v22.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-verified-descriptive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify independent-plant and schema tests
+        run: python -m unittest discover -s tests -p 'test_zenodo_mercu_realized_fitness_v22.py' -v
+      - name: Download and verify Zenodo source, summarize only original CSV
+        run: python analysis/audit_zenodo_mercu_realized_fitness_v22.py --out /tmp/slk_v22_verified_fitness_summary.json
+      - name: Check live provenance and state, never fake new inference
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open("/tmp/slk_v22_verified_fitness_summary.json"))
+          print("LIVE_STATE:",r["state"])
+          if r["state"]=="verified_descriptive":
+              assert r["archive_verified_digest"].startswith("md5:")
+              assert r["unique_population_mother_ids"]["fitness"] <= r["raw_rows"]["fitness_scenarios"]
+              print("SEX_ROWS:",r["raw_rows"]["sex_allocation"])
+              print("FITNESS_ROWS:",r["raw_rows"]["fitness_scenarios"])
+              print("SCENARIOS:",list(r["fitness_scenarios"]))
+          else:
+              print("UNAVAILABLE_NO_NEW_FITNESS:",r.get("error"))
+          PY
+      - name: Preserve only source summary, not parent genotypes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: slk-v22-verified-real-fitness-summary
+          path: /tmp/slk_v22_verified_fitness_summary.json
+          retention-days: 30
+          if-no-files-found: ignore

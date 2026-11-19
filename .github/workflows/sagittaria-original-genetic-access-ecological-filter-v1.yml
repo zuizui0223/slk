@@ -1,0 +1,40 @@
+name: Original Sagittaria genetic access and ecological persistence
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/sagittaria_genetic_access_and_ecological_filter_primary_v1.json'
+      - 'analysis/analyze_sagittaria_genetic_access_resource_bounds_v1.py'
+      - 'results/sagittaria_genetic_access_resource_bounds_v1.json'
+      - 'tests/test_sagittaria_genetic_access_resource_bounds_v1.py'
+      - 'docs/SLK_SAGITTARIA_GENETIC_ACCESS_ECOLOGICAL_STABILITY_V1_20261115.md'
+      - '.github/workflows/sagittaria-original-genetic-access-ecological-filter-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-grain-and-accessibility:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify primary genotype families and host-environment inference boundaries
+        run: python -m unittest discover -s tests -p 'test_sagittaria*.py' -v
+      - name: Independently regenerate frozen 2004 published-segregation and clone bounds
+        run: |
+          python analysis/analyze_sagittaria_genetic_access_resource_bounds_v1.py --output /tmp/sagittaria_source_bounds_v1.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/sagittaria_source_bounds_v1.json').read_text())
+          b=json.loads(Path('results/sagittaria_genetic_access_resource_bounds_v1.json').read_text())
+          assert a == b, "Source-frozen Sagittaria genotype bounds are stale"
+          assert a['f2_offspring']==676 and a['f2_families']==8
+          assert a['f2_hermaphroditic_offspring_minimum']==173
+          assert a['resource_same_genotype']['male_genotypes_forced_high_mixed_and_low_male_only_minimum']==8
+          assert a['actual_rare_invasion_rate'] is None
+          assert a['historical_gynodioecy_path_fixed'] is None
+          print('PASS_ORIGINAL_SAGITTARIA_GENETIC_VIABILITY_NOT_REAL_RARE_INVASION')
+          PY

@@ -1,0 +1,68 @@
+{
+  "schema": "SLK_MERCURIALIS_G0_G8_CONDITIONAL_RETURN_PRESSURE_RESULT_V7",
+  "original_dois": {
+    "2021_selection_and_G5": "10.1016/j.cub.2020.12.028",
+    "2025_G8_assigned_fathers": "10.1111/nph.70356",
+    "2019_independent_morphology": "10.1111/ele.13207"
+  },
+  "linked_evolution_program_not_independent_origins": true,
+  "G4_to_G8_same_individual_longitudinal_data": false,
+  "G4_male_flower_ratio_vs_contemporaneous_controls": 23.3,
+  "G5_XX_paternal_fraction_from_offspring_sex_ratio": 0.128,
+  "G5_measured_individual_XX_fathers_by_SSR": false,
+  "G8_paternity": {
+    "parents_DNA_extracted": 181,
+    "seed_DNA_extracted": 958,
+    "successfully_genotyped": 948,
+    "paternity_assigned": 915,
+    "not_successfully_genotyped_of_extracted": 10,
+    "genotyped_without_father_assignment": 33,
+    "assignment_fraction_of_genotyped_not_population_coverage": 0.965189873,
+    "sampled_paternity_fraction_of_approx_total_seed_population": 0.066304348,
+    "paternity_assignment_Cervus_confidence": 0.8,
+    "original_raw_Zenodo_reanalysis": false
+  },
+  "selfing_estimates_not_longitudinally_comparable": {
+    "G1_2021_mean_of_three_population_RMES": 0.191333333,
+    "G4_2021_mean_of_three_population_RMES": 0.122333333,
+    "G4_minus_G1_descriptive_not_significant": -0.069,
+    "G1_G4_author_difference_p": 0.1,
+    "G8_2025_mean_of_172_individual_selfing_fractions": 0.296,
+    "G8_n_individuals": 172,
+    "SSR_methods_differ_8_vs_9_loci": true,
+    "G4_to_G8_selfing_change_estimable": false
+  },
+  "G8_relative_total_fitness_quadratic_from_original_table1": {
+    "small": {
+      "quadratic_delta0_published": -1.3,
+      "quadratic_delta1_published": -0.83,
+      "printed_common_se_each_scenario": 1.35,
+      "published_delta0_quadratic_significant": false,
+      "published_delta1_quadratic_significant": false,
+      "arithmetic_delta1_minus_delta0_no_new_inference": 0.47,
+      "source_scenario_comparison": "NOT_REPORTED_SIGNIFICANT"
+    },
+    "medium": {
+      "quadratic_delta0_published": 0.38,
+      "quadratic_delta1_published": 2,
+      "printed_common_se_each_scenario": 0.78,
+      "published_delta0_quadratic_significant": false,
+      "published_delta1_quadratic_significant": true,
+      "arithmetic_delta1_minus_delta0_no_new_inference": 1.62,
+      "source_scenario_comparison": "P<0.001"
+    },
+    "large": {
+      "quadratic_delta0_published": 2.07,
+      "quadratic_delta1_published": 4.86,
+      "printed_common_se_each_scenario": 1.26,
+      "published_delta0_quadratic_significant": false,
+      "published_delta1_quadratic_significant": true,
+      "arithmetic_delta1_minus_delta0_no_new_inference": 2.79,
+      "source_scenario_comparison": "P<0.001"
+    }
+  },
+  "G8_actual_diploid_inbreeding_depression_measured": false,
+  "observed_G8_reversion_to_XX_XY_dioecy": false,
+  "rare_mutant_invasion_or_SLK_Phi_g0_Delta_R_estimated": false,
+  "biological_interpretation": "Real restored sex function under mate exclusion is accompanied by observed male-allocation/selfing association; potential pressure toward redivision is conditional on unmeasured inbreeding depression. No re-evolution of dioecy is observed."
+}

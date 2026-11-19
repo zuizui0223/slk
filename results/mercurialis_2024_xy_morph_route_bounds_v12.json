@@ -1,0 +1,406 @@
+{
+  "source": "10.6084/m9.figshare.26521189.v1",
+  "zip_md5": "365ab41f1d6192344a3b3fec87654e49",
+  "n_published_field_plants": 84,
+  "n_F_H_with_progeny": 71,
+  "excluded_zero_seed_mother": [
+    {
+      "id": "605",
+      "reason": "No seed crop or progeny assay"
+    }
+  ],
+  "cell_counts_and_worst_case_early_death_bounds": {
+    "H_0.0": {
+      "mothers": 12,
+      "germinated": 491,
+      "known_Y_morph": 188,
+      "unsexed_died_early": 23,
+      "sexed": 468,
+      "known_F": 92,
+      "known_H": 188,
+      "Y_fraction_lower": 0.38289205702647655,
+      "Y_fraction_upper": 0.42973523421588594,
+      "H_fraction_among_sexed": 0.4017094017094017,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.7657841140529531,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.8594704684317719
+    },
+    "H_0.5": {
+      "mothers": 12,
+      "germinated": 490,
+      "known_Y_morph": 190,
+      "unsexed_died_early": 9,
+      "sexed": 481,
+      "known_F": 90,
+      "known_H": 201,
+      "Y_fraction_lower": 0.3877551020408163,
+      "Y_fraction_upper": 0.4061224489795918,
+      "H_fraction_among_sexed": 0.4178794178794179,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.7755102040816326,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.8122448979591836
+    },
+    "H_1.5": {
+      "mothers": 9,
+      "germinated": 325,
+      "known_Y_morph": 41,
+      "unsexed_died_early": 22,
+      "sexed": 303,
+      "known_F": 52,
+      "known_H": 210,
+      "Y_fraction_lower": 0.12615384615384614,
+      "Y_fraction_upper": 0.19384615384615383,
+      "H_fraction_among_sexed": 0.693069306930693,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.2523076923076923,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.38769230769230767
+    },
+    "F_0.0": {
+      "mothers": 12,
+      "germinated": 543,
+      "known_Y_morph": 227,
+      "unsexed_died_early": 13,
+      "sexed": 530,
+      "known_F": 172,
+      "known_H": 131,
+      "Y_fraction_lower": 0.4180478821362799,
+      "Y_fraction_upper": 0.4419889502762431,
+      "H_fraction_among_sexed": 0.24716981132075472,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.8360957642725598,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.8839779005524862
+    },
+    "F_0.5": {
+      "mothers": 11,
+      "germinated": 537,
+      "known_Y_morph": 221,
+      "unsexed_died_early": 21,
+      "sexed": 516,
+      "known_F": 185,
+      "known_H": 110,
+      "Y_fraction_lower": 0.41154562383612664,
+      "Y_fraction_upper": 0.4506517690875233,
+      "H_fraction_among_sexed": 0.2131782945736434,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.8230912476722533,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.9013035381750466
+    },
+    "F_1.5": {
+      "mothers": 15,
+      "germinated": 470,
+      "known_Y_morph": 178,
+      "unsexed_died_early": 19,
+      "sexed": 451,
+      "known_F": 123,
+      "known_H": 150,
+      "Y_fraction_lower": 0.37872340425531914,
+      "Y_fraction_upper": 0.41914893617021276,
+      "H_fraction_among_sexed": 0.3325942350332594,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.7574468085106383,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.8382978723404255
+    }
+  },
+  "H_center_vs_far": {
+    "center": {
+      "mothers": 12,
+      "germinated": 491,
+      "known_Y_morph": 188,
+      "unsexed_died_early": 23,
+      "sexed": 468,
+      "known_F": 92,
+      "known_H": 188,
+      "Y_fraction_lower": 0.38289205702647655,
+      "Y_fraction_upper": 0.42973523421588594,
+      "H_fraction_among_sexed": 0.4017094017094017,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.7657841140529531,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.8594704684317719
+    },
+    "far": {
+      "mothers": 9,
+      "germinated": 325,
+      "known_Y_morph": 41,
+      "unsexed_died_early": 22,
+      "sexed": 303,
+      "known_F": 52,
+      "known_H": 210,
+      "Y_fraction_lower": 0.12615384615384614,
+      "Y_fraction_upper": 0.19384615384615383,
+      "H_fraction_among_sexed": 0.693069306930693,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.2523076923076923,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.38769230769230767
+    },
+    "strict_minimum_center_minus_far_Y_fraction": 0.18904590318032272,
+    "known_Y_fraction_center_minus_far": 0.2567382108726304
+  },
+  "H_center_vs_far_by_block": {
+    "1": {
+      "center": {
+        "mothers": 4,
+        "germinated": 185,
+        "known_Y_morph": 60,
+        "unsexed_died_early": 10,
+        "sexed": 175,
+        "known_F": 41,
+        "known_H": 74,
+        "Y_fraction_lower": 0.32432432432432434,
+        "Y_fraction_upper": 0.3783783783783784,
+        "H_fraction_among_sexed": 0.4228571428571429,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.6486486486486487,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.7567567567567568
+      },
+      "far": {
+        "mothers": 4,
+        "germinated": 162,
+        "known_Y_morph": 21,
+        "unsexed_died_early": 13,
+        "sexed": 149,
+        "known_F": 26,
+        "known_H": 102,
+        "Y_fraction_lower": 0.12962962962962962,
+        "Y_fraction_upper": 0.20987654320987653,
+        "H_fraction_among_sexed": 0.6845637583892618,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.25925925925925924,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.41975308641975306
+      },
+      "strict_minimum_center_minus_far_Y_fraction": 0.11444778111444781,
+      "known_Y_fraction_center_minus_far": 0.19469469469469472
+    },
+    "2": {
+      "center": {
+        "mothers": 4,
+        "germinated": 187,
+        "known_Y_morph": 79,
+        "unsexed_died_early": 10,
+        "sexed": 177,
+        "known_F": 31,
+        "known_H": 67,
+        "Y_fraction_lower": 0.42245989304812837,
+        "Y_fraction_upper": 0.47593582887700536,
+        "H_fraction_among_sexed": 0.3785310734463277,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.8449197860962567,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.9518716577540107
+      },
+      "far": {
+        "mothers": 4,
+        "germinated": 112,
+        "known_Y_morph": 18,
+        "unsexed_died_early": 6,
+        "sexed": 106,
+        "known_F": 16,
+        "known_H": 72,
+        "Y_fraction_lower": 0.16071428571428573,
+        "Y_fraction_upper": 0.21428571428571427,
+        "H_fraction_among_sexed": 0.6792452830188679,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.32142857142857145,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.42857142857142855
+      },
+      "strict_minimum_center_minus_far_Y_fraction": 0.2081741787624141,
+      "known_Y_fraction_center_minus_far": 0.26174560733384267
+    },
+    "3": {
+      "center": {
+        "mothers": 4,
+        "germinated": 119,
+        "known_Y_morph": 49,
+        "unsexed_died_early": 3,
+        "sexed": 116,
+        "known_F": 20,
+        "known_H": 47,
+        "Y_fraction_lower": 0.4117647058823529,
+        "Y_fraction_upper": 0.4369747899159664,
+        "H_fraction_among_sexed": 0.4051724137931034,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.8235294117647058,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.8739495798319328
+      },
+      "far": {
+        "mothers": 1,
+        "germinated": 51,
+        "known_Y_morph": 2,
+        "unsexed_died_early": 3,
+        "sexed": 48,
+        "known_F": 10,
+        "known_H": 36,
+        "Y_fraction_lower": 0.0392156862745098,
+        "Y_fraction_upper": 0.09803921568627451,
+        "H_fraction_among_sexed": 0.75,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.0784313725490196,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.19607843137254902
+      },
+      "strict_minimum_center_minus_far_Y_fraction": 0.3137254901960784,
+      "known_Y_fraction_center_minus_far": 0.37254901960784315
+    }
+  },
+  "H_center_vs_far_leave_one_block_out": {
+    "1": {
+      "center": {
+        "mothers": 8,
+        "germinated": 306,
+        "known_Y_morph": 128,
+        "unsexed_died_early": 13,
+        "sexed": 293,
+        "known_F": 51,
+        "known_H": 114,
+        "Y_fraction_lower": 0.41830065359477125,
+        "Y_fraction_upper": 0.46078431372549017,
+        "H_fraction_among_sexed": 0.3890784982935154,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.8366013071895425,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.9215686274509803
+      },
+      "far": {
+        "mothers": 5,
+        "germinated": 163,
+        "known_Y_morph": 20,
+        "unsexed_died_early": 9,
+        "sexed": 154,
+        "known_F": 26,
+        "known_H": 108,
+        "Y_fraction_lower": 0.12269938650306748,
+        "Y_fraction_upper": 0.17791411042944785,
+        "H_fraction_among_sexed": 0.7012987012987013,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.24539877300613497,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.3558282208588957
+      },
+      "strict_minimum_center_minus_far_Y_fraction": 0.2403865431653234,
+      "known_Y_fraction_center_minus_far": 0.29560126709170376
+    },
+    "2": {
+      "center": {
+        "mothers": 8,
+        "germinated": 304,
+        "known_Y_morph": 109,
+        "unsexed_died_early": 13,
+        "sexed": 291,
+        "known_F": 61,
+        "known_H": 121,
+        "Y_fraction_lower": 0.35855263157894735,
+        "Y_fraction_upper": 0.40131578947368424,
+        "H_fraction_among_sexed": 0.41580756013745707,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.7171052631578947,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.8026315789473685
+      },
+      "far": {
+        "mothers": 5,
+        "germinated": 213,
+        "known_Y_morph": 23,
+        "unsexed_died_early": 16,
+        "sexed": 197,
+        "known_F": 36,
+        "known_H": 138,
+        "Y_fraction_lower": 0.107981220657277,
+        "Y_fraction_upper": 0.18309859154929578,
+        "H_fraction_among_sexed": 0.700507614213198,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.215962441314554,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.36619718309859156
+      },
+      "strict_minimum_center_minus_far_Y_fraction": 0.17545404002965156,
+      "known_Y_fraction_center_minus_far": 0.25057141092167035
+    },
+    "3": {
+      "center": {
+        "mothers": 8,
+        "germinated": 372,
+        "known_Y_morph": 139,
+        "unsexed_died_early": 20,
+        "sexed": 352,
+        "known_F": 72,
+        "known_H": 141,
+        "Y_fraction_lower": 0.3736559139784946,
+        "Y_fraction_upper": 0.4274193548387097,
+        "H_fraction_among_sexed": 0.4005681818181818,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.7473118279569892,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.8548387096774194
+      },
+      "far": {
+        "mothers": 8,
+        "germinated": 274,
+        "known_Y_morph": 39,
+        "unsexed_died_early": 19,
+        "sexed": 255,
+        "known_F": 42,
+        "known_H": 174,
+        "Y_fraction_lower": 0.14233576642335766,
+        "Y_fraction_upper": 0.2116788321167883,
+        "H_fraction_among_sexed": 0.6823529411764706,
+        "conditional_XY_male_pollen_share_proxy_lower": 0.2846715328467153,
+        "conditional_XY_male_pollen_share_proxy_upper": 0.4233576642335766
+      },
+      "strict_minimum_center_minus_far_Y_fraction": 0.1619770818617063,
+      "known_Y_fraction_center_minus_far": 0.23132014755513697
+    }
+  },
+  "H_center_vs_far_leave_one_mother_out_influence": {
+    "count": 21,
+    "min_strict_margin": 0.16055565202292066,
+    "max_strict_margin": 0.22630842713323812,
+    "all_leave_one_mother_out_strict_margins_positive": true,
+    "lowest_margin_removed_parent": "559"
+  },
+  "sown_greater_than_reported_crop_rows": [
+    {
+      "id": "546",
+      "mother_sex": "H",
+      "distance": 1.5,
+      "reported_mature_seeds": 54,
+      "reported_sown": 55
+    },
+    {
+      "id": "557",
+      "mother_sex": "H",
+      "distance": 0,
+      "reported_mature_seeds": 70,
+      "reported_sown": 71
+    },
+    {
+      "id": "559",
+      "mother_sex": "H",
+      "distance": 0,
+      "reported_mature_seeds": 68,
+      "reported_sown": 70
+    }
+  ],
+  "H_center_vs_far_excluding_seed_crop_mismatch": {
+    "center": {
+      "mothers": 10,
+      "germinated": 416,
+      "known_Y_morph": 153,
+      "unsexed_died_early": 22,
+      "sexed": 394,
+      "known_F": 74,
+      "known_H": 167,
+      "Y_fraction_lower": 0.36778846153846156,
+      "Y_fraction_upper": 0.4206730769230769,
+      "H_fraction_among_sexed": 0.42385786802030456,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.7355769230769231,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.8413461538461539
+    },
+    "far": {
+      "mothers": 8,
+      "germinated": 298,
+      "known_Y_morph": 41,
+      "unsexed_died_early": 22,
+      "sexed": 276,
+      "known_F": 52,
+      "known_H": 183,
+      "Y_fraction_lower": 0.13758389261744966,
+      "Y_fraction_upper": 0.21140939597315436,
+      "H_fraction_among_sexed": 0.6630434782608695,
+      "conditional_XY_male_pollen_share_proxy_lower": 0.2751677852348993,
+      "conditional_XY_male_pollen_share_proxy_upper": 0.4228187919463087
+    },
+    "strict_minimum_center_minus_far_Y_fraction": 0.1563790655653072,
+    "known_Y_fraction_center_minus_far": 0.2302045689210119
+  },
+  "interpretation_conditions": [
+    "The intervals on Y-morph offspring fractions are worst-case allocations of all unsexed germinated progeny, not sampling confidence intervals.",
+    "XY-origin pollen fraction = 2 x Y morph fraction is a conditional Mendelian proxy ONLY if every sampled male-sired progeny is 1:1 Y:non-Y, only XY pollen sires can produce Y carriers, and sex-specific survival/sex recognition are equal.",
+    "M and male-sterile Mst are grouped as presumed Y phenotypes by the 2024 paper's sex-determination model, not Y-genotyped seedlings.",
+    "No single individual mother can be interpreted as an independently randomized genotype; block-level replicates are only three.",
+    "The distance to the central male cluster also alters plant spacing; H on all rings provide pollen, and parental genetic backgrounds are unknown.",
+    "Detected offspring phenotype composition is not adult sex-ratio evolution, paternal genotype assignment, or proof of selfing.",
+    "Source crop/sown anomalies are never silently used to extrapolate absolute morph offspring per female flower."
+  ],
+  "provenance": {
+    "run_id": 43901716042,
+    "workflow_job_id": 133419766684,
+    "commit_at_execution": "6a4c17ea2f14d3e1ac4d0519a0d50e46974806e1",
+    "source_archive_md5_verified": true,
+    "source_raw_not_redistributed": true,
+    "analysis": "analysis/audit_mercurialis_2024_xy_pollen_route_bounds_v12.py",
+    "status": "completed_success"
+  }
+}

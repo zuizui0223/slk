@@ -1,0 +1,46 @@
+name: Mercurialis real 2024 spatial pollination and seed-stage audit
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/mercurialis_2024_pollen_distance_unfruiting_vs_seed_v5.json'
+      - 'analysis/reconstruct_mercurialis_2024_pollination_distance_v5.py'
+      - 'results/mercurialis_2024_pollen_distance_stage_v5.json'
+      - 'tests/test_mercurialis_2024_spatial_pollination_stage_v5.py'
+      - 'docs/SLK_MERCURIALIS_2024_SPATIAL_POLLINATION_STAGE_FILTER_V5_20261115.md'
+      - '.github/workflows/mercurialis-2024-spatial-fertility-stage-primary-v5.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-2024-distance-nonfruiting-not-genotype-fitness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate original pollen-source distance, stage outcomes, 2024 source QA and inference limits
+        run: python -m unittest discover -s tests -p 'test_mercurialis_2024_spatial_pollination_stage_v5.py' -v
+      - name: Reproduce 0.5 and 1.5 meter published LMM fitted values without estimating new effects
+        run: |
+          python analysis/reconstruct_mercurialis_2024_pollination_distance_v5.py --output /tmp/mercurialis_2024_source_distance_v5.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/mercurialis_2024_source_distance_v5.json').read_text(encoding='utf-8'))
+          b=json.loads(Path('results/mercurialis_2024_pollen_distance_stage_v5.json').read_text(encoding='utf-8'))
+          assert a==b, 'Original source 2024 distance LMM audit drifted'
+          z=a['model_fitted_unfruiting_fraction_by_original_ring']
+          assert z['0.5m']['published_model_conditional_hermaphrodite']==.194
+          assert z['0.5m']['published_model_conditional_female']==.247
+          assert z['1.5m']['published_model_conditional_hermaphrodite']==.278
+          assert z['1.5m']['published_model_conditional_female']==.331
+          assert a['source_unfruiting_proxy_not_direct_pollen_receipt']
+          assert a['source_no_detected_morph_distance_interaction_p']==.8
+          assert a['source_relative_seed_biomass_distance_test_p']==.17
+          assert a['source_common_garden_seed_count_model_internal_conflict']['t_and_p_cannot_both_be_correct']
+          assert a['original_restorer_fitness_cost_measured'] is False
+          assert a['SLK_Phi_g0_Delta_R_measured'] is False
+          print('PASS_SOURCE_2024_NONFRUITING_DISTANCE_IS_NOT_REAL_CMS_INVASION')
+          PY

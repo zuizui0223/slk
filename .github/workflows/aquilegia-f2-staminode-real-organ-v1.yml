@@ -1,0 +1,222 @@
+name: Source-verified Aquilegia F2 staminode real-organ reassembly
+on:
+  pull_request:
+    paths:
+      - "data/external/johns2024_aquilegia_f2_phenotypes_source.csv"
+      - "analysis/audit_aquilegia_f2_partial_reassembly_v1.py"
+      - "results/aquilegia_staminode_F2_real_source_v1.json"
+      - "tests/test_aquilegia_f2_partial_reassembly_v1.py"
+      - "analysis/audit_aquilegia_f2_within_plant_variability_v2.py"
+      - "tests/test_aquilegia_f2_within_plant_variability_v2.py"
+      - "results/aquilegia_staminode_F2_within_plant_source_v2.json"
+      - "analysis/audit_aquilegia_f2_positional_nestedness_v3.py"
+      - "tests/test_aquilegia_f2_positional_nestedness_v3.py"
+      - "results/aquilegia_f2_positional_nestedness_source_v3.json"
+      - "data/external/aquilegia_f2_PRJNA1089234_ena_run_metadata_v4.json"
+      - "analysis/audit_aquilegia_f2_ena_identity_match_v4.py"
+      - "tests/test_aquilegia_f2_ena_identity_match_v4.py"
+      - "results/aquilegia_f2_ena_phenotype_sample_link_independent_JS_v4.json"
+      - "analysis/audit_aquilegia_f2_allometry_v5.py"
+      - "data/external/johns2024_aquilegia_qtl_table1_publisher_v6.md"
+      - "analysis/audit_aquilegia_original_qtl_overlap_v6.py"
+      - "tests/test_aquilegia_original_qtl_overlap_v6.py"
+      - "results/aquilegia_published_QTL_interval_overlap_independent_JS_v6.json"
+      - "docs/SLK_ANTO_AQUILEGIA_GENETIC_PARTIAL_COUPLING_V6.md"
+      - "tests/test_aquilegia_f2_allometry_v5.py"
+      - "results/aquilegia_f2_mosaic_allometry_JS_receipt_v5.json"
+      - "data/evidence/aquilegia_original_processed_qtl_public_source_audit_20261021_v1.json"
+      - "docs/SLK_ANTO_AQUILEGIA_ORGAN_ALLOMETRY_AND_GENOTYPE_GATE_V5.md"
+      - "docs/SLK_ANTO_AQUILEGIA_SAME_PLANT_SRA_ID_LINK_V4.md"
+      - "docs/SLK_ANTO_REAL_STAMINODE_AFTERLIFE_AND_FUNCTION_V1.md"
+      - ".github/workflows/aquilegia-f2-staminode-real-organ-v1.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-f2-organ-reassembly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify plant, flower and whorl data geometry against source
+        run: |
+          python -m unittest discover -s tests -p "test_aquilegia_f2_partial_reassembly_v1.py" -v
+      - name: Verify the two-flower same-plant reproducibility and apparent structural loss
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_f2_within_plant_variability_v2.py' -v
+          python analysis/audit_aquilegia_f2_within_plant_variability_v2.py --output /tmp/aquilegia_F2_plant_repeat_v2.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/aquilegia_F2_plant_repeat_v2.json'))
+          b=json.load(open('results/aquilegia_staminode_F2_within_plant_source_v2.json'))
+          x=a['paired_flower_concordance']; y=a['mosaic_anther_and_staminode_filament']
+          z=b['within_plant']
+          assert a['source_scope']['source_git_blob_sha1']==b['source']['original_phenotype_git_blob_sha1']
+          assert (a['sample']['plants'],a['sample']['flowers'],a['sample']['whorl_rows'])==(231,400,800)
+          assert a['sample']['two_flower_plants']==b['source']['repeated_plants']==169
+          assert (x['AN_inner_same'],x['AN_outer_same'],x['AN_both_whorls_same'])==(139,139,119)
+          assert (x['LE_inner_same'],x['LE_outer_same'],x['FU_flower_level_same'])==(138,123,154)
+          for name in ('both_flower_mosaic','only_flower_a_mosaic','only_flower_b_mosaic','neither_flower_mosaic'):
+              expected={'both_flower_mosaic':'mosaic_both','only_flower_a_mosaic':'mosaic_only_a',
+                  'only_flower_b_mosaic':'mosaic_only_b','neither_flower_mosaic':'mosaic_none'}[name]
+              assert y[name]==z[expected],(name,y[name],z[expected])
+          for key in ('AN_inner','AN_outer','LE_inner','LE_outer','FU'):
+              p=a['replication_vs_marginal_null'][key]
+              for field,src in (('same_plant_agreement_fraction','within'),
+                                ('independently_paired_expected_agreement_fraction','independent'),
+                                ('agreement_excess_over_marginal_independence','excess')):
+                  assert math.isclose(p[field],z[key][src],rel_tol=0,abs_tol=1e-12),(key,field,p[field],z[key][src])
+          assert math.isclose(y['among_first_flower_negative_second_positive'],
+              z['mosaic_second_positive_conditional_first_negative'],rel_tol=0,abs_tol=1e-12)
+          assert all(v is False for v in a['inference_limits'].values())
+          print('PASS_AQUILEGIA_TWO_FLOWER_PARTIAL_ORGAN_REASSEMBLY_AND_DETECTION_BIAS')
+          PY
+      - name: Check F2 organ positional nesting against source and independently frozen counts
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_f2_positional_nestedness_v3.py' -v
+          python analysis/audit_aquilegia_f2_positional_nestedness_v3.py \
+            --expected results/aquilegia_f2_positional_nestedness_source_v3.json \
+            --output /tmp/aquilegia_F2_positional_nesting_v3.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/aquilegia_F2_positional_nesting_v3.json'))
+          assert d['sample']['plants']==231 and d['sample']['flowers']==400
+          x=d['positionally_nested_anther']
+          assert (x['all_flowers']['inner_yes_outer_no_violation'],
+                  x['all_flowers']['outer_yes_inner_no'])==(0,99)
+          assert [q['all_flowers']['outer_high_inner_low_violation']
+                  for q in d['lateral_expansion_threshold_sensitivity']]==[1,1,0]
+          assert d['conjunctive_nesting_at_LE2']['all_flowers']['both_rules_hold']==399
+          assert d['conjunctive_nesting_at_LE2']['first_flower_per_plant']['both_rules_hold']==230
+          assert all(v is False for v in d['evidence_ceiling'].values())
+          print('PASS_ORIGINAL_AQUILEGIA_POSITIONAL_NESTING_NOT_FREE_COMPONENT_REASSEMBLY')
+          PY
+      - name: Match published F2 morphology plants to original SRA BioSample names
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_f2_ena_identity_match_v4.py' -v
+          python analysis/audit_aquilegia_f2_ena_identity_match_v4.py --output /tmp/aquilegia_F2_run_id_match_v4.json
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/aquilegia_F2_run_id_match_v4.json'))
+          i=json.load(open('results/aquilegia_f2_ena_phenotype_sample_link_independent_JS_v4.json'))
+          assert d['linked_plant_count']==i['metrics']['matched_phenotype_plants']==231
+          assert d['ENA_run_metadata']['total_run_rows']==i['metrics']['all_run_rows']==341
+          assert d['ENA_run_metadata']['F2_run_rows']==i['metrics']['f2_run_rows']==340
+          assert d['ENA_run_metadata']['canonical_F2_id_count']==i['metrics']['f2_distinct_canonical_ids']==336
+          assert d['ENA_run_metadata']['unphenotyped_SRA_F2_id_count']==i['metrics']['distinct_unphenotyped_F2_id']==105
+          assert d['ENA_run_metadata']['all_source_FASTQ_bytes']==i['metrics']['source_fastq_total_bytes']==78243926288
+          assert d['ENA_run_metadata']['phenotyped_plant_alias_matched_FASTQ_bytes']==i['metrics']['matched_phenotyped_FASTQ_bytes']==49374744454
+          assert d['ENA_run_metadata']['ambiguous_F2_id_list']==i['metrics']['duplicate_alias_base_ids']==['16','19','36','50']
+          assert d['ENA_run_metadata']['duplicated_alias_ids_present_in_phenotypes']==i['metrics']['phenotyped_F2_with_multiple_run_samples']==3
+          assert d['phenotypes']['mosaic_positive_plants']==i['metrics']['source_scored_plants_with_mosaic']==91
+          assert d['phenotypes']['nestedness_exception_plants']==i['metrics']['source_scored_plants_with_nestedness_exception']==1
+          a={x['plant']:x for x in d['linked_phenotype_plants']}
+          assert len(a)==len(i['linked_pairs'])==231
+          for v in i['linked_pairs']:
+              p=a[v['plant']]
+              assert set(p['run_accessions'])==set(v['runs'])
+              assert set(p['biosample_accessions'])==set(v['biosamples'])
+              assert p['scored_flower_count']==v['n_flowers']
+              assert p['mosaic_any_scored_flower']==v['mosaic_any']
+              assert p['positional_nesting_exception_any']==v['violator_any']
+          assert d['scientific_limits']['source_FASTQ_files_have_not_been_downloaded'] is True
+          assert d['scientific_limits']['marker_genotypes_computed_or_validated'] is False
+          assert d['scientific_limits']['functional_reexpression_genes_confirmed'] is False
+          print('PASS_ALL_231_ORIGINAL_F2_PHENOTYPE_TO_SRA_SAMPLE_ALIASES_NO_GENOTYPES_CALLED')
+          PY
+      - name: Test actual F2 organ mosaics across size classes without imputed gene or fitness effects
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_f2_allometry_v5.py' -v
+          python analysis/audit_aquilegia_f2_allometry_v5.py --output /tmp/aquilegia_mosaic_allometry_v5.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/aquilegia_mosaic_allometry_v5.json'))
+          b=json.load(open('results/aquilegia_f2_mosaic_allometry_JS_receipt_v5.json'))
+          pub=json.load(open('data/evidence/aquilegia_original_processed_qtl_public_source_audit_20261021_v1.json'))
+          assert a['source']['phenotype_git_blob_sha1']==b['source']['phenotype_source_blob']
+          assert a['source']['F2_plants']==b['source']['author_original_F2_plants']==231
+          assert a['source']['flowers']==b['source']['flowers']==400
+          assert a['source']['flowers_with_stamen_count']==b['source']['scored_flower_stamen_counts']==367
+          assert a['source']['one_per_plant_with_stamen_count']==b['source']['one_per_plant_scored_stamen_counts']==211
+          assert a['source']['size_tertile_cutoffs_calculated_on_all_available_flowers']==[37,43]
+          for left,right in [('first_flower_per_genotype','one_per_plant_groups'),('all_scored_flowers','all_scored_flower_groups')]:
+              for k in ('low','middle','high'):
+                  actual=a[left]['allometry_classes'][k]
+                  expected=b['morphology'][right][k]
+                  assert (actual['n'],actual['mosaic_count'],actual['anther_inner_only_violations'],actual['LE2_outer_only_violations'])==(
+                      expected['plants_or_flowers'],expected['mosaic'],expected['anther_reverse'],expected['expansion_reverse']),k
+          x=a['first_flower_per_genotype']['unadjusted_logit']
+          y=b['unadjusted_plant_independent_descriptive_logit']
+          assert math.isclose(x['OR_per_10_stamens'],y['odds_ratio'],rel_tol=0,abs_tol=1e-10)
+          assert math.isclose(x['lower_95_percent_Wald_CI'],y['wald_CI_95'][0],rel_tol=0,abs_tol=1e-10)
+          assert math.isclose(x['upper_95_percent_Wald_CI'],y['wald_CI_95'][1],rel_tol=0,abs_tol=1e-10)
+          assert x['lower_95_percent_Wald_CI']<1<x['upper_95_percent_Wald_CI']
+          assert all(v is False for v in a['biological_ceiling'].values())
+          assert pub['named_author_code_repo']['observed_paths'][0]['path']=='README.md'
+          assert pub['named_author_code_repo']['processed_genotype_or_marker_matrix_in_this_repo'] is False
+          assert pub['other_original_sources']['original_F2_pheno_IDs_with_ENA_run_aliases']==231
+          assert pub['other_original_sources']['raw_reads_downloaded_by_us']==0
+          print('PASS_ORIGINAL_F2_MOSAIC_WITHIN_ALLOMETRY_CLASSES_AND_PROCESSED_QTL_SOURCE_BLOCK')
+          PY
+      - name: Cross-check original-author QTL Table 1 interval relationships, not fabricated genotypes
+        run: |
+          python -m unittest discover -s tests -p 'test_aquilegia_original_qtl_overlap_v6.py' -v
+          python analysis/audit_aquilegia_original_qtl_overlap_v6.py --output /tmp/aquilegia_QTL_support_interval_v6.json
+          python - <<'PY'
+          import json,math
+          a=json.load(open('/tmp/aquilegia_QTL_support_interval_v6.json'))
+          b=json.load(open('results/aquilegia_published_QTL_interval_overlap_independent_JS_v6.json'))
+          assert a['schema']=='slk_aquilegia_2024_published_QTL_support_interval_audit_v6'
+          assert a['source']['original_table_rows']==b['source']['original_QTL_table_rows']==16
+          assert a['source']['author_reported_independent_QTL']==b['source']['independent_QTL_count_reported_by_authors']==9
+          assert a['source']['table_is_not_processed_329_by_599_marker_matrix'] is True
+          keys={
+              'anther_inner_vs_outer':('Anther, inner','Anther, outer',3,3),
+              'lateral_expansion_inner_vs_outer':('Lateral expansion, inner','Lateral expansion, outer',3,0),
+              'lateral_expansion_outer_vs_fusion':('Lateral expansion, outer','Fusion',2,2),
+              'lateral_expansion_inner_vs_fusion':('Lateral expansion, inner','Fusion',3,0),
+          }
+          for key,(left,right,n,overlap) in keys.items():
+              current=a['contrasts'][key]
+              independent=next(z for z in b['pairwise_trait_overlap'] if z['traits']==[left,right])
+              assert (current['same_chr_comparisons'],current['overlapping_support_regions'])==(n,overlap)
+              assert (independent['pairOnSameChromosome'],independent['intervalOverlaps'])==(n,overlap)
+              assert len(current['pairs'])==len(independent['comparison_details'])
+              for x,y in zip(current['pairs'],independent['comparison_details']):
+                  assert x['chromosome']==y['chr'] and x['A']==y['a'] and x['B']==y['b']
+                  assert x['shared_1_5_LOD_interval']==y['shared_interval']
+                  assert math.isclose(x['overlap_cM'],y['overlap'],abs_tol=1e-10,rel_tol=0)
+          major=next(x for x in a['reported_rows'] if x['name']=='LEOU-Q3')
+          assert major['PVE_percent']==25.5
+          assert a['interpretive_limits']['author_QTL_analyses_are_not_newly_refit'] is True
+          assert all(v is False for k,v in a['interpretive_limits'].items() if k!='author_QTL_analyses_are_not_newly_refit')
+          print('PASS_PUBLISHED_AQUILEGIA_QTL_16_ROWS_NINE_INDEPENDENT_LOCI_TRAIT_SUPPORT_INTERVALS')
+          PY
+      - name: Independently compare actual source reanalysis with frozen JS recount
+        run: |
+          python analysis/audit_aquilegia_f2_partial_reassembly_v1.py \
+            --expected results/aquilegia_staminode_F2_real_source_v1.json \
+            --output /tmp/aquilegia_real_reassembly_v1.json
+          python - <<'PY'
+          import json
+          d=json.load(open("/tmp/aquilegia_real_reassembly_v1.json"))
+          s,m,p=d["source"],d["morphology"],d["paired_whorls"]
+          assert (s["unique_f2_plants"],s["scored_flowers"],s["scored_whorl_rows"])==(231,400,800)
+          assert (s["plants_scored_one_flower"],s["plants_scored_two_flowers"])==(62,169)
+          assert (m["non_endpoint_whorl_rows"],m["anther_present_LEge2_fused_whorl_rows"])==(441,187)
+          assert (m["flowers_with_any_anther_present_LEge2_fused_whorl"],m["plants_with_any_anther_present_LEge2_fused_whorl"])==(129,91)
+          assert (p["outer_anther_yes_inner_no"],p["inner_anther_yes_outer_no"])==(99,0)
+          assert (p["LE_inner_greater"],p["LE_outer_greater"])==(181,2)
+          assert (p["fusion_identical_by_scoring"],p["fused_flowers"],p["fusion_independent_whorl_measurements"])==(400,234,0)
+          assert all(v is False for v in d["biological_claim_limits"].values())
+          assert d["interpretation"]["genetic_modularity_not_inferred_from_morphology_alone"]
+          print("PASS_AQUILEGIA_REAL_F2_SOURCE_ORGAN_MOSAIC_NOT_AN_ADAPTATION_OR_REGAIN_ESTIMATE")
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aquilegia-original-f2-whorl-reassembly-v1
+          path: /tmp/aquilegia_real_reassembly_v1.json
+          retention-days: 30

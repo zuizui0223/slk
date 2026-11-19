@@ -1,0 +1,964 @@
+{
+  "source_doi": "10.6084/m9.figshare.26521189.v1",
+  "source_zip_md5": "365ab41f1d6192344a3b3fec87654e49",
+  "data_csv": "Data_field_experiment/Pollination and distance/Data_pollen_limitation_and_distance.csv",
+  "analysis": "exploratory within-original-experiment plant-stage accounting; not fitted paper GLMM, no causal mediation",
+  "denominators": {
+    "N_all": 84,
+    "N_female_or_hermaphrodite": 72,
+    "N_with_measured_germination": 71,
+    "N_expected_germinants_defined": 72,
+    "N_flagged_observation": 8,
+    "N_with_zero_seed": 1,
+    "N_with_vegetative_mass": 59
+  },
+  "by_sex": {
+    "F": {
+      "n_plants": 38,
+      "flowers": {
+        "n": 38,
+        "mean": 65.86842105263158
+      },
+      "seeds": {
+        "n": 38,
+        "mean": 93.21052631578948
+      },
+      "seedmass": {
+        "n": 38,
+        "mean": 0.17034210526315788
+      },
+      "vegetative_mass": {
+        "n": 25,
+        "mean": 4.0349639999999996
+      },
+      "height_cm": {
+        "n": 38,
+        "mean": 27.05263157894737
+      },
+      "seed_mass_per_vegetative_mass": {
+        "n": 25,
+        "mean": 0.047715440865603205
+      },
+      "average_seed_mass": {
+        "n": 38,
+        "mean": 0.0018074148066771724
+      },
+      "unfruiting_fraction": {
+        "n": 38,
+        "mean": 0.2695452539586882
+      },
+      "seeds_per_female_flower": {
+        "n": 38,
+        "mean": 1.35815854783355
+      },
+      "seeds_per_fruiting_flower": {
+        "n": 38,
+        "mean": 1.8528643458480325
+      },
+      "germination_rate": {
+        "n": 38,
+        "mean": 0.5890618115237611
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 38,
+        "mean": 0.8110964910479277
+      }
+    },
+    "H": {
+      "n_plants": 34,
+      "flowers": {
+        "n": 34,
+        "mean": 71.97058823529412
+      },
+      "seeds": {
+        "n": 34,
+        "mean": 80.67647058823529
+      },
+      "seedmass": {
+        "n": 34,
+        "mean": 0.14278823529411766
+      },
+      "vegetative_mass": {
+        "n": 34,
+        "mean": 3.868679411764706
+      },
+      "height_cm": {
+        "n": 34,
+        "mean": 24.573529411764707
+      },
+      "seed_mass_per_vegetative_mass": {
+        "n": 34,
+        "mean": 0.03906065292772305
+      },
+      "average_seed_mass": {
+        "n": 33,
+        "mean": 0.0017800583813452956
+      },
+      "unfruiting_fraction": {
+        "n": 34,
+        "mean": 0.19172115316277147
+      },
+      "seeds_per_female_flower": {
+        "n": 34,
+        "mean": 1.4458330386391884
+      },
+      "seeds_per_fruiting_flower": {
+        "n": 34,
+        "mean": 1.7978944276619704
+      },
+      "germination_rate": {
+        "n": 33,
+        "mean": 0.5742799695924102
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 34,
+        "mean": 0.8362938831454992
+      }
+    }
+  },
+  "by_sex_distance": {
+    "F_0.0": {
+      "n_plants": 12,
+      "flowers": {
+        "n": 12,
+        "mean": 73.16666666666667
+      },
+      "seeds": {
+        "n": 12,
+        "mean": 113.33333333333333
+      },
+      "seedmass": {
+        "n": 12,
+        "mean": 0.19956666666666667
+      },
+      "vegetative_mass": {
+        "n": 5,
+        "mean": 4.557119999999999
+      },
+      "height_cm": {
+        "n": 12,
+        "mean": 30.875
+      },
+      "seed_mass_per_vegetative_mass": {
+        "n": 5,
+        "mean": 0.06775018200457802
+      },
+      "average_seed_mass": {
+        "n": 12,
+        "mean": 0.0017243627796520993
+      },
+      "unfruiting_fraction": {
+        "n": 12,
+        "mean": 0.20830006562861328
+      },
+      "seeds_per_female_flower": {
+        "n": 12,
+        "mean": 1.4972901002426136
+      },
+      "seeds_per_fruiting_flower": {
+        "n": 12,
+        "mean": 1.8904707789882975
+      },
+      "germination_rate": {
+        "n": 12,
+        "mean": 0.6094228922562838
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 12,
+        "mean": 0.9160424080511245
+      }
+    },
+    "F_0.5": {
+      "n_plants": 11,
+      "flowers": {
+        "n": 11,
+        "mean": 73.27272727272727
+      },
+      "seeds": {
+        "n": 11,
+        "mean": 105.0909090909091
+      },
+      "seedmass": {
+        "n": 11,
+        "mean": 0.1891727272727273
+      },
+      "vegetative_mass": {
+        "n": 5,
+        "mean": 3.17662
+      },
+      "height_cm": {
+        "n": 11,
+        "mean": 25.863636363636363
+      },
+      "seed_mass_per_vegetative_mass": {
+        "n": 5,
+        "mean": 0.06398918250229638
+      },
+      "average_seed_mass": {
+        "n": 11,
+        "mean": 0.0017399238443123076
+      },
+      "unfruiting_fraction": {
+        "n": 11,
+        "mean": 0.2322576415223078
+      },
+      "seeds_per_female_flower": {
+        "n": 11,
+        "mean": 1.3907638510539686
+      },
+      "seeds_per_fruiting_flower": {
+        "n": 11,
+        "mean": 1.7965715497947108
+      },
+      "germination_rate": {
+        "n": 11,
+        "mean": 0.6789442457599437
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 11,
+        "mean": 0.9493623072277461
+      }
+    },
+    "F_1.5": {
+      "n_plants": 15,
+      "flowers": {
+        "n": 15,
+        "mean": 54.6
+      },
+      "seeds": {
+        "n": 15,
+        "mean": 68.4
+      },
+      "seedmass": {
+        "n": 15,
+        "mean": 0.13315333333333335
+      },
+      "vegetative_mass": {
+        "n": 15,
+        "mean": 4.147026666666666
+      },
+      "height_cm": {
+        "n": 15,
+        "mean": 24.866666666666667
+      },
+      "seed_mass_per_vegetative_mass": {
+        "n": 15,
+        "mean": 0.03561261327371387
+      },
+      "average_seed_mass": {
+        "n": 15,
+        "mean": 0.0019233498006981317
+      },
+      "unfruiting_fraction": {
+        "n": 15,
+        "mean": 0.3458856537427604
+      },
+      "seeds_per_female_flower": {
+        "n": 15,
+        "mean": 1.2229427502113264
+      },
+      "seeds_per_fruiting_flower": {
+        "n": 15,
+        "mean": 1.864060583108256
+      },
+      "germination_rate": {
+        "n": 15,
+        "mean": 0.506859161831209
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 15,
+        "mean": 0.6257448255801703
+      }
+    },
+    "H_0.0": {
+      "n_plants": 12,
+      "flowers": {
+        "n": 12,
+        "mean": 54.5
+      },
+      "seeds": {
+        "n": 12,
+        "mean": 85.66666666666667
+      },
+      "seedmass": {
+        "n": 12,
+        "mean": 0.15033333333333335
+      },
+      "vegetative_mass": {
+        "n": 12,
+        "mean": 4.550883333333333
+      },
+      "height_cm": {
+        "n": 12,
+        "mean": 27.125
+      },
+      "seed_mass_per_vegetative_mass": {
+        "n": 12,
+        "mean": 0.037110529599819024
+      },
+      "average_seed_mass": {
+        "n": 12,
+        "mean": 0.0017513163719015887
+      },
+      "unfruiting_fraction": {
+        "n": 12,
+        "mean": 0.15826958572736063
+      },
+      "seeds_per_female_flower": {
+        "n": 12,
+        "mean": 1.554213722520452
+      },
+      "seeds_per_fruiting_flower": {
+        "n": 12,
+        "mean": 1.8428085428236667
+      },
+      "germination_rate": {
+        "n": 12,
+        "mean": 0.5885940260126723
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 12,
+        "mean": 0.9267728222009887
+      }
+    },
+    "H_0.5": {
+      "n_plants": 13,
+      "flowers": {
+        "n": 13,
+        "mean": 102.6923076923077
+      },
+      "seeds": {
+        "n": 13,
+        "mean": 83.61538461538461
+      },
+      "seedmass": {
+        "n": 13,
+        "mean": 0.15016923076923078
+      },
+      "vegetative_mass": {
+        "n": 13,
+        "mean": 3.9462615384615387
+      },
+      "height_cm": {
+        "n": 13,
+        "mean": 24.615384615384617
+      },
+      "seed_mass_per_vegetative_mass": {
+        "n": 13,
+        "mean": 0.03825243469887275
+      },
+      "average_seed_mass": {
+        "n": 12,
+        "mean": 0.001850565315371112
+      },
+      "unfruiting_fraction": {
+        "n": 13,
+        "mean": 0.1753391589472297
+      },
+      "seeds_per_female_flower": {
+        "n": 13,
+        "mean": 1.3868066475511596
+      },
+      "seeds_per_fruiting_flower": {
+        "n": 13,
+        "mean": 1.7057360337293446
+      },
+      "germination_rate": {
+        "n": 12,
+        "mean": 0.5802835542511365
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 13,
+        "mean": 0.8032449572289422
+      }
+    },
+    "H_1.5": {
+      "n_plants": 9,
+      "flowers": {
+        "n": 9,
+        "mean": 50.888888888888886
+      },
+      "seeds": {
+        "n": 9,
+        "mean": 69.77777777777777
+      },
+      "seedmass": {
+        "n": 9,
+        "mean": 0.12206666666666667
+      },
+      "vegetative_mass": {
+        "n": 9,
+        "mean": 2.847011111111111
+      },
+      "height_cm": {
+        "n": 9,
+        "mean": 21.11111111111111
+      },
+      "seed_mass_per_vegetative_mass": {
+        "n": 9,
+        "mean": 0.042828243695489966
+      },
+      "average_seed_mass": {
+        "n": 9,
+        "mean": 0.001724371815235816
+      },
+      "unfruiting_fraction": {
+        "n": 9,
+        "mean": 0.2599861236102129
+      },
+      "seeds_per_female_flower": {
+        "n": 9,
+        "mean": 1.386585802813546
+      },
+      "seeds_per_fruiting_flower": {
+        "n": 9,
+        "mean": 1.871126620904612
+      },
+      "germination_rate": {
+        "n": 9,
+        "mean": 0.5471897814870925
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 9,
+        "mean": 0.7633926351732069
+      }
+    }
+  },
+  "adjusted_effects": {
+    "flowers": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": -5.504288939051919,
+        "distance_per_m": -10.690067720090294,
+        "r2": 0.019309365313018634
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -45.46930022573364,
+          19.966365688487596
+        ],
+        "distance_per_m_95pct": [
+          -18.261794582392778,
+          -3.6757336343115123
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "seeds": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 18.385327313769746,
+        "distance_per_m": -22.73312641083521,
+        "r2": 0.25871741582650265
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          2.0760722347629907,
+          36.25417607223476
+        ],
+        "distance_per_m_95pct": [
+          -34.25349887133185,
+          -11.812302483069972
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "seedmass": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 0.0371132054176073,
+        "distance_per_m": -0.0353726862302483,
+        "r2": 0.21185487407231585
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          0.005259322799097204,
+          0.07297871331828454
+        ],
+        "distance_per_m_95pct": [
+          -0.059584413092550845,
+          -0.01188923250564335
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "vegetative_mass": {
+      "ols": {
+        "n": 59,
+        "F_minus_H": 0.47611854622073163,
+        "distance_per_m": -0.6491747562635741,
+        "r2": 0.12995170328362893
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.03462232012558417,
+          0.9868157652554717
+        ],
+        "distance_per_m_95pct": [
+          -1.0462895544275785,
+          -0.28142641834053633
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "height_cm": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 2.8572234762979734,
+        "distance_per_m": -3.6858069977426613,
+        "r2": 0.31470508982944567
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          1.1074492099322757,
+          4.500677200902933
+        ],
+        "distance_per_m_95pct": [
+          -5.265632054176079,
+          -2.2694413092550847
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "seed_mass_per_vegetative_mass": {
+      "ols": {
+        "n": 59,
+        "F_minus_H": 0.01116286758164192,
+        "distance_per_m": -0.007128157734664835,
+        "r2": 0.21387928763095232
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          0.0006857870720518319,
+          0.02202657095852241
+        ],
+        "distance_per_m_95pct": [
+          -0.014724483215053184,
+          0.000620838269489986
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "average_seed_mass": {
+      "ols": {
+        "n": 71,
+        "F_minus_H": 0.00000956716837684932,
+        "distance_per_m": 0.00006955089906038809,
+        "r2": 0.06049559804823301
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.00008660522941236153,
+          0.00010761935193996017
+        ],
+        "distance_per_m_95pct": [
+          -0.0000075158480827081355,
+          0.0001463319961657204
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "unfruiting_fraction": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 0.0604112606354277,
+        "distance_per_m": 0.08478948235031934,
+        "r2": 0.4037766104428254
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          0.018583389503548823,
+          0.10187607705337814
+        ],
+        "distance_per_m_95pct": [
+          0.046294210182996065,
+          0.12487527258029131
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "seeds_per_female_flower": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": -0.046096125786579,
+        "distance_per_m": -0.1484789694484616,
+        "r2": 0.3358604907008722
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.1572749336837941,
+          0.08720768854993714
+        ],
+        "distance_per_m_95pct": [
+          -0.22764138214040702,
+          -0.07251795746918138
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "seeds_per_fruiting_flower": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 0.0655400835051132,
+        "distance_per_m": 0.010847246455638875,
+        "r2": 0.12227200425488738
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.021484095095500165,
+          0.19385515784129595
+        ],
+        "distance_per_m_95pct": [
+          -0.014857985322480834,
+          0.034833279891558926
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "germination_rate": {
+      "ols": {
+        "n": 71,
+        "F_minus_H": 0.022878910739760543,
+        "distance_per_m": -0.06101576106419518,
+        "r2": 0.1434796127963136
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.013358802266645556,
+          0.06006481226760154
+        ],
+        "distance_per_m_95pct": [
+          -0.08984361540644613,
+          -0.03199020242761127
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    },
+    "expected_germinants_per_female_flower": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 0.010808896314354617,
+        "distance_per_m": -0.16803400425777135,
+        "r2": 0.29201942937649383
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.07499191394547708,
+          0.10943960738239385
+        ],
+        "distance_per_m_95pct": [
+          -0.2352381908470721,
+          -0.09963320952726612
+        ],
+        "method": "plant-level stratified percentile bootstrap, fixed observed block/sex/distance cells; not block-level inference"
+      }
+    }
+  },
+  "post_placement_size_adjusted_sensitivity": {
+    "unfruiting_fraction|height_cm": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 0.03935484731084009,
+        "distance_per_m": 0.11195217236142194,
+        "covariates": [
+          "height_cm"
+        ],
+        "covariate_coefficients": {
+          "height_cm": 0.0073695367195672785
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.004242287525933586,
+          0.07778458480558008
+        ],
+        "distance_per_m_95pct": [
+          0.06551511682872847,
+          0.15469466548022653
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    },
+    "unfruiting_fraction|height_cm,vegetative_mass": {
+      "ols": {
+        "n": 59,
+        "F_minus_H": 0.002749636476482218,
+        "distance_per_m": 0.1397963618443561,
+        "covariates": [
+          "height_cm",
+          "vegetative_mass"
+        ],
+        "covariate_coefficients": {
+          "height_cm": 0.010403077791342629,
+          "vegetative_mass": -0.007866294544134497
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.04190432791261087,
+          0.04477456760478607
+        ],
+        "distance_per_m_95pct": [
+          0.09159707789136443,
+          0.1838602260936774
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    },
+    "seeds_per_female_flower|height_cm": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": -0.01906193971319302,
+        "distance_per_m": -0.18335296269195392,
+        "covariates": [
+          "height_cm"
+        ],
+        "covariate_coefficients": {
+          "height_cm": -0.009461698147746354
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.12142801179132676,
+          0.10353751624022503
+        ],
+        "distance_per_m_95pct": [
+          -0.2768168733637847,
+          -0.08257676832160982
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    },
+    "seeds|height_cm": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 14.775386648396353,
+        "distance_per_m": -18.076317212589096,
+        "covariates": [
+          "height_cm"
+        ],
+        "covariate_coefficients": {
+          "height_cm": 1.2634435826667334
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -2.2103731711528987,
+          33.28444965576333
+        ],
+        "distance_per_m_95pct": [
+          -30.56390686458484,
+          -5.13975502020585
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    },
+    "germination_rate|height_cm": {
+      "ols": {
+        "n": 71,
+        "F_minus_H": 0.021060729373279363,
+        "distance_per_m": -0.058559748817112955,
+        "covariates": [
+          "height_cm"
+        ],
+        "covariate_coefficients": {
+          "height_cm": 0.0006644038398498505
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.014041400475950797,
+          0.05864514715314154
+        ],
+        "distance_per_m_95pct": [
+          -0.09642674306003632,
+          -0.021775384063251184
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    },
+    "germination_rate|height_cm,average_seed_mass": {
+      "ols": {
+        "n": 71,
+        "F_minus_H": 0.021179147093995404,
+        "distance_per_m": -0.059199573640045175,
+        "covariates": [
+          "height_cm",
+          "average_seed_mass"
+        ],
+        "covariate_coefficients": {
+          "height_cm": 0.0006007900572745918,
+          "average_seed_mass": 0.005818362101228272
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.013816191906593485,
+          0.058631137003396214
+        ],
+        "distance_per_m_95pct": [
+          -0.09580718017929124,
+          -0.02081652220593567
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    },
+    "germination_rate|height_cm,vegetative_mass": {
+      "ols": {
+        "n": 58,
+        "F_minus_H": 0.01223045912189364,
+        "distance_per_m": -0.060480934094451225,
+        "covariates": [
+          "height_cm",
+          "vegetative_mass"
+        ],
+        "covariate_coefficients": {
+          "height_cm": -0.0052028328928527354,
+          "vegetative_mass": 0.022001964518509824
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.038070333440872954,
+          0.06555807144328592
+        ],
+        "distance_per_m_95pct": [
+          -0.10778620319551332,
+          -0.01700793740855744
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    },
+    "expected_germinants_per_female_flower|height_cm": {
+      "ols": {
+        "n": 72,
+        "F_minus_H": 0.019547966597381734,
+        "distance_per_m": -0.17930737040156366,
+        "covariates": [
+          "height_cm"
+        ],
+        "covariate_coefficients": {
+          "height_cm": -0.003058588295777982
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.06342884595126713,
+          0.11744549532315561
+        ],
+        "distance_per_m_95pct": [
+          -0.26521582674519256,
+          -0.09470175925138696
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    },
+    "expected_germinants_per_female_flower|height_cm,average_seed_mass": {
+      "ols": {
+        "n": 71,
+        "F_minus_H": 0.0020171284913702214,
+        "distance_per_m": -0.20510136281806055,
+        "covariates": [
+          "height_cm",
+          "average_seed_mass"
+        ],
+        "covariate_coefficients": {
+          "height_cm": -0.0066707098783808936,
+          "average_seed_mass": 0.14552338503552842
+        }
+      },
+      "bootstrap": {
+        "successful_bootstraps": 1200,
+        "F_minus_H_95pct": [
+          -0.07578174482262728,
+          0.08846374228687529
+        ],
+        "distance_per_m_95pct": [
+          -0.28000042087019195,
+          -0.12420442635087375
+        ],
+        "method": "conditional plant bootstrap within sex x distance x block, exploratory; post-placement covariates"
+      }
+    }
+  },
+  "sensitivity_excluding_observation_flags": {
+    "n": 64,
+    "estimates": {
+      "flowers": {
+        "n": 64,
+        "F_minus_H": 7.941076387914088,
+        "distance_per_m": -8.738188024372686,
+        "r2": 0.13952423110739842
+      },
+      "seeds": {
+        "n": 64,
+        "F_minus_H": 8.906536850630692,
+        "distance_per_m": -21.75005813488459,
+        "r2": 0.2326849032004772
+      },
+      "unfruiting_fraction": {
+        "n": 64,
+        "F_minus_H": 0.04167431188645316,
+        "distance_per_m": 0.07942357515445625,
+        "r2": 0.37105970309611647
+      },
+      "seeds_per_female_flower": {
+        "n": 64,
+        "F_minus_H": -0.061384757138288164,
+        "distance_per_m": -0.14086523028117232,
+        "r2": 0.3633086879213214
+      },
+      "germination_rate": {
+        "n": 64,
+        "F_minus_H": 0.03114133555557174,
+        "distance_per_m": -0.05613409580660251,
+        "r2": 0.1388022139086108
+      },
+      "expected_germinants_per_female_flower": {
+        "n": 64,
+        "F_minus_H": 0.016399016572478706,
+        "distance_per_m": -0.15179086635122963,
+        "r2": 0.24459241946591592
+      }
+    }
+  },
+  "cautions": [
+    "Sex-by-distance nonrandom allocation cannot be assumed to identify causal effect without original randomization details.",
+    "Unfruiting flowers are not a direct measurement of pollen delivery/fertilization.",
+    "Seeds per fruiting flower is a retrospective ratio and need not be statistically independent from unfruiting fraction.",
+    "Expected germinants = (mature seeds/female flower) × (sown germinants/sown seeds). No field offspring survival, seed paternity, or lifetime fitness.",
+    "Bootstrap conditions on only 3 fixed experimental blocks and small cells; exploratory confidence intervals are not population-wide block inference.",
+    "F/H hexaploid 2024 raw data and diploid 2025 G8 are independent genetic systems, not longitudinal evolution.",
+    "The original Table 2 sex/distance mixed model used N=71; our unweighted fixed-block exploratory models use N=72 for reproductive flower outcomes. Their p-values are not replicated.",
+    "Missing vegetative mass especially in F plants makes biomass-normalized outcomes a selected subset, not equivalent to original published mixed model.",
+    "Plant height and average seed mass were measured after placement; their statistical adjustment may block a true causal pathway or induce collider bias, not identify a direct pollen effect.",
+    "Distance is to the central male group, but hermaphrodite plants on rings are additional pollen sources; distance does not equal nearest available pollen donor."
+  ],
+  "run_provenance": {
+    "github_actions_run_id": 43892951238,
+    "commit": "b76cf60b16f00509103108210fceac1d19795dde",
+    "script": "analysis/reanalyze_mercurialis_2024_parent_to_germination_v1.py",
+    "status": "success",
+    "raw_archive_copied_to_repository": false
+  }
+}

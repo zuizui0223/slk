@@ -1,0 +1,384 @@
+{
+  "schema": "slk_original_published_Aquilegia_QTL_trait_interval_graph_v6",
+  "audit_date": "2026-10-21",
+  "source": {
+    "doi": "10.1186/s13227-024-00225-3",
+    "original_table_url": "https://link.springer.com/article/10.1186/s13227-024-00225-3/tables/1",
+    "git_source_blob_sha": "725aae08e33b09d62208935a5c00da6ffef3df57",
+    "original_QTL_table_rows": 16,
+    "independent_QTL_count_reported_by_authors": 9,
+    "independent_QTL_count_not_reinferred": true
+  },
+  "traits": [
+    "Anther, inner",
+    "Anther, outer",
+    "Lateral expansion, inner",
+    "Lateral expansion, outer",
+    "Fusion"
+  ],
+  "qtl_rows": [
+    {
+      "trait": "Anther, inner",
+      "chr": 2,
+      "locus": "ANIN-Q2",
+      "low": 22.7,
+      "high": 44.6,
+      "pve": 7.3,
+      "totalPVE": 50.8
+    },
+    {
+      "trait": "Anther, inner",
+      "chr": 3,
+      "locus": "ANIN-Q3",
+      "low": 24.4,
+      "high": 27.6,
+      "pve": 23.8,
+      "totalPVE": null
+    },
+    {
+      "trait": "Anther, inner",
+      "chr": 5,
+      "locus": "ANIN-Q5",
+      "low": 14.3,
+      "high": 22.9,
+      "pve": 12.3,
+      "totalPVE": null
+    },
+    {
+      "trait": "Anther, outer",
+      "chr": 2,
+      "locus": "ANOU-Q2",
+      "low": 3.2,
+      "high": 37.2,
+      "pve": 4.4,
+      "totalPVE": 44.3
+    },
+    {
+      "trait": "Anther, outer",
+      "chr": 3,
+      "locus": "ANOU-Q3",
+      "low": 15.9,
+      "high": 29.2,
+      "pve": 10.8,
+      "totalPVE": null
+    },
+    {
+      "trait": "Anther, outer",
+      "chr": 5,
+      "locus": "ANOU-Q5",
+      "low": 16,
+      "high": 25,
+      "pve": 9.5,
+      "totalPVE": null
+    },
+    {
+      "trait": "Anther, outer",
+      "chr": 6,
+      "locus": "ANOU-Q6",
+      "low": 0,
+      "high": 46.9,
+      "pve": 4.6,
+      "totalPVE": null
+    },
+    {
+      "trait": "Lateral expansion, inner",
+      "chr": 2,
+      "locus": "LEIN-Q2.1",
+      "low": 8.6,
+      "high": 28,
+      "pve": 4,
+      "totalPVE": 53
+    },
+    {
+      "trait": "Lateral expansion, inner",
+      "chr": 2,
+      "locus": "LEIN-Q2.2",
+      "low": 47.2,
+      "high": 56.3,
+      "pve": 9.2,
+      "totalPVE": null
+    },
+    {
+      "trait": "Lateral expansion, inner",
+      "chr": 3,
+      "locus": "LEIN-Q3",
+      "low": 31.7,
+      "high": 34.8,
+      "pve": 17.8,
+      "totalPVE": null
+    },
+    {
+      "trait": "Lateral expansion, inner",
+      "chr": 5,
+      "locus": "LEIN-Q5",
+      "low": 42.2,
+      "high": 46.7,
+      "pve": 5.1,
+      "totalPVE": null
+    },
+    {
+      "trait": "Lateral expansion, outer",
+      "chr": 2,
+      "locus": "LEOU-Q2",
+      "low": 38.8,
+      "high": 44.6,
+      "pve": 23.3,
+      "totalPVE": 50.8
+    },
+    {
+      "trait": "Lateral expansion, outer",
+      "chr": 3,
+      "locus": "LEOU-Q3",
+      "low": 24.4,
+      "high": 27.1,
+      "pve": 25.5,
+      "totalPVE": null
+    },
+    {
+      "trait": "Fusion",
+      "chr": 1,
+      "locus": "FU-Q1",
+      "low": 37.2,
+      "high": 51.8,
+      "pve": 4.4,
+      "totalPVE": 50.7
+    },
+    {
+      "trait": "Fusion",
+      "chr": 2,
+      "locus": "FU-Q2",
+      "low": 38.8,
+      "high": 44.6,
+      "pve": 21.9,
+      "totalPVE": null
+    },
+    {
+      "trait": "Fusion",
+      "chr": 3,
+      "locus": "FU-Q3",
+      "low": 24.4,
+      "high": 29.2,
+      "pve": 18.7,
+      "totalPVE": null
+    }
+  ],
+  "pairwise_trait_overlap": [
+    {
+      "traits": [
+        "Anther, inner",
+        "Anther, outer"
+      ],
+      "pairOnSameChromosome": 3,
+      "intervalOverlaps": 3,
+      "comparison_details": [
+        {
+          "chr": 2,
+          "a": "ANIN-Q2",
+          "b": "ANOU-Q2",
+          "overlap": 14.500000000000004,
+          "shared_interval": true,
+          "aInterval": [
+            22.7,
+            44.6
+          ],
+          "bInterval": [
+            3.2,
+            37.2
+          ]
+        },
+        {
+          "chr": 3,
+          "a": "ANIN-Q3",
+          "b": "ANOU-Q3",
+          "overlap": 3.200000000000003,
+          "shared_interval": true,
+          "aInterval": [
+            24.4,
+            27.6
+          ],
+          "bInterval": [
+            15.9,
+            29.2
+          ]
+        },
+        {
+          "chr": 5,
+          "a": "ANIN-Q5",
+          "b": "ANOU-Q5",
+          "overlap": 6.899999999999999,
+          "shared_interval": true,
+          "aInterval": [
+            14.3,
+            22.9
+          ],
+          "bInterval": [
+            16,
+            25
+          ]
+        }
+      ]
+    },
+    {
+      "traits": [
+        "Lateral expansion, inner",
+        "Lateral expansion, outer"
+      ],
+      "pairOnSameChromosome": 3,
+      "intervalOverlaps": 0,
+      "comparison_details": [
+        {
+          "chr": 2,
+          "a": "LEIN-Q2.1",
+          "b": "LEOU-Q2",
+          "overlap": 0,
+          "shared_interval": false,
+          "aInterval": [
+            8.6,
+            28
+          ],
+          "bInterval": [
+            38.8,
+            44.6
+          ]
+        },
+        {
+          "chr": 2,
+          "a": "LEIN-Q2.2",
+          "b": "LEOU-Q2",
+          "overlap": 0,
+          "shared_interval": false,
+          "aInterval": [
+            47.2,
+            56.3
+          ],
+          "bInterval": [
+            38.8,
+            44.6
+          ]
+        },
+        {
+          "chr": 3,
+          "a": "LEIN-Q3",
+          "b": "LEOU-Q3",
+          "overlap": 0,
+          "shared_interval": false,
+          "aInterval": [
+            31.7,
+            34.8
+          ],
+          "bInterval": [
+            24.4,
+            27.1
+          ]
+        }
+      ]
+    },
+    {
+      "traits": [
+        "Lateral expansion, outer",
+        "Fusion"
+      ],
+      "pairOnSameChromosome": 2,
+      "intervalOverlaps": 2,
+      "comparison_details": [
+        {
+          "chr": 2,
+          "a": "LEOU-Q2",
+          "b": "FU-Q2",
+          "overlap": 5.800000000000004,
+          "shared_interval": true,
+          "aInterval": [
+            38.8,
+            44.6
+          ],
+          "bInterval": [
+            38.8,
+            44.6
+          ]
+        },
+        {
+          "chr": 3,
+          "a": "LEOU-Q3",
+          "b": "FU-Q3",
+          "overlap": 2.700000000000003,
+          "shared_interval": true,
+          "aInterval": [
+            24.4,
+            27.1
+          ],
+          "bInterval": [
+            24.4,
+            29.2
+          ]
+        }
+      ]
+    },
+    {
+      "traits": [
+        "Lateral expansion, inner",
+        "Fusion"
+      ],
+      "pairOnSameChromosome": 3,
+      "intervalOverlaps": 0,
+      "comparison_details": [
+        {
+          "chr": 2,
+          "a": "LEIN-Q2.1",
+          "b": "FU-Q2",
+          "overlap": 0,
+          "shared_interval": false,
+          "aInterval": [
+            8.6,
+            28
+          ],
+          "bInterval": [
+            38.8,
+            44.6
+          ]
+        },
+        {
+          "chr": 2,
+          "a": "LEIN-Q2.2",
+          "b": "FU-Q2",
+          "overlap": 0,
+          "shared_interval": false,
+          "aInterval": [
+            47.2,
+            56.3
+          ],
+          "bInterval": [
+            38.8,
+            44.6
+          ]
+        },
+        {
+          "chr": 3,
+          "a": "LEIN-Q3",
+          "b": "FU-Q3",
+          "overlap": 0,
+          "shared_interval": false,
+          "aInterval": [
+            31.7,
+            34.8
+          ],
+          "bInterval": [
+            24.4,
+            29.2
+          ]
+        }
+      ]
+    }
+  ],
+  "biological_interpretation": {
+    "shared_outer_lateral_expansion_and_fusion_chr2_chr3_author_reported": true,
+    "different_inner_and_outer_lateral_expansion_QTL_support_intervals_on_shared_chromosomes": true,
+    "anther_inner_outer_QTL_chr2_chr3_chr5_overlapping": true,
+    "same_interval_does_not_prove_pleiotropy": true,
+    "distinct_intervals_do_not_prove_independent_gene_modules": true,
+    "paper_QTL_support_intervals_not_true_variant_causal_gene_resolution": true,
+    "F2_organs_do_not_have_measured_pollen_fertility": true,
+    "genotypes_not_refitted_from_original_reads": true,
+    "no_same_system_SLK_architecture_fitness_measured": true,
+    "natural_evolutionary_regain_rate_not_measured": true
+  }
+}

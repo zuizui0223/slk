@@ -1,0 +1,66 @@
+{
+  "schema": "aquilegia_original_F2_within_genotype_frozen_JS_v2",
+  "source": {
+    "doi": "10.1186/s13227-024-00225-3",
+    "original_phenotype_git_blob_sha1": "9911d4a5e85fa8629ad9890f28992e0f07e5feca",
+    "raw_whorl_rows": 800,
+    "plants": 231,
+    "flowers": 400,
+    "repeated_plants": 169
+  },
+  "within_plant": {
+    "AN_inner": {
+      "n": 169,
+      "same": 139,
+      "within": 0.8224852071005917,
+      "independent": 0.49945730191519905,
+      "excess": 0.32302790518539265
+    },
+    "AN_outer": {
+      "n": 169,
+      "same": 139,
+      "within": 0.8224852071005917,
+      "independent": 0.5879696089072511,
+      "excess": 0.23451559819334056
+    },
+    "LE_inner": {
+      "n": 169,
+      "same": 138,
+      "within": 0.8165680473372781,
+      "independent": 0.47683904625188195,
+      "excess": 0.3397290010853961
+    },
+    "LE_outer": {
+      "n": 169,
+      "same": 123,
+      "within": 0.727810650887574,
+      "independent": 0.31322432687931095,
+      "excess": 0.41458632400826306
+    },
+    "FU": {
+      "n": 169,
+      "same": 154,
+      "within": 0.9112426035502958,
+      "independent": 0.5193795735443437,
+      "excess": 0.39186303000595213
+    },
+    "anther_both_whorls_same": 119,
+    "mosaic_both": 38,
+    "mosaic_only_a": 23,
+    "mosaic_only_b": 16,
+    "mosaic_none": 92,
+    "mosaic_any_in_double": 77,
+    "mosaic_any_in_single": 14,
+    "mosaic_first_only_detection": 0.3609467455621302,
+    "mosaic_two_flower_detection": 0.4556213017751479,
+    "mosaic_second_positive_conditional_first_negative": 0.14814814814814814
+  },
+  "guards": {
+    "this_is_cross_F2_not_spontaneous_regain": true,
+    "pollen_viability_not_measured": true,
+    "no_locus_functional_capacity_tests": true,
+    "SLK_architecture_payoff_not_measured": true,
+    "marginal_null_not_causal_test": true,
+    "paper_LE_inner_prose_one_count_differs": true
+  }
+}

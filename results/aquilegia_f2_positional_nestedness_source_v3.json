@@ -1,0 +1,190 @@
+{
+  "schema": "slk_anto_aquilegia_source_positional_nesting_v3",
+  "source": {
+    "doi": "10.1186/s13227-024-00225-3",
+    "original_publisher_git_blob_sha1": "9911d4a5e85fa8629ad9890f28992e0f07e5feca",
+    "phenotype_source_owned_by_authors": true,
+    "within_flower_anther_score_not_fertility": true,
+    "whorls_are_positions_not_evolutionary_time": true
+  },
+  "sample": {
+    "plants": 231,
+    "flowers": 400,
+    "inner_outer_whorl_score_rows": 800,
+    "one_flower_per_plant_sensitivity_n": 231,
+    "double_scored_plants": 169
+  },
+  "positionally_nested_anther": {
+    "all_flowers": {
+      "n_flowers": 400,
+      "inner_anther_present": 184,
+      "outer_anther_present": 283,
+      "inner_yes_outer_no_violation": 0,
+      "outer_yes_inner_no": 99,
+      "inner_yes_outer_yes": 184,
+      "inner_no_outer_no": 117
+    },
+    "first_flower_per_plant": {
+      "n_flowers": 231,
+      "inner_anther_present": 115,
+      "outer_anther_present": 165,
+      "inner_yes_outer_no_violation": 0,
+      "outer_yes_inner_no": 50,
+      "inner_yes_outer_yes": 115,
+      "inner_no_outer_no": 66
+    },
+    "double_scored_flower_a": {
+      "n_flowers": 169,
+      "inner_anther_present": 85,
+      "outer_anther_present": 122,
+      "inner_yes_outer_no_violation": 0,
+      "outer_yes_inner_no": 37,
+      "inner_yes_outer_yes": 85,
+      "inner_no_outer_no": 47
+    },
+    "double_scored_flower_b": {
+      "n_flowers": 169,
+      "inner_anther_present": 69,
+      "outer_anther_present": 118,
+      "inner_yes_outer_no_violation": 0,
+      "outer_yes_inner_no": 49,
+      "inner_yes_outer_yes": 69,
+      "inner_no_outer_no": 51
+    }
+  },
+  "lateral_expansion_threshold_sensitivity": [
+    {
+      "threshold": 1,
+      "score_definition": "any_positive_expansion",
+      "all_flowers": {
+        "n_flowers": 400,
+        "inner_high": 378,
+        "outer_high": 290,
+        "outer_high_inner_low_violation": 1,
+        "inner_high_outer_low": 89,
+        "both_high": 289,
+        "both_low": 21,
+        "violation_plant_flower_keys": [
+          "39|a"
+        ]
+      },
+      "first_flower_per_plant": {
+        "n_flowers": 231,
+        "inner_high": 217,
+        "outer_high": 168,
+        "outer_high_inner_low_violation": 1,
+        "inner_high_outer_low": 50,
+        "both_high": 167,
+        "both_low": 13,
+        "violation_plant_flower_keys": [
+          "39|a"
+        ]
+      }
+    },
+    {
+      "threshold": 2,
+      "score_definition": "expansion_at_least_halfway",
+      "all_flowers": {
+        "n_flowers": 400,
+        "inner_high": 323,
+        "outer_high": 243,
+        "outer_high_inner_low_violation": 1,
+        "inner_high_outer_low": 81,
+        "both_high": 242,
+        "both_low": 76,
+        "violation_plant_flower_keys": [
+          "132|a"
+        ]
+      },
+      "first_flower_per_plant": {
+        "n_flowers": 231,
+        "inner_high": 186,
+        "outer_high": 141,
+        "outer_high_inner_low_violation": 1,
+        "inner_high_outer_low": 46,
+        "both_high": 140,
+        "both_low": 44,
+        "violation_plant_flower_keys": [
+          "132|a"
+        ]
+      }
+    },
+    {
+      "threshold": 3,
+      "score_definition": "any_lateral_expansion_beyond_halfway",
+      "all_flowers": {
+        "n_flowers": 400,
+        "inner_high": 262,
+        "outer_high": 174,
+        "outer_high_inner_low_violation": 0,
+        "inner_high_outer_low": 88,
+        "both_high": 174,
+        "both_low": 138,
+        "violation_plant_flower_keys": []
+      },
+      "first_flower_per_plant": {
+        "n_flowers": 231,
+        "inner_high": 147,
+        "outer_high": 98,
+        "outer_high_inner_low_violation": 0,
+        "inner_high_outer_low": 49,
+        "both_high": 98,
+        "both_low": 84,
+        "violation_plant_flower_keys": []
+      }
+    }
+  ],
+  "conjunctive_nesting_at_LE2": {
+    "all_flowers": {
+      "n_flowers": 400,
+      "both_rules_hold": 399,
+      "either_rule_fails": 1,
+      "observed_exception_keys": [
+        "132|a"
+      ]
+    },
+    "first_flower_per_plant": {
+      "n_flowers": 231,
+      "both_rules_hold": 230,
+      "either_rule_fails": 1,
+      "observed_exception_keys": [
+        "132|a"
+      ]
+    },
+    "double_scored_flower_a": {
+      "n_flowers": 169,
+      "both_rules_hold": 168,
+      "either_rule_fails": 1,
+      "observed_exception_keys": [
+        "132|a"
+      ]
+    },
+    "double_scored_flower_b": {
+      "n_flowers": 169,
+      "both_rules_hold": 169,
+      "either_rule_fails": 0,
+      "observed_exception_keys": []
+    },
+    "observed_exception_keys": [
+      "132|a"
+    ]
+  },
+  "marginal_independence_counterfactual": {
+    "one_flower_per_plant": {
+      "n_genotypes": 231,
+      "anther_expected_violations_if_unpaired": 32.857142857142854,
+      "LE2_expected_violations_if_unpaired": 27.467532467532468
+    },
+    "independent_pairing_is_biologically_realistic_null": false,
+    "marginal_null_means_genetically_independent_modules": false,
+    "contrasts_are_descriptive_morphology_not_selection": true
+  },
+  "evidence_ceiling": {
+    "observed_gene_modules_independent": false,
+    "pollen_viability_of_anther_positive_organs_known": false,
+    "whorl_order_equates_developmental_or_evolutionary_time": false,
+    "field_pollinator_fitness_of_mosaics_measured": false,
+    "natural_ancestral_trait_regain_rate_estimated": false,
+    "direct_same_lineage_SLK_ANTO_causal_test_complete": false
+  }
+}

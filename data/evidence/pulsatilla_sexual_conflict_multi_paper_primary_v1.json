@@ -1,0 +1,173 @@
+{
+  "schema": "PULSATILLA_MULTI_PAPER_SEXUAL_CONFLICT_PRIMARY_V1",
+  "date": "2026-11-15",
+  "primary_2023": {
+    "doi": "10.1098/rspb.2023.2137",
+    "journal": "Proceedings B",
+    "year": 2023,
+    "site": "Solalex, Vaud, Switzerland, 2022",
+    "male_flower_n": 46,
+    "bisexual_flower_n": 129,
+    "dual_fitness_flower_n": 57,
+    "delayed_male_days_per_100_pistils": 0.58,
+    "delay_se": 0.14,
+    "selection_pistil": {
+      "female_beta": 0.72,
+      "male_beta": -0.51,
+      "reported_SAS": 1.22,
+      "reported_SA_index": -0.58,
+      "original_interaction_p": "<0.001"
+    },
+    "selection_stamen": {
+      "female_beta": -0.08,
+      "female_p": ">0.05",
+      "male_beta": 0.42,
+      "male_p": "<0.01",
+      "original_interaction_p": "<0.01",
+      "not_supported_as_two_significant_opposite_gradients": true
+    },
+    "paternity_method": "10 microsatellite loci, up to 10 offspring per seed family",
+    "dryad": "https://doi.org/10.5061/dryad.rbnzs7hj0",
+    "source_2023_flower_counts": {
+      "male": 46,
+      "bisexual": 129,
+      "total": 175
+    }
+  },
+  "primary_2024": {
+    "doi": "10.1111/1365-2745.14378",
+    "journal": "Journal of Ecology",
+    "year": 2024,
+    "same_solalex_2022_population": true,
+    "inbreeding_delta": 0.95,
+    "selfing_mean": 0.45,
+    "selfing_flower_n": 53,
+    "genotyped_seed_n": 621,
+    "dryad": "https://doi.org/10.5061/dryad.hmgqnk9sd",
+    "finding": "higher stamen number raises selfing, greater pistil number and later flowering reduce it"
+  },
+  "primary_2025_current_biology": {
+    "doi": "10.1016/j.cub.2025.04.022",
+    "journal": "Current Biology",
+    "year": 2025,
+    "same_solalex_2022_population": true,
+    "analysed_single_flower_n": 87,
+    "fitness_landscape_male_bisexual_peaks": "ALREADY_PUBLISHED_BY_ORIGINAL_AUTHORS",
+    "paternity_assigned_n": 854,
+    "genetic_inbreeding_delta": 0.95,
+    "data": "https://doi.org/10.5281/zenodo.14289402"
+  },
+  "primary_2025_amnat": {
+    "doi": "10.1086/737646",
+    "journal": "The American Naturalist",
+    "year": 2025,
+    "same_solalex_2022_population": true,
+    "tagged_n": 70,
+    "initial_2020": {
+      "nonflowering": 37,
+      "male": 7,
+      "hermaphrodite": 26
+    },
+    "unmanipulated_2022_n": 89,
+    "gain_curve_exponent": {
+      "female": 1.26,
+      "female_CI": [
+        1.06,
+        1.46
+      ],
+      "male": 0.5,
+      "male_CI": [
+        0,
+        1.01
+      ],
+      "male_deviation_from_linear_p": 0.051
+    },
+    "cross_year_table_rows": {
+      "2020-2021": [
+        {
+          "from": "M",
+          "n": 7,
+          "p_to_H1": 0.43,
+          "p_to_H2": 0.29,
+          "p_to_M1": 0,
+          "p_to_M2": 0.14
+        },
+        {
+          "from": "H1",
+          "n": 20,
+          "p_to_M1": 0.1
+        },
+        {
+          "from": "H2",
+          "n": 5,
+          "p_to_M1": 0
+        },
+        {
+          "from": "H3plus",
+          "n": 1,
+          "p_to_M1": 0
+        }
+      ],
+      "2021-2022": [
+        {
+          "from": "M1",
+          "n": 5,
+          "p_to_H1": 0.4
+        },
+        {
+          "from": "M2",
+          "n": 1,
+          "p_to_H1": 0
+        },
+        {
+          "from": "H1",
+          "n": 22,
+          "p_to_M1": 0
+        },
+        {
+          "from": "H2",
+          "n": 15,
+          "p_to_M1": 0.07
+        },
+        {
+          "from": "H3plus",
+          "n": 4,
+          "p_to_M1": 0
+        }
+      ]
+    },
+    "author_reported_transition_rates": {
+      "2020-2021": {
+        "M_to_H": 0.71,
+        "H_to_M": 0.08
+      },
+      "2021-2022": {
+        "M_to_H": 0.33,
+        "H_to_M": 0.02
+      }
+    },
+    "authors_reported_sex_changes": {
+      "2020-2021": 7,
+      "2021-2022": 3
+    },
+    "data": "https://doi.org/10.5281/zenodo.7713765",
+    "andromonoecious_both_flower_morphs_n": 16,
+    "male_flower_opened_before_bisexual_count_from_88pct": 14,
+    "author_reported_male_first_fraction": 0.88,
+    "male_fitness_pistil_availability_p": 0.037,
+    "source_2025_flower_counts": {
+      "male": 45,
+      "bisexual": 130,
+      "total": 175
+    }
+  },
+  "inference_limits": [
+    "2023, 2024, Current Biology 2025 and Am Nat 2025 overlap in Solalex 2022 population and DNA sampling; NOT independent biological replicates",
+    "Original Table 1 reports rounded row proportions; reconstructed integers are unique nearest counts for the given row n, not raw reaccessed individual records",
+    "Year-to-year observed changes in sex expression do not demonstrate ancestral genome function reacquisition, historical appearance of andromonoecy, or selection driving sex change",
+    "2025 male power-law b=0.5 CI includes 1 and p=.051; not established as significantly saturating",
+    "No Dryad CSV or Zenodo raw ZIP fetched via current tools; cite publisher table only",
+    "No actual SLK architecture value Phi, accessibility g0, rare invasion Delta_R, realized full-cycle genotypic fitness or origin rates estimated",
+    "2023 primary paper reports 46 male/129 bisexual flowers, 2025 Am Nat reports 45 male/130 bisexual from apparently the same 175-flower Solalex 2022 cohort; provenance difference unresolved, retain each source's reported classification rather than silently pooling."
+  ]
+}

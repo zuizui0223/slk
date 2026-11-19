@@ -1,0 +1,86 @@
+{
+  "schema": "SLK_MERCURIALIS_2024_ORIGINAL_POLLEN_DISTANCE_SOURCE_LMM_REEXPRESSION_V5",
+  "source_doi": "10.1002/ajb2.16429",
+  "year_published": 2024,
+  "original_distance_experimental_plants_planted": 84,
+  "original_analyzed_distance_plants": 71,
+  "original_n_from_central_plus_rings": 84,
+  "source_unfruiting_proxy_not_direct_pollen_receipt": true,
+  "model_fitted_unfruiting_fraction_by_original_ring": {
+    "0.5m": {
+      "published_model_conditional_hermaphrodite": 0.194,
+      "published_model_conditional_female": 0.247,
+      "female_minus_hermaphrodite": 0.053,
+      "source_level": "LMM fitted-value arithmetic, NOT measured plant group mean",
+      "model_CI_with_covariances": null
+    },
+    "1.5m": {
+      "published_model_conditional_hermaphrodite": 0.278,
+      "published_model_conditional_female": 0.331,
+      "female_minus_hermaphrodite": 0.053,
+      "source_level": "LMM fitted-value arithmetic, NOT measured plant group mean",
+      "model_CI_with_covariances": null
+    }
+  },
+  "one_meter_difference_both_morphs": 0.084,
+  "one_meter_slope_95CI_from_original_model": [
+    0.047,
+    0.121
+  ],
+  "female_minus_hermaphrodite_offset": 0.053,
+  "original_female_offset_95CI": [
+    0.006,
+    0.1
+  ],
+  "original_female_offset_p": 0.029,
+  "original_slope_p": "<0.001",
+  "source_no_detected_morph_distance_interaction_p": 0.8,
+  "source_morph_by_distance_interaction_effect_estimated": null,
+  "source_relative_seed_biomass_morph_test_p": 0.58,
+  "source_relative_seed_biomass_distance_test_p": 0.17,
+  "full_model_prediction_CIs_without_covariance": null,
+  "common_garden_separate_male_effort_ratio": {
+    "estimate": 11.7,
+    "CI95": [
+      11.2,
+      12.9
+    ],
+    "source_report": "Original authors report ratio based on male-flower biomass/aboveground biomass, NOT actual paternal genotypes or pollen germination"
+  },
+  "source_common_garden_seed_count_model_internal_conflict": {
+    "reported_t": 2.91,
+    "reported_df": 213,
+    "reported_p": 0.097,
+    "reported_CI": [
+      -0.76,
+      9.46
+    ],
+    "CI_includes_zero": true,
+    "t_and_p_cannot_both_be_correct": true,
+    "independent_corrected_t": null,
+    "new_p_values": null,
+    "safe_conclusion": "No significant difference detected by printed p and CI; do not treat narrative t=2.91 as reliable"
+  },
+  "original_model_required_restorer_cost_rho_simulated_range": [
+    0.15,
+    0.4
+  ],
+  "original_restorer_fitness_cost_measured": false,
+  "actual_male_or_female_genotype_frequency_invasion": null,
+  "SLK_Phi_g0_Delta_R_measured": false,
+  "original_2024_raw_109pop_and_71plant_records_downloaded": false,
+  "limitation_receipt": [
+    "Directly verified primary 2024 Table 2 coefficients and 95% CIs; numerical predictions are re-expression of fitted published linear model at 0.5 and 1.5 m, NOT new data fits or actual individual observations",
+    "Fruit failure proxy cannot isolate failure of pollen receipt from resource-mediated fruit abortion, although original authors interpret it as pollen limitation",
+    "Distance effect p<.001 and female offset p=.029 support original source-specific associations, but interaction p=.80 does not prove exactly equal slopes across morphs",
+    "CIs of each printed coefficient cannot be combined to produce correct CI for a full 0.5/1.5m prediction without covariance of fitted coefficients",
+    "No detected seed biomass response does not establish absence of fitness costs or compensatory seed maturation",
+    "Separate common garden has 383 female-function and 201 male-function analyzed plant outcomes; not same 71 distance experiment plants and not 109 field population records",
+    "Original printed seed-count-per-biomass model narrative t=2.91 p=.097 is internally statistically inconsistent; no fabricated correction chosen",
+    "Original 2024 authors' >12% detectable difference power statement is NOT a confidence bound or proof that femaleness lacks any benefit",
+    "Model restorer cost rho=.15-.4 is an assumed simulation regime chosen to match morph frequencies, not measured cost or a source-calibrated SLK module K",
+    "Full 109-pop supplement S1, 3-year count supplement S2, 64-cross S3 and 39-cross S4 not downloaded; raw data analysis not performed",
+    "No same-plant genotype-specific paternity, maternal genetic transmission, CMS allele or rare mutant invasion fitness measured",
+    "No SLK Phi, g0, Delta_R nor full joint fitness calculated from this published source"
+  ]
+}

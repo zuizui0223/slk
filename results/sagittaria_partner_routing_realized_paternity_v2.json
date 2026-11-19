@@ -1,0 +1,119 @@
+{
+  "schema": "SLK_SAGITTARIA_PUBLISHED_ROUTE_TO_FITNESS_AUDIT_V2",
+  "source_dois": {
+    "mating_display_2006": "10.1098/rspb.2006.3599",
+    "natural_bateman_2022": "10.1098/rspb.2022.0919",
+    "temporal_opportunity_2023": "10.1098/rsos.231117",
+    "selfing_inbreeding_2002": "10.1111/j.0014-3820.2002.tb00847.x"
+  },
+  "experimental_transfer_2006": {
+    "array_trials": 20,
+    "plants_per_array": 4,
+    "observed_flower_visits": 3143,
+    "observed_foraging_trips": 872,
+    "mean_flower_visits_per_trip_computed": 3.6043578,
+    "original_sex_system_by_display_F": 4.91,
+    "original_sex_system_by_display_p": 0.041,
+    "original_low_display_winner": "dioecious",
+    "original_high_display_winner": "monoecious",
+    "outcome": "BETWEEN_PLANT_TRANSFER_SEQUENCE_PROXY_NOT_PATERNITY",
+    "crossing_display_value_measured_exactly": null,
+    "relative_lifetime_fitness_ratio": null
+  },
+  "bateman_natural_2022": {
+    "sex_function_gradients": {
+      "monoecious": {
+        "male_size_adjusted_beta": 1.02,
+        "male_size_adjusted_se": 0.35,
+        "female_size_adjusted_beta": 0.42,
+        "female_size_adjusted_se": 0.26,
+        "published_male_minus_female_size_adjusted": 0.6,
+        "published_male_minus_female_unadjusted": -0.03,
+        "sign_reversal_after_size_adjustment": true,
+        "genet_samples_for_sex_functions": {
+          "female": 25,
+          "male": 18
+        },
+        "different_estimands_and_not_a_causal_treatment": true
+      },
+      "dioecious": {
+        "male_size_adjusted_beta": 0.95,
+        "male_size_adjusted_se": 0.15,
+        "female_size_adjusted_beta": 0.2,
+        "female_size_adjusted_se": 0.25,
+        "published_male_minus_female_size_adjusted": 0.76,
+        "published_male_minus_female_unadjusted": -1.28,
+        "sign_reversal_after_size_adjustment": true,
+        "genet_samples_for_sex_functions": {
+          "female": 16,
+          "male": 9
+        },
+        "different_estimands_and_not_a_causal_treatment": true
+      }
+    },
+    "male_beta_monoecious_minus_dioecious_descriptive": 0.07,
+    "new_equivalence_test_or_p": null,
+    "cross_sex_effect_measured": false,
+    "published_unadjusted_vs_adjusted_signs_should_not_be_merged": true
+  },
+  "temporal_paternity_2023": {
+    "genotyped_seeds": 358,
+    "paternity_assigned_seeds": 312,
+    "reported_sires_mll": 52,
+    "regression_genets": 39,
+    "date_original_F": 0.0103,
+    "date_original_p": 0.92,
+    "opportunity_original_F": 1.41,
+    "opportunity_original_p": 0.24,
+    "evidence_for_positive_temporal_proxy_to_realized_siring": "NOT_DETECTED",
+    "spatial_causal_effect_estimated": null,
+    "temporal_proxy_hypothesis_proven_false": false
+  },
+  "marker_mating_2002": {
+    "population_count_by_system": {
+      "monoecious": 6,
+      "dioecious": 6
+    },
+    "population_mean_selfing": {
+      "monoecious": 0.41,
+      "dioecious": 0.11
+    },
+    "population_mean_marker_inbreeding_depression": {
+      "monoecious": 0.83,
+      "dioecious": 0.84
+    },
+    "monoecious_minus_dioecious_selfing_point_difference": 0.3,
+    "joint_delta_times_selfing_lifetime_fitness_loss": null
+  },
+  "genet_mutant_frequency_evidence": "ABSENT",
+  "rare_complete_dioecy_is_one_single_mutant": false,
+  "SLK_Phi_g0_Delta_R_identified": false,
+  "new_p_values": null,
+  "individual_original_data_downloaded": false,
+  "inference_contract": {
+    "structural_division_alternatives": [
+      "Monoecious plant with temporally separated male and female flowers",
+      "Dioecious population with distinct male and female individuals"
+    ],
+    "no_morph_equation": "Monoecy is not a bisexual flower: the sexes are separated at the organ/flower level already",
+    "candidate_relative_pairing": "One rare dioecious male plus one rare dioecious female are NOT the same single mutant genotype. Two loci and population genetic pairing must be modeled before comparing rare establishment.",
+    "direct_empirical_support": [
+      "sexual_system_by_display_interaction_on_pollinator_transfer_routes",
+      "size_adjusted_male_Bateman_gradients_detected_in_both_sex_systems",
+      "seasonal_mate_opportunity_index_not_detectably_associated_with_realized_paternity",
+      "selfing_and_marker_inbreeding_depression_population_differences"
+    ],
+    "no_direct_empirical_support": [
+      "genotype_frequency_manipulation_at_rarity",
+      "new_spontaneous_sex_determination_mutation_rate",
+      "fitness_of_all_sex_architectures_in_one_population_and_environment",
+      "within-genotype_monoecious_vs_dioecious_architecture_switching_total_fitness",
+      "SLK_Phi_g0_Delta_R_measured",
+      "phylogenetic_origin_from_the_extant_populations"
+    ],
+    "raw_data_reanalysis_performed": false,
+    "direct_new_p_values_calculated": false,
+    "pooling_not_permitted": true,
+    "study_dependence": "Repeated Sagittaria genus and partially overlapping field research teams, differing cohorts and estimands, not four independent sex-system evolutionary origins"
+  }
+}

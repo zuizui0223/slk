@@ -1,0 +1,45 @@
+name: Mercurialis female seed advantage versus genetic morph transmission
+on:
+  pull_request:
+    paths:
+      - 'data/evidence/mercurialis_2008_2012_2024_density_partner_composition_original_v2.json'
+      - 'data/evidence/mercurialis_2012_seed_advantage_and_CMS_prior_art_v4.json'
+      - 'analysis/analyze_mercurialis_2012_seed_advantage_morph_decline_v4.py'
+      - 'results/mercurialis_2012_seed_advantage_morph_decline_v4.json'
+      - 'tests/test_mercurialis_2012_seed_advantage_morph_decline_v4.py'
+      - 'docs/SLK_MERCURIALIS_SEED_ADVANTAGE_VERSUS_GENETIC_TRANSMISSION_V4_20261115.md'
+      - '.github/workflows/mercurialis-seed-advantage-morph-cms-v4.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-2012-original-plot-and-2025-cms-prior-art:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate 20 original plots, reciprocal seed output, rounding and model prior-art boundary
+        run: python -m unittest discover -s tests -p 'test_mercurialis_2012_seed_advantage_morph_decline_v4.py' -v
+      - name: Regenerate published 2012 original plot relative output and child morph concordance
+        run: |
+          python analysis/analyze_mercurialis_2012_seed_advantage_morph_decline_v4.py --output /tmp/mercurialis_seed_vs_morph_v4.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          a=json.loads(Path('/tmp/mercurialis_seed_vs_morph_v4.json').read_text())
+          b=json.loads(Path('results/mercurialis_2012_seed_advantage_morph_decline_v4.json').read_text())
+          assert a==b, 'Tracked publication-based result differs from independent Python output'
+          x=a['joint_outcomes_counted_from_original_plot_summary']
+          assert x['female_seed_allocation_higher_and_female_morph_decrease']==17
+          assert a['female_seed_biomass_allocation_higher_plots']==19
+          assert a['count_independent_experimental_plots']==20
+          assert a['Heredity_2025_is_existing_theory_not_new_SLK_causal_model']
+          assert not a['o_h_allocation_ratio_can_equal_Heredity_viable_seed_g']
+          assert a['source_ratio_definition'].find('aboveground biomass') >= 0
+          assert not a['CMS_cytotype_frequency_or_fatherhood_recovered']
+          assert not a['SLK_Phi_g0_Delta_R_identified']
+          print('PASS_REAL_20_PLOTS_FEMALE_SEED_BENEFIT_NOT_GENETIC_RARITY_AND_CMS_IS_PRIOR_ART')
+          PY

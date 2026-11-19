@@ -1,0 +1,66 @@
+{
+  "schema": "SLK_MERCURIALIS_2024_MATERNAL_BUFFER_DESCRIPTIVE_V15",
+  "input": "results/mercurialis_2024_morph_specific_germinants_v11.json",
+  "source_doi": "10.6084/m9.figshare.26521189.v1",
+  "publisher_zip_md5": "365ab41f1d6192344a3b3fec87654e49",
+  "data_scope": "Already-verified published 2024 hexaploid field ring cohort; no new mother-level model, paternity genotypes, survival, or raw ZIP retrieval.",
+  "denominator": "Estimated laboratory-germinated offspring per source female flower; mother-level seed-assay subsample assumed representative of original crop.",
+  "n_original_F_H_mothers": 72,
+  "n_with_sexed_progeny": 71,
+  "n_excluded_crop_inconsistent": 3,
+  "n_model_mothers": 69,
+  "n_independent_field_blocks": 3,
+  "cells": {
+    "F_center": {
+      "n_crop_consistent_mothers": 12,
+      "all_germinants": 0.916042408,
+      "H_like_germinants": 0.221576537,
+      "M_like_germinants": 0.383060328
+    },
+    "F_far": {
+      "n_crop_consistent_mothers": 15,
+      "all_germinants": 0.625744826,
+      "H_like_germinants": 0.202338741,
+      "M_like_germinants": 0.233295509
+    },
+    "H_center": {
+      "n_crop_consistent_mothers": 10,
+      "all_germinants": 0.915522615,
+      "H_like_germinants": 0.36581227,
+      "M_like_germinants": 0.334330139
+    },
+    "H_far": {
+      "n_crop_consistent_mothers": 8,
+      "all_germinants": 0.785180351,
+      "H_like_germinants": 0.489134845,
+      "M_like_germinants": 0.113426891
+    }
+  },
+  "descriptive_contrasts": {
+    "H_minus_F_center": -0.000519793,
+    "H_minus_F_far": 0.159435525,
+    "H_minus_F_change_in_center_far_difference": 0.159955318,
+    "H_far_over_F_far": 1.254793198,
+    "H_center_to_far_percent_change": -14.236924579,
+    "F_center_to_far_percent_change": -31.690408645,
+    "H_like_germinants_H_mother_far_minus_center": 0.123322576,
+    "M_like_germinants_H_mother_far_minus_center": -0.220903248
+  },
+  "source_existing_total_interaction": {
+    "F_minus_H_distance_slope": -0.090077116,
+    "conditional_bootstrap_95pct_interval": [
+      -0.225474822,
+      0.04904883
+    ],
+    "interval_crosses_zero": true,
+    "resampling_replicates": 1500,
+    "inference": "Source V11 exploratory 3-block fixed-block mother-bootstrap; 95% interval does not establish a generalized sex-by-distance advantage."
+  },
+  "biological_claim_boundary": [
+    "Means are already in V11; the newly juxtaposed H-versus-F far contrast is an arithmetic synthesis, not a new independent empirical experiment.",
+    "Do not call this a fitness benefit, reproductive assurance causally established, genotype-specific adaptability, or an increase in lifetime descendants.",
+    "H and F can differ in CMS/restorer nuclear and cytoplasmic background; pollen sources include nearby H plants at every ring.",
+    "Remote H sample excludes one crop-inconsistent mother; totals and source Y-like offspring fraction analyses have different denominators.",
+    "The sex-by-distance source-bootstrap interval includes zero. Male-like offspring phenotype does not genetically identify fathers."
+  ]
+}

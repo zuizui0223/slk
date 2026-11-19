@@ -1,0 +1,108 @@
+{
+  "schema": "SLK_MERCURIALIS_2012_POLLEN_EFFORT_TRANSMISSION_GAP_V3",
+  "source_doi": "10.1371/journal.pone.0035597",
+  "published_table": "Table 2, male-present plots only",
+  "plot_ids_ordered": [
+    1,
+    3,
+    8,
+    17,
+    19,
+    4,
+    12,
+    13,
+    15,
+    18
+  ],
+  "low_and_high_plot_counts": {
+    "low": 5,
+    "high": 5
+  },
+  "sex_composition_parental_male_share": {
+    "low": 0.32653061,
+    "high": 0.33333333
+  },
+  "offspring_male_frequency_minus_parent_male_fraction": {
+    "low": -0.01053061,
+    "high": -0.00733333,
+    "high_minus_low": 0.00319728,
+    "adjusted_gap_two_decimal_rounding_bounds": [
+      -0.00680272,
+      0.01319728
+    ],
+    "not_rare_allele_invasion_or_paternity": true
+  },
+  "published_metric_analyses": {
+    "ph": {
+      "high_minus_low_from_published_plot_means": -0.082,
+      "possible_labelings": 252,
+      "two_sided_extreme_labelings": 2,
+      "exploratory_two_sided_permutation_p": 0.0079365079,
+      "is_a_new_test_not_original_published_GLMM": true,
+      "p_value_from_printed_two_decimal_place_numbers": true,
+      "low_density_five_plot_unweighted_mean": 0.188,
+      "high_density_five_plot_unweighted_mean": 0.106,
+      "one_source_unit": "independently_manipulated_parental_plot",
+      "measurement_semantics": "hermaphrodite_over_male_fraction_of_aboveground_biomass_to_pollen",
+      "printed_2_decimal_group_gap_rounding_bounds": [
+        -0.092,
+        -0.072
+      ]
+    },
+    "male": {
+      "high_minus_low_from_published_plot_means": 0.01,
+      "possible_labelings": 252,
+      "two_sided_extreme_labelings": 210,
+      "exploratory_two_sided_permutation_p": 0.8333333333,
+      "is_a_new_test_not_original_published_GLMM": true,
+      "p_value_from_printed_two_decimal_place_numbers": true,
+      "low_density_five_plot_unweighted_mean": 0.316,
+      "high_density_five_plot_unweighted_mean": 0.326,
+      "one_source_unit": "independently_manipulated_parental_plot",
+      "measurement_semantics": "offspring_male_morph_fraction_after_common_greenhouse",
+      "printed_2_decimal_group_gap_rounding_bounds": [
+        0,
+        0.02
+      ]
+    },
+    "female": {
+      "high_minus_low_from_published_plot_means": 0.006,
+      "possible_labelings": 252,
+      "two_sided_extreme_labelings": 222,
+      "exploratory_two_sided_permutation_p": 0.880952381,
+      "is_a_new_test_not_original_published_GLMM": true,
+      "p_value_from_printed_two_decimal_place_numbers": true,
+      "low_density_five_plot_unweighted_mean": 0.278,
+      "high_density_five_plot_unweighted_mean": 0.284,
+      "one_source_unit": "independently_manipulated_parental_plot",
+      "measurement_semantics": "offspring_female_morph_fraction_after_common_greenhouse",
+      "printed_2_decimal_group_gap_rounding_bounds": [
+        -0.004,
+        0.016
+      ]
+    }
+  },
+  "2012_published_male_progeny_density_GLM": {
+    "t": -0.54,
+    "p": ">.50"
+  },
+  "plot_pollen_alloc_change_and_progeny_change_decouple_in_observed_means": true,
+  "evidence_no_effect_on_male_offspring_frequency_proven": false,
+  "biomass_pollen_allocation_equivalent_to_actual_siring": false,
+  "offspring_sex_frequency_is_actual_fitness_of_rare_genotype": false,
+  "multiple_exploratory_tests_family_wise_adjustment": null,
+  "novel_individual_observation_data": null,
+  "SLK_rare_invasion_estimate": null,
+  "claim_limits": [
+    "This is an exploratory new plot-level permutation reanalysis of existing printed source means, NOT the 2012 original GLM p-value.",
+    "Printed values are rounded to two decimal places; deterministic group-gap bounds and exact label enumeration refer only to printed plot values.",
+    "Only the 10 male-present parent plots are compared; 2012 has another 10 male-absent plots and 6076 total assessed offspring.",
+    "Comparing a statistically detectable biomass allocation ratio shift and a nonsignificant male progeny fraction shift DOES NOT test whether their true effects differ statistically or whether allocation has zero effect.",
+    "p_h is hermaphrodite/male relative pollen investment as fraction of aboveground biomass, not realized pollen receipt, fatherhood, or total absolute pollen flux.",
+    "Male progeny morph ratio after one generation is affected by mating, sex determinants and inheritance; it is not directly assigned paternity or SLK mutant invasion fitness.",
+    "Male-present low and high treatments have 16/49 versus 75/225 parental male ratio: close to but not perfectly identical.",
+    "Original study's parent-plots were controlled but family genotype effects, selection after germination and source-population ancestry are not identifiable from Table 2.",
+    "No raw source individual records or 2024 109-population appendix downloaded. The 2024 Figshare endpoint was inaccessible in current environment.",
+    "Do not mix 2008 androdioecy, 2012 trioecy and 2024 field populations into a same-genotype causal female buffering estimate."
+  ]
+}

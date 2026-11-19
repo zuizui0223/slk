@@ -1,0 +1,87 @@
+{
+  "publisher_source_doi": "10.6084/m9.figshare.26521189.v1",
+  "publisher_MD5": "365ab41f1d6192344a3b3fec87654e49",
+  "input_references": [
+    "results/mercurialis_2024_xy_morph_route_bounds_v12.json",
+    "results/mercurialis_2024_maternal_sex_distance_DID_v13.json"
+  ],
+  "H_mothers": {
+    "near_Ylike_range": [
+      0.38289205702647655,
+      0.42973523421588594
+    ],
+    "far_Ylike_range": [
+      0.12615384615384614,
+      0.19384615384615383
+    ],
+    "far_over_near_Ylike_range": [
+      0.29356179365658036,
+      0.5062684124386252
+    ],
+    "far_over_near_known_only": 0.3294762684124386
+  },
+  "F_mothers": {
+    "near_Ylike_range": [
+      0.4180478821362799,
+      0.4419889502762431
+    ],
+    "far_Ylike_range": [
+      0.37872340425531914,
+      0.41914893617021276
+    ],
+    "far_over_near_Ylike_range": [
+      0.8568617021276596,
+      1.0026337988565002
+    ],
+    "far_over_near_known_only": 0.9059330771393758
+  },
+  "nonnegative_sex_unknowns_always": {
+    "H_center_minus_far_minimum": 0.18904590318032272,
+    "H_minus_F_difference_in_drops_minimum": 0.12578035715939878,
+    "H_minus_F_difference_in_drops_maximum": 0.30468244209597267
+  },
+  "conditional_identification_frontier": {
+    "assumption": "Non-XY fathers cannot produce Y-like children; among XY-sired germinated offspring, q_d may differ by position.",
+    "equation": "(p_far/p_center) = (y_far/y_center)/(q_far/q_center)",
+    "threshold_q_far_over_q_center_for_FORCED_XY_siring_drop_under_any_unsexed_assignment": 0.5062684124386252,
+    "to_explain_without_any_male_sire_fraction_change_required_qfar_over_qnear_range": [
+      0.29356179365658036,
+      0.5062684124386252
+    ],
+    "meaning": "If effective Y-morph transmission among XY-sired offspring at far distance is > 0.5063 of center's, p_far is necessarily lower; otherwise unchanged p is algebraically possible. q is NOT observed."
+  },
+  "source_controlled_cross_counterexample": {
+    "paper_doi": "10.1002/ajb2.16429",
+    "cross_type": "female X XY male in a separate controlled-cross experiment",
+    "sex_phenotyped_offspring": 49,
+    "fertile_males": 4,
+    "male_sterile_males": 1,
+    "Y_like_offspring": 5,
+    "Y_like_fraction": 0.10204081632653061,
+    "caution": "One genuine anomalous controlled family, not a generalizable q estimate for the 2024 field ring experiment; segregational versus survival mechanisms unresolved."
+  },
+  "hypothetical_nonidentifiability_scenarios": {
+    "A_constant_Y_morph_given_XY_q_half": {
+      "assume_q_center": 0.5,
+      "assume_q_far": 0.5,
+      "implied_XY_paternity_share_center": 0.7657841140529531,
+      "implied_XY_paternity_share_far": 0.2523076923076923,
+      "logic": "Uses source-determined male-like fraction lower endpoints (all unsexed treated as non-Y). Only a hypothetical model, not genetic paternity."
+    },
+    "B_constant_XY_paternity_share_p_80pct": {
+      "assume_XY_paternity_share_center": 0.8,
+      "assume_XY_paternity_share_far": 0.8,
+      "implied_Y_morph_probability_given_XY_center": 0.47861507128309566,
+      "implied_Y_morph_probability_given_XY_far": 0.15769230769230766,
+      "logic": "Same observable fractions with NO father-composition change; hypothetical position-dependent Y phenotype transmission or viability."
+    }
+  },
+  "warnings": [
+    "The 2024 article genetically inferred Y male determination, but ring offspring have no direct genetic Y typing or paternal assignment.",
+    "The q=0.5 assumption is not empirically guaranteed for each family: original F x M outlier is 5 male-like among 49 progeny.",
+    "This algebra conditions on the observed germinated offspring and ignores selective germination as a separate measured process.",
+    "If non-XY paternity can yield Y-like phenotypes by contamination/misclassification, paternal identification weakens further.",
+    "The source did not randomize CMS/restorer genotype and all aspects of pollen access; do not infer evolutionary adaptation or selfing.",
+    "The H vs F difference in Y-like offspring is a robust *phenotypic contrast*, not a proven change in paternal-route composition."
+  ]
+}
