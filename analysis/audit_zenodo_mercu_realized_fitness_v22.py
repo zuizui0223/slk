@@ -97,6 +97,8 @@ def analyze_zip(raw):
         raise ValueError("Unexpected original inbreeding scenario labels")
     if any(set(d)!={"ID=0","ID=1"} for d in by_mother.values()):
         raise ValueError("Inbreeding scenarios do not pair by mother")
+    if set(by_mother)!=sex_normalized:
+        raise ValueError("Paired fitness mothers do not match sex-allocation mothers")
     paired={}
     for trait in ("Male_fitness","Female_fitness","Total_fitness"):
         deltas=[]
