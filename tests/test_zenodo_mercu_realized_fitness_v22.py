@@ -32,6 +32,7 @@ class RealFitnessSourceAudit(unittest.TestCase):
         self.assertEqual(result["raw_rows"]["fitness_scenarios"],4)
         self.assertEqual(result["unique_population_mother_ids"]["fitness"],2)
         self.assertEqual(result["sex_fitness_overlap_population_mother_ids"],2)
+        self.assertEqual(result["verified_normalized_population_mother_overlap"],2)
         self.assertEqual(result["sex_source_key_examples"],[("P1","1"),("P1","2")])
         self.assertEqual(result["fitness_source_key_examples"],[("P1","1"),("P1","2")])
         self.assertEqual(len(result["fitness_scenarios"]),2)
