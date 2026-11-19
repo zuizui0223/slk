@@ -86,6 +86,31 @@ def analyze_zip(raw):
             "female_fitness":summary(rows,"Female_fitness"),
             "total_fitness":summary(rows,"Total_fitness")
         }
+    by_mother=defaultdict(dict)
+    for row in fitness:
+        key=(normalize_population(row["Population"]),row["ID"].strip())
+        scenario=row["Inbreeding"].strip()
+        if scenario in by_mother[key]:
+            raise ValueError("Duplicate mother in same inbreeding scenario")
+        by_mother[key][scenario]=row
+    if set(scenarios)!={"ID=0","ID=1"}:
+        raise ValueError("Unexpected original inbreeding scenario labels")
+    if any(set(d)!={"ID=0","ID=1"} for d in by_mother.values()):
+        raise ValueError("Inbreeding scenarios do not pair by mother")
+    paired={}
+    for trait in ("Male_fitness","Female_fitness","Total_fitness"):
+        deltas=[]
+        for pair in by_mother.values():
+            low=number(pair["ID=0"][trait])
+            high=number(pair["ID=1"][trait])
+            if low is not None and high is not None:
+                deltas.append(high-low)
+        paired[trait]={
+            "n_complete_mothers":len(deltas),
+            "mean_scenario_1_minus_0":round(statistics.mean(deltas),8) if deltas else None,
+            "fraction_negative":round(sum(x<0 for x in deltas)/len(deltas),8) if deltas else None,
+            "fraction_zero":round(sum(x==0 for x in deltas)/len(deltas),8) if deltas else None
+        }
     return {
         "schema":"SLK_MERCURIALIS_2025_ORIGINAL_FITNESS_DESCRIPTIVE_V22",
         "paper_doi":"10.1111/nph.70356",
@@ -112,6 +137,7 @@ def analyze_zip(raw):
             "selfed_seed_number":summary(sex,"Selfed_seed_number")
         },
         "fitness_scenarios":scenarios,
+        "paired_scenario_1_minus_0":paired,
         "limits":[
             "Original 3G_ID01.csv includes multiple assumed inbreeding scenarios; rows are not independent plants.",
             "Do not claim any actual offspring survival or natural inbreeding depression was measured.",
