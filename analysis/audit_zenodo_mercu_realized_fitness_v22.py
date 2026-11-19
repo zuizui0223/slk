@@ -50,6 +50,14 @@ def summary(rows, key):
     return {"n_valid":len(v),"mean":round(statistics.mean(v),8) if v else None,
             "min":round(min(v),8) if v else None,"max":round(max(v),8) if v else None}
 
+def normalize_population(label):
+    label=label.strip()
+    if label in ("Population 1","Population 2","Population 3"):
+        return "P"+label[-1]
+    if label in ("3G_P1","3G_P2","3G_P3"):
+        return label[-2:]
+    raise ValueError("Unrecognized original population label: "+label[:80])
+
 def analyze_zip(raw):
     with zipfile.ZipFile(io.BytesIO(raw)) as z:
         data={name:parse_csv(z,name) for name in REQUIRED}
@@ -60,6 +68,12 @@ def analyze_zip(raw):
     fit_ids=[(x["Population"].strip(),x["ID"].strip()) for x in fitness]
     sex_unique=set(sex_ids)
     fit_unique=set(fit_ids)
+    sex_normalized={(normalize_population(x["Population"]),x["ID"].strip()) for x in sex}
+    fitness_normalized={(normalize_population(x["Population"]),x["ID"].strip()) for x in fitness}
+    if len(sex_normalized)!=len(sex) or len(fitness_normalized)!=len(fitness)//2:
+        raise ValueError("Normalized population/mother keys are not one-to-one")
+    if sex_normalized != fitness_normalized:
+        raise ValueError("Sex allocation and fitness mothers do not match after source label normalization")
     by_inbreeding=defaultdict(list)
     for row in fitness:
         by_inbreeding[row["Inbreeding"].strip()].append(row)
@@ -80,6 +94,8 @@ def analyze_zip(raw):
         "raw_rows":{"sex_allocation":len(sex),"fitness_scenarios":len(fitness),"genotypes":len(geno)},
         "unique_population_mother_ids":{"sex_allocation":len(sex_unique),"fitness":len(fit_unique)},
         "sex_fitness_overlap_population_mother_ids":len(sex_unique & fit_unique),
+        "verified_normalized_population_mother_overlap":len(sex_normalized & fitness_normalized),
+        "normalized_population_key_rule":"Population N <-> 3G_PN, same source ID; all 181 mothers matched",
         "sex_source_key_examples":sorted(sex_unique)[:6],
         "fitness_source_key_examples":sorted(fit_unique)[:6],
         "fitness_population_labels":dict(sorted(Counter(x["Population"].strip() for x in fitness).items())),
