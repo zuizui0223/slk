@@ -107,11 +107,25 @@ def probe(fetch=open_url):
     }
     try:
         meta = json.loads(fetch(API).decode("utf8"))
-        if str(meta.get("id")) != str(RECORD_ID):
+        observed_id = str(meta.get("id"))
+        observed_concept_id = str(meta.get("conceptrecid", meta.get("conceptrecord_id", "")))
+        observed_doi = str(meta.get("doi", ""))
+        observed_concept_doi = str(meta.get("conceptdoi", ""))
+        out["resolved_version_record_id"] = observed_id
+        out["resolved_concept_record_id"] = observed_concept_id
+        out["resolved_version_doi"] = observed_doi
+        out["resolved_concept_doi"] = observed_concept_doi
+        # Zenodo's concept-record API may resolve to the newest published version,
+        # whose version ID legitimately differs from the original concept ID.
+        # Do not trust an arbitrary redirect: require the exact concept record ID
+        # AND the exact original concept DOI, or the exact version record ID.
+        if observed_id != str(RECORD_ID) and not (
+            observed_concept_id == str(RECORD_ID)
+            and observed_concept_doi.lower() == DOI.lower()
+        ):
             out["response_top_keys"] = sorted(str(k) for k in meta.keys())[:15]
-            out["response_id"] = str(meta.get("id"))[:80]
             out["response_error"] = str({k: meta[k] for k in ("status", "message", "error") if k in meta})[:250]
-            raise ValueError("Unexpected record ID or Zenodo record error response")
+            raise ValueError("Record is not a verified version of requested Zenodo concept DOI")
         items = file_entries(meta)
         if not items:
             raise ValueError("No files in published source record")
