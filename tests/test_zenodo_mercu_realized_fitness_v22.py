@@ -16,8 +16,8 @@ def archive():
                    "1,P1,10,20,3,1,0.333,4,0.4,0.3\n2,P1,15,25,3,0,0,5,0.5,0.6\n")
         z.writestr("Geito_NewPhyto_v2/3G_ID01.csv",
                    "ID,Population,Biomass_whole,Realized_G,Male_fitness,Female_fitness,Total_fitness,Inbreeding,Pop_ID\n"
-                   "1,P1,4,0.4,5,10,15,0,P1-1\n2,P1,5,0.5,6,11,17,0,P1-2\n"
-                   "1,P1,4,0.4,5,7,12,1,P1-1\n2,P1,5,0.5,6,9,15,1,P1-2\n")
+                   "1,P1,4,0.4,5,10,15,ID=0,P1-1\n2,P1,5,0.5,6,11,17,ID=0,P1-2\n"
+                   "1,P1,4,0.4,5,7,12,ID=1,P1-1\n2,P1,5,0.5,6,9,15,ID=1,P1-2\n")
         z.writestr("Geito_NewPhyto_v2/Genotype_3P.csv",
                    "Sample_Name,Population,Parent_Offspring\nA,P1,Parent\nB,P1,Offspring\n")
     return buf.getvalue()
@@ -36,7 +36,7 @@ class RealFitnessSourceAudit(unittest.TestCase):
         self.assertEqual(result["sex_source_key_examples"],[("P1","1"),("P1","2")])
         self.assertEqual(result["fitness_source_key_examples"],[("P1","1"),("P1","2")])
         self.assertEqual(len(result["fitness_scenarios"]),2)
-        self.assertEqual(result["fitness_scenarios"]["1"]["total_fitness"]["mean"],13.5)
+        self.assertEqual(result["fitness_scenarios"]["ID=1"]["total_fitness"]["mean"],13.5)
         self.assertEqual(result["paired_scenario_1_minus_0"]["Total_fitness"]["n_complete_mothers"],2)
         self.assertEqual(result["paired_scenario_1_minus_0"]["Total_fitness"]["mean_scenario_1_minus_0"],-2.5)
     def test_no_p_values_or_natural_inbreeding_depression_claim(self):
